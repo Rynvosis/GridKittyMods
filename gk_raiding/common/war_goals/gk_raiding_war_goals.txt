@@ -61,7 +61,6 @@ wg_gk_raiding = {
 	on_accept = {
 		custom_tooltip = wg_gk_raiding_accept_tooltip
 		hidden_effect = {
-			log = "GK_RAIDING: wg_gk_raiding on_accept fired! Root=\[Root.GetName] From=\[From.GetName]"
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }

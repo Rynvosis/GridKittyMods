@@ -34,3 +34,15 @@ defined_text = {
 	name = GkRemainingTruePopsToPlunder
 	value = value:gk_remaining_true_pops_to_plunder
 }
+
+# Forfeited pops count (variable on country/galactic_object)
+defined_text = {
+	name = GkForfeitedPops
+	value = value:gk_forfeited_pops_value
+}
+
+# Plundered pops count (variable on country)
+defined_text = {
+	name = GkRaideePlundered
+	value = value:gk_raidee_plundered_value
+}

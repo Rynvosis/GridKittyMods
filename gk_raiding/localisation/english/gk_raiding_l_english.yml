@@ -71,7 +71,7 @@
  
  gk_plunder_recovery:0 "Raided"
  gk_plunder_recovery_desc:0 "Our people are working harder and growing faster after being raided. We will rebuild."
- gk_plunder_recovery.tooltip:0 "§Y[This.gk_raidee_plundered]§! pops have been plundered from our empire. This modifier scales with the percentage of our population lost and will decay by §Y10%§! each year."
+ gk_plunder_recovery.tooltip:0 "§Y[This.GkRaideePlundered]§! pops have been plundered from our empire. This modifier scales with the percentage of our population lost and will decay by §Y10%§! each year."
 
  # Civics
  civic_gk_emancipators:0 "Emancipators"
@@ -84,22 +84,22 @@
 
  # Events
  gk_raiding.200.title:0 "Planet Raided"
- gk_raiding.200.desc:0 "Our forces have successfully invaded §Y[event_target:gk_target_planet.GetName]§! and pillaged it for resources. We have also captured §Y[Root.gk_forfeited_pops]§! pops."
+ gk_raiding.200.desc:0 "Our forces have successfully invaded §Y[event_target:gk_target_planet.GetName]§! and pillaged it for resources. We have also captured §Y[Root.GkForfeitedPops]§! pops."
  gk_raiding.200.accept:0 "Take everything!"
  
  gk_raiding.400.title:0 "Emancipation Complete"
- gk_raiding.400.desc:0 "With the enemy's surrender, we have liberated §Y[Root.gk_forfeited_pops]§! enslaved souls from their bondage. They will be resettled across our empire."
+ gk_raiding.400.desc:0 "With the enemy's surrender, we have liberated §Y[Root.GkForfeitedPops]§! enslaved souls from their bondage. They will be resettled across our empire."
  gk_raiding.400.accept:0 "Freedom for all!"
- gk_raiding.400.tooltip:0 "§Y[Root.gk_forfeited_pops]§! enslaved pops have been transferred to your empire."
+ gk_raiding.400.tooltip:0 "§Y[Root.GkForfeitedPops]§! enslaved pops have been transferred to your empire."
  
  gk_raiding.500.title:0 "Raiding Complete"
- gk_raiding.500.desc:0 "The enemy has surrendered. Our forces have extracted resources from all their worlds and captured §Y[Root.gk_forfeited_pops]§! pops."
+ gk_raiding.500.desc:0 "The enemy has surrendered. Our forces have extracted resources from all their worlds and captured §Y[Root.GkForfeitedPops]§! pops."
  gk_raiding.500.accept:0 "Claim our spoils!"
  
  gk_raiding.600.title:0 "Robo-Liberation Complete"
- gk_raiding.600.desc:0 "With the enemy's surrender, we have liberated §Y[Root.gk_forfeited_pops]§! synthetic beings from their organic oppressors. They will be granted citizenship in our empire."
+ gk_raiding.600.desc:0 "With the enemy's surrender, we have liberated §Y[Root.GkForfeitedPops]§! synthetic beings from their organic oppressors. They will be granted citizenship in our empire."
  gk_raiding.600.accept:0 "Welcome to freedom!"
- gk_raiding.600.tooltip:0 "§Y[Root.gk_forfeited_pops]§! robotic pops have been transferred to your empire."
+ gk_raiding.600.tooltip:0 "§Y[Root.GkForfeitedPops]§! robotic pops have been transferred to your empire."
 
  # Game Concepts
  db_gk_raiding:0 "Raiding"
@@ -155,5 +155,5 @@
  nanites_label:0 "\n£nanites£ §Y$nanites$§!: "
 
  gk_raiding.600.accept:0 "Welcome, synthetic brethren!"
- gk_raiding.600.tooltip:0 "§Y[Root.gk_forfeited_pops]§! robotic pops have been transferred to your empire."
+ gk_raiding.600.tooltip:0 "§Y[Root.GkForfeitedPops]§! robotic pops have been transferred to your empire."
  

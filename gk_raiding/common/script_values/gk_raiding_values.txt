@@ -96,6 +96,25 @@ gk_remaining_true_pops_to_plunder = {
 	min = 0
 }
 
+# Variable accessors for localisation
+gk_forfeited_pops_value = {
+	base = 0
+	modifier = {
+		is_variable_set = gk_forfeited_pops
+		add = gk_forfeited_pops
+	}
+	floor = yes
+}
+
+gk_raidee_plundered_value = {
+	base = 0
+	modifier = {
+		is_variable_set = gk_raidee_plundered
+		add = gk_raidee_plundered
+	}
+	floor = yes
+}
+
 ####################
 # Abduction Values #
 ####################

@@ -2,6 +2,7 @@
 # This creates a dedicated section in the Databank for raiding mechanics
 
 db_gk_raiding = {
+	name = db_gk_raiding
 	icon = "GFX_text_diplomacy"
 	
 	potential = {

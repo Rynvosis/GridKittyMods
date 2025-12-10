@@ -75,7 +75,6 @@ gk_abduct_on_invasion = {
 # Initialize abduction cap on raidee and forfeited pops counter on storage scope
 # Requires: event_target:gk_raider, event_target:gk_raidee, event_target:gk_storage_scope
 gk_init_abduction_cap = {
-	log = "GK_RAIDING abduction init: raider=\\[event_target:gk_raider.GetName] raidee=\\[event_target:gk_raidee.GetName]"
 	# Calculate remaining pop capacity based on raider's limit and efficiency
 	event_target:gk_raidee = {
 		# Start with defender's pops * raider's limit
@@ -92,7 +91,6 @@ gk_init_abduction_cap = {
 			which = gk_remaining_cap
 			value = value:gk_raidee_effective_taken
 		}
-		log = "GK_RAIDING abduction init: raidee total pops check, remaining_cap=\\[This.gk_remaining_cap]"
 	}
 	# Initialize forfeited pops counter on storage scope
 	event_target:gk_storage_scope = {
@@ -111,7 +109,6 @@ gk_init_abduction_cap = {
 # This = Planet or Country to abduct from
 # Requires: event_target:gk_raider, event_target:gk_raidee (with gk_remaining_cap), event_target:gk_storage_scope
 gk_abduct_pops_from_target = {
-	log = "GK_RAIDING abduct_target: processing \\[This.GetName]"
 	
 	# Loop while cap > 0 AND valid pop_groups exist
 	while = {
@@ -156,7 +153,6 @@ gk_abduct_pops_from_target = {
 				}
 			}
 			
-			log = "GK_RAIDING abduct_target: taking \\[event_target:gk_raidee.gk_transfer_amount] pops, remaining_cap=\\[event_target:gk_raidee.gk_remaining_cap]"
 			
 			# Create pop group on destination and transfer - inline like vanilla cyberize
 			event_target:gk_destination_planet = {
@@ -192,7 +188,6 @@ gk_abduct_pops_from_target = {
 				gk_track_raided_pops = { AMOUNT = gk_transfer_amount }
 			}
 			
-			log = "GK_RAIDING abduct_target: resettled to \\[event_target:gk_destination_planet.GetName], remaining_cap=\\[event_target:gk_raidee.gk_remaining_cap]"
 		}
 	}
 }
@@ -266,7 +261,6 @@ gk_find_destination_planet = {
 # Parameters:
 #   AMOUNT = number of pops taken (variable or value)
 gk_track_raided_pops = {
-	log = "GK_RAIDING track_raided: amount=$AMOUNT$"
 	
 	# Determine if this is emancipation or plunder based on raider's war type
 	if = {
@@ -289,7 +283,6 @@ gk_track_raided_pops = {
 			which = gk_raidee_emancipated
 			value = $AMOUNT$
 		}
-		log = "GK_RAIDING track_raided: EMANCIPATED +$AMOUNT$ total=\\[This.gk_raidee_emancipated]"
 	}
 	else = {
 		# Plunder - track separately and will give recovery modifier
@@ -306,7 +299,6 @@ gk_track_raided_pops = {
 			which = gk_raidee_plundered
 			value = $AMOUNT$
 		}
-		log = "GK_RAIDING track_raided: PLUNDERED +$AMOUNT$ total=\\[This.gk_raidee_plundered]"
 		# Update recovery modifier immediately
 		gk_update_plunder_recovery_modifier = yes
 	}
@@ -330,11 +322,20 @@ gk_update_plunder_recovery_modifier = {
 				is_variable_set = gk_raidee_emancipated
 			}
 		}
-		# Calculate total value: (emancipated * 0.5) + plundered
+		# Initialize temp variables to 0
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop_amount
+			variable = gk_remaining_pops_temp
+		}
 		set_variable = {
 			which = gk_effective_taken_temp
-			value = 0
+			value = gk_remaining_pops_temp
 		}
+		subtract_variable = {
+			which = gk_effective_taken_temp
+			value = gk_remaining_pops_temp
+		}
+		# Calculate total value: (emancipated * 0.5) + plundered
 		if = {
 			limit = {
 				is_variable_set = gk_raidee_emancipated
@@ -361,10 +362,6 @@ gk_update_plunder_recovery_modifier = {
 		set_variable = {
 			which = gk_effective_taken_percentage_temp
 			value = gk_effective_taken_temp
-		}
-		export_trigger_value_to_variable = {
-			trigger = count_owned_pop_amount
-			variable = gk_remaining_pops_temp
 		}
 		divide_variable = {
 			which = gk_effective_taken_percentage_temp

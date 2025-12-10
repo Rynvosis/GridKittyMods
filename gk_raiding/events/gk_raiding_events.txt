@@ -182,7 +182,6 @@ country_event = {
 					}
 				}
 				clear_variable = gk_raidee_plundered
-				log = "GK_RAIDING: Cleared gk_raidee_plundered for \\[This.GetName]"
 			}
 		}
 		# Decay emancipated by 10% (5% if defending against raider)
@@ -233,7 +232,6 @@ country_event = {
 					}
 				}
 				clear_variable = gk_raidee_emancipated
-				log = "GK_RAIDING: Cleared gk_raidee_emancipated for \\[This.GetName]"
 			}
 		}
 		# Apply/update recovery modifier based on plunder percentage
