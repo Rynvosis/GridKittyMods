@@ -1,0 +1,316 @@
+# GK Raiding Scripted Triggers
+####################
+# CB Access Checks #
+####################
+# This = country scope
+# Can use standard raiding CB (from civics, ascension perks, etc.)
+gk_can_use_raiding_cb = {
+	OR = {
+		has_valid_civic = civic_barbaric_despoilers
+		has_valid_civic = civic_crusader_spirit_corporate
+		has_ascension_perk = ap_nihilistic_acquisition
+		has_valid_civic = civic_gk_emancipators
+		has_valid_civic = civic_gk_robo_liberators
+	}
+}
+
+# This = country scope
+# Can use Emancipation war goal (requires emancipation policy)
+gk_can_use_emancipation_cb = {
+	has_policy_flag = gk_focus_emancipation
+}
+
+# This = country scope
+# Can use Robo-Liberation war goal (requires robo-liberation policy)
+gk_can_use_robo_liberation_cb = {
+	has_policy_flag = gk_focus_robo_liberation
+}
+
+####################
+# War Goal Checks  #
+####################
+# This = country scope
+gk_has_emancipation_war = {
+	any_war = {
+		using_war_goal = {
+			type = wg_gk_emancipation
+			owner = prev
+		}
+	}
+}
+
+# This = country scope
+gk_has_raiding_war = {
+	any_war = {
+		using_war_goal = {
+			type = wg_gk_raiding
+			owner = prev
+		}
+	}
+}
+
+# This = country scope
+gk_has_robo_liberation_war = {
+	any_war = {
+		using_war_goal = {
+			type = wg_gk_robo_liberation
+			owner = prev
+		}
+	}
+}
+
+# This = country scope
+gk_has_any_raiding_war = {
+	any_war = {
+		OR = {
+			using_war_goal = {
+				type = wg_gk_emancipation
+				owner = prev
+			}
+			using_war_goal = {
+				type = wg_gk_raiding
+				owner = prev
+			}
+			using_war_goal = {
+				type = wg_gk_robo_liberation
+				owner = prev
+			}
+		}
+	}
+}
+
+# This = country scope (defender/raidee)
+# Root = country scope (attacker/raider)  
+# Check if raider (root) is in a RAIDING war against this country (defender)
+gk_has_raiding_war_with = {
+	root = {
+		any_war = {
+			is_war_participant = {
+				who = prevprev
+				side = defenders
+			}
+			OR = {
+				using_war_goal = {
+					type = wg_gk_emancipation
+					owner = prev
+				}
+				using_war_goal = {
+					type = wg_gk_raiding
+					owner = prev
+				}
+				using_war_goal = {
+					type = wg_gk_robo_liberation
+					owner = prev
+				}
+			}
+		}
+	}
+}
+
+# This = country scope
+# Can raid pops in current context (war or non-war)
+gk_can_raid_pops = {
+	OR = {
+		# In a war that allows pop raiding
+		gk_has_any_raiding_war = yes
+		# Not in a raiding war but can still raid (primitives, pre-contact, etc.)
+		# Will be expanded with policy checks later
+	}
+}
+
+# This = country scope
+# Can pillage resources in current context
+gk_can_raid_resources = {
+	OR = {
+		# In a raiding war (not emancipation)
+		gk_has_raiding_war = yes
+		# Not in war but can still pillage
+		# Will be expanded with policy checks later
+	}
+}
+
+####################
+# Pop Group Checks #
+####################
+# Root = hostile country (attacker/raider)
+# This = pop_group
+gk_can_abduct_pop_group_war_goal_check = {
+	# Check 1: For Emancipation war, only enslaved pops
+	# Skip this check if not in any war (first contact, primitives, etc.)
+	OR = {
+		# No active war - allow normal raiding (first contact, primitives)
+		root = {
+			NOT = {
+				any_war = {
+					is_war_participant = {
+						who = prev
+					}
+				}
+			}
+		}
+		# In war but NOT emancipation war - allow any pop
+		root = {
+			NOT = {
+				gk_has_emancipation_war = yes
+			}
+		}
+		# In emancipation war - only enslaved
+		is_enslaved = yes
+	}
+}
+
+# Root = hostile country (attacker/raider)
+# This = pop_group
+# Note: from is NOT available - access planet owner via planet = { owner = { } }
+gk_can_abduct_pop_group_cap_check = {
+	# Check 2: Per-Raidee Limit
+	# Can't take more than (raidee_pops * raider_limit) effective pops from this country
+	# If in a non-raiding war, use HALF limit (opportunistic raiding)
+	# Cap calculated dynamically: script value gk_raidee_cap_for_raider = raidee_pops * raider's limit
+	# effective_taken = gk_raidee_plundered + gk_raidee_emancipated (via script value)
+	# EXCEPTION: Primitives can be fully raided (no cap)
+	# EXCEPTION: Total wars have NO CAP - it's a free for all
+	OR = {
+		# In a total war - NO CAP, take everything!
+		root = {
+			any_war = {
+				is_war_participant = {
+					who = prev
+				}
+				is_total_war = yes
+			}
+		}
+		# Primitives - no cap, can deplete to 0
+		planet = {
+			owner = {
+				is_primitive = yes
+			}
+		}
+		# In a valid raiding war with target - full cap
+		AND = {
+			planet = {
+				owner = {
+					is_primitive = no
+					# this = planet owner (defender), root = raider
+					gk_has_raiding_war_with = yes
+					check_variable_arithmetic = {
+						which = value:gk_raidee_effective_taken
+						value < value:gk_raidee_cap_for_raider
+					}
+				}
+			}
+		}
+		# In a non-raiding war OR no war - half cap (opportunistic)
+		AND = {
+			planet = {
+				owner = {
+					is_primitive = no
+					# this = planet owner (defender), root = raider
+					NOT = { gk_has_raiding_war_with = yes }
+					check_variable_arithmetic = {
+						which = value:gk_raidee_effective_taken
+						value < value:gk_raidee_half_cap_for_raider
+					}
+				}
+			}
+		}
+	}
+}
+
+# Root = hostile country (attacker/raider)
+# This = pop_group
+gk_can_abduct_pop_group_robot_check = {
+	# Check: Robot raiding policy and robo-liberation war restrictions
+	OR = {
+		# Robo-liberators civic OR in robo-liberation war - ONLY robots
+		AND = {
+			OR = {
+				root = {
+					has_valid_civic = civic_gk_robo_liberators
+				}
+				root = {
+					gk_has_robo_liberation_war = yes
+				}
+			}
+			is_robotic_species = yes
+		}
+		# Robots only policy - ONLY robots
+		AND = {
+			root = {
+				has_policy_flag = gk_robots_only_raiding
+			}
+			is_robotic_species = yes
+		}
+		# Forbid robot raiding - ONLY organics
+		AND = {
+			root = {
+				has_policy_flag = gk_forbid_robot_raiding
+			}
+			is_robotic_species = no
+		}
+		# Allow robot raiding (and not robo-liberator/robo-lib war) - both allowed
+		AND = {
+			root = {
+				has_policy_flag = gk_allow_robot_raiding
+				NOT = {
+					has_valid_civic = civic_gk_robo_liberators
+				}
+				NOT = {
+					gk_has_robo_liberation_war = yes
+				}
+			}
+		}
+	}
+}
+
+# Root = hostile country (attacker/raider)
+# This = pop_group
+gk_can_abduct_pop_group = {
+	# Vanilla checks the pop is eligible to be raided in the first place.
+	# This filters based on the raiding quotas and war goal restrictions.
+	# Check 0: Raider must have pop raiding capability (limit > 0)
+	root = {
+		check_modifier_value = {
+			modifier = gk_pop_raiding_limit
+			value > 0
+		}
+	}
+	# Check 1: War Goal Restrictions
+	gk_can_abduct_pop_group_war_goal_check = yes
+	# Check 2: Per-Raidee Limit
+	gk_can_abduct_pop_group_cap_check = yes
+	# Check 3: Robot Raiding Policy
+	gk_can_abduct_pop_group_robot_check = yes
+}
+
+####################
+# Planet Checks    #
+####################
+# This = planet scope
+# From = raider country
+gk_can_be_pillaged = {
+	is_colony = yes
+	exists = owner
+	OR = {
+		NOT = {
+			is_variable_set = gk_pillage_tier
+		}
+		# Check against raider's max pillage tiers modifier
+		AND = {
+			is_variable_set = gk_pillage_tier
+			check_variable = {
+				which = gk_pillage_tier
+				value < from.modifier:gk_max_pillage_tiers
+			}
+		}
+	}
+}
+
+# This = planet scope
+# Check if planet is good destination for raided pops
+gk_is_valid_pop_destination = {
+	is_colony = yes
+	exists = owner
+	free_housing >= 1
+	free_amenities >= 1
+}

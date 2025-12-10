@@ -1,0 +1,24 @@
+# GK Raiding - Static Modifiers
+
+# Pillaged - applied to planets, scaled by tier
+# Negative: reduced happiness and job output from disruption
+# Positive: stability bonus from community solidarity during rebuilding
+gk_pillaged = {
+	icon = "gfx/interface/icons/modifiers/mod_planet_stability_add.dds"
+	pop_happiness = -0.03
+	pop_bonus_workforce_mult = -0.06
+	planet_stability_add = 3
+	show_only_custom_tooltip = no
+	custom_tooltip = gk_pillaged.tooltip
+}
+
+# Plunder Recovery - applied to countries that have had pops plundered
+# Base: +1% workforce and +3% founder species growth per 1% of pops plundered
+# Scaled by plunder percentage. so at 0.01. +100% bonus workforce becomes +1% workforce
+gk_plunder_recovery = {
+	icon = "gfx/interface/icons/modifiers/mod_planet_stability_add.dds"
+	pop_bonus_workforce_mult = 1
+	founder_species_growth_mult = 3
+	show_only_custom_tooltip = no
+	custom_tooltip = gk_plunder_recovery.tooltip
+}

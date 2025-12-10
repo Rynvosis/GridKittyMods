@@ -1,0 +1,164 @@
+# GK Raiding Script Values
+
+####################
+# Pop Cap Values   #
+####################
+
+# The raider's pop limit as a percentage (from gk_pop_raiding_limit modifier)
+# This = Country scope (the raider)
+# Returns the raw percentage (e.g., 0.10 for 10%)
+
+# Multiplier from policies/civics (e.g. 1.0 = 100%, 2.0 = 200%)
+gk_raiding_quota_mult = {
+	base = 0
+	add = modifier:gk_pop_raiding_limit
+}
+
+gk_raider_pop_limit = {
+	add = event_target:global_event_country.gk_base_raiding_quota
+	mult = value:gk_raiding_quota_mult
+	ceiling = yes	
+}
+
+gk_raider_pop_limit_percent = {
+	add = event_target:global_event_country.gk_base_raiding_quota
+	mult = value:gk_raiding_quota_mult
+	mult = 100
+}
+
+# Per-raidee cap: this country's pops * root (raider)'s limit
+# This = Country scope (the raidee/defender)
+# Root = Country scope (the raider)
+# NOTE: This is calculated in effect context using export_trigger_value_to_variable
+# Cannot be done as script value since it requires multiplying count_owned_pop_amount
+# by a dynamic value (root.value:gk_raider_pop_limit)
+
+# Combined effective taken (plundered + emancipated) for cap checks
+# This = Country scope (the raidee)
+# Root = Country scope (the raider)
+gk_raidee_effective_taken = {
+	base = 0
+	# Add plundered
+	modifier = {
+		is_variable_set = gk_raidee_plundered
+		add = gk_raidee_plundered
+	}
+	# Add emancipated
+	modifier = {
+		is_variable_set = gk_raidee_emancipated
+		add = gk_raidee_emancipated
+	}
+}
+
+# 1% of a country's total pops (for decay threshold)
+# This = Country scope
+gk_raidee_decay_threshold = {
+	base = 0
+	
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = add
+		mult = 0.01
+	}
+}
+
+# Plunder percentage is now calculated directly in gk_update_plunder_recovery_modifier effect
+# Removed this script value since it requires division by count_owned_pop_amount
+# which can't be done in script value context
+gk_raidee_cap_for_raider = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = add
+	}
+	mult = root.value:gk_raider_pop_limit
+}
+
+# Half cap - used for non-raiding wars (opportunistic raiding)
+# This = raidee, Root = raider
+gk_raidee_half_cap_for_raider = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = add
+	}
+	mult = root.value:gk_raider_pop_limit
+	mult = 0.5
+}
+
+
+#used in loc. Root = raider from = raidee
+gk_remaining_true_pops_to_plunder = {
+	base = 0
+	add = value:gk_raidee_cap_for_raider
+	subtract = value:gk_raidee_effective_taken
+	floor = yes
+	min = 0
+}
+
+####################
+# Abduction Values #
+####################
+
+# How many pops to take in one abduction iteration
+# This = pop_group scope
+# event_target:gk_raidee = country with gk_remaining_cap variable
+# Returns: min(pop_group_size, min(100, remaining_cap)) - always whole number
+gk_pops_to_abduct = {
+	base = 0
+	add = trigger:pop_group_size
+	# Clamp to remaining cap if it's less than pop_group size
+	max = event_target:gk_raidee.gk_remaining_cap
+	# No more than 100 at a time
+	max = 100
+}
+
+####################
+# Pillage Values   #
+####################
+
+# Pillage efficiency multiplier (1 + modifier value)
+# This = country scope (the raider)
+# Used to multiply resources gained from pillaging
+gk_pillage_efficiency_mult = {
+	base = 1
+	add = modifier:gk_pillage_efficiency
+}
+
+####################
+# Pillage Progress  #
+####################
+
+# Devastation curve for pillage progress chance modifier
+# This = planet scope
+# Returns: (devastation/100)^2 * 100
+# Used to adjust pillage speed based on planet devastation
+gk_devastation_curve = {
+	base = 0
+	add = trigger:planet_devastation
+	divide = 100
+	pow = 2
+	mult = 100
+}
+
+####################
+# Resource Calcs   #
+####################
+
+# Base resource production per resource type
+# These get multiplied by tier_months and loot_multiplier in scripted_effects
+# This = planet scope
+# Parameters: RESOURCE - the resource type to check production for
+# Usage: value:gk_base_loot_value|RESOURCE|energy|
+gk_base_loot_value = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = planet_resource_compare
+		parameters = {
+			resource = $RESOURCE$
+			type = produces
+		}
+		mode = add
+	}
+	floor = yes
+}

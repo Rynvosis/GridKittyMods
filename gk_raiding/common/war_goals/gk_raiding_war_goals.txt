@@ -1,0 +1,260 @@
+# GK Raiding War Goals
+# Two war goals - Raiding (general) and Emancipation (slaves only)
+# Effectiveness is determined by modifiers on the raiding country
+
+#####################
+# RAIDING WAR       #
+#####################
+# General raiding: pops + resources, effectiveness based on modifiers
+wg_gk_raiding = {
+	casus_belli = cb_gk_raiding
+	hide_if_no_cb = no
+	total_war = no
+
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+
+	surrender_acceptance = -75
+
+	potential = {
+		has_total_war_cb = no
+		gk_can_use_raiding_cb = yes
+		NOT = { is_in_federation_with = from }
+		NAND = {
+			is_galactic_emperor = yes
+			from = { is_galactic_community_member = yes }
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = has_claimed_all_systems
+			from = {
+				is_country_type = default
+				any_owned_planet = {
+					is_colony = yes
+					root = {
+						NOT = { has_claim = prev.solar_system }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = { is_galactic_emperor = no }
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+	}
+
+	on_accept = {
+		custom_tooltip = wg_gk_raiding_accept_tooltip
+		hidden_effect = {
+			log = "GK_RAIDING: wg_gk_raiding on_accept fired! Root=\[Root.GetName] From=\[From.GetName]"
+			# Set up event targets
+			save_event_target_as = gk_raider
+			from = { save_event_target_as = gk_raidee }
+			# Pillage and abduct (all planets, all sapient pops per robot policy)
+			gk_pillage_on_surrender = yes
+			gk_abduct_on_surrender = yes
+			# Fire reward collection event with raidee as from
+			country_event = {
+				id = gk_raiding.500
+				scopes = { from = event_target:gk_raidee }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+#####################
+# EMANCIPATION WAR  #
+#####################
+# Enslaved pops only, count 0.66x toward cap, no resource pillaging
+wg_gk_emancipation = {
+	casus_belli = cb_gk_raiding
+	hide_if_no_cb = no
+	total_war = no
+
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+
+	surrender_acceptance = -50
+
+	potential = {
+		has_total_war_cb = no
+		gk_can_use_emancipation_cb = yes
+		NOT = { is_in_federation_with = from }
+		NAND = {
+			is_galactic_emperor = yes
+			from = { is_galactic_community_member = yes }
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = gk_requires_enemy_has_slaves
+			from = {
+				is_country_type = default
+				any_owned_planet = {
+					any_owned_pop_group = {
+						is_enslaved = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = { is_galactic_emperor = no }
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+	}
+
+	on_accept = {
+		custom_tooltip = wg_gk_emancipation_accept_tooltip
+		hidden_effect = {
+			# Set up event targets
+			save_event_target_as = gk_raider
+			from = { save_event_target_as = gk_raidee }
+			# Abduct only (enslaved pops via war goal check)
+			gk_abduct_on_surrender = yes
+			# Fire reward collection event with raidee as from
+			country_event = {
+				id = gk_raiding.400
+				scopes = { from = event_target:gk_raidee }
+			}
+		}
+	}
+
+	on_status_quo = {
+		custom_tooltip = wg_gk_emancipation_status_quo_tooltip
+		# Keep what you've already taken
+	}
+
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 3
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_egalitarian
+		}
+	}
+}
+
+#####################
+# ROBO-LIBERATION   #
+#####################
+# Robotic pops only, no resource pillaging
+wg_gk_robo_liberation = {
+	casus_belli = cb_gk_raiding
+	hide_if_no_cb = no
+	total_war = no
+
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+
+	surrender_acceptance = -50
+
+	potential = {
+		has_total_war_cb = no
+		gk_can_use_robo_liberation_cb = yes
+		NOT = { is_in_federation_with = from }
+		NAND = {
+			is_galactic_emperor = yes
+			from = { is_galactic_community_member = yes }
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = gk_requires_enemy_has_robots
+			from = {
+				is_country_type = default
+				any_owned_planet = {
+					any_owned_pop_group = {
+						is_robotic_species = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = { is_galactic_emperor = no }
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+	}
+
+	on_accept = {
+		custom_tooltip = wg_gk_robo_liberation_accept_tooltip
+		hidden_effect = {
+			# Set up event targets
+			save_event_target_as = gk_raider
+			from = { save_event_target_as = gk_raidee }
+			# Abduct only (robotic pops via robot check)
+			gk_abduct_on_surrender = yes
+			# Fire reward collection event with raidee as from
+			country_event = {
+				id = gk_raiding.600
+				scopes = { from = event_target:gk_raidee }
+			}
+		}
+	}
+
+	on_status_quo = {
+		custom_tooltip = wg_gk_robo_liberation_status_quo_tooltip
+		# Keep what you've already taken
+	}
+
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 3
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}

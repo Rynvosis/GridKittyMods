@@ -1,0 +1,11 @@
+﻿﻿l_english:
+ # Override vanilla descriptions to add concept references
+ 
+ # Barbaric Despoilers Civic
+ civic_barbaric_despoilers_desc:0 "['concept_gk_raiding_mechanics']\nThis society holds few things sacred. To fight is to live, and the strongest may seize what they covet, slavering at the chance to raid and pillage the worlds of their neighbors."
+ 
+ # Nihilistic Acquisition Ascension Perk
+ ap_nihilistic_acquisition_desc:0 "['concept_gk_raiding_mechanics']\nWe have the power to take what we want. There is no need to justify it with lofty ideals or moral posturing - we are strong, and they are weak."
+ 
+ # Letters of Marque Civic
+ civic_crusader_spirit_corporate_desc:0 "['concept_gk_raiding_mechanics']\nTo combat space piracy and safeguard its borders, this megacorporation utilizes notorious pirates as military advisors and commanders for their fleets."

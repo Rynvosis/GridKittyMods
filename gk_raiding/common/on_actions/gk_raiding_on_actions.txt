@@ -1,0 +1,45 @@
+# GK Raiding On Actions
+
+# Initialize global variables
+on_game_start = {
+	events = {
+		gk_raiding.1
+	}
+}
+
+# Pop Group is abducted by raiding stance
+# This = Pop Group scope
+# From = planet abducted from
+on_pop_group_abducted = {
+	events = {
+		gk_raiding.101  # Track raided pops
+	}
+}
+
+# Planet has taken damage from orbital bombardment - Damage is applied daily
+# This = Planet
+# From = Bombarder (country)
+on_planet_bombarded = {
+	events = {
+		gk_raiding.100  # Resource pillage progress
+	}
+}
+
+# Attackers win ground combat (before controller switches)
+# This = Attacking Country
+# From = Defending Country
+# FromFrom = Planet
+on_planet_attackers_win = {
+	events = {
+		gk_raiding.200  # Army landing - instant pillage + pop raid
+	}
+}
+
+# Yearly pulse for all countries
+# This = Country
+on_yearly_pulse_country = {
+	events = {
+		gk_raiding.50  # Decay raidee raided pops
+		gk_raiding.51  # Decay pillage tier on owned planets
+	}
+}

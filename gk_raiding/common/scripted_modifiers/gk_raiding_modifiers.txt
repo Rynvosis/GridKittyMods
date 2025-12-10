@@ -1,0 +1,27 @@
+# GK Raiding Scripted Modifiers
+# These modifiers are used in script_values to calculate raiding effects
+# They can be applied by civics, policies, traditions, etc.
+
+# Increases resource pillaging yield
+gk_pillage_efficiency = {
+	icon = mod_damage_mult
+	percentage = yes
+	good = yes
+	category = country
+}
+
+# Increases the cap on how many pops can be raided from a target
+gk_pop_raiding_limit = {
+	icon = mod_pop_growth_speed
+	percentage = yes
+	good = yes
+	category = country
+}
+
+# Additional pillage tiers available (base is 4)
+gk_max_pillage_tiers = {
+	icon = mod_damage_mult
+	percentage = no
+	good = yes
+	category = country
+}

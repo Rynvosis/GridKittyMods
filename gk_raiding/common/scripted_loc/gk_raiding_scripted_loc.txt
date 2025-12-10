@@ -1,0 +1,36 @@
+# GK Raiding Scripted Localization for Dynamic Text
+
+# Raider's pop limit as percentage
+defined_text = {
+	name = GkRaiderPopLimitPercent
+	value = value:gk_raider_pop_limit_percent
+}
+
+# Raider's max pillage tiers from modifier
+defined_text = {
+	name = GkRaiderMaxPillageTiers
+	value = modifier:gk_max_pillage_tiers
+}
+
+# Raider's pillage efficiency multiplier
+defined_text = {
+	name = GkRaiderPillageEfficiency
+	value = value:gk_pillage_efficiency_mult
+}
+
+# Raidee's total effective taken (script value)
+defined_text = {
+	name = GkRaideeEffectiveTaken
+	value = value:gk_raidee_effective_taken
+}
+
+# Raidee's cap for the raider (script value, requires Root to be raider)
+defined_text = {
+	name = GkRaideeCapForRaider
+	value = value:gk_raidee_cap_for_raider
+}
+
+defined_text = {
+	name = GkRemainingTruePopsToPlunder
+	value = value:gk_remaining_true_pops_to_plunder
+}

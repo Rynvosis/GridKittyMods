@@ -1,0 +1,76 @@
+# GK Raiding Civics
+
+####################
+# EMANCIPATORS     #
+####################
+# Egalitarian civic focused on "liberating" enslaved pops
+# Grants access to Emancipation policy/war goal and bonus efficiency
+civic_gk_emancipators = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+	
+	description = civic_gk_emancipators_effects
+	
+	potential = {
+		authority = {
+			NOT = { value = auth_corporate }
+		}
+	}
+	
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_egalitarian
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+		}
+	}
+	
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_egalitarian
+		}
+	}
+	
+	modifier = {
+		pop_happiness = 0.05
+		army_morale = 0.25
+	}
+	
+	# Grants access to Emancipation policy option via potential check
+	# The policy itself grants the base modifiers
+}
+
+####################
+# ROBO-LIBERATORS  #
+####################
+# Materialist civic focused on "liberating" robotic pops
+# Grants access to Robo-Liberation policy/war goal
+civic_gk_robo_liberators = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+	
+	description = civic_gk_robo_liberators_effects
+	
+	potential = {
+		authority = {
+			NOT = { value = auth_corporate }
+		}
+	}
+	
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+	
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.15
+		ROBOT_pop_happiness = 0.10
+	}
+}
