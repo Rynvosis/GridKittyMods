@@ -60,7 +60,7 @@ gk_raiding_focus = {
 		
 		# No pop raiding, 6 pillage tiers, +50% pillage efficiency
 		modifier = {
-			gk_pillage_efficiency = 0.50
+			gk_pillage_efficiency = 1.0
 			gk_max_pillage_tiers = 6
 		}
 		
@@ -89,7 +89,6 @@ gk_raiding_focus = {
 			gk_focus_emancipation
 		}
 		
-		# 15% limit
 		modifier = {
 			gk_pop_raiding_limit = 1.0
 		}

@@ -17,7 +17,6 @@ gk_raiding_quota_mult = {
 gk_raider_pop_limit = {
 	add = event_target:global_event_country.gk_base_raiding_quota
 	mult = value:gk_raiding_quota_mult
-	ceiling = yes	
 }
 
 gk_raider_pop_limit_percent = {
@@ -93,6 +92,22 @@ gk_remaining_true_pops_to_plunder = {
 	add = value:gk_raidee_cap_for_raider
 	subtract = value:gk_raidee_effective_taken
 	floor = yes
+	min = 0
+}
+
+# Initial abduction cap calculation
+# This = raidee country
+# event_target:gk_raider = raider country
+# Returns: (total_pops * raider_limit) - effective_taken, rounded to nearest 100
+gk_initial_abduction_cap = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = add
+	}
+	mult = event_target:gk_raider.value:gk_raider_pop_limit
+	subtract = value:gk_raidee_effective_taken
+	ceiling = yes
 	min = 0
 }
 

@@ -75,21 +75,11 @@ gk_abduct_on_invasion = {
 # Initialize abduction cap on raidee and forfeited pops counter on storage scope
 # Requires: event_target:gk_raider, event_target:gk_raidee, event_target:gk_storage_scope
 gk_init_abduction_cap = {
-	# Calculate remaining pop capacity based on raider's limit and efficiency
+	# Calculate remaining pop capacity using script value
 	event_target:gk_raidee = {
-		# Start with defender's pops * raider's limit
-		export_trigger_value_to_variable = {
-			trigger = count_owned_pop_amount
-			variable = gk_remaining_cap
-		}
-		multiply_variable = {
+		set_variable = {
 			which = gk_remaining_cap
-			value = event_target:gk_raider.value:gk_raider_pop_limit
-		}
-		# Subtract what's already been effectively taken
-		subtract_variable = {
-			which = gk_remaining_cap
-			value = value:gk_raidee_effective_taken
+			value = value:gk_initial_abduction_cap
 		}
 	}
 	# Initialize forfeited pops counter on storage scope

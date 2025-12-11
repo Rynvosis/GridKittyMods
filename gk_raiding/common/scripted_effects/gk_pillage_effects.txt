@@ -214,7 +214,7 @@ gk_init_loot_variables = {
 # Stores: gk_loot_$RESOURCE$ on gk_storage_scope
 gk_calculate_base_loot = {
 	# Base months of production per tier
-	set_variable = { which = gk_loot_months value = 2 }
+	set_variable = { which = gk_loot_months value = 3 }
 	
 	# Calculate total months (months * tiers)
 	set_variable = {
