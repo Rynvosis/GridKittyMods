@@ -1,22 +1,30 @@
 ﻿l_english:
  country_rubberbanding: "Rubberbanding"
 
- mod_country_rubberbanding_energy_upkeep_add: "$energy_with_icon$ Upkeep:"
- mod_country_rubberbanding_minerals_upkeep_add: "$minerals_with_icon$ Upkeep:"
- mod_country_rubberbanding_food_upkeep_add: "$food_with_icon$ Upkeep:"
- mod_country_rubberbanding_trade_upkeep_add: "$trade_with_icon$ Upkeep:"
- mod_country_rubberbanding_consumer_goods_upkeep_add: "$consumer_goods_with_icon$ Upkeep:"
- mod_country_rubberbanding_alloys_upkeep_add: "$alloys_with_icon$ Upkeep:"
- mod_country_rubberbanding_volatile_motes_upkeep_add: "$volatile_motes_with_icon$ Upkeep:"
- mod_country_rubberbanding_exotic_gases_upkeep_add: "$exotic_gases_with_icon$ Upkeep:"
- mod_country_rubberbanding_rare_crystals_upkeep_add: "$rare_crystals_with_icon$ Upkeep:"
- mod_country_rubberbanding_sr_living_metal_upkeep_add: "$sr_living_metal_with_icon$ Upkeep:"
- mod_country_rubberbanding_sr_zro_upkeep_add: "$sr_zro_with_icon$ Upkeep:"
- mod_country_rubberbanding_sr_dark_matter_upkeep_add: "$sr_dark_matter_with_icon$ Upkeep:"
- mod_country_rubberbanding_physics_research_upkeep_add: "$physics_research_with_icon$ Upkeep:"
- mod_country_rubberbanding_society_research_upkeep_add: "$society_research_with_icon$ Upkeep:"
- mod_country_rubberbanding_engineering_research_upkeep_add: "$engineering_research_with_icon$ Upkeep:"
+#basic resource upkeep adjustments
+ mod_country_rubberbanding_energy_upkeep_add: "$r_energy$ Upkeep:"
+ mod_country_rubberbanding_minerals_upkeep_add: "$r_minerals$ Upkeep:"
+ mod_country_rubberbanding_food_upkeep_add: "$r_food$ Upkeep:"
+#advanced resource upkeep adjustments
+ mod_country_rubberbanding_trade_upkeep_add: "$r_trade$ Upkeep:"
+ mod_country_rubberbanding_consumer_goods_upkeep_add: "$r_consumer_goods$ Upkeep:"
+ mod_country_rubberbanding_alloys_upkeep_add: "$r_alloys$ Upkeep:"
+#strategic resource upkeep adjustments
+ mod_country_rubberbanding_volatile_motes_upkeep_add: "$r_volatile_motes$ Upkeep:"
+ mod_country_rubberbanding_exotic_gases_upkeep_add: "$r_exotic_gases$ Upkeep:"
+ mod_country_rubberbanding_rare_crystals_upkeep_add: "$r_rare_crystals$ Upkeep:"
+#exotic resource upkeep adjustments
+ mod_country_rubberbanding_sr_living_metal_upkeep_add: "$r_living_metal$ Upkeep:"
+ mod_country_rubberbanding_sr_zro_upkeep_add: "$r_zro$ Upkeep:"
+ mod_country_rubberbanding_sr_dark_matter_upkeep_add: "$r_dark_matter$ Upkeep:"
+ mod_country_rubberbanding_nanites_upkeep_add: "$r_nanites$ Upkeep:"
+#abstract resource upkeep adjustments
+ mod_country_rubberbanding_physics_research_upkeep_add: "$r_physics$ Upkeep:"
+ mod_country_rubberbanding_society_research_upkeep_add: "$r_society$ Upkeep:"
+ mod_country_rubberbanding_engineering_research_upkeep_add: "$r_engineering$ Upkeep:"
+ mod_country_rubberbanding_unity_upkeep_add: "$r_unity$ Upkeep:"
 
+#rubberbanding resource modifiers names
  gkrb_econ_energy_mod: "Energy Rubberbanding"
  gkrb_econ_minerals_mod: "Minerals Rubberbanding"
  gkrb_econ_food_mod: "Food Rubberbanding"
@@ -29,39 +37,48 @@
  gkrb_econ_sr_living_metal_mod: "Living Metal Rubberbanding"
  gkrb_econ_sr_zro_mod: "Zro Rubberbanding"
  gkrb_econ_sr_dark_matter_mod: "Dark Matter Rubberbanding"
- gkrb_tech_physics_mod: "Physics Rubberbanding"
- gkrb_tech_society_mod: "Society Rubberbanding"
- gkrb_tech_engineering_mod: "Engineering Rubberbanding"
+ gkrb_econ_nanites_mod: "Nanites Rubberbanding"
+ gkrb_econ_unity_mod: "Unity Rubberbanding"
+ gkrb_econ_physics_research_mod: "Physics Research Rubberbanding"
+ gkrb_econ_society_research_mod: "Society Research Rubberbanding"
+ gkrb_econ_engineering_research_mod: "Engineering Research Rubberbanding"
 
- # econ rubberbanding loc
+ gkrb_tech_physics_research_mod: "Physics Rubberbanding"
+ gkrb_tech_society_research_mod: "Society Rubberbanding"
+ gkrb_tech_engineering_research_mod: "Engineering Rubberbanding"
+
+ gkrb_unity_unity_mod: "Unity Progression Rubberbanding"
+
+# econ rubberbanding loc
  gkrb_econ_mod.relative: "Relative economy:$TABBED_NEW_LINE$§Y[this.GKRBEconPercentage]§!% of galactic average"
 
  gkrb_econ_mod: "Economic Overextension"
- gkrb_econ_mod.tooltip: "$gkrb_econ_mod.relative$\n\nEffects:[this.GKRBEnergyRow][this.GKRBMineralsRow][this.GKRBFoodRow][this.GKRBTradeRow][this.GKRBConsumerGoodsRow][this.GKRBAlloysRow][this.GKRBVolatileMotesRow][this.GKRBExoticGasesRow][this.GKRBRareCrystalsRow][this.GKRBLivingMetalRow][this.GKRBZroRow][this.GKRBDarkMatterRow]"
+ gkrb_econ_mod.tooltip: "$gkrb_econ_mod.relative$\n\nEffects:[this.GKRBEnergyRow][this.GKRBMineralsRow][this.GKRBFoodRow][this.GKRBTradeRow][this.GKRBConsumerGoodsRow][this.GKRBAlloysRow][this.GKRBVolatileMotesRow][this.GKRBExoticGasesRow][this.GKRBRareCrystalsRow][this.GKRBLivingMetalRow][this.GKRBZroRow][this.GKRBDarkMatterRow][this.GKRBNanitesRow][this.GKRBUnityRow][this.GKRBPhysicsResearchRow][this.GKRBSocietyResearchRow][this.GKRBEngineeringResearchRow]"
  
  gkrb_econ_behind_mod: "Economic Revitalization"
  gkrb_econ_behind_mod.tooltip: "$gkrb_econ_mod.relative$\n\n"
 
 
- # tech rubberbanding loc
+# tech rubberbanding loc
  gkrb_tech_mod.relative: "Relative technology:$TABBED_NEW_LINE$§Y[this.GKRBTechPercentage]§!% of galactic average"
 
  gkrb_tech_mod: "Technological Burnout"
- gkrb_tech_mod.tooltip: "$gkrb_tech_mod.relative$\n\nEffects:[this.GKRBPhysicsRow][this.GKRBSocietyRow][this.GKRBEngineeringRow]"
+ gkrb_tech_mod.tooltip: "$gkrb_tech_mod.relative$\n\nEffects:[this.GKRBPhysicsResearchRow][this.GKRBSocietyResearchRow][this.GKRBEngineeringResearchRow]"
 
  gkrb_tech_behind_mod: "Technological Resurgence"
  gkrb_tech_behind_mod.tooltip: "$gkrb_tech_mod.relative$\n\n"
 
 
- # unity rubberbanding loc
- gkrb_unity_mod.relative: "Relative unity progression:$TABBED_NEW_LINE$§Y[this.GKRBUnityPercentage]§!% of galactic average"
+# unity rubberbanding loc
+ gkrb_unity_unity_mod.relative: "Relative unity progression:$TABBED_NEW_LINE$§Y[this.GKRBUnityPercentage]§!% of galactic average"
 
- gkrb_unity_mod: "Cultural Fatigue"
- gkrb_unity_mod.tooltip: "$gkrb_unity_mod.relative$\n\nEffects:"
+ gkrb_unity_unity_mod: "Cultural Fatigue"
+ gkrb_unity_unity_mod.tooltip: "$gkrb_unity_unity_mod.relative$\n\nEffects:"
 
  gkrb_unity_behind_mod: "Cultural Renaissance"
- gkrb_unity_behind_mod.tooltip: "$gkrb_unity_mod.relative$\n\n"
+ gkrb_unity_behind_mod.tooltip: "$gkrb_unity_unity_mod.relative$\n\n"
 
+# econ rubberbanding rows
  GKRB_EMPTY: ""
 
  GKRB_ROW_ENERGY_UPKEEP: "\n$mod_country_rubberbanding_energy_upkeep_add$ §R-[Root.gkrb_econ_energy_adjust]§!"
@@ -76,11 +93,12 @@
  GKRB_ROW_LIVING_METAL_UPKEEP: "\n$mod_country_rubberbanding_sr_living_metal_upkeep_add$ §R-[This.gkrb_econ_sr_living_metal_adjust]§!"
  GKRB_ROW_ZRO_UPKEEP: "\n$mod_country_rubberbanding_sr_zro_upkeep_add$ §R-[This.gkrb_econ_sr_zro_adjust]§!"
  GKRB_ROW_DARK_MATTER_UPKEEP: "\n$mod_country_rubberbanding_sr_dark_matter_upkeep_add$ §R-[This.gkrb_econ_sr_dark_matter_adjust]§!"
+ GKRB_ROW_NANITES_UPKEEP: "\n$mod_country_rubberbanding_nanites_upkeep_add$ §R-[This.gkrb_econ_nanites_adjust]§!"
  GKRB_ROW_PHYSICS_UPKEEP: "\n$mod_country_rubberbanding_physics_research_upkeep_add$ §R-[This.gkrb_tech_physics_research_adjust]§!"
  GKRB_ROW_SOCIETY_UPKEEP: "\n$mod_country_rubberbanding_society_research_upkeep_add$ §R-[This.gkrb_tech_society_research_adjust]§!"
  GKRB_ROW_ENGINEERING_UPKEEP: "\n$mod_country_rubberbanding_engineering_research_upkeep_add$ §R-[This.gkrb_tech_engineering_research_adjust]§!"
- 
- 
+ GKRB_ROW_UNITY_UPKEEP: "\n$mod_country_rubberbanding_unity_upkeep_add$ §R-[This.gkrb_unity_unity_adjust]§!"
+
  GK_COLOR_POS: "G+"
  GK_COLOR_NEG: "R"
  GK_COLOR_NEUT: "H"

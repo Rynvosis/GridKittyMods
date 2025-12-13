@@ -265,11 +265,33 @@ defined_text = {
 	}
 }
 
+defined_text = {
+	name = GKRBNanitesRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_nanites_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_NANITES_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_nanites_adjust
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
 ####################################
 # Tech Resource Rows               #
 ####################################
 defined_text = {
-	name = GKRBPhysicsRow
+	name = GKRBPhysicsResearchRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -291,7 +313,7 @@ defined_text = {
 }
 
 defined_text = {
-	name = GKRBSocietyRow
+	name = GKRBSocietyResearchRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -313,7 +335,7 @@ defined_text = {
 }
 
 defined_text = {
-	name = GKRBEngineeringRow
+	name = GKRBEngineeringResearchRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -343,7 +365,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_unity_adjust
+				which = gkrb_unity_unity_adjust
 				value >= 0.1
 			}
 		}
@@ -352,7 +374,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_unity_adjust
+				which = gkrb_unity_unity_adjust
 				value < 0.1
 			}
 		}

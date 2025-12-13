@@ -67,7 +67,7 @@ event = {
 					which = gkrb_econ_weight_rare_crystals
 					value = @gkrb_econ_weight_rare_crystals
 				}
-				# Rare resources
+				# Exotic resources
 				set_variable = {
 					which = gkrb_econ_weight_sr_living_metal
 					value = @gkrb_econ_weight_sr_living_metal
@@ -79,6 +79,10 @@ event = {
 				set_variable = {
 					which = gkrb_econ_weight_sr_dark_matter
 					value = @gkrb_econ_weight_sr_dark_matter
+				}
+				set_variable = {
+					which = gkrb_econ_weight_nanites
+					value = @gkrb_econ_weight_nanites
 				}
 				# Unity and Research
 				set_variable = {
@@ -235,9 +239,10 @@ country_event = {
 		set_variable = { which = gkrb_econ_volatile_motes_game_mult value = value:scripted_modifier_mult|MODIFIER|country_volatile_motes_produces_mult| }
 		set_variable = { which = gkrb_econ_exotic_gases_game_mult value = value:scripted_modifier_mult|MODIFIER|country_exotic_gases_produces_mult| }
 		set_variable = { which = gkrb_econ_rare_crystals_game_mult value = value:scripted_modifier_mult|MODIFIER|country_rare_crystals_produces_mult| }
-		set_variable = { which = gkrb_econ_sr_living_metal_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_living_metal_produces_mult| }
-		set_variable = { which = gkrb_econ_sr_zro_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_zro_produces_mult| }
-		set_variable = { which = gkrb_econ_sr_dark_matter_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_dark_matter_produces_mult| }
+		# set_variable = { which = gkrb_econ_sr_living_metal_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_living_metal_produces_mult| }
+		# set_variable = { which = gkrb_econ_sr_zro_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_zro_produces_mult| }
+		# set_variable = { which = gkrb_econ_sr_dark_matter_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_dark_matter_produces_mult| }
+		# set_variable = { which = gkrb_econ_nanites_game_mult value = value:scripted_modifier_mult|MODIFIER|country_nanites_produces_mult|
 	}
 }
 

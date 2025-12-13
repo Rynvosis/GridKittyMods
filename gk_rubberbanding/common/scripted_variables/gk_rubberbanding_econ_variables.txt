@@ -20,6 +20,7 @@
 @gkrb_econ_weight_sr_living_metal = 8.0
 @gkrb_econ_weight_sr_zro = 8.0
 @gkrb_econ_weight_sr_dark_matter = 8.0
+@gkrb_econ_weight_nanites = 2.0
 @gkrb_econ_weight_unity = 1.0
 @gkrb_econ_weight_physics_research = 1.0
 @gkrb_econ_weight_society_research = 1.0
