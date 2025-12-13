@@ -72,3 +72,25 @@ gkrb_econ_offset_relative = {
 	base = 1
 	subtract = value:gkrb_relative_score|SCORE_VAR|gkrb_econ_score|GLOBAL_AVG_VAR|gkrb_econ_global_econ_avg|
 }
+
+####################################
+# EMA (Exponential Moving Average) #
+####################################
+
+# Exponent for decay calculation: 1 / halflife
+gkrb_econ_ema_exponent = {
+	base = 1
+	divide = @gkrb_econ_ema_halflife_months
+}
+
+# Decay = 0.5 ^ (1/halflife) - weight retained from previous score
+gkrb_econ_ema_decay = {
+	base = 0.5
+	pow = value:gkrb_econ_ema_exponent
+}
+
+# Alpha = 1 - decay - weight given to new data each month
+gkrb_econ_ema_alpha = {
+	base = 1
+	subtract = value:gkrb_econ_ema_decay
+}

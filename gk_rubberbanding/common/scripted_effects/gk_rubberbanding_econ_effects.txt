@@ -1,11 +1,12 @@
 ####################################
 # Economy Score Calculations      #
 ####################################
-# Calculate total economy score by summing weighted resource values
-# Avoids script value order of operations issues
+# Calculate current economic power (snapshot) by summing weighted resource values
+# Then blend into rolling EMA score for smoother rubberbanding
 gkrb_calculate_econ_score = {
+	# First calculate current power (snapshot)
 	set_variable = {
-		which = gkrb_econ_score
+		which = gkrb_econ_current_power
 		value = 0
 	}
 	# Basic resources
@@ -61,6 +62,38 @@ gkrb_calculate_econ_score = {
 	gkrb_add_weighted_resource_score = {
 		RESOURCE = engineering_research
 	}
+	
+	# Blend current power into rolling EMA score
+	# Formula: score = score * decay + current_power * alpha
+	# If score not initialized, use current_power directly
+	if = {
+		limit = { NOT = { is_variable_set = gkrb_econ_score } }
+		set_variable = {
+			which = gkrb_econ_score
+			value = gkrb_econ_current_power
+		}
+	}
+	else = {
+		# score = score * decay
+		multiply_variable = {
+			which = gkrb_econ_score
+			value = value:gkrb_econ_ema_decay
+		}
+		# temp = current_power * alpha
+		set_variable = {
+			which = gkrb_temp_ema
+			value = gkrb_econ_current_power
+		}
+		multiply_variable = {
+			which = gkrb_temp_ema
+			value = value:gkrb_econ_ema_alpha
+		}
+		# score = score + temp
+		change_variable = {
+			which = gkrb_econ_score
+			value = gkrb_temp_ema
+		}
+	}
 }
 
 # Helper to add a single resource's weighted value to the score
@@ -74,7 +107,7 @@ gkrb_add_weighted_resource_score = {
 		value = event_target:global_event_country.gkrb_econ_weight_$RESOURCE$
 	}
 	change_variable = {
-		which = gkrb_econ_score
+		which = gkrb_econ_current_power
 		value = gkrb_temp_score
 	}
 }

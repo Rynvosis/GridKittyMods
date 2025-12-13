@@ -1,3 +1,8 @@
 @gkrb_econ_max_malus = 0.25
 @gkrb_econ_min_malus = -0.25
 @gkrb_econ_slope_malus = 0.5
+
+# EMA (Exponential Moving Average) parameters for rolling economy score
+# Half-life in months - after this many months, old data contributes 50%
+# Alpha and decay are calculated dynamically via script values
+@gkrb_econ_ema_halflife_months = 40
