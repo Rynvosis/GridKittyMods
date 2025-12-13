@@ -60,12 +60,12 @@ gkrb_unity_tradition_cost_mult = {
 	min = 0.1  # Prevent division by zero
 }
 
-# Calculate effective unity from raw unity income
+# Calculate effective unity from raw unity gain (income or stockpile delta)
 # Effective = raw / tradition_cost_mult
 # If tradition cost is +100% (mult=2), effective unity is halved
-gkrb_unity_effective_income = {
+gkrb_unity_effective_gain = {
 	base = 0
-	add = gkrb_unity_revenue
+	add = gkrb_unity_raw_gain
 	divide = value:gkrb_unity_tradition_cost_mult
 }
 

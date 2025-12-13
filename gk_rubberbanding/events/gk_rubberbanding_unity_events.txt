@@ -158,18 +158,18 @@ country_event = {
 			value = 0.0001
 		}
 		
-		# gkrb_unity_adjust = the upkeep being added by the modifier
-		# upkeep = revenue × mult (percentage of income as penalty)
+		# gkrb_unity_unity_adjust = the upkeep being added by the modifier
+		# upkeep = income × mult (percentage of income as penalty)
 		set_variable = {
-			which = gkrb_unity_adjust
-			value = gkrb_unity_revenue
+			which = gkrb_unity_unity_adjust
+			value = gkrb_unity_income
 		}
 		multiply_variable = {
-			which = gkrb_unity_adjust
+			which = gkrb_unity_unity_adjust
 			value = gkrb_unity_mult
 		}
 		round_variable_to_closest = {
-			which = gkrb_unity_adjust
+			which = gkrb_unity_unity_adjust
 			value = 0.01
 		}
 	}

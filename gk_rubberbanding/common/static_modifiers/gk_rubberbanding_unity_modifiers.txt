@@ -1,7 +1,7 @@
-gkrb_unity_mod = {
+gkrb_unity_unity_mod = {
 	icon = "gfx/interface/icons/modifiers/mod_unity_loss_mult.dds"
 	country_rubberbanding_unity_upkeep_add = 1
-	custom_tooltip = gkrb_unity_mod.tooltip
+	custom_tooltip = gkrb_unity_unity_mod.tooltip
 	show_only_custom_tooltip = no
 }
 
