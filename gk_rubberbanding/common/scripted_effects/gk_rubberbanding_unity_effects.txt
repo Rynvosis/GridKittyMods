@@ -1,0 +1,91 @@
+####################################
+# Unity Score Calculations         #
+####################################
+
+# Calculate effective unity income and add to running total
+# Uses high/low bucket system to prevent overflow
+gkrb_calculate_unity_score = {
+	export_trigger_value_to_variable = {
+		trigger = resource_revenue_compare
+		parameters = {
+			resource = unity
+		}
+		variable = gkrb_unity_revenue
+	}
+
+	# Calculate effective unity (raw / tradition_cost_mult)
+	set_variable = {
+		which = gkrb_unity_effective
+		value = value:gkrb_unity_effective_income
+	}
+	
+	# Initialize buckets if not set
+	if = {
+		limit = { NOT = { is_variable_set = gkrb_unity_total_low } }
+		set_variable = { which = gkrb_unity_total_low value = 0 }
+		set_variable = { which = gkrb_unity_total_high value = 0 }
+		set_variable = { which = gkrb_unity_months_elapsed value = 0 }
+	}
+	
+	# Add effective unity to low bucket
+	change_variable = {
+		which = gkrb_unity_total_low
+		value = gkrb_unity_effective
+	}
+	
+	# Increment months elapsed
+	change_variable = {
+		which = gkrb_unity_months_elapsed
+		value = 1
+	}
+	
+	# Check for overflow: if low >= threshold, transfer to high
+	while = {
+		limit = {
+			check_variable = {
+				which = gkrb_unity_total_low
+				value >= @gkrb_unity_bucket_threshold
+			}
+		}
+		subtract_variable = {
+			which = gkrb_unity_total_low
+			value = @gkrb_unity_bucket_threshold
+		}
+		change_variable = {
+			which = gkrb_unity_total_high
+			value = 1
+		}
+	}
+	
+	# Cache the normalized score for comparisons (total / months)
+	set_variable = {
+		which = gkrb_unity_score
+		value = value:gkrb_unity_score
+	}
+}
+
+# Clear all unity rubberbanding modifiers
+gkrb_clear_unity_rubberbanding_modifiers = {
+	remove_modifier = gkrb_unity_mod
+	remove_modifier = gkrb_unity_behind_mod
+}
+
+# Apply unity rubberbanding when ahead (upkeep penalty)
+gkrb_apply_ahead_unity_rubberbanding_modifiers = {
+	# Apply marker modifier with upkeep (tooltip)
+	add_modifier = {
+		modifier = gkrb_unity_mod
+		days = -1
+		multiplier = gkrb_unity_adjust
+	}
+}
+
+# Apply unity rubberbanding when behind (catch-up bonus)
+gkrb_apply_behind_unity_rubberbanding_modifiers = {
+	# Apply behind modifier with catch-up bonuses
+	add_modifier = {
+		modifier = gkrb_unity_behind_mod
+		days = -1
+		multiplier = gkrb_unity_mult
+	}
+}

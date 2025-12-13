@@ -97,10 +97,14 @@ gkrb_calculate_econ_score = {
 }
 
 # Helper to add a single resource's weighted value to the score
+# Now uses resource_revenue_compare directly (no caching needed)
 gkrb_add_weighted_resource_score = {
-	set_variable = {
-		which = gkrb_temp_score
-		value = gkrb_econ_base_$RESOURCE$
+	export_trigger_value_to_variable = {
+		trigger = resource_revenue_compare
+		parameters = {
+			resource = $RESOURCE$
+		}
+		variable = gkrb_temp_score
 	}
 	multiply_variable = {
 		which = gkrb_temp_score
@@ -132,8 +136,6 @@ gkrb_clear_econ_rubberbanding_modifiers = {
 
 # Apply economy rubberbanding modifiers when ahead (malus only).
 gkrb_apply_ahead_econ_rubberbanding_modifiers = {
-	gkrb_clear_econ_rubberbanding_modifiers = yes
-
 	# Apply adjustment for all resources
 	gkrb_apply_rubberbanding_modifier = { RESOURCE = energy TYPE = econ }
 	gkrb_apply_rubberbanding_modifier = { RESOURCE = minerals TYPE = econ }
@@ -158,108 +160,10 @@ gkrb_apply_ahead_econ_rubberbanding_modifiers = {
 
 # Apply economy rubberbanding when behind (no per-resource modifiers; behind buff only).
 gkrb_apply_behind_econ_rubberbanding_modifiers = {
-	gkrb_clear_econ_rubberbanding_modifiers = yes
-
-	# Apply behind modifier if behind (mult > 0)
-	if = {
-		limit = {
-			check_variable = {
-				which = gkrb_econ_mult
-				value > 0
-			}
-		}
-		add_modifier = {
-			modifier = gkrb_econ_behind_mod
-			days = -1
-			multiplier = gkrb_econ_mult
-		}
-	}
-}
-
-# Apply all economy rubberbanding modifiers
-# Parameters:
-#   BEHIND_MODIFIER (Optional) - The modifier to apply if the country is behind
-gkrb_apply_econ_rubberbanding_modifiers = {
-	# Apply adjustment for all resources
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = energy
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = minerals
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = food
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = trade
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = consumer_goods
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = alloys
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = volatile_motes
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = exotic_gases
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = rare_crystals
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = sr_living_metal
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = sr_zro
-		TYPE = econ
-	}
-	gkrb_apply_rubberbanding_modifier = {
-		RESOURCE = sr_dark_matter
-		TYPE = econ
-	}
-	# Apply marker and optional behind modifier
-	[[BEHIND_MODIFIER]
-	remove_modifier = gkrb_econ_mod
-	remove_modifier = $BEHIND_MODIFIER$
-	# Apply marker modifier (tooltip)
+	# Apply behind modifier with catch-up bonuses
 	add_modifier = {
-		modifier = gkrb_econ_mod
+		modifier = gkrb_econ_behind_mod
 		days = -1
 		multiplier = gkrb_econ_mult
 	}
-	# Apply behind modifier if behind (mult > 0)
-	if = {
-		limit = {
-			check_variable = {
-				which = gkrb_econ_mult
-				value > 0
-			}
-		}
-		add_modifier = {
-			modifier = $BEHIND_MODIFIER$
-			days = -1
-			multiplier = gkrb_econ_mult
-		}
-	}
-	]
-	[[!BEHIND_MODIFIER]
-	remove_modifier = gkrb_econ_mod
-	add_modifier = {
-		modifier = gkrb_econ_mod
-		days = -1
-		multiplier = gkrb_econ_mult
-	}
-	]
 }

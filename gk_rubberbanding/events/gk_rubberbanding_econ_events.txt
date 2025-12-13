@@ -182,29 +182,7 @@ country_event = {
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		# Cache RAW and BASE income for each resource using scripted effect
-		# RAW = (output / game_mult) - prev_adjust
-		# BASE = RAW * game_mult
-		gkrb_cache_resource_income = { RESOURCE = energy TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = minerals TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = food TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = trade TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = consumer_goods TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = alloys TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = volatile_motes TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = exotic_gases TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = rare_crystals TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = sr_living_metal TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = sr_zro TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = sr_dark_matter TYPE = econ }
-		
-		# Unity and Research
-		gkrb_cache_resource_income = { RESOURCE = unity TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = physics_research TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = society_research TYPE = econ }
-		gkrb_cache_resource_income = { RESOURCE = engineering_research TYPE = econ }
-		
-		# Compute econ score using cached BASE values
+		# Compute econ score using resource_revenue_compare directly
 		gkrb_calculate_econ_score = yes
 		# Contribute to global sum.
 		event_target:global_event_country = {
@@ -269,21 +247,25 @@ country_event = {
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		# If behind, do not apply per-resource modifiers; only apply the behind modifier.
+		# Always clear first
+		gkrb_clear_econ_rubberbanding_modifiers = yes
+		
+		# If behind, apply catch-up bonuses only
 		if = {
 			limit = {
 				check_variable = {
-					which = gkrb_econ_mult
-					value > 0.02
+					which = gkrb_econ_relative
+					value < 0.98
 				}
 			}
 			gkrb_apply_behind_econ_rubberbanding_modifiers = yes
 		}
+		# If ahead, apply per-resource upkeep penalties
 		else_if = {
 			limit = {
 				check_variable = {
-					which = gkrb_econ_mult
-					value < -0.02
+					which = gkrb_econ_relative
+					value > 1.02
 				}
 			}
 			gkrb_apply_ahead_econ_rubberbanding_modifiers = yes

@@ -47,8 +47,8 @@ gkrb_econ_weight = {
 # Total economy score              #
 ####################################
 
-# Score uses cached BASE values (raw * game_mult) weighted by resource prices
-# Variables are set by scripted effect gkrb_cache_resource_income before this is called
+# Score uses resource_revenue_compare weighted by resource prices
+# Set by scripted effect gkrb_calculate_econ_score
 gkrb_econ_score = {
 	base = 0
 	add = gkrb_econ_score
@@ -58,14 +58,15 @@ gkrb_econ_score = {
 # econ mult calculations           #
 ####################################
 
+# (1-x)^2 formula: always positive, used as upkeep multiplier when ahead
+# When behind, the behind_mod is applied instead
 gkrb_econ_mult = {
 	base = 0
 	add = value:gkrb_econ_offset_relative
-	abs = yes
 	mult = value:gkrb_econ_offset_relative
 	
 	max = 1.0
-	min = -1.0
+	min = 0
 }
 
 gkrb_econ_offset_relative = {

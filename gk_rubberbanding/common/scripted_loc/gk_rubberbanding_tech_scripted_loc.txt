@@ -2,22 +2,8 @@ defined_text = {
 	name = GKRBTechPercentage
 	value = value:gkrb_tech_score_percent
 }
+
 defined_text = {
 	name = GKRBTechEffectiveMult
 	value = value:gkrb_tech_mult_percent
-}
-defined_text = {
-	name = GKRBTechEffectiveMultColor
-	text = {
-		trigger = {
-			check_variable = { which = gkrb_tech_mult value >= 0 }
-		}
-		localization_key = "GK_COLOR_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = { which = gkrb_tech_mult value < 0 }
-		}
-		localization_key = "GK_COLOR_NEG"
-	}
 }

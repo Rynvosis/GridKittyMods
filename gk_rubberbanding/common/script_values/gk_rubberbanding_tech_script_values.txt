@@ -73,14 +73,15 @@ gkrb_tech_old_mult = {
 	max = 1.0
 }
 
+# (1-x)^2 formula: always positive, used as upkeep multiplier when ahead
+# When behind, the behind_mod is applied instead
 gkrb_tech_mult = {
 	base = 0
 	add = value:gkrb_tech_offset_relative
-	abs = yes
 	mult = value:gkrb_tech_offset_relative
 	
 	max = 1.0
-	min = -1.0
+	min = 0
 }
 
 

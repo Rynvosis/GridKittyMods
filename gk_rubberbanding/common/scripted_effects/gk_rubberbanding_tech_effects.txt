@@ -1,0 +1,37 @@
+####################################
+# Tech rubberbanding effects      #
+####################################
+
+# Clear all tech rubberbanding modifiers
+gkrb_clear_tech_rubberbanding_modifiers = {
+	remove_modifier = gkrb_tech_physics_research_mod
+	remove_modifier = gkrb_tech_society_research_mod
+	remove_modifier = gkrb_tech_engineering_research_mod
+	remove_modifier = gkrb_tech_mod
+	remove_modifier = gkrb_tech_behind_mod
+}
+
+# Apply tech rubberbanding when ahead (per-resource upkeep penalties)
+gkrb_apply_ahead_tech_rubberbanding_modifiers = {
+	# Apply adjustment for all research types
+	gkrb_apply_rubberbanding_modifier = { RESOURCE = physics_research TYPE = tech }
+	gkrb_apply_rubberbanding_modifier = { RESOURCE = society_research TYPE = tech }
+	gkrb_apply_rubberbanding_modifier = { RESOURCE = engineering_research TYPE = tech }
+
+	# Apply marker modifier (tooltip)
+	add_modifier = {
+		modifier = gkrb_tech_mod
+		days = -1
+		multiplier = gkrb_tech_mult
+	}
+}
+
+# Apply tech rubberbanding when behind (catch-up bonuses only, no per-resource modifiers)
+gkrb_apply_behind_tech_rubberbanding_modifiers = {
+	# Apply behind modifier with catch-up bonuses
+	add_modifier = {
+		modifier = gkrb_tech_behind_mod
+		days = -1
+		multiplier = gkrb_tech_mult
+	}
+}

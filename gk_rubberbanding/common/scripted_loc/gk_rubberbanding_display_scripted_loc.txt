@@ -10,26 +10,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_ENERGY_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_energy_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_ENERGY_NEG"
+		localization_key = "GKRB_ROW_ENERGY_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_energy_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_energy_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -45,26 +32,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_MINERALS_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_minerals_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_MINERALS_NEG"
+		localization_key = "GKRB_ROW_MINERALS_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_minerals_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_minerals_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -80,26 +54,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_FOOD_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_food_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_FOOD_NEG"
+		localization_key = "GKRB_ROW_FOOD_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_food_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_food_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -115,26 +76,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_TRADE_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_trade_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_TRADE_NEG"
+		localization_key = "GKRB_ROW_TRADE_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_trade_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_trade_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -150,26 +98,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_CONSUMER_GOODS_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_consumer_goods_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_CONSUMER_GOODS_NEG"
+		localization_key = "GKRB_ROW_CONSUMER_GOODS_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_consumer_goods_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_consumer_goods_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -185,26 +120,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_ALLOYS_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_alloys_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_ALLOYS_NEG"
+		localization_key = "GKRB_ROW_ALLOYS_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_alloys_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_alloys_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -220,26 +142,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_VOLATILE_MOTES_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_volatile_motes_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_VOLATILE_MOTES_NEG"
+		localization_key = "GKRB_ROW_VOLATILE_MOTES_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_volatile_motes_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_volatile_motes_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -255,26 +164,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_EXOTIC_GASES_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_exotic_gases_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_EXOTIC_GASES_NEG"
+		localization_key = "GKRB_ROW_EXOTIC_GASES_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_exotic_gases_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_exotic_gases_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -290,26 +186,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_RARE_CRYSTALS_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_rare_crystals_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_RARE_CRYSTALS_NEG"
+		localization_key = "GKRB_ROW_RARE_CRYSTALS_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_rare_crystals_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_rare_crystals_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -325,26 +208,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_LIVING_METAL_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_sr_living_metal_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_LIVING_METAL_NEG"
+		localization_key = "GKRB_ROW_LIVING_METAL_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_sr_living_metal_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_sr_living_metal_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -360,26 +230,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_ZRO_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_sr_zro_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_ZRO_NEG"
+		localization_key = "GKRB_ROW_ZRO_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_sr_zro_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_sr_zro_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -395,26 +252,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_DARK_MATTER_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_econ_sr_dark_matter_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_DARK_MATTER_NEG"
+		localization_key = "GKRB_ROW_DARK_MATTER_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_econ_sr_dark_matter_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_econ_sr_dark_matter_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -433,26 +277,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_PHYSICS_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_tech_physics_research_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_PHYSICS_NEG"
+		localization_key = "GKRB_ROW_PHYSICS_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_tech_physics_research_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_tech_physics_research_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -468,26 +299,13 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_SOCIETY_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_tech_society_research_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_SOCIETY_NEG"
+		localization_key = "GKRB_ROW_SOCIETY_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
 				which = gkrb_tech_society_research_adjust
 				value < 0.1
-			}
-			check_variable = {
-				which = gkrb_tech_society_research_adjust
-				value > -0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
@@ -503,16 +321,7 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_ENGINEERING_POS"
-	}
-	text = {
-		trigger = {
-			check_variable = {
-				which = gkrb_tech_engineering_research_adjust
-				value <= -0.1
-			}
-		}
-		localization_key = "GKRB_ROW_ENGINEERING_NEG"
+		localization_key = "GKRB_ROW_ENGINEERING_UPKEEP"
 	}
 	text = {
 		trigger = {
@@ -520,9 +329,31 @@ defined_text = {
 				which = gkrb_tech_engineering_research_adjust
 				value < 0.1
 			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+
+####################################
+# Unity Resource Rows            #
+####################################
+defined_text = {
+	name = GKRBUnityRow
+	text = {
+		trigger = {
 			check_variable = {
-				which = gkrb_tech_engineering_research_adjust
-				value > -0.1
+				which = gkrb_unity_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_UNITY_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_unity_adjust
+				value < 0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"

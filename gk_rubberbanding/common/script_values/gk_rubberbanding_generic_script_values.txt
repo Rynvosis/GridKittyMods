@@ -17,7 +17,15 @@ gkrb_resource_income = {
 # Generic relative score calculation
 # Parameters: SCORE_VAR, GLOBAL_AVG_VAR
 gkrb_relative_score = {
-	base = 1
+	base = 0
 	add = $SCORE_VAR$
 	divide = event_target:global_event_country.$GLOBAL_AVG_VAR$
+}
+
+# Modifier mult getter (1 + modifier value)
+scripted_modifier_mult = {
+	base = 1
+	modifier = {
+		add = modifier:$MODIFIER$
+	}
 }

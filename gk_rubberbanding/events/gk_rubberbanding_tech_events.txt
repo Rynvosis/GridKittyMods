@@ -1,31 +1,28 @@
-
-
-# Current adjustment sets tech scaling to hard limit you to no more than 2.5x the galaxy average tech, but adjustments will kick in long before.
-
-# All monthly tick events must be put in a gatekeeper event. They cannot be all called from on actions as on actions is the son of a dog. It does not call the events per country with any order to them
-
+# Tech Rubberbanding Events
+# Tracks technology progress for rubberbanding
 namespace = gkrb_tech
 
-# Sets empire spent variables
-
-# Run on game start to initialise the global score
+# Init globals once on game start
 event = {
 	id = gkrb_tech.1
 	is_triggered_only = yes
 	hide_window = yes
-	
 	immediate = {
 		event_target:global_event_country = {
 			if = {
-				limit = { NOT = { has_country_flag = gkrb_tech_has_global_variables } }
-					
+				limit = {
+					NOT = { has_country_flag = gkrb_tech_has_global_variables }
+				}
 				set_variable = {
-					which = gkrb_tech_global_avg
+					which = gkrb_tech_global_sum
 					value = 0
 				}
-				
 				set_variable = {
 					which = gkrb_tech_global_country_count
+					value = 0
+				}
+				set_variable = {
+					which = gkrb_tech_global_avg
 					value = 0
 				}
 				set_country_flag = gkrb_tech_has_global_variables
@@ -34,89 +31,98 @@ event = {
 	}
 }
 
-# Run as a gatekeeper event/controlling event because pdx hates me and runs the events in the wrong order without this.
-
+# Monthly gatekeeper: recalc average, then apply per-country modifiers
 event = {
 	id = gkrb_tech.10
 	is_triggered_only = yes
 	hide_window = yes
-	
 	immediate = {
-	
-		# Reset the country count and score
+		# Reset global counters
 		event_target:global_event_country = {
-			
 			set_variable = {
 				which = gkrb_tech_global_country_count
 				value = 0
 			}
-				
+			set_variable = {
+				which = gkrb_tech_global_sum
+				value = 0
+			}
 			set_variable = {
 				which = gkrb_tech_global_avg
 				value = 0
 			}
 		}
 		
-		# Update country tech scores
+		# Phase 1: Calculate scores and contribute to global sum
 		every_playable_country = {
 			country_event = { id = gkrb_tech.20 }
 		}
 		
-		# Update galactic average
+		# Calculate global average
 		event_target:global_event_country = {
-			divide_variable = {
-				which = gkrb_tech_global_avg
-				value = gkrb_tech_global_country_count
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_tech_global_country_count
+						value > 0
+					}
+				}
+				set_variable = {
+					which = gkrb_tech_global_avg
+					value = gkrb_tech_global_sum
+				}
+				divide_variable = {
+					which = gkrb_tech_global_avg
+					value = gkrb_tech_global_country_count
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = gkrb_tech_global_avg
+							value < 1
+						}
+					}
+					set_variable = {
+						which = gkrb_tech_global_avg
+						value = 1
+					}
+				}
 			}
 		}
 		
-		# Set each country's relative progress to the galaxy
+		# Phase 2: Calculate relative scores
 		every_playable_country = {
 			country_event = { id = gkrb_tech.30 }
 		}
 		
-		# Calculates the actual income modifiers
+		# Phase 3: Calculate multipliers
 		every_playable_country = {
 			country_event = { id = gkrb_tech.40 }
 		}
 		
-		# Applies the income modifiers
+		# Phase 4: Apply modifiers
 		every_playable_country = {
 			country_event = { id = gkrb_tech.50 }
 		}
 	}
 }
 
-# Run on monthly pulse to update scores. Not triggered from on actions
-
+# Calculate per-country tech score and contribute to global sum
 country_event = {
 	id = gkrb_tech.20
 	is_triggered_only = yes
 	hide_window = yes
-	
 	immediate = {
-		# Cache RAW and BASE income for research resources
-		gkrb_cache_resource_income = { RESOURCE = physics_research TYPE = tech }
-		gkrb_cache_resource_income = { RESOURCE = society_research TYPE = tech }
-		gkrb_cache_resource_income = { RESOURCE = engineering_research TYPE = tech }
-		
-		# moved the following to a script value, delete if you want.
-		# set_variable = {
-		# 	which = rbr_num_techs
-		# 	value = 0
-		# }
-		# export_trigger_value_to_variable  = { trigger = num_researched_techs variable = rbr_num_techs }
-		
-		#new script_value based calculation
+		# Tech score is based on tech count, not resource income
 		set_variable = {
 			which = gkrb_tech_score
 			value = value:gkrb_tech_score
 		}
-			
-		# Add the value to the global score
+		
+		# Contribute score to global sum
 		event_target:global_event_country = {
 			change_variable = {
-				which = gkrb_tech_global_avg
+				which = gkrb_tech_global_sum
 				value = prev.gkrb_tech_score
 			}
 			change_variable = {
@@ -127,13 +133,11 @@ country_event = {
 	}
 }
 
-# Sets the country's relative progress to the rest of the galaxy
-
+# Calculate per-country relative score (self / galactic avg)
 country_event = {
 	id = gkrb_tech.30
 	is_triggered_only = yes
 	hide_window = yes
-	
 	immediate = {
 		set_variable = {
 			which = gkrb_tech_relative
@@ -142,42 +146,51 @@ country_event = {
 	}
 }
 
-# Calculates the country's adjustment
-
+# Calculate tech multiplier
 country_event = {
 	id = gkrb_tech.40
 	is_triggered_only = yes
 	hide_window = yes
-	
 	immediate = {
-		# Calculate multiplier using script value
 		set_variable = {
 			which = gkrb_tech_mult
 			value = value:gkrb_tech_mult
 		}
+		round_variable_to_closest = {
+			which = gkrb_tech_mult
+			value = 0.0001
+		}
 	}
 }
 
-# Applies the modifiers at last
-
+# Apply tech modifiers
 country_event = {
 	id = gkrb_tech.50
 	is_triggered_only = yes
 	hide_window = yes
-	
 	immediate = {
-		remove_modifier = gkrb_tech_marker
+		# Always clear first
+		gkrb_clear_tech_rubberbanding_modifiers = yes
 		
-		# Apply adjustments for all research types
-		gkrb_apply_rubberbanding_modifier = { RESOURCE = physics_research TYPE = tech }
-		gkrb_apply_rubberbanding_modifier = { RESOURCE = society_research TYPE = tech }
-		gkrb_apply_rubberbanding_modifier = { RESOURCE = engineering_research TYPE = tech }
-		
-		# Marker modifier for future extensibility / consolidated tooltip.
-		add_modifier = {
-			modifier = gkrb_tech_marker
-			days = -1
-			multiplier = gkrb_tech_mult
+		# If behind, apply catch-up bonuses
+		if = {
+			limit = {
+				check_variable = {
+					which = gkrb_tech_relative
+					value < 0.98
+				}
+			}
+			gkrb_apply_behind_tech_rubberbanding_modifiers = yes
+		}
+		# If ahead, apply upkeep penalty
+		else_if = {
+			limit = {
+				check_variable = {
+					which = gkrb_tech_relative
+					value > 1.02
+				}
+			}
+			gkrb_apply_ahead_tech_rubberbanding_modifiers = yes
 		}
 	}
 }
