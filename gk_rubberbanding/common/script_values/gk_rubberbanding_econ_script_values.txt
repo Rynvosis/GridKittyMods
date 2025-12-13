@@ -1,0 +1,74 @@
+gkrb_econ_score_percent = {
+	add = gkrb_econ_relative
+	mult = 100
+	round = yes
+}
+
+gkrb_econ_mult_percent = {
+	add = gkrb_econ_mult
+	mult = 100
+	round = yes
+}
+
+################################
+# Resource weight calculations #
+################################
+
+# Market price of resource relative to energy (energy standard)
+# Gets market value of 1 resource, then divides by energy's market value
+gkrb_econ_weight = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = market_resource_price
+		parameters = {
+			resource = $RESOURCE$
+			amount = 1
+			trade_type = not_set
+		}
+		mode = add
+	}
+	
+	# Divide by energy's market price to normalize to energy standard
+	complex_trigger_modifier = {
+		trigger = market_resource_price
+		parameters = {
+			resource = energy
+			amount = 1
+			trade_type = not_set
+		}
+		mode = divide
+	}
+	
+	# Fallback to 1 if <= 0
+	min = 1
+}
+
+####################################
+# Total economy score              #
+####################################
+
+# Score uses cached BASE values (raw * game_mult) weighted by resource prices
+# Variables are set by scripted effect gkrb_cache_resource_income before this is called
+gkrb_econ_score = {
+	base = 0
+	add = gkrb_econ_score
+}
+
+####################################
+# econ mult calculations           #
+####################################
+
+gkrb_econ_mult = {
+	base = 0
+	add = value:gkrb_econ_offset_relative
+	abs = yes
+	mult = value:gkrb_econ_offset_relative
+	
+	max = 1.0
+	min = -1.0
+}
+
+gkrb_econ_offset_relative = {
+	base = 1
+	subtract = value:gkrb_relative_score|SCORE_VAR|gkrb_econ_score|GLOBAL_AVG_VAR|gkrb_econ_global_econ_avg|
+}

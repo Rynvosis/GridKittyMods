@@ -1,0 +1,530 @@
+####################################
+# Economy Resource Rows            #
+####################################
+defined_text = {
+	name = GKRBEnergyRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_energy_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ENERGY_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_energy_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ENERGY_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_energy_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_energy_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBMineralsRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_minerals_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_MINERALS_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_minerals_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_MINERALS_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_minerals_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_minerals_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBFoodRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_food_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_FOOD_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_food_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_FOOD_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_food_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_food_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBTradeRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_trade_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TRADE_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_trade_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TRADE_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_trade_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_trade_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBConsumerGoodsRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_consumer_goods_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_CONSUMER_GOODS_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_consumer_goods_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_CONSUMER_GOODS_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_consumer_goods_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_consumer_goods_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBAlloysRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_alloys_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ALLOYS_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_alloys_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ALLOYS_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_alloys_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_alloys_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBVolatileMotesRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_volatile_motes_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_VOLATILE_MOTES_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_volatile_motes_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_VOLATILE_MOTES_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_volatile_motes_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_volatile_motes_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBExoticGasesRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_exotic_gases_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_EXOTIC_GASES_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_exotic_gases_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_EXOTIC_GASES_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_exotic_gases_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_exotic_gases_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBRareCrystalsRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_rare_crystals_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_RARE_CRYSTALS_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_rare_crystals_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_RARE_CRYSTALS_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_rare_crystals_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_rare_crystals_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBLivingMetalRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_living_metal_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_LIVING_METAL_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_living_metal_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_LIVING_METAL_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_living_metal_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_sr_living_metal_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBZroRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_zro_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ZRO_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_zro_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ZRO_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_zro_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_sr_zro_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBDarkMatterRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_dark_matter_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_DARK_MATTER_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_dark_matter_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_DARK_MATTER_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_sr_dark_matter_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_econ_sr_dark_matter_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+####################################
+# Tech Resource Rows               #
+####################################
+defined_text = {
+	name = GKRBPhysicsRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_PHYSICS_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_PHYSICS_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBSocietyRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_society_research_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_SOCIETY_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_society_research_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_SOCIETY_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_society_research_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_tech_society_research_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBEngineeringRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_engineering_research_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ENGINEERING_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_engineering_research_adjust
+				value <= -0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ENGINEERING_NEG"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_engineering_research_adjust
+				value < 0.1
+			}
+			check_variable = {
+				which = gkrb_tech_engineering_research_adjust
+				value > -0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}

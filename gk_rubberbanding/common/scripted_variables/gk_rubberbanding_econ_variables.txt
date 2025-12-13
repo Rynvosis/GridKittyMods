@@ -1,0 +1,3 @@
+@gkrb_econ_max_malus = 0.25
+@gkrb_econ_min_malus = -0.25
+@gkrb_econ_slope_malus = 0.5

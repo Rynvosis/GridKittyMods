@@ -1,0 +1,74 @@
+gkrb_econ_energy_mod = {
+	country_rubberbanding_energy_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_minerals_mod = {
+	country_rubberbanding_minerals_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_food_mod = {
+	country_rubberbanding_food_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_consumer_goods_mod = {
+	country_rubberbanding_consumer_goods_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_alloys_mod = {
+	country_rubberbanding_alloys_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_trade_mod = {
+	country_rubberbanding_trade_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_volatile_motes_mod = {
+	country_rubberbanding_volatile_motes_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_exotic_gases_mod = {
+	country_rubberbanding_exotic_gases_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_rare_crystals_mod = {
+	country_rubberbanding_rare_crystals_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_sr_living_metal_mod = {
+	country_rubberbanding_sr_living_metal_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_sr_zro_mod = {
+	country_rubberbanding_sr_zro_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_sr_dark_matter_mod = {
+	country_rubberbanding_sr_dark_matter_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_econ_mod = {
+	show_only_custom_tooltip = yes
+	custom_tooltip = gkrb_econ_mod.tooltip
+}
+
+gkrb_econ_behind_mod = {
+	planet_resettlement_unemployed_mult = 2
+	planet_buildings_cost_mult = -1
+	planet_building_build_speed_mult = 2
+	planet_building_refund_mult = 1
+	founder_species_growth_mult = 0.5
+	custom_tooltip = gkrb_econ_behind_mod.tooltip
+	show_only_custom_tooltip = no
+}

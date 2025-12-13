@@ -1,0 +1,104 @@
+####################################
+# Generic rubberbanding effects   #
+####################################
+
+# Cache raw and base income for a resource
+# Parameters:
+#   RESOURCE - Resource name (e.g., energy)
+#   TYPE     - System type (tech or econ)
+#
+# Calculates and stores:
+#   - gkrb_$TYPE$_raw_$RESOURCE$ = (income / game_mult) - rubberbanding_category_revenue
+#   - gkrb_$TYPE$_base_$RESOURCE$ = raw * game_mult
+gkrb_cache_resource_income = {
+	# Get current income into temp variable
+	export_resource_income_to_variable = {
+		resource = $RESOURCE$
+		variable = gkrb_temp_income
+	}
+	
+	# Get game mult modifier (1 + modifier value)
+	export_modifier_to_variable = {
+		modifier = country_$RESOURCE$_produces_mult
+		variable = gkrb_temp_mult
+	}
+	change_variable = {
+		which = gkrb_temp_mult
+		value = 1
+	}
+	
+	# Raw = income / mult
+	set_variable = {
+		which = gkrb_$TYPE$_raw_$RESOURCE$
+		value = gkrb_temp_income
+	}
+	divide_variable = {
+		which = gkrb_$TYPE$_raw_$RESOURCE$
+		value = gkrb_temp_mult
+	}
+	
+	# Subtract current rubberbanding contribution to get true raw.
+	# Pull it directly from the rubberbanding economic category instead of relying
+	# on a stored "previous adjustment" variable (which can desync in edge cases).
+	export_trigger_value_to_variable = {
+		trigger = resource_revenue_compare
+		parameters = {
+			resource = $RESOURCE$
+			category = country_rubberbanding
+		}
+		variable = gkrb_temp_rb_category_revenue
+	}
+	subtract_variable = {
+		which = gkrb_$TYPE$_raw_$RESOURCE$
+		value = gkrb_temp_rb_category_revenue
+	}
+	clear_variable = gkrb_temp_rb_category_revenue
+	
+	# Base = raw * mult (what income would be without rubberbanding)
+	set_variable = {
+		which = gkrb_$TYPE$_base_$RESOURCE$
+		value = gkrb_$TYPE$_raw_$RESOURCE$
+	}
+	multiply_variable = {
+		which = gkrb_$TYPE$_base_$RESOURCE$
+		value = gkrb_temp_mult
+	}
+}
+
+# Generic effect to apply rubberbanding modifier
+# Parameters:
+#   RESOURCE - Full resource name (e.g., energy, physics_research)
+#   TYPE     - System type (tech or econ)
+#
+# Uses:
+#   - Modifier:  gkrb_$TYPE$_$RESOURCE$_mod
+#   - Adjust:    gkrb_$TYPE$_$RESOURCE$_adjust (new adjustment = raw * rb_mult)
+#   - Mult:      gkrb_$TYPE$_mult (rubberbanding multiplier)
+#   - Raw:       gkrb_$TYPE$_raw_$RESOURCE$ (true underlying production)
+gkrb_apply_rubberbanding_modifier = {
+	remove_modifier = gkrb_$TYPE$_$RESOURCE$_mod
+
+	# Calculate adjustment: raw_output * rubberbanding_mult
+	# Scripted effects CAN construct variable names, so we do all the work here
+	set_variable = {
+		which = gkrb_$TYPE$_$RESOURCE$_adjust
+		value = gkrb_$TYPE$_raw_$RESOURCE$
+	}
+	multiply_variable = {
+		which = gkrb_$TYPE$_$RESOURCE$_adjust
+		value = gkrb_$TYPE$_mult
+	}
+	
+	# Round to 2 decimal places
+	round_variable_to_closest = {
+		which = gkrb_$TYPE$_$RESOURCE$_adjust
+		value = 0.01
+	}
+	
+	# Apply modifier (positive = bonus, negative = reduction)
+	add_modifier = {
+		modifier = gkrb_$TYPE$_$RESOURCE$_mod
+		days = -1
+		multiplier = gkrb_$TYPE$_$RESOURCE$_adjust
+	}
+}

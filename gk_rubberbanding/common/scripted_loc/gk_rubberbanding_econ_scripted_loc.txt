@@ -1,0 +1,24 @@
+defined_text = {
+	name = GKRBEconPercentage
+	value = value:gkrb_econ_score_percent
+}
+
+defined_text = {
+	name = GKRBEconEffectiveMult
+	value = value:gkrb_econ_mult_percent
+}
+defined_text = {
+	name = GKRBEconEffectiveMultColor
+	text = {
+		trigger = {
+			check_variable = { which = gkrb_econ_mult value >= 0 }
+		}
+		localization_key = "GK_COLOR_POS"
+	}
+	text = {
+		trigger = {
+			check_variable = { which = gkrb_econ_mult value < 0 }
+		}
+		localization_key = "GK_COLOR_NEG"
+	}
+}

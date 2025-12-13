@@ -1,0 +1,22 @@
+# Physics
+gkrb_tech_physics_research_mod = {
+	country_rubberbanding_physics_research_produces_add = 1
+	hide_from_country_list = yes
+}
+
+# Society
+gkrb_tech_society_research_mod = {
+	country_rubberbanding_society_research_produces_add = 1
+	hide_from_country_list = yes
+}
+
+# Engineering
+gkrb_tech_engineering_research_mod = {
+	country_rubberbanding_engineering_research_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_tech_marker = {
+	show_only_custom_tooltip = yes
+	custom_tooltip = gkrb_tech_marker.tooltip
+}
