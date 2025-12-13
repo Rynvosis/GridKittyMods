@@ -137,18 +137,18 @@ gkrb_clear_econ_rubberbanding_modifiers = {
 # Apply economy rubberbanding modifiers when ahead (malus only).
 gkrb_apply_ahead_econ_rubberbanding_modifiers = {
 	# Apply adjustment for all resources
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = energy TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = minerals TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = food TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = trade TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = consumer_goods TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = alloys TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = volatile_motes TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = exotic_gases TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = rare_crystals TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = sr_living_metal TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = sr_zro TYPE = econ }
-	gkrb_apply_rubberbanding_modifier = { RESOURCE = sr_dark_matter TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = energy TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = minerals TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = food TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = trade TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = consumer_goods TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = alloys TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = volatile_motes TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = exotic_gases TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = rare_crystals TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = sr_living_metal TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = sr_zro TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = sr_dark_matter TYPE = econ }
 
 	# Apply marker modifier (tooltip)
 	add_modifier = {

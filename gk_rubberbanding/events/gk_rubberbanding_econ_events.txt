@@ -26,76 +26,76 @@ event = {
 					which = gkrb_econ_global_econ_avg
 					value = 0
 				}
-				# Cache market prices as normalized weights using script values.
+				# Load resource weights from scripted_variables
 				# Basic resources
 				set_variable = {
 					which = gkrb_econ_weight_energy
-					value = value:gkrb_econ_weight|RESOURCE|energy|
+					value = @gkrb_econ_weight_energy
 				}
 				set_variable = {
 					which = gkrb_econ_weight_minerals
-					value = value:gkrb_econ_weight|RESOURCE|minerals|
+					value = @gkrb_econ_weight_minerals
 				}
 				set_variable = {
 					which = gkrb_econ_weight_food
-					value = value:gkrb_econ_weight|RESOURCE|food|
+					value = @gkrb_econ_weight_food
 				}
 				# Advanced resources
 				set_variable = {
 					which = gkrb_econ_weight_consumer_goods
-					value = value:gkrb_econ_weight|RESOURCE|consumer_goods|
+					value = @gkrb_econ_weight_consumer_goods
 				}
 				set_variable = {
 					which = gkrb_econ_weight_alloys
-					value = value:gkrb_econ_weight|RESOURCE|alloys|
+					value = @gkrb_econ_weight_alloys
 				}
-				# Trade (fixed weight of 1, not market-based)
+				# Trade
 				set_variable = {
 					which = gkrb_econ_weight_trade
-					value = 1
+					value = @gkrb_econ_weight_trade
 				}
 				# Strategic resources
 				set_variable = {
 					which = gkrb_econ_weight_volatile_motes
-					value = value:gkrb_econ_weight|RESOURCE|volatile_motes|
+					value = @gkrb_econ_weight_volatile_motes
 				}
 				set_variable = {
 					which = gkrb_econ_weight_exotic_gases
-					value = value:gkrb_econ_weight|RESOURCE|exotic_gases|
+					value = @gkrb_econ_weight_exotic_gases
 				}
 				set_variable = {
 					which = gkrb_econ_weight_rare_crystals
-					value = value:gkrb_econ_weight|RESOURCE|rare_crystals|
+					value = @gkrb_econ_weight_rare_crystals
 				}
 				# Rare resources
 				set_variable = {
 					which = gkrb_econ_weight_sr_living_metal
-					value = value:gkrb_econ_weight|RESOURCE|sr_living_metal|
+					value = @gkrb_econ_weight_sr_living_metal
 				}
 				set_variable = {
 					which = gkrb_econ_weight_sr_zro
-					value = value:gkrb_econ_weight|RESOURCE|sr_zro|
+					value = @gkrb_econ_weight_sr_zro
 				}
 				set_variable = {
 					which = gkrb_econ_weight_sr_dark_matter
-					value = value:gkrb_econ_weight|RESOURCE|sr_dark_matter|
+					value = @gkrb_econ_weight_sr_dark_matter
 				}
-				# Unity and Research (Fixed weights)
+				# Unity and Research
 				set_variable = {
 					which = gkrb_econ_weight_unity
-					value = 2
+					value = @gkrb_econ_weight_unity
 				}
 				set_variable = {
 					which = gkrb_econ_weight_physics_research
-					value = 1
+					value = @gkrb_econ_weight_physics_research
 				}
 				set_variable = {
 					which = gkrb_econ_weight_society_research
-					value = 1
+					value = @gkrb_econ_weight_society_research
 				}
 				set_variable = {
 					which = gkrb_econ_weight_engineering_research
-					value = 1
+					value = @gkrb_econ_weight_engineering_research
 				}
 				set_country_flag = gkrb_econ_has_global_variables
 			}
