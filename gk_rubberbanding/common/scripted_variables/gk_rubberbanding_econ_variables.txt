@@ -1,27 +1,62 @@
-@gkrb_econ_max_malus = 0.25
-@gkrb_econ_min_malus = -0.25
-@gkrb_econ_slope_malus = 0.5
+####################################
+# Value-Weighted Econ Rubberbanding #
+####################################
+# This system calculates penalties based on CONSUMPTION not production.
+# EconValue_r = max(0, Use_r - k×signedSqrt(maintenance_r)) × weight_r
+# Where:
+#   Use_r = Rev_r - ΔStock_r (actual consumption, not overproduction)
+#   maintenance_r = sum of approved upkeep categories (pops, jobs, buildings)
+#   signedSqrt = sign(x) × sqrt(abs(x)) (diminishing returns on maintenance)
+#   weight_r = Stellaris standard resource weights
 
-# EMA (Exponential Moving Average) parameters for rolling economy score
+# EMA (Exponential Moving Average) parameters for smoothing
 # Half-life in months - after this many months, old data contributes 50%
-# Alpha and decay are calculated dynamically via script values
 @gkrb_econ_ema_halflife_months = 40
 
-# Resource weights for economy score calculation
+# maintenance discount factor (k)
+# Higher = more discount for productive spending
+# At k=0.8: spending 100 on maintenance discounts ~8 effective use
+# At k=1.0: spending 100 on maintenance discounts 10 effective use
+@gkrb_maintenance_discount = 0.8
+
+# Bloc power inheritance multipliers
+# These determine what fraction of the pairwise power bonus applies
+@gkrb_bloc_mult_federation = 1.0
+@gkrb_bloc_mult_defensive_pact = 0.5
+@gkrb_bloc_mult_overlord = 0.25
+@gkrb_bloc_mult_vassal = 1.0
+
+####################################
+# Stellaris Standard Resource Weights
+####################################
+# These are the canonical Stellaris values for resource comparison
+# Used to calculate weighted EconValue (total economic consumption)
+
+# Basic resources (weight = 1)
 @gkrb_econ_weight_energy = 1.0
 @gkrb_econ_weight_minerals = 1.0
 @gkrb_econ_weight_food = 1.0
 @gkrb_econ_weight_trade = 1.0
+
+# Consumer goods (weight = 2)
 @gkrb_econ_weight_consumer_goods = 2.0
+
+# Alloys (weight = 4)
 @gkrb_econ_weight_alloys = 4.0
-@gkrb_econ_weight_volatile_motes = 8.0
-@gkrb_econ_weight_exotic_gases = 8.0
-@gkrb_econ_weight_rare_crystals = 8.0
-@gkrb_econ_weight_sr_living_metal = 8.0
-@gkrb_econ_weight_sr_zro = 8.0
-@gkrb_econ_weight_sr_dark_matter = 8.0
-@gkrb_econ_weight_nanites = 2.0
-@gkrb_econ_weight_unity = 1.0
+
+# Strategic resources (weight = 10)
+@gkrb_econ_weight_volatile_motes = 10.0
+@gkrb_econ_weight_exotic_gases = 10.0
+@gkrb_econ_weight_rare_crystals = 10.0
+
+# Exotic resources (weight = 20)
+@gkrb_econ_weight_sr_living_metal = 20.0
+@gkrb_econ_weight_sr_zro = 20.0
+@gkrb_econ_weight_sr_dark_matter = 20.0
+@gkrb_econ_weight_nanites = 20.0
+
+# Abstract resources
+@gkrb_econ_weight_unity = 2.0
 @gkrb_econ_weight_physics_research = 1.0
 @gkrb_econ_weight_society_research = 1.0
 @gkrb_econ_weight_engineering_research = 1.0

@@ -6,7 +6,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_energy_adjust
+				which = gkrb_econ_penalty_energy
 				value >= 0.1
 			}
 		}
@@ -15,7 +15,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_energy_adjust
+				which = gkrb_econ_penalty_energy
 				value < 0.1
 			}
 		}
@@ -28,7 +28,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_minerals_adjust
+				which = gkrb_econ_penalty_minerals
 				value >= 0.1
 			}
 		}
@@ -37,7 +37,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_minerals_adjust
+				which = gkrb_econ_penalty_minerals
 				value < 0.1
 			}
 		}
@@ -50,7 +50,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_food_adjust
+				which = gkrb_econ_penalty_food
 				value >= 0.1
 			}
 		}
@@ -59,7 +59,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_food_adjust
+				which = gkrb_econ_penalty_food
 				value < 0.1
 			}
 		}
@@ -72,7 +72,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_trade_adjust
+				which = gkrb_econ_penalty_trade
 				value >= 0.1
 			}
 		}
@@ -81,7 +81,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_trade_adjust
+				which = gkrb_econ_penalty_trade
 				value < 0.1
 			}
 		}
@@ -94,7 +94,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_consumer_goods_adjust
+				which = gkrb_econ_penalty_consumer_goods
 				value >= 0.1
 			}
 		}
@@ -103,7 +103,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_consumer_goods_adjust
+				which = gkrb_econ_penalty_consumer_goods
 				value < 0.1
 			}
 		}
@@ -116,7 +116,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_alloys_adjust
+				which = gkrb_econ_penalty_alloys
 				value >= 0.1
 			}
 		}
@@ -125,7 +125,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_alloys_adjust
+				which = gkrb_econ_penalty_alloys
 				value < 0.1
 			}
 		}
@@ -138,7 +138,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_volatile_motes_adjust
+				which = gkrb_econ_penalty_volatile_motes
 				value >= 0.1
 			}
 		}
@@ -147,7 +147,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_volatile_motes_adjust
+				which = gkrb_econ_penalty_volatile_motes
 				value < 0.1
 			}
 		}
@@ -160,7 +160,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_exotic_gases_adjust
+				which = gkrb_econ_penalty_exotic_gases
 				value >= 0.1
 			}
 		}
@@ -169,7 +169,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_exotic_gases_adjust
+				which = gkrb_econ_penalty_exotic_gases
 				value < 0.1
 			}
 		}
@@ -182,7 +182,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_rare_crystals_adjust
+				which = gkrb_econ_penalty_rare_crystals
 				value >= 0.1
 			}
 		}
@@ -191,7 +191,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_rare_crystals_adjust
+				which = gkrb_econ_penalty_rare_crystals
 				value < 0.1
 			}
 		}
@@ -204,7 +204,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_sr_living_metal_adjust
+				which = gkrb_econ_penalty_sr_living_metal
 				value >= 0.1
 			}
 		}
@@ -213,7 +213,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_sr_living_metal_adjust
+				which = gkrb_econ_penalty_sr_living_metal
 				value < 0.1
 			}
 		}
@@ -226,7 +226,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_sr_zro_adjust
+				which = gkrb_econ_penalty_sr_zro
 				value >= 0.1
 			}
 		}
@@ -235,7 +235,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_sr_zro_adjust
+				which = gkrb_econ_penalty_sr_zro
 				value < 0.1
 			}
 		}
@@ -248,7 +248,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_sr_dark_matter_adjust
+				which = gkrb_econ_penalty_sr_dark_matter
 				value >= 0.1
 			}
 		}
@@ -257,7 +257,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_sr_dark_matter_adjust
+				which = gkrb_econ_penalty_sr_dark_matter
 				value < 0.1
 			}
 		}
@@ -270,7 +270,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_nanites_adjust
+				which = gkrb_econ_penalty_nanites
 				value >= 0.1
 			}
 		}
@@ -279,7 +279,7 @@ defined_text = {
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_econ_nanites_adjust
+				which = gkrb_econ_penalty_nanites
 				value < 0.1
 			}
 		}
@@ -287,41 +287,128 @@ defined_text = {
 	}
 }
 
-####################################
-# Tech Resource Rows               #
-####################################
+#ECON RESEARCH ROWS
 defined_text = {
 	name = GKRBPhysicsResearchRow
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_tech_physics_research_adjust
+				which = gkrb_econ_penalty_physics_research
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_PHYSICS_UPKEEP"
+		localization_key = "GKRB_ROW_PHYSICS_RESEARCH_UPKEEP"
 	}
 	text = {
 		trigger = {
 			check_variable = {
-				which = gkrb_tech_physics_research_adjust
+				which = gkrb_econ_penalty_physics_research
 				value < 0.1
 			}
 		}
 		localization_key = "GKRB_EMPTY"
 	}
 }
-
 defined_text = {
 	name = GKRBSocietyResearchRow
 	text = {
 		trigger = {
 			check_variable = {
+				which = gkrb_econ_penalty_society_research
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_SOCIETY_RESEARCH_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_penalty_society_research
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+defined_text = {
+	name = GKRBEngineeringResearchRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_penalty_engineering_research
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_ENGINEERING_RESEARCH_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_penalty_engineering_research
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+defined_text = {
+	name = GKRBUnityRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_penalty_unity
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_UNITY_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_econ_penalty_unity
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+
+
+# TECH BANDING RESOURCE ROWS
+
+defined_text = {
+	name = GKRBTechPhysicsResearchRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TECH_PHYSICS_RESEARCH_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBTechSocietyResearchRow
+	text = {
+		trigger = {
+			check_variable = {
 				which = gkrb_tech_society_research_adjust
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_SOCIETY_UPKEEP"
+		localization_key = "GKRB_ROW_TECH_SOCIETY_RESEARCH_UPKEEP"
 	}
 	text = {
 		trigger = {
@@ -335,7 +422,7 @@ defined_text = {
 }
 
 defined_text = {
-	name = GKRBEngineeringResearchRow
+	name = GKRBTechEngineeringResearchRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -343,7 +430,7 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_ENGINEERING_UPKEEP"
+		localization_key = "GKRB_TECH_ROW_ENGINEERING_RESEARCH_UPKEEP"
 	}
 	text = {
 		trigger = {
@@ -355,6 +442,7 @@ defined_text = {
 		localization_key = "GKRB_EMPTY"
 	}
 }
+
 
 
 ####################################

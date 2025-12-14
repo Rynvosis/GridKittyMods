@@ -1,0 +1,52 @@
+# Update per-resource EMAs
+create_variable_if_not_exists = {
+	VARIABLE = gkrb_econ_ema_revenue_$RESOURCE$
+	VALUE_IF_CREATED = value:gkrp_effective_resource_revenue|RESOURCE|$RESOURCE$|
+}
+set_variable = {
+	which = gkrb_econ_ema_revenue_$RESOURCE$
+	value = value:gkrb_ema_update_revenue|RESOURCE|$RESOURCE$|
+}
+
+create_variable_if_not_exists = {
+	VARIABLE = gkrb_econ_ema_use_$RESOURCE$
+	VALUE_IF_CREATED = value:gkrb_resource_use|RESOURCE|$RESOURCE$|
+}
+set_variable = {
+	which = gkrb_econ_ema_use_$RESOURCE$
+	value = value:gkrb_ema_update_use|RESOURCE|$RESOURCE$|
+}
+
+# Calculate utilization ratio from EMA windows
+set_variable = {
+	which = gkrb_econ_utilization_ratio_$RESOURCE$
+	value = value:gkrb_econ_utilization_ratio|RESOURCE|$RESOURCE$|
+}
+
+# Calculate effective power = utilization × ema_revenue
+set_variable = {
+	which = gkrb_econ_effective_power_$RESOURCE$
+	value = value:gkrb_econ_effective_power_resource|RESOURCE|$RESOURCE$|
+}
+
+# Calculate weighted econ value = effective_power × weight
+set_variable = {
+	which = gkrb_econ_value_$RESOURCE$
+	value = gkrb_econ_effective_power_$RESOURCE$
+}
+multiply_variable = {
+	which = gkrb_econ_value_$RESOURCE$
+	value = event_target:global_event_country.gkrb_econ_weight_$RESOURCE$
+}
+
+# Update prev_stock for next month's delta calculation
+set_variable = {
+	which = gkrb_prev_stock_$RESOURCE$
+	value = value:gkrp_current_stock|RESOURCE|$RESOURCE$|
+}
+
+# Add to total
+change_variable = {
+	which = gkrb_econ_total_value
+	value = gkrb_econ_value_$RESOURCE$
+}

@@ -1,7 +1,19 @@
-# Gatekeeper event pattern copied from /dubbobanding.
-# Goal: compute a galactic average econ score, then apply per-country output scaling.
+####################################
+# Utilization-Weighted Economy Rubberbanding
+# Events
+####################################
+# Monthly event chain that calculates consumption-based economic penalties
+# Goal: Penalize countries based on how much they CONSUME (utilization), weighted by resource value
+# Formula: Penalty_r = utilization_r × Mal_total × EMA(Revenue_r)
+# where utilization_r = EMA(Use_r) / EMA(Revenue_r)
+
 namespace = gkrb_econ
-# Init globals once on game start.
+
+####################################
+# Event 1: Initialize Globals
+####################################
+# Init globals once on game start
+
 event = {
 	id = gkrb_econ.1
 	is_triggered_only = yes
@@ -10,10 +22,9 @@ event = {
 		event_target:global_event_country = {
 			if = {
 				limit = {
-					NOT = {
-						has_country_flag = gkrb_econ_has_global_variables
-					}
+					NOT = { has_country_flag = gkrb_econ_has_global_variables }
 				}
+				# Global aggregation variables
 				set_variable = {
 					which = gkrb_econ_global_econ_sum
 					value = 0
@@ -24,121 +35,123 @@ event = {
 				}
 				set_variable = {
 					which = gkrb_econ_global_econ_avg
-					value = 0
+					value = 1
 				}
+				
 				# Load resource weights from scripted_variables
 				# Basic resources
-				set_variable = {
-					which = gkrb_econ_weight_energy
-					value = @gkrb_econ_weight_energy
-				}
-				set_variable = {
-					which = gkrb_econ_weight_minerals
-					value = @gkrb_econ_weight_minerals
-				}
-				set_variable = {
-					which = gkrb_econ_weight_food
-					value = @gkrb_econ_weight_food
-				}
+				set_variable = { which = gkrb_econ_weight_energy value = @gkrb_econ_weight_energy }
+				set_variable = { which = gkrb_econ_weight_minerals value = @gkrb_econ_weight_minerals }
+				set_variable = { which = gkrb_econ_weight_food value = @gkrb_econ_weight_food }
+				set_variable = { which = gkrb_econ_weight_trade value = @gkrb_econ_weight_trade }
+				
 				# Advanced resources
-				set_variable = {
-					which = gkrb_econ_weight_consumer_goods
-					value = @gkrb_econ_weight_consumer_goods
-				}
-				set_variable = {
-					which = gkrb_econ_weight_alloys
-					value = @gkrb_econ_weight_alloys
-				}
-				# Trade
-				set_variable = {
-					which = gkrb_econ_weight_trade
-					value = @gkrb_econ_weight_trade
-				}
+				set_variable = { which = gkrb_econ_weight_consumer_goods value = @gkrb_econ_weight_consumer_goods }
+				set_variable = { which = gkrb_econ_weight_alloys value = @gkrb_econ_weight_alloys }
+				
 				# Strategic resources
-				set_variable = {
-					which = gkrb_econ_weight_volatile_motes
-					value = @gkrb_econ_weight_volatile_motes
-				}
-				set_variable = {
-					which = gkrb_econ_weight_exotic_gases
-					value = @gkrb_econ_weight_exotic_gases
-				}
-				set_variable = {
-					which = gkrb_econ_weight_rare_crystals
-					value = @gkrb_econ_weight_rare_crystals
-				}
+				set_variable = { which = gkrb_econ_weight_volatile_motes value = @gkrb_econ_weight_volatile_motes }
+				set_variable = { which = gkrb_econ_weight_exotic_gases value = @gkrb_econ_weight_exotic_gases }
+				set_variable = { which = gkrb_econ_weight_rare_crystals value = @gkrb_econ_weight_rare_crystals }
+				
 				# Exotic resources
-				set_variable = {
-					which = gkrb_econ_weight_sr_living_metal
-					value = @gkrb_econ_weight_sr_living_metal
-				}
-				set_variable = {
-					which = gkrb_econ_weight_sr_zro
-					value = @gkrb_econ_weight_sr_zro
-				}
-				set_variable = {
-					which = gkrb_econ_weight_sr_dark_matter
-					value = @gkrb_econ_weight_sr_dark_matter
-				}
-				set_variable = {
-					which = gkrb_econ_weight_nanites
-					value = @gkrb_econ_weight_nanites
-				}
-				# Unity and Research
-				set_variable = {
-					which = gkrb_econ_weight_unity
-					value = @gkrb_econ_weight_unity
-				}
-				set_variable = {
-					which = gkrb_econ_weight_physics_research
-					value = @gkrb_econ_weight_physics_research
-				}
-				set_variable = {
-					which = gkrb_econ_weight_society_research
-					value = @gkrb_econ_weight_society_research
-				}
-				set_variable = {
-					which = gkrb_econ_weight_engineering_research
-					value = @gkrb_econ_weight_engineering_research
-				}
+				set_variable = { which = gkrb_econ_weight_sr_living_metal value = @gkrb_econ_weight_sr_living_metal }
+				set_variable = { which = gkrb_econ_weight_sr_zro value = @gkrb_econ_weight_sr_zro }
+				set_variable = { which = gkrb_econ_weight_sr_dark_matter value = @gkrb_econ_weight_sr_dark_matter }
+				set_variable = { which = gkrb_econ_weight_nanites value = @gkrb_econ_weight_nanites }
+				
+				# Abstract resources
+				set_variable = { which = gkrb_econ_weight_unity value = @gkrb_econ_weight_unity }
+				set_variable = { which = gkrb_econ_weight_physics_research value = @gkrb_econ_weight_physics_research }
+				set_variable = { which = gkrb_econ_weight_society_research value = @gkrb_econ_weight_society_research }
+				set_variable = { which = gkrb_econ_weight_engineering_research value = @gkrb_econ_weight_engineering_research }
+				
 				set_country_flag = gkrb_econ_has_global_variables
 			}
 		}
+
+		every_playable_country = {
+			# initialize stockpile tracking variables
+			set_variable = { which = gkrb_prev_stockpile_energy value = value:gkrp_current_stock|RESOURCE|energy| }
+			set_variable = { which = gkrb_prev_stockpile_minerals value = value:gkrp_current_stock|RESOURCE|minerals| }
+			set_variable = { which = gkrb_prev_stockpile_food value = value:gkrp_current_stock|RESOURCE|food| }
+			set_variable = { which = gkrb_prev_stockpile_trade value = value:gkrp_current_stock|RESOURCE|trade| }
+			set_variable = { which = gkrb_prev_stockpile_consumer_goods value = value:gkrp_current_stock|RESOURCE|consumer_goods| }
+			set_variable = { which = gkrb_prev_stockpile_alloys value = value:gkrp_current_stock|RESOURCE|alloys| }
+			set_variable = { which = gkrb_prev_stockpile_volatile_motes value = value:gkrp_current_stock|RESOURCE|volatile_motes| }
+			set_variable = { which = gkrb_prev_stockpile_exotic_gases value = value:gkrp_current_stock|RESOURCE|exotic_gases| }
+			set_variable = { which = gkrb_prev_stockpile_rare_crystals value = value:gkrp_current_stock|RESOURCE|rare_crystals| }
+			set_variable = { which = gkrb_prev_stockpile_sr_living_metal value = value:gkrp_current_stock|RESOURCE|sr_living_metal| }
+			set_variable = { which = gkrb_prev_stockpile_sr_zro value = value:gkrp_current_stock|RESOURCE|sr_zro| }
+			set_variable = { which = gkrb_prev_stockpile_sr_dark_matter value = value:gkrp_current_stock|RESOURCE|sr_dark_matter| }
+			set_variable = { which = gkrb_prev_stockpile_nanites value = value:gkrp_current_stock|RESOURCE|nanites|	}
+			set_variable = { which = gkrb_prev_stockpile_unity value = value:gkrp_current_stock|RESOURCE|unity| }
+			set_variable = { which = gkrb_prev_stockpile_physics_research value = value:gkrp_current_stock|RESOURCE|physics_research| }
+			set_variable = { which = gkrb_prev_stockpile_society_research value = value:gkrp_current_stock|RESOURCE|society_research| }
+			set_variable = { which = gkrb_prev_stockpile_engineering_research value = value:gkrp_current_stock|RESOURCE|engineering_research| }
+		}
 	}
+
 }
 
-# Monthly gatekeeper: recalc average, then apply per-country modifiers.
+####################################
+# Event 10: Monthly Gatekeeper
+####################################
+# Master event that orchestrates the monthly calculation cycle
+
 event = {
 	id = gkrb_econ.10
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
+		# Reset global counters
 		event_target:global_event_country = {
-			set_variable = {
-				which = gkrb_econ_global_country_count
-				value = 0
+			create_variable_if_not_exists = {
+				VARIABLE = gkrb_econ_months_elapsed
+				VALUE_IF_CREATED = 0
 			}
-			set_variable = {
-				which = gkrb_econ_global_econ_sum
-				value = 0
+			change_variable = {
+				which = gkrb_econ_months_elapsed
+				value = 1
 			}
+
+			set_variable = { which = gkrb_econ_global_country_count value = 0 }
+			set_variable = { which = gkrb_econ_global_econ_sum value = 0 }
+			
+			# Cache EMA pow constant
 			set_variable = {
-				which = gkrb_econ_global_econ_avg
-				value = 0
+				which = gkrb_econ_ema_decay_cached
+				value = value:gkrb_compute_decay_from_cached_halflife
 			}
 		}
+		
+		# Phase 0: Calculate economic values for all countries
+		# (Use, maintenance, EMAs, utilization, effective power for each resource)
 		every_playable_country = {
-			country_event = {
-				id = gkrb_econ.20
-			}
+			gkrb_calculate_econ_values = yes
 		}
+		
+		# Phase 1: Finalize scores (EMA blend) and contribute to global sums
+		# Must happen before bloc calc so partners have updated EMA values
+		every_playable_country = {
+			# Finalize score with EMA blend (no bloc in EMA)
+			gkrb_finalize_econ_score = yes
+			
+			# Contribute to global sum
+			gkrb_contribute_to_global_sum = yes
+		}
+		
+		# Phase 1.5: Calculate bloc power increase for all countries
+		# Uses freshly updated EMA scores, but doesn't feed back into EMA
+		every_playable_country = {
+			gkrb_calculate_bloc_power_increase = yes
+		}
+		
+		# Phase 2: Calculate global average (only need EC_total average)
 		event_target:global_event_country = {
 			if = {
 				limit = {
-					check_variable = {
-						which = gkrb_econ_global_country_count
-						value > 0
-					}
+					check_variable = { which = gkrb_econ_global_country_count value > 0 }
 				}
 				set_variable = {
 					which = gkrb_econ_global_econ_avg
@@ -148,105 +161,26 @@ event = {
 					which = gkrb_econ_global_econ_avg
 					value = gkrb_econ_global_country_count
 				}
+				# Floor at 1 to avoid division by zero
 				if = {
-					limit = {
-						check_variable = {
-							which = gkrb_econ_global_econ_avg
-							value < 1
-						}
-					}
-					set_variable = {
-						which = gkrb_econ_global_econ_avg
-						value = 1
-					}
+					limit = { check_variable = { which = gkrb_econ_global_econ_avg value < 1 } }
+					set_variable = { which = gkrb_econ_global_econ_avg value = 1 }
 				}
 			}
 		}
+		
+		# Phase 3: Calculate penalties and apply modifiers
 		every_playable_country = {
-			country_event = {
-				id = gkrb_econ.30
-			}
-		}
-		every_playable_country = {
-			country_event = {
-				id = gkrb_econ.40
-			}
-		}
-		every_playable_country = {
-			country_event = {
-				id = gkrb_econ.50
-			}
+			country_event = { id = gkrb_econ.50 }
 		}
 	}
 }
 
-# Compute per-country econ score and contribute to global sum.
-country_event = {
-	id = gkrb_econ.20
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		# Compute econ score using resource_revenue_compare directly
-		gkrb_calculate_econ_score = yes
-		# Contribute to global sum.
-		event_target:global_event_country = {
-			change_variable = {
-				which = gkrb_econ_global_econ_sum
-				value = prev.gkrb_econ_score
-			}
-			change_variable = {
-				which = gkrb_econ_global_country_count
-				value = 1
-			}
-		}
-	}
-}
+####################################
+# Event 50: Phase 3 - Apply Modifiers
+####################################
+# Calculate aheadness, apply penalties or bonuses
 
-# Compute per-country relative score (self / galactic avg).
-country_event = {
-	id = gkrb_econ.30
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		set_variable = {
-			which = gkrb_econ_relative
-			value = value:gkrb_relative_score|SCORE_VAR|gkrb_econ_score|GLOBAL_AVG_VAR|gkrb_econ_global_econ_avg|
-		}
-	}
-}
-
-# Calculate malus scalar (0..@gkrb_econ_max_malus).
-country_event = {
-	id = gkrb_econ.40
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		set_variable = {
-			which = gkrb_econ_mult
-			value = value:gkrb_econ_mult
-		}
-		round_variable_to_closest = {
-			which = gkrb_econ_mult
-			value = 0.0001
-		}
-		# Cache game modifier mults for each resource
-		set_variable = { which = gkrb_econ_energy_game_mult value = value:scripted_modifier_mult|MODIFIER|country_energy_produces_mult| }
-		set_variable = { which = gkrb_econ_minerals_game_mult value = value:scripted_modifier_mult|MODIFIER|country_minerals_produces_mult| }
-		set_variable = { which = gkrb_econ_food_game_mult value = value:scripted_modifier_mult|MODIFIER|country_food_produces_mult| }
-		set_variable = { which = gkrb_econ_trade_game_mult value = value:scripted_modifier_mult|MODIFIER|country_trade_produces_mult| }
-		set_variable = { which = gkrb_econ_consumer_goods_game_mult value = value:scripted_modifier_mult|MODIFIER|country_consumer_goods_produces_mult| }
-		set_variable = { which = gkrb_econ_alloys_game_mult value = value:scripted_modifier_mult|MODIFIER|country_alloys_produces_mult| }
-		set_variable = { which = gkrb_econ_volatile_motes_game_mult value = value:scripted_modifier_mult|MODIFIER|country_volatile_motes_produces_mult| }
-		set_variable = { which = gkrb_econ_exotic_gases_game_mult value = value:scripted_modifier_mult|MODIFIER|country_exotic_gases_produces_mult| }
-		set_variable = { which = gkrb_econ_rare_crystals_game_mult value = value:scripted_modifier_mult|MODIFIER|country_rare_crystals_produces_mult| }
-		# set_variable = { which = gkrb_econ_sr_living_metal_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_living_metal_produces_mult| }
-		# set_variable = { which = gkrb_econ_sr_zro_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_zro_produces_mult| }
-		# set_variable = { which = gkrb_econ_sr_dark_matter_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_dark_matter_produces_mult| }
-		# set_variable = { which = gkrb_econ_nanites_game_mult value = value:scripted_modifier_mult|MODIFIER|country_nanites_produces_mult|
-	}
-}
-
-# Apply per-resource income reduction modifiers.
 country_event = {
 	id = gkrb_econ.50
 	is_triggered_only = yes
@@ -255,25 +189,28 @@ country_event = {
 		# Always clear first
 		gkrb_clear_econ_rubberbanding_modifiers = yes
 		
-		# If behind, apply catch-up bonuses only
+		# Calculate aheadness ratio and penalties
+		gkrb_calculate_penalties = yes
+		
+		# If behind (more than 2% below average), apply catch-up bonuses
 		if = {
 			limit = {
 				check_variable = {
-					which = gkrb_econ_relative
-					value < 0.98
+					which = gkrb_aheadness_ratio
+					value < -0.02
 				}
 			}
-			gkrb_apply_behind_econ_rubberbanding_modifiers = yes
+			gkrb_apply_behind_bonuses = yes
 		}
-		# If ahead, apply per-resource upkeep penalties
+		# If ahead (more than 2% above average), apply penalties
 		else_if = {
 			limit = {
 				check_variable = {
-					which = gkrb_econ_relative
-					value > 1.02
+					which = gkrb_aheadness_ratio
+					value > 0.02
 				}
 			}
-			gkrb_apply_ahead_econ_rubberbanding_modifiers = yes
+			gkrb_apply_ahead_penalties = yes
 		}
 	}
 }

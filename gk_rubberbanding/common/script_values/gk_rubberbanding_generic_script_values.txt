@@ -21,11 +21,3 @@ gkrb_relative_score = {
 	add = $SCORE_VAR$
 	divide = event_target:global_event_country.$GLOBAL_AVG_VAR$
 }
-
-# Modifier mult getter (1 + modifier value)
-scripted_modifier_mult = {
-	base = 1
-	modifier = {
-		add = modifier:$MODIFIER$
-	}
-}
