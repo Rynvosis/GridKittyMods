@@ -43,11 +43,11 @@ planet_event = {
 		# Initialize
 		create_variable_if_not_exists = {
 			VARIABLE = gk_pillage_tier
-			VALUE = 0
+			VALUE_IF_CREATED = 0
 		}
 		create_variable_if_not_exists = {
 			VARIABLE = gk_pillage_progress
-			VALUE = 0
+			VALUE_IF_CREATED = 0
 		}
 		# increased chance to pillage based on devastation.
 		# based on power curve.
