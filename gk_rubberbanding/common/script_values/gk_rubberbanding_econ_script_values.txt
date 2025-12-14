@@ -254,10 +254,12 @@ gkrb_econ_abs_revenue = {
 	abs = yes
 }
 
-# Effective power from EMA: utilization × ema_revenue
+# Effective power from EMA: (0.5 + 0.5*utilization) × ema_revenue
 gkrb_econ_effective_power_resource = {
 	base = 0
 	add = value:gkrb_econ_utilization_ratio|RESOURCE|$RESOURCE$|
+	mult = 0.5
+	add = 0.5
 	mult = gkrb_econ_ema_revenue_$RESOURCE$
 }
 
