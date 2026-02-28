@@ -1,0 +1,26 @@
+namespace = rec_origin_ruined_habitat
+
+country_event = {
+	id = rec_origin_ruined_habitat.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_ruined_habitat
+			# has_origin = origin_ruined_habitat_machine
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { exists = capital_scope }
+			capital_scope = {
+				set_planet_flag = rec_ruined_habitat_core
+				add_deposit = d_repurposed_habitat_life_support
+				add_deposit = d_space_ship_graveyard
+				add_deposit = d_space_ship_graveyard
+			}
+		}
+	}
+}

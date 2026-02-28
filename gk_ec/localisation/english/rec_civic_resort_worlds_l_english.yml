@@ -1,0 +1,15 @@
+﻿l_english:
+  # Resort Worlds
+  civic_rec_resort_worlds_effects: "Start with the §Y$tech_resort_colonies$§! technology."
+  civic_rec_resort_worlds: "Leisure Society"
+  civic_rec_resort_worlds_desc: "This civilization values leisure and entertainment above all else. They have dedicated entire worlds to the pursuit of pleasure and relaxation."
+  civic_rec_resort_worlds_megacorp: "Hospitality Conglomerate"
+  civic_rec_resort_worlds_megacorp_desc: "This megacorporation is the galaxy's premier provider of luxury and entertainment. Their resort worlds are legendary, attracting tourists from every corner of the galaxy."
+
+  councilor_rec_resort_worlds: "Minister of Leisure"
+  councilor_rec_resort_worlds_female: "$councilor_rec_resort_worlds$"
+  councilor_rec_resort_worlds_desc: "The $TITLE$ is responsible for the happiness and well-being of the populace, ensuring that the party never stops."
+
+  councilor_rec_resort_worlds_megacorp: "Chief Experience Officer"
+  councilor_rec_resort_worlds_megacorp_female: "$councilor_rec_resort_worlds_megacorp$"
+  councilor_rec_resort_worlds_megacorp_desc: "The $TITLE$ curates the ultimate customer experience, maximizing engagement and revenue from the corporation's entertainment assets."

@@ -1,0 +1,7 @@
+
+num_hundred_pops_twinned_system = {
+	add = trigger:pop_amount
+	divide = 100
+	divide = 4
+	round = yes
+}

@@ -1,0 +1,337 @@
+ethic_fanatic_stratified = {
+	cost = 2
+	category = "str"
+	category_value = 0
+	use_for_pops = no
+	regular_variant = ethic_stratified
+	tags = {
+		#TODO
+	}
+	country_modifier = {
+		#TODO
+	}
+	random_weight = {
+		base = 150
+	}
+}
+
+ethic_stratified = {
+	cost = 1
+	category = "str"
+	category_value = 1
+	fanatic_variant = ethic_fanatic_stratified
+	leader_background_job_weight = {
+		#TODO
+	}
+	tags = {
+		#TODO
+	}
+	country_modifier = {
+		#TODO
+	}
+	random_weight = {
+		base = 100
+	}
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_STRATIFIED_ETHIC_POS
+		trigger = {
+			is_stratified = yes
+		}
+	}
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_FACTION_POS
+		trigger = {
+			is_stratified = no
+			has_faction = rec_stratified
+		}
+	}
+	#TODO: trait-based pop_attraction_tags
+
+	# Check for any leader on the Council with Faction's Ethic.
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
+		trigger = {
+			owner = {
+				any_owned_leader = {
+					OR = {
+						is_ruler = yes
+						is_councilor = yes
+					}
+					has_ethic = ethic_stratified
+				}
+			}
+		}
+	}
+
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_GOVERNOR_POS
+		trigger = {
+			any_owned_planet = {
+				exists = leader
+				leader = { has_ethic = ethic_stratified }
+			}
+		}
+	}
+
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_STATELY_ACCLIAM
+		trigger = {
+			has_edict = stately_acclaim
+			any_pop_faction = {
+				has_ethic = ethic_stratified
+				is_faction_extorted = yes
+			}
+		}
+	}
+
+	#TODO: diplomacy/overlord pop_attraction_tags
+
+	country_attraction = {
+		base = 1
+		modifier = {
+			factor = 0
+			NOR = {
+				is_country_type = default
+				is_stratified = yes
+				AND = {
+					is_country_type = primitive
+					has_country_flag = preftl_societal_enlightenment_pact
+					capital_scope = {
+						has_observation_outpost = yes
+						observation_outpost_owner = { is_stratified = yes }
+					}
+				}
+			}
+		}
+		# Effects of indoctrination mission
+		modifier = {
+			factor = 10
+			is_country_type = primitive
+			has_country_flag = preftl_societal_enlightenment_pact
+			capital_scope = {
+				has_observation_outpost = yes
+				observation_outpost_owner = { is_fanatic_stratified = yes }
+			}
+		}
+		modifier = {
+			factor = 5
+			is_country_type = primitive
+			has_country_flag = preftl_societal_enlightenment_pact
+			capital_scope = {
+				has_observation_outpost = yes
+				observation_outpost_owner = { has_ethic = ethic_stratified }
+			}
+		}
+		modifier = {
+			factor = 2
+			is_country_type = default
+			is_stratified = no
+			has_faction = rec_stratified
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_stratified
+		}
+		modifier = {
+			factor = 3
+			is_fanatic_stratified = yes
+		}
+
+		# Check for any leader on the Council with Faction's Ethic.
+		modifier = {
+			factor = value:count_councilors_with_ethic|ETHIC|stratified|
+		}
+	}
+	# from = planet
+	pop_attraction = {
+		base = 1
+
+		inline_script = {
+			script = "ethics/governor_pop_attraction"
+			ETHIC = stratified
+			ETHIC_OPPOSED = pluralist
+		}
+
+		inline_script = {
+			script = "ethics/stately_acclaim_pop_attraction"
+			ETHIC = stratified
+		}
+
+		modifier = {
+			factor = 0
+			has_trait = trait_hive_mind
+		}
+		#TODO: trait-based pop_attraction modifiers
+	}
+}
+
+####
+
+ethic_fanatic_pluralist = {
+	cost = 2
+	category = "str"
+	category_value = 4
+	category_opposite = yes
+	use_for_pops = no
+	regular_variant = ethic_pluralist
+	tags = {
+		#TODO
+	}
+	country_modifier = {
+		#TODO
+	}
+	random_weight = {
+		base = 150
+	}
+}
+
+ethic_pluralist = {
+	cost = 1
+	category = "str"
+	category_value = 3
+	category_opposite = yes
+	fanatic_variant = ethic_fanatic_pluralist
+	leader_background_job_weight = {
+		#TODO
+	}
+	tags = {
+		#TODO
+	}
+	country_modifier = {
+		#TODO
+	}
+	random_weight = {
+		base = 100
+	}
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_PLURALIST_ETHIC_POS
+		trigger = {
+			is_pluralist = yes
+		}
+	}
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_FACTION_POS
+		trigger = {
+			is_pluralist = no
+			has_faction = rec_pluralist
+		}
+	}
+	#TODO: trait-based pop_attraction_tags
+
+	# Check for any leader on the Council with Faction's Ethic.
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
+		trigger = {
+			owner = {
+				any_owned_leader = {
+					OR = {
+						is_ruler = yes
+						is_councilor = yes
+					}
+					has_ethic = ethic_pluralist
+				}
+			}
+		}
+	}
+
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_GOVERNOR_POS
+		trigger = {
+			any_owned_planet = {
+				exists = leader
+				leader = { has_ethic = ethic_pluralist }
+			}
+		}
+	}
+
+	pop_attraction_tag = {
+		desc = POP_ATTRACTION_STATELY_ACCLIAM
+		trigger = {
+			has_edict = stately_acclaim
+			any_pop_faction = {
+				has_ethic = ethic_pluralist
+				is_faction_extorted = yes
+			}
+		}
+	}
+
+	#TODO: diplomacy/overlord pop_attraction_tags
+
+	country_attraction = {
+		base = 1
+		modifier = {
+			factor = 0
+			NOR = {
+				is_country_type = default
+				is_pluralist = yes
+				AND = {
+					is_country_type = primitive
+					has_country_flag = preftl_societal_enlightenment_pact
+					capital_scope = {
+						has_observation_outpost = yes
+						observation_outpost_owner = { is_pluralist = yes }
+					}
+				}
+			}
+		}
+		# Effects of indoctrination mission
+		modifier = {
+			factor = 10
+			is_country_type = primitive
+			has_country_flag = preftl_societal_enlightenment_pact
+			capital_scope = {
+				has_observation_outpost = yes
+				observation_outpost_owner = { is_fanatic_pluralist = yes }
+			}
+		}
+		modifier = {
+			factor = 5
+			is_country_type = primitive
+			has_country_flag = preftl_societal_enlightenment_pact
+			capital_scope = {
+				has_observation_outpost = yes
+				observation_outpost_owner = { has_ethic = ethic_pluralist }
+			}
+		}
+		modifier = {
+			factor = 2
+			is_country_type = default
+			is_pluralist = no
+			has_faction = rec_pluralist
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pluralist
+		}
+		modifier = {
+			factor = 3
+			is_fanatic_pluralist = yes
+		}
+
+		# Check for any leader on the Council with Faction's Ethic.
+		modifier = {
+			factor = value:count_councilors_with_ethic|ETHIC|pluralist|
+		}
+	}
+	# from = planet
+	pop_attraction = {
+		base = 1
+
+		inline_script = {
+			script = "ethics/governor_pop_attraction"
+			ETHIC = pluralist
+			ETHIC_OPPOSED = stratified
+		}
+
+		inline_script = {
+			script = "ethics/stately_acclaim_pop_attraction"
+			ETHIC = pluralist
+		}
+
+		modifier = {
+			factor = 0
+			has_trait = trait_hive_mind
+		}
+		#TODO: trait-based pop_attraction modifiers
+	}
+}

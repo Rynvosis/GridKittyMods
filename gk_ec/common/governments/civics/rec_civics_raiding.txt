@@ -1,0 +1,10 @@
+# RynKitty Raiding Civics
+
+# Barbaric Overwrite: Can raid pops outside of a raiding war. Can raid 50% more pops or resources during raiding wars.
+
+# Emancipators: - Anti-slaver raiding civic 
+	# normal empires only
+
+# Roboliberators: - Take peoples robots away!
+	# Robot main species OR
+	# Materialsit or Cybernetic Creed

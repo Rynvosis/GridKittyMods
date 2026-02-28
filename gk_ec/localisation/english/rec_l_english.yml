@@ -1,0 +1,5 @@
+﻿l_english:
+  # Capital effect
+    CAPITAL_PLANET_EFFECTS_TXT: "£planet£ §YCapital Planet! Effects"
+    mod_capital_system_jobs_produces_mult: "§E$CAPITAL_SYSTEM_EFFECTS_TXT$§!:\n$t$$mod_planet_jobs_produces_mult$"
+

@@ -1,0 +1,31 @@
+councilor_rec_centralized_state = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_rec_centralized_state
+	# custom_tooltip = "councilor_rec_centralized_state_custom_modifier_desc"
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		rec_centralized_state_capital_build_and_decision_speed = 0.1
+		rec_centralized_capital_job_output = 0.02
+	}
+}
+
+councilor_rec_centralized_state_corporate = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_rec_centralized_state_megacorp
+	# custom_tooltip = "councilor_rec_centralized_state_custom_modifier_desc"
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		rec_centralized_state_capital_build_and_decision_speed = 0.1
+		rec_centralized_capital_job_output = 0.02
+	}
+}

@@ -1,0 +1,26 @@
+﻿l_english:
+  origin_ruined_habitat:0 "Voidfallen"
+  origin_ruined_habitat_desc:1 "We abandoned the failing orbitals that raised us and forged a planet out of the wreckage, letting those habitats become the pillars of our new home."
+  origin_tooltip_ruined_habitat_effects:0 "- $HOME_SYSTEM$$TABBED_NEW_LINE$- ['concept_habitat_central_complex_ruined']$NEW_LINE$- $SPECIES_TRAITS$$TABBED_NEW_LINE$- ['concept_habitat_preference', $trait_pc_habitat_preference$]$NEW_LINE$- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_repurposed_habitat_life_support']$TABBED_NEW_LINE$- ['concept_space_ship_graveyard']: +2$NEW_LINE$- ['concept_guaranteed_colonies']: Resource-rich systems instead of Colonizable Planets $NEW_LINE$- $ap_voidborn_habitat_effect$"
+  origin_ruined_habitat_machine:0 "Deorbited Systems"
+  origin_ruined_habitat_machine_desc:1 "Our synthetic minds were the only ones precise enough to salvage the shattered habitats and carve a planetary refuge from the wreckage."
+  origin_tooltip_ruined_habitat_machine_effects:0 "- $HOME_SYSTEM$$TABBED_NEW_LINE$- ['concept_habitat_central_complex_ruined']$NEW_LINE$- $SPECIES_TRAITS$$TABBED_NEW_LINE$- ['concept_habitat_preference', $trait_pc_habitat_preference$]$NEW_LINE$- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_repurposed_habitat_life_support']$TABBED_NEW_LINE$- ['concept_space_ship_graveyard']: +2$NEW_LINE$- ['concept_guaranteed_colonies']: Resource-rich systems instead of Colonizable Planets $NEW_LINE$- $ap_voidborn_habitat_effect$"
+
+  d_repurposed_habitat_life_support:0 "Repurposed Life Support Systems"
+  d_repurposed_habitat_life_support_desc:0 "Salvaged life support systems from the ruins of our former habitats have been adapted to function on planetary surfaces."
+
+  concept_space_ship_graveyard:0 "$d_space_ship_graveyard$"
+  concept_space_ship_graveyard_desc:0 "- $MOD_PLANET_HOUSING_ADD$:§G+100§!\n- $MOD_PLANET_MAX_DISTRICTS_ADD$: §R-1§!\n- $mod_planet_jobs_minerals_produces_mult$: §R-5%§!\n- $mod_job_miner_add$: §G+100§!\n- $miner_is_scrap_miner_tt$\n\n§L$d_space_ship_graveyard_desc$§!"
+  concept_habitat_central_complex_ruined:0 "$habitat_central_complex_ruined$"
+  concept_habitat_central_complex_ruined_desc:0 "$habitat_central_complex_ruined_DESC$"
+  concept_repurposed_habitat_life_support:0 "$d_repurposed_habitat_life_support$"
+  concept_repurposed_habitat_life_support_desc:0 "- £mod_pop_environment_tolerance£ $MOD_POP_ENVIRONMENT_TOLERANCE$: §G+50%§!\n\n§L$d_repurposed_habitat_life_support_desc$§!"
+
+  trait_void_dweller_ruined_1:0 "Void Resident"
+  trait_void_dweller_ruined_1_desc:0 "§LThis species is accustomed to the artificial environments of orbital habitats. While they can endure planetary life, they still possess an inherent preference for the efficient, controlled conditions of the void.§!"
+  void_dweller_ruined_trait_tooltip:0 "Pop Happiness on Non-Artificial Worlds: §R-10%§!\n$void_dweller_ruined_bonus_workforce_tt$"
+  void_dweller_ruined_bonus_workforce_tt:0 "$t$- $MOD_POP_BONUS_WORKFORCE_MULT$ on Habitats: §G+10%§!"
+
+  trait_void_dweller_ruined_2:0 "Zero-G Configured"
+  trait_void_dweller_ruined_2_desc:0 "§LThese machines are configured for habitat operations. While they can function on planetary surfaces, their subroutines are most effective when interacting with the standardized architecture of orbital stations.§!"
+  void_dweller_ruined_2_trait_tooltip:0 "Robot Upkeep on Non-Artificial Worlds: §R+10%§!\n$void_dweller_ruined_bonus_workforce_tt$"

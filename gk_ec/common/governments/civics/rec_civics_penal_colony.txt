@@ -1,0 +1,56 @@
+civic_rec_penal_colony = {
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+	possible = {
+		civics = { NOR = { value = civic_rec_penal_colony_megacorp } }
+	}
+	modification = {
+		add = { has_civic = civic_rec_penal_colony_megacorp }
+		remove = { always = no }
+	}
+	alternate_civic_version = civic_rec_penal_colony_megacorp
+	playable = {
+		always = yes
+	}
+	random_weight = { base = @civic_uncommon_random_weight }
+
+	modifier = {
+		planet_enforcers_unity_produces_add = 1
+	}
+	
+	description = civic_rec_penal_colony_effects
+}
+
+civic_rec_penal_colony_megacorp = {
+	potential = {
+		authority = { value = auth_corporate }
+	}
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_rec_penal_colony
+			}
+		}
+	}
+	modification = {
+		add = {
+			has_civic = civic_rec_penal_colony
+		}
+		remove = {
+			always = no
+		}
+	}
+	alternate_civic_version = civic_rec_penal_colony
+	playable = {
+		always = yes
+	}
+	random_weight = { base = @civic_uncommon_random_weight }
+
+	modifier = {
+		planet_enforcers_trade_produces_add = 1
+	}
+	
+	description = civic_rec_penal_colony_effects
+}

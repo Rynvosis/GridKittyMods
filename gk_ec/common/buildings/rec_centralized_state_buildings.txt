@@ -1,0 +1,295 @@
+building_rec_centralized_state_capital = {
+	base_buildtime = @b2_time
+	icon = building_imperial_machine_capital
+	planet_limit = 1
+
+	category = government
+
+	building_sets = {
+		government
+		urban
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_rec_centralized_state
+				has_valid_civic = civic_rec_centralized_state_megacorp
+			}
+		}
+		is_capital = yes
+	}
+
+	allow = { always = yes }
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				NOR = {
+					has_valid_civic = civic_rec_centralized_state
+					has_valid_civic = civic_rec_centralized_state_megacorp
+				}
+			}
+			is_capital = no
+		}
+	}
+
+
+	convert_to = {
+		building_rec_centralized_state_colony
+	}
+
+	planet_modifier = {
+		planet_resettlement_unemployed_destination_mult = 1.0
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_worker_coop_empire = no
+				is_gestalt = no
+			}
+		}
+		job_politician_add = 1
+		mult = owner.value:rec_centralized_state_job_count|BASE|100|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_worker_coop_empire = yes
+			}
+		}
+		job_bureaucrat_add = 1
+		mult = owner.value:rec_centralized_state_job_count|BASE|150|
+	}
+
+	triggered_planet_modifier = {
+		planet_building_build_speed_mult = 1
+		planet_decision_enact_speed_mult = 1
+		mult = owner.modifier:rec_centralized_state_capital_build_and_decision_speed
+	}
+
+	triggered_planet_modifier = {
+		planet_jobs_produces_mult = 1
+		mult = owner.modifier:rec_centralized_capital_job_output 
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+building_rec_centralized_state_colony = {
+	base_buildtime = @b0_time
+	icon = building_transit_hub
+	planet_limit = 1
+
+	category = government
+
+	building_sets = {
+		government
+		urban
+	}
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_rec_centralized_state
+				has_valid_civic = civic_rec_centralized_state_megacorp
+			}
+		}
+		is_capital = no
+	}
+
+	allow = { always = yes }
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				NOR = {
+					has_valid_civic = civic_rec_centralized_state
+					has_valid_civic = civic_rec_centralized_state_megacorp
+				}
+			}
+			is_capital = yes
+		}
+	}
+	convert_to = {
+		building_rec_centralized_state_capital
+	}
+
+	planet_modifier = {
+		planet_resettlement_unemployed_mult = 0.25
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_worker_coop_empire = no
+				is_gestalt = no
+			}
+		}
+		rec_centralized_state_capital_jobs = 50
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_worker_coop_empire = yes
+			}
+		}
+		rec_centralized_state_capital_jobs = 75
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b0_minerals
+		}
+		upkeep = {
+			energy = @b0_upkeep
+		}
+	}
+
+	triggered_desc = {
+		text = building_rec_centralized_state_colony_effect
+	}
+}
+
+# Gestalt Versions
+
+building_rec_centralized_state_capital_gestalt = {
+	base_buildtime = @b2_time
+	icon = building_imperial_machine_capital
+	planet_limit = 1
+
+	category = government
+
+	building_sets = {
+		government
+		urban
+	}
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { has_valid_civic = civic_rec_centralized_state_hive }
+			owner = { has_valid_civic = civic_rec_centralized_state_machine }
+		}
+		is_capital = yes
+	}
+
+	allow = { always = yes }
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			NOR = {
+				owner = { has_valid_civic = civic_rec_centralized_state_hive }
+				owner = { has_valid_civic = civic_rec_centralized_state_machine }
+			}
+			is_capital = no
+		}
+	}
+
+	convert_to = {
+		building_rec_centralized_state_colony_gestalt
+	}
+
+	planet_modifier = {
+		planet_resettlement_unemployed_destination_mult = 1.0
+		planet_jobs_produces_mult = 0.1
+		planet_building_build_speed_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		job_coordinator_add = 1
+		mult = owner.value:rec_centralized_coordinator_count|BASE|150|
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+building_rec_centralized_state_colony_gestalt = {
+	base_buildtime = @b0_time
+	icon = building_transit_hub
+	planet_limit = 1
+
+	category = government
+
+	building_sets = {
+		government
+		urban
+	}
+	potential = {
+		exists = owner
+		OR = {
+			owner = { has_valid_civic = civic_rec_centralized_state_hive }
+			owner = { has_valid_civic = civic_rec_centralized_state_machine }
+		}
+		is_capital = no
+	}
+
+	allow = { always = yes }
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			NOR = {
+				owner = { has_valid_civic = civic_rec_centralized_state_hive }
+				owner = { has_valid_civic = civic_rec_centralized_state_machine }
+			}
+			is_capital = yes
+		}
+	}
+	convert_to = {
+		building_rec_centralized_state_capital_gestalt
+	}
+
+	planet_modifier = {
+		planet_resettlement_unemployed_mult = 0.25
+	}
+
+	triggered_country_modifier = {
+		rec_centralized_state_capital_jobs = 75
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b0_minerals
+		}
+		upkeep = {
+			energy = @b0_upkeep
+		}
+	}
+
+	triggered_desc = {
+		text = building_rec_centralized_state_colony_effect
+	}
+}

@@ -1,0 +1,41 @@
+﻿l_english:
+# centralized state
+  REC_CAPITAL_PLANET_EFFECTS: "§E£planet£ §YCapital Planet§! Effects§!"
+
+  civic_rec_centralized_state: "Centralized State"
+  civic_rec_centralized_state_desc: "This society is extremely centralized, having grown around a single shining core, its capital. Power, people and resources are drawn inwards."
+  civic_rec_centralized_state_effects: "- Unlocks construction of the $building_rec_centralized_state_capital$ on your capital.$TABBED_NEW_LINE$- grants §G+100§! Politician Jobs and an additional §G+50§! for each $building_rec_centralized_state_colony$  \n\n- Unlocks construction of the $building_rec_centralized_state_colony$ on colonies.$TABBED_NEW_LINE$- Each year §Y10%§! of your colony civilians are automatically resettled back to your capital."
+
+  civic_rec_centralized_state_hive: "Centralized Synapse"
+  civic_rec_centralized_state_hive_desc: "This hive mind has evolved a highly centralized neural architecture. All drones are instinctively drawn towards the primary consciousness node."
+
+  civic_rec_centralized_state_machine: "Core Processing Hub"
+  civic_rec_centralized_state_machine_desc: "This machine intelligence is built around a massive central processing unit. All sub-units are designed to return to the core for data synchronization and upgrades."
+
+  civic_rec_centralized_state_megacorp: "Centralized Directorate"
+  civic_rec_centralized_state_megacorp_desc: "This megacorporation is run with absolute efficiency from a single, massive headquarters. All subsidiaries and branch offices report directly to the central board."
+
+
+  councilor_rec_centralized_state: "Capital Prefect"
+  councilor_rec_centralized_state_female: "$councilor_rec_centralized_state$"
+  councilor_rec_centralized_state_desc: "The $TITLE$ leads the infrastructural development of our capital."
+
+  councilor_rec_centralized_state_corporate: "Chief Centralization Officer"
+  councilor_rec_centralized_state_corporate_female: "$councilor_rec_centralized_state_corporate$"
+  councilor_rec_centralized_state_corporate_desc: "The $TITLE$ oversees the streamlining of corporate assets into the central headquarters."
+
+
+  building_rec_centralized_state_capital:0 "Colonial Administration Complex"
+  building_rec_centralized_state_capital_desc:0 "A sprawling complex that serves as the central hub for managing all colonies, ensuring efficient governance and resource allocation."
+  
+  building_rec_centralized_state_capital_gestalt: "Centralized Consciousness Core"
+  building_rec_centralized_state_capital_gestalt_desc: "A massive structure that serves as the primary processing and synaptic node for the gestalt consciousness, coordinating the thoughts and actions of all drones."
+  
+
+  building_rec_centralized_state_colony:0 "Capital Transit Hub"
+  building_rec_centralized_state_colony_desc:0 "A sophisticated transit hub designed to facilitate the rapid movement of people and resources between the colony and the capital."
+  building_rec_centralized_state_colony_effect: "§Y10%§! of eligible Unemployed and Civilian Pops automatically migrate to the Capital each year."
+
+  building_rec_centralized_state_colony_gestalt: "Consciousness Relay Node"
+  building_rec_centralized_state_colony_gestalt_desc: "A specialized facility designed to amplify the gestalt signal, ensuring that drones on this world remain connected to the central consciousness."
+

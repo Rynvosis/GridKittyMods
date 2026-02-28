@@ -1,0 +1,5 @@
+on_game_start_country = {
+	events = {
+		rec_system_initializer.100 # ruined habitat start system tech
+	}
+}

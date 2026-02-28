@@ -1,0 +1,17 @@
+is_stratified = {
+	OR = {
+		has_ethic = ethic_stratified
+		is_fanatic_stratified = yes
+	}
+}
+
+is_fanatic_stratified = { has_ethic = ethic_fanatic_stratified }
+
+is_pluralist = {
+	OR = {
+		has_ethic = ethic_pluralist
+		is_fanatic_pluralist = yes
+	}
+}
+
+is_fanatic_pluralist = { has_ethic = ethic_fanatic_pluralist }
