@@ -10,18 +10,19 @@
 @sub_window_width = 1040
 
 # Ethics grid X positions (50px spacing, centered in 310px)
-@e_x0 = 35
-@e_x1 = 85
+@e_x0 = 70
+@e_x1 = 105
 @e_x2 = 135
-@e_x3 = 185
-@e_x4 = 235
+@e_x3 = 165
+@e_x4 = 200
 
-# Ethics grid Y positions (44px spacing, one row per axis)
-@e_y0 = 10
-@e_y1 = 54
-@e_y2 = 98
-@e_y3 = 142
-@e_y4 = 186
+# Ethics grid Y positions (38px spacing, one row per axis)
+@e_y0 = 0
+@e_y1 = 38
+@e_y2 = 76
+@e_y3 = 114
+@e_y4 = 152
+@e_yg = 190
 
 guiTypes = {
 	containerWindowType = {
@@ -80,6 +81,50 @@ guiTypes = {
 			maxHeight = 20
 			text = "POINTS_LEFT_ETHICS"
 			format = center
+		}
+
+		### SEPARATOR LINES ###
+
+		iconType = {
+			name = "ethic_line_0"
+			spriteType = "GFX_line_horizontal"
+			position = { x = 57 y = -13 }
+			scale = 0.75
+		}
+
+		iconType = {
+			name = "ethic_line_1"
+			spriteType = "GFX_line_horizontal"
+			position = { x = 57 y = 25 }
+			scale = 0.75
+		}
+
+		iconType = {
+			name = "ethic_line_2"
+			spriteType = "GFX_line_horizontal"
+			position = { x = 57 y = 63 }
+			scale = 0.75
+		}
+
+		iconType = {
+			name = "ethic_line_3"
+			spriteType = "GFX_line_horizontal"
+			position = { x = 57 y = 101 }
+			scale = 0.75
+		}
+
+		iconType = {
+			name = "ethic_line_4"
+			spriteType = "GFX_line_horizontal"
+			position = { x = 57 y = 139 }
+			scale = 0.75
+		}
+
+		iconType = {
+			name = "ethic_line_5"
+			spriteType = "GFX_line_horizontal"
+			position = { x = 57 y = 177 }
+			scale = 0.75
 		}
 
 		### AXIS 0: AUTHORITARIAN ↔ EGALITARIAN ###
@@ -142,7 +187,7 @@ guiTypes = {
 			clicksound = interface
 		}
 
-		### AXIS 2: XENOPHOBE ↔ XENOPHILE + GESTALT ###
+		### AXIS 2: XENOPHOBE ↔ XENOPHILE ###
 
 		buttonType = {
 			name = "ethic_fanatic_xenophobe"
@@ -155,13 +200,6 @@ guiTypes = {
 			name = "ethic_xenophobe"
 			spriteType = "GFX_ethics_xenophobe"
 			position = { x = @e_x1 y = @e_y2 }
-			clicksound = interface
-		}
-
-		buttonType = {
-			name = "ethic_gestalt_consciousness"
-			spriteType = "GFX_ethics_gestalt_consciousness"
-			position = { x = @e_x2 y = @e_y2 }
 			clicksound = interface
 		}
 
@@ -238,6 +276,22 @@ guiTypes = {
 			position = { x = @e_x4 y = @e_y4 }
 			clicksound = interface
 		}
+
+		### GESTALT ###
+
+		buttonType = {
+			name = "ethic_gestalt_consciousness"
+			spriteType = "GFX_ethics_gestalt_consciousness"
+			position = { x = @e_x2 y = @e_yg }
+			clicksound = interface
+		}
+
+#		iconType = {
+#			name = "ethic_line_gestalt"
+#			spriteType = "GFX_line_horizontal"
+#			position = { x = 57 y = 215 }
+#			scale = 0.75
+#		}
 
 		### SELECTED ETHICS ###
 
