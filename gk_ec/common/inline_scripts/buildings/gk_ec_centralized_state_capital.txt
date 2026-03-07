@@ -1,0 +1,86 @@
+# Centralized State - Bonus Politician Jobs (Standard, capital only)
+triggered_planet_modifier = {
+	potential = {
+		is_capital = yes
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_gk_ec_centralized_state
+				has_valid_civic = civic_gk_ec_centralized_state_megacorp
+			}
+			is_worker_coop_empire = no
+			is_gestalt = no
+		}
+	}
+	job_politician_add = 1
+	mult = value:gk_ec_centralized_jobs|BASE|100|
+}
+
+# Centralized State - Bonus Bureaucrat Jobs (Worker Coop, capital only)
+triggered_planet_modifier = {
+	potential = {
+		is_capital = yes
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_gk_ec_centralized_state
+				has_valid_civic = civic_gk_ec_centralized_state_megacorp
+			}
+			is_worker_coop_empire = yes
+		}
+	}
+	job_bureaucrat_add = 1
+	mult = value:gk_ec_centralized_jobs|BASE|150|
+}
+
+# Centralized State - Bonus Coordinator Jobs (Gestalt, capital only)
+triggered_planet_modifier = {
+	potential = {
+		is_capital = yes
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_gk_ec_centralized_state_hive
+				has_valid_civic = civic_gk_ec_centralized_state_machine
+			}
+		}
+	}
+	job_coordinator_add = 1
+	mult = value:gk_ec_capital_tier_scaling|BASE|150|
+}
+
+# Centralized State - Capital Planet Bonuses
+triggered_planet_modifier = {
+	potential = {
+		is_capital = yes
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_gk_ec_centralized_state
+				has_valid_civic = civic_gk_ec_centralized_state_megacorp
+				has_valid_civic = civic_gk_ec_centralized_state_hive
+				has_valid_civic = civic_gk_ec_centralized_state_machine
+			}
+		}
+	}
+	planet_stability_add = 20
+	pop_government_ethic_attraction = 1.0
+}
+
+# Centralized State - Non-Capital Penalties
+triggered_planet_modifier = {
+	potential = {
+		is_capital = no
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_gk_ec_centralized_state
+				has_valid_civic = civic_gk_ec_centralized_state_megacorp
+				has_valid_civic = civic_gk_ec_centralized_state_hive
+				has_valid_civic = civic_gk_ec_centralized_state_machine
+			}
+		}
+	}
+	planet_stability_add = -5
+	pop_government_ethic_attraction = -0.25
+}

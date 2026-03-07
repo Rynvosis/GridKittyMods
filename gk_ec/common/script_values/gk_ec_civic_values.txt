@@ -1,0 +1,45 @@
+# Centralized state councilor: 25 * level, doubled if councilor governs the planet
+gk_ec_centralized_councilor_jobs = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = get_councilor_level
+		trigger_scope = owner
+		parameters = { type = councilor_gk_ec_centralized_state }
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = get_councilor_level
+		trigger_scope = owner
+		parameters = { type = councilor_gk_ec_centralized_state_corporate }
+		mode = add
+	}
+	mult = 25
+	modifier = {
+		mult = 2
+		exists = leader
+		leader = {
+			OR = {
+				is_councilor_type = councilor_gk_ec_centralized_state
+				is_councilor_type = councilor_gk_ec_centralized_state_corporate
+			}
+		}
+	}
+}
+
+# Combined: capital tier jobs + councilor jobs
+# $BASE$ = job count per tier (200 for politicians, 300 for bureaucrats)
+gk_ec_centralized_jobs = {
+	base = 2
+	pow = value:capital_tier_minus_1_value
+	floor = yes
+	mult = $BASE$
+	add = value:gk_ec_centralized_councilor_jobs
+}
+
+# Capital tier scaling only (for gestalt, no councilor component)
+gk_ec_capital_tier_scaling = {
+	base = 2
+	pow = value:capital_tier_minus_1_value
+	floor = yes
+	mult = $BASE$
+}

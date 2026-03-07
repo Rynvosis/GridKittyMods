@@ -1,0 +1,63 @@
+
+
+
+
+#A is (0,0)
+#B is (AB,0)
+# we compute the position of C and D based purely on their distances to eachother and A and B
+#   distances are AB, AC, AD, BC, BD and CD
+
+# note, if we assume C is the positive square root
+# we cant initially do the same for D, 
+#  but its the logic to fix for this that lets the intersection check WORK
+#
+# if distance CD is greater than the distance when D's Y position is positive,
+#  then D **MUST** be on the opposite side of AB, which is the very check we are checking!
+
+
+#helper functions
+gk_ec_squared = {
+	add = $VALUE$
+	square = yes
+}
+
+gk_ec_distance_between = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = distance
+		mode = add
+		trigger_scope = event_target:$FROM$
+		parameters = {
+			source = event_target:$TO$
+			type = euclidean
+		}
+	}
+}
+
+
+#gets x of c given lines AB, AC and BC
+gk_ec_x_from_lengths = {
+	add = value:gk_ec_squared|VALUE|$AB$|
+	add = value:gk_ec_squared|VALUE|$AC$|
+	subtract = value:gk_ec_squared|VALUE|$BC$|
+	divide = 2
+	divide = $AB$
+}
+
+gk_ec_abs_y_from_x = {
+	add = value:gk_ec_squared|VALUE|$HYPOTENUSE$|
+	subtract = value:gk_ec_squared|VALUE|$X$|
+	square_root = yes
+}
+
+gk_ec_distance = {
+	add = value:gk_ec_diff_squared|A|$X1$|B|$X2$|
+	add = value:gk_ec_diff_squared|A|$Y1$|B|$Y2$|
+	square_root = yes
+}
+
+gk_ec_diff_squared = {
+	add = $A$
+	subtract = $B$
+	square = yes
+}

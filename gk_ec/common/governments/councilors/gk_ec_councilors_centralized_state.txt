@@ -1,0 +1,17 @@
+councilor_gk_ec_centralized_state = {
+	leader_class = { official commander scientist }
+	civic = civic_gk_ec_centralized_state
+	custom_tooltip = "councilor_gk_ec_centralized_state_tt"
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_gk_ec_centralized_state_corporate = {
+	leader_class = { official commander scientist }
+	civic = civic_gk_ec_centralized_state_megacorp
+	custom_tooltip = "councilor_gk_ec_centralized_state_tt"
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}

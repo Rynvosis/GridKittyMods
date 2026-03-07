@@ -1,17 +1,17 @@
-is_stratified = {
+is_individualist = {
 	OR = {
-		has_ethic = ethic_stratified
-		is_fanatic_stratified = yes
+		has_ethic = ethic_individualist
+		is_fanatic_individualist = yes
 	}
 }
 
-is_fanatic_stratified = { has_ethic = ethic_fanatic_stratified }
+is_fanatic_individualist = { has_ethic = ethic_fanatic_individualist }
 
-is_pluralist = {
+is_collectivist = {
 	OR = {
-		has_ethic = ethic_pluralist
-		is_fanatic_pluralist = yes
+		has_ethic = ethic_collectivist
+		is_fanatic_collectivist = yes
 	}
 }
 
-is_fanatic_pluralist = { has_ethic = ethic_fanatic_pluralist }
+is_fanatic_collectivist = { has_ethic = ethic_fanatic_collectivist }

@@ -1,0 +1,71 @@
+civic_gk_ec_centralized_state = {
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+	random_weight = { base = @civic_uncommon_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = migrating_flock
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = erudite_explorers
+				has_ai_personality = spiritual_seekers
+			}
+		}
+	}
+	description = "civic_gk_ec_centralized_state_effects"
+}
+
+civic_gk_ec_centralized_state_hive = {
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	random_weight = { base = @civic_uncommon_random_weight }
+	description = "civic_gk_ec_centralized_state_effects_gestalt"
+	modifier = {
+		councilor_gestalt_regulatory_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}
+
+civic_gk_ec_centralized_state_machine = {
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	random_weight = { base = @civic_uncommon_random_weight }
+	description = "civic_gk_ec_centralized_state_effects_gestalt"
+	modifier = {
+		councilor_gestalt_regulatory_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}
+
+civic_gk_ec_centralized_state_megacorp = {
+	potential = {
+		authority = { value = auth_corporate }
+	}
+	random_weight = { base = @civic_uncommon_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+			}
+		}
+	}
+	description = "civic_gk_ec_centralized_state_effects"
+	modifier = {
+		# Same effects as standard for now, can be customized
+	}
+}

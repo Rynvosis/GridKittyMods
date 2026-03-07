@@ -1,23 +1,23 @@
 spriteTypes = {
 
 	spriteType = {
-		name = "GFX_ethics_stratified"
-		texturefile = "gfx/interface/icons/ethics/ethic_stratified.dds"
+		name = "GFX_ethics_individualist"
+		texturefile = "gfx/interface/icons/ethics/ethic_individualist.dds"
 	}
 
 	spriteType = {
-		name = "GFX_ethics_fanatic_stratified"
-		texturefile = "gfx/interface/icons/ethics/ethic_fanatic_stratified.dds"
+		name = "GFX_ethics_fanatic_individualist"
+		texturefile = "gfx/interface/icons/ethics/ethic_fanatic_individualist.dds"
 	}
 
 	spriteType = {
-		name = "GFX_ethics_pluralist"
-		texturefile = "gfx/interface/icons/ethics/ethic_pluralist.dds"
+		name = "GFX_ethics_collectivist"
+		texturefile = "gfx/interface/icons/ethics/ethic_collectivist.dds"
 	}
 
 	spriteType = {
-		name = "GFX_ethics_fanatic_pluralist"
-		texturefile = "gfx/interface/icons/ethics/ethic_fanatic_pluralist.dds"
+		name = "GFX_ethics_fanatic_collectivist"
+		texturefile = "gfx/interface/icons/ethics/ethic_fanatic_collectivist.dds"
 	}
 
 }

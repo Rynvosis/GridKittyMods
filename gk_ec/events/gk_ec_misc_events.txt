@@ -1,0 +1,11 @@
+# use a new multiple of 100 for each civic
+# 0-99 reserved for non civic-specific events
+
+# group related events in a unique multiple of 100
+
+namespace = gk_ec_misc
+
+
+
+# New Subterranean
+# 100-199

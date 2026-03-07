@@ -1,0 +1,4 @@
+gk_ec_promoted_individualist = { pop_ethic_individualist_attraction_mult = 1 }
+gk_ec_suppressed_individualist = { pop_ethic_individualist_attraction_mult = -0.75 }
+gk_ec_promoted_collectivist = { pop_ethic_collectivist_attraction_mult = 1 }
+gk_ec_suppressed_collectivist = { pop_ethic_collectivist_attraction_mult = -0.75 }

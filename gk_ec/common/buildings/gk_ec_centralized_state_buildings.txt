@@ -1,0 +1,1 @@
+# Centralized State buildings removed — effects now handled via inline_scripts/buildings/on_all_capital_buildings.txt

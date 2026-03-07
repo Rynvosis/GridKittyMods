@@ -1,0 +1,63 @@
+##############################
+# Faction Helper Triggers
+##############################
+
+# Country scope — does any species have utopian or shared_burden living standard?
+gk_ec_has_ideal_welfare = {
+	any_owned_species = {
+		OR = {
+			has_living_standard = { type = living_standard_utopian country = prev }
+			has_living_standard = { type = living_standard_shared_burden country = prev }
+		}
+	}
+}
+
+# Country scope — does any species have good living standard (but not utopian/shared_burden)?
+gk_ec_has_good_welfare = {
+	any_owned_species = {
+		has_living_standard = { type = living_standard_good country = prev }
+	}
+}
+
+# Country scope — does any species have any welfare standard (utopian/good/shared_burden)?
+gk_ec_has_any_welfare = {
+	any_owned_species = {
+		OR = {
+			has_living_standard = { type = living_standard_utopian country = prev }
+			has_living_standard = { type = living_standard_good country = prev }
+			has_living_standard = { type = living_standard_shared_burden country = prev }
+		}
+	}
+}
+
+# Country scope — does any species have dystopian/stratified living standard?
+gk_ec_has_any_stratified = {
+	any_owned_species = {
+		OR = {
+			has_living_standard = { type = living_standard_dystopian_society country = prev }
+			has_living_standard = { type = living_standard_stratified country = prev }
+		}
+	}
+}
+
+# Country scope — are ALL species on dystopian/stratified?
+gk_ec_all_stratified = {
+	NOT = {
+		any_owned_species = {
+			NOR = {
+				has_living_standard = { type = living_standard_dystopian_society country = prev }
+				has_living_standard = { type = living_standard_stratified country = prev }
+			}
+		}
+	}
+}
+
+# Country scope — has worker ownership (civic or living standard)
+gk_ec_has_worker_ownership_ls = {
+	any_owned_species = {
+		OR = {
+			has_living_standard = { type = living_standard_shared_burden country = prev }
+			has_living_standard = { type = living_standard_worker_ownership country = prev }
+		}
+	}
+}

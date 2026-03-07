@@ -1,0 +1,725 @@
+##############################
+# Collectivist Faction
+##############################
+gk_ec_collectivist = {
+	election_header = "GFX_faction_header_yellow"
+	guiding_ethic = ethic_collectivist
+	unique = yes
+	support_multiplier = 1
+	visual_ethic = "gk_ec_collectivist_visual_ethic"
+
+	resources = {
+		category = pop_factions
+		inline_script = pop_faction_types/shared_unity_production
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_civic = civic_crowdsourcing
+						has_civic = civic_corporate_crowdsourcing
+					}
+				}
+			}
+			society_research = @faction_major_output
+			engineering_research = @faction_minor_output
+			mult = @crowdsourcing_multiplier
+		}
+	}
+
+	extortion_resource = {
+		category = pop_factions
+		produces = {
+			trigger = {
+				owner = {
+					NOR = {
+						has_civic = civic_crowdsourcing
+						has_civic = civic_corporate_crowdsourcing
+					}
+				}
+			}
+			energy = @faction_base_output
+			mult = @faction_extortion_energy_ratio
+		}
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_civic = civic_crowdsourcing
+						has_civic = civic_corporate_crowdsourcing
+					}
+				}
+			}
+			society_research = @faction_major_output
+			engineering_research = @faction_minor_output
+			mult = @faction_extortion_crowdsourcing_ratio
+		}
+	}
+
+	is_potential = {
+		is_faction_allowed = yes
+	}
+
+	parameters = {
+		empire = {
+			type = country
+			valid_objects = {
+				is_same_value = root
+			}
+		}
+	}
+
+	can_join_pre_triggers = {
+		is_enslaved = no
+		is_being_purged = no
+	}
+
+	can_join_faction = {
+		is_shackled_robot = no
+		can_think = yes
+	}
+
+	attraction = {
+		base = 150
+		modifier = {
+			factor = 1.25
+			exists = from
+			from = {
+				exists = leader
+				leader = { is_ruler = yes }
+			}
+		}
+		modifier = {
+			factor = 0.75
+			exists = from
+			from = {
+				NOT = { exists = leader }
+			}
+		}
+		modifier = {
+			factor = 0.25
+			NOT = { is_same_species = owner_species }
+		}
+		modifier = {
+			factor = 0
+			planet = { has_modifier = planet_culture_shock }
+		}
+	}
+
+	leader = {
+		base = 100
+		modifier = {
+			factor = 0
+			is_event_leader = yes
+		}
+	}
+
+	# DEMAND: Faction Outraged (by a GalCom Resolution)
+	inline_script = {
+		script = pop_faction_types/demand_faction_outraged
+		FLAG = faction_gk_ec_collectivist_outraged_gc
+	}
+
+	# DEMAND: Faction Pleased (by a GalCom Resolution)
+	inline_script = {
+		script = pop_faction_types/demand_faction_pleased
+		FLAG = faction_gk_ec_collectivist_pleased_gc
+	}
+
+	# GRADUATED DEMAND: WELFARE (3 tiers — by living standard quality)
+	# Tier 1: No welfare standards at all — always red
+	demand = {
+		title = "GK_EC_COLLECTIVIST_WELFARE"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_WELFARE"
+		desc = "GK_EC_COLLECTIVIST_WELFARE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = { NOT = { gk_ec_has_any_welfare = yes } }
+		}
+
+		trigger = {
+			always = no
+		}
+	}
+
+	# Tier 2: Good standards but no utopian/shared_burden
+	demand = {
+		title = "GK_EC_COLLECTIVIST_WELFARE"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_WELFARE"
+		desc = "GK_EC_COLLECTIVIST_WELFARE_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				gk_ec_has_any_welfare = yes
+				NOT = { gk_ec_has_ideal_welfare = yes }
+			}
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	# Tier 3: Ideal welfare (utopian or shared_burden)
+	demand = {
+		title = "GK_EC_COLLECTIVIST_WELFARE"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_WELFARE"
+		desc = "GK_EC_COLLECTIVIST_WELFARE_DESC"
+
+		fulfilled_effect = 15
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = { gk_ec_has_ideal_welfare = yes }
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	# GRADUATED DEMAND: NO_STRATIFICATION (3 tiers — mirror of totalitarian)
+	# Tier 1: All species stratified — always red (worst)
+	demand = {
+		title = "GK_EC_COLLECTIVIST_NO_STRATIFICATION"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_STRATIFICATION"
+		desc = "GK_EC_COLLECTIVIST_NO_STRATIFICATION_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = { gk_ec_all_stratified = yes }
+		}
+
+		trigger = {
+			always = no
+		}
+	}
+
+	# Tier 2: Some but not all species stratified — still red
+	demand = {
+		title = "GK_EC_COLLECTIVIST_NO_STRATIFICATION"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_STRATIFICATION"
+		desc = "GK_EC_COLLECTIVIST_NO_STRATIFICATION_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				gk_ec_has_any_stratified = yes
+				NOT = { gk_ec_all_stratified = yes }
+			}
+		}
+
+		trigger = {
+			always = no
+		}
+	}
+
+	# Tier 3: No species stratified — reward
+	demand = {
+		title = "GK_EC_COLLECTIVIST_NO_STRATIFICATION"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_STRATIFICATION"
+		desc = "GK_EC_COLLECTIVIST_NO_STRATIFICATION_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = { NOT = { gk_ec_has_any_stratified = yes } }
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	demand = {
+		title = "GK_EC_COLLECTIVIST_COOPERATIVE_STANCE"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_COOPERATIVE_STANCE"
+		desc = "GK_EC_COLLECTIVIST_COOPERATIVE_STANCE_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				is_homicidal = no
+				is_country_type = default
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = diplo_stance_cooperative
+			}
+		}
+	}
+
+	# GRADUATED DEMAND: WORKER_OWNERSHIP (3 tiers — by depth)
+	# Tier 1: Neither worker coop NOR shared_burden/worker_ownership LS — always red
+	demand = {
+		title = "GK_EC_COLLECTIVIST_WORKER_OWNERSHIP"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_WORKER_OWNERSHIP"
+		desc = "GK_EC_COLLECTIVIST_WORKER_OWNERSHIP_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				is_worker_coop_empire = no
+				NOT = { gk_ec_has_worker_ownership_ls = yes }
+			}
+		}
+
+		trigger = {
+			always = no
+		}
+	}
+
+	# Tier 2: One condition met (worker coop OR shared_burden/worker_ownership, not both)
+	demand = {
+		title = "GK_EC_COLLECTIVIST_WORKER_OWNERSHIP"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_WORKER_OWNERSHIP"
+		desc = "GK_EC_COLLECTIVIST_WORKER_OWNERSHIP_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					AND = {
+						is_worker_coop_empire = yes
+						NOT = { gk_ec_has_worker_ownership_ls = yes }
+					}
+					AND = {
+						is_worker_coop_empire = no
+						gk_ec_has_worker_ownership_ls = yes
+					}
+				}
+			}
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	# Tier 3: Both conditions met — worker coop AND shared_burden/worker_ownership LS
+	demand = {
+		title = "GK_EC_COLLECTIVIST_WORKER_OWNERSHIP"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_WORKER_OWNERSHIP"
+		desc = "GK_EC_COLLECTIVIST_WORKER_OWNERSHIP_DESC"
+
+		fulfilled_effect = 20
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				is_worker_coop_empire = yes
+				gk_ec_has_worker_ownership_ls = yes
+			}
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	demand = {
+		title = "GK_EC_COLLECTIVIST_NO_MONOPOLIES"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_MONOPOLIES"
+		desc = "GK_EC_COLLECTIVIST_NO_MONOPOLIES_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					OR = {
+						has_civic = civic_merchant_guilds
+						has_civic = civic_corporate_dominion
+						has_civic = civic_free_traders
+					}
+				}
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_COLLECTIVIST_ANTI_MERCANTILE"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_MERCANTILE"
+		desc = "GK_EC_COLLECTIVIST_ANTI_MERCANTILE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = diplo_stance_mercantile
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = { has_policy_flag = diplo_stance_mercantile }
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_COLLECTIVIST_NUTRITIONAL_PLENITUDE"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_NO_NUTRITIONAL_PLENITUDE"
+		desc = "GK_EC_COLLECTIVIST_NUTRITIONAL_PLENITUDE_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = nutritional_plenitude
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_COLLECTIVIST_NO_TRADE_FEDERATION"
+		unfulfilled_title = "GK_EC_COLLECTIVIST_TRADE_FEDERATION"
+		desc = "GK_EC_COLLECTIVIST_NO_TRADE_FEDERATION_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			exists = owner.federation
+			owner.federation = { has_federation_type = trade_federation }
+		}
+
+		trigger = {
+			OR = {
+				NOT = { exists = owner.federation }
+				owner.federation = {
+					NOT = { has_federation_type = trade_federation }
+				}
+			}
+		}
+	}
+
+	# Faction Demands for Ruler and Council positions.
+	inline_script = {
+		script = "pop_faction_types/global_faction_demands"
+		ETHIC = ethic_collectivist
+		ETHIC_FANATIC = ethic_fanatic_collectivist
+		ETHIC_OPPOSED = ethic_individualist
+	}
+
+	on_create = {
+		pop_faction_event = { id = factions.0 }
+	}
+
+	on_destroy = {
+		if = {
+			limit = {
+				has_modifier = gk_ec_promoted_collectivist
+			}
+			remove_modifier = gk_ec_promoted_collectivist
+		}
+		if = {
+			limit = {
+				has_modifier = gk_ec_suppressed_collectivist
+			}
+			remove_modifier = gk_ec_suppressed_collectivist
+		}
+	}
+
+	actions = {
+		embrace_faction = {
+			title = "EMBRACE_FACTION"
+			description = "EMBRACE_FACTION_DESC"
+			cost = {
+				unity = 5000
+			}
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_subject = no
+						NOT = { any_agreement = { agreement_preset = preset_dominion } }
+					}
+				}
+			}
+			valid = {
+				custom_tooltip = {
+					fail_text = EMBRACE_FACTION_COOLDOWN
+					parameter:empire = {
+						NOT = {
+							has_modifier = embraced_faction_timer
+						}
+					}
+				}
+				support > 0.2
+				parameter:empire = {
+					NOT = {
+						has_ethic = "ethic_fanatic_collectivist"
+					}
+				}
+			}
+			effect = {
+				add_modifier = {
+					modifier = embraced_faction
+					days = 3600
+				}
+				owner = { set_country_flag = has_embraced_faction }
+				parameter:empire = {
+					shift_ethic = ethic_collectivist
+					hidden_effect = {
+						add_modifier = {
+							modifier = embraced_faction_timer
+							days = 3600
+						}
+						every_pop_faction = {
+							limit = {
+								NOT = {
+									is_same_value = root
+								}
+							}
+							add_modifier = {
+								modifier = embraced_another_faction
+								days = 3600
+							}
+						}
+					}
+				}
+				hidden_effect = {
+					save_event_target_as = TargetFaction
+					parameter:empire = {
+						every_relation = {
+							limit = {
+								is_ai = no
+								is_country_type = default
+								has_communications = prev
+								has_intel_level = {
+									who = prev
+									category = government
+									level >= 1
+								}
+							}
+							country_event = {
+								id = factions.2000
+							}
+						}
+					}
+				}
+			}
+			ai_weight = {
+				base = 1
+				modifier = {
+					factor = 0
+					support < 0.5
+					owner = {
+						has_ethic = ethic_collectivist
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = { has_valid_civic = civic_fanatic_purifiers }
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						count_pop_faction = {
+							count < 4
+						}
+					}
+				}
+			}
+		}
+		promote_faction = {
+			title = "PROMOTE_FACTION"
+			description = "PROMOTE_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = gk_ec_suppressed_collectivist
+						has_modifier = gk_ec_promoted_collectivist
+					}
+				}
+			}
+			effect = {
+				owner = { set_country_flag = has_promoted_faction }
+				parameter:empire = {
+					add_modifier = {
+						modifier = gk_ec_promoted_collectivist
+						days = -1
+					}
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_promote_faction = {
+			title = "CANCEL_PROMOTE_FACTION"
+			description = "CANCEL_PROMOTE_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					has_modifier = gk_ec_promoted_collectivist
+				}
+			}
+			effect = {
+				parameter:empire = {
+					remove_modifier = gk_ec_promoted_collectivist
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		suppress_faction = {
+			title = "SUPPRESS_FACTION"
+			description = "SUPPRESS_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = gk_ec_suppressed_collectivist
+						has_modifier = gk_ec_promoted_collectivist
+					}
+				}
+			}
+			effect = {
+				add_modifier = {
+					modifier = suppressed_faction
+					days = -1
+				}
+				parameter:empire = {
+					add_modifier = {
+						modifier = gk_ec_suppressed_collectivist
+						days = -1
+					}
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_suppress_faction = {
+			title = "CANCEL_SUPPRESS_FACTION"
+			description = "CANCEL_SUPPRESS_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					has_modifier = gk_ec_suppressed_collectivist
+				}
+			}
+			effect = {
+				remove_modifier = suppressed_faction
+				parameter:empire = {
+					remove_modifier = gk_ec_suppressed_collectivist
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		# Faction Extortion Buttons
+		extort_faction = {
+			title = "EXTORT_FACTION"
+			description = "EXTORT_FACTION_DESC"
+			potential = {
+				exists = owner
+				owner = {
+					is_oligarchic_authority = yes
+					has_country_flag = cyber_collectivist
+					NOR = {
+						has_valid_civic = civic_crowdsourcing
+						has_valid_civic = civic_corporate_crowdsourcing
+					}
+				}
+				is_faction_extorted = no
+			}
+			effect = {
+				set_faction_extorted = yes
+				custom_tooltip = energy_extortion_tt
+				custom_tooltip = ONLY_ONE_EXTORTED_FACTION_TT
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		extort_faction_crowdsourcing = { #Crowdsourcing version
+			title = "EXTORT_FACTION"
+			description = "EXTORT_FACTION_DESC"
+			potential = {
+				exists = owner
+				owner = {
+					is_oligarchic_authority = yes
+					has_country_flag = cyber_collectivist
+					OR = {
+						has_valid_civic = civic_crowdsourcing
+						has_valid_civic = civic_corporate_crowdsourcing
+					}
+				}
+				is_faction_extorted = no
+			}
+			effect = {
+				set_faction_extorted = yes
+				custom_tooltip = crowdsourced_extortion_tt
+				custom_tooltip = ONLY_ONE_EXTORTED_FACTION_TT
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_extort_faction = {
+			title = "CANCEL_EXTORT_FACTION"
+			description = "CANCEL_EXTORT_FACTION_DESC"
+			potential = {
+				exists = owner
+				owner = {
+					is_oligarchic_authority = yes
+					has_country_flag = cyber_collectivist
+				}
+				is_faction_extorted = yes
+			}
+			effect = {
+				set_faction_extorted = no
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+	}
+}

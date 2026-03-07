@@ -1,0 +1,4 @@
+# GK_EC Capital Building Modifiers
+# Each feature gets its own inline script for modularity.
+
+inline_script = buildings/gk_ec_centralized_state_capital

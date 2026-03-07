@@ -1,12 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xxd:*)",
-      "Bash(printf:*)",
-      "Bash(python3:*)",
       "Bash(grep:*)",
-      "Bash(echo === $\\(basename \"$f\"\\) ===:*)",
-      "Bash(ls:*)"
+      "Bash(git add:*)"
     ]
   }
 }

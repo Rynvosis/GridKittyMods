@@ -1,6 +1,0 @@
-# centralized state
-
-rec_centralized_state_job_count = {
-	base = $BASE$
-	add = modifier:rec_centralized_state_capital_jobs
-}

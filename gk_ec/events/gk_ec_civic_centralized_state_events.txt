@@ -1,0 +1,1 @@
+namespace = gk_ec_civic_centralized_state

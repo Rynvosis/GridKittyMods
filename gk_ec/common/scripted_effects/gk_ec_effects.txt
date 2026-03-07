@@ -1,0 +1,249 @@
+
+
+
+#we cannot know the x and y positions of systems.
+#we CAN know their distance to eachother.
+
+# this is brute force AS FUCK
+#  basically given the target system it will look for systems within a 200 radius
+#  then check every hyperlane in that same radius against the intersect hyperlane trigger.
+gk_ec_add_every_non_intersecting_hyperlane = {
+	save_event_target_as = gk_ec_system_a
+	every_neighbor_system_euclidean = {
+		limit = {
+			NOT = { has_hyperlane_to = event_target:gk_ec_system_a } 
+		}
+
+		save_event_target_as = gk_ec_system_b
+		create_variable_if_not_exists = {
+			VARIABLE = gk_ec_dAB
+			VALUE_IF_CREATED = 0
+		}
+		set_variable = {
+			which = gk_ec_dAB
+			value = value:gk_ec_distance_between|FROM|gk_ec_system_a|TO|gk_ec_system_b|
+		}
+
+		#now we need to check system C
+		every_neighbor_system_euclidean = {
+			limit = {
+				NOR = {
+					is_same_value = event_target:gk_ec_system_a
+					is_same_value = event_target:gk_ec_system_b
+				}
+			}
+
+			save_event_target_as = gk_ec_system_c
+			create_variable_if_not_exists = {
+				VARIABLE = gk_ec_dAC
+				VALUE_IF_CREATED = 0
+			}
+			export_trigger_value_to_variable = {
+				trigger = distance
+				variable = gk_ec_dAC
+				parameters = { source = event_target:gk_ec_system_a type = euclidean }
+			}
+			create_variable_if_not_exists = {
+				VARIABLE = gk_ec_dBC
+				VALUE_IF_CREATED = 0
+			}
+			export_trigger_value_to_variable = {
+				trigger = distance
+				variable = gk_ec_dBC
+				parameters = { source = event_target:gk_ec_system_b type = euclidean }
+			}
+
+			#check every hyperlane from C to get D
+			every_neighbor_system = {
+				limit = {
+					NOR = { 
+						# has_star_flag = gk_ec_hyperlane_check_@event_target:gk_ec_system_a_@event_target:gk_ec_system_b
+						has_hyperlane_to = event_target:gk_ec_system_a
+						is_same_value = event_target:gk_ec_system_a
+						has_hyperlane_to = event_target:gk_ec_system_b
+						is_same_value = event_target:gk_ec_system_b
+					}
+				}
+				
+				save_event_target_as = gk_ec_system_d
+
+				create_variable_if_not_exists = {
+					VARIABLE = gk_ec_dAD
+					VALUE_IF_CREATED = 0
+				}
+				export_trigger_value_to_variable = {
+					trigger = distance
+					variable = gk_ec_dAD
+					parameters = { source = event_target:gk_ec_system_a type = euclidean }
+				}
+				create_variable_if_not_exists = {
+					VARIABLE = gk_ec_dBD
+					VALUE_IF_CREATED = 0
+				}
+				export_trigger_value_to_variable = {
+					trigger = distance
+					variable = gk_ec_dBD
+					parameters = { source = event_target:gk_ec_system_b type = euclidean }
+				}
+				create_variable_if_not_exists = {
+					VARIABLE = gk_ec_dCD
+					VALUE_IF_CREATED = 0
+				}
+				export_trigger_value_to_variable = {
+					trigger = distance
+					variable = gk_ec_dCD
+					parameters = { source = event_target:gk_ec_system_c type = euclidean }
+				}
+
+				#copy variables over from previous scopes:
+				# set_variable = {
+				# 	which = gk_ec_dAB
+				# 	value = value:gk_ec_distance_between|FROM|gk_ec_system_a|TO|gk_ec_system_b|
+				# }
+				# set_variable = {
+				# 	which = gk_ec_dAC
+				# 	value = value:gk_ec_distance_between|FROM|gk_ec_system_a|TO|gk_ec_system_c|
+				# }
+				# set_variable = {
+				# 	which = gk_ec_dBC
+				# 	value = value:gk_ec_distance_between|FROM|gk_ec_system_b|TO|gk_ec_system_c|
+				# }
+			}
+		}
+	}
+}
+
+
+
+# 				#hyperlanes will intersect if and only if A and B are on opposite sides of C-D
+# 				# AND C and D are on opposite sides of A-B
+
+# 				# do systems C and D fall on opposite sides of A-B?
+# 				gk_ec_calculate_PQ_relative_abs_RS_distance = {
+# 					dPQ = gk_ec_dAB
+# 					dPR = gk_ec_dAC
+# 					dQR = gk_ec_dBC
+# 					dPS = gk_ec_dAD
+# 					dQS = gk_ec_dBD
+# 					distance = gk_ec_distance_1
+# 				}
+# 				#if distance is close enough when both are positive, its likely they both lie on same side
+# 				multiply_variable = {
+# 					which = gk_ec_distance_1
+# 					value = 1.1
+# 				}
+
+# 				# do systems A and B fall on opposite sides of C-D?
+# 				gk_ec_calculate_PQ_relative_abs_RS_distance = {
+# 					dPQ = gk_ec_dCD
+# 					dPR = gk_ec_dAC	
+# 					dQR = gk_ec_dAD
+# 					dPS = gk_ec_dBC
+# 					dQS = gk_ec_dBD
+# 					distance = gk_ec_distance_2
+# 				}
+# 				#if distance is close enough when both are positive, its likely they both lie on same side
+# 				multiply_variable = {
+# 					which = gk_ec_distance_2
+# 					value = 1.1
+# 				}
+
+# 				# clear_variable = gk_ec_dAD
+# 				# clear_variable = gk_ec_dBD
+# 				# clear_variable = gk_ec_dCD
+
+# 				if = {
+# 					limit = {
+# 						check_variable = {
+# 							which = gk_ec_distance_1
+# 							value > gk_ec_dCD
+# 						}
+# 						check_variable = {
+# 							which = gk_ec_distance_2
+# 							value > event_target:gk_ec_system_b.gk_ec_dAB
+# 						}
+# 					}
+# 					# Intersection likely, no hyperlane
+# 					event_target:gk_ec_system_c = {
+# 						set_star_flag = gk_ec_invalid_hyperlane
+# 					}
+# 					clear_variable = gk_ec_distance_1
+# 					clear_variable = gk_ec_distance_2
+# 					break = yes		
+# 				}
+
+# 				clear_variable = gk_ec_distance_1
+# 				clear_variable = gk_ec_distance_2			
+# 			}
+
+# 			# set_star_flag = gk_ec_hyperlane_check_@event_target:gk_ec_system_a_@event_target:gk_ec_system_b
+
+# 			if = {
+# 				limit = { has_star_flag = gk_ec_invalid_hyperlane }
+# 				event_target:gk_ec_system_b = { set_star_flag = gk_ec_invalid_hyperlane }
+# 				remove_star_flag = gk_ec_invalid_hyperlane
+# 				# clear_variable = gk_ec_dAC
+# 				# clear_variable = gk_ec_dBC
+# 				break = yes
+# 			}
+
+# 			# clear_variable = gk_ec_dAC
+# 			# clear_variable = gk_ec_dBC
+
+# 			#if invalid flag, set invalid flag on b, clear variables/flags on c
+# 			#break = yes
+# 		}
+		
+
+# 		#if invalid flag, no hyperlane
+# 		#if no invalid flag, add hyperlane
+
+# 		#clear up variables/flags on this b
+
+# 		if = {
+# 			limit = { has_star_flag = gk_ec_invalid_hyperlane }
+# 			remove_star_flag = gk_ec_invalid_hyperlane
+# 		}
+# 		else = {
+# 			add_hyperlane = {
+# 				from = event_target:gk_ec_system_a
+# 				to = event_target:gk_ec_system_b
+# 			}
+# 		}
+
+# 		# clear_variable = gk_ec_dAB
+# 	}
+# }
+
+
+gk_ec_calculate_PQ_relative_abs_RS_distance = {
+	# do systems R and S fall on opposite sides of P-Q?
+	set_variable = {
+		which = gk_ec_xR
+		value = value:gk_ec_x_from_lengths|AB|$dPQ$|AC|$dPR$|BC|$dQR$|
+	}
+	set_variable = {
+		which = gk_ec_yR
+		value = value:gk_ec_abs_y_from_x|HYPOTENUSE|$dPR$|X|gk_ec_xQ|
+	}
+
+	set_variable = {
+		which = gk_ec_xS
+		value = value:gk_ec_x_from_lengths|AB|$dPQ$|AC|$dPS$|BC|$dQS$|
+	}
+	set_variable = {
+		which = gk_ec_yS
+		value = value:gk_ec_abs_y_from_x|HYPOTENUSE|$dPS$|X|gk_ec_xS|
+	}
+
+	#if distance is close enough when both are positive, its likely they both lie on same side
+	set_variable = {
+		which = $distance$
+		value = value:gk_ec_distance|X1|gk_ec_xR|Y1|gk_ec_yR|X2|gk_ec_xS|Y2|gk_ec_yS|
+	}
+
+	clear_variable = gk_ec_xR
+	clear_variable = gk_ec_yR
+	clear_variable = gk_ec_xS
+	clear_variable = gk_ec_yS
+}

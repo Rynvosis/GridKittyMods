@@ -1,0 +1,57 @@
+namespace = gk_ec_system_initializer
+#increase planet size - Titanic
+planet_event = {
+	id = gk_ec_system_initializer.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		while = {
+			count = trigger:num_guaranteed_colonies
+			# increase planet size
+			change_planet_size = @titanic_size_per_guarantee
+			# add bonus resource deposits
+			add_deposit = d_fungal_caves
+			add_deposit = d_rushing_waterfalls
+			add_deposit = d_ore_rich_caverns
+		}
+	}
+}
+
+#increase planet and moon size - Lunar Colony
+planet_event = {
+	id = gk_ec_system_initializer.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		while = {
+			count = trigger:num_guaranteed_colonies
+			# increase planet size
+			change_planet_size = @lunar_planet_size_per_guarantee
+			# increase moon size
+			every_moon = {
+				change_planet_size = @lunar_moon_size_per_guarantee
+			}
+		}
+	}
+}
+
+# 100 - 199
+# ruined habitat
+country_event = {
+	id = gk_ec_system_initializer.100
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = capital_scope
+		capital_scope.solar_system = {
+			has_star_flag = gk_ec_ruined_habitat_system
+		}
+	}
+	immediate = {
+		add_research_option = tech_habitat_1
+	}
+}

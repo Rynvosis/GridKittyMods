@@ -1,22 +1,2 @@
-# Version last updated: 4.2.3 
-# OVERWRITE: 
-#	is_void_dweller_empire - added ruined habitat origin check
-# ADD:
-#	has_ruined_habitat_origin  
-
-has_ruined_habitat_origin = {
-	OR = {
-		has_origin = origin_ruined_habitat
-		has_origin = origin_ruined_habitat_machine
-	}
-}
-
-
-
-is_void_dweller_empire = {
-	OR = {
-		has_ascension_perk = ap_voidborn
-		has_void_dweller_origin = yes
-		has_ruined_habitat_origin = yes		
-	}
-}
+# Version last updated: 4.2.3
+# OVERWRITE: none currently

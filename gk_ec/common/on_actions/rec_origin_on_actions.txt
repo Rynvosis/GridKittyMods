@@ -1,5 +1,0 @@
-on_game_start_country = {
-	events = {
-		rec_origin_ruined_habitat.1
-	}
-}

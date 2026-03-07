@@ -1,0 +1,30 @@
+councilor_gk_ec_penal_colony = {
+	leader_class = { official commander }
+	is_leader_possible = {
+		OR = {
+			leader_class = official
+			leader_class = commander
+		}
+	}
+	civic = civic_gk_ec_penal_colony
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		planet_crime_mult = -0.05
+	}
+}
+
+councilor_gk_ec_penal_colony_megacorp = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_penal_colony_megacorp
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		planet_crime_mult = -0.05
+	}
+}

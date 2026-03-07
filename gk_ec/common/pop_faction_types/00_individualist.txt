@@ -1,0 +1,654 @@
+##############################
+# Individualist Faction
+##############################
+gk_ec_individualist = {
+	election_header = "GFX_faction_header_yellow"
+	guiding_ethic = ethic_individualist
+	unique = yes
+	support_multiplier = 1
+	visual_ethic = "gk_ec_individualist_visual_ethic"
+
+	resources = {
+		category = pop_factions
+		inline_script = pop_faction_types/shared_unity_production
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_civic = civic_crowdsourcing
+						has_civic = civic_corporate_crowdsourcing
+					}
+				}
+			}
+			society_research = @faction_major_output
+			engineering_research = @faction_minor_output
+			mult = @crowdsourcing_multiplier
+		}
+	}
+
+	extortion_resource = {
+		category = pop_factions
+		produces = {
+			trigger = {
+				owner = {
+					NOR = {
+						has_civic = civic_crowdsourcing
+						has_civic = civic_corporate_crowdsourcing
+					}
+				}
+			}
+			energy = @faction_base_output
+			mult = @faction_extortion_energy_ratio
+		}
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_civic = civic_crowdsourcing
+						has_civic = civic_corporate_crowdsourcing
+					}
+				}
+			}
+			society_research = @faction_major_output
+			engineering_research = @faction_minor_output
+			mult = @faction_extortion_crowdsourcing_ratio
+		}
+	}
+
+	is_potential = {
+		is_faction_allowed = yes
+	}
+
+	parameters = {
+		empire = {
+			type = country
+			valid_objects = {
+				is_same_value = root
+			}
+		}
+	}
+
+	can_join_pre_triggers = {
+		is_enslaved = no
+		is_being_purged = no
+	}
+
+	can_join_faction = {
+		is_shackled_robot = no
+		can_think = yes
+	}
+
+	attraction = {
+		base = 150
+		modifier = {
+			factor = 1.25
+			exists = from
+			from = {
+				exists = leader
+				leader = { is_ruler = yes }
+			}
+		}
+		modifier = {
+			factor = 0.75
+			exists = from
+			from = {
+				NOT = { exists = leader }
+			}
+		}
+		modifier = {
+			factor = 0.25
+			NOT = { is_same_species = owner_species }
+		}
+		modifier = {
+			factor = 0
+			planet = { has_modifier = planet_culture_shock }
+		}
+	}
+
+	leader = {
+		base = 100
+		modifier = {
+			factor = 0
+			is_event_leader = yes
+		}
+	}
+
+	# DEMAND: Faction Outraged (by a GalCom Resolution)
+	inline_script = {
+		script = pop_faction_types/demand_faction_outraged
+		FLAG = faction_gk_ec_individualist_outraged_gc
+	}
+
+	# DEMAND: Faction Pleased (by a GalCom Resolution)
+	inline_script = {
+		script = pop_faction_types/demand_faction_pleased
+		FLAG = faction_gk_ec_individualist_pleased_gc
+	}
+
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_NO_WELFARE"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_WELFARE"
+		desc = "GK_EC_INDIVIDUALIST_NO_WELFARE_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_species = {
+						OR = {
+							has_living_standard = { type = living_standard_utopian country = prev }
+							has_living_standard = { type = living_standard_shared_burden country = prev }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_MERCANTILE_STANCE"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_NO_MERCANTILE_STANCE"
+		desc = "GK_EC_INDIVIDUALIST_MERCANTILE_STANCE_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				is_homicidal = no
+				is_country_type = default
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = diplo_stance_mercantile
+			}
+		}
+	}
+
+	# GRADUATED DEMAND: COMMERCIAL_PACTS (3 tiers — mutually exclusive potentials)
+	# Tier 1: 0-1 commercial pacts — always red
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_COMMERCIAL_PACTS"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_NO_COMMERCIAL_PACTS"
+		desc = "GK_EC_INDIVIDUALIST_COMMERCIAL_PACTS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications >= 2
+				NOT = {
+					count_relation = {
+						limit = { has_commercial_pact = root.owner }
+						count >= 2
+					}
+				}
+			}
+		}
+
+		trigger = {
+			always = no
+		}
+	}
+
+	# Tier 2: 2-3 commercial pacts
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_COMMERCIAL_PACTS"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_NO_COMMERCIAL_PACTS"
+		desc = "GK_EC_INDIVIDUALIST_COMMERCIAL_PACTS_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications >= 2
+				count_relation = {
+					limit = { has_commercial_pact = root.owner }
+					count >= 2
+				}
+				NOT = {
+					count_relation = {
+						limit = { has_commercial_pact = root.owner }
+						count >= 4
+					}
+				}
+			}
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	# Tier 3: 4+ commercial pacts
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_COMMERCIAL_PACTS"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_NO_COMMERCIAL_PACTS"
+		desc = "GK_EC_INDIVIDUALIST_COMMERCIAL_PACTS_DESC"
+
+		fulfilled_effect = 15
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications >= 2
+				count_relation = {
+					limit = { has_commercial_pact = root.owner }
+					count >= 4
+				}
+			}
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_PRIVATE_ENTERPRISE"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_NO_PRIVATE_ENTERPRISE"
+		desc = "GK_EC_INDIVIDUALIST_PRIVATE_ENTERPRISE_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_civic = civic_merchant_guilds
+					has_civic = civic_corporate_dominion
+					has_civic = civic_free_traders
+				}
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_NO_SHARED_BURDEN"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_SHARED_BURDEN"
+		desc = "GK_EC_INDIVIDUALIST_NO_SHARED_BURDEN_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				is_worker_coop_empire = yes
+			}
+		}
+
+		trigger = {
+			owner = {
+				is_worker_coop_empire = no
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_CIVILIAN_ECONOMY"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_NO_CIVILIAN_ECONOMY"
+		desc = "GK_EC_INDIVIDUALIST_CIVILIAN_ECONOMY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				NOT = { has_policy_flag = economic_policy_military }
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_TRADE_FEDERATION"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_NO_TRADE_FEDERATION"
+		desc = "GK_EC_INDIVIDUALIST_TRADE_FEDERATION_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			exists = owner.federation
+		}
+
+		trigger = {
+			owner.federation = {
+				has_federation_type = trade_federation
+			}
+		}
+	}
+
+	demand = {
+		title = "GK_EC_INDIVIDUALIST_ANTI_COOPERATIVE"
+		unfulfilled_title = "GK_EC_INDIVIDUALIST_COOPERATIVE"
+		desc = "GK_EC_INDIVIDUALIST_ANTI_COOPERATIVE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = diplo_stance_cooperative
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = { has_policy_flag = diplo_stance_cooperative }
+			}
+		}
+	}
+
+	# Faction Demands for Ruler and Council positions.
+	inline_script = {
+		script = "pop_faction_types/global_faction_demands"
+		ETHIC = ethic_individualist
+		ETHIC_FANATIC = ethic_fanatic_individualist
+		ETHIC_OPPOSED = ethic_collectivist
+	}
+
+	on_create = {
+		pop_faction_event = { id = factions.0 }
+	}
+
+	on_destroy = {
+		if = {
+			limit = {
+				has_modifier = gk_ec_promoted_individualist
+			}
+			remove_modifier = gk_ec_promoted_individualist
+		}
+		if = {
+			limit = {
+				has_modifier = gk_ec_suppressed_individualist
+			}
+			remove_modifier = gk_ec_suppressed_individualist
+		}
+	}
+
+	actions = {
+		embrace_faction = {
+			title = "EMBRACE_FACTION"
+			description = "EMBRACE_FACTION_DESC"
+			cost = {
+				unity = 5000
+			}
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_subject = no
+						NOT = { any_agreement = { agreement_preset = preset_dominion } }
+					}
+				}
+			}
+			valid = {
+				custom_tooltip = {
+					fail_text = EMBRACE_FACTION_COOLDOWN
+					parameter:empire = {
+						NOT = {
+							has_modifier = embraced_faction_timer
+						}
+					}
+				}
+				support > 0.2
+				parameter:empire = {
+					NOT = {
+						has_ethic = "ethic_fanatic_individualist"
+					}
+				}
+			}
+			effect = {
+				add_modifier = {
+					modifier = embraced_faction
+					days = 3600
+				}
+				owner = { set_country_flag = has_embraced_faction }
+				parameter:empire = {
+					shift_ethic = ethic_individualist
+					hidden_effect = {
+						add_modifier = {
+							modifier = embraced_faction_timer
+							days = 3600
+						}
+						every_pop_faction = {
+							limit = {
+								NOT = {
+									is_same_value = root
+								}
+							}
+							add_modifier = {
+								modifier = embraced_another_faction
+								days = 3600
+							}
+						}
+					}
+				}
+				hidden_effect = {
+					save_event_target_as = TargetFaction
+					parameter:empire = {
+						every_relation = {
+							limit = {
+								is_ai = no
+								is_country_type = default
+								has_communications = prev
+								has_intel_level = {
+									who = prev
+									category = government
+									level >= 1
+								}
+							}
+							country_event = {
+								id = factions.2000
+							}
+						}
+					}
+				}
+			}
+			ai_weight = {
+				base = 1
+				modifier = {
+					factor = 0
+					support < 0.5
+					owner = {
+						has_ethic = ethic_individualist
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = { has_valid_civic = civic_fanatic_purifiers }
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						count_pop_faction = {
+							count < 4
+						}
+					}
+				}
+			}
+		}
+		promote_faction = {
+			title = "PROMOTE_FACTION"
+			description = "PROMOTE_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = gk_ec_suppressed_individualist
+						has_modifier = gk_ec_promoted_individualist
+					}
+				}
+			}
+			effect = {
+				owner = { set_country_flag = has_promoted_faction }
+				parameter:empire = {
+					add_modifier = {
+						modifier = gk_ec_promoted_individualist
+						days = -1
+					}
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_promote_faction = {
+			title = "CANCEL_PROMOTE_FACTION"
+			description = "CANCEL_PROMOTE_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					has_modifier = gk_ec_promoted_individualist
+				}
+			}
+			effect = {
+				parameter:empire = {
+					remove_modifier = gk_ec_promoted_individualist
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		suppress_faction = {
+			title = "SUPPRESS_FACTION"
+			description = "SUPPRESS_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = gk_ec_suppressed_individualist
+						has_modifier = gk_ec_promoted_individualist
+					}
+				}
+			}
+			effect = {
+				add_modifier = {
+					modifier = suppressed_faction
+					days = -1
+				}
+				parameter:empire = {
+					add_modifier = {
+						modifier = gk_ec_suppressed_individualist
+						days = -1
+					}
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_suppress_faction = {
+			title = "CANCEL_SUPPRESS_FACTION"
+			description = "CANCEL_SUPPRESS_FACTION_DESC"
+			potential = {
+				exists = owner
+				parameter:empire = {
+					has_modifier = gk_ec_suppressed_individualist
+				}
+			}
+			effect = {
+				remove_modifier = suppressed_faction
+				parameter:empire = {
+					remove_modifier = gk_ec_suppressed_individualist
+				}
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		# Faction Extortion Buttons
+		extort_faction = {
+			title = "EXTORT_FACTION"
+			description = "EXTORT_FACTION_DESC"
+			potential = {
+				exists = owner
+				owner = {
+					is_oligarchic_authority = yes
+					has_country_flag = cyber_collectivist
+					NOR = {
+						has_valid_civic = civic_crowdsourcing
+						has_valid_civic = civic_corporate_crowdsourcing
+					}
+				}
+				is_faction_extorted = no
+			}
+			effect = {
+				set_faction_extorted = yes
+				custom_tooltip = energy_extortion_tt
+				custom_tooltip = ONLY_ONE_EXTORTED_FACTION_TT
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		extort_faction_crowdsourcing = { #Crowdsourcing version
+			title = "EXTORT_FACTION"
+			description = "EXTORT_FACTION_DESC"
+			potential = {
+				exists = owner
+				owner = {
+					is_oligarchic_authority = yes
+					has_country_flag = cyber_collectivist
+					OR = {
+						has_valid_civic = civic_crowdsourcing
+						has_valid_civic = civic_corporate_crowdsourcing
+					}
+				}
+				is_faction_extorted = no
+			}
+			effect = {
+				set_faction_extorted = yes
+				custom_tooltip = crowdsourced_extortion_tt
+				custom_tooltip = ONLY_ONE_EXTORTED_FACTION_TT
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_extort_faction = {
+			title = "CANCEL_EXTORT_FACTION"
+			description = "CANCEL_EXTORT_FACTION_DESC"
+			potential = {
+				exists = owner
+				owner = {
+					is_oligarchic_authority = yes
+					has_country_flag = cyber_collectivist
+				}
+				is_faction_extorted = yes
+			}
+			effect = {
+				set_faction_extorted = no
+			}
+			ai_weight = {
+				base = 0
+			}
+		}
+	}
+}

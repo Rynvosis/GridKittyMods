@@ -1,0 +1,28 @@
+﻿l_english:
+  # centralized state
+
+  civic_gk_ec_centralized_state: "Centralized State"
+  civic_gk_ec_centralized_state_desc: "This society is extremely centralized, having grown around a single shining core, its capital. Power, people and resources are drawn inwards."
+  GK_EC_CAPITAL_PLANET_EFFECTS_TXT: "£planet£ §YCapital Planet§! Effects"
+  GK_EC_CENTRALIZED_CAPITAL_PLANET_EFFECTS: "$t$$MOD_PLANET_STABILITY_ADD$ §G+20§!\n$t$$MOD_POP_GOVERNMENT_ETHIC_ATTRACTION$ §G+100%§!"
+  civic_gk_ec_centralized_state_effects: "§E$GK_EC_CAPITAL_PLANET_EFFECTS_TXT$§!:\n$t$[politician.GetIcon] [politician.GetName] Jobs scaling with Capital Tier\n$GK_EC_CENTRALIZED_CAPITAL_PLANET_EFFECTS$\n\n§E£planet£ §YNon-Capital Planets§! Effects§!:\n$t$$MOD_PLANET_STABILITY_ADD$ §R-5§!\n$t$$MOD_POP_GOVERNMENT_ETHIC_ATTRACTION$ §R-25%§!"
+  civic_gk_ec_centralized_state_effects_gestalt: "§E$GK_EC_CAPITAL_PLANET_EFFECTS_TXT$§!:\n$t$[coordinator.GetIcon] [coordinator.GetName] Jobs scaling with Capital Tier\n$GK_EC_CENTRALIZED_CAPITAL_PLANET_EFFECTS$\n\n§E£planet£ §YNon-Capital Planets§! Effects§!:\n$t$$MOD_PLANET_STABILITY_ADD$ §R-5§!\n$t$$MOD_POP_GOVERNMENT_ETHIC_ATTRACTION$ §R-25%§!"
+
+  civic_gk_ec_centralized_state_hive: "Centralized Synapse"
+  civic_gk_ec_centralized_state_hive_desc: "This hive mind has evolved a highly centralized neural architecture. All drones are instinctively drawn towards the primary consciousness node."
+
+  civic_gk_ec_centralized_state_machine: "Core Processing Hub"
+  civic_gk_ec_centralized_state_machine_desc: "This machine intelligence is built around a massive central processing unit. All sub-units are designed to return to the core for data synchronization and upgrades."
+
+  civic_gk_ec_centralized_state_megacorp: "Corporate Monolith"
+  civic_gk_ec_centralized_state_megacorp_desc: "This megacorporation is run with absolute efficiency from a single, massive headquarters. All subsidiaries and branch offices report directly to the central board."
+
+  councilor_gk_ec_centralized_state: "Capital Prefect"
+  councilor_gk_ec_centralized_state_female: "$councilor_gk_ec_centralized_state$"
+  councilor_gk_ec_centralized_state_desc: "The $TITLE$ leads the infrastructural development of our capital."
+
+  councilor_gk_ec_centralized_state_corporate: "Head of Headquarters"
+  councilor_gk_ec_centralized_state_corporate_female: "$councilor_gk_ec_centralized_state_corporate$"
+  councilor_gk_ec_centralized_state_corporate_desc: "The $TITLE$ oversees the streamlining of corporate assets into the central headquarters."
+
+  councilor_gk_ec_centralized_state_tt: "- [politician.GetIcon] [politician.GetName] Jobs on Capital: §G+25§! per level$NEW_LINE$§EAdditional Effects when §YGoverning Capital§!:§!$TABBED_NEW_LINE$- [politician.GetIcon] [politician.GetName] Jobs on Capital: §G+25§! per level"

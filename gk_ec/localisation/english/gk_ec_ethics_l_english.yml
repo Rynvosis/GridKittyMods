@@ -1,0 +1,47 @@
+﻿l_english:
+  # Individualist/Collectivist Ethic Axis
+  ethic_individualist:0 "Individualist"
+  ethic_fanatic_individualist:0 "Fanatic Individualist"
+  ethic_collectivist:0 "Collectivist"
+  ethic_fanatic_collectivist:0 "Fanatic Collectivist"
+  ethic_individualist_desc:0 "This society prizes private ownership, personal initiative, and competitive enterprise. Individuals are free to pursue success, and economic coordination emerges from voluntary exchange rather than collective control."
+  ethic_fanatic_individualist_desc:0 "Personal sovereignty and private enterprise stand above all. Collective claims are subordinated to individual rights, and economic life is driven by unfettered initiative."
+  ethic_collectivist_desc:0 "This society favors shared ownership and cooperative production. Economic life is organized to serve the common good rather than private accumulation."
+  ethic_fanatic_collectivist_desc:0 "The means of production belong to the people as a whole. Collective control and social obligation define the economy, and private monopoly is rejected."
+
+  # Trigger tooltips
+  empire_not_individualist:0 "Empire is not §YIndividualist§!"
+  empire_is_individualist:0 "Empire is §YIndividualist§!"
+  empire_not_fanatic_individualist:0 "Empire is not §YFanatic Individualist§!"
+  empire_is_fanatic_individualist:0 "Empire is §YFanatic Individualist§!"
+  empire_not_collectivist:0 "Empire is not §YCollectivist§!"
+  empire_is_collectivist:0 "Empire is §YCollectivist§!"
+  empire_not_fanatic_collectivist:0 "Empire is not §YFanatic Collectivist§!"
+  empire_is_fanatic_collectivist:0 "Empire is §YFanatic Collectivist§!"
+
+  # Pop attraction descriptions
+  POP_ATTRACTION_INDIVIDUALIST_ETHIC_POS:0 "§GIndividualist§! empire"
+  POP_ATTRACTION_COLLECTIVIST_ETHIC_POS:0 "§GCollectivist§! empire"
+  POP_ATTRACTION_THRIFTY_POS:0 "§GThrifty§! species value free enterprise"
+  POP_ATTRACTION_SOLITARY_POS:0 "§GSolitary§! species value individual autonomy"
+  POP_ATTRACTION_COMMUNAL_POS:0 "§GCommunal§! species favor collective organization"
+  POP_ATTRACTION_DOCILE_POS:0 "§GDocile§! species adapt well to collective structures"
+  POP_ATTRACTION_INDIVIDUALIST_DIPLOMACY_POS:0 "Diplomatic ties with §GIndividualist§! nations"
+  POP_ATTRACTION_COLLECTIVIST_DIPLOMACY_POS:0 "Diplomatic ties with §GCollectivist§! nations"
+  POP_ATTRACTION_TRADEFED_POS:0 "Member of a §GTrade League§!"
+
+  # Faction names and descriptions
+  gk_ec_individualist:0 "Individualists"
+  gk_ec_individualist_desc:0 "Individualists champion private ownership, competitive enterprise, and merit-based hierarchy. They resist worker-owned models and redistribution that dilutes personal achievement."
+  gk_ec_collectivist:0 "Collectivists"
+  gk_ec_collectivist_desc:0 "Collectivists demand worker ownership and oppose private monopolies. They favor cooperative production and economic systems that prioritize solidarity over profit."
+
+  # Promoted/suppressed modifiers
+  gk_ec_promoted_individualist:0 "Promoted Individualist"
+  gk_ec_promoted_individualist_desc:0 "This faction has been officially promoted."
+  gk_ec_suppressed_individualist:0 "Suppressed Individualist"
+  gk_ec_suppressed_individualist_desc:0 "This faction has been officially suppressed."
+  gk_ec_promoted_collectivist:0 "Promoted Collectivist"
+  gk_ec_promoted_collectivist_desc:0 "This faction has been officially promoted."
+  gk_ec_suppressed_collectivist:0 "Suppressed Collectivist"
+  gk_ec_suppressed_collectivist_desc:0 "This faction has been officially suppressed."

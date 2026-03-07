@@ -1,0 +1,25 @@
+namespace = gk_ec_civic_specialized_worlds
+
+# 300 - penal colonies / resort worlds / thrall world start civics
+country_event = {
+	id = gk_ec_civic_specialized_worlds.1
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_valid_civic = civic_gk_ec_penal_colony }
+			give_technology = {
+				tech = tech_penal_colonies
+			}
+		}
+
+		if =  {
+			limit = { has_valid_civic = civic_gk_ec_resort_worlds }
+			give_technology = {
+				tech = tech_resort_colonies
+			}
+		}
+	}
+}
