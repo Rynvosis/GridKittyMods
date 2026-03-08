@@ -1,63 +1,15 @@
 ﻿l_english:
  country_rubberbanding: "Rubberbanding"
 
-#basic resource upkeep adjustments
- mod_country_rubberbanding_energy_upkeep_add: "$r_energy$ Upkeep"
- mod_country_rubberbanding_minerals_upkeep_add: "$r_minerals$ Upkeep"
- mod_country_rubberbanding_food_upkeep_add: "$r_food$ Upkeep"
-#advanced resource upkeep adjustments
- mod_country_rubberbanding_trade_upkeep_add: "$r_trade$ Upkeep"
- mod_country_rubberbanding_consumer_goods_upkeep_add: "$r_consumer_goods$ Upkeep"
- mod_country_rubberbanding_alloys_upkeep_add: "$r_alloys$ Upkeep"
-#strategic resource upkeep adjustments
- mod_country_rubberbanding_volatile_motes_upkeep_add: "$r_volatile_motes$ Upkeep"
- mod_country_rubberbanding_exotic_gases_upkeep_add: "$r_exotic_gases$ Upkeep"
- mod_country_rubberbanding_rare_crystals_upkeep_add: "$r_rare_crystals$ Upkeep"
-#exotic resource upkeep adjustments
- mod_country_rubberbanding_sr_living_metal_upkeep_add: "$r_living_metal$ Upkeep"
- mod_country_rubberbanding_sr_zro_upkeep_add: "$r_zro$ Upkeep"
- mod_country_rubberbanding_sr_dark_matter_upkeep_add: "$r_dark_matter$ Upkeep"
- mod_country_rubberbanding_nanites_upkeep_add: "$r_nanites$ Upkeep"
-#abstract resource upkeep adjustments
+# research resource upkeep adjustments
  mod_country_rubberbanding_physics_research_upkeep_add: "$r_physics$ Upkeep"
  mod_country_rubberbanding_society_research_upkeep_add: "$r_society$ Upkeep"
  mod_country_rubberbanding_engineering_research_upkeep_add: "$r_engineering$ Upkeep"
- mod_country_rubberbanding_unity_upkeep_add: "$r_unity$ Upkeep"
 
-#rubberbanding resource modifiers names
- gkrb_econ_energy_mod: "Energy Rubberbanding"
- gkrb_econ_minerals_mod: "Minerals Rubberbanding"
- gkrb_econ_food_mod: "Food Rubberbanding"
- gkrb_econ_trade_mod: "Trade Rubberbanding"
- gkrb_econ_consumer_goods_mod: "Consumer Goods Rubberbanding"
- gkrb_econ_alloys_mod: "Alloys Rubberbanding"
- gkrb_econ_volatile_motes_mod: "Volatile Motes Rubberbanding"
- gkrb_econ_exotic_gases_mod: "Exotic Gases Rubberbanding"
- gkrb_econ_rare_crystals_mod: "Rare Crystals Rubberbanding"
- gkrb_econ_sr_living_metal_mod: "Living Metal Rubberbanding"
- gkrb_econ_sr_zro_mod: "Zro Rubberbanding"
- gkrb_econ_sr_dark_matter_mod: "Dark Matter Rubberbanding"
- gkrb_econ_nanites_mod: "Nanites Rubberbanding"
- gkrb_econ_unity_mod: "Unity Rubberbanding"
- gkrb_econ_physics_research_mod: "Physics Research Rubberbanding"
- gkrb_econ_society_research_mod: "Society Research Rubberbanding"
- gkrb_econ_engineering_research_mod: "Engineering Research Rubberbanding"
-
+# tech rubberbanding modifier names
  gkrb_tech_physics_research_mod: "Physics Rubberbanding"
  gkrb_tech_society_research_mod: "Society Rubberbanding"
  gkrb_tech_engineering_research_mod: "Engineering Rubberbanding"
-
- gkrb_unity_unity_add: "Tradition Progression Rubberbanding"
-
-# econ rubberbanding loc
- gkrb_econ_relative: "Relative Galactic Economy: §Y[this.GKRBEconRelativeToGlobalPercent]%§! §L([this.GKRBEconScoreRounded])§!"
-
- gkrb_econ_mod: "Economic Overextension"
- gkrb_econ_mod.tooltip: "$gkrb_econ_relative$[This.GKRBBlocPowerIncrease]\n\nEffects:[this.GKRBEnergyRow][this.GKRBMineralsRow][this.GKRBFoodRow][this.GKRBTradeRow][this.GKRBConsumerGoodsRow][this.GKRBAlloysRow][this.GKRBVolatileMotesRow][this.GKRBExoticGasesRow][this.GKRBRareCrystalsRow][this.GKRBLivingMetalRow][this.GKRBZroRow][this.GKRBDarkMatterRow][this.GKRBNanitesRow][this.GKRBUnityRow][this.GKRBPhysicsResearchRow][this.GKRBSocietyResearchRow][this.GKRBEngineeringResearchRow]"
- 
- gkrb_econ_behind_mod: "Economic Revitalization"
- gkrb_econ_behind_mod.tooltip: "$gkrb_econ_relative$[This.GKRBBlocPowerIncrease]\n\nEffects:"
-
 
 # tech rubberbanding loc
  gkrb_tech_relative: "Relative Technology: §Y[this.GKRBTechPercentage]§!% of galactic average"
@@ -68,49 +20,10 @@
  gkrb_tech_behind_mod: "Technological Resurgence"
  gkrb_tech_behind_mod.tooltip: "$gkrb_tech_relative$\n\n"
 
+ gkrb_tech_neutral_mod: "Tech Rubberbanding Status"
 
-# unity rubberbanding loc
- gkrb_unity_relative: "Relative unity progression:$TABBED_NEW_LINE$§Y[this.GKRBUnityPercentage]§!% of galactic average"
-
- gkrb_unity_unity_mod: "Cultural Fatigue"
- gkrb_unity_unity_mod.tooltip: "$gkrb_unity_relative$\n\nEffects:[this.GKRBUnityUnityRow][this.GKRBUNnityEdictRow]"
-
- gkrb_unity_behind_mod: "Cultural Renaissance"
- gkrb_unity_behind_mod.tooltip: "$gkrb_unity_relative$\n\n"
-
-# econ rubberbanding rows
+# display rows
  GKRB_EMPTY: ""
- 
-# econ
- GKRB_ROW_ENERGY_UPKEEP: "\n$mod_country_rubberbanding_energy_upkeep_add$: §R-[This.gkrb_econ_penalty_energy]§! §L([This.GKRBConcentrationEnergyPct]%)§!"
- GKRB_ROW_MINERALS_UPKEEP: "\n$mod_country_rubberbanding_minerals_upkeep_add$: §R-[This.gkrb_econ_penalty_minerals]§! §L([This.GKRBConcentrationMineralsPct]%)§!"
- GKRB_ROW_FOOD_UPKEEP: "\n$mod_country_rubberbanding_food_upkeep_add$: §R-[This.gkrb_econ_penalty_food]§! §L([This.GKRBConcentrationFoodPct]%)§!"
- GKRB_ROW_TRADE_UPKEEP: "\n$mod_country_rubberbanding_trade_upkeep_add$: §R-[This.gkrb_econ_penalty_trade]§! §L([This.GKRBConcentrationTradePct]%)§!"
- GKRB_ROW_CONSUMER_GOODS_UPKEEP: "\n$mod_country_rubberbanding_consumer_goods_upkeep_add$: §R-[This.gkrb_econ_penalty_consumer_goods]§! §L([This.GKRBConcentrationConsumerGoodsPct]%)§!"
- GKRB_ROW_ALLOYS_UPKEEP: "\n$mod_country_rubberbanding_alloys_upkeep_add$: §R-[This.gkrb_econ_penalty_alloys]§! §L([This.GKRBConcentrationAlloysPct]%)§!"
- GKRB_ROW_VOLATILE_MOTES_UPKEEP: "\n$mod_country_rubberbanding_volatile_motes_upkeep_add$: §R-[This.gkrb_econ_penalty_volatile_motes]§! §L([This.GKRBConcentrationVolatileMotesPct]%)§!"
- GKRB_ROW_EXOTIC_GASES_UPKEEP: "\n$mod_country_rubberbanding_exotic_gases_upkeep_add$: §R-[This.gkrb_econ_penalty_exotic_gases]§! §L([This.GKRBConcentrationExoticGasesPct]%)§!"
- GKRB_ROW_RARE_CRYSTALS_UPKEEP: "\n$mod_country_rubberbanding_rare_crystals_upkeep_add$: §R-[This.gkrb_econ_penalty_rare_crystals]§! §L([This.GKRBConcentrationRareCrystalsPct]%)§!"
- GKRB_ROW_LIVING_METAL_UPKEEP: "\n$mod_country_rubberbanding_sr_living_metal_upkeep_add$: §R-[This.gkrb_econ_penalty_sr_living_metal]§! §L([This.GKRBConcentrationLivingMetalPct]%)§!"
- GKRB_ROW_ZRO_UPKEEP: "\n$mod_country_rubberbanding_sr_zro_upkeep_add$: §R-[This.gkrb_econ_penalty_sr_zro]§! §L([This.GKRBConcentrationZroPct]%)§!"
- GKRB_ROW_DARK_MATTER_UPKEEP: "\n$mod_country_rubberbanding_sr_dark_matter_upkeep_add$: §R-[This.gkrb_econ_penalty_sr_dark_matter]§! §L([This.GKRBConcentrationDarkMatterPct]%)§!"
- GKRB_ROW_NANITES_UPKEEP: "\n$mod_country_rubberbanding_nanites_upkeep_add$: §R-[This.gkrb_econ_penalty_nanites]§! §L([This.GKRBConcentrationNanitesPct]%)§!"
- GKRB_ROW_PHYSICS_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_physics_research_upkeep_add$: §R-[This.gkrb_econ_penalty_physics_research]§! §L([This.GKRBConcentrationPhysicsPct]%)§!"
- GKRB_ROW_SOCIETY_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_society_research_upkeep_add$: §R-[This.gkrb_econ_penalty_society_research]§! §L([This.GKRBConcentrationSocietyPct]%)§!"
- GKRB_ROW_ENGINEERING_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_engineering_research_upkeep_add$: §R-[This.gkrb_econ_penalty_engineering_research]§! §L([This.GKRBConcentrationEngineeringPct]%)§!"
- GKRB_ROW_UNITY_UPKEEP: "\n$mod_country_rubberbanding_unity_upkeep_add$: §R-[This.gkrb_econ_penalty_unity]§! §L([This.GKRBConcentrationUnityPct]%)§!"
-
- GKRB_BLOC_POWER_POSITIVE: "\n$TABBED_NEW_LINE$Economic size increased by: §H+[Root.GetBlocPowerIncreasePercent]§!% from pacts"
-
-# tech
  GKRB_ROW_TECH_PHYSICS_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_physics_research_upkeep_add$: §R-[This.gkrb_tech_physics_research_adjust]§!"
  GKRB_ROW_TECH_SOCIETY_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_society_research_upkeep_add$: §R-[This.gkrb_tech_society_research_adjust]§!"
  GKRB_ROW_TECH_ENGINEERING_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_engineering_research_upkeep_add$: §R-[This.gkrb_tech_engineering_research_adjust]§!"
- 
-# unity 
- GKRB_ROW_UNITY_UNITY_UPKEEP: "\n$mod_country_rubberbanding_unity_upkeep_add$: §R-[This.gkrb_unity_unity_adjust]§!"
- GKRB_ROW_UNITY_EDICT_FUND: "\n£mod_country_edict_fund_add£ $MOD_COUNTRY_EDICT_FUND_ADD$: §G[This.GKRBUNnityEdictValue]§!"
-
- GK_COLOR_POS: "G+"
- GK_COLOR_NEG: "R"
- GK_COLOR_NEUT: "H"

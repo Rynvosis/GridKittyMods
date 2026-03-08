@@ -1,7 +1,7 @@
 # Inline script: Apply revenue adjustment (multiply and add modifier)
 # Parameters:
 #   $RESOURCE$ - Resource name (e.g., energy)
-#   $TYPE$     - System type (tech or econ)
+#   $TYPE$     - System type (e.g., tech)
 #
 # Expects variable gkrb_$TYPE$_$RESOURCE$_adjust to be set and configured
 # This script multiplies by the appropriate penalty and applies the modifier

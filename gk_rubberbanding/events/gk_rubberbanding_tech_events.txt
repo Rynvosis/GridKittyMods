@@ -1,8 +1,10 @@
 # Tech Rubberbanding Events
-# Tracks technology progress for rubberbanding
+# Self-contained monthly tech rubberbanding pipeline
 namespace = gkrb_tech
 
-# Init globals once on game start
+####################################
+# Game Start: Init globals
+####################################
 event = {
 	id = gkrb_tech.1
 	is_triggered_only = yes
@@ -31,110 +33,125 @@ event = {
 	}
 }
 
-# Event .10 removed - monthly orchestration now handled by trunk dispatcher gkrb.10
-
 ####################################
-# STAGE 1: Calculate Tech Score
+# Monthly Pipeline
 ####################################
-# Calculate per-country tech score and contribute to global sum
-country_event = {
+# Orchestrates all stages: score → aggregate → relative → mult → apply
+event = {
 	id = gkrb_tech.10
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		# Tech score is based on tech count, not resource income
-		set_variable = {
-			which = gkrb_tech_score
-			value = value:gkrb_tech_score
-		}
-		
-		# Contribute score to global sum
+		####################################
+		# STAGE 1: Reset globals and calculate per-country scores
+		####################################
 		event_target:global_event_country = {
-			change_variable = {
-				which = gkrb_tech_global_sum
-				value = prev.gkrb_tech_score
-			}
-			change_variable = {
+			set_variable = {
 				which = gkrb_tech_global_country_count
-				value = 1
+				value = 0
+			}
+			set_variable = {
+				which = gkrb_tech_global_sum
+				value = 0
 			}
 		}
-	}
-}
-
-####################################
-# STAGE 4: Calculate Tech Relative Score
-####################################
-# Calculate per-country relative score (self / galactic avg)
-country_event = {
-	id = gkrb_tech.40
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		set_variable = {
-			which = gkrb_tech_relative
-			value = value:gkrb_relative_score|SCORE_VAR|gkrb_tech_score|GLOBAL_AVG_VAR|gkrb_tech_global_avg|
-		}
-	}
-}
-
-####################################
-# STAGE 4: Calculate Tech Multiplier
-####################################
-# Calculate tech multiplier
-country_event = {
-	id = gkrb_tech.41
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		set_variable = {
-			which = gkrb_tech_mult
-			value = value:gkrb_tech_mult
-		}
-		round_variable_to_closest = {
-			which = gkrb_tech_mult
-			value = 0.0001
-		}
-	}
-}
-
-####################################
-# STAGE 5: Apply Tech Modifiers
-####################################
-# Apply tech modifiers
-country_event = {
-	id = gkrb_tech.50
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		# Always clear first
-		gkrb_clear_tech_rubberbanding_modifiers = yes
-		
-		# If behind (more than 5% below average), apply catch-up bonuses
-		if = {
-			limit = {
-				check_variable = {
-					which = gkrb_tech_relative
-					value < 0.95
+		every_playable_country = {
+			# Calculate tech score
+			set_variable = {
+				which = gkrb_tech_score
+				value = value:gkrb_tech_score
+			}
+			# Contribute to global sum
+			event_target:global_event_country = {
+				change_variable = {
+					which = gkrb_tech_global_sum
+					value = prev.gkrb_tech_score
+				}
+				change_variable = {
+					which = gkrb_tech_global_country_count
+					value = 1
 				}
 			}
-			gkrb_apply_behind_tech_rubberbanding_modifiers = yes
 		}
-		# If ahead (more than 5% above average), apply upkeep penalty
-		else_if = {
-			limit = {
-				check_variable = {
-					which = gkrb_tech_relative
-					value > 1.05
+
+		####################################
+		# STAGE 2: Calculate global average
+		####################################
+		event_target:global_event_country = {
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_tech_global_country_count
+						value > 0
+					}
+				}
+				set_variable = {
+					which = gkrb_tech_global_avg
+					value = gkrb_tech_global_sum
+				}
+				divide_variable = {
+					which = gkrb_tech_global_avg
+					value = gkrb_tech_global_country_count
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = gkrb_tech_global_avg
+							value < 1
+						}
+					}
+					set_variable = {
+						which = gkrb_tech_global_avg
+						value = 1
+					}
 				}
 			}
-			gkrb_apply_ahead_tech_rubberbanding_modifiers = yes
 		}
-		# Neutral zone - show status without penalties
-		else = {
-			add_modifier = {
-				modifier = gkrb_tech_neutral_mod
-				days = -1
+
+		####################################
+		# STAGE 3: Calculate relative scores, multipliers, and apply
+		####################################
+		every_playable_country = {
+			# Relative score
+			set_variable = {
+				which = gkrb_tech_relative
+				value = value:gkrb_relative_score|SCORE_VAR|gkrb_tech_score|GLOBAL_AVG_VAR|gkrb_tech_global_avg|
+			}
+			# Multiplier
+			set_variable = {
+				which = gkrb_tech_mult
+				value = value:gkrb_tech_mult
+			}
+			round_variable_to_closest = {
+				which = gkrb_tech_mult
+				value = 0.0001
+			}
+			# Apply modifiers
+			gkrb_clear_tech_rubberbanding_modifiers = yes
+
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_tech_relative
+						value < 0.95
+					}
+				}
+				gkrb_apply_behind_tech_rubberbanding_modifiers = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = gkrb_tech_relative
+						value > 1.05
+					}
+				}
+				gkrb_apply_ahead_tech_rubberbanding_modifiers = yes
+			}
+			else = {
+				add_modifier = {
+					modifier = gkrb_tech_neutral_mod
+					days = -1
+				}
 			}
 		}
 	}

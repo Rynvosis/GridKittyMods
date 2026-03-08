@@ -1,7 +1,7 @@
 # Inline script: Calculate revenue adjustment variable
 # Parameters:
 #   $RESOURCE$ - Resource name (e.g., energy)
-#   $TYPE$     - System type (tech or econ)
+#   $TYPE$     - System type (e.g., tech)
 #
 # Exports resource revenue to variable: gkrb_$TYPE$_$RESOURCE$_adjust
 # This variable will be modified by multipliers in the apply stage

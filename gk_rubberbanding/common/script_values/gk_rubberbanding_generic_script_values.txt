@@ -2,18 +2,6 @@
 # Generic rubberbanding values    #
 ####################################
 
-# Simple resource income getter
-gkrb_resource_income = {
-	base = 0
-	complex_trigger_modifier = {
-		trigger = resource_income_compare
-		parameters = {
-			resource = $RESOURCE$
-		}
-		mode = add
-	}
-}
-
 # Generic relative score calculation
 # Parameters: SCORE_VAR, GLOBAL_AVG_VAR
 gkrb_relative_score = {

@@ -1,7 +1,6 @@
 version="v0.1.0"
 tags={
 	"Balance"
-	"Economy"
 	"Technologies"
 }
 name="GK Tech Rubberbanding"
