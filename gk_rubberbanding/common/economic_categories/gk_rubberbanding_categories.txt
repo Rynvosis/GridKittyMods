@@ -1,0 +1,8 @@
+country_rubberbanding = {
+	parent = country_container
+	generate_add_modifiers = {
+		upkeep
+	}
+	modifier_category = country
+}
+
