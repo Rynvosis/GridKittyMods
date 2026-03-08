@@ -430,7 +430,7 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_TECH_ROW_ENGINEERING_RESEARCH_UPKEEP"
+		localization_key = "GKRB_ROW_TECH_ENGINEERING_RESEARCH_UPKEEP"
 	}
 	text = {
 		trigger = {
@@ -449,7 +449,7 @@ defined_text = {
 # Unity Resource Rows            #
 ####################################
 defined_text = {
-	name = GKRBUnityRow
+	name = GKRBUnityUnityRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -457,7 +457,7 @@ defined_text = {
 				value >= 0.1
 			}
 		}
-		localization_key = "GKRB_ROW_UNITY_UPKEEP"
+		localization_key = "GKRB_ROW_UNITY_UNITY_UPKEEP"
 	}
 	text = {
 		trigger = {
@@ -468,4 +468,29 @@ defined_text = {
 		}
 		localization_key = "GKRB_EMPTY"
 	}
+}
+defined_text = {
+	name = GKRBUNnityEdictRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_unity_unity_adjust
+				value >= 1
+			}
+		}
+		localization_key = "GKRB_ROW_UNITY_EDICT_FUND"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_unity_unity_adjust
+				value < 1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}	
+}
+defined_text = {
+	name = GKRBUNnityEdictValue
+	value = value:gkrb_unity_quarter_unity_adjust
 }

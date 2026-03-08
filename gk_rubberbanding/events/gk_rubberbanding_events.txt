@@ -1,0 +1,233 @@
+####################################
+# Master Rubberbanding Event Dispatcher
+# Orchestrates all three rubberbanding systems (tech, unity, economy)
+####################################
+# Event numbering scheme:
+# 0-9: Setup/initialization (not part of monthly cycle)
+# 10-19: Stage 1 - Calculate Rubberbanding Values
+# 20-29: Stage 2 - Modify Rubberbanding Values (EMA blending)
+# 30-39: Stage 3 - Aggregate Rubberbanding Values (global averages)
+# 40-49: Stage 4 - Calculate Rubberbanding Penalties
+# 50-59: Stage 5 - Disperse Rubberbanding Penalties
+namespace = gkrb
+
+####################################
+# Event 10: Monthly Master Orchestrator
+####################################
+# Coordinates all 5 stages of the monthly rubberbanding cycle
+event = {
+	id = gkrb.10
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		####################################
+		# STAGE 1: Calculate Rubberbanding Values
+		####################################
+		# Reset global counters for all systems
+		event_target:global_event_country = {
+			# Tech globals
+			set_variable = {
+				which = gkrb_tech_global_country_count
+				value = 0
+			}
+			set_variable = {
+				which = gkrb_tech_global_sum
+				value = 0
+			}
+			# Unity globals
+			set_variable = {
+				which = gkrb_unity_global_country_count
+				value = 0
+			}
+			####################################
+			# Event 10: Monthly Master Orchestrator
+			####################################
+			# Coordinates all stages of the monthly rubberbanding cycle
+			set_variable = {
+				which = gkrb_econ_global_econ_sum
+				value = 0
+			}
+			# Increment month counter and cache EMA decay constant
+			create_variable_if_not_exists = {
+				VARIABLE = gkrb_econ_months_elapsed
+				VALUE_IF_CREATED = 0
+			}
+			# STAGE 1: Calculate Tech & Unity Base Values
+			set_variable = {
+				which = gkrb_econ_ema_decay_cached
+				value = value:gkrb_compute_decay_from_cached_halflife
+			}
+		}
+		# Calculate base values for all countries
+		every_playable_country = {
+			# Tech: calculate tech score
+			country_event = {
+				id = gkrb_tech.10
+			}
+			# Unity: calculate unity score and accumulate
+			country_event = {
+				id = gkrb_unity.10
+			}
+		}
+		####################################
+		# STAGE 2: Aggregate Tech & Unity, Derive Relatives/Multipliers
+		####################################
+		# Calculate global averages for tech and unity, then per-country relatives before econ
+		event_target:global_event_country = {
+			# Tech global average
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_tech_global_country_count
+						value > 0
+					}
+				}
+				set_variable = {
+					which = gkrb_tech_global_avg
+					value = gkrb_tech_global_sum
+				}
+				divide_variable = {
+					which = gkrb_tech_global_avg
+					value = gkrb_tech_global_country_count
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = gkrb_tech_global_avg
+							value < 1
+						}
+					}
+					set_variable = {
+						which = gkrb_tech_global_avg
+						value = 1
+					}
+				}
+			}
+			# Unity global average
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_unity_global_country_count
+						value > 0
+					}
+				}
+				set_variable = {
+					which = gkrb_unity_global_avg
+					value = gkrb_unity_global_sum
+				}
+				divide_variable = {
+					which = gkrb_unity_global_avg
+					value = gkrb_unity_global_country_count
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = gkrb_unity_global_avg
+							value < 1
+						}
+					}
+					set_variable = {
+						which = gkrb_unity_global_avg
+						value = 1
+					}
+				}
+			}
+		}
+		every_playable_country = {
+			# Tech: calculate relative score and multiplier
+			country_event = {
+				id = gkrb_tech.40
+			}
+			country_event = {
+				id = gkrb_tech.41
+			}
+			# Unity: calculate relative score and multiplier
+			country_event = {
+				id = gkrb_unity.40
+			}
+			country_event = {
+				id = gkrb_unity.41
+			}
+		}
+		####################################
+		# STAGE 3: Calculate Economy Values (uses tech/unity relatives from Stage 2)
+		####################################
+		every_playable_country = {
+			# Economy: calculate resource values (use, maintenance, utilization)
+			country_event = {
+				id = gkrb_econ.10
+			}
+		}
+		####################################
+		# STAGE 4: Finalize Economy Scores & Bloc Power
+		####################################
+		every_playable_country = {
+			# Economy: finalize EMA blend and contribute to global sum
+			country_event = {
+				id = gkrb_econ.20
+			}
+		}
+		# Economy: calculate bloc power increase (must happen after EMA finalization)
+		every_playable_country = {
+			country_event = {
+				id = gkrb_econ.21
+			}
+		}
+		####################################
+		# STAGE 5: Calculate Economy Global Average
+		####################################
+		event_target:global_event_country = {
+			# Economy global average
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_econ_global_country_count
+						value > 0
+					}
+				}
+				set_variable = {
+					which = gkrb_econ_global_econ_avg
+					value = gkrb_econ_global_econ_sum
+				}
+				divide_variable = {
+					which = gkrb_econ_global_econ_avg
+					value = gkrb_econ_global_country_count
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = gkrb_econ_global_econ_avg
+							value < 1
+						}
+					}
+					set_variable = {
+						which = gkrb_econ_global_econ_avg
+						value = 1
+					}
+				}
+			}
+		}
+		####################################
+		# STAGE 6: Calculate & Disperse Rubberbanding Penalties
+		####################################
+		# Calculate economy penalties, then apply all modifiers
+		every_playable_country = {
+			# Economy: calculate aheadness and penalties (can now use tech/unity relative scores)
+			country_event = {
+				id = gkrb_econ.40
+			}
+		}
+		every_playable_country = {
+			# Apply all three systems' modifiers
+			country_event = {
+				id = gkrb_tech.50
+			}
+			country_event = {
+				id = gkrb_unity.50
+			}
+			country_event = {
+				id = gkrb_econ.50
+			}
+		}
+	}
+}

@@ -31,85 +31,14 @@ event = {
 	}
 }
 
-# Monthly gatekeeper: recalc average, then apply per-country modifiers
-event = {
-	id = gkrb_unity.10
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		# Reset global counters
-		event_target:global_event_country = {
-			set_variable = {
-				which = gkrb_unity_global_country_count
-				value = 0
-			}
-			set_variable = {
-				which = gkrb_unity_global_sum
-				value = 0
-			}
-			set_variable = {
-				which = gkrb_unity_global_avg
-				value = 0
-			}
-		}
-		
-		# Phase 1: Calculate scores and contribute to global sum
-		every_playable_country = {
-			country_event = { id = gkrb_unity.20 }
-		}
-		
-		# Calculate global average
-		event_target:global_event_country = {
-			if = {
-				limit = {
-					check_variable = {
-						which = gkrb_unity_global_country_count
-						value > 0
-					}
-				}
-				set_variable = {
-					which = gkrb_unity_global_avg
-					value = gkrb_unity_global_sum
-				}
-				divide_variable = {
-					which = gkrb_unity_global_avg
-					value = gkrb_unity_global_country_count
-				}
-				if = {
-					limit = {
-						check_variable = {
-							which = gkrb_unity_global_avg
-							value < 1
-						}
-					}
-					set_variable = {
-						which = gkrb_unity_global_avg
-						value = 1
-					}
-				}
-			}
-		}
-		
-		# Phase 2: Calculate relative scores
-		every_playable_country = {
-			country_event = { id = gkrb_unity.30 }
-		}
-		
-		# Phase 3: Calculate multipliers
-		every_playable_country = {
-			country_event = { id = gkrb_unity.40 }
-		}
-		
-		# Phase 4: Apply modifiers
-		every_playable_country = {
-			country_event = { id = gkrb_unity.50 }
-		}
-	}
-}
+# Event .10 removed - monthly orchestration now handled by trunk dispatcher gkrb.10
 
+####################################
+# STAGE 1: Calculate Unity Score
+####################################
 # Calculate per-country unity score and contribute to global sum
 country_event = {
-	id = gkrb_unity.20
+	id = gkrb_unity.10
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
@@ -130,9 +59,12 @@ country_event = {
 	}
 }
 
+####################################
+# STAGE 4: Calculate Unity Relative Score
+####################################
 # Calculate per-country relative score (self / galactic avg)
 country_event = {
-	id = gkrb_unity.30
+	id = gkrb_unity.40
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
@@ -143,9 +75,12 @@ country_event = {
 	}
 }
 
+####################################
+# STAGE 4: Calculate Unity Multiplier
+####################################
 # Calculate unity multiplier
 country_event = {
-	id = gkrb_unity.40
+	id = gkrb_unity.41
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
@@ -175,6 +110,9 @@ country_event = {
 	}
 }
 
+####################################
+# STAGE 5: Apply Unity Modifiers
+####################################
 # Apply unity modifiers
 country_event = {
 	id = gkrb_unity.50
@@ -184,25 +122,32 @@ country_event = {
 		# Always clear first
 		gkrb_clear_unity_rubberbanding_modifiers = yes
 		
-		# If behind, apply catch-up bonuses
+		# If behind (more than 5% below average), apply catch-up bonuses
 		if = {
 			limit = {
 				check_variable = {
 					which = gkrb_unity_relative
-					value < 0.98
+					value < 0.95
 				}
 			}
 			gkrb_apply_behind_unity_rubberbanding_modifiers = yes
 		}
-		# If ahead, apply upkeep penalty
+		# If ahead (more than 5% above average), apply upkeep penalty
 		else_if = {
 			limit = {
 				check_variable = {
 					which = gkrb_unity_relative
-					value > 1.02
+					value > 1.05
 				}
 			}
 			gkrb_apply_ahead_unity_rubberbanding_modifiers = yes
+		}
+		# Neutral zone - show status without penalties
+		else = {
+			add_modifier = {
+				modifier = gkrb_unity_neutral_mod
+				days = -1
+			}
 		}
 	}
 }

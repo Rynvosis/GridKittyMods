@@ -2,6 +2,50 @@
 # Value-Weighted Econ Rubberbanding
 # Script Values
 ####################################
+# Tech/Unity Lead Factors
+####################################
+# These factors determine how much tech and unity contribute to economy power
+# Only contribute when actively in a lead (relative > 1.0)
+
+gkrb_econ_tech_lead_factor = {
+	base = 0
+	add = gkrb_tech_relative
+	subtract = 1
+	min = 0
+}
+
+gkrb_econ_unity_lead_factor = {
+	base = 0
+	add = gkrb_unity_relative
+	subtract = 1
+	min = 0
+}
+
+####################################
+# Abstract resource EMA helpers
+####################################
+
+# Sum of EMA revenues for all three research categories
+gkrb_research_ema_revenue_sum = {
+	add = gkrb_econ_ema_revenue_physics_research
+	add = gkrb_econ_ema_revenue_society_research
+	add = gkrb_econ_ema_revenue_engineering_research
+}
+
+# Research contribution to economy power
+gkrb_research_contribution_to_econ = {
+	add = value:gkrb_research_ema_revenue_sum
+	mult = value:gkrb_econ_tech_lead_factor
+}
+
+# Unity contribution to economy power (weight 2)
+gkrb_unity_contribution_to_econ = {
+	add = gkrb_econ_ema_revenue_unity
+	mult = 2
+	mult = value:gkrb_econ_unity_lead_factor
+}
+
+####################################
 
 ####################################
 # Display Values (Percentages)
@@ -43,7 +87,7 @@ gkrb_behind_bonus_percent = {
 ####################################
 
 # revenue
-gkrp_resource_revenue = {
+gkrb_resource_revenue = {
 	base = 0
 	complex_trigger_modifier = {
 		trigger = resource_revenue_compare
@@ -56,7 +100,9 @@ gkrp_resource_revenue = {
 
 # maintenance (heuristic for how much was put back into production upkeeps
 gkrb_maintenance = {
-	add = value:gkrb_maintenance_category|RESOURCE|$RESOURCE$|CATEGORY|planets| # factors in everything on planets, pops, jobs, structures
+	add = value:gkrb_maintenance_category|RESOURCE|$RESOURCE$|CATEGORY|pop_jobs| # factors in everything on planets, pops, jobs, structures
+	add = value:gkrb_maintenance_category|RESOURCE|$RESOURCE$|CATEGORY|pop_groups|
+	add = value:gkrb_maintenance_category|RESOURCE|$RESOURCE$|CATEGORY|structures|
 	add = value:gkrb_maintenance_category|RESOURCE|$RESOURCE$|CATEGORY|megastructures|
 	add = value:gkrb_maintenance_category|RESOURCE|$RESOURCE$|CATEGORY|stations|
 }
@@ -73,22 +119,31 @@ gkrb_maintenance_category = {
 gkrb_maintenance_discount = {
 	add = value:gkrb_maintenance|RESOURCE|$RESOURCE$|
 	mult = @gkrb_maintenance_discount
+	# Factor out the rubberbanding upkeep modifier as an expense at 100% efficiency
+	add = value:gkrb_maintenance_category|RESOURCE|$RESOURCE$|CATEGORY|country_rubberbanding|
 }
 
-gkrp_effective_resource_revenue = {
-	add = value:gkrp_resource_revenue|RESOURCE|$RESOURCE$|
+gkrb_effective_resource_revenue = {
+	add = value:gkrb_resource_revenue|RESOURCE|$RESOURCE$|
 	subtract = value:gkrb_maintenance_discount|RESOURCE|$RESOURCE$|
+	modifier = {
+		is_variable_set = gkrb_additional_maintenance_discount_$RESOURCE$
+		subtract = gkrb_additional_maintenance_discount_$RESOURCE$
+	}
 }
 
 # utilization (if we expect +100 alloys, but your stockpile went down 200, you used 300)
 gkrb_resource_use = {
 	# how much we expect your stockpile to change this month
-	add = value:gkrp_effective_resource_revenue|RESOURCE|$RESOURCE$|
+	add = gkrb_effective_revenue_$RESOURCE$
 
 	# how much your stockpile actually changed since last month
-	subtract = value:gkrp_delta_stock|RESOURCE|$RESOURCE$|
+	modifier = {
+		is_variable_set = gkrb_prev_stock_$RESOURCE$
+		subtract = value:gkrb_delta_stock|RESOURCE|$RESOURCE$|
+	}
 }
-gkrp_current_stock = {
+gkrb_current_stock = {
 	complex_trigger_modifier = {
 		trigger = resource_stockpile_compare
 		parameters = {
@@ -97,23 +152,18 @@ gkrp_current_stock = {
 		mode = add
 	}
 }
-gkrp_delta_stock = {
-	add = value:gkrp_current_stock|RESOURCE|$RESOURCE$|
-
-	# subtract previous stockpile to get delta, if not set we just assume 0
-	modifier = {
-		NOT = { is_variable_set = gkrb_prev_stock_$RESOURCE$ }
-		set = 0
-	}
+gkrb_delta_stock = {
+	add = value:gkrb_current_stock|RESOURCE|$RESOURCE$|
+	subtract = gkrb_prev_stock_$RESOURCE$
 }
 # Deprecated: use EMA-based gkrb_econ_utilization_ratio instead
-gkrp_utilization_ratio = {
-	add = value:gkrb_resource_use|RESOURCE|$RESOURCE$|
-	divide = value:gkrp_effective_resource_revenue|RESOURCE|$RESOURCE$|
+gkrb_utilization_ratio = {
+	add = gkrb_effective_use_$RESOURCE$
+	divide = gkrb_effective_revenue_$RESOURCE$
 }
 
 # Deprecated: use EMA-based gkrb_econ_effective_power_resource instead
-gkrp_effective_power = {
+gkrb_effective_power = {
 	add = value:gkrb_econ_utilization_ratio|RESOURCE|$RESOURCE$|
 	mult = gkrb_econ_ema_revenue_$RESOURCE$
 }
@@ -218,12 +268,12 @@ gkrb_ema_update_prev = {
 }
 
 gkrb_ema_update_new_revenue = {
-	add = value:gkrp_effective_resource_revenue|RESOURCE|$RESOURCE$|
+	add = gkrb_effective_revenue_$RESOURCE$
 	mult = value:gkrb_econ_ema_alpha
 }
 
 gkrb_ema_update_new_use = {
-	add = value:gkrb_resource_use|RESOURCE|$RESOURCE$|
+	add = gkrb_effective_use_$RESOURCE$
 	mult = value:gkrb_econ_ema_alpha
 }
 
@@ -341,28 +391,10 @@ gkrb_relative_value = {
 ####################################
 # Per-Resource Penalty Calculation
 ####################################
-# Penalty_r = Utilization_r × Mal_total × EMA_Revenue_r
-
-# Revenue for penalty calculation (current snapshot)
-gkrb_resource_revenue = {
-	base = 0
-	complex_trigger_modifier = {
-		trigger = resource_revenue_compare
-		parameters = {
-			resource = $RESOURCE$
-		}
-		mode = add
-	}
-}
-
-# Final penalty amount for a specific resource
-# penalty_r = utilization_r × Mal_total × ema_revenue_r
-# This applies penalties where you're actively using resources, not stockpiling
 gkrb_resource_penalty_amount = {
 	base = 0
-	add = value:gkrb_econ_utilization_ratio|RESOURCE|$RESOURCE$|
+	add = gkrb_econ_effective_power_$RESOURCE$
 	mult = value:gkrb_total_penalty_mult
-	mult = gkrb_econ_ema_revenue_$RESOURCE$
 }
 
 ####################################
@@ -400,12 +432,26 @@ gkrb_econ_score_rounded = {
 }
 
 ####################################
-# Value Share Percentages (Display)
-##Utilization Display
+# Utilization Display
 ####################################
 
 gkrb_utilization_percent = {
 	base = 0
 	add = value:gkrb_econ_utilization_ratio|RESOURCE|$RESOURCE$|
+	mult = 100
 	round = yes
+}
+
+
+
+gkrb_additional_maintenance_discount_trade = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = resource_expenses_compare
+		parameters = {
+			resource = trade
+			category = trade_policy
+		}
+		mode = add
+	}
 }

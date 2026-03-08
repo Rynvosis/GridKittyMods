@@ -4,6 +4,6 @@ tags={
 	"Economy"
 	"Technologies"
 }
-name="GK Rubberbanding"
+name="GK Tech Rubberbanding"
 picture="thumbnail.png"
 supported_version="v4.2.3"

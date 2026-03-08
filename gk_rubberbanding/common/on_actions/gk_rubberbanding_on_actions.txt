@@ -1,15 +1,19 @@
+####################################
+# Master Rubberbanding On-Actions
+####################################
+# All rubberbanding systems are orchestrated through the trunk dispatcher (namespace: gkrb)
+# Individual subsystem events (tech, unity, econ) are called internally by gkrb.1 and gkrb.10
+
 on_game_start = {
 	events = {
-		gkrb_econ.1
 		gkrb_tech.1
 		gkrb_unity.1
+		gkrb_econ.1
 	}
 }
 
 on_monthly_pulse = {
 	events = {
-		gkrb_econ.10
-		gkrb_tech.10
-		gkrb_unity.10
+		gkrb.10  # Master monthly orchestrator - dispatches all 5 stages
 	}
 }

@@ -21,30 +21,49 @@ gkrb_calculate_econ_values = {
 	}
 	
 	# Basic resources
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = energy }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = energy }
 	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = minerals }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = food }
+	# log = "\\[GKRB] Phase0 empire=\\[This.GetName] resource=mineral ema_rev=\\[This.gkrb_econ_ema_revenue_minerals] ema_use=\\[This.gkrb_econ_ema_use_minerals] util=\\[This.gkrb_econ_utilization_ratio_minerals] eff_power=\\[This.gkrb_econ_effective_power_minerals] econ_value=\\[This.gkrb_econ_value_minerals] total=\\[This.gkrb_econ_total_value]"
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = food }
 	
-	# # Advanced resources
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = consumer_goods }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = alloys }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = trade }
+	# Advanced resources
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = consumer_goods }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = alloys }
+	# Trade uses special handling due to Stellaris trade policy mechanics
+	# inline_script = { script = gk_rubberbanding/calculate_trade_econ_value }
+	set_variable = { which = gkrb_additional_maintenance_discount_trade value = value:gkrb_additional_maintenance_discount_trade }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = trade }
+	clear_variable = gkrb_additional_maintenance_discount_trade
 
-	# # Strategic resources
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = volatile_motes }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = exotic_gases }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = rare_crystals }
-	# # Exotic resources
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = sr_living_metal }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = sr_zro }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = sr_dark_matter }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = nanites }
+	# Strategic resources
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = volatile_motes }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = exotic_gases }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = rare_crystals }
+	# Exotic resources
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = sr_living_metal }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = sr_zro }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = sr_dark_matter }
+	inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = nanites }
 	
-	# # Abstract resources
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = unity }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = physics_research }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = society_research }
-	# inline_script = { script = gk_rubberbanding/calculate_resource_econ_value RESOURCE = engineering_research }
+	# Abstract resources - track EMA revenue only (no utilization)
+	# They have their own rubberbanding systems for penalties
+	# But contribute to economy power when in a lead
+	inline_script = { script = gk_rubberbanding/calculate_abstract_resource_ema_revenue RESOURCE = unity }
+	inline_script = { script = gk_rubberbanding/calculate_abstract_resource_ema_revenue RESOURCE = physics_research }
+	inline_script = { script = gk_rubberbanding/calculate_abstract_resource_ema_revenue RESOURCE = society_research }
+	inline_script = { script = gk_rubberbanding/calculate_abstract_resource_ema_revenue RESOURCE = engineering_research }
+	
+	# Add weighted research contribution (EMA revenue × tech lead factor)
+	change_variable = {
+		which = gkrb_econ_total_value
+		value = value:gkrb_research_contribution_to_econ
+	}
+
+	# Add weighted unity contribution (EMA revenue × 2 × unity lead factor)
+	change_variable = {
+		which = gkrb_econ_total_value
+		value = value:gkrb_unity_contribution_to_econ
+	}
 }
 
 
@@ -183,6 +202,8 @@ gkrb_calculate_penalties = {
 			value = gkrb_temp_bloc_mult
 		}
 	}
+	# Bloc multiplier is scratch-only
+	clear_variable = gkrb_temp_bloc_mult
 	
 	# Calculate aheadness ratio: AR = (effective_power / avg) - 1
 	set_variable = {
@@ -225,19 +246,20 @@ gkrb_apply_ahead_penalties = {
 	}
 	
 	# Apply per-resource penalties (weighted by utilization)
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = energy }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = energy }
 	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = minerals }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = food }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = trade }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = consumer_goods }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = alloys }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = volatile_motes }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = exotic_gases }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = rare_crystals }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = sr_living_metal }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = sr_zro }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = sr_dark_matter }
-	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = nanites }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = food }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = trade }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = consumer_goods }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = alloys }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = volatile_motes }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = exotic_gases }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = rare_crystals }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = sr_living_metal }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = sr_zro }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = sr_dark_matter }
+	inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = nanites }
+	#abstract resources - they now have their own specialized rubberbanding systems
 	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = unity }
 	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = physics_research }
 	# inline_script = { script = gk_rubberbanding/apply_utilization_weighted_penalty RESOURCE = society_research }
@@ -251,11 +273,6 @@ gkrb_apply_behind_bonuses = {
 	set_variable = {
 		which = gkrb_behind_bonus_scaled
 		value = gkrb_behind_mult
-	}
-	# Negate for display (positive means "helping")
-	multiply_variable = {
-		which = gkrb_behind_bonus_scaled
-		value = -1
 	}
 	
 	add_modifier = {
@@ -287,11 +304,11 @@ gkrb_clear_econ_rubberbanding_modifiers = {
 	remove_modifier = gkrb_econ_sr_zro_mod
 	remove_modifier = gkrb_econ_sr_dark_matter_mod
 	remove_modifier = gkrb_econ_nanites_mod
-	# Abstract resources
-	remove_modifier = gkrb_econ_unity_mod
-	remove_modifier = gkrb_econ_physics_research_mod
-	remove_modifier = gkrb_econ_society_research_mod
-	remove_modifier = gkrb_econ_engineering_research_mod
+	# # Abstract resources - they now have their own specialized rubberbanding systems
+	# remove_modifier = gkrb_econ_unity_mod
+	# remove_modifier = gkrb_econ_physics_research_mod
+	# remove_modifier = gkrb_econ_society_research_mod
+	# remove_modifier = gkrb_econ_engineering_research_mod
 	# Marker modifiers
 	remove_modifier = gkrb_econ_mod
 	remove_modifier = gkrb_econ_behind_mod

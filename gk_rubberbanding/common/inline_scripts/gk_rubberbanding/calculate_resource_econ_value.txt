@@ -1,7 +1,17 @@
+# caculate and cache gkrb_effective_resource_revenue
+set_variable = {
+	which = gkrb_effective_revenue_$RESOURCE$
+	value = value:gkrb_effective_resource_revenue|RESOURCE|$RESOURCE$|
+}
+set_variable = {
+	which = gkrb_effective_use_$RESOURCE$
+	value = value:gkrb_resource_use|RESOURCE|$RESOURCE$|
+}
+
 # Update per-resource EMAs
 create_variable_if_not_exists = {
 	VARIABLE = gkrb_econ_ema_revenue_$RESOURCE$
-	VALUE_IF_CREATED = value:gkrp_effective_resource_revenue|RESOURCE|$RESOURCE$|
+	VALUE_IF_CREATED = gkrb_effective_revenue_$RESOURCE$
 }
 set_variable = {
 	which = gkrb_econ_ema_revenue_$RESOURCE$
@@ -10,7 +20,7 @@ set_variable = {
 
 create_variable_if_not_exists = {
 	VARIABLE = gkrb_econ_ema_use_$RESOURCE$
-	VALUE_IF_CREATED = value:gkrb_resource_use|RESOURCE|$RESOURCE$|
+	VALUE_IF_CREATED = gkrb_effective_use_$RESOURCE$
 }
 set_variable = {
 	which = gkrb_econ_ema_use_$RESOURCE$
@@ -42,7 +52,7 @@ multiply_variable = {
 # Update prev_stock for next month's delta calculation
 set_variable = {
 	which = gkrb_prev_stock_$RESOURCE$
-	value = value:gkrp_current_stock|RESOURCE|$RESOURCE$|
+	value = value:gkrb_current_stock|RESOURCE|$RESOURCE$|
 }
 
 # Add to total
@@ -50,3 +60,6 @@ change_variable = {
 	which = gkrb_econ_total_value
 	value = gkrb_econ_value_$RESOURCE$
 }
+
+# Drop resource scratch value after contribution
+clear_variable = gkrb_econ_value_$RESOURCE$

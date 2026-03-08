@@ -14,6 +14,12 @@ gkrb_unity_mult_percent = {
 	round = yes
 }
 
+gkrb_unity_quarter_unity_adjust = {
+	add = gkrb_unity_unity_adjust
+	mult = 0.25
+	round = yes
+}
+
 ####################################
 # Effective Unity Calculation      #
 ####################################

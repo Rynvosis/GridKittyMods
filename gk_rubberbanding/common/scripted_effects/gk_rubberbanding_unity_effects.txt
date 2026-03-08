@@ -40,7 +40,7 @@ gkrb_calculate_unity_stockpile_delta = {
 		which = gkrb_unity_stockpile_delta
 		value = gkrb_unity_stockpile_previous
 	}
-	
+
 	# Save current as previous for next month
 	set_variable = {
 		which = gkrb_unity_stockpile_previous
@@ -83,6 +83,7 @@ gkrb_calculate_unity_raw_gain = {
 			value = 0
 		}
 	}
+
 }
 
 # Add effective unity to running total using bucket system
@@ -136,6 +137,11 @@ gkrb_accumulate_unity_score = {
 		which = gkrb_unity_score
 		value = value:gkrb_unity_score
 	}
+
+	# Scratch values no longer needed post-accumulation
+	clear_variable = gkrb_unity_effective
+	clear_variable = gkrb_unity_raw_gain
+	clear_variable = gkrb_unity_stockpile_delta
 }
 
 # Main entry point: calculate unity score for this month
@@ -149,7 +155,8 @@ gkrb_calculate_unity_score = {
 
 # Clear all unity rubberbanding modifiers
 gkrb_clear_unity_rubberbanding_modifiers = {
-	remove_modifier = gkrb_unity_unity_mod
+	remove_modifier = gkrb_unity_unity_add
+	remove_modifier = gkrb_unity_mod
 	remove_modifier = gkrb_unity_behind_mod
 }
 
@@ -157,15 +164,19 @@ gkrb_clear_unity_rubberbanding_modifiers = {
 gkrb_apply_ahead_unity_rubberbanding_modifiers = {
 	# Apply marker modifier with upkeep (tooltip)
 	add_modifier = {
-		modifier = gkrb_unity_unity_mod
+		modifier = gkrb_unity_unity_add
 		days = -1
 		multiplier = gkrb_unity_unity_adjust
+	}
+	add_modifier = {
+		modifier = gkrb_unity_mod
+		days = -1
+		multiplier = gkrb_unity_mult
 	}
 }
 
 # Apply unity rubberbanding when behind (catch-up bonus)
 gkrb_apply_behind_unity_rubberbanding_modifiers = {
-	# Apply behind modifier with catch-up bonuses
 	add_modifier = {
 		modifier = gkrb_unity_behind_mod
 		days = -1
