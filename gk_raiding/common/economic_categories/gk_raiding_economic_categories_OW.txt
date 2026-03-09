@@ -1,0 +1,27 @@
+# Version last updated: 4.2.3
+# Overwrites: planet_organic_batteries from 01_job_categories.txt
+# Adds generate_add_modifiers and generate_mult_modifiers for produces
+# so civics/modifiers can buff grid amalgamation (organic battery) output
+
+planet_organic_batteries = {
+	parent = planet_jobs_productive
+	modifier_category = pop_job
+	generate_add_modifiers = {
+		produces
+	}
+	generate_mult_modifiers = {
+		produces
+	}
+#	 Inherited Modifiers
+	triggered_produces_modifier = {
+		key = planet_technician
+		modifier_types = {
+			mult
+			add
+		}
+		trigger = {
+			always = yes
+		}
+		use_parent_icon = yes
+	}
+}

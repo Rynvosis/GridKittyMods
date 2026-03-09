@@ -1,8 +1,8 @@
 # GK Raiding Policies
 # Determines raiding focus and grants associated modifiers
-# gk_pop_raiding_limit = percentage of enemy pops you can take
 # gk_pillage_efficiency = multiplier on resources gained from pillaging
-# gk_max_pillage_tiers = additional times you can pillage a planet
+# Pillage tiers are now determined by war type (see gk_pillage_effects.txt)
+# gk_pillage_efficiency = multiplier on resources gained from pillaging
 
 gk_raiding_focus = {
 	allow = {
@@ -15,55 +15,54 @@ gk_raiding_focus = {
 			has_valid_civic = civic_crusader_spirit_corporate
 			has_ascension_perk = ap_nihilistic_acquisition
 			has_valid_civic = civic_gk_emancipators
+			has_valid_civic = civic_gk_emancipators_megacorp
 			has_valid_civic = civic_gk_robo_liberators
+			has_valid_civic = civic_gk_robo_liberators_megacorp
+			has_valid_civic = civic_gk_robo_liberators_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
 		}
 	}
-	
+
 	option = {
 		name = "gk_raiding_focus_plunder"
 
 		valid = {
 			NOR = {
 				has_valid_civic = civic_gk_emancipators
+				has_valid_civic = civic_gk_emancipators_megacorp
 				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
 			}
 		}
-		
+
 		policy_flags = {
 			gk_focus_plunder
 		}
-		
-		# 10% pop limit, 2 pillage tiers
-		modifier = {
-			gk_pop_raiding_limit = 1.0
-			gk_max_pillage_tiers = 2
-		}
-		
+
 		AI_weight = {
 			factor = 2
 		}
 	}
-	
+
 	option = {
-		name = "gk_raiding_focus_despoliation"
+		name = "gk_raiding_focus_no_raiding"
 
 		valid = {
 			NOR = {
 				has_valid_civic = civic_gk_emancipators
+				has_valid_civic = civic_gk_emancipators_megacorp
 				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
 			}
 		}
-		
+
 		policy_flags = {
-			gk_focus_despoliation
+			gk_focus_no_pop_raiding
 		}
-		
-		# No pop raiding, 6 pillage tiers, +50% pillage efficiency
-		modifier = {
-			gk_pillage_efficiency = 1.0
-			gk_max_pillage_tiers = 6
-		}
-		
+
 		AI_weight = {
 			factor = 1
 			modifier = {
@@ -72,27 +71,29 @@ gk_raiding_focus = {
 			}
 		}
 	}
-	
-	
+
+
 	option = {
 		name = "gk_raiding_focus_emancipation"
-		
+
 		valid = {
-			NOT = { has_valid_civic = civic_gk_robo_liberators }
+			NOR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
 			OR = {
 				has_valid_civic = civic_gk_emancipators
+				has_valid_civic = civic_gk_emancipators_megacorp
+				has_ethic = ethic_egalitarian
 				has_ethic = ethic_fanatic_egalitarian
 			}
 		}
-		
+
 		policy_flags = {
 			gk_focus_emancipation
 		}
-		
-		modifier = {
-			gk_pop_raiding_limit = 1.0
-		}
-		
+
 		AI_weight = {
 			factor = 2
 			modifier = {
@@ -107,20 +108,19 @@ gk_raiding_focus = {
 	}
 	option = {
 		name = "gk_raiding_focus_robo_liberation"
-		
+
 		valid = {
-			has_valid_civic = civic_gk_robo_liberators
+			OR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
 		}
-		
+
 		policy_flags = {
 			gk_focus_robo_liberation
 		}
-		
-		# 15% limit, robots only
-		modifier = {
-			gk_pop_raiding_limit = 2.0
-		}
-		
+
 		AI_weight = {
 			factor = 10
 			modifier = {
@@ -144,21 +144,30 @@ gk_robot_raiding = {
 			has_valid_civic = civic_crusader_spirit_corporate
 			has_ascension_perk = ap_nihilistic_acquisition
 			has_valid_civic = civic_gk_emancipators
+			has_valid_civic = civic_gk_emancipators_megacorp
 			has_valid_civic = civic_gk_robo_liberators
+			has_valid_civic = civic_gk_robo_liberators_megacorp
+			has_valid_civic = civic_gk_robo_liberators_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
 		}
 	}
-	
+
 	option = {
 		name = "gk_robot_raiding_allowed"
-		
+
 		policy_flags = {
 			gk_allow_robot_raiding
 		}
 
 		valid = {
-			NOT = { has_valid_civic = civic_gk_robo_liberators }
+			NOR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
 		}
-		
+
 		AI_weight = {
 			factor = 2
 			modifier = {
@@ -171,18 +180,22 @@ gk_robot_raiding = {
 			}
 		}
 	}
-	
+
 	option = {
 		name = "gk_robot_raiding_forbidden"
-		
+
 		policy_flags = {
 			gk_forbid_robot_raiding
 		}
 
 		valid = {
-			NOT = { has_valid_civic = civic_gk_robo_liberators }
+			NOR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
 		}
-		
+
 		AI_weight = {
 			factor = 1
 			modifier = {
@@ -195,18 +208,22 @@ gk_robot_raiding = {
 			}
 		}
 	}
-	
+
 	option = {
 		name = "gk_robot_raiding_only"
-		
+
 		policy_flags = {
 			gk_robots_only_raiding
 		}
 
 		potential = {
-			has_valid_civic = civic_gk_robo_liberators
+			OR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
 		}
-		
+
 		AI_weight = {
 			factor = 1
 			modifier = {

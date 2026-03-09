@@ -10,18 +10,10 @@ gk_pillage_efficiency = {
 	category = country
 }
 
-# Increases the cap on how many pops can be raided from a target
-gk_pop_raiding_limit = {
-	icon = mod_pop_growth_speed
+# Increases pop raiding capacity (percentage of enemy pops that can be captured)
+gk_raiding_capacity = {
+	icon = mod_army_morale
 	percentage = yes
-	good = yes
-	category = country
-}
-
-# Additional pillage tiers available (base is 4)
-gk_max_pillage_tiers = {
-	icon = mod_damage_mult
-	percentage = no
 	good = yes
 	category = country
 }

@@ -1,18 +1,7 @@
 # GK Raiding Databank Category
-# This creates a dedicated section in the Databank for raiding mechanics
+# Creates a dedicated section in the Databank for raiding mechanics
 
 db_gk_raiding = {
 	name = db_gk_raiding
-	icon = "GFX_text_diplomacy"
-	
-	potential = {
-		# Show this category if empire can raid
-		OR = {
-			has_valid_civic = civic_barbaric_despoilers
-			has_valid_civic = civic_crusader_spirit_corporate
-			has_valid_civic = civic_gk_emancipators
-			has_valid_civic = civic_gk_robo_liberators
-			has_ascension_perk = ap_nihilistic_acquisition
-		}
-	}
+	icon = "GFX_text_databank_conquest"
 }

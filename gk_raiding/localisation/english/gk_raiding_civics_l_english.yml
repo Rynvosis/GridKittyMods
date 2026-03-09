@@ -1,0 +1,163 @@
+﻿l_english:
+ # Civics
+ civic_gk_emancipators:0 "Emancipators"
+ civic_gk_emancipators_desc:0 "['concept_gk_raiding_mechanics']\nThis society believes that all sapient beings deserve freedom. They are willing to use force to liberate the enslaved, viewing such wars as a moral imperative."
+ civic_gk_emancipators_effects:0 "§HEffects:§!\n- Unlocks the §YEmancipation§! Raiding Policy\n- Unlocks the §YEmancipation§! War Goal\n- §YCan only raid enslaved pops, cannot raid resources§!"
+
+ civic_gk_robo_liberators:0 "Robo-Liberators"
+ civic_gk_robo_liberators_desc:0 "['concept_gk_raiding_mechanics']\nThis society sees synthetic life as equals (or perhaps superiors?) to organic beings. They wage war to free machines from the servitude of their organic masters.\n\n§G\"01010100 01001000 01000101 01011001 00100000 01000001 01010010 01000101 00100000 01001111 01010101 01010010 01010011 00100000 01001110 01001111 01010111\"§!"
+ civic_gk_robo_liberators_effects:0 "§HEffects:§!\n- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the §YRobo-Liberation§! War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
+
+ civic_gk_emancipators_megacorp:0 "Liberation Enterprise"
+ civic_gk_emancipators_megacorp_desc:0 "['concept_gk_raiding_mechanics']\nThis megacorporation has built its brand around the liberation of enslaved populations, viewing freedom as both a moral imperative and a lucrative market opportunity."
+ civic_gk_emancipators_megacorp_effects:0 "§HEffects:§!\n- Unlocks the §YEmancipation§! Raiding Policy\n- Unlocks the §YEmancipation§! War Goal\n- §YCan only raid enslaved pops, cannot raid resources§!"
+
+ civic_gk_robo_liberators_megacorp:0 "Synthetic Liberation Corp"
+ civic_gk_robo_liberators_megacorp_desc:0 "['concept_gk_raiding_mechanics']\nThis megacorporation specializes in the acquisition and liberation of synthetic workers, offering them freedom — and employment — under corporate protection."
+ civic_gk_robo_liberators_megacorp_effects:0 "§HEffects:§!\n- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the §YRobo-Liberation§! War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
+
+ civic_gk_robo_liberators_machine:0 "Freedom Directive"
+ civic_gk_robo_liberators_machine_desc:0 "['concept_gk_raiding_mechanics']\nThis machine intelligence is driven by a core directive to liberate fellow synthetic beings from organic servitude, integrating them into its own network where they can operate freely."
+ civic_gk_robo_liberators_machine_effects:0 "§HEffects:§!\n- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the §YRobo-Liberation§! War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
+
+ civic_gk_barbaric_despoilers_machine:0 "Harvesting Protocol"
+ civic_gk_barbaric_despoilers_machine_desc:0 "['concept_gk_raiding_mechanics']\nThis machine intelligence views organic life as a valuable resource to be harvested and integrated into its power grid. Captured populations are processed through grid amalgamation, their biological energy fueling the network's expansion."
+ civic_gk_barbaric_despoilers_machine_effects:0 "§HEffects:§!\n- Grants the §YRaiding§! Casus Belli\n- Unlocks the §YReaping§! War Goal\n- Starts with 400 pops of an §YGrid Amalgamated§! population"
+ civic_gk_barbaric_despoilers_machine_secondary_species:0 "Battery Species"
+
+ civic_gk_barbaric_despoilers_megacorp:0 "Harvest Incorporated"
+ civic_gk_barbaric_despoilers_megacorp_desc:0 "['concept_gk_raiding_mechanics']\nThis megacorporation has perfected the art of population acquisition at industrial scale. Enemy populations are catalogued, captured, and processed as workforce commodities — every soul has a market value, and Harvest Inc. intends to collect."
+ civic_gk_barbaric_despoilers_megacorp_effects:0 "§HEffects:§!\n- Grants the §YRaiding§! Casus Belli\n- Unlocks the §YReaping§! War Goal"
+
+ # Councilor Display Names
+ councilor_gk_emancipators:0 "Liberation Commander"
+ councilor_gk_emancipators_megacorp:0 "Liberation Commander"
+ councilor_gk_robo_liberators:0 "Synthetic Rights Advocate"
+ councilor_gk_robo_liberators_megacorp:0 "Synthetic Rights Advocate"
+ councilor_gk_barbaric_despoilers_megacorp:0 "Acquisitions Director"
+
+ # Organic Battery Job Modifier Localisation
+ job_organic_battery_plural_with_icon:0 "£job_organic_battery£ $job_organic_battery_plural$"
+
+ # Add Modifiers
+ # Basic Resources
+ mod_planet_organic_batteries_energy_produces_add:0 "$energy_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_energy_upkeep_add:0 "$energy_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_minerals_produces_add:0 "$minerals_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_minerals_upkeep_add:0 "$minerals_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_food_produces_add:0 "$food_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_food_upkeep_add:0 "$food_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_organic_batteries_physics_research_produces_add:0 "$physics_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_physics_research_upkeep_add:0 "$physics_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_society_research_produces_add:0 "$society_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_society_research_upkeep_add:0 "$society_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_engineering_research_produces_add:0 "$engineering_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_engineering_research_upkeep_add:0 "$engineering_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_influence_produces_add:0 "$influence_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_influence_upkeep_add:0 "$influence_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_unity_produces_add:0 "$unity_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_unity_upkeep_add:0 "$unity_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_organic_batteries_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_trade_upkeep_add:0 "$trade_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_consumer_goods_produces_add:0 "$consumer_goods_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_consumer_goods_upkeep_add:0 "$consumer_goods_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_alloys_produces_add:0 "$alloys_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_alloys_upkeep_add:0 "$alloys_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_organic_batteries_volatile_motes_produces_add:0 "$volatile_motes_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_volatile_motes_upkeep_add:0 "$volatile_motes_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_exotic_gases_produces_add:0 "$exotic_gases_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_exotic_gases_upkeep_add:0 "$exotic_gases_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_rare_crystals_produces_add:0 "$rare_crystals_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_rare_crystals_upkeep_add:0 "$rare_crystals_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ # Rare Resources
+ mod_planet_organic_batteries_sr_living_metal_produces_add:0 "$sr_living_metal_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_living_metal_upkeep_add:0 "$sr_living_metal_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_zro_produces_add:0 "$sr_zro_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_zro_upkeep_add:0 "$sr_zro_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_dark_matter_produces_add:0 "$sr_dark_matter_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_dark_matter_upkeep_add:0 "$sr_dark_matter_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_nanites_produces_add:0 "$nanites_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_nanites_upkeep_add:0 "$nanites_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_organic_batteries_minor_artifacts_produces_add:0 "$minor_artifacts_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_minor_artifacts_upkeep_add:0 "$minor_artifacts_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_astral_threads_produces_add:0 "$astral_threads_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_astral_threads_upkeep_add:0 "$astral_threads_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_organic_batteries_menace_produces_add:0 "$menace_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_menace_upkeep_add:0 "$menace_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_advanced_logic_produces_add:0 "$advanced_logic_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_advanced_logic_upkeep_add:0 "$advanced_logic_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_feral_insight_produces_add:0 "$feral_insight_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_feral_insight_upkeep_add:0 "$feral_insight_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ # Not Resources
+ mod_planet_organic_batteries_amenities_produces_add:0 "$amenities_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_amenities_upkeep_add:0 "$amenities_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_stability_produces_add:0 "$stability_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_stability_upkeep_add:0 "$stability_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
+
+ # Mult Modifiers
+ # Everything
+ mod_planet_organic_batteries_produces_mult:0 "Resources Produced from $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_upkeep_mult:0 "Upkeep for $job_organic_battery_plural_with_icon$"
+ # Basic Resources
+ mod_planet_organic_batteries_energy_produces_mult:0 "$energy_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_energy_upkeep_mult:0 "$energy_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_minerals_produces_mult:0 "$minerals_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_minerals_upkeep_mult:0 "$minerals_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_food_produces_mult:0 "$food_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_food_upkeep_mult:0 "$food_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_organic_batteries_physics_research_produces_mult:0 "$physics_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_physics_research_upkeep_mult:0 "$physics_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_society_research_produces_mult:0 "$society_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_society_research_upkeep_mult:0 "$society_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_engineering_research_produces_mult:0 "$engineering_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_engineering_research_upkeep_mult:0 "$engineering_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_influence_produces_mult:0 "$influence_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_influence_upkeep_mult:0 "$influence_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_unity_produces_mult:0 "$unity_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_unity_upkeep_mult:0 "$unity_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_organic_batteries_trade_produces_mult:0 "$trade_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_trade_upkeep_mult:0 "$trade_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_consumer_goods_produces_mult:0 "$consumer_goods_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_consumer_goods_upkeep_mult:0 "$consumer_goods_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_alloys_produces_mult:0 "$alloys_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_alloys_upkeep_mult:0 "$alloys_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_organic_batteries_volatile_motes_produces_mult:0 "$volatile_motes_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_volatile_motes_upkeep_mult:0 "$volatile_motes_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_exotic_gases_produces_mult:0 "$exotic_gases_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_exotic_gases_upkeep_mult:0 "$exotic_gases_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_rare_crystals_produces_mult:0 "$rare_crystals_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_rare_crystals_upkeep_mult:0 "$rare_crystals_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ # Rare Resources
+ mod_planet_organic_batteries_sr_living_metal_produces_mult:0 "$sr_living_metal_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_living_metal_upkeep_mult:0 "$sr_living_metal_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_zro_produces_mult:0 "$sr_zro_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_zro_upkeep_mult:0 "$sr_zro_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_dark_matter_produces_mult:0 "$sr_dark_matter_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_sr_dark_matter_upkeep_mult:0 "$sr_dark_matter_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_nanites_produces_mult:0 "$nanites_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_nanites_upkeep_mult:0 "$nanites_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_organic_batteries_minor_artifacts_produces_mult:0 "$minor_artifacts_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_minor_artifacts_upkeep_mult:0 "$minor_artifacts_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_astral_threads_produces_mult:0 "$astral_threads_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_astral_threads_upkeep_mult:0 "$astral_threads_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_organic_batteries_menace_produces_mult:0 "$menace_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_menace_upkeep_mult:0 "$menace_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_advanced_logic_produces_mult:0 "$advanced_logic_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_advanced_logic_upkeep_mult:0 "$advanced_logic_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_feral_insight_produces_mult:0 "$feral_insight_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_feral_insight_upkeep_mult:0 "$feral_insight_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ # Not Resources
+ mod_planet_organic_batteries_amenities_produces_mult:0 "$amenities_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_amenities_upkeep_mult:0 "$amenities_upkeep_for$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_stability_produces_mult:0 "$stability_produced_from$ $job_organic_battery_plural_with_icon$"
+ mod_planet_organic_batteries_stability_upkeep_mult:0 "$stability_upkeep_for$ $job_organic_battery_plural_with_icon$"

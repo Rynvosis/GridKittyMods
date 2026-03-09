@@ -1,11 +1,5 @@
 # GK Raiding Scripted Localization for Dynamic Text
 
-# Raider's pop limit as percentage
-defined_text = {
-	name = GkRaiderPopLimitPercent
-	value = value:gk_raider_pop_limit_percent
-}
-
 # Raider's max pillage tiers from modifier
 defined_text = {
 	name = GkRaiderMaxPillageTiers
@@ -18,23 +12,6 @@ defined_text = {
 	value = value:gk_pillage_efficiency_mult
 }
 
-# Raidee's total effective taken (script value)
-defined_text = {
-	name = GkRaideeEffectiveTaken
-	value = value:gk_raidee_effective_taken
-}
-
-# Raidee's cap for the raider (script value, requires Root to be raider)
-defined_text = {
-	name = GkRaideeCapForRaider
-	value = value:gk_raidee_cap_for_raider
-}
-
-defined_text = {
-	name = GkRemainingTruePopsToPlunder
-	value = value:gk_remaining_true_pops_to_plunder
-}
-
 # Forfeited pops count (variable on country/galactic_object)
 defined_text = {
 	name = GkForfeitedPops
@@ -45,4 +22,57 @@ defined_text = {
 defined_text = {
 	name = GkRaideePlundered
 	value = value:gk_raidee_plundered_value
+}
+
+# Total lifetime pops raided (variable on raider country)
+defined_text = {
+	name = GkTotalPopsRaided
+	value = value:gk_total_pops_raided_value
+}
+
+# Estimated surrender pops (evaluated in defender scope, root = raider)
+defined_text = {
+	name = GkEstimatedSurrenderPops
+	value = value:gk_estimated_surrender_pops
+}
+
+# Bombardment cap percentage (evaluated in raider scope)
+defined_text = {
+	name = GkBombardmentCapPercent
+	value = value:gk_bombardment_cap_percent
+}
+
+# Surrender cap percentage (evaluated in raider scope)
+defined_text = {
+	name = GkSurrenderCapPercent
+	value = value:gk_surrender_cap_percent
+}
+
+# Pillage tier nickname (evaluated in planet scope, highest-first since check_variable means >=)
+defined_text = {
+	name = GkPillageTierName
+	text = {
+		localization_key = gk_pillage_tier_6_name
+		trigger = { check_variable = { which = gk_pillage_tier value = 6 } }
+	}
+	text = {
+		localization_key = gk_pillage_tier_5_name
+		trigger = { check_variable = { which = gk_pillage_tier value = 5 } }
+	}
+	text = {
+		localization_key = gk_pillage_tier_4_name
+		trigger = { check_variable = { which = gk_pillage_tier value = 4 } }
+	}
+	text = {
+		localization_key = gk_pillage_tier_3_name
+		trigger = { check_variable = { which = gk_pillage_tier value = 3 } }
+	}
+	text = {
+		localization_key = gk_pillage_tier_2_name
+		trigger = { check_variable = { which = gk_pillage_tier value = 2 } }
+	}
+	text = {
+		localization_key = gk_pillage_tier_1_name
+		trigger = { check_variable = { which = gk_pillage_tier value = 1 } }
+	}
 }

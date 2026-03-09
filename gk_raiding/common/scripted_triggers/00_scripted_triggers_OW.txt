@@ -1,0 +1,33 @@
+# Version last updated: 4.3.0
+# Overwrites: is_unfriendly, is_slaver, prefers_commander_governors
+# Reason: Add GK barbaric despoiler civic variants (machine + megacorp)
+
+is_unfriendly = {
+	OR = {
+		has_valid_civic = civic_fanatic_purifiers
+		has_valid_civic = civic_machine_terminator
+		has_valid_civic = civic_hive_devouring_swarm
+		has_valid_civic = civic_barbaric_despoilers
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		has_valid_civic = civic_scorched_earth
+		has_valid_civic = civic_hive_scorched_earth
+	}
+}
+
+is_slaver = {
+	OR = {
+		has_valid_civic = civic_barbaric_despoilers
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		has_ascension_perk = ap_nihilistic_acquisition
+	}
+}
+
+prefers_commander_governors = {
+	OR = {
+		has_valid_civic = civic_barbaric_despoilers
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+	}
+}

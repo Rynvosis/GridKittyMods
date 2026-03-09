@@ -1,13 +1,12 @@
 # GK Raiding War Goals
-# Two war goals - Raiding (general) and Emancipation (slaves only)
-# Effectiveness is determined by modifiers on the raiding country
 
 #####################
-# RAIDING WAR       #
+# REAPING WAR       #
 #####################
-# General raiding: pops + resources, effectiveness based on modifiers
-wg_gk_raiding = {
-	casus_belli = cb_gk_raiding
+# Unlimited pop capture, no resource pillaging
+# Bombardment/invasion cap: unlimited, Surrender cap: all
+wg_gk_reaping = {
+	casus_belli = cb_despoliation
 	hide_if_no_cb = no
 	total_war = no
 
@@ -16,11 +15,15 @@ wg_gk_raiding = {
 		imperial_authority >= 100
 	}
 
-	surrender_acceptance = -75
+	surrender_acceptance = -1000
+
+	forbidden_peace_offers = {
+		surrender = ""
+	}
 
 	potential = {
 		has_total_war_cb = no
-		gk_can_use_raiding_cb = yes
+		gk_can_use_reaping_cb = yes
 		NOT = { is_in_federation_with = from }
 		NAND = {
 			is_galactic_emperor = yes
@@ -59,33 +62,43 @@ wg_gk_raiding = {
 	}
 
 	on_accept = {
-		custom_tooltip = wg_gk_raiding_accept_tooltip
+		custom_tooltip = wg_gk_reaping_accept_tooltip
 		hidden_effect = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
-			# Pillage and abduct (all planets, all sapient pops per robot policy)
-			gk_pillage_on_surrender = yes
+			# Set surrender cap rate (unlimited for reaping)
+			set_variable = { which = gk_cap_rate value = 100 }
+			# Abduct only - no pillaging
 			gk_abduct_on_surrender = yes
-			# Fire reward collection event with raidee as from
+			# Fire reaping surrender event
 			country_event = {
-				id = gk_raiding.500
+				id = gk_raiding.700
 				scopes = { from = event_target:gk_raidee }
 			}
 		}
 	}
 
 	ai_weight = {
-		weight = 100
+		weight = 75
+		modifier = {
+			factor = 2
+			OR = {
+				has_valid_civic = civic_barbaric_despoilers
+				has_valid_civic = civic_gk_barbaric_despoilers_machine
+				has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+			}
+		}
 	}
 }
 
 #####################
 # EMANCIPATION WAR  #
 #####################
-# Enslaved pops only, count 0.66x toward cap, no resource pillaging
+# Enslaved pops only, no resource pillaging
+# Bombardment/invasion cap: 30%, Surrender cap: 15%
 wg_gk_emancipation = {
-	casus_belli = cb_gk_raiding
+	casus_belli = cb_despoliation
 	hide_if_no_cb = no
 	total_war = no
 
@@ -141,6 +154,12 @@ wg_gk_emancipation = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
+			# Set surrender cap rate (10% base, scaled by raiding capacity modifier)
+			# Emancipation civic provides +50% gk_raiding_capacity, making effective rate ~15%
+			set_variable = { which = gk_cap_rate value = 0.10 }
+			set_variable = { which = gk_rate_mult_temp value = value:gk_raiding_capacity_mult }
+			multiply_variable = { which = gk_cap_rate value = gk_rate_mult_temp }
+			clear_variable = gk_rate_mult_temp
 			# Abduct only (enslaved pops via war goal check)
 			gk_abduct_on_surrender = yes
 			# Fire reward collection event with raidee as from
@@ -173,8 +192,9 @@ wg_gk_emancipation = {
 # ROBO-LIBERATION   #
 #####################
 # Robotic pops only, no resource pillaging
+# Bombardment/invasion cap: 30%, Surrender cap: 15%
 wg_gk_robo_liberation = {
-	casus_belli = cb_gk_raiding
+	casus_belli = cb_despoliation
 	hide_if_no_cb = no
 	total_war = no
 
@@ -230,6 +250,12 @@ wg_gk_robo_liberation = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
+			# Set surrender cap rate (10% base, scaled by raiding capacity modifier)
+			# Robo-liberation civic provides +50% gk_raiding_capacity, making effective rate ~15%
+			set_variable = { which = gk_cap_rate value = 0.10 }
+			set_variable = { which = gk_rate_mult_temp value = value:gk_raiding_capacity_mult }
+			multiply_variable = { which = gk_cap_rate value = gk_rate_mult_temp }
+			clear_variable = gk_rate_mult_temp
 			# Abduct only (robotic pops via robot check)
 			gk_abduct_on_surrender = yes
 			# Fire reward collection event with raidee as from

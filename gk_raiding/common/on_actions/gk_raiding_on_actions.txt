@@ -1,9 +1,18 @@
 # GK Raiding On Actions
 
-# Initialize global variables
-on_game_start = {
+# Setup machine despoilers secondary species
+on_game_start_country = {
 	events = {
-		gk_raiding.1
+		gk_raiding.2
+	}
+}
+
+# A war is beginning, executed for every country in the war
+# Root = Country
+# From = War
+on_war_beginning = {
+	events = {
+		gk_raiding.800  # Reaping war declaration opinion
 	}
 }
 
@@ -41,5 +50,6 @@ on_yearly_pulse_country = {
 	events = {
 		gk_raiding.50  # Decay raidee raided pops
 		gk_raiding.51  # Decay pillage tier on owned planets
+		gk_raiding.52  # Cleanup raid trackers and cap flags
 	}
 }

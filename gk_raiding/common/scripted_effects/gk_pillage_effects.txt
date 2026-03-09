@@ -15,6 +15,41 @@
 #   2. gk_calculate_base_loot -> gk_transform_loot -> gk_collect_loot_from_storage
 
 ######################
+# War Context Setup  #
+######################
+
+# Set pillage context variables based on war type (for bombardment)
+# This = raider country
+# prev = planet being bombarded
+# Sets: gk_effective_max_tiers, gk_pillage_resource_mult on raider
+gk_set_pillage_context_for_bombardment = {
+	if = {
+		limit = {
+			any_war = {
+				is_war_participant = { who = prev.owner side = defenders }
+				using_war_goal = { type = wg_plunder_raid owner = prev }
+			}
+		}
+		set_variable = { which = gk_effective_max_tiers value = 6 }
+		set_variable = { which = gk_pillage_resource_mult value = 2 }
+	}
+	else_if = {
+		limit = {
+			any_war = {
+				is_war_participant = { who = prev.owner side = defenders }
+				using_war_goal = { type = wg_plunder owner = prev }
+			}
+		}
+		set_variable = { which = gk_effective_max_tiers value = 2 }
+		set_variable = { which = gk_pillage_resource_mult value = 1 }
+	}
+	else = {
+		set_variable = { which = gk_effective_max_tiers value = 0 }
+		set_variable = { which = gk_pillage_resource_mult value = 1 }
+	}
+}
+
+######################
 # Entry Points       #
 ######################
 
@@ -56,6 +91,10 @@ gk_pillage_on_surrender = {
 	
 	# Transform accumulated loot on the receipt
 	gk_transform_loot = yes
+
+	# Cleanup context variables
+	clear_variable = gk_effective_max_tiers
+	clear_variable = gk_pillage_resource_mult
 }
 
 # Pillage for invasion - all remaining tiers on single planet
@@ -91,6 +130,10 @@ gk_pillage_on_invasion = {
 	
 	# Transform accumulated loot on the receipt
 	gk_transform_loot = yes
+
+	# Cleanup context variables
+	clear_variable = gk_effective_max_tiers
+	clear_variable = gk_pillage_resource_mult
 }
 
 # Pillage for orbital bombardment - single tier, immediate payout
@@ -119,6 +162,12 @@ gk_pillage_on_bombardment = {
 		# Send notifications
 		gk_send_pillage_notifications = yes
 	}
+
+	# Cleanup context variables on raider
+	event_target:gk_raider = {
+		clear_variable = gk_effective_max_tiers
+		clear_variable = gk_pillage_resource_mult
+	}
 }
 
 ######################
@@ -136,10 +185,10 @@ gk_setup_pillage_tiers = {
 		VALUE_IF_CREATED = 0
 	}
 	
-	# Calculate remaining tiers
+	# Calculate remaining tiers (from war-context variables)
 	set_variable = {
 		which = gk_pillage_tiers_to_apply
-		value = event_target:gk_raider.modifier:gk_max_pillage_tiers
+		value = event_target:gk_raider.gk_effective_max_tiers
 	}
 	subtract_variable = {
 		which = gk_pillage_tiers_to_apply
@@ -172,7 +221,7 @@ gk_setup_pillage_tiers_bombardment = {
 		limit = {
 			check_variable = {
 				which = gk_pillage_tier
-				value < event_target:gk_raider.modifier:gk_max_pillage_tiers
+				value < event_target:gk_raider.gk_effective_max_tiers
 			}
 		}
 		set_variable = { which = gk_pillage_tiers_to_apply value = 1 }
@@ -215,7 +264,9 @@ gk_init_loot_variables = {
 gk_calculate_base_loot = {
 	# Base months of production per tier
 	set_variable = { which = gk_loot_months value = 3 }
-	
+	# Apply war-type resource multiplier (pillage war = 2x, raiding war = 1x)
+	multiply_variable = { which = gk_loot_months value = event_target:gk_raider.gk_pillage_resource_mult }
+
 	# Calculate total months (months * tiers)
 	set_variable = {
 		which = gk_total_loot_months

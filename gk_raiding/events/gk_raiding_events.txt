@@ -1,15 +1,74 @@
 namespace = gk_raiding
-# Initialize global variables
-event = {
-	id = gk_raiding.1
+
+############################
+# Machine Despoilers Setup #
+############################
+# This = country
+# Converts 400 starting machine pops to organic battery pops
+# Sets secondary species to grid amalgamation slavery
+# Ensures a farming district on capital
+country_event = {
+	id = gk_raiding.2
 	hide_window = yes
 	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+	}
+
 	immediate = {
-		# Set base raiding quota (10%) on global event country
-		event_target:global_event_country = {
-			set_variable = {
-				which = gk_base_raiding_quota
-				value = 0.1
+		# Set secondary species to grid amalgamation slavery
+		every_owned_species = {
+			limit = {
+				is_robotic = no
+				NOT = { is_same_species = root.owner_species }
+			}
+			save_event_target_as = gk_battery_species
+			set_citizenship_type = {
+				country = root
+				type = citizenship_slavery
+				cooldown = no
+			}
+			set_slavery_type = {
+				country = root
+				type = slavery_matrix
+				cooldown = no
+			}
+		}
+
+		capital_scope = {
+			# Kill 400 machine pops from the main species pop group
+			random_owned_pop_group = {
+				limit = {
+					is_same_species = root.owner_species
+				}
+				kill_pop_group = {
+					pop_group = this
+					amount = 400
+				}
+			}
+
+			# Create 400 organic battery pops
+			create_pop_group = {
+				species = event_target:gk_battery_species
+				size = 400
+			}
+
+			# Ensure at least 1 farming district, trading a generator for it if possible
+			if = {
+				limit = {
+					NOT = {
+						has_district = district_farming
+					}
+				}
+				add_district = district_farming
+			}
+
+			if = {
+				limit = {
+					has_district = district_generator
+				}
+				remove_district = district_generator
 			}
 		}
 	}
@@ -36,9 +95,10 @@ planet_event = {
 		gk_can_be_pillaged = yes
 	}
 	immediate = {
-		# Save raider for effects
+		# Save raider for effects and set war-context pillage variables
 		from = {
 			save_event_target_as = gk_raider
+			gk_set_pillage_context_for_bombardment = yes
 		}
 		# Initialize
 		create_variable_if_not_exists = {
@@ -104,11 +164,11 @@ pop_group_event = {
 	immediate = {
 		# Save pop_group for later reference
 		save_event_target_as = gk_abducted_pop_group
-		
+
 		this.planet.owner = {
 			save_event_target_as = gk_raider
 		}
-		
+
 		# Track on the planet owner (raidee)
 		if = {
 			limit = {
@@ -151,11 +211,15 @@ country_event = {
 								owner = attacker
 							}
 							using_war_goal = {
-								type = wg_gk_raiding
+								type = wg_plunder
 								owner = attacker
 							}
 							using_war_goal = {
 								type = wg_gk_robo_liberation
+								owner = attacker
+							}
+							using_war_goal = {
+								type = wg_gk_reaping
 								owner = attacker
 							}
 						}
@@ -172,13 +236,13 @@ country_event = {
 					value = 0.9
 				}
 			}
-			# Clear if below threshold and not at war
+			# Clear if below 1 and not at war
 			if = {
 				limit = {
 					is_at_war = no
 					check_variable = {
 						which = gk_raidee_plundered
-						value <= value:gk_raidee_decay_threshold
+						value <= 1
 					}
 				}
 				clear_variable = gk_raidee_plundered
@@ -201,11 +265,15 @@ country_event = {
 								owner = attacker
 							}
 							using_war_goal = {
-								type = wg_gk_raiding
+								type = wg_plunder
 								owner = attacker
 							}
 							using_war_goal = {
 								type = wg_gk_robo_liberation
+								owner = attacker
+							}
+							using_war_goal = {
+								type = wg_gk_reaping
 								owner = attacker
 							}
 						}
@@ -222,20 +290,19 @@ country_event = {
 					value = 0.9
 				}
 			}
-			# Clear if below threshold and not at war
+			# Clear if below 1 and not at war
 			if = {
 				limit = {
 					is_at_war = no
 					check_variable = {
 						which = gk_raidee_emancipated
-						value <= value:gk_raidee_decay_threshold
+						value <= 1
 					}
 				}
 				clear_variable = gk_raidee_emancipated
 			}
 		}
 		# Apply/update recovery modifier based on plunder percentage
-		# Only if plundered but NOT emancipated (or plundered > emancipated)
 		gk_update_plunder_recovery_modifier = yes
 	}
 }
@@ -256,6 +323,63 @@ country_event = {
 				}
 			}
 			gk_decay_pillage_tier = yes
+		}
+	}
+}
+
+# Yearly cleanup of raid tracker leaders and cap flags
+# This = Country scope (from on_yearly_pulse_country)
+country_event = {
+	id = gk_raiding.52
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		# Only run if we have any raid cap flags
+		any_country = {
+			has_country_flag = gk_raid_cap_reached_by_@root
+		}
+	}
+	immediate = {
+		# Check each country that has a cap flag for us
+		every_country = {
+			limit = {
+				has_country_flag = gk_raid_cap_reached_by_@root
+			}
+			# If no longer at war with this raider, clean up
+			if = {
+				limit = {
+					NOT = {
+						root = {
+							any_war = {
+								is_war_participant = {
+									who = prevprev
+								}
+							}
+						}
+					}
+				}
+				remove_country_flag = gk_raid_cap_reached_by_@root
+			}
+		}
+		# Clean up tracker leaders for pairs no longer at war
+		save_event_target_as = gk_raider
+		event_target:global_event_country = {
+			every_owned_leader = {
+				limit = {
+					has_leader_flag = gk_raid_tracker
+					has_leader_flag = gk_raid_tracker_attacker_@root
+				}
+				# Check if still at war with the defender
+				# We need to find the defender from the flag
+				# Since we can't iterate flags, just check if raider is at war at all
+				# If raider has no wars, clean up all their trackers
+				if = {
+					limit = {
+						root = { is_at_war = no }
+					}
+					kill_leader = { show_notification = no }
+				}
+			}
 		}
 	}
 }
@@ -287,6 +411,33 @@ country_event = {
 			save_event_target_as = gk_target_planet
 			save_event_target_as = gk_raiding_target
 		}
+		# Set pillage context from war type
+		if = {
+			limit = {
+				any_war = {
+					is_war_participant = { who = fromfrom.owner side = defenders }
+					using_war_goal = { type = wg_plunder_raid owner = prev }
+				}
+			}
+			set_variable = { which = gk_effective_max_tiers value = 6 }
+			set_variable = { which = gk_pillage_resource_mult value = 2 }
+		}
+		else_if = {
+			limit = {
+				any_war = {
+					is_war_participant = { who = fromfrom.owner side = defenders }
+					using_war_goal = { type = wg_plunder owner = prev }
+				}
+			}
+			set_variable = { which = gk_effective_max_tiers value = 2 }
+			set_variable = { which = gk_pillage_resource_mult value = 1 }
+		}
+		else = {
+			set_variable = { which = gk_effective_max_tiers value = 0 }
+			set_variable = { which = gk_pillage_resource_mult value = 1 }
+		}
+		# Set cap rate from war context (invasion rate)
+		gk_set_cap_rate_from_context = yes
 		# Pillage and abduct (single planet)
 		gk_pillage_on_invasion = yes
 		gk_abduct_on_invasion = yes
@@ -416,6 +567,139 @@ country_event = {
 	option = {
 		name = gk_raiding.600.accept
 		custom_tooltip = gk_raiding.600.tooltip
+		hidden_effect = {
+			gk_destroy_loot_receipt = yes
+		}
+	}
+}
+
+#####################
+# REAPING SURRENDER #
+#####################
+# Reaping surrender - display total forfeited pops (mass abduction)
+# This = Winner (raider)
+# From = Loser (raidee) - passed via scopes
+# Abduction already happened, just display count from receipt
+country_event = {
+	id = gk_raiding.700
+	title = gk_raiding.700.title
+	desc = gk_raiding.700.desc
+	picture = GFX_evt_burning_city
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	immediate = {
+		# Save event targets
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+		# Retrieve the loot receipt to display values
+		gk_retrieve_loot_receipt = yes
+		# Copy values to root for localisation
+		gk_copy_receipt_values_for_display = yes
+	}
+	option = {
+		name = gk_raiding.700.accept
+		custom_tooltip = gk_raiding.700.tooltip
+		hidden_effect = {
+			# Apply per-pop opinion penalty to all countries with communications
+			every_country = {
+				limit = {
+					has_communications = root
+					NOT = { is_country = root }
+					OR = {
+						is_country_type = default
+						has_ai_personality = awakened_fallen_empire_xenophile
+					}
+				}
+				while = {
+					count = root.gk_forfeited_pops
+					add_opinion_modifier = { who = root modifier = opinion_gk_reaped_pops }
+				}
+			}
+			gk_destroy_loot_receipt = yes
+		}
+	}
+}
+
+##############################
+# REAPING WAR DECLARATION    #
+##############################
+# Applies opinion penalty when a Reaping war is declared
+# This = Country (every country in the war, via on_war_beginning)
+# From = War
+country_event = {
+	id = gk_raiding.800
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		# Only fire for the attacking war leader using Reaping
+		from = {
+			using_war_goal = {
+				type = wg_gk_reaping
+				owner = root
+			}
+			any_attacker = {
+				is_war_leader = yes
+				is_same_value = root
+			}
+		}
+	}
+	immediate = {
+		# Apply flat opinion penalty to all countries with communications
+		every_country = {
+			limit = {
+				has_communications = root
+				NOT = { is_country = root }
+				OR = {
+					is_country_type = default
+					has_ai_personality = awakened_fallen_empire_xenophile
+				}
+			}
+			add_opinion_modifier = { who = root modifier = opinion_gk_declared_reaping }
+		}
+	}
+}
+
+#####################
+# PILLAGE SURRENDER #
+#####################
+# Pillage surrender - display resources only, no pop count
+# This = Winner (raider)
+# From = Loser (raidee) - passed via scopes
+country_event = {
+	id = gk_raiding.900
+	title = gk_raiding.900.title
+	desc = gk_raiding.900.desc
+	picture = GFX_evt_burning_city
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	immediate = {
+		# Save consistent event targets
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+		# Retrieve the loot receipt to display values
+		# Copy values to root for localisation
+		gk_copy_receipt_values_for_display = yes
+	}
+	option = {
+		name = gk_raiding.900.accept
+		# Re-save event targets (don't persist from immediate)
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+		# Retrieve receipt and set as storage scope
+		gk_retrieve_loot_receipt = yes
+		event_target:gk_loot_receipt = {
+			save_event_target_as = gk_storage_scope
+		}
+		gk_collect_loot_from_storage = yes
 		hidden_effect = {
 			gk_destroy_loot_receipt = yes
 		}

@@ -1,0 +1,77 @@
+# GK Raiding Councilor Positions
+
+####################
+# EMANCIPATORS     #
+####################
+
+councilor_gk_emancipators = {
+	leader_class = { commander }
+	is_leader_possible = {
+		leader_class = commander
+	}
+	civic = civic_gk_emancipators
+	modifier = {
+		ship_fire_rate_mult = 0.02
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_gk_emancipators_megacorp = {
+	leader_class = { commander }
+	is_leader_possible = {
+		leader_class = commander
+	}
+	civic = civic_gk_emancipators_megacorp
+	modifier = {
+		ship_fire_rate_mult = 0.02
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+####################
+# ROBO-LIBERATORS  #
+####################
+
+councilor_gk_robo_liberators = {
+	leader_class = { scientist commander }
+	civic = civic_gk_robo_liberators
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.02
+		ROBOT_pop_happiness = 0.01
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_gk_robo_liberators_megacorp = {
+	leader_class = { scientist commander }
+	civic = civic_gk_robo_liberators_megacorp
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.02
+		ROBOT_pop_happiness = 0.01
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+##############################
+# MEGACORP DESPOILERS        #
+##############################
+
+councilor_gk_barbaric_despoilers_megacorp = {
+	leader_class = { commander official }
+	civic = civic_gk_barbaric_despoilers_megacorp
+	modifier = {
+		slave_market_cost_mult = -0.04
+		pop_category_slave_upkeep_mult = -0.02
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}

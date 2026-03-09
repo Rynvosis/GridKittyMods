@@ -1,0 +1,11 @@
+# VS Code / CWTools
+.vscode/
+vscode-userdata:/
+.cwtools/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Paradox Launcher
+.metadata/

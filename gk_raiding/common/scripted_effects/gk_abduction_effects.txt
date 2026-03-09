@@ -10,27 +10,132 @@
 #   4. Receipt has gk_forfeited_pops count for display
 
 ######################
+# Raid Tracker CRUD  #
+######################
+
+# Get or create a raid tracker for a specific raider-defender pair
+# This = any scope
+# event_target:gk_raider = raider country
+# event_target:gk_raidee = defender country
+# Sets: event_target:gk_raid_tracker
+gk_get_or_create_raid_tracker = {
+	if = {
+		limit = {
+			event_target:global_event_country = {
+				any_owned_leader = {
+					has_leader_flag = gk_raid_tracker
+					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_raider
+					has_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
+				}
+			}
+		}
+		event_target:global_event_country = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gk_raid_tracker
+					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_raider
+					has_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
+				}
+				save_event_target_as = gk_raid_tracker
+			}
+		}
+	}
+	else = {
+		event_target:global_event_country = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = "Raid Tracker"
+				skill = 1
+				hide_leader = yes
+				event_leader = yes
+			}
+			last_created_leader = {
+				set_leader_flag = gk_raid_tracker
+				set_leader_flag = gk_raid_tracker_attacker_@event_target:gk_raider
+				set_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
+				set_variable = { which = gk_pops_taken value = 0 }
+				save_event_target_as = gk_raid_tracker
+			}
+		}
+	}
+}
+
+# Update the cap flag on the defender after an abduction
+# This = defender/raidee country
+# event_target:gk_raider = raider country
+# event_target:gk_raid_tracker = tracker leader with gk_pops_taken
+gk_update_raid_cap_flag = {
+	# Calculate cap: (current_pops + pops_taken) * base_rate * (1 + modifier)
+	set_variable = {
+		which = gk_cap_calc_temp
+		value = 0
+	}
+	export_trigger_value_to_variable = {
+		trigger = count_owned_pop_amount
+		variable = gk_cap_calc_temp
+	}
+	change_variable = {
+		which = gk_cap_calc_temp
+		value = event_target:gk_raid_tracker.gk_pops_taken
+	}
+	# Apply base rate
+	multiply_variable = {
+		which = gk_cap_calc_temp
+		value = value:gk_effective_base_rate
+	}
+	# Apply raider's capacity modifier
+	set_variable = {
+		which = gk_cap_mult_temp
+		value = event_target:gk_raider.value:gk_raiding_capacity_mult
+	}
+	multiply_variable = {
+		which = gk_cap_calc_temp
+		value = gk_cap_mult_temp
+	}
+	# Compare pops_taken against cap
+	if = {
+		limit = {
+			event_target:gk_raid_tracker = {
+				check_variable = {
+					which = gk_pops_taken
+					value >= prev.gk_cap_calc_temp
+				}
+			}
+		}
+		set_country_flag = gk_raid_cap_reached_by_@event_target:gk_raider
+	}
+	else = {
+		remove_country_flag = gk_raid_cap_reached_by_@event_target:gk_raider
+	}
+	# Cleanup
+	clear_variable = gk_cap_calc_temp
+	clear_variable = gk_cap_mult_temp
+}
+
+######################
 # Entry Points       #
 ######################
 
 # Abduct pops on war surrender - from ALL planets
 # This = Raider (Winner)
 # event_target:gk_raidee = Raidee (Loser)
+# Requires: gk_cap_rate variable already set on this (raider) by war goal on_accept
 gk_abduct_on_surrender = {
 	save_event_target_as = gk_raider
 	event_target:gk_raidee = {
 		save_event_target_as = gk_raiding_target
 	}
-	
+
 	# Create loot receipt - this IS the storage scope
 	gk_get_or_create_loot_receipt = yes
 	event_target:gk_loot_receipt = {
 		save_event_target_as = gk_storage_scope
 	}
-	
+
 	# Initialize abduction cap and counters
 	gk_init_abduction_cap = yes
-	
+
 	# Process all pops empire-wide (random_owned_pop_group works on country scope)
 	event_target:gk_raidee = {
 		gk_abduct_pops_from_target = yes
@@ -45,26 +150,64 @@ gk_abduct_on_invasion = {
 	event_target:gk_target_planet = {
 		save_event_target_as = gk_raiding_target
 	}
-	
+
 	# Save planet owner as raidee for cap calculation
 	event_target:gk_target_planet = {
 		owner = {
 			save_event_target_as = gk_raidee
 		}
 	}
-	
+
 	# Retrieve the receipt created during pillage
 	gk_get_or_create_loot_receipt = yes
 	event_target:gk_loot_receipt = {
 		save_event_target_as = gk_storage_scope
 	}
-	
+
+	# Set cap rate from war context (invasion uses bombardment/invasion rates)
+	gk_set_cap_rate_from_context = yes
+
 	# Initialize abduction cap and counters
 	gk_init_abduction_cap = yes
-	
+
 	# Process target planet only
 	event_target:gk_target_planet = {
 		gk_abduct_pops_from_target = yes
+	}
+}
+
+######################
+# Cap Rate Helpers   #
+######################
+
+# Determine cap rate from war context and set on raider
+# This = raider country
+# Used for invasion/bombardment - surrender rates are set directly by war goal on_accept
+gk_set_cap_rate_from_context = {
+	if = {
+		limit = { gk_has_reaping_war = yes }
+		set_variable = { which = gk_cap_rate value = 100 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				gk_has_raiding_war = yes
+				gk_has_emancipation_war = yes
+				gk_has_robo_liberation_war = yes
+			}
+		}
+		# Raiding war base rate: 20%
+		set_variable = { which = gk_cap_rate value = 0.20 }
+		set_variable = { which = gk_rate_mult_temp value = value:gk_raiding_capacity_mult }
+		multiply_variable = { which = gk_cap_rate value = gk_rate_mult_temp }
+		clear_variable = gk_rate_mult_temp
+	}
+	else = {
+		# Non-raiding / opportunistic: 10%
+		set_variable = { which = gk_cap_rate value = 0.10 }
+		set_variable = { which = gk_rate_mult_temp value = value:gk_raiding_capacity_mult }
+		multiply_variable = { which = gk_cap_rate value = gk_rate_mult_temp }
+		clear_variable = gk_rate_mult_temp
 	}
 }
 
@@ -73,9 +216,10 @@ gk_abduct_on_invasion = {
 ######################
 
 # Initialize abduction cap on raidee and forfeited pops counter on storage scope
-# Requires: event_target:gk_raider, event_target:gk_raidee, event_target:gk_storage_scope
+# Requires: event_target:gk_raider (with gk_cap_rate set), event_target:gk_raidee, event_target:gk_storage_scope
 gk_init_abduction_cap = {
 	# Calculate remaining pop capacity using script value
+	# gk_initial_abduction_cap = (raidee_pops + effective_taken) * cap_rate - effective_taken
 	event_target:gk_raidee = {
 		set_variable = {
 			which = gk_remaining_cap
@@ -99,7 +243,7 @@ gk_init_abduction_cap = {
 # This = Planet or Country to abduct from
 # Requires: event_target:gk_raider, event_target:gk_raidee (with gk_remaining_cap), event_target:gk_storage_scope
 gk_abduct_pops_from_target = {
-	
+
 	# Loop while cap > 0 AND valid pop_groups exist
 	while = {
 		limit = {
@@ -123,18 +267,18 @@ gk_abduct_pops_from_target = {
 			}
 			this = { save_event_target_as = gk_source_pop_group }
 		}
-		
+
 		# Only proceed if we found a valid pop_group
 		if = {
 			limit = {
 				exists = event_target:gk_source_pop_group
 			}
-			
+
 			# Find destination planet first
 			event_target:gk_source_pop_group = {
 				gk_find_destination_planet = yes
 			}
-			
+
 			# Store amount to transfer (must be done before transfer)
 			event_target:gk_raidee = {
 				set_variable = {
@@ -142,8 +286,8 @@ gk_abduct_pops_from_target = {
 					value = event_target:gk_source_pop_group.value:gk_pops_to_abduct
 				}
 			}
-			
-			
+
+
 			# Create pop group on destination and transfer - inline like vanilla cyberize
 			event_target:gk_destination_planet = {
 				create_pop_group = {
@@ -159,7 +303,7 @@ gk_abduct_pops_from_target = {
 					}
 				}
 			}
-			
+
 			# Track for display on storage scope
 			event_target:gk_storage_scope = {
 				change_variable = {
@@ -167,7 +311,7 @@ gk_abduct_pops_from_target = {
 					value = event_target:gk_raidee.gk_transfer_amount
 				}
 			}
-			
+
 			# Reduce cap and track
 			event_target:gk_raidee = {
 				subtract_variable = {
@@ -177,7 +321,7 @@ gk_abduct_pops_from_target = {
 				# Track raided pops on raidee
 				gk_track_raided_pops = { AMOUNT = gk_transfer_amount }
 			}
-			
+
 		}
 	}
 }
@@ -251,7 +395,13 @@ gk_find_destination_planet = {
 # Parameters:
 #   AMOUNT = number of pops taken (variable or value)
 gk_track_raided_pops = {
-	
+	# Store amount for cross-scope access
+	set_variable = {
+		which = gk_track_amount_temp
+		value = $AMOUNT$
+	}
+	save_event_target_as = gk_track_raidee_temp
+
 	# Determine if this is emancipation or plunder based on raider's war type
 	if = {
 		limit = {
@@ -271,7 +421,7 @@ gk_track_raided_pops = {
 		}
 		change_variable = {
 			which = gk_raidee_emancipated
-			value = $AMOUNT$
+			value = gk_track_amount_temp
 		}
 	}
 	else = {
@@ -287,11 +437,46 @@ gk_track_raided_pops = {
 		}
 		change_variable = {
 			which = gk_raidee_plundered
-			value = $AMOUNT$
+			value = gk_track_amount_temp
 		}
 		# Update recovery modifier immediately
 		gk_update_plunder_recovery_modifier = yes
 	}
+
+	# Update per-war tracker
+	event_target:gk_raider = {
+		save_event_target_as = gk_raider
+	}
+	save_event_target_as = gk_raidee
+	gk_get_or_create_raid_tracker = yes
+	event_target:gk_raid_tracker = {
+		change_variable = {
+			which = gk_pops_taken
+			value = event_target:gk_track_raidee_temp.gk_track_amount_temp
+		}
+	}
+	# Update cap flag
+	gk_update_raid_cap_flag = yes
+
+	# Track lifetime total on raider (never cleared)
+	event_target:gk_raider = {
+		if = {
+			limit = {
+				NOT = { is_variable_set = gk_total_pops_raided }
+			}
+			set_variable = {
+				which = gk_total_pops_raided
+				value = 0
+			}
+		}
+		change_variable = {
+			which = gk_total_pops_raided
+			value = event_target:gk_track_raidee_temp.gk_track_amount_temp
+		}
+	}
+
+	# Clean up
+	clear_variable = gk_track_amount_temp
 }
 
 ######################

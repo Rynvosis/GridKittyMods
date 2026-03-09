@@ -17,12 +17,15 @@ raiding = {
 					}
 				}
 			}
+
+			gk_can_use_raiding_bombardment = yes
 		}
 		NOT = {
 			any_owned_ship = {
 				has_ship_flag = behemoth_hatchling_ship
 			}
 		}
+
 	}
 
 	default = no
@@ -37,7 +40,7 @@ raiding = {
 	kill_pop_chance = {
 		base = 0.15
 	}
-	min_pops_to_kill_pop = 200
+	min_pops_to_kill_pop = 100
 	kill_pop_amount = { min = 0 max = 100 }
 
 	# root = fleet
