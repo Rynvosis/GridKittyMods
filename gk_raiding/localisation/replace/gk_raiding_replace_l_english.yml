@@ -23,7 +23,7 @@
 
  # War Goal Name Overrides
  war_goal_wg_plunder:0 "Raiding"
- war_goal_wg_plunder_desc:0 "War is waged to raid enemy worlds for §Ypops§! and §Yresources§!.\n\n§LDuring war: up to §Y20%§! of enemy pops may be captured via bombardment or invasion.\nTotal pop capture is capped at §Y10%§! of the enemy's original population — pops captured during war count toward this limit.\nOn surrender: remaining pops up to the cap are forfeited. Enemy planets are pillaged twice.\nPop capture rates scale with §YRaiding Capacity§! modifier.§!"
+ war_goal_wg_plunder_desc:0 "War is waged to raid enemy worlds for §Ypops§! and §Yresources§!.\n\n§LDuring war: up to §Y20%§! of enemy pops may be captured via bombardment or invasion.\nTotal pop capture is capped at §Y10%§! of the enemy's original population — pops captured during war count toward this limit.\nOn surrender: remaining pops up to the cap are forfeited. Enemy planets are pillaged twice.\nPop capture rates scale with ['concept_gk_raiding_capacity'] modifier.§!"
  wg_plunder_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap, minus pops already captured).\nAll of §Y[From.GetName]§!'s colonies will be pillaged for resources."
 
  war_goal_wg_plunder_raid:0 "Pillage"

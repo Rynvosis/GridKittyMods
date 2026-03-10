@@ -31,6 +31,15 @@ concept_gk_pillaging = {
 	}
 }
 
+concept_gk_raiding_capacity = {
+	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_emergency_workers"
+	}
+}
+
 concept_gk_raiding_focus = {
 	alias = { concept_gk_raiding_policies concept_gk_raiding_policy }
 	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"

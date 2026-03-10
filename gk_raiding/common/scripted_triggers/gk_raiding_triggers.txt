@@ -269,27 +269,48 @@ gk_can_raid_resources = {
 # Root = hostile country (attacker/raider)
 # This = pop_group
 gk_can_abduct_pop_group_war_goal_check = {
-	# Check 1: For Emancipation war, only enslaved pops
-	# Skip this check if not in any war (first contact, primitives, etc.)
+	# Only allow pop abduction in explicit raiding contexts.
+	# Non-raiding wars (conquest, subjugation, etc.) do NOT grant pop capture.
 	OR = {
-		# No active war - allow normal raiding (first contact, primitives)
-		root = {
-			NOT = {
-				any_war = {
-					is_war_participant = {
-						who = prev
+		# No formal war with owner (primitives, first contact, etc.) - allow
+		planet = {
+			owner = {
+				is_primitive = yes
+			}
+		}
+		# Total war - always allow
+		planet = {
+			owner = {
+				root = {
+					any_war = {
+						is_war_participant = {
+							who = prevprev
+							side = defenders
+						}
+						is_total_war = yes
 					}
 				}
 			}
 		}
-		# In war but NOT emancipation war - allow any pop
-		root = {
-			NOT = {
-				gk_has_emancipation_war = yes
+		# Standard raiding or reaping war with this defender - any pop
+		planet = {
+			owner = {
+				OR = {
+					gk_has_standard_raiding_war_with = yes
+					gk_has_reaping_war_with = yes
+				}
 			}
 		}
-		# In emancipation war - only enslaved
-		is_enslaved = yes
+		# Emancipation war with this defender - enslaved only
+		AND = {
+			planet = { owner = { gk_has_emancipation_war_with = yes } }
+			is_enslaved = yes
+		}
+		# Robo-liberation war with this defender - robots only
+		AND = {
+			planet = { owner = { gk_has_robo_liberation_war_with = yes } }
+			is_robotic_species = yes
+		}
 	}
 }
 

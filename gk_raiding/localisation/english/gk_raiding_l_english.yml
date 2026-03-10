@@ -6,12 +6,12 @@
  wg_gk_reaping_accept_tooltip:0 "§Y[From.GetName]§! forfeits §Rall§! of their population to §Y[Root.GetName]§!."
 
  war_goal_wg_gk_emancipation:0 "Emancipation"
- war_goal_wg_gk_emancipation_desc:0 "War is waged to free enslaved populations from their oppressors.\n\n§LDuring war: up to §Y20%§! of enemy enslaved pops may be captured.\nTotal pop capture is capped at §Y10%§! of the enemy's original population — pops captured during war count toward this limit.\nOn surrender: remaining enslaved pops up to the cap are forfeited.\nPop capture rates scale with §YRaiding Capacity§! modifier.§!"
+ war_goal_wg_gk_emancipation_desc:0 "War is waged to free enslaved populations from their oppressors.\n\n§LDuring war: up to §Y20%§! of enemy enslaved pops may be captured.\nTotal pop capture is capped at §Y10%§! of the enemy's original population — pops captured during war count toward this limit.\nOn surrender: remaining enslaved pops up to the cap are forfeited.\nPop capture rates scale with ['concept_gk_raiding_capacity'] modifier.§!"
  wg_gk_emancipation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining enslaved pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap, minus pops already captured)."
  wg_gk_emancipation_status_quo_tooltip:0 "No pops are transferred on status quo."
 
  war_goal_wg_gk_robo_liberation:0 "Robo-Liberation"
- war_goal_wg_gk_robo_liberation_desc:0 "War is waged to liberate synthetic life forms from organic oppressors.\n\n§LDuring war: up to §Y20%§! of enemy robotic pops may be captured.\nTotal pop capture is capped at §Y10%§! of the enemy's original population — pops captured during war count toward this limit.\nOn surrender: remaining robotic pops up to the cap are forfeited.\nPop capture rates scale with §YRaiding Capacity§! modifier.§!"
+ war_goal_wg_gk_robo_liberation_desc:0 "War is waged to liberate synthetic life forms from organic oppressors.\n\n§LDuring war: up to §Y20%§! of enemy robotic pops may be captured.\nTotal pop capture is capped at §Y10%§! of the enemy's original population — pops captured during war count toward this limit.\nOn surrender: remaining robotic pops up to the cap are forfeited.\nPop capture rates scale with ['concept_gk_raiding_capacity'] modifier.§!"
  wg_gk_robo_liberation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining robotic pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap, minus pops already captured)."
  wg_gk_robo_liberation_status_quo_tooltip:0 "No pops are transferred on status quo."
 
@@ -29,13 +29,13 @@
  gk_focus_no_pop_raiding_name:0 "No Pop-Raiding"
  
  gk_raiding_focus_plunder:0 "Plunder"
- gk_raiding_focus_plunder_desc:0 "Our raiders seek captives and resources in equal measure. The baseline raiding approach.\n\n§LBase capture rate scales with §YRaiding Capacity§! modifier.§!"
+ gk_raiding_focus_plunder_desc:0 "Our raiders seek captives and resources in equal measure. The baseline raiding approach.\n\n§LBase capture rate scales with ['concept_gk_raiding_capacity'] modifier.§!"
  
  gk_raiding_focus_emancipation:0 "Emancipation"
- gk_raiding_focus_emancipation_desc:0 "Our raiders focus on liberating enslaved populations. Unlocks the §YEmancipation§! war goal.\n\n§LCapture rate scales with §YRaiding Capacity§! modifier.\nOnly enslaved pops may be taken in Emancipation wars.§!"
+ gk_raiding_focus_emancipation_desc:0 "Our raiders focus on liberating enslaved populations. Unlocks the §YEmancipation§! war goal.\n\n§LCapture rate scales with ['concept_gk_raiding_capacity'] modifier.\nOnly enslaved pops may be taken in Emancipation wars.§!"
  
  gk_raiding_focus_robo_liberation:0 "Robo-Liberation"
- gk_raiding_focus_robo_liberation_desc:0 "Our raiders focus on liberating synthetic life forms from organic oppressors. Unlocks the §YRobo-Liberation§! war goal.\n\n§LCapture rate scales with §YRaiding Capacity§! modifier.\nOnly robotic pops may be taken in Robo-Liberation wars.§!"
+ gk_raiding_focus_robo_liberation_desc:0 "Our raiders focus on liberating synthetic life forms from organic oppressors. Unlocks the §YRobo-Liberation§! war goal.\n\n§LCapture rate scales with ['concept_gk_raiding_capacity'] modifier.\nOnly robotic pops may be taken in Robo-Liberation wars.§!"
  gk_focus_robo_liberation_name:0 "Robo-Liberation"
  
  gk_raiding_focus_no_raiding:0 "No Pop-Raiding"
@@ -104,10 +104,10 @@
  db_gk_raiding:0 "Raiding"
  
  concept_gk_raiding_mechanics:0 "Raiding Mechanics"
- concept_gk_raiding_mechanics_desc:0 "Capture pops and ['concept_gk_pillaging'] from enemy worlds during war.\nRaiding can be conducted via the §YRaiding§! bombardment stance and successfully invading enemy planets.\n\nPop capture is subject to a §Ytotal cap§! based on war type and §Y['concept_gk_raiding_capacity']§!:\n- §YRaiding wars§!: §Y20%§! during war, §Y10%§! total cap on surrender\n- §YNon-raiding wars§!: §Y10%§! during war, §Y5%§! total cap on surrender\n- §YReaping§!: Unlimited\n- §YTotal wars§!/§YPrimitives§!: Unlimited\n\nPops captured during war count toward the surrender cap. The §YRaiding Capacity§! modifier scales these rates."
+ concept_gk_raiding_mechanics_desc:0 "Capture pops and ['concept_gk_pillaging'] from enemy worlds during war.\nRaiding can only be conducted in §Yraiding wars§! via the §YRaiding§! bombardment stance and by successfully invading enemy planets.\n\nPop capture is subject to a §Ytotal cap§! based on war type and ['concept_gk_raiding_capacity']:\n- §YRaiding wars§!: §Y20%§! during war, §Y10%§! total cap on surrender\n- §YReaping§!: Unlimited\n- §YTotal wars§!/§YPrimitives§!: Unlimited\n\nThe ['concept_gk_raiding_capacity'] modifier multiplies these base rates."
 
  concept_gk_pop_raiding_limit:0 "Pop Raiding Limit"
- concept_gk_pop_raiding_limit_desc:0 "Maximum percentage of an enemy's total population you can capture across the entire war.\n- §YRaiding wars§!: up to §Y20%§! during war, §Y10%§! total cap (pops captured during war count toward this)\n- §YNon-raiding wars§!: up to §Y10%§! during war, §Y5%§! total cap\n- §YReaping§!: Unlimited\n- §YTotal Wars§! and §YPrimitives§!: No limit\n\nCivics like §YEmancipators§! and §YRobo-Liberators§! add §Y+50%§! Raiding Capacity, scaling all rates."
+ concept_gk_pop_raiding_limit_desc:0 "Maximum percentage of an enemy's total population you can capture across the entire war.\n- §YRaiding wars§!: up to §Y20%§! during war, §Y10%§! total cap (pops captured during war count toward this)\n- §YReaping§!: Unlimited\n- §YTotal Wars§! and §YPrimitives§!: No limit\n\nThe ['concept_gk_raiding_capacity'] modifier multiplies these base rates (e.g. +50% turns 10% into 15%)."
 
  concept_gk_pillaging:0 "Pillage Resources"
  concept_gk_pillaging_desc:0 "Extract resources from enemy planets based on their economic output and your efficiency modifiers.\n- §YRaiding wars§!: up to §Y2§! tiers, normal yield\n- §YPillage wars§!: up to §Y6§! tiers, §Ydoubled§! yield\nEach pillage applies the §RPillaged§! modifier, reducing the planet's output."
@@ -125,6 +125,7 @@
  concept_gk_raiding_policies:0 "Raiding Policies"
  concept_gk_raiding_policy:0 "Raiding Policy"
  concept_gk_raiding_capacity:0 "Raiding Capacity"
+ concept_gk_raiding_capacity_desc:0 "Multiplier on all pop capture rate limits.\n\n§LWith §Y+50%§! Raiding Capacity:$TABBED_NEW_LINE$- §Y10%§! surrender cap → §G15%§!$TABBED_NEW_LINE$- §Y20%§! bombardment cap → §G30%§!§!"
 
  # Messages
  MESSAGE_TYPE_GK_PLANET_PILLAGED_TITLE:0 "Planet Pillaged"
