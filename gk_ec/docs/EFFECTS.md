@@ -8,12 +8,12 @@ Ethic categories: `col` (Authoritarian/Egalitarian), `ind` (Individualist/Collec
 
 ### Authoritarian (`00_ethics.txt` — vanilla overwrite)
 
-Changed vs vanilla: removed Worker Bonus Workforce, added Slave Bonus Workforce, changed Leader Lifespan from flat to %.
+Changed vs vanilla: removed Worker Bonus Workforce and Leader Lifespan, added Enforcer Jobs Bonus Workforce.
 
 | Ethic | Modifiers |
 |---|---|
-| **Fanatic Authoritarian** | Leader Lifespan +10%, Influence +1, Slave Bonus Workforce +10% |
-| **Authoritarian** | Leader Lifespan +5%, Influence +0.5, Slave Bonus Workforce +5% |
+| **Fanatic Authoritarian** | Influence +1, Enforcer Jobs Bonus Workforce +20% |
+| **Authoritarian** | Influence +0.5, Enforcer Jobs Bonus Workforce +10% |
 
 ### Egalitarian (`00_ethics.txt` — vanilla overwrite)
 
@@ -89,9 +89,9 @@ Available to: Standard empires & Megacorps.
 - Standard: +10% Immigration Pull
 - Megacorp: +5% Trade Value
 
-### Raiding Civics (WIP)
+### Raiding Civics
 
-Planned: Barbaric Overwrite, Emancipators, Roboliberators — not yet implemented.
+See `gk_raiding/docs/EFFECTS.md` — implemented in the GK Raiding mod.
 
 ## System Initializers
 

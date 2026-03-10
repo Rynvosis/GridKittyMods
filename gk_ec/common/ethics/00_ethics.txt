@@ -12,9 +12,8 @@ ethic_fanatic_authoritarian = {
 	regular_variant = ethic_authoritarian
 
 	country_modifier = {
-		leader_lifespan_mult = 0.10
 		country_ethic_influence_produces_add = 1
-		pop_cat_slave_bonus_workforce_mult = 0.10
+		enforcer_jobs_bonus_workforce_mult = 0.20
 		add_attunement_the_instrument_of_desire = @ethic_attunement2
 	}
 
@@ -45,9 +44,8 @@ ethic_authoritarian = {
 	}
 
 	country_modifier = {
-		leader_lifespan_mult = 0.05
 		country_ethic_influence_produces_add = 0.5
-		pop_cat_slave_bonus_workforce_mult = 0.05
+		enforcer_jobs_bonus_workforce_mult = 0.10
 		add_attunement_the_instrument_of_desire = @ethic_attunement1
 	}
 

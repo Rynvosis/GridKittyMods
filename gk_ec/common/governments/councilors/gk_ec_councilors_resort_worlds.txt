@@ -22,6 +22,6 @@ councilor_gk_ec_resort_worlds_megacorp = {
 		inline_script = councilor_leader_weights
 	}
 	modifier = {
-		trade_value_mult = 0.05
+		country_trade_produces_mult = 0.05
 	}
 }

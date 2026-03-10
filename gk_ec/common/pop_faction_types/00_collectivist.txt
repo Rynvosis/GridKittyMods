@@ -114,16 +114,16 @@ gk_ec_collectivist = {
 	}
 
 	# DEMAND: Faction Outraged (by a GalCom Resolution)
-	inline_script = {
-		script = pop_faction_types/demand_faction_outraged
-		FLAG = faction_gk_ec_collectivist_outraged_gc
-	}
+	# inline_script = {
+	# 	script = pop_faction_types/demand_faction_outraged
+	# 	FLAG = faction_gk_ec_collectivist_outraged_gc
+	# }
 
 	# DEMAND: Faction Pleased (by a GalCom Resolution)
-	inline_script = {
-		script = pop_faction_types/demand_faction_pleased
-		FLAG = faction_gk_ec_collectivist_pleased_gc
-	}
+	# inline_script = {
+	# 	script = pop_faction_types/demand_faction_pleased
+	# 	FLAG = faction_gk_ec_collectivist_pleased_gc
+	# }
 
 	# GRADUATED DEMAND: WELFARE (3 tiers — by living standard quality)
 	# Tier 1: No welfare standards at all — always red

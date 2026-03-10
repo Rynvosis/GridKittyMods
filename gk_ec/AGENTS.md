@@ -1,1 +1,0 @@
-/home/ryn/.local/share/Paradox Interactive/Stellaris/mod/ryn_misc/CLAUDE.md

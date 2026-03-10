@@ -1,0 +1,7 @@
+﻿l_english:
+ gk_ec_titanic_system_init_NAME: "GK Titanic Homeworld"
+ gk_ec_titanic_system_init_DESC: "An oversized, resource-rich homeworld in a system of unusually massive celestial bodies.\n\n§RNo Guaranteed Habitable Worlds.§!\n\n$system_initializer_DESC$"
+ gk_ec_lunar_colony_system_init_NAME: "GK Lunar Colony"
+ gk_ec_lunar_colony_system_init_DESC: "A large capital world with a small, habitable moon already settled as your first colony.\n\n§RNo Guaranteed Habitable Worlds.§!\n\n$system_initializer_DESC$"
+ gk_ec_ruined_habitat_system_init_NAME: "GK Ruined Habitat"
+ gk_ec_ruined_habitat_system_init_DESC: "A trinary star system with the remnants of a prior civilization. A ruined habitat orbits the primary star, and habitat technology is available for research from the start.\n\n§RNo Guaranteed Habitable Worlds.§!\n\n$system_initializer_DESC$"

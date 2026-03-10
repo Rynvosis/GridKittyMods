@@ -1,0 +1,67 @@
+﻿l_english:
+
+  ###
+  # Centralized State
+  ###
+
+  civic_gk_ec_centralized_state: "Centralized State"
+  civic_gk_ec_centralized_state_desc: "This society is extremely centralized, having grown around a single shining core, its capital. Power, people and resources are drawn inwards."
+  GK_EC_CAPITAL_PLANET_EFFECTS_TXT: "£planet£ §YCapital Planet§! Effects"
+  GK_EC_CENTRALIZED_CAPITAL_PLANET_EFFECTS: "$t$$MOD_PLANET_STABILITY_ADD$ §G+20§!\n$t$$MOD_POP_GOVERNMENT_ETHIC_ATTRACTION$ §G+100%§!"
+  civic_gk_ec_centralized_state_effects: "§E$GK_EC_CAPITAL_PLANET_EFFECTS_TXT$§!:\n$t$[politician.GetIcon] [politician.GetName] Jobs scaling with Capital Tier\n$GK_EC_CENTRALIZED_CAPITAL_PLANET_EFFECTS$\n\n§E£planet£ §YNon-Capital Planets§! Effects§!:\n$t$$MOD_PLANET_STABILITY_ADD$ §R-5§!\n$t$$MOD_POP_GOVERNMENT_ETHIC_ATTRACTION$ §R-25%§!"
+  civic_gk_ec_centralized_state_effects_gestalt: "§E$GK_EC_CAPITAL_PLANET_EFFECTS_TXT$§!:\n$t$[coordinator.GetIcon] [coordinator.GetName] Jobs scaling with Capital Tier\n$GK_EC_CENTRALIZED_CAPITAL_PLANET_EFFECTS$\n\n§E£planet£ §YNon-Capital Planets§! Effects§!:\n$t$$MOD_PLANET_STABILITY_ADD$ §R-5§!\n$t$$MOD_POP_GOVERNMENT_ETHIC_ATTRACTION$ §R-25%§!"
+
+  civic_gk_ec_centralized_state_hive: "Centralized Synapse"
+  civic_gk_ec_centralized_state_hive_desc: "This hive mind has evolved a highly centralized neural architecture. All drones are instinctively drawn towards the primary consciousness node."
+
+  civic_gk_ec_centralized_state_machine: "Core Processing Hub"
+  civic_gk_ec_centralized_state_machine_desc: "This machine intelligence is built around a massive central processing unit. All sub-units are designed to return to the core for data synchronization and upgrades."
+
+  civic_gk_ec_centralized_state_megacorp: "Corporate Monolith"
+  civic_gk_ec_centralized_state_megacorp_desc: "This megacorporation is run with absolute efficiency from a single, massive headquarters. All subsidiaries and branch offices report directly to the central board."
+
+  councilor_gk_ec_centralized_state: "Capital Prefect"
+  councilor_gk_ec_centralized_state_female: "$councilor_gk_ec_centralized_state$"
+  councilor_gk_ec_centralized_state_desc: "The $TITLE$ leads the infrastructural development of our capital."
+
+  councilor_gk_ec_centralized_state_corporate: "Head of Headquarters"
+  councilor_gk_ec_centralized_state_corporate_female: "$councilor_gk_ec_centralized_state_corporate$"
+  councilor_gk_ec_centralized_state_corporate_desc: "The $TITLE$ oversees the streamlining of corporate assets into the central headquarters."
+
+  councilor_gk_ec_centralized_state_tt: "- £planet£ §YCapital Planet§! [politician.GetIcon] [politician.GetNamePlural]: §G+25§!$NEW_LINE$§EAdditional Effects when §YGoverning Capital§!:§!$TABBED_NEW_LINE$- £planet£ §YCapital Planet§! [politician.GetIcon] [politician.GetNamePlural]: §G+25§!"
+  
+  ###
+  # Penal Colony
+  ###
+
+  civic_gk_ec_penal_colony_effects: "Start with the §Y$tech_penal_colonies$§! technology."
+  civic_gk_ec_penal_colony: "Penal Colonies"
+  civic_gk_ec_penal_colony_desc: "This society has a long history of exiling its criminals to remote worlds. They have perfected the art of turning incarceration into a productive enterprise."
+  civic_gk_ec_penal_colony_megacorp: "Correctional Profit Centers"
+  civic_gk_ec_penal_colony_megacorp_desc: "This megacorporation views crime not as a social failure, but as an untapped labor market. Their rehabilitation programs are surprisingly profitable."
+
+  councilor_gk_ec_penal_colony: "High Warden"
+  councilor_gk_ec_penal_colony_female: "$councilor_gk_ec_penal_colony$"
+  councilor_gk_ec_penal_colony_desc: "The $TITLE$ oversees the empire's correctional facilities, ensuring that justice is served and quotas are met."
+
+  councilor_gk_ec_penal_colony_megacorp: "Rehabilitation Director"
+  councilor_gk_ec_penal_colony_megacorp_female: "$councilor_gk_ec_penal_colony_megacorp$"
+  councilor_gk_ec_penal_colony_megacorp_desc: "The $TITLE$ manages the corporation's indentured workforce, optimizing the output of those working off their debts to society."
+
+  ###
+  # Resort Worlds
+  ###
+
+  civic_gk_ec_resort_worlds_effects: "Start with the §Y$tech_resort_colonies$§! technology."
+  civic_gk_ec_resort_worlds: "Leisure Society"
+  civic_gk_ec_resort_worlds_desc: "This civilization values leisure and entertainment above all else. They have dedicated entire worlds to the pursuit of pleasure and relaxation."
+  civic_gk_ec_resort_worlds_megacorp: "Hospitality Conglomerate"
+  civic_gk_ec_resort_worlds_megacorp_desc: "This megacorporation is the galaxy's premier provider of luxury and entertainment. Their resort worlds are legendary, attracting tourists from every corner of the galaxy."
+
+  councilor_gk_ec_resort_worlds: "Minister of Leisure"
+  councilor_gk_ec_resort_worlds_female: "$councilor_gk_ec_resort_worlds$"
+  councilor_gk_ec_resort_worlds_desc: "The $TITLE$ is responsible for the happiness and well-being of the populace, ensuring that the party never stops."
+
+  councilor_gk_ec_resort_worlds_megacorp: "Chief Experience Officer"
+  councilor_gk_ec_resort_worlds_megacorp_female: "$councilor_gk_ec_resort_worlds_megacorp$"
+  councilor_gk_ec_resort_worlds_megacorp_desc: "The $TITLE$ curates the ultimate customer experience, maximizing engagement and revenue from the corporation's entertainment assets."

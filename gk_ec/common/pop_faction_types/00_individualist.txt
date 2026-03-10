@@ -114,16 +114,16 @@ gk_ec_individualist = {
 	}
 
 	# DEMAND: Faction Outraged (by a GalCom Resolution)
-	inline_script = {
-		script = pop_faction_types/demand_faction_outraged
-		FLAG = faction_gk_ec_individualist_outraged_gc
-	}
+	# inline_script = {
+	# 	script = pop_faction_types/demand_faction_outraged
+	# 	FLAG = faction_gk_ec_individualist_outraged_gc
+	# }
 
 	# DEMAND: Faction Pleased (by a GalCom Resolution)
-	inline_script = {
-		script = pop_faction_types/demand_faction_pleased
-		FLAG = faction_gk_ec_individualist_pleased_gc
-	}
+	# inline_script = {
+	# 	script = pop_faction_types/demand_faction_pleased
+	# 	FLAG = faction_gk_ec_individualist_pleased_gc
+	# }
 
 	demand = {
 		title = "GK_EC_INDIVIDUALIST_NO_WELFARE"

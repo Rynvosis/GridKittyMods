@@ -4,7 +4,7 @@ civic_gk_ec_penal_colony = {
 		authority = { NOT = { value = auth_corporate } }
 	}
 	possible = {
-		civics = { NOR = { value = civic_gk_ec_penal_colony_megacorp } }
+		civics = { NOT = { value = civic_gk_ec_penal_colony_megacorp } }
 	}
 	modification = {
 		add = { has_civic = civic_gk_ec_penal_colony_megacorp }
@@ -29,7 +29,7 @@ civic_gk_ec_penal_colony_megacorp = {
 	}
 	possible = {
 		civics = {
-			NOR = {
+			NOT = {
 				value = civic_gk_ec_penal_colony
 			}
 		}

@@ -5,7 +5,7 @@ civic_gk_ec_resort_worlds = {
 	}
 	possible = {
 		civics = {
-			NOR = {
+			NOT = {
 				value = civic_gk_ec_resort_worlds_megacorp
 			}
 		}
@@ -37,7 +37,7 @@ civic_gk_ec_resort_worlds_megacorp = {
 	}
 	possible = {
 		civics = {
-			NOR = {
+			NOT = {
 				value = civic_gk_ec_resort_worlds
 			}
 		}
