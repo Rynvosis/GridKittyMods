@@ -122,8 +122,10 @@ CB: `cb_despoliation`. Surrender acceptance: -75.
 |---|---|
 | Surrender pop cap | 10% (scaled by Raiding Capacity) |
 | Bombardment/invasion pop cap | 20% (scaled by Raiding Capacity) |
-| Pillage tiers on surrender | 2 |
-| Pillage resource multiplier | 1x |
+| Resource pillage | Pillage-capable empires on this side gain 1 month of current output per 10 devastation |
+| Invasion bonus | Remaining 0-100 devastation headroom at current rate |
+| Surrender tribute | Each surviving colony pays from its remaining 0-50 devastation band |
+| Surrender aftermath | Local planet tribute modifier for 5 years |
 
 ### Pillage (`wg_plunder_raid` — vanilla overwrite)
 
@@ -132,8 +134,10 @@ CB: `cb_pirate_raid`. Surrender acceptance: -50.
 | Mechanic | Value |
 |---|---|
 | Pop capture | None (resources only) |
-| Pillage tiers on surrender | 6 |
-| Pillage resource multiplier | 2x |
+| Resource pillage | Pillage-capable empires on this side gain 6 months of current output per 10 devastation |
+| Invasion bonus | Remaining 0-100 devastation headroom at current rate |
+| Surrender tribute | Each surviving colony pays from its remaining 0-50 devastation band |
+| Surrender aftermath | Local planet tribute modifier for 5 years |
 
 ### Emancipation (`wg_gk_emancipation`)
 
@@ -188,36 +192,55 @@ CB: `cb_despoliation`. Surrender acceptance: -1000 (effectively forces war to ex
 
 ## Pillaging System
 
-### Three-Phase Process
+Available to: `civic_barbaric_despoilers`, `civic_gk_barbaric_despoilers_machine`, `civic_gk_barbaric_despoilers_megacorp`, and `civic_crusader_spirit_corporate`.
 
-1. **Tier Setup** — Set max tiers and resource multiplier based on war goal
-2. **Base Loot Calculation** — `production * months_per_tier * tiers`
+### Devastation-Driven Process
+
+1. **Damage Banking** — `on_planet_bombarded` and `on_ground_combat_devastation` add `local_devastation` to a per `raider + planet` receipt
+2. **Threshold Resolution** — every 10 stored devastation pays out 1 month of the planet's current output immediately for pillage-capable empires (`wg_plunder_raid` multiplies this by 6x for the war-goal side)
 3. **Loot Transformation** — Apply efficiency multiplier, then convert:
    - Trade value doubled
    - Unity, Physics, Society, Engineering research all convert to Consumer Goods at 2:1
+4. **Remaining Headroom Cashout** — invasion converts the remaining 0-100 devastation headroom on a planet into loot at the planet's current rate, applies a local tribute modifier scaled from half that value, and marks the colony as already cashed out for the relevant surrender owner. Planets that are about to surrender directly to orbital bombardment are resolved from the main bombardment event before ownership flips, with the later conquer hook only clearing the temporary marker. Surrender converts only the remaining 0-50 band on uncashed colonies without applying extra devastation
+
+### Pop-Raiding Side Rules
+
+- Pop capture remains tied to raiding-style war goals (`wg_plunder`, `wg_gk_emancipation`, `wg_gk_robo_liberation`, `wg_gk_reaping`)
+- Any empire on that war-goal side that can personally pop-raid may capture pops for itself
+- The during-war pop quota is shared across that whole war-goal side, using the side leader's cap rate
+- Final surrender pop payouts remain leader-owned
 
 ### Resources Pillaged (16 types)
 
 Trade, Energy, Minerals, Food, Consumer Goods, Alloys, Unity, Physics/Society/Engineering Research, Volatile Motes, Exotic Gases, Rare Crystals, Living Metal, Zro, Dark Matter, Nanites.
 
-### Planet Modifier: `gk_pillaged_1` through `gk_pillaged_6` (marker only)
+### Surrender Aftermath: Planet Tribute Tiers
 
-Visual-only modifiers indicating how many times a planet has been pillaged. No gameplay effects — at high devastation, vanilla already applies massive penalties, so these serve purely as tier indicators with bespoke icons (Roman numeral overlays I–V, skull for tier VI).
+Applied to each surviving colony that still had tribute left to pay when the defender surrendered in `wg_plunder` or `wg_plunder_raid`.
 
-| Tier | Modifier | Name | Border |
-|---|---|---|---|
-| 1 | `gk_pillaged_1` | Lightly Pillaged | Yellow |
-| 2 | `gk_pillaged_2` | Pillaged | Yellow |
-| 3 | `gk_pillaged_3` | Heavily Pillaged | Red |
-| 4 | `gk_pillaged_4` | Severely Pillaged | Red |
-| 5 | `gk_pillaged_5` | Devastated | Red |
-| 6 | `gk_pillaged_6` | Picked Clean | Red |
+Tier is determined by `effective_remaining = (100 - planet_devastation) / 2` (integer division, always rounds down):
 
-Tiers decay by 1 per year (paused while planet is occupied by enemy).
+| Modifier | Workforce | Threshold |
+|---|---|---|
+| `gk_planet_tribute_0` | -5% | effective_remaining 0–9 |
+| `gk_planet_tribute_1` | -10% | effective_remaining 10–19 |
+| `gk_planet_tribute_2` | -20% | effective_remaining 20–29 |
+| `gk_planet_tribute_3` | -30% | effective_remaining 30–39 |
+| `gk_planet_tribute_4` | -40% | effective_remaining 40–49 |
+| `gk_planet_tribute_5` | -50% | effective_remaining 50 |
+
+Tribute modifiers never downgrade — if a planet already has an equal or higher tier modifier, the new one is skipped.
+
+Colonies already at 100 devastation (effective_remaining = 0) still receive the token tribute tier.
+Colonies already fully cashed out by invasion for that same raider are skipped entirely during surrender to prevent double dipping.
+
+Duration: 5 years.
 
 ### Loot Receipt Pattern
 
-Surrender pillaging uses a hidden leader on `global_event_country` to safely accumulate loot across multiple planets before delivering to the raider in one batch.
+- `Raider + planet` receipts store the partial devastation bank during active warfare.
+- `Raider + country` receipts store total surrender loot for event display and collection.
+- Invasion reuses the planet receipt so unspent partial devastation is included before the receipt is destroyed on collection.
 
 ## Abduction System
 
