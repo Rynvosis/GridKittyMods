@@ -200,13 +200,18 @@ CB: `cb_despoliation`. Surrender acceptance: -1000 (effectively forces war to ex
 
 Trade, Energy, Minerals, Food, Consumer Goods, Alloys, Unity, Physics/Society/Engineering Research, Volatile Motes, Exotic Gases, Rare Crystals, Living Metal, Zro, Dark Matter, Nanites.
 
-### Planet Modifier: `gk_pillaged` (per tier, scales with tier count)
+### Planet Modifier: `gk_pillaged_1` through `gk_pillaged_6` (marker only)
 
-| Effect | Per Tier |
-|---|---|
-| Pop Happiness | -3% |
-| Workforce | -6% |
-| Stability | +3 |
+Visual-only modifiers indicating how many times a planet has been pillaged. No gameplay effects — at high devastation, vanilla already applies massive penalties, so these serve purely as tier indicators with bespoke icons (Roman numeral overlays I–V, skull for tier VI).
+
+| Tier | Modifier | Name | Border |
+|---|---|---|---|
+| 1 | `gk_pillaged_1` | Lightly Pillaged | Yellow |
+| 2 | `gk_pillaged_2` | Pillaged | Yellow |
+| 3 | `gk_pillaged_3` | Heavily Pillaged | Red |
+| 4 | `gk_pillaged_4` | Severely Pillaged | Red |
+| 5 | `gk_pillaged_5` | Devastated | Red |
+| 6 | `gk_pillaged_6` | Picked Clean | Red |
 
 Tiers decay by 1 per year (paused while planet is occupied by enemy).
 

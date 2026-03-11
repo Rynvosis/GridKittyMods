@@ -1,6 +1,6 @@
 namespace = gk_raiding
 
-@gk_pillage_progress_threshold = 20
+@gk_pillage_progress_threshold = 10
 @gk_decay_rate_at_peace = 0.90
 @gk_decay_rate_at_war = 0.95
 @gk_decay_clear_threshold = 1
@@ -494,6 +494,7 @@ country_event = {
 			save_event_target_as = gk_raiding_target
 		}
 		# Retrieve the loot receipt to display values
+		gk_retrieve_loot_receipt = yes
 		# Copy values to root for localisation
 		gk_copy_receipt_values_for_display = yes
 	}
@@ -659,6 +660,7 @@ country_event = {
 			save_event_target_as = gk_raiding_target
 		}
 		# Retrieve the loot receipt to display values
+		gk_retrieve_loot_receipt = yes
 		# Copy values to root for localisation
 		gk_copy_receipt_values_for_display = yes
 	}

@@ -437,18 +437,10 @@ gk_update_plunder_recovery_modifier = {
 				is_variable_set = gk_raidee_emancipated
 			}
 		}
-		# Initialize temp variables to 0
-		export_trigger_value_to_variable = {
-			trigger = count_owned_pop_amount
-			variable = gk_remaining_pops_temp
-		}
+		# Initialize temp variable to 0
 		set_variable = {
 			which = gk_effective_taken_temp
-			value = gk_remaining_pops_temp
-		}
-		subtract_variable = {
-			which = gk_effective_taken_temp
-			value = gk_remaining_pops_temp
+			value = 0
 		}
 		# Calculate total value: (emancipated * 0.5) + plundered
 		if = {

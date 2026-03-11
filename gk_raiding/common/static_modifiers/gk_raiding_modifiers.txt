@@ -1,15 +1,50 @@
 # GK Raiding - Static Modifiers
 
-# Pillaged - applied to planets, scaled by tier
-# Negative: reduced happiness and job output from disruption
-# Positive: stability bonus from community solidarity during rebuilding
-gk_pillaged = {
-	icon = "gfx/interface/icons/modifiers/mod_planet_stability_add.dds"
-	pop_happiness = -0.03
-	pop_bonus_workforce_mult = -0.06
-	planet_stability_add = 3
-	show_only_custom_tooltip = no
-	custom_tooltip = gk_pillaged.tooltip
+# Pillaged - marker-only modifiers applied to planets, one per tier
+# No gameplay effects — at high devastation vanilla already applies massive penalties,
+# so these serve as visual indicators of how many times a planet has been pillaged.
+# icon_frame: 2 = yellow border (neutral/warning)
+
+gk_pillaged_1 = {
+	icon = "gfx/interface/icons/planet_modifiers/gk_pillaged_1.dds"
+	icon_frame = 2
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_pillaged_1_tooltip
+}
+
+gk_pillaged_2 = {
+	icon = "gfx/interface/icons/planet_modifiers/gk_pillaged_2.dds"
+	icon_frame = 2
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_pillaged_2_tooltip
+}
+
+gk_pillaged_3 = {
+	icon = "gfx/interface/icons/planet_modifiers/gk_pillaged_3.dds"
+	icon_frame = 3
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_pillaged_3_tooltip
+}
+
+gk_pillaged_4 = {
+	icon = "gfx/interface/icons/planet_modifiers/gk_pillaged_4.dds"
+	icon_frame = 3
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_pillaged_4_tooltip
+}
+
+gk_pillaged_5 = {
+	icon = "gfx/interface/icons/planet_modifiers/gk_pillaged_5.dds"
+	icon_frame = 3
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_pillaged_5_tooltip
+}
+
+gk_pillaged_6 = {
+	icon = "gfx/interface/icons/planet_modifiers/gk_pillaged_6.dds"
+	icon_frame = 3
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_pillaged_6_tooltip
 }
 
 # Plunder Recovery - applied to countries that have had pops plundered

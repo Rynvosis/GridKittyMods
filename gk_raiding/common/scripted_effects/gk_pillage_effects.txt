@@ -117,6 +117,7 @@ gk_pillage_on_bombardment = {
 
 	gk_finalize_planet_pillage = yes
 	gk_send_pillage_notifications = yes
+	gk_clear_loot_variables = yes
 }
 
 ######################
@@ -128,6 +129,8 @@ gk_pillage_on_bombardment = {
 # event_target:gk_raider = Raider
 # Sets: gk_pillage_tiers_to_apply
 gk_setup_pillage_tiers = {
+	save_event_target_as = gk_pillage_planet
+
 	# Initialize tier if needed
 	create_variable_if_not_exists = {
 		VARIABLE = gk_pillage_tier
@@ -141,20 +144,20 @@ gk_setup_pillage_tiers = {
 		if = {
 			limit = {
 				any_war = {
-					is_war_participant = { who = prevprev.owner side = defenders }
+					is_war_participant = { who = event_target:gk_pillage_planet.owner side = defenders }
 					using_war_goal = { type = wg_plunder_raid owner = prev }
 				}
 			}
-			prevprev = { set_variable = { which = gk_pillage_tiers_to_apply value = @gk_pillage_war_max_tiers } }
+			event_target:gk_pillage_planet = { set_variable = { which = gk_pillage_tiers_to_apply value = @gk_pillage_war_max_tiers } }
 		}
 		else_if = {
 			limit = {
 				any_war = {
-					is_war_participant = { who = prevprev.owner side = defenders }
+					is_war_participant = { who = event_target:gk_pillage_planet.owner side = defenders }
 					using_war_goal = { type = wg_plunder owner = prev }
 				}
 			}
-			prevprev = { set_variable = { which = gk_pillage_tiers_to_apply value = @gk_raiding_war_max_tiers } }
+			event_target:gk_pillage_planet = { set_variable = { which = gk_pillage_tiers_to_apply value = @gk_raiding_war_max_tiers } }
 		}
 	}
 
@@ -198,6 +201,30 @@ gk_init_loot_variables = {
 	}
 }
 
+# Clear loot variables from storage scope (for bombardment cleanup)
+# event_target:gk_storage_scope = where to clear
+gk_clear_loot_variables = {
+	event_target:gk_storage_scope = {
+		clear_variable = gk_loot_trade
+		clear_variable = gk_loot_energy
+		clear_variable = gk_loot_minerals
+		clear_variable = gk_loot_food
+		clear_variable = gk_loot_consumer_goods
+		clear_variable = gk_loot_alloys
+		clear_variable = gk_loot_unity
+		clear_variable = gk_loot_physics_research
+		clear_variable = gk_loot_society_research
+		clear_variable = gk_loot_engineering_research
+		clear_variable = gk_loot_volatile_motes
+		clear_variable = gk_loot_exotic_gases
+		clear_variable = gk_loot_rare_crystals
+		clear_variable = gk_loot_sr_living_metal
+		clear_variable = gk_loot_sr_zro
+		clear_variable = gk_loot_sr_dark_matter
+		clear_variable = gk_loot_nanites
+	}
+}
+
 ######################
 # Calculate Base Loot #
 ######################
@@ -207,6 +234,8 @@ gk_init_loot_variables = {
 # Requires: gk_pillage_tiers_to_apply set
 # Stores: gk_loot_$RESOURCE$ on gk_storage_scope
 gk_calculate_base_loot = {
+	save_event_target_as = gk_loot_planet
+
 	# Base months of production per tier
 	set_variable = { which = gk_loot_months value = @gk_loot_months_per_tier }
 	# Pillage war = 2x resources
@@ -214,11 +243,11 @@ gk_calculate_base_loot = {
 		if = {
 			limit = {
 				any_war = {
-					is_war_participant = { who = prevprev.owner side = defenders }
+					is_war_participant = { who = event_target:gk_loot_planet.owner side = defenders }
 					using_war_goal = { type = wg_plunder_raid owner = prev }
 				}
 			}
-			prevprev = { multiply_variable = { which = gk_loot_months value = @gk_pillage_war_resource_mult } }
+			event_target:gk_loot_planet = { multiply_variable = { which = gk_loot_months value = @gk_pillage_war_resource_mult } }
 		}
 	}
 
@@ -434,19 +463,11 @@ gk_finalize_planet_pillage = {
 		which = gk_pillage_tier
 		value = gk_pillage_tiers_to_apply
 	}
-	
-	# Remove old modifier and apply new scaled one
-	remove_modifier = gk_pillaged
-	if = {
-		limit = {
-			check_variable = { which = gk_pillage_tier value > 0 }
-		}
-		add_modifier = {
-			modifier = gk_pillaged
-			mult = gk_pillage_tier
-		}
-	}
-	
+
+	# Swap to correct tier marker
+	gk_remove_all_pillaged_modifiers = yes
+	gk_apply_pillaged_modifier = yes
+
 	# Cleanup
 	clear_variable = gk_pillage_tiers_to_apply
 }
@@ -529,21 +550,62 @@ gk_decay_pillage_tier = {
 			which = gk_pillage_tier
 			value = 1
 		}
-		
-		# Update modifier
-		remove_modifier = gk_pillaged
+
+		# Swap to correct tier marker
+		gk_remove_all_pillaged_modifiers = yes
 		if = {
 			limit = {
 				check_variable = { which = gk_pillage_tier value > 0 }
 			}
-			add_modifier = {
-				modifier = gk_pillaged
-				mult = gk_pillage_tier
-			}
+			gk_apply_pillaged_modifier = yes
 		}
 		else = {
 			clear_variable = gk_pillage_tier
 			clear_variable = gk_pillage_progress
 		}
+	}
+}
+
+######################
+# Modifier Helpers   #
+######################
+
+# Remove all pillaged tier modifiers
+# This = Planet
+gk_remove_all_pillaged_modifiers = {
+	remove_modifier = gk_pillaged_1
+	remove_modifier = gk_pillaged_2
+	remove_modifier = gk_pillaged_3
+	remove_modifier = gk_pillaged_4
+	remove_modifier = gk_pillaged_5
+	remove_modifier = gk_pillaged_6
+}
+
+# Apply the correct pillaged modifier based on gk_pillage_tier
+# This = Planet
+gk_apply_pillaged_modifier = {
+	if = {
+		limit = { check_variable = { which = gk_pillage_tier value >= 6 } }
+		add_modifier = { modifier = gk_pillaged_6 }
+	}
+	else_if = {
+		limit = { check_variable = { which = gk_pillage_tier value >= 5 } }
+		add_modifier = { modifier = gk_pillaged_5 }
+	}
+	else_if = {
+		limit = { check_variable = { which = gk_pillage_tier value >= 4 } }
+		add_modifier = { modifier = gk_pillaged_4 }
+	}
+	else_if = {
+		limit = { check_variable = { which = gk_pillage_tier value >= 3 } }
+		add_modifier = { modifier = gk_pillaged_3 }
+	}
+	else_if = {
+		limit = { check_variable = { which = gk_pillage_tier value >= 2 } }
+		add_modifier = { modifier = gk_pillaged_2 }
+	}
+	else_if = {
+		limit = { check_variable = { which = gk_pillage_tier value >= 1 } }
+		add_modifier = { modifier = gk_pillaged_1 }
 	}
 }

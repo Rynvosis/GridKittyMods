@@ -62,16 +62,37 @@
  mod_gk_pillage_efficiency:0 "Resources from Pillaging"
  mod_gk_raiding_capacity:0 "Raiding Capacity"
  
- # Static Modifiers
- gk_pillaged:0 "Pillaged"
+ # Static Modifiers — Pillaged (per-tier, marker only)
+ gk_pillaged_1:0 "Lightly Pillaged"
+ gk_pillaged_1_desc:0 "Raiders have picked over this world, taking what was easy to carry. The scars are shallow — for now."
+ gk_pillaged_1_tooltip:0 "§YPillage Tier I§!\nThis planet has been pillaged §Y1§! time. Raiders stripped easily accessible resources. §GDecays in 1 year.§!"
+
+ gk_pillaged_2:0 "Pillaged"
+ gk_pillaged_2_desc:0 "Supply chains are fractured and warehouses lie empty. The population is shaken but resilient."
+ gk_pillaged_2_tooltip:0 "§YPillage Tier II§!\nThis planet has been pillaged §Y2§! times. Infrastructure damage is widespread. §GDecays over 2 years.§!"
+
+ gk_pillaged_3:0 "Heavily Pillaged"
+ gk_pillaged_3_desc:0 "Systematic looting has gutted the economy. What the raiders couldn't carry, they broke."
+ gk_pillaged_3_tooltip:0 "§YPillage Tier III§!\nThis planet has been pillaged §Y3§! times. The economy is in shambles. §GDecays over 3 years.§!"
+
+ gk_pillaged_4:0 "Severely Pillaged"
+ gk_pillaged_4_desc:0 "Little of value remains. The raiders have taken everything worth taking — and much that wasn't."
+ gk_pillaged_4_tooltip:0 "§YPillage Tier IV§!\nThis planet has been pillaged §Y4§! times. Almost nothing of value remains. §GDecays over 4 years.§!"
+
+ gk_pillaged_5:0 "Devastated"
+ gk_pillaged_5_desc:0 "A hollow shell of its former self. The population survives on stubbornness alone."
+ gk_pillaged_5_tooltip:0 "§YPillage Tier V§!\nThis planet has been pillaged §Y5§! times. Recovery will take years. §GDecays over 5 years.§!"
+
+ gk_pillaged_6:0 "Picked Clean"
+ gk_pillaged_6_desc:0 "There is nothing left. The raiders have taken everything — resources, infrastructure, hope. Only ashes remain."
+ gk_pillaged_6_tooltip:0 "§RPillage Tier VI§!\nThis planet has been pillaged §R6§! times — the maximum. There is nothing left to take. §GDecays over 6 years.§!"
+
  gk_pillage_tier_1_name:0 "Lightly Pillaged"
  gk_pillage_tier_2_name:0 "Pillaged"
- gk_pillage_tier_3_name:0 "Moderately Pillaged"
- gk_pillage_tier_4_name:0 "Heavily Pillaged"
- gk_pillage_tier_5_name:0 "Severely Pillaged"
- gk_pillage_tier_6_name:0 "Completely Pillaged"
- gk_pillaged_desc:0 "This planet has been pillaged by raiders. [This.GkPillageTierName]. The economy is disrupted but the community has united in solidarity."
- gk_pillaged.tooltip:0 "[This.GkPillageTierName]."
+ gk_pillage_tier_3_name:0 "Heavily Pillaged"
+ gk_pillage_tier_4_name:0 "Severely Pillaged"
+ gk_pillage_tier_5_name:0 "Devastated"
+ gk_pillage_tier_6_name:0 "Picked Clean"
  
  gk_plunder_recovery:0 "Raided"
  gk_plunder_recovery_desc:0 "Our people are working harder and growing faster after being raided. We will rebuild."
