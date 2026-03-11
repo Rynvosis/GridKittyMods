@@ -49,3 +49,48 @@ concept_gk_raiding_focus = {
 		picture = "GFX_evt_busy_spaceport"
 	}
 }
+
+concept_gk_wg_raiding = {
+	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_exploding_ship"
+	}
+}
+
+concept_gk_wg_pillage = {
+	icon = "gfx/interface/icons/resources/minerals.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_mining_station"
+	}
+}
+
+concept_gk_wg_reaping = {
+	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_exploding_ship"
+	}
+}
+
+concept_gk_wg_emancipation = {
+	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_emergency_workers"
+	}
+}
+
+concept_gk_wg_robo_liberation = {
+	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_emergency_workers"
+	}
+}

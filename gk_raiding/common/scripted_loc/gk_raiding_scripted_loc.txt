@@ -1,11 +1,5 @@
 # GK Raiding Scripted Localization for Dynamic Text
 
-# Raider's max pillage tiers from modifier
-defined_text = {
-	name = GkRaiderMaxPillageTiers
-	value = modifier:gk_max_pillage_tiers
-}
-
 # Raider's pillage efficiency multiplier
 defined_text = {
 	name = GkRaiderPillageEfficiency

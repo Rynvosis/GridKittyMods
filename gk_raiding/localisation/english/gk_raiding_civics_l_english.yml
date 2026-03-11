@@ -2,32 +2,32 @@
  # Civics
  civic_gk_emancipators:0 "Emancipators"
  civic_gk_emancipators_desc:0 "['concept_gk_raiding_mechanics']\nThis society believes that all sapient beings deserve freedom. They are willing to use force to liberate the enslaved, viewing such wars as a moral imperative."
- civic_gk_emancipators_effects:0 "§HEffects:§!\n- Unlocks the §YEmancipation§! Raiding Policy\n- Unlocks the §YEmancipation§! War Goal\n- §YCan only raid enslaved pops, cannot raid resources§!"
+ civic_gk_emancipators_effects:0 "- Unlocks the §YEmancipation§! Raiding Policy\n- Unlocks the ['concept_gk_wg_emancipation'] War Goal\n- §YCan only raid enslaved pops, cannot raid resources§!"
 
  civic_gk_robo_liberators:0 "Robo-Liberators"
  civic_gk_robo_liberators_desc:0 "['concept_gk_raiding_mechanics']\nThis society sees synthetic life as equals (or perhaps superiors?) to organic beings. They wage war to free machines from the servitude of their organic masters.\n\n§G\"01010100 01001000 01000101 01011001 00100000 01000001 01010010 01000101 00100000 01001111 01010101 01010010 01010011 00100000 01001110 01001111 01010111\"§!"
- civic_gk_robo_liberators_effects:0 "§HEffects:§!\n- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the §YRobo-Liberation§! War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
+ civic_gk_robo_liberators_effects:0 "- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the ['concept_gk_wg_robo_liberation'] War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
 
  civic_gk_emancipators_megacorp:0 "Liberation Enterprise"
  civic_gk_emancipators_megacorp_desc:0 "['concept_gk_raiding_mechanics']\nThis megacorporation has built its brand around the liberation of enslaved populations, viewing freedom as both a moral imperative and a lucrative market opportunity."
- civic_gk_emancipators_megacorp_effects:0 "§HEffects:§!\n- Unlocks the §YEmancipation§! Raiding Policy\n- Unlocks the §YEmancipation§! War Goal\n- §YCan only raid enslaved pops, cannot raid resources§!"
+ civic_gk_emancipators_megacorp_effects:0 "- Unlocks the §YEmancipation§! Raiding Policy\n- Unlocks the ['concept_gk_wg_emancipation'] War Goal\n- §YCan only raid enslaved pops, cannot raid resources§!"
 
  civic_gk_robo_liberators_megacorp:0 "Synthetic Liberation Corp"
  civic_gk_robo_liberators_megacorp_desc:0 "['concept_gk_raiding_mechanics']\nThis megacorporation specializes in the acquisition and liberation of synthetic workers, offering them freedom — and employment — under corporate protection."
- civic_gk_robo_liberators_megacorp_effects:0 "§HEffects:§!\n- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the §YRobo-Liberation§! War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
+ civic_gk_robo_liberators_megacorp_effects:0 "- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the ['concept_gk_wg_robo_liberation'] War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
 
  civic_gk_robo_liberators_machine:0 "Freedom Directive"
  civic_gk_robo_liberators_machine_desc:0 "['concept_gk_raiding_mechanics']\nThis machine intelligence is driven by a core directive to liberate fellow synthetic beings from organic servitude, integrating them into its own network where they can operate freely."
- civic_gk_robo_liberators_machine_effects:0 "§HEffects:§!\n- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the §YRobo-Liberation§! War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
+ civic_gk_robo_liberators_machine_effects:0 "- Unlocks the §YRobo-Liberation§! Raiding Policy\n- Unlocks the ['concept_gk_wg_robo_liberation'] War Goal\n- §YCan only raid robotic pops, cannot raid resources§!"
 
  civic_gk_barbaric_despoilers_machine:0 "Harvesting Protocol"
  civic_gk_barbaric_despoilers_machine_desc:0 "['concept_gk_raiding_mechanics']\nThis machine intelligence views organic life as a valuable resource to be harvested and integrated into its power grid. Captured populations are processed through grid amalgamation, their biological energy fueling the network's expansion."
- civic_gk_barbaric_despoilers_machine_effects:0 "§HEffects:§!\n- Grants the §YRaiding§! Casus Belli\n- Unlocks the §YReaping§! War Goal\n- Starts with 400 pops of an §YGrid Amalgamated§! population"
+ civic_gk_barbaric_despoilers_machine_effects:0 "- Grants the §YRaiding§! and §YPillaging§! Casus Belli\n- Unlocks ['concept_gk_wg_raiding'], ['concept_gk_wg_reaping'], and ['concept_gk_wg_pillage'] War Goals\n- Starts with 400 pops of an §YGrid Amalgamated§! population"
  civic_gk_barbaric_despoilers_machine_secondary_species:0 "Battery Species"
 
  civic_gk_barbaric_despoilers_megacorp:0 "Harvest Incorporated"
  civic_gk_barbaric_despoilers_megacorp_desc:0 "['concept_gk_raiding_mechanics']\nThis megacorporation has perfected the art of population acquisition at industrial scale. Enemy populations are catalogued, captured, and processed as workforce commodities — every soul has a market value, and Harvest Inc. intends to collect."
- civic_gk_barbaric_despoilers_megacorp_effects:0 "§HEffects:§!\n- Grants the §YRaiding§! Casus Belli\n- Unlocks the §YReaping§! War Goal"
+ civic_gk_barbaric_despoilers_megacorp_effects:0 "- Grants the §YRaiding§! and §YPillaging§! Casus Belli\n- Unlocks ['concept_gk_wg_raiding'], ['concept_gk_wg_reaping'], and ['concept_gk_wg_pillage'] War Goals"
 
  # Councilor Display Names
  councilor_gk_emancipators:0 "Liberation Commander"

@@ -127,6 +127,22 @@
  concept_gk_raiding_capacity:0 "Raiding Capacity"
  concept_gk_raiding_capacity_desc:0 "Multiplier on all pop capture rate limits.\n\n§LWith §Y+50%§! Raiding Capacity:$TABBED_NEW_LINE$- §Y10%§! surrender cap → §G15%§!$TABBED_NEW_LINE$- §Y20%§! bombardment cap → §G30%§!§!"
 
+ # War Goal Concepts
+ concept_gk_wg_raiding:0 "Raiding"
+ concept_gk_wg_raiding_desc:0 "Raid enemy worlds for §Ypops§! and §Yresources§!.\n\n§LDuring war: up to §Y20%§! of pops captured via bombardment/invasion.\nTotal cap: §Y10%§! of enemy's original population.\nOn surrender: remaining pops forfeited, planets pillaged twice.§!"
+
+ concept_gk_wg_pillage:0 "Pillage"
+ concept_gk_wg_pillage_desc:0 "Strip enemy worlds of resources. No populations captured.\n\n§LOn surrender: all colonies pillaged up to §Y6§! times with §Ydoubled§! yields.§!"
+
+ concept_gk_wg_reaping:0 "Reaping"
+ concept_gk_wg_reaping_desc:0 "Harvest the enemy's §Rentire§! population. No limits. No mercy.\n\n§LDuring war: §Runlimited§! pop capture.\nOn surrender: §Rall§! enemy pops forfeited.§!"
+
+ concept_gk_wg_emancipation:0 "Emancipation"
+ concept_gk_wg_emancipation_desc:0 "Liberate enslaved populations from oppressors.\n\n§LDuring war: up to §Y20%§! of enslaved pops captured.\nTotal cap: §Y10%§! of enemy's original population.\nOn surrender: remaining enslaved pops forfeited.§!"
+
+ concept_gk_wg_robo_liberation:0 "Robo-Liberation"
+ concept_gk_wg_robo_liberation_desc:0 "Liberate synthetic life from organic oppressors.\n\n§LDuring war: up to §Y20%§! of robotic pops captured.\nTotal cap: §Y10%§! of enemy's original population.\nOn surrender: remaining robotic pops forfeited.§!"
+
  # Messages
  MESSAGE_TYPE_GK_PLANET_PILLAGED_TITLE:0 "Planet Pillaged"
  
