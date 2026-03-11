@@ -39,7 +39,7 @@
  gk_focus_robo_liberation_name:0 "Robo-Liberation"
  
  gk_raiding_focus_no_raiding:0 "No Pop-Raiding"
- gk_raiding_focus_no_raiding_desc:0 "Our forces will not conduct pop-raiding wars. Resource pillaging via the §YPillage§! war goal remains available.\n\n§RDisables all pop-raiding war goals (Raiding, Reaping, Emancipation, Robo-Liberation).§!"
+ gk_raiding_focus_no_raiding_desc:0 "Our forces will not conduct pop-raiding wars. Empires that can pillage may still strip resources from hostile worlds in war.\n\n§RDisables all pop-raiding war goals (Raiding, Reaping, Emancipation, Robo-Liberation).§!"
  
  # Robot Raiding Policy
  policy_gk_robot_raiding:0 "Robot Raiding"
@@ -62,44 +62,30 @@
  mod_gk_pillage_efficiency:0 "Resources from Pillaging"
  mod_gk_raiding_capacity:0 "Raiding Capacity"
  
- # Static Modifiers — Pillaged (per-tier, marker only)
- gk_pillaged_1:0 "Lightly Pillaged"
- gk_pillaged_1_desc:0 "Raiders have picked over this world, taking what was easy to carry. The scars are shallow — for now."
- gk_pillaged_1_tooltip:0 "§YPillage Tier I§!\nThis planet has been pillaged §Y1§! time. Raiders stripped easily accessible resources. §GDecays in 1 year.§!"
-
- gk_pillaged_2:0 "Pillaged"
- gk_pillaged_2_desc:0 "Supply chains are fractured and warehouses lie empty. The population is shaken but resilient."
- gk_pillaged_2_tooltip:0 "§YPillage Tier II§!\nThis planet has been pillaged §Y2§! times. Infrastructure damage is widespread. §GDecays over 2 years.§!"
-
- gk_pillaged_3:0 "Heavily Pillaged"
- gk_pillaged_3_desc:0 "Systematic looting has gutted the economy. What the raiders couldn't carry, they broke."
- gk_pillaged_3_tooltip:0 "§YPillage Tier III§!\nThis planet has been pillaged §Y3§! times. The economy is in shambles. §GDecays over 3 years.§!"
-
- gk_pillaged_4:0 "Severely Pillaged"
- gk_pillaged_4_desc:0 "Little of value remains. The raiders have taken everything worth taking — and much that wasn't."
- gk_pillaged_4_tooltip:0 "§YPillage Tier IV§!\nThis planet has been pillaged §Y4§! times. Almost nothing of value remains. §GDecays over 4 years.§!"
-
- gk_pillaged_5:0 "Devastated"
- gk_pillaged_5_desc:0 "A hollow shell of its former self. The population survives on stubbornness alone."
- gk_pillaged_5_tooltip:0 "§YPillage Tier V§!\nThis planet has been pillaged §Y5§! times. Recovery will take years. §GDecays over 5 years.§!"
-
- gk_pillaged_6:0 "Picked Clean"
- gk_pillaged_6_desc:0 "There is nothing left. The raiders have taken everything — resources, infrastructure, hope. Only ashes remain."
- gk_pillaged_6_tooltip:0 "§RPillage Tier VI§!\nThis planet has been pillaged §R6§! times — the maximum. There is nothing left to take. §GDecays over 6 years.§!"
-
- gk_pillage_tier_1_name:0 "Lightly Pillaged"
- gk_pillage_tier_2_name:0 "Pillaged"
- gk_pillage_tier_3_name:0 "Heavily Pillaged"
- gk_pillage_tier_4_name:0 "Severely Pillaged"
- gk_pillage_tier_5_name:0 "Devastated"
- gk_pillage_tier_6_name:0 "Picked Clean"
- 
  gk_plunder_recovery:0 "Raided"
  gk_plunder_recovery_desc:0 "Our people are working harder and growing faster after being raided. We will rebuild."
  gk_plunder_recovery.tooltip:0 "§Y[This.GkRaideePlundered]§! pops have been plundered from our empire. This modifier scales with the percentage of our population lost and will decay by §Y10%§! each year."
+ gk_planet_tribute_0:0 "Token Tribute"
+ gk_planet_tribute_0_desc:0 "A token payment was extracted from this colony as a reminder of their defeat."
+ gk_planet_tribute_0.tooltip:0 "This planet paid a token tribute after surrender. The impact is barely noticeable."
+ gk_planet_tribute_1:0 "Minor Tribute"
+ gk_planet_tribute_1_desc:0 "This colony was forced to part with a modest share of its reserves to buy back the peace."
+ gk_planet_tribute_1.tooltip:0 "This planet paid a minor tribute after surrender. Recovery should be swift."
+ gk_planet_tribute_2:0 "Modest Tribute"
+ gk_planet_tribute_2_desc:0 "The price of peace was felt in every warehouse and reserve stockpile on this world."
+ gk_planet_tribute_2.tooltip:0 "This planet paid a modest tribute after surrender. The local economy will feel it."
+ gk_planet_tribute_3:0 "Heavy Tribute"
+ gk_planet_tribute_3_desc:0 "Raiders wrung a punishing payment from this colony before the guns finally fell silent."
+ gk_planet_tribute_3.tooltip:0 "This planet paid a heavy tribute after surrender. Recovery will take time."
+ gk_planet_tribute_4:0 "Crushing Tribute"
+ gk_planet_tribute_4_desc:0 "Storehouses were stripped, reserves emptied, and working life on this colony has been badly shaken."
+ gk_planet_tribute_4.tooltip:0 "This planet paid a crushing tribute after surrender. Its economy has been badly shaken."
+ gk_planet_tribute_5:0 "Ruinous Tribute"
+ gk_planet_tribute_5_desc:0 "This colony bought peace only by giving up nearly everything the raiders had not already taken."
+ gk_planet_tribute_5.tooltip:0 "This planet paid a ruinous tribute after surrender. Its economy has been left staggering."
  # Events
  gk_raiding.200.title:0 "Planet Raided"
- gk_raiding.200.desc:0 "Our forces have successfully invaded §Y[event_target:gk_target_planet.GetName]§! and pillaged it for resources. We have also captured §Y[Root.GkForfeitedPops]§! pops."
+ gk_raiding.200.desc:0 "Our forces have seized §Y[event_target:gk_target_planet.GetName]§!. The world has paid out one last haul of plunder, and we have captured §Y[Root.GkForfeitedPops]§! pops."
  gk_raiding.200.accept:0 "Take everything!"
  
  gk_raiding.400.title:0 "Emancipation Complete"
@@ -108,7 +94,7 @@
  gk_raiding.400.tooltip:0 "§Y[Root.GkForfeitedPops]§! enslaved pops have been transferred to your empire."
  
  gk_raiding.500.title:0 "Raiding Complete"
- gk_raiding.500.desc:0 "The enemy has surrendered. Our forces have extracted resources from all their worlds and captured §Y[Root.GkForfeitedPops]§! pops."
+ gk_raiding.500.desc:0 "The enemy has surrendered. §Y[From.GetName]§!'s surviving colonies were stripped for tribute, and we have also captured §Y[Root.GkForfeitedPops]§! pops."
  gk_raiding.500.accept:0 "Claim our spoils!"
  
  gk_raiding.600.title:0 "Robo-Liberation Complete"
@@ -125,16 +111,16 @@
  db_gk_raiding:0 "Raiding"
  
  concept_gk_raiding_mechanics:0 "Raiding Mechanics"
- concept_gk_raiding_mechanics_desc:0 "Capture pops and ['concept_gk_pillaging'] from enemy worlds during war.\nRaiding can only be conducted in §Yraiding wars§! via the §YRaiding§! bombardment stance and by successfully invading enemy planets.\n\nPop capture is subject to a §Ytotal cap§! based on war type and ['concept_gk_raiding_capacity']:\n- §YRaiding wars§!: §Y20%§! during war, §Y10%§! total cap on surrender\n- §YReaping§!: Unlimited\n- §YTotal wars§!/§YPrimitives§!: Unlimited\n\nThe ['concept_gk_raiding_capacity'] modifier multiplies these base rates."
+ concept_gk_raiding_mechanics_desc:0 "Capture pops and, if your empire can pillage, strip resources from enemy worlds during war.\n\n§YPop capture§! requires the §YRaiding§! bombardment stance or a successful invasion and is tied to dedicated raiding war goals.\n§YResource pillaging§! works whenever a pillage-capable empire batters a hostile colony, while §YPillage§! wars turn those same raids into far richer tribute. Worlds left less-ravaged still have more to give when they are invaded or when their empire finally surrenders.\n\nPop capture is subject to a §Ytotal cap§! based on war type and ['concept_gk_raiding_capacity']:\n- §YRaiding wars§!: §Y20%§! during war, §Y10%§! total cap on surrender\n- §YReaping§!: Unlimited\n- §YTotal wars§!/§YPrimitives§!: Unlimited\n\nThe ['concept_gk_raiding_capacity'] modifier multiplies these base rates."
 
  concept_gk_pop_raiding_limit:0 "Pop Raiding Limit"
  concept_gk_pop_raiding_limit_desc:0 "Maximum percentage of an enemy's total population you can capture across the entire war.\n- §YRaiding wars§!: up to §Y20%§! during war, §Y10%§! total cap (pops captured during war count toward this)\n- §YReaping§!: Unlimited\n- §YTotal Wars§! and §YPrimitives§!: No limit\n\nThe ['concept_gk_raiding_capacity'] modifier multiplies these base rates (e.g. +50% turns 10% into 15%)."
 
  concept_gk_pillaging:0 "Pillage Resources"
- concept_gk_pillaging_desc:0 "Extract resources from enemy planets based on their economic output and your efficiency modifiers.\n- §YRaiding wars§!: up to §Y2§! tiers, normal yield\n- §YPillage wars§!: up to §Y6§! tiers, §Ydoubled§! yield\nEach pillage applies the §RPillaged§! modifier, reducing the planet's output."
+ concept_gk_pillaging_desc:0 "Empires with the ability to pillage can extract resources from hostile planets as fleets and armies batter them down in any war.\nOrdinary raids yield steady spoils, while pillage wars squeeze far richer tribute out of the same worlds. Colonies that have not yet been fully worked over can still pay a larger final haul when taken by force or compelled to surrender.\nTrade is worth more as plunder, and Unity plus Research are turned into Consumer Goods."
  
  concept_gk_raiding_focus:0 "Raiding Focus"
- concept_gk_raiding_focus_desc:0 "Policy determining your raiding strategy:$TABBED_NEW_LINE$- §YPlunder§!: Pops and resources$TABBED_NEW_LINE$- §YNo Pop-Raiding§!: Disables pop-raiding war goals. Pillaging remains available independently$TABBED_NEW_LINE$- §YEmancipation§!: Only enslaved pops (requires an Emancipators civic)$TABBED_NEW_LINE$- §YRobo-Liberation§!: Only robots (requires a Robo-Liberators civic)\n\n§YReaping§! is available as a war goal to Barbaric Despoilers and equivalent civics regardless of policy."
+ concept_gk_raiding_focus_desc:0 "Policy determining your raiding strategy:$TABBED_NEW_LINE$- §YPlunder§!: Pops and resources$TABBED_NEW_LINE$- §YNo Pop-Raiding§!: Disables pop-raiding war goals. Pillaging still remains available to empires that can pillage$TABBED_NEW_LINE$- §YEmancipation§!: Only enslaved pops (requires an Emancipators civic)$TABBED_NEW_LINE$- §YRobo-Liberation§!: Only robots (requires a Robo-Liberators civic)\n\n§YReaping§! is available as a war goal to Barbaric Despoilers and equivalent civics regardless of policy."
  
  # Concept Aliases (not displayed, but need to exist)
  concept_gk_raiding:0 "Raiding"
@@ -150,10 +136,10 @@
 
  # War Goal Concepts
  concept_gk_wg_raiding:0 "Raiding"
- concept_gk_wg_raiding_desc:0 "Raid enemy worlds for §Ypops§! and §Yresources§!.\n\n§LDuring war: up to §Y20%§! of pops captured via bombardment/invasion.\nTotal cap: §Y10%§! of enemy's original population.\nOn surrender: remaining pops forfeited, planets pillaged twice.§!"
+ concept_gk_wg_raiding_desc:0 "Raid enemy worlds for §Ypops§! and §Yresources§!.\n\n§LDuring war: up to §Y20%§! of pops captured via raiding bombardment or invasion.\nTotal cap: §Y10%§! of the enemy's original population.\nPillage-capable empires on the raiding side also wring tribute from battered colonies, while the least-ravaged worlds still pay a final price when taken or surrendered.§!"
 
  concept_gk_wg_pillage:0 "Pillage"
- concept_gk_wg_pillage_desc:0 "Strip enemy worlds of resources. No populations captured.\n\n§LOn surrender: all colonies pillaged up to §Y6§! times with §Ydoubled§! yields.§!"
+ concept_gk_wg_pillage_desc:0 "Strip enemy worlds of resources. No populations captured.\n\n§LThis war goal turns every qualifying raid into a much richer haul of tribute, and the least-ravaged worlds still pay handsomely when they are taken or forced to surrender.§!"
 
  concept_gk_wg_reaping:0 "Reaping"
  concept_gk_wg_reaping_desc:0 "Harvest the enemy's §Rentire§! population. No limits. No mercy.\n\n§LDuring war: §Runlimited§! pop capture.\nOn surrender: §Rall§! enemy pops forfeited.§!"
@@ -168,10 +154,10 @@
  MESSAGE_TYPE_GK_PLANET_PILLAGED_TITLE:0 "Planet Pillaged"
  
  MESSAGE_GK_OUR_PLANET_PILLAGED_KEY:0 "$MESSAGE_TYPE_GK_PLANET_PILLAGED_KEY$ by enemy raiders!"
- MESSAGE_GK_OUR_PLANET_PILLAGED:0 "Enemy raiders have pillaged $PLANET|Y$, stripping it of resources and sowing chaos among the populace."
+ MESSAGE_GK_OUR_PLANET_PILLAGED:0 "Enemy raiders have pillaged $PLANET|Y$, skimming off wealth as fresh devastation tears through the colony."
 
  MESSAGE_GK_PLANET_PILLAGED_KEY:0 "$MESSAGE_TYPE_GK_PLANET_PILLAGED_KEY$ by our raiders!"
- MESSAGE_GK_PLANET_PILLAGED:0 "Our raiders have successfully pillaged $PLANET|Y$, extracting the following resources:$trade_label$$trade|G$$energy_label$$energy|G$$minerals_label$$minerals|G$$food_label$$food|G$$consumer_goods_label$$consumer_goods|G$$alloys_label$$alloys|G$$volatile_motes_label$$volatile_motes|G$$exotic_gases_label$$exotic_gases|G$$rare_crystals_label$$rare_crystals|G$$sr_living_metal_label$$sr_living_metal|G$$sr_zro_label$$sr_zro|G$$sr_dark_matter_label$$sr_dark_matter|G$$nanites_label$$nanites|G$"
+ MESSAGE_GK_PLANET_PILLAGED:0 "Our raiders have wrung fresh plunder out of $PLANET|Y$:$trade_label$$trade|G$$energy_label$$energy|G$$minerals_label$$minerals|G$$food_label$$food|G$$consumer_goods_label$$consumer_goods|G$$alloys_label$$alloys|G$$volatile_motes_label$$volatile_motes|G$$exotic_gases_label$$exotic_gases|G$$rare_crystals_label$$rare_crystals|G$$sr_living_metal_label$$sr_living_metal|G$$sr_zro_label$$sr_zro|G$$sr_dark_matter_label$$sr_dark_matter|G$$nanites_label$$nanites|G$"
 
  # Resource Loot Localization Strings
  trade_label:0 "\n£trade£ §Y$trade$§!: "
@@ -197,6 +183,5 @@
  opinion_gk_reaped_pops:0 "Reaped Pops"
 
  gk_raiding.900.title:0 "Pillage Complete"
- gk_raiding.900.desc:0 "The enemy has surrendered. Our raiders have stripped their worlds bare, extracting every resource of value."
+ gk_raiding.900.desc:0 "The enemy has surrendered. §Y[From.GetName]§!'s surviving colonies have yielded a final haul of tribute."
  gk_raiding.900.accept:0 "The coffers overflow!"
-
