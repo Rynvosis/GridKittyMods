@@ -1,5 +1,9 @@
 # GK Raiding Scripted Triggers
 
+# Pillage tuning — shared with gk_pillage_effects.txt
+@gk_pillage_war_max_tiers = 6
+@gk_raiding_war_max_tiers = 2
+
 #############################
 # Raiding Bombardment Check #
 #############################
@@ -440,7 +444,7 @@ gk_can_be_pillaged = {
 			}
 			OR = {
 				NOT = { is_variable_set = gk_pillage_tier }
-				check_variable = { which = gk_pillage_tier value < 6 }
+				check_variable = { which = gk_pillage_tier value < @gk_pillage_war_max_tiers }
 			}
 		}
 		# In raiding war: max 2 tiers
@@ -453,7 +457,7 @@ gk_can_be_pillaged = {
 			}
 			OR = {
 				NOT = { is_variable_set = gk_pillage_tier }
-				check_variable = { which = gk_pillage_tier value < 2 }
+				check_variable = { which = gk_pillage_tier value < @gk_raiding_war_max_tiers }
 			}
 		}
 	}

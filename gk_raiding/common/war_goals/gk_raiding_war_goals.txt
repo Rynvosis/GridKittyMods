@@ -1,5 +1,7 @@
 # GK Raiding War Goals
 
+@gk_reaping_cap_rate = 100
+
 #####################
 # REAPING WAR       #
 #####################
@@ -67,10 +69,8 @@ wg_gk_reaping = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
-			# Set surrender cap rate (unlimited for reaping)
-			set_variable = { which = gk_cap_rate value = 100 }
-			# Abduct only - no pillaging
-			gk_abduct_on_surrender = yes
+			# Abduct only - no pillaging (unlimited cap for reaping)
+			gk_abduct_on_surrender = { RATE = @gk_reaping_cap_rate }
 			# Fire reaping surrender event
 			country_event = {
 				id = gk_raiding.700
@@ -154,14 +154,9 @@ wg_gk_emancipation = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
-			# Set surrender cap rate (10% base, scaled by raiding capacity modifier)
-			# Emancipation civic provides +50% gk_raiding_capacity, making effective rate ~15%
-			set_variable = { which = gk_cap_rate value = 0.10 }
-			set_variable = { which = gk_rate_mult_temp value = value:gk_raiding_capacity_mult }
-			multiply_variable = { which = gk_cap_rate value = gk_rate_mult_temp }
-			clear_variable = gk_rate_mult_temp
 			# Abduct only (enslaved pops via war goal check)
-			gk_abduct_on_surrender = yes
+			# Emancipation civic provides +50% gk_raiding_capacity, making effective rate ~15%
+			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
 			# Fire reward collection event with raidee as from
 			country_event = {
 				id = gk_raiding.400
@@ -250,14 +245,9 @@ wg_gk_robo_liberation = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
-			# Set surrender cap rate (10% base, scaled by raiding capacity modifier)
-			# Robo-liberation civic provides +50% gk_raiding_capacity, making effective rate ~15%
-			set_variable = { which = gk_cap_rate value = 0.10 }
-			set_variable = { which = gk_rate_mult_temp value = value:gk_raiding_capacity_mult }
-			multiply_variable = { which = gk_cap_rate value = gk_rate_mult_temp }
-			clear_variable = gk_rate_mult_temp
 			# Abduct only (robotic pops via robot check)
-			gk_abduct_on_surrender = yes
+			# Robo-liberation civic provides +50% gk_raiding_capacity, making effective rate ~15%
+			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
 			# Fire reward collection event with raidee as from
 			country_event = {
 				id = gk_raiding.600

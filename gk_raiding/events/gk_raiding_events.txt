@@ -1,5 +1,10 @@
 namespace = gk_raiding
 
+@gk_pillage_progress_threshold = 20
+@gk_decay_rate_at_peace = 0.90
+@gk_decay_rate_at_war = 0.95
+@gk_decay_clear_threshold = 1
+
 ############################
 # Machine Despoilers Setup #
 ############################
@@ -95,10 +100,8 @@ planet_event = {
 		gk_can_be_pillaged = yes
 	}
 	immediate = {
-		# Save raider for effects and set war-context pillage variables
 		from = {
 			save_event_target_as = gk_raider
-			gk_set_pillage_context_for_bombardment = yes
 		}
 		# Initialize
 		create_variable_if_not_exists = {
@@ -132,7 +135,7 @@ planet_event = {
 			limit = {
 				check_variable = {
 					which = gk_pillage_progress
-					value >= 20
+					value >= @gk_pillage_progress_threshold
 				}
 			}
 			# Reset progress
@@ -227,22 +230,22 @@ country_event = {
 				}
 				multiply_variable = {
 					which = gk_raidee_plundered
-					value = 0.95
+					value = @gk_decay_rate_at_war
 				}
 			}
 			else = {
 				multiply_variable = {
 					which = gk_raidee_plundered
-					value = 0.9
+					value = @gk_decay_rate_at_peace
 				}
 			}
-			# Clear if below 1 and not at war
+			# Clear if below threshold and not at war
 			if = {
 				limit = {
 					is_at_war = no
 					check_variable = {
 						which = gk_raidee_plundered
-						value <= 1
+						value <= @gk_decay_clear_threshold
 					}
 				}
 				clear_variable = gk_raidee_plundered
@@ -281,22 +284,22 @@ country_event = {
 				}
 				multiply_variable = {
 					which = gk_raidee_emancipated
-					value = 0.95
+					value = @gk_decay_rate_at_war
 				}
 			}
 			else = {
 				multiply_variable = {
 					which = gk_raidee_emancipated
-					value = 0.9
+					value = @gk_decay_rate_at_peace
 				}
 			}
-			# Clear if below 1 and not at war
+			# Clear if below threshold and not at war
 			if = {
 				limit = {
 					is_at_war = no
 					check_variable = {
 						which = gk_raidee_emancipated
-						value <= 1
+						value <= @gk_decay_clear_threshold
 					}
 				}
 				clear_variable = gk_raidee_emancipated
@@ -411,33 +414,6 @@ country_event = {
 			save_event_target_as = gk_target_planet
 			save_event_target_as = gk_raiding_target
 		}
-		# Set pillage context from war type
-		if = {
-			limit = {
-				any_war = {
-					is_war_participant = { who = fromfrom.owner side = defenders }
-					using_war_goal = { type = wg_plunder_raid owner = prev }
-				}
-			}
-			set_variable = { which = gk_effective_max_tiers value = 6 }
-			set_variable = { which = gk_pillage_resource_mult value = 2 }
-		}
-		else_if = {
-			limit = {
-				any_war = {
-					is_war_participant = { who = fromfrom.owner side = defenders }
-					using_war_goal = { type = wg_plunder owner = prev }
-				}
-			}
-			set_variable = { which = gk_effective_max_tiers value = 2 }
-			set_variable = { which = gk_pillage_resource_mult value = 1 }
-		}
-		else = {
-			set_variable = { which = gk_effective_max_tiers value = 0 }
-			set_variable = { which = gk_pillage_resource_mult value = 1 }
-		}
-		# Set cap rate from war context (invasion rate)
-		gk_set_cap_rate_from_context = yes
 		# Pillage and abduct (single planet)
 		gk_pillage_on_invasion = yes
 		gk_abduct_on_invasion = yes

@@ -66,17 +66,9 @@ wg_plunder = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
-			# Set surrender cap rate (10% base, scaled by raiding capacity modifier)
-			set_variable = { which = gk_cap_rate value = 0.10 }
-			set_variable = { which = gk_rate_mult_temp value = value:gk_raiding_capacity_mult }
-			multiply_variable = { which = gk_cap_rate value = gk_rate_mult_temp }
-			clear_variable = gk_rate_mult_temp
-			# Set pillage context for raiding war (2 tiers, normal yield)
-			set_variable = { which = gk_effective_max_tiers value = 2 }
-			set_variable = { which = gk_pillage_resource_mult value = 1 }
 			# Pillage and abduct (all planets, all sapient pops per robot policy)
 			gk_pillage_on_surrender = yes
-			gk_abduct_on_surrender = yes
+			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
 			# Fire reward collection event with raidee as from
 			country_event = {
 				id = gk_raiding.500
@@ -159,9 +151,6 @@ wg_plunder_raid = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
-			# Set pillage context for pillage war (6 tiers, doubled yield)
-			set_variable = { which = gk_effective_max_tiers value = 6 }
-			set_variable = { which = gk_pillage_resource_mult value = 2 }
 			# Pillage only - no pop capture
 			gk_pillage_on_surrender = yes
 			# Fire pillage surrender event

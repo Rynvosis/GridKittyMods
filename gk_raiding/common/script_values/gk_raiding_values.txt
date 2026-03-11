@@ -1,5 +1,11 @@
 # GK Raiding Script Values
 
+@gk_surrender_base_cap_rate = 0.10
+@gk_invasion_base_cap_rate = 0.10
+@gk_raiding_war_cap_rate_mult = 2
+@gk_reaping_cap_rate = 100
+@gk_max_pops_per_abduction = 100
+
 ####################
 # Pop Cap Values   #
 ####################
@@ -18,19 +24,37 @@ gk_raidee_effective_taken = {
 	}
 }
 
-# Base abduction rate for cap calculations
-# This = country (defender/raidee)
-# event_target:gk_raider = raider country
-# Returns 0.20 if in a raiding war with this raider, 0.10 otherwise
-gk_effective_base_rate = {
-	base = 0.10
+# Abduction cap: (total_pops + effective_taken) * rate - effective_taken
+# This = raidee country, event_target:gk_raider = raider
+# Parameter: RATE — a literal, @variable, or value:script_value
+gk_abduction_cap = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = add
+	}
+	add = value:gk_raidee_effective_taken
+	mult = $RATE$
+	subtract = value:gk_raidee_effective_taken
+	ceiling = yes
+	min = 0
+}
+
+# Surrender: flat base × capacity mult
+# This = raidee, event_target:gk_raider = raider
+gk_surrender_cap_rate = {
+	base = @gk_surrender_base_cap_rate
+	mult = event_target:gk_raider.value:gk_raiding_capacity_mult
+}
+
+# Invasion/bombardment: base × war-type mult × capacity mult
+# This = raidee, event_target:gk_raider = raider
+gk_invasion_cap_rate = {
+	base = @gk_invasion_base_cap_rate
 	modifier = {
 		event_target:gk_raider = {
 			any_war = {
-				is_war_participant = {
-					who = prevprev
-					side = defenders
-				}
+				is_war_participant = { who = prevprev side = defenders }
 				OR = {
 					using_war_goal = { type = wg_plunder owner = prev }
 					using_war_goal = { type = wg_gk_emancipation owner = prev }
@@ -38,25 +62,19 @@ gk_effective_base_rate = {
 				}
 			}
 		}
-		mult = 2
+		mult = @gk_raiding_war_cap_rate_mult
 	}
-}
-
-# Initial abduction cap calculation
-# This = raidee country
-# event_target:gk_raider = raider country (must have gk_cap_rate variable set)
-# Returns: (total_pops + effective_taken) * cap_rate - effective_taken, rounded up
-gk_initial_abduction_cap = {
-	base = 0
-	complex_trigger_modifier = {
-		trigger = count_owned_pop_amount
-		mode = add
+	modifier = {
+		# Reaping war = effectively unlimited
+		event_target:gk_raider = {
+			any_war = {
+				is_war_participant = { who = prevprev side = defenders }
+				using_war_goal = { type = wg_gk_reaping owner = prev }
+			}
+		}
+		mult = @gk_reaping_cap_rate  # 0.10 * 100 = 10 (>>1), takes all
 	}
-	add = value:gk_raidee_effective_taken
-	mult = event_target:gk_raider.gk_cap_rate
-	subtract = value:gk_raidee_effective_taken
-	ceiling = yes
-	min = 0
+	mult = event_target:gk_raider.value:gk_raiding_capacity_mult
 }
 
 # Variable accessors for localisation
@@ -101,7 +119,7 @@ gk_pops_to_abduct = {
 	# Clamp to remaining cap if it's less than pop_group size
 	max = event_target:gk_raidee.gk_remaining_cap
 	# No more than 100 at a time
-	max = 100
+	max = @gk_max_pops_per_abduction
 }
 
 # Raiding capacity multiplier (1 + modifier value)
@@ -169,6 +187,7 @@ gk_base_loot_value = {
 # Estimated pops to be taken on surrender
 # This = country (defender/raidee)
 # Root = country (raider)
+# Display value: rate × 100 = 10 (base percentage)
 gk_estimated_surrender_pops = {
 	base = 0
 	complex_trigger_modifier = {
@@ -176,7 +195,7 @@ gk_estimated_surrender_pops = {
 		mode = add
 	}
 	add = value:gk_raidee_effective_taken
-	mult = 0.10
+	mult = @gk_surrender_base_cap_rate
 	mult = root.value:gk_raiding_capacity_mult
 	subtract = value:gk_raidee_effective_taken
 	ceiling = yes
@@ -185,6 +204,7 @@ gk_estimated_surrender_pops = {
 
 # Bombardment/invasion cap percentage for display
 # This = country (raider)
+# Display value: base rate × 100 × raiding_war_cap_rate_mult = 20 (base percentage)
 gk_bombardment_cap_percent = {
 	base = 20
 	mult = value:gk_raiding_capacity_mult
@@ -193,6 +213,7 @@ gk_bombardment_cap_percent = {
 
 # Surrender cap percentage for display
 # This = country (raider)
+# Display value: base rate × 100 = 10 (base percentage)
 gk_surrender_cap_percent = {
 	base = 10
 	mult = value:gk_raiding_capacity_mult
