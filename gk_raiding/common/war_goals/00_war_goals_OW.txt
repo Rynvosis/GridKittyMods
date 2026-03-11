@@ -5,7 +5,7 @@
 #####################
 # RAIDING WAR       #
 #####################
-# General raiding: pops + resources, effectiveness based on modifiers
+# General raiding: pops + devastation-driven resources
 # Bombardment/invasion cap: 20%, Surrender cap: 10%
 wg_plunder = {
 	casus_belli = cb_despoliation
@@ -66,7 +66,7 @@ wg_plunder = {
 			# Set up event targets
 			save_event_target_as = gk_raider
 			from = { save_event_target_as = gk_raidee }
-			# Pillage and abduct (all planets, all sapient pops per robot policy)
+			# Pillage and abduct (remaining pillage quota on all planets, all sapient pops per robot policy)
 			gk_pillage_on_surrender = yes
 			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
 			# Fire reward collection event with raidee as from
@@ -85,7 +85,7 @@ wg_plunder = {
 #####################
 # PILLAGE WAR       #
 #####################
-# Resource-only pillaging with bonus tiers, no pop capture
+# Resource-only pillaging with 6x devastation-driven extraction, no pop capture
 wg_plunder_raid = {
 	casus_belli = cb_pirate_raid
 	hide_if_no_cb = yes

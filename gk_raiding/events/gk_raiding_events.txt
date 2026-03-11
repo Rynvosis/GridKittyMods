@@ -1,6 +1,5 @@
 namespace = gk_raiding
 
-@gk_pillage_progress_threshold = 10
 @gk_decay_rate_at_peace = 0.90
 @gk_decay_rate_at_war = 0.95
 @gk_decay_clear_threshold = 1
@@ -82,69 +81,94 @@ country_event = {
 ############################
 # Bombardment Events 100+  #
 ############################
-# Daily bombardment - pillage progress
+# Daily devastation from bombardment or ground combat - immediate pillage packets
+# Also resolves forced orbital surrender before ownership flips.
 # This = Planet
-# From = Bombarding country
+# From = Damaging country
 planet_event = {
 	id = gk_raiding.100
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		has_orbital_bombardment = yes
-		has_orbital_bombardment_stance = raiding
 		exists = owner
-		from = {
-			gk_can_raid_resources = yes
+		exists = from
+		OR = {
+			AND = {
+				from = {
+					gk_can_raid_resources = yes
+				}
+				gk_can_be_pillaged = yes
+			}
+			AND = {
+				from = {
+					gk_can_pop_raid_personally = yes
+				}
+				owner = {
+					from = {
+						OR = {
+							prev = { gk_has_standard_raiding_war_with = yes }
+							prev = { gk_has_emancipation_war_with = yes }
+							prev = { gk_has_robo_liberation_war_with = yes }
+							prev = { gk_has_reaping_war_with = yes }
+						}
+					}
+				}
+			}
 		}
-		# Can still be pillaged
-		gk_can_be_pillaged = yes
 	}
 	immediate = {
 		from = {
 			save_event_target_as = gk_raider
 		}
-		# Initialize
-		create_variable_if_not_exists = {
-			VARIABLE = gk_pillage_tier
-			VALUE_IF_CREATED = 0
-		}
-		create_variable_if_not_exists = {
-			VARIABLE = gk_pillage_progress
-			VALUE_IF_CREATED = 0
-		}
-		# increased chance to pillage based on devastation.
-		# based on power curve.
-		random_list = {
-			10 = {
-				modifier = {
-					add = value:gk_devastation_curve
-				}
-				change_variable = {
-					which = gk_pillage_progress
-					value = 1
-				}
-			}
-			110 = {
-				modifier = {
-					subtract = value:gk_devastation_curve
-				}
-			}
-		}
-		# Check for tier advancement (progress >= 20)
 		if = {
 			limit = {
-				check_variable = {
-					which = gk_pillage_progress
-					value >= @gk_pillage_progress_threshold
+				from = {
+					gk_can_raid_resources = yes
+				}
+				gk_can_be_pillaged = yes
+			}
+			gk_pillage_on_devastation = yes
+		}
+		if = {
+			limit = {
+				has_orbital_bombardment = yes
+				num_armies < 1
+				NOT = { has_ground_combat = yes }
+				NOT = { has_planet_flag = gk_pillage_forced_surrender_resolved_by_@from }
+				OR = {
+					AND = {
+						from = {
+							gk_can_pillage = yes
+							is_at_war_with = prev.owner
+						}
+					}
+					AND = {
+						from = {
+							gk_can_pop_raid_personally = yes
+						}
+						owner = {
+							from = {
+								OR = {
+									prev = { gk_has_standard_raiding_war_with = yes }
+									prev = { gk_has_emancipation_war_with = yes }
+									prev = { gk_has_robo_liberation_war_with = yes }
+									prev = { gk_has_reaping_war_with = yes }
+								}
+							}
+						}
+					}
 				}
 			}
-			# Reset progress
-			set_variable = {
-				which = gk_pillage_progress
-				value = 0
+			set_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
+			from = {
+				country_event = {
+					id = gk_raiding.200
+					scopes = {
+						from = root.owner
+						fromfrom = root
+					}
+				}
 			}
-			# Apply pillage with immediate resources + notification
-			gk_pillage_on_bombardment = yes
 		}
 	}
 }
@@ -205,25 +229,24 @@ country_event = {
 			if = {
 				limit = {
 					any_war = {
-						any_defender = {
-							is_same_value = root
-						}
 						OR = {
-							using_war_goal = {
-								type = wg_gk_emancipation
-								owner = attacker
+							AND = {
+								is_war_participant = { who = root side = defenders }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = attacker }
+									using_war_goal = { type = wg_plunder owner = attacker }
+									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+									using_war_goal = { type = wg_gk_reaping owner = attacker }
+								}
 							}
-							using_war_goal = {
-								type = wg_plunder
-								owner = attacker
-							}
-							using_war_goal = {
-								type = wg_gk_robo_liberation
-								owner = attacker
-							}
-							using_war_goal = {
-								type = wg_gk_reaping
-								owner = attacker
+							AND = {
+								is_war_participant = { who = root side = attackers }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = defender }
+									using_war_goal = { type = wg_plunder owner = defender }
+									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+									using_war_goal = { type = wg_gk_reaping owner = defender }
+								}
 							}
 						}
 					}
@@ -259,25 +282,24 @@ country_event = {
 			if = {
 				limit = {
 					any_war = {
-						any_defender = {
-							is_same_value = root
-						}
 						OR = {
-							using_war_goal = {
-								type = wg_gk_emancipation
-								owner = attacker
+							AND = {
+								is_war_participant = { who = root side = defenders }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = attacker }
+									using_war_goal = { type = wg_plunder owner = attacker }
+									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+									using_war_goal = { type = wg_gk_reaping owner = attacker }
+								}
 							}
-							using_war_goal = {
-								type = wg_plunder
-								owner = attacker
-							}
-							using_war_goal = {
-								type = wg_gk_robo_liberation
-								owner = attacker
-							}
-							using_war_goal = {
-								type = wg_gk_reaping
-								owner = attacker
+							AND = {
+								is_war_participant = { who = root side = attackers }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = defender }
+									using_war_goal = { type = wg_plunder owner = defender }
+									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+									using_war_goal = { type = wg_gk_reaping owner = defender }
+								}
 							}
 						}
 					}
@@ -310,26 +332,6 @@ country_event = {
 	}
 }
 
-# Yearly decay of pillage tier on all owned planets
-# This = Country scope (from on_yearly_pulse_country)
-country_event = {
-	id = gk_raiding.51
-	hide_window = yes
-	is_triggered_only = yes
-	immediate = {
-		every_owned_planet = {
-			limit = {
-				is_variable_set = gk_pillage_tier
-				check_variable = {
-					which = gk_pillage_tier
-					value > 0
-				}
-			}
-			gk_decay_pillage_tier = yes
-		}
-	}
-}
-
 # Yearly cleanup of raid tracker leaders and cap flags
 # This = Country scope (from on_yearly_pulse_country)
 country_event = {
@@ -337,9 +339,17 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		# Only run if we have any raid cap flags
-		any_country = {
-			has_country_flag = gk_raid_cap_reached_by_@root
+		OR = {
+			# Only run if we have any raid cap flags
+			any_country = {
+				has_country_flag = gk_raid_cap_reached_by_@root
+			}
+			# Or any invasion cashout markers keyed to a country that may no longer be at war with us
+			any_country = {
+				root = {
+					has_country_flag = gk_has_pillage_invasion_cashed_out_by_@prev
+				}
+			}
 		}
 	}
 	immediate = {
@@ -384,6 +394,60 @@ country_event = {
 				}
 			}
 		}
+		# Clean up invasion cashout flags for raiders we are no longer at war with
+		every_country = {
+			limit = {
+				root = {
+					has_country_flag = gk_has_pillage_invasion_cashed_out_by_@prev
+				}
+			}
+			if = {
+				limit = {
+					root = {
+						NOT = {
+							any_war = {
+								is_war_participant = { who = prev }
+							}
+						}
+					}
+				}
+				save_event_target_as = gk_raider
+				root = {
+					gk_clear_invasion_pillage_cashed_out_flags = yes
+				}
+			}
+		}
+	}
+}
+
+# Immediate cleanup for invasion cashout flags when a war pair ends
+# Root = Loser
+# From = Main Winner
+country_event = {
+	id = gk_raiding.53
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = gk_has_pillage_invasion_cashed_out_by_@from
+			}
+			from = {
+				save_event_target_as = gk_raider
+			}
+			gk_clear_invasion_pillage_cashed_out_flags = yes
+		}
+		from = {
+			if = {
+				limit = {
+					has_country_flag = gk_has_pillage_invasion_cashed_out_by_@root
+				}
+				root = {
+					save_event_target_as = gk_raider
+				}
+				gk_clear_invasion_pillage_cashed_out_flags = yes
+			}
+		}
 	}
 }
 
@@ -403,20 +467,62 @@ country_event = {
 	location = fromfrom
 	is_triggered_only = yes
 	trigger = {
-		gk_has_any_raiding_war = yes
 		fromfrom = {
 			is_colony = yes
+		}
+		OR = {
+			AND = {
+				gk_can_pillage = yes
+				from = {
+					is_at_war_with = root
+				}
+			}
+			AND = {
+				gk_can_pop_raid_personally = yes
+				from = {
+					OR = {
+						root = { gk_has_standard_raiding_war_with = yes }
+						root = { gk_has_emancipation_war_with = yes }
+						root = { gk_has_robo_liberation_war_with = yes }
+						root = { gk_has_reaping_war_with = yes }
+					}
+				}
+			}
 		}
 	}
 	immediate = {
 		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+		}
 		fromfrom = {
 			save_event_target_as = gk_target_planet
 			save_event_target_as = gk_raiding_target
 		}
 		# Pillage and abduct (single planet)
-		gk_pillage_on_invasion = yes
-		gk_abduct_on_invasion = yes
+		if = {
+			limit = {
+				gk_can_pillage = yes
+				from = {
+					is_at_war_with = root
+				}
+			}
+			gk_pillage_on_invasion = yes
+		}
+		if = {
+			limit = {
+				gk_can_pop_raid_personally = yes
+				from = {
+					OR = {
+						root = { gk_has_standard_raiding_war_with = yes }
+						root = { gk_has_emancipation_war_with = yes }
+						root = { gk_has_robo_liberation_war_with = yes }
+						root = { gk_has_reaping_war_with = yes }
+					}
+				}
+			}
+			gk_abduct_on_invasion = yes
+		}
 		# Copy values to root for localisation display
 		gk_copy_receipt_values_for_display = yes
 	}
@@ -437,6 +543,22 @@ country_event = {
 		hidden_effect = {
 			gk_destroy_loot_receipt = yes
 		}
+	}
+}
+
+# Planet conquered after forced bombardment surrender - clear the pre-conquer marker
+# This = Planet
+# From = New Owner
+planet_event = {
+	id = gk_raiding.201
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = from
+		has_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
+	}
+	immediate = {
+		remove_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
 	}
 }
 

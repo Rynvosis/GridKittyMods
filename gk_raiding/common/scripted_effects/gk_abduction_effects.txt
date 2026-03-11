@@ -13,9 +13,9 @@
 # Raid Tracker CRUD  #
 ######################
 
-# Get or create a raid tracker for a specific raider-defender pair
+# Get or create a raid tracker for a specific raid-side-leader/defender pair
 # This = any scope
-# event_target:gk_raider = raider country
+# event_target:gk_cap_raider = side leader country whose quota is being spent
 # event_target:gk_raidee = defender country
 # Sets: event_target:gk_raid_tracker
 gk_get_or_create_raid_tracker = {
@@ -24,7 +24,7 @@ gk_get_or_create_raid_tracker = {
 			event_target:global_event_country = {
 				any_owned_leader = {
 					has_leader_flag = gk_raid_tracker
-					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_raider
+					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_cap_raider
 					has_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
 				}
 			}
@@ -33,7 +33,7 @@ gk_get_or_create_raid_tracker = {
 			random_owned_leader = {
 				limit = {
 					has_leader_flag = gk_raid_tracker
-					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_raider
+					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_cap_raider
 					has_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
 				}
 				save_event_target_as = gk_raid_tracker
@@ -52,7 +52,7 @@ gk_get_or_create_raid_tracker = {
 			}
 			last_created_leader = {
 				set_leader_flag = gk_raid_tracker
-				set_leader_flag = gk_raid_tracker_attacker_@event_target:gk_raider
+				set_leader_flag = gk_raid_tracker_attacker_@event_target:gk_cap_raider
 				set_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
 				set_variable = { which = gk_pops_taken value = 0 }
 				save_event_target_as = gk_raid_tracker
@@ -63,7 +63,7 @@ gk_get_or_create_raid_tracker = {
 
 # Update the cap flag on the defender after an abduction
 # This = defender/raidee country
-# event_target:gk_raider = raider country
+# event_target:gk_cap_raider = side leader country whose quota is being spent
 # event_target:gk_raid_tracker = tracker leader with gk_pops_taken
 gk_update_raid_cap_flag = {
 	# Calculate cap using gk_invasion_cap_rate (includes war-type mult and capacity mult)
@@ -95,13 +95,60 @@ gk_update_raid_cap_flag = {
 				}
 			}
 		}
-		set_country_flag = gk_raid_cap_reached_by_@event_target:gk_raider
+		set_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider
 	}
 	else = {
-		remove_country_flag = gk_raid_cap_reached_by_@event_target:gk_raider
+		remove_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider
 	}
 	# Cleanup
 	clear_variable = gk_cap_calc_temp
+}
+
+# Resolve the war-goal side leader whose pop-raiding quota applies against the current target.
+# This = acting raider country
+# event_target:gk_raidee = defender country
+# Sets: event_target:gk_cap_raider when a qualifying war goal exists
+gk_save_pop_raid_side_leader_against_target = {
+	every_war = {
+		limit = {
+			OR = {
+				AND = {
+					is_war_participant = { who = prev side = attackers }
+					is_war_participant = { who = event_target:gk_raidee side = defenders }
+					OR = {
+						using_war_goal = { type = wg_plunder owner = attacker }
+						using_war_goal = { type = wg_gk_emancipation owner = attacker }
+						using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+						using_war_goal = { type = wg_gk_reaping owner = attacker }
+					}
+				}
+				AND = {
+					is_war_participant = { who = prev side = defenders }
+					is_war_participant = { who = event_target:gk_raidee side = attackers }
+					OR = {
+						using_war_goal = { type = wg_plunder owner = defender }
+						using_war_goal = { type = wg_gk_emancipation owner = defender }
+						using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+						using_war_goal = { type = wg_gk_reaping owner = defender }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					using_war_goal = { type = wg_plunder owner = attacker }
+					using_war_goal = { type = wg_gk_emancipation owner = attacker }
+					using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+					using_war_goal = { type = wg_gk_reaping owner = attacker }
+				}
+			}
+			attacker = { save_event_target_as = gk_cap_raider }
+		}
+		else = {
+			defender = { save_event_target_as = gk_cap_raider }
+		}
+	}
 }
 
 ######################
@@ -114,6 +161,7 @@ gk_update_raid_cap_flag = {
 # Parameter: RATE — cap rate as literal, @variable, or value:script_value
 gk_abduct_on_surrender = {
 	save_event_target_as = gk_raider
+	save_event_target_as = gk_cap_raider
 	event_target:gk_raidee = {
 		save_event_target_as = gk_raiding_target
 	}
@@ -147,11 +195,23 @@ gk_abduct_on_invasion = {
 		save_event_target_as = gk_raiding_target
 	}
 
-	# Save planet owner as raidee for cap calculation
-	event_target:gk_target_planet = {
-		owner = {
-			save_event_target_as = gk_raidee
+	# Save the defender for cap calculation unless it was already passed in
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_raidee }
 		}
+		event_target:gk_target_planet = {
+			owner = {
+				save_event_target_as = gk_raidee
+			}
+		}
+	}
+	gk_save_pop_raid_side_leader_against_target = yes
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_cap_raider }
+		}
+		save_event_target_as = gk_cap_raider
 	}
 
 	# Retrieve the receipt created during pillage
@@ -342,11 +402,15 @@ gk_track_raided_pops = {
 	}
 	save_event_target_as = gk_track_raidee_temp
 
-	# Determine if this is emancipation or plunder based on raider's war type
+	event_target:gk_raider = {
+		save_event_target_as = gk_acting_raider
+	}
+
+	# Determine if this is emancipation or plunder based on the acting raider's war type
 	if = {
 		limit = {
-			event_target:gk_raider = {
-				gk_has_emancipation_war = yes
+			event_target:gk_acting_raider = {
+				gk_has_emancipation_war_with = yes
 			}
 		}
 		# Emancipation - track separately
@@ -384,10 +448,18 @@ gk_track_raided_pops = {
 	}
 
 	# Update per-war tracker
-	event_target:gk_raider = {
-		save_event_target_as = gk_raider
-	}
 	save_event_target_as = gk_raidee
+	event_target:gk_acting_raider = {
+		gk_save_pop_raid_side_leader_against_target = yes
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_cap_raider }
+		}
+		event_target:gk_acting_raider = {
+			save_event_target_as = gk_cap_raider
+		}
+	}
 	gk_get_or_create_raid_tracker = yes
 	event_target:gk_raid_tracker = {
 		change_variable = {
@@ -399,7 +471,7 @@ gk_track_raided_pops = {
 	gk_update_raid_cap_flag = yes
 
 	# Track lifetime total on raider (never cleared)
-	event_target:gk_raider = {
+	event_target:gk_acting_raider = {
 		if = {
 			limit = {
 				NOT = { is_variable_set = gk_total_pops_raided }

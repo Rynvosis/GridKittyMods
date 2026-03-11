@@ -54,6 +54,7 @@ gk_get_or_create_loot_receipt = {
 			save_event_target_as = gk_storage_scope
 			# Initialize on the receipt leader itself
 			gk_init_loot_variables = yes
+			set_variable = { which = gk_pillage_damage_bank value = 0 }
 		}
 	}
 }
@@ -111,6 +112,10 @@ gk_copy_receipt_values_for_display = {
 		limit = {
 			exists = event_target:gk_loot_receipt
 		}
+		event_target:gk_loot_receipt = {
+			save_event_target_as = gk_storage_scope
+		}
+		gk_ensure_loot_variables = yes
 		# Copy abduction count
 		set_variable = {
 			which = gk_forfeited_pops
@@ -171,5 +176,3 @@ gk_copy_receipt_values_for_display = {
 		}
 	}
 }
-
-

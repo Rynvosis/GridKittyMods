@@ -16,6 +16,15 @@ on_war_beginning = {
 	}
 }
 
+# A war has ended
+# Root = Loser
+# From = Main Winner
+on_war_ended = {
+	events = {
+		gk_raiding.53  # Cleanup invasion pillage cashout flags
+	}
+}
+
 # Pop Group is abducted by raiding stance
 # This = Pop Group scope
 # From = planet abducted from
@@ -30,7 +39,16 @@ on_pop_group_abducted = {
 # From = Bombarder (country)
 on_planet_bombarded = {
 	events = {
-		gk_raiding.100  # Resource pillage progress
+		gk_raiding.100  # Resource pillage from devastation + forced surrender resolution
+	}
+}
+
+# Planet has taken damage from ground combat - Damage is applied daily
+# This = Planet
+# From = Damaging country
+on_ground_combat_devastation = {
+	events = {
+		gk_raiding.100  # Resource pillage from devastation
 	}
 }
 
@@ -44,12 +62,21 @@ on_planet_attackers_win = {
 	}
 }
 
+# Planet changes hands through aggressive conquest (after ownership switches)
+# This = Planet
+# From = New Owner
+# FromFrom = Former Owner
+on_planet_conquer = {
+	events = {
+		gk_raiding.201  # Orbital surrender - trigger the same invasion raid flow
+	}
+}
+
 # Yearly pulse for all countries
 # This = Country
 on_yearly_pulse_country = {
 	events = {
 		gk_raiding.50  # Decay raidee raided pops
-		gk_raiding.51  # Decay pillage tier on owned planets
 		gk_raiding.52  # Cleanup raid trackers and cap flags
 	}
 }

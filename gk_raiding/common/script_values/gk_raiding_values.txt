@@ -48,17 +48,77 @@ gk_surrender_cap_rate = {
 }
 
 # Invasion/bombardment: base × war-type mult × capacity mult
-# This = raidee, event_target:gk_raider = raider
+# This = raidee
+# event_target:gk_cap_raider = side leader whose shared quota is being spent
+# Falls back to event_target:gk_raider if gk_cap_raider was not set.
 gk_invasion_cap_rate = {
 	base = @gk_invasion_base_cap_rate
 	modifier = {
-		event_target:gk_raider = {
-			any_war = {
-				is_war_participant = { who = prevprev side = defenders }
-				OR = {
-					using_war_goal = { type = wg_plunder owner = prev }
-					using_war_goal = { type = wg_gk_emancipation owner = prev }
-					using_war_goal = { type = wg_gk_robo_liberation owner = prev }
+		OR = {
+			AND = {
+				exists = event_target:gk_cap_raider
+				event_target:gk_cap_raider = {
+					any_war = {
+						OR = {
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_plunder owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_plunder owner = defender }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_gk_emancipation owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_gk_emancipation owner = defender }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+							}
+						}
+					}
+				}
+			}
+			AND = {
+				NOT = { exists = event_target:gk_cap_raider }
+				event_target:gk_raider = {
+					any_war = {
+						OR = {
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_plunder owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_plunder owner = defender }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_gk_emancipation owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_gk_emancipation owner = defender }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+							}
+						}
+					}
 				}
 			}
 		}
@@ -66,15 +126,52 @@ gk_invasion_cap_rate = {
 	}
 	modifier = {
 		# Reaping war = effectively unlimited
-		event_target:gk_raider = {
-			any_war = {
-				is_war_participant = { who = prevprev side = defenders }
-				using_war_goal = { type = wg_gk_reaping owner = prev }
+		OR = {
+			AND = {
+				exists = event_target:gk_cap_raider
+				event_target:gk_cap_raider = {
+					any_war = {
+						OR = {
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_gk_reaping owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_gk_reaping owner = defender }
+							}
+						}
+					}
+				}
+			}
+			AND = {
+				NOT = { exists = event_target:gk_cap_raider }
+				event_target:gk_raider = {
+					any_war = {
+						OR = {
+							AND = {
+								is_war_participant = { who = prevprev side = attackers }
+								using_war_goal = { type = wg_gk_reaping owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prevprev side = defenders }
+								using_war_goal = { type = wg_gk_reaping owner = defender }
+							}
+						}
+					}
+				}
 			}
 		}
 		mult = @gk_reaping_cap_rate  # 0.10 * 100 = 10 (>>1), takes all
 	}
-	mult = event_target:gk_raider.value:gk_raiding_capacity_mult
+	modifier = {
+		exists = event_target:gk_cap_raider
+		mult = event_target:gk_cap_raider.value:gk_raiding_capacity_mult
+	}
+	modifier = {
+		NOT = { exists = event_target:gk_cap_raider }
+		mult = event_target:gk_raider.value:gk_raiding_capacity_mult
+	}
 }
 
 # Variable accessors for localisation
@@ -143,27 +240,11 @@ gk_pillage_efficiency_mult = {
 }
 
 ####################
-# Pillage Progress  #
-####################
-
-# Devastation curve for pillage progress chance modifier
-# This = planet scope
-# Returns: (devastation/100)^2 * 100
-# Used to adjust pillage speed based on planet devastation
-gk_devastation_curve = {
-	base = 0
-	add = trigger:planet_devastation
-	divide = 100
-	pow = 2
-	mult = 100
-}
-
-####################
 # Resource Calcs   #
 ####################
 
 # Base resource production per resource type
-# These get multiplied by tier_months and loot_multiplier in scripted_effects
+# These get multiplied by devastation-derived loot months and loot multipliers in scripted_effects
 # This = planet scope
 # Parameters: RESOURCE - the resource type to check production for
 # Usage: value:gk_base_loot_value|RESOURCE|energy|

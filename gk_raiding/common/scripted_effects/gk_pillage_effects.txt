@@ -1,30 +1,29 @@
 # GK Pillage Effects
 # Dedicated file for pillaging mechanics
 
-# Pillage tuning — tier caps shared with gk_raiding_triggers.txt
-@gk_pillage_war_max_tiers = 6
-@gk_raiding_war_max_tiers = 2
-@gk_loot_months_per_tier = 3
-@gk_pillage_war_resource_mult = 2
+@gk_pillage_devastation_per_packet = 10
+@gk_loot_months_per_packet = 1
+@gk_pillage_war_resource_mult = 6
+@gk_max_planet_devastation = 100
+@gk_surrender_planet_devastation = 50
+@gk_surrender_aftermath_days = 1825
 
 ######################
 # Core Pillage Flow  #
 ######################
-# Surrender/Invasion:
-#   1. Entry point sets up gk_storage_scope = gk_loot_receipt
-#   2. For each planet: gk_calculate_base_loot accumulates raw loot to receipt
-#   3. After all planets: gk_transform_loot applies modifiers (efficiency, conversions)
-#   4. Receipt already has final loot in gk_loot_* variables
-#
-# Bombardment:
-#   1. Entry point sets gk_storage_scope = planet itself
-#   2. gk_calculate_base_loot -> gk_transform_loot -> gk_collect_loot_from_storage
+# Resource pillaging is now driven by visible devastation:
+#   1. Orbital bombardment and ground combat add local_devastation to a per raider+planet receipt bank.
+#   2. Every 10 devastation pays out 1 month of the planet's current output immediately.
+#   3. Invasion and surrender cash out the remaining devastation headroom at the current planet rate
+#      without applying additional devastation.
+#   4. Surrender only cashes out the first 50 devastation worth on each surviving colony and applies
+#      a local tribute modifier based on how much of that band remained.
 
 ######################
 # Entry Points       #
 ######################
 
-# Pillage for war surrender - all remaining tiers on all planets
+# Pillage for war surrender - remaining surrender-band headroom on all planets
 # This = Country (Raider, winner)
 # event_target:gk_raidee = Country (Loser)
 gk_pillage_on_surrender = {
@@ -32,40 +31,29 @@ gk_pillage_on_surrender = {
 	event_target:gk_raidee = {
 		save_event_target_as = gk_raiding_target
 	}
-	
-	# Create loot receipt - this IS the storage scope
+
+	# Create the country receipt used for surrender display/collection
 	gk_get_or_create_loot_receipt = yes
 	event_target:gk_loot_receipt = {
 		save_event_target_as = gk_storage_scope
 	}
-	
-	# Process each planet - accumulate raw loot to receipt
+	gk_init_loot_variables = yes
+
 	event_target:gk_raidee = {
 		every_owned_planet = {
-			limit = { is_colony = yes }
-			
-			# Calculate tiers to apply
-			gk_setup_pillage_tiers = yes
-			
-			if = {
-				limit = {
-					check_variable = { which = gk_pillage_tiers_to_apply value > 0 }
-				}
-				# Calculate and accumulate to storage scope (receipt)
-				gk_calculate_base_loot = yes
-				
-				# Update planet's pillage tier and apply debuff
-				gk_finalize_planet_pillage = yes
+			limit = {
+				is_colony = yes
+				NOT = { has_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_raider }
 			}
+			gk_add_surrender_planet_pillage_to_storage = yes
 		}
 	}
-	
-	# Transform accumulated loot on the receipt
-	gk_transform_loot = yes
 
+	# Apply conversions and efficiency to the accumulated raw loot
+	gk_transform_loot = yes
 }
 
-# Pillage for invasion - all remaining tiers on single planet
+# Pillage for invasion - remaining devastation headroom on a single planet
 # This = Country (Raider)
 # event_target:gk_target_planet = Planet being invaded
 gk_pillage_on_invasion = {
@@ -73,195 +61,367 @@ gk_pillage_on_invasion = {
 	event_target:gk_target_planet = {
 		save_event_target_as = gk_raiding_target
 	}
-	
-	# Create loot receipt - this IS the storage scope
-	gk_get_or_create_loot_receipt = yes
-	event_target:gk_loot_receipt = {
-		save_event_target_as = gk_storage_scope
-	}
-	
-	event_target:gk_target_planet = {
-		# Calculate tiers to apply
-		gk_setup_pillage_tiers = yes
-		
+
+	if = {
+		limit = {
+			event_target:gk_target_planet = {
+				is_colony = yes
+				exists = owner
+			}
+			OR = {
+				AND = {
+					exists = event_target:gk_raidee
+					event_target:gk_raidee = {
+						event_target:gk_raider = {
+							gk_can_pillage = yes
+							is_at_war_with = prev
+						}
+					}
+				}
+				AND = {
+					NOT = { exists = event_target:gk_raidee }
+					event_target:gk_target_planet = {
+						owner = {
+							event_target:gk_raider = {
+								gk_can_pillage = yes
+								is_at_war_with = prev
+							}
+						}
+					}
+				}
+			}
+		}
+
+		# Reuse the planet receipt so any unspent partial bank is included
+		gk_get_or_create_loot_receipt = yes
+		event_target:gk_loot_receipt = {
+			save_event_target_as = gk_storage_scope
+		}
+		gk_init_loot_variables = yes
+
 		if = {
 			limit = {
-				check_variable = { which = gk_pillage_tiers_to_apply value > 0 }
+				NOT = { exists = event_target:gk_raidee }
 			}
-			# Calculate and accumulate to storage scope (receipt)
-			gk_calculate_base_loot = yes
-			
-			# Update planet's pillage tier and apply debuff
-			gk_finalize_planet_pillage = yes
+			event_target:gk_target_planet = {
+				owner = {
+					save_event_target_as = gk_raidee
+				}
+			}
 		}
-	}
-	
-	# Transform accumulated loot on the receipt
-	gk_transform_loot = yes
+		event_target:gk_raider = {
+			gk_save_resource_surrender_raider_against_target = yes
+		}
 
+		event_target:gk_target_planet = {
+			gk_set_remaining_pillage_damage_budget = yes
+			gk_apply_planet_invasion_tribute = yes
+			gk_mark_planet_invasion_pillage_cashed_out = yes
+			if = {
+				limit = {
+					check_variable = { which = gk_remaining_pillage_damage_budget value > 0 }
+				}
+				set_variable = {
+					which = gk_total_loot_months
+					value = gk_remaining_pillage_damage_budget
+				}
+				divide_variable = {
+					which = gk_total_loot_months
+					value = @gk_pillage_devastation_per_packet
+				}
+				multiply_variable = {
+					which = gk_total_loot_months
+					value = @gk_loot_months_per_packet
+				}
+				gk_calculate_base_loot = yes
+			}
+			clear_variable = gk_remaining_pillage_damage_budget
+		}
+
+		# Transform once onto the invasion receipt; collection happens in the event option
+		gk_transform_loot = yes
+	}
 }
 
-# Pillage for orbital bombardment - single tier, immediate payout
+# Pillage from orbital bombardment or ground combat devastation - immediate payout
 # This = Planet
 # event_target:gk_raider = Raider country
-# Eligibility already checked by gk_can_be_pillaged in event trigger
-gk_pillage_on_bombardment = {
-	set_variable = { which = gk_pillage_tiers_to_apply value = 1 }
+gk_pillage_on_devastation = {
+	save_event_target_as = gk_raiding_target
 
-	save_event_target_as = gk_storage_scope
-	gk_init_loot_variables = yes
+	# Use a per planet receipt purely for ownership and the partial devastation bank
+	gk_get_or_create_loot_receipt = yes
 
-	gk_calculate_base_loot = yes
-	gk_transform_loot = yes
-	gk_collect_loot_from_storage = yes
+	# Track fresh devastation on the receipt
+	event_target:gk_loot_receipt = {
+		change_variable = {
+			which = gk_pillage_damage_bank
+			value = root.local_devastation
+		}
+	}
 
-	gk_finalize_planet_pillage = yes
-	gk_send_pillage_notifications = yes
-	gk_clear_loot_variables = yes
+	# Only resolve packets when we have crossed a full 10 devastation threshold
+	if = {
+		limit = {
+			event_target:gk_loot_receipt = {
+				check_variable = {
+					which = gk_pillage_damage_bank
+					value >= @gk_pillage_devastation_per_packet
+				}
+			}
+		}
+		set_variable = {
+			which = gk_pillage_packet_count
+			value = event_target:gk_loot_receipt.gk_pillage_damage_bank
+		}
+		divide_variable = {
+			which = gk_pillage_packet_count
+			value = @gk_pillage_devastation_per_packet
+		}
+		floor_variable = gk_pillage_packet_count
+
+		set_variable = {
+			which = gk_pillage_damage_to_consume
+			value = gk_pillage_packet_count
+		}
+		multiply_variable = {
+			which = gk_pillage_damage_to_consume
+			value = @gk_pillage_devastation_per_packet
+		}
+		event_target:gk_loot_receipt = {
+			subtract_variable = {
+				which = gk_pillage_damage_bank
+				value = prev.gk_pillage_damage_to_consume
+			}
+		}
+
+		# Use the planet as temporary storage for the immediate payout + message
+		save_event_target_as = gk_storage_scope
+		gk_init_loot_variables = yes
+		set_variable = {
+			which = gk_total_loot_months
+			value = gk_pillage_packet_count
+		}
+		multiply_variable = {
+			which = gk_total_loot_months
+			value = @gk_loot_months_per_packet
+		}
+		gk_calculate_base_loot = yes
+		gk_transform_loot = yes
+		gk_collect_loot_from_storage = yes
+		gk_send_pillage_notifications = yes
+		gk_clear_loot_variables = yes
+
+		clear_variable = gk_pillage_packet_count
+		clear_variable = gk_pillage_damage_to_consume
+	}
 }
 
 ######################
 # Setup Helpers      #
 ######################
 
-# Calculate how many tiers to apply (for surrender/invasion - all remaining)
+# Calculate the remaining devastation worth that can still be converted into loot on this planet
+# Used for invasion cashouts across the full 0-100 devastation band.
 # This = Planet
-# event_target:gk_raider = Raider
-# Sets: gk_pillage_tiers_to_apply
-gk_setup_pillage_tiers = {
-	save_event_target_as = gk_pillage_planet
-
-	# Initialize tier if needed
-	create_variable_if_not_exists = {
-		VARIABLE = gk_pillage_tier
-		VALUE_IF_CREATED = 0
+# event_target:gk_loot_receipt = per-planet receipt with gk_pillage_damage_bank
+gk_set_remaining_pillage_damage_budget = {
+	set_variable = {
+		which = gk_remaining_pillage_damage_budget
+		value = @gk_max_planet_devastation
 	}
-
-	# Determine max tiers from war goal type
-	# Pillage war = 6 tiers, Raiding war = 2 tiers
-	set_variable = { which = gk_pillage_tiers_to_apply value = 0 }
-	event_target:gk_raider = {
-		if = {
-			limit = {
-				any_war = {
-					is_war_participant = { who = event_target:gk_pillage_planet.owner side = defenders }
-					using_war_goal = { type = wg_plunder_raid owner = prev }
-				}
-			}
-			event_target:gk_pillage_planet = { set_variable = { which = gk_pillage_tiers_to_apply value = @gk_pillage_war_max_tiers } }
-		}
-		else_if = {
-			limit = {
-				any_war = {
-					is_war_participant = { who = event_target:gk_pillage_planet.owner side = defenders }
-					using_war_goal = { type = wg_plunder owner = prev }
-				}
-			}
-			event_target:gk_pillage_planet = { set_variable = { which = gk_pillage_tiers_to_apply value = @gk_raiding_war_max_tiers } }
-		}
-	}
-
-	# Subtract already-pillaged tiers
 	subtract_variable = {
-		which = gk_pillage_tiers_to_apply
-		value = gk_pillage_tier
+		which = gk_remaining_pillage_damage_budget
+		value = trigger:planet_devastation
 	}
-
-	# Clamp to 0 minimum
 	if = {
 		limit = {
-			check_variable = { which = gk_pillage_tiers_to_apply value < 0 }
+			check_variable = { which = gk_remaining_pillage_damage_budget value < 0 }
 		}
-		set_variable = { which = gk_pillage_tiers_to_apply value = 0 }
+		set_variable = { which = gk_remaining_pillage_damage_budget value = 0 }
+	}
+	if = {
+		limit = {
+			exists = event_target:gk_loot_receipt
+			event_target:gk_loot_receipt = {
+				is_variable_set = gk_pillage_damage_bank
+			}
+		}
+		change_variable = {
+			which = gk_remaining_pillage_damage_budget
+			value = event_target:gk_loot_receipt.gk_pillage_damage_bank
+		}
 	}
 }
 
-# Initialize loot variables to 0 on storage scope (for bombardment)
-# This = any scope
-# event_target:gk_storage_scope = where to init
-gk_init_loot_variables = {
-	event_target:gk_storage_scope = {
-		set_variable = { which = gk_loot_trade value = 0 }
-		set_variable = { which = gk_loot_energy value = 0 }
-		set_variable = { which = gk_loot_minerals value = 0 }
-		set_variable = { which = gk_loot_food value = 0 }
-		set_variable = { which = gk_loot_consumer_goods value = 0 }
-		set_variable = { which = gk_loot_alloys value = 0 }
-		set_variable = { which = gk_loot_unity value = 0 }
-		set_variable = { which = gk_loot_physics_research value = 0 }
-		set_variable = { which = gk_loot_society_research value = 0 }
-		set_variable = { which = gk_loot_engineering_research value = 0 }
-		set_variable = { which = gk_loot_volatile_motes value = 0 }
-		set_variable = { which = gk_loot_exotic_gases value = 0 }
-		set_variable = { which = gk_loot_rare_crystals value = 0 }
-		set_variable = { which = gk_loot_sr_living_metal value = 0 }
-		set_variable = { which = gk_loot_sr_zro value = 0 }
-		set_variable = { which = gk_loot_sr_dark_matter value = 0 }
-		set_variable = { which = gk_loot_nanites value = 0 }
+# Resolve the war-goal side leader whose surrender payout should be reduced by an invasion cashout.
+# This = acting raider country
+# event_target:gk_raidee = defender country
+# Sets: event_target:gk_surrender_raider when a qualifying wg_plunder / wg_plunder_raid exists
+gk_save_resource_surrender_raider_against_target = {
+	every_war = {
+		limit = {
+			OR = {
+				AND = {
+					is_war_participant = { who = prev side = attackers }
+					is_war_participant = { who = event_target:gk_raidee side = defenders }
+					OR = {
+						using_war_goal = { type = wg_plunder owner = attacker }
+						using_war_goal = { type = wg_plunder_raid owner = attacker }
+					}
+				}
+				AND = {
+					is_war_participant = { who = prev side = defenders }
+					is_war_participant = { who = event_target:gk_raidee side = attackers }
+					OR = {
+						using_war_goal = { type = wg_plunder owner = defender }
+						using_war_goal = { type = wg_plunder_raid owner = defender }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					using_war_goal = { type = wg_plunder owner = attacker }
+					using_war_goal = { type = wg_plunder_raid owner = attacker }
+				}
+			}
+			attacker = { save_event_target_as = gk_surrender_raider }
+		}
+		else = {
+			defender = { save_event_target_as = gk_surrender_raider }
+		}
 	}
 }
 
-# Clear loot variables from storage scope (for bombardment cleanup)
-# event_target:gk_storage_scope = where to clear
-gk_clear_loot_variables = {
-	event_target:gk_storage_scope = {
-		clear_variable = gk_loot_trade
-		clear_variable = gk_loot_energy
-		clear_variable = gk_loot_minerals
-		clear_variable = gk_loot_food
-		clear_variable = gk_loot_consumer_goods
-		clear_variable = gk_loot_alloys
-		clear_variable = gk_loot_unity
-		clear_variable = gk_loot_physics_research
-		clear_variable = gk_loot_society_research
-		clear_variable = gk_loot_engineering_research
-		clear_variable = gk_loot_volatile_motes
-		clear_variable = gk_loot_exotic_gases
-		clear_variable = gk_loot_rare_crystals
-		clear_variable = gk_loot_sr_living_metal
-		clear_variable = gk_loot_sr_zro
-		clear_variable = gk_loot_sr_dark_matter
-		clear_variable = gk_loot_nanites
+# Add one planet's remaining surrender payout to the country storage receipt
+# This = Planet
+# event_target:gk_raider = Winner country
+# event_target:gk_raidee = Loser country
+# event_target:gk_storage_scope = country receipt
+gk_add_surrender_planet_pillage_to_storage = {
+	save_event_target_as = gk_target_planet
+
+	set_variable = {
+		which = gk_remaining_pillage_damage_budget
+		value = @gk_surrender_planet_devastation
 	}
+	subtract_variable = {
+		which = gk_remaining_pillage_damage_budget
+		value = trigger:planet_devastation
+	}
+	if = {
+		limit = {
+			check_variable = { which = gk_remaining_pillage_damage_budget value < 0 }
+		}
+		set_variable = { which = gk_remaining_pillage_damage_budget value = 0 }
+	}
+
+	# Fold any saved partial bank into the same remaining surrender-band calculation, then delete the planet receipt
+	if = {
+		limit = {
+			event_target:global_event_country = {
+				any_owned_leader = {
+					has_leader_flag = gk_loot_receipt_to_@event_target:gk_raider
+					has_leader_flag = gk_loot_receipt_from_@event_target:gk_target_planet
+				}
+			}
+		}
+		event_target:global_event_country = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gk_loot_receipt_to_@event_target:gk_raider
+					has_leader_flag = gk_loot_receipt_from_@event_target:gk_target_planet
+				}
+				save_event_target_as = gk_planet_loot_receipt
+			}
+		}
+		if = {
+			limit = {
+				event_target:gk_planet_loot_receipt = {
+					is_variable_set = gk_pillage_damage_bank
+				}
+			}
+			change_variable = {
+				which = gk_remaining_pillage_damage_budget
+				value = event_target:gk_planet_loot_receipt.gk_pillage_damage_bank
+			}
+		}
+		event_target:gk_planet_loot_receipt = {
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	gk_apply_planet_surrender_tribute = yes
+
+	# Convert the remaining devastation budget into current-rate loot for the surrender receipt
+	if = {
+		limit = {
+			check_variable = { which = gk_remaining_pillage_damage_budget value > 0 }
+		}
+		set_variable = {
+			which = gk_total_loot_months
+			value = gk_remaining_pillage_damage_budget
+		}
+		divide_variable = {
+			which = gk_total_loot_months
+			value = @gk_pillage_devastation_per_packet
+		}
+		multiply_variable = {
+			which = gk_total_loot_months
+			value = @gk_loot_months_per_packet
+		}
+		gk_calculate_base_loot = yes
+	}
+
+	clear_variable = gk_remaining_pillage_damage_budget
 }
 
 ######################
 # Calculate Base Loot #
 ######################
 
-# Calculate base loot values (raw production * months * tiers)
-# This = Planet (event_target:gk_storage_scope)
-# Requires: gk_pillage_tiers_to_apply set
+# Calculate base loot values (raw production * loot months)
+# This = Planet
+# Requires: gk_total_loot_months set
 # Stores: gk_loot_$RESOURCE$ on gk_storage_scope
 gk_calculate_base_loot = {
 	save_event_target_as = gk_loot_planet
 
-	# Base months of production per tier
-	set_variable = { which = gk_loot_months value = @gk_loot_months_per_tier }
-	# Pillage war = 2x resources
+	set_variable = {
+		which = gk_effective_loot_months
+		value = gk_total_loot_months
+	}
+
+	# Pillage war = 6x resources
 	event_target:gk_raider = {
 		if = {
 			limit = {
 				any_war = {
-					is_war_participant = { who = event_target:gk_loot_planet.owner side = defenders }
-					using_war_goal = { type = wg_plunder_raid owner = prev }
+					OR = {
+						AND = {
+							is_war_participant = { who = prev side = attackers }
+							is_war_participant = { who = event_target:gk_loot_planet.owner side = defenders }
+							using_war_goal = { type = wg_plunder_raid owner = attacker }
+						}
+						AND = {
+							is_war_participant = { who = prev side = defenders }
+							is_war_participant = { who = event_target:gk_loot_planet.owner side = attackers }
+							using_war_goal = { type = wg_plunder_raid owner = defender }
+						}
+					}
 				}
 			}
-			event_target:gk_loot_planet = { multiply_variable = { which = gk_loot_months value = @gk_pillage_war_resource_mult } }
+			event_target:gk_loot_planet = {
+				multiply_variable = {
+					which = gk_effective_loot_months
+					value = @gk_pillage_war_resource_mult
+				}
+			}
 		}
 	}
 
-	# Calculate total months (months * tiers)
-	set_variable = {
-		which = gk_total_loot_months
-		value = gk_loot_months
-	}
-	multiply_variable = {
-		which = gk_total_loot_months
-		value = gk_pillage_tiers_to_apply
-	}
-	
-	# Calculate base loot for each resource
 	gk_calc_base_resource = { RESOURCE = trade }
 	gk_calc_base_resource = { RESOURCE = energy }
 	gk_calc_base_resource = { RESOURCE = minerals }
@@ -279,9 +439,8 @@ gk_calculate_base_loot = {
 	gk_calc_base_resource = { RESOURCE = sr_zro }
 	gk_calc_base_resource = { RESOURCE = sr_dark_matter }
 	gk_calc_base_resource = { RESOURCE = nanites }
-	
-	# Cleanup
-	clear_variable = gk_loot_months
+
+	clear_variable = gk_effective_loot_months
 	clear_variable = gk_total_loot_months
 }
 
@@ -294,7 +453,7 @@ gk_calc_base_resource = {
 	}
 	multiply_variable = {
 		which = gk_temp_loot
-		value = gk_total_loot_months
+		value = gk_effective_loot_months
 	}
 	event_target:gk_storage_scope = {
 		change_variable = {
@@ -310,17 +469,12 @@ gk_calc_base_resource = {
 ######################
 
 # Apply all loot transformations (efficiency, conversions)
-# This = Planet
+# This = Planet or Country
 # event_target:gk_raider = Raider
 # event_target:gk_storage_scope = Where loot is stored
 gk_transform_loot = {
-	# Get efficiency multiplier from raider
-	set_variable = {
-		which = gk_loot_mult
-		value = event_target:gk_raider.value:gk_pillage_efficiency_mult
-	}
-	
-	# Apply efficiency to all resources
+	gk_ensure_loot_variables = yes
+
 	gk_apply_efficiency = { RESOURCE = trade }
 	gk_apply_efficiency = { RESOURCE = energy }
 	gk_apply_efficiency = { RESOURCE = minerals }
@@ -338,35 +492,26 @@ gk_transform_loot = {
 	gk_apply_efficiency = { RESOURCE = sr_zro }
 	gk_apply_efficiency = { RESOURCE = sr_dark_matter }
 	gk_apply_efficiency = { RESOURCE = nanites }
-	
-	# Apply conversions (trade doubled, tech->consumer_goods, etc.)
+
 	gk_apply_loot_conversions = yes
-	
-	clear_variable = gk_loot_mult
 }
 
-# Apply efficiency multiplier to a resource
 gk_apply_efficiency = {
 	event_target:gk_storage_scope = {
 		multiply_variable = {
 			which = gk_loot_$RESOURCE$
-			value = prev.gk_loot_mult
+			value = event_target:gk_raider.value:gk_pillage_efficiency_mult
 		}
 	}
 }
 
-# Apply loot conversions (trade bonus, tech->consumer goods, etc.)
-# This = Planet
-# event_target:gk_storage_scope = Where loot is stored
 gk_apply_loot_conversions = {
 	event_target:gk_storage_scope = {
-		# Double trade value
 		multiply_variable = {
 			which = gk_loot_trade
 			value = 2
 		}
-		
-		# Convert unity to consumer_goods (2:1 ratio)
+
 		change_variable = {
 			which = gk_loot_consumer_goods
 			value = gk_loot_unity
@@ -376,8 +521,7 @@ gk_apply_loot_conversions = {
 			value = gk_loot_unity
 		}
 		set_variable = { which = gk_loot_unity value = 0 }
-		
-		# Convert research to consumer_goods (2:1 ratio each)
+
 		change_variable = {
 			which = gk_loot_consumer_goods
 			value = gk_loot_physics_research
@@ -387,7 +531,7 @@ gk_apply_loot_conversions = {
 			value = gk_loot_physics_research
 		}
 		set_variable = { which = gk_loot_physics_research value = 0 }
-		
+
 		change_variable = {
 			which = gk_loot_consumer_goods
 			value = gk_loot_society_research
@@ -397,7 +541,7 @@ gk_apply_loot_conversions = {
 			value = gk_loot_society_research
 		}
 		set_variable = { which = gk_loot_society_research value = 0 }
-		
+
 		change_variable = {
 			which = gk_loot_consumer_goods
 			value = gk_loot_engineering_research
@@ -435,8 +579,8 @@ gk_collect_loot_from_storage = {
 
 gk_give_resource_to_raider = {
 	event_target:gk_storage_scope = {
-		if = { 
-			limit = { 
+		if = {
+			limit = {
 				is_variable_set = gk_loot_$RESOURCE$
 				check_variable = { which = gk_loot_$RESOURCE$ value > 0 }
 			}
@@ -451,36 +595,13 @@ gk_give_resource_to_raider = {
 }
 
 ######################
-# Finalize Planet    #
-######################
-
-# Update planet's pillage state after pillaging
-# This = Planet
-# Requires: gk_pillage_tiers_to_apply set
-gk_finalize_planet_pillage = {
-	# Update pillage tier
-	change_variable = {
-		which = gk_pillage_tier
-		value = gk_pillage_tiers_to_apply
-	}
-
-	# Swap to correct tier marker
-	gk_remove_all_pillaged_modifiers = yes
-	gk_apply_pillaged_modifier = yes
-
-	# Cleanup
-	clear_variable = gk_pillage_tiers_to_apply
-}
-
-######################
 # Notifications      #
 ######################
 
-# Send pillage notifications (for orbital bombardment)
+# Send pillage notifications for immediate devastation packets
 # This = Planet
 # event_target:gk_raider = Raider
 gk_send_pillage_notifications = {
-	# Notification to raider
 	event_target:gk_raider = {
 		create_message = {
 			type = MESSAGE_TYPE_GK_PLANET_PILLAGED
@@ -507,8 +628,7 @@ gk_send_pillage_notifications = {
 			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = nanites }
 		}
 	}
-	
-	# Notification to planet owner
+
 	owner = {
 		create_message = {
 			type = MESSAGE_TYPE_GK_OUR_PLANET_PILLAGED
@@ -529,83 +649,337 @@ gk_send_pillage_notifications = {
 	}
 }
 
-######################
-# Decay / Cleanup    #
-######################
+# Apply the local tribute aftermath modifier based on remaining surrender budget
+# This = Planet
+gk_apply_planet_surrender_tribute = {
+	# effective_remaining = (100 - planet_devastation) / 2, range 0-50
+	# Integer division truncates, so this always rounds down
+	export_trigger_value_to_variable = {
+		trigger = planet_devastation
+		variable = gk_effective_remaining_temp
+	}
+	subtract_variable = {
+		which = gk_effective_remaining_temp
+		value = 100
+	}
+	multiply_variable = {
+		which = gk_effective_remaining_temp
+		value = -1
+	}
+	divide_variable = {
+		which = gk_effective_remaining_temp
+		value = 2
+	}
+	gk_apply_planet_tribute_from_effective_remaining = yes
+}
 
-# Decay pillage tier by 1 (called yearly)
-# This = planet
-gk_decay_pillage_tier = {
+# Apply the local tribute aftermath modifier based on an invasion cashout
+# This = Planet
+gk_apply_planet_invasion_tribute = {
+	# Same formula: effective_remaining = (100 - planet_devastation) / 2
+	export_trigger_value_to_variable = {
+		trigger = planet_devastation
+		variable = gk_effective_remaining_temp
+	}
+	subtract_variable = {
+		which = gk_effective_remaining_temp
+		value = 100
+	}
+	multiply_variable = {
+		which = gk_effective_remaining_temp
+		value = -1
+	}
+	divide_variable = {
+		which = gk_effective_remaining_temp
+		value = 2
+	}
+	gk_apply_planet_tribute_from_effective_remaining = yes
+}
+
+# Apply a local tribute modifier from gk_effective_remaining_temp (0-50 integer)
+# Checks from highest tier down; never downgrades an existing higher-tier modifier
+# This = Planet
+gk_apply_planet_tribute_from_effective_remaining = {
 	if = {
 		limit = {
-			is_variable_set = gk_pillage_tier
-			check_variable = { which = gk_pillage_tier value > 0 }
-			# Only decay if NOT occupied by enemy
-			OR = {
-				NOT = { exists = controller }
-				controller = { is_same_value = prev.owner }
+			check_variable = { which = gk_effective_remaining_temp value > 49 }
+		}
+		# Tier 5 (50%) — don't downgrade from existing tier 5
+		if = {
+			limit = { NOT = { has_modifier = gk_planet_tribute_5 } }
+			remove_modifier = gk_planet_tribute_0
+			remove_modifier = gk_planet_tribute_1
+			remove_modifier = gk_planet_tribute_2
+			remove_modifier = gk_planet_tribute_3
+			remove_modifier = gk_planet_tribute_4
+			add_modifier = {
+				modifier = gk_planet_tribute_5
+				days = @gk_surrender_aftermath_days
 			}
 		}
-		subtract_variable = {
-			which = gk_pillage_tier
-			value = 1
+	}
+	else_if = {
+		limit = {
+			check_variable = { which = gk_effective_remaining_temp value > 39 }
 		}
-
-		# Swap to correct tier marker
-		gk_remove_all_pillaged_modifiers = yes
+		# Tier 4 (40%) — skip if planet already has tier 4 or 5
 		if = {
 			limit = {
-				check_variable = { which = gk_pillage_tier value > 0 }
+				NOT = { has_modifier = gk_planet_tribute_5 }
+				NOT = { has_modifier = gk_planet_tribute_4 }
 			}
-			gk_apply_pillaged_modifier = yes
-		}
-		else = {
-			clear_variable = gk_pillage_tier
-			clear_variable = gk_pillage_progress
+			remove_modifier = gk_planet_tribute_0
+			remove_modifier = gk_planet_tribute_1
+			remove_modifier = gk_planet_tribute_2
+			remove_modifier = gk_planet_tribute_3
+			add_modifier = {
+				modifier = gk_planet_tribute_4
+				days = @gk_surrender_aftermath_days
+			}
 		}
 	}
+	else_if = {
+		limit = {
+			check_variable = { which = gk_effective_remaining_temp value > 29 }
+		}
+		# Tier 3 (30%) — skip if planet already has tier 3, 4, or 5
+		if = {
+			limit = {
+				NOT = { has_modifier = gk_planet_tribute_5 }
+				NOT = { has_modifier = gk_planet_tribute_4 }
+				NOT = { has_modifier = gk_planet_tribute_3 }
+			}
+			remove_modifier = gk_planet_tribute_0
+			remove_modifier = gk_planet_tribute_1
+			remove_modifier = gk_planet_tribute_2
+			add_modifier = {
+				modifier = gk_planet_tribute_3
+				days = @gk_surrender_aftermath_days
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { which = gk_effective_remaining_temp value > 19 }
+		}
+		# Tier 2 (20%) — skip if planet already has tier 2+
+		if = {
+			limit = {
+				NOT = { has_modifier = gk_planet_tribute_5 }
+				NOT = { has_modifier = gk_planet_tribute_4 }
+				NOT = { has_modifier = gk_planet_tribute_3 }
+				NOT = { has_modifier = gk_planet_tribute_2 }
+			}
+			remove_modifier = gk_planet_tribute_0
+			remove_modifier = gk_planet_tribute_1
+			add_modifier = {
+				modifier = gk_planet_tribute_2
+				days = @gk_surrender_aftermath_days
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { which = gk_effective_remaining_temp value > 9 }
+		}
+		# Tier 1 (10%) — skip if planet already has tier 1+
+		if = {
+			limit = {
+				NOT = { has_modifier = gk_planet_tribute_5 }
+				NOT = { has_modifier = gk_planet_tribute_4 }
+				NOT = { has_modifier = gk_planet_tribute_3 }
+				NOT = { has_modifier = gk_planet_tribute_2 }
+				NOT = { has_modifier = gk_planet_tribute_1 }
+			}
+			remove_modifier = gk_planet_tribute_0
+			add_modifier = {
+				modifier = gk_planet_tribute_1
+				days = @gk_surrender_aftermath_days
+			}
+		}
+	}
+	else = {
+		# Tier 0 (5%) — fallback, skip if any existing tribute modifier
+		if = {
+			limit = {
+				NOT = { has_modifier = gk_planet_tribute_5 }
+				NOT = { has_modifier = gk_planet_tribute_4 }
+				NOT = { has_modifier = gk_planet_tribute_3 }
+				NOT = { has_modifier = gk_planet_tribute_2 }
+				NOT = { has_modifier = gk_planet_tribute_1 }
+				NOT = { has_modifier = gk_planet_tribute_0 }
+			}
+			add_modifier = {
+				modifier = gk_planet_tribute_0
+				days = @gk_surrender_aftermath_days
+			}
+		}
+	}
+
+	clear_variable = gk_effective_remaining_temp
 }
 
-######################
-# Modifier Helpers   #
-######################
-
-# Remove all pillaged tier modifiers
+# Mark a planet as already fully cashed out by invasion for this raider
 # This = Planet
-gk_remove_all_pillaged_modifiers = {
-	remove_modifier = gk_pillaged_1
-	remove_modifier = gk_pillaged_2
-	remove_modifier = gk_pillaged_3
-	remove_modifier = gk_pillaged_4
-	remove_modifier = gk_pillaged_5
-	remove_modifier = gk_pillaged_6
-}
-
-# Apply the correct pillaged modifier based on gk_pillage_tier
-# This = Planet
-gk_apply_pillaged_modifier = {
+gk_mark_planet_invasion_pillage_cashed_out = {
 	if = {
-		limit = { check_variable = { which = gk_pillage_tier value >= 6 } }
-		add_modifier = { modifier = gk_pillaged_6 }
+		limit = {
+			exists = event_target:gk_surrender_raider
+		}
+		set_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_surrender_raider
+		owner = {
+			set_country_flag = gk_has_pillage_invasion_cashed_out_by_@event_target:gk_surrender_raider
+		}
 	}
-	else_if = {
-		limit = { check_variable = { which = gk_pillage_tier value >= 5 } }
-		add_modifier = { modifier = gk_pillaged_5 }
+}
+
+# Clear invasion cashout markers for a specific raider from this defender
+# This = Country
+# event_target:gk_raider = attacker whose markers should be removed
+gk_clear_invasion_pillage_cashed_out_flags = {
+	if = {
+		limit = {
+			has_country_flag = gk_has_pillage_invasion_cashed_out_by_@event_target:gk_raider
+		}
+		every_owned_planet = {
+			limit = {
+				has_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_raider
+			}
+			remove_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_raider
+		}
+		remove_country_flag = gk_has_pillage_invasion_cashed_out_by_@event_target:gk_raider
 	}
-	else_if = {
-		limit = { check_variable = { which = gk_pillage_tier value >= 4 } }
-		add_modifier = { modifier = gk_pillaged_4 }
+}
+
+######################
+# Variable Helpers   #
+######################
+
+# Initialize loot variables to 0 on storage scope
+# This = any scope
+# event_target:gk_storage_scope = where to init
+gk_init_loot_variables = {
+	event_target:gk_storage_scope = {
+		set_variable = { which = gk_loot_trade value = 0 }
+		set_variable = { which = gk_loot_energy value = 0 }
+		set_variable = { which = gk_loot_minerals value = 0 }
+		set_variable = { which = gk_loot_food value = 0 }
+		set_variable = { which = gk_loot_consumer_goods value = 0 }
+		set_variable = { which = gk_loot_alloys value = 0 }
+		set_variable = { which = gk_loot_unity value = 0 }
+		set_variable = { which = gk_loot_physics_research value = 0 }
+		set_variable = { which = gk_loot_society_research value = 0 }
+		set_variable = { which = gk_loot_engineering_research value = 0 }
+		set_variable = { which = gk_loot_volatile_motes value = 0 }
+		set_variable = { which = gk_loot_exotic_gases value = 0 }
+		set_variable = { which = gk_loot_rare_crystals value = 0 }
+		set_variable = { which = gk_loot_sr_living_metal value = 0 }
+		set_variable = { which = gk_loot_sr_zro value = 0 }
+		set_variable = { which = gk_loot_sr_dark_matter value = 0 }
+		set_variable = { which = gk_loot_nanites value = 0 }
 	}
-	else_if = {
-		limit = { check_variable = { which = gk_pillage_tier value >= 3 } }
-		add_modifier = { modifier = gk_pillaged_3 }
+}
+
+# Ensure loot variables exist on storage scope without resetting accumulated values
+# This = any scope
+# event_target:gk_storage_scope = where to ensure
+gk_ensure_loot_variables = {
+	event_target:gk_storage_scope = {
+		if = {
+			limit = { NOT = { is_variable_set = gk_forfeited_pops } }
+			set_variable = { which = gk_forfeited_pops value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_trade } }
+			set_variable = { which = gk_loot_trade value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_energy } }
+			set_variable = { which = gk_loot_energy value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_minerals } }
+			set_variable = { which = gk_loot_minerals value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_food } }
+			set_variable = { which = gk_loot_food value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_consumer_goods } }
+			set_variable = { which = gk_loot_consumer_goods value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_alloys } }
+			set_variable = { which = gk_loot_alloys value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_unity } }
+			set_variable = { which = gk_loot_unity value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_physics_research } }
+			set_variable = { which = gk_loot_physics_research value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_society_research } }
+			set_variable = { which = gk_loot_society_research value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_engineering_research } }
+			set_variable = { which = gk_loot_engineering_research value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_volatile_motes } }
+			set_variable = { which = gk_loot_volatile_motes value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_exotic_gases } }
+			set_variable = { which = gk_loot_exotic_gases value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_rare_crystals } }
+			set_variable = { which = gk_loot_rare_crystals value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_sr_living_metal } }
+			set_variable = { which = gk_loot_sr_living_metal value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_sr_zro } }
+			set_variable = { which = gk_loot_sr_zro value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_sr_dark_matter } }
+			set_variable = { which = gk_loot_sr_dark_matter value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_loot_nanites } }
+			set_variable = { which = gk_loot_nanites value = 0 }
+		}
 	}
-	else_if = {
-		limit = { check_variable = { which = gk_pillage_tier value >= 2 } }
-		add_modifier = { modifier = gk_pillaged_2 }
-	}
-	else_if = {
-		limit = { check_variable = { which = gk_pillage_tier value >= 1 } }
-		add_modifier = { modifier = gk_pillaged_1 }
+}
+
+# Clear loot variables from storage scope (for immediate payout cleanup)
+# event_target:gk_storage_scope = where to clear
+gk_clear_loot_variables = {
+	event_target:gk_storage_scope = {
+		clear_variable = gk_loot_trade
+		clear_variable = gk_loot_energy
+		clear_variable = gk_loot_minerals
+		clear_variable = gk_loot_food
+		clear_variable = gk_loot_consumer_goods
+		clear_variable = gk_loot_alloys
+		clear_variable = gk_loot_unity
+		clear_variable = gk_loot_physics_research
+		clear_variable = gk_loot_society_research
+		clear_variable = gk_loot_engineering_research
+		clear_variable = gk_loot_volatile_motes
+		clear_variable = gk_loot_exotic_gases
+		clear_variable = gk_loot_rare_crystals
+		clear_variable = gk_loot_sr_living_metal
+		clear_variable = gk_loot_sr_zro
+		clear_variable = gk_loot_sr_dark_matter
+		clear_variable = gk_loot_nanites
 	}
 }
