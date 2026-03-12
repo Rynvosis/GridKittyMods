@@ -1,8 +1,5 @@
-# GK Raiding Policies
-# Determines raiding focus and grants associated modifiers
-# gk_pillage_efficiency = multiplier on resources gained from pillaging
-# Resource pillaging is driven by ongoing battlefield damage (see gk_pillage_effects.txt)
-# gk_pillage_efficiency = multiplier on resources gained from pillaging
+# GK Raiding Pop Policies
+# Determines pop-raiding focus and robot capture rules
 
 gk_raiding_focus = {
 	allow = {

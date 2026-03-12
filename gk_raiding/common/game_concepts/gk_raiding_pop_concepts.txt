@@ -1,15 +1,4 @@
-# GK Raiding Game Concepts
-# These create clickable tooltip entries explaining raiding mechanics
-
-concept_gk_raiding_mechanics = {
-	alias = { concept_gk_raiding concept_gk_advanced_raiding }
-	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_exploding_ship"
-	}
-}
+# GK Raiding Pop Game Concepts
 
 concept_gk_pop_raiding_limit = {
 	alias = { concept_gk_pop_limit concept_gk_raiding_cap }
@@ -18,16 +7,6 @@ concept_gk_pop_raiding_limit = {
 		category = db_gk_raiding
 		icon = "GFX_text_databank_empire"
 		picture = "GFX_evt_emergency_workers"
-	}
-}
-
-concept_gk_pillaging = {
-	alias = { concept_gk_pillage concept_gk_resource_raiding }
-	icon = "gfx/interface/icons/resources/minerals.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_mining_station"
 	}
 }
 
@@ -56,15 +35,6 @@ concept_gk_wg_raiding = {
 		category = db_gk_raiding
 		icon = "GFX_text_databank_empire"
 		picture = "GFX_evt_exploding_ship"
-	}
-}
-
-concept_gk_wg_pillage = {
-	icon = "gfx/interface/icons/resources/minerals.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_mining_station"
 	}
 }
 

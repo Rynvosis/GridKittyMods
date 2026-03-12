@@ -1,0 +1,100 @@
+﻿l_english:
+ # Policies
+ policy_gk_raiding_focus:0 "Raiding Focus"
+ policy_gk_raiding_focus_desc:0 "Sets the target priority and war goals available to our raiders."
+
+ gk_focus_plunder_name:0 "Plunder"
+ gk_focus_emancipation_name:0 "Emancipation"
+ gk_focus_no_pop_raiding_name:0 "No Pop-Raiding"
+
+ gk_raiding_focus_plunder:0 "Plunder"
+ gk_raiding_focus_plunder_desc:0 "Raiders capture any eligible pops. Capture rate scales with ['concept_gk_raiding_capacity']."
+
+ gk_raiding_focus_emancipation:0 "Emancipation"
+ gk_raiding_focus_emancipation_desc:0 "Raiders target enslaved populations. Unlocks the §YEmancipation§! war goal. Only enslaved pops may be taken."
+
+ gk_raiding_focus_robo_liberation:0 "Robo-Liberation"
+ gk_raiding_focus_robo_liberation_desc:0 "Raiders target robotic pops. Unlocks the §YRobo-Liberation§! war goal. Only robotic pops may be taken."
+ gk_focus_robo_liberation_name:0 "Robo-Liberation"
+
+ gk_raiding_focus_no_raiding:0 "No Pop-Raiding"
+ gk_raiding_focus_no_raiding_desc:0 "Our forces will not conduct pop-raiding wars.\n\n§RDisables all pop-raiding war goals.§!"
+
+ policy_gk_robot_raiding:0 "Robot Raiding"
+ policy_gk_robot_raiding_desc:0 "Determines whether raiders capture robotic pops."
+
+ gk_allow_robot_raiding_name:0 "Allow"
+ gk_forbid_robot_raiding_name:0 "Forbid"
+
+ gk_robot_raiding_allowed:0 "Capture Robots"
+ gk_robot_raiding_allowed_desc:0 "Raiders capture both organic and robotic pops."
+
+ gk_robot_raiding_forbidden:0 "Organics Only"
+ gk_robot_raiding_forbidden_desc:0 "Raiders capture organic pops only."
+
+ gk_robot_raiding_only:0 "Robots Only"
+ gk_robot_raiding_only_desc:0 "Raiders capture robotic pops only."
+ gk_robots_only_raiding_name:0 "Robots Only"
+
+ # War Goals
+ war_goal_wg_gk_reaping:0 "Reaping"
+ war_goal_wg_gk_reaping_desc:0 "War is waged to harvest the enemy's entire population.\n\n§LDuring war: §Runlimited§! pop capture.\nOn surrender: §Rall§! enemy pops are forfeited.§!"
+ wg_gk_reaping_accept_tooltip:0 "§Y[From.GetName]§! forfeits §Rall§! of their population to §Y[Root.GetName]§!."
+
+ war_goal_wg_gk_emancipation:0 "Emancipation"
+ war_goal_wg_gk_emancipation_desc:0 "War is waged to free enslaved populations.\n\n§L- Up to §Y20%§! of enslaved pops captured during war\n- Total cap: §Y10%§! of enemy's original population\n- On surrender: remaining enslaved pops up to cap are forfeited\n- Rates scale with ['concept_gk_raiding_capacity']§!"
+ wg_gk_emancipation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining enslaved pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap)."
+ wg_gk_emancipation_status_quo_tooltip:0 "No pops are transferred on status quo."
+
+ war_goal_wg_gk_robo_liberation:0 "Robo-Liberation"
+ war_goal_wg_gk_robo_liberation_desc:0 "War is waged to liberate robotic pops.\n\n§L- Up to §Y20%§! of robotic pops captured during war\n- Total cap: §Y10%§! of enemy's original population\n- On surrender: remaining robotic pops up to cap are forfeited\n- Rates scale with ['concept_gk_raiding_capacity']§!"
+ wg_gk_robo_liberation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining robotic pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap)."
+ wg_gk_robo_liberation_status_quo_tooltip:0 "No pops are transferred on status quo."
+
+ # Scripted Modifiers
+ mod_gk_raiding_capacity:0 "Raiding Capacity"
+
+ gk_plunder_recovery:0 "Raided"
+ gk_plunder_recovery_desc:0 "Population growth increased to compensate for pops lost to enemy raiders."
+ gk_plunder_recovery.tooltip:0 "§Y[This.GkRaideePlundered]§! pops lost to raiders. Modifier scales with percentage of population lost. Decays §Y10%§! per year."
+
+ # Pop Concepts
+ concept_gk_pop_raiding_limit:0 "Pop Raiding Limit"
+ concept_gk_pop_raiding_limit_desc:0 "Maximum pops you can capture across an entire war.\n\n- §YRaiding§!/§YEmancipation§!/§YRobo-Liberation§!: §Y20%§! during war, §Y10%§! total cap\n- §YReaping§!: §RUnlimited§!\n- §YTotal Wars§! and §YPrimitives§!: No limit\n\n['concept_gk_raiding_capacity'] multiplies these base rates."
+
+ concept_gk_pop_limit:0 "Pop Limit"
+ concept_gk_raiding_cap:0 "Raiding Cap"
+ concept_gk_raiding_policies:0 "Raiding Policies"
+ concept_gk_raiding_policy:0 "Raiding Policy"
+ concept_gk_raiding_focus:0 "Raiding Focus"
+ concept_gk_raiding_focus_desc:0 "Policy determining your raiding strategy:$TABBED_NEW_LINE$- §YPlunder§!: Pop raiding$TABBED_NEW_LINE$- §YNo Pop-Raiding§!: Disables pop-raiding war goals$TABBED_NEW_LINE$- §YEmancipation§!: Enslaved pops only (requires Emancipators civic)$TABBED_NEW_LINE$- §YRobo-Liberation§!: Robots only (requires Robo-Liberators civic)"
+ concept_gk_raiding_capacity:0 "Raiding Capacity"
+ concept_gk_raiding_capacity_desc:0 "Multiplier on all pop capture rate limits.\n\n§LExample: §Y+50%§! Raiding Capacity turns a §Y10%§! cap into §G15%§!.§!"
+
+ concept_gk_wg_raiding:0 "Raiding"
+ concept_gk_wg_raiding_desc:0 "Raid enemy worlds for §Ypops§!. See ['concept_gk_pop_raiding_limit'] for capture rates."
+
+ concept_gk_wg_reaping:0 "Reaping"
+ concept_gk_wg_reaping_desc:0 "Harvest the enemy's §Rentire§! population.\n\n§LDuring war: §Runlimited§! pop capture.\nOn surrender: §Rall§! enemy pops forfeited.§!"
+
+ concept_gk_wg_emancipation:0 "Emancipation"
+ concept_gk_wg_emancipation_desc:0 "Free enslaved pops. Only enslaved pops may be captured. See ['concept_gk_pop_raiding_limit'] for capture rates."
+
+ concept_gk_wg_robo_liberation:0 "Robo-Liberation"
+ concept_gk_wg_robo_liberation_desc:0 "Liberate robotic pops. Only robotic pops may be captured. See ['concept_gk_pop_raiding_limit'] for capture rates."
+
+ # Pop Notifications
+ MESSAGE_TYPE_GK_POP_RAIDED_TITLE:0 "Captives Taken"
+
+ MESSAGE_GK_POP_RAIDED_KEY:0 "$MESSAGE_TYPE_GK_POP_RAIDED_TITLE$ by our raiders!"
+ MESSAGE_GK_OUR_POPS_RAIDED_KEY:0 "$MESSAGE_TYPE_GK_POP_RAIDED_TITLE$ by enemy raiders!"
+
+ MESSAGE_GK_POP_RAIDED_INVASION:0 "Our warriors seized §Y$POPS$§! pops from $PLANET|Y$.\n"
+ MESSAGE_GK_OUR_POPS_RAIDED_INVASION:0 "$FROM|Y$ seized §Y$POPS$§! pops from $PLANET|Y$.\n"
+
+ MESSAGE_GK_POP_RAIDED_SURRENDER:0 "§Y$TARGET$§! surrendered, forfeiting §Y$POPS$§! pops.\n"
+ MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER:0 "§Y$POPS$§! pops have been surrendered to $FROM|Y$.\n"
+
+ # Opinion Modifiers
+ opinion_gk_declared_reaping:0 "Declared Reaping War"
+ opinion_gk_reaped_pops:0 "Reaped Pops"

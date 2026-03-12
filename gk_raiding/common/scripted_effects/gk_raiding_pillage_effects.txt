@@ -1,4 +1,4 @@
-# GK Pillage Effects
+# GK Raiding Pillage Effects
 # Dedicated file for pillaging mechanics
 
 @gk_pillage_devastation_per_packet = 10
@@ -209,6 +209,7 @@ gk_pillage_on_devastation = {
 		gk_calculate_base_loot = yes
 		gk_transform_loot = yes
 		gk_collect_loot_from_storage = yes
+		gk_round_loot_variables_for_display = yes
 		gk_send_pillage_notifications = yes
 		gk_clear_loot_variables = yes
 
@@ -257,7 +258,7 @@ gk_set_remaining_pillage_damage_budget = {
 # Resolve the war-goal side leader whose surrender payout should be reduced by an invasion cashout.
 # This = acting raider country
 # event_target:gk_raidee = defender country
-# Sets: event_target:gk_surrender_raider when a qualifying wg_plunder / wg_plunder_raid exists
+# Sets: event_target:gk_surrender_raider when a qualifying wg_plunder_raid exists
 gk_save_resource_surrender_raider_against_target = {
 	every_war = {
 		limit = {
@@ -265,27 +266,18 @@ gk_save_resource_surrender_raider_against_target = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
 					is_war_participant = { who = event_target:gk_raidee side = defenders }
-					OR = {
-						using_war_goal = { type = wg_plunder owner = attacker }
-						using_war_goal = { type = wg_plunder_raid owner = attacker }
-					}
+					using_war_goal = { type = wg_plunder_raid owner = attacker }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
 					is_war_participant = { who = event_target:gk_raidee side = attackers }
-					OR = {
-						using_war_goal = { type = wg_plunder owner = defender }
-						using_war_goal = { type = wg_plunder_raid owner = defender }
-					}
+					using_war_goal = { type = wg_plunder_raid owner = defender }
 				}
 			}
 		}
 		if = {
 			limit = {
-				OR = {
-					using_war_goal = { type = wg_plunder owner = attacker }
-					using_war_goal = { type = wg_plunder_raid owner = attacker }
-				}
+				using_war_goal = { type = wg_plunder_raid owner = attacker }
 			}
 			attacker = { save_event_target_as = gk_surrender_raider }
 		}
@@ -512,9 +504,10 @@ gk_apply_loot_conversions = {
 			value = 2
 		}
 
-		change_variable = {
-			which = gk_loot_consumer_goods
-			value = gk_loot_unity
+		# Unity → CG at 2:1
+		multiply_variable = {
+			which = gk_loot_unity
+			value = 0.5
 		}
 		change_variable = {
 			which = gk_loot_consumer_goods
@@ -522,9 +515,10 @@ gk_apply_loot_conversions = {
 		}
 		set_variable = { which = gk_loot_unity value = 0 }
 
-		change_variable = {
-			which = gk_loot_consumer_goods
-			value = gk_loot_physics_research
+		# Research → CG at 3:1
+		multiply_variable = {
+			which = gk_loot_physics_research
+			value = 0.334
 		}
 		change_variable = {
 			which = gk_loot_consumer_goods
@@ -532,9 +526,9 @@ gk_apply_loot_conversions = {
 		}
 		set_variable = { which = gk_loot_physics_research value = 0 }
 
-		change_variable = {
-			which = gk_loot_consumer_goods
-			value = gk_loot_society_research
+		multiply_variable = {
+			which = gk_loot_society_research
+			value = 0.334
 		}
 		change_variable = {
 			which = gk_loot_consumer_goods
@@ -542,9 +536,9 @@ gk_apply_loot_conversions = {
 		}
 		set_variable = { which = gk_loot_society_research value = 0 }
 
-		change_variable = {
-			which = gk_loot_consumer_goods
-			value = gk_loot_engineering_research
+		multiply_variable = {
+			which = gk_loot_engineering_research
+			value = 0.334
 		}
 		change_variable = {
 			which = gk_loot_consumer_goods
@@ -598,13 +592,33 @@ gk_give_resource_to_raider = {
 # Notifications      #
 ######################
 
+gk_round_loot_variables_for_display = {
+	round_variable = gk_loot_trade
+	round_variable = gk_loot_energy
+	round_variable = gk_loot_minerals
+	round_variable = gk_loot_food
+	round_variable = gk_loot_consumer_goods
+	round_variable = gk_loot_alloys
+	round_variable = gk_loot_unity
+	round_variable = gk_loot_physics_research
+	round_variable = gk_loot_society_research
+	round_variable = gk_loot_engineering_research
+	round_variable = gk_loot_volatile_motes
+	round_variable = gk_loot_exotic_gases
+	round_variable = gk_loot_rare_crystals
+	round_variable = gk_loot_sr_living_metal
+	round_variable = gk_loot_sr_zro
+	round_variable = gk_loot_sr_dark_matter
+	round_variable = gk_loot_nanites
+}
+
 # Send pillage notifications for immediate devastation packets
 # This = Planet
 # event_target:gk_raider = Raider
 gk_send_pillage_notifications = {
 	event_target:gk_raider = {
 		create_message = {
-			type = MESSAGE_TYPE_GK_PLANET_PILLAGED
+			type = MESSAGE_TYPE_GK_PILLAGE_DEVASTATION
 			localization = MESSAGE_GK_PLANET_PILLAGED
 			days = 30
 			target = prev
@@ -631,7 +645,7 @@ gk_send_pillage_notifications = {
 
 	owner = {
 		create_message = {
-			type = MESSAGE_TYPE_GK_OUR_PLANET_PILLAGED
+			type = MESSAGE_TYPE_GK_OUR_PILLAGE_DEVASTATION
 			localization = MESSAGE_GK_OUR_PLANET_PILLAGED
 			days = 30
 			target = prev
@@ -885,10 +899,6 @@ gk_init_loot_variables = {
 # event_target:gk_storage_scope = where to ensure
 gk_ensure_loot_variables = {
 	event_target:gk_storage_scope = {
-		if = {
-			limit = { NOT = { is_variable_set = gk_forfeited_pops } }
-			set_variable = { which = gk_forfeited_pops value = 0 }
-		}
 		if = {
 			limit = { NOT = { is_variable_set = gk_loot_trade } }
 			set_variable = { which = gk_loot_trade value = 0 }

@@ -1,4 +1,4 @@
-# GK Raiding Opinion Modifiers
+# GK Raiding Pop Opinion Modifiers
 
 # They declared a Reaping war — flat opinion hit on declaration
 opinion_gk_declared_reaping = {

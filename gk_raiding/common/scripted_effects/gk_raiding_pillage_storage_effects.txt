@@ -1,4 +1,4 @@
-# GK Raiding Effects - Loot Receipt Management
+# GK Raiding Pillage Storage Effects - Loot Receipt Management
 # Handles loot receipt creation, retrieval, collection, and destruction
 # Uses a global event target leader to store values, preventing overwrites from simultaneous raids
 # Receipt is identified by flags: gk_loot_receipt_to_@raider and gk_loot_receipt_from_@target
@@ -88,7 +88,6 @@ gk_destroy_loot_receipt = {
 		}
 	}
 	# Clean up display variables from root
-	clear_variable = gk_forfeited_pops
 	clear_variable = gk_total_trade
 	clear_variable = gk_total_energy
 	clear_variable = gk_total_minerals
@@ -116,63 +115,71 @@ gk_copy_receipt_values_for_display = {
 			save_event_target_as = gk_storage_scope
 		}
 		gk_ensure_loot_variables = yes
-		# Copy abduction count
-		set_variable = {
-			which = gk_forfeited_pops
-			value = event_target:gk_loot_receipt.gk_forfeited_pops
-		}
 		# Copy loot values (now stored as gk_loot_* on storage scope/receipt)
 		set_variable = {
 			which = gk_total_trade
 			value = event_target:gk_loot_receipt.gk_loot_trade
 		}
+		round_variable = gk_total_trade
 		set_variable = {
 			which = gk_total_energy
 			value = event_target:gk_loot_receipt.gk_loot_energy
 		}
+		round_variable = gk_total_energy
 		set_variable = {
 			which = gk_total_minerals
 			value = event_target:gk_loot_receipt.gk_loot_minerals
 		}
+		round_variable = gk_total_minerals
 		set_variable = {
 			which = gk_total_food
 			value = event_target:gk_loot_receipt.gk_loot_food
 		}
+		round_variable = gk_total_food
 		set_variable = {
 			which = gk_total_consumer_goods
 			value = event_target:gk_loot_receipt.gk_loot_consumer_goods
 		}
+		round_variable = gk_total_consumer_goods
 		set_variable = {
 			which = gk_total_alloys
 			value = event_target:gk_loot_receipt.gk_loot_alloys
 		}
+		round_variable = gk_total_alloys
 		set_variable = {
 			which = gk_total_volatile_motes
 			value = event_target:gk_loot_receipt.gk_loot_volatile_motes
 		}
+		round_variable = gk_total_volatile_motes
 		set_variable = {
 			which = gk_total_exotic_gases
 			value = event_target:gk_loot_receipt.gk_loot_exotic_gases
 		}
+		round_variable = gk_total_exotic_gases
 		set_variable = {
 			which = gk_total_rare_crystals
 			value = event_target:gk_loot_receipt.gk_loot_rare_crystals
 		}
+		round_variable = gk_total_rare_crystals
 		set_variable = {
 			which = gk_total_sr_living_metal
 			value = event_target:gk_loot_receipt.gk_loot_sr_living_metal
 		}
+		round_variable = gk_total_sr_living_metal
 		set_variable = {
 			which = gk_total_sr_zro
 			value = event_target:gk_loot_receipt.gk_loot_sr_zro
 		}
+		round_variable = gk_total_sr_zro
 		set_variable = {
 			which = gk_total_sr_dark_matter
 			value = event_target:gk_loot_receipt.gk_loot_sr_dark_matter
 		}
+		round_variable = gk_total_sr_dark_matter
 		set_variable = {
 			which = gk_total_nanites
 			value = event_target:gk_loot_receipt.gk_loot_nanites
 		}
+		round_variable = gk_total_nanites
 	}
 }

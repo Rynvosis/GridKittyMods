@@ -1,13 +1,13 @@
-# GK Abduction Scripted Effects
+# GK Raiding Pop Scripted Effects
 
 ######################
 # Core Abduction Flow #
 ######################
 # Surrender/Invasion:
-#   1. Entry point sets up gk_storage_scope = gk_loot_receipt
-#   2. Initialize abduction cap on raidee, forfeited pops counter on receipt
+#   1. Entry point sets up gk_storage_scope = gk_pop_result_tracker
+#   2. Initialize abduction cap on raidee, forfeited pops counter on the pop result tracker
 #   3. For each planet: gk_abduct_pops_from_planet processes eligible pops
-#   4. Receipt has gk_forfeited_pops count for display
+#   4. Pop result tracker has gk_forfeited_pops count for notification payloads
 
 ######################
 # Raid Tracker CRUD  #
@@ -57,6 +57,90 @@ gk_get_or_create_raid_tracker = {
 				set_variable = { which = gk_pops_taken value = 0 }
 				save_event_target_as = gk_raid_tracker
 			}
+		}
+	}
+}
+
+############################
+# Pop Result Tracker CRUD  #
+############################
+
+# Get or create a pop result tracker for the current raider + target scope
+# event_target:gk_raider = acting raider
+# event_target:gk_raiding_target = invaded planet or surrendered country
+# Sets: event_target:gk_pop_result_tracker
+gk_get_or_create_pop_result_tracker = {
+	if = {
+		limit = {
+			event_target:global_event_country = {
+				any_owned_leader = {
+					has_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+					has_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+				}
+			}
+		}
+		event_target:global_event_country = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+					has_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+				}
+				save_event_target_as = gk_pop_result_tracker
+			}
+		}
+	}
+	else = {
+		event_target:global_event_country = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = "Pop Result Tracker"
+				skill = 1
+				hide_leader = yes
+				event_leader = yes
+			}
+			last_created_leader = {
+				set_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+				set_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+				set_variable = { which = gk_forfeited_pops value = 0 }
+				save_event_target_as = gk_pop_result_tracker
+			}
+		}
+	}
+}
+
+gk_retrieve_pop_result_tracker = {
+	event_target:global_event_country = {
+		random_owned_leader = {
+			limit = {
+				has_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+				has_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+			}
+			save_event_target_as = gk_pop_result_tracker
+		}
+	}
+}
+
+gk_destroy_pop_result_tracker = {
+	if = {
+		limit = {
+			exists = event_target:gk_pop_result_tracker
+		}
+		event_target:gk_pop_result_tracker = {
+			kill_leader = { show_notification = no }
+		}
+	}
+	clear_variable = gk_forfeited_pops
+}
+
+gk_copy_pop_result_values_for_display = {
+	if = {
+		limit = {
+			exists = event_target:gk_pop_result_tracker
+		}
+		set_variable = {
+			which = gk_forfeited_pops
+			value = event_target:gk_pop_result_tracker.gk_forfeited_pops
 		}
 	}
 }
@@ -166,9 +250,9 @@ gk_abduct_on_surrender = {
 		save_event_target_as = gk_raiding_target
 	}
 
-	# Create loot receipt - this IS the storage scope
-	gk_get_or_create_loot_receipt = yes
-	event_target:gk_loot_receipt = {
+	# Create pop result tracker - this IS the storage scope
+	gk_get_or_create_pop_result_tracker = yes
+	event_target:gk_pop_result_tracker = {
 		save_event_target_as = gk_storage_scope
 	}
 
@@ -214,9 +298,9 @@ gk_abduct_on_invasion = {
 		save_event_target_as = gk_cap_raider
 	}
 
-	# Retrieve the receipt created during pillage
-	gk_get_or_create_loot_receipt = yes
-	event_target:gk_loot_receipt = {
+	# Create or retrieve the pop-only result tracker
+	gk_get_or_create_pop_result_tracker = yes
+	event_target:gk_pop_result_tracker = {
 		save_event_target_as = gk_storage_scope
 	}
 

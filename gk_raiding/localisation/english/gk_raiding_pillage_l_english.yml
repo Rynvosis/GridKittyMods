@@ -1,0 +1,72 @@
+﻿l_english:
+ # Scripted Modifiers
+ mod_gk_pillage_efficiency:0 "Resources from Pillaging"
+
+gk_planet_tribute_0:0 "Token Tribute"
+gk_planet_tribute_0_desc:0 "This planet's economy was minimally disrupted by tribute extraction."
+gk_planet_tribute_0.tooltip:0 "Lasts §Y5§! years."
+
+gk_planet_tribute_1:0 "Minor Tribute"
+gk_planet_tribute_1_desc:0 "This planet's economy was lightly disrupted by tribute extraction."
+gk_planet_tribute_1.tooltip:0 "Lasts §Y5§! years."
+gk_planet_tribute_2:0 "Modest Tribute"
+gk_planet_tribute_2_desc:0 "This planet's economy was moderately disrupted by tribute extraction."
+gk_planet_tribute_2.tooltip:0 "Lasts §Y5§! years."
+gk_planet_tribute_3:0 "Heavy Tribute"
+gk_planet_tribute_3_desc:0 "This planet's economy was heavily disrupted by tribute extraction."
+gk_planet_tribute_3.tooltip:0 "Lasts §Y5§! years."
+gk_planet_tribute_4:0 "Crushing Tribute"
+gk_planet_tribute_4_desc:0 "This planet's economy was severely disrupted by tribute extraction."
+gk_planet_tribute_4.tooltip:0 "Lasts §Y5§! years."
+gk_planet_tribute_5:0 "Ruinous Tribute"
+gk_planet_tribute_5_desc:0 "This planet's economy was devastatingly disrupted by tribute extraction."
+gk_planet_tribute_5.tooltip:0 "Lasts §Y5§! years."
+
+ # Pillage Concepts
+ concept_gk_pillaging:0 "Pillage Resources"
+ concept_gk_pillaging_desc:0 "Extract resources from hostile planets during war.\n\n- §YBombardment§!: every §Y10§! devastation produces §Y1 month§! of planet output\n- §YInvasion§!: produces planet output on conquest\n- £trade_value£ §YTrade§! is doubled; £unity£ §YUnity§! and £research£ §YResearch§! are turned into £consumer_goods£ §YConsumer Goods§!\n- §YPillage§! wars produce significantly more and guarantee enemy surrender tribute"
+ concept_gk_pillage:0 "Pillage"
+ concept_gk_resource_raiding:0 "Resource Raiding"
+
+ concept_gk_wg_pillage:0 "Pillage"
+ concept_gk_wg_pillage_desc:0 "Strip enemy worlds of resources.\n\n§L- Greatly increases pillage yields\n- Guarantees enemy surrender tribute from defeated colonies§!"
+
+ # Pillage Notifications
+ MESSAGE_TYPE_GK_PILLAGE_DEVASTATION_TITLE:0 "Planet Pillaged"
+ MESSAGE_TYPE_GK_PILLAGE_INVASION_TITLE:0 "Planet Sacked"
+ MESSAGE_TYPE_GK_PILLAGE_SURRENDER_TITLE:0 "Tribute Extracted"
+
+ MESSAGE_GK_PILLAGE_DEVASTATION_KEY:0 "$MESSAGE_TYPE_GK_PILLAGE_DEVASTATION_TITLE$ by our raiders!"
+ MESSAGE_GK_OUR_PILLAGE_DEVASTATION_KEY:0 "$MESSAGE_TYPE_GK_PILLAGE_DEVASTATION_TITLE$ by enemy raiders!"
+ MESSAGE_GK_PILLAGE_INVASION_KEY:0 "$MESSAGE_TYPE_GK_PILLAGE_INVASION_TITLE$ by our raiders!"
+ MESSAGE_GK_OUR_PILLAGE_INVASION_KEY:0 "$MESSAGE_TYPE_GK_PILLAGE_INVASION_TITLE$ by enemy raiders!"
+ MESSAGE_GK_PILLAGE_SURRENDER_KEY:0 "$MESSAGE_TYPE_GK_PILLAGE_SURRENDER_TITLE$ by our raiders!"
+ MESSAGE_GK_OUR_PILLAGE_SURRENDER_KEY:0 "$MESSAGE_TYPE_GK_PILLAGE_SURRENDER_TITLE$ by enemy raiders!"
+
+ MESSAGE_GK_OUR_PLANET_PILLAGED:0 "Raids on $PLANET|Y$ yielded resources to enemy raiders.\n"
+ MESSAGE_GK_PLANET_PILLAGED:0 "Raids on $PLANET|Y$ yielded:$trade_label$$trade|G$$energy_label$$energy|G$$minerals_label$$minerals|G$$food_label$$food|G$$consumer_goods_label$$consumer_goods|G$$alloys_label$$alloys|G$$volatile_motes_label$$volatile_motes|G$$exotic_gases_label$$exotic_gases|G$$rare_crystals_label$$rare_crystals|G$$sr_living_metal_label$$sr_living_metal|G$$sr_zro_label$$sr_zro|G$$sr_dark_matter_label$$sr_dark_matter|G$$nanites_label$$nanites|G$\n"
+
+ MESSAGE_GK_PLANET_PILLAGED_INVASION:0 "The conquest of $PLANET|Y$ yielded:$trade_label$$trade|G$$energy_label$$energy|G$$minerals_label$$minerals|G$$food_label$$food|G$$consumer_goods_label$$consumer_goods|G$$alloys_label$$alloys|G$$volatile_motes_label$$volatile_motes|G$$exotic_gases_label$$exotic_gases|G$$rare_crystals_label$$rare_crystals|G$$sr_living_metal_label$$sr_living_metal|G$$sr_zro_label$$sr_zro|G$$sr_dark_matter_label$$sr_dark_matter|G$$nanites_label$$nanites|G$\n"
+ MESSAGE_GK_OUR_PLANET_PILLAGED_INVASION:0 "The conquest of $PLANET|Y$ yielded resources to $FROM|Y$.\n"
+
+ MESSAGE_GK_PLANET_PILLAGED_SURRENDER:0 "The surrender of §Y$TARGET$§! yielded:$trade_label$$trade|G$$energy_label$$energy|G$$minerals_label$$minerals|G$$food_label$$food|G$$consumer_goods_label$$consumer_goods|G$$alloys_label$$alloys|G$$volatile_motes_label$$volatile_motes|G$$exotic_gases_label$$exotic_gases|G$$rare_crystals_label$$rare_crystals|G$$sr_living_metal_label$$sr_living_metal|G$$sr_zro_label$$sr_zro|G$$sr_dark_matter_label$$sr_dark_matter|G$$nanites_label$$nanites|G$\n"
+ MESSAGE_GK_OUR_PLANET_PILLAGED_SURRENDER:0 "Our surrender yielded resources to $FROM|Y$.\n"
+
+ # Resource Loot Localization Strings
+ trade_label:0 "\n£trade£ §Y$trade$§!: "
+ energy_label:0 "\n£energy£ §Y$energy$§!: "
+ minerals_label:0 "\n£minerals£ §Y$minerals$§!: "
+ alloys_label:0 "\n£alloys£ §Y$alloys$§!: "
+ food_label:0 "\n£food£ §Y$food$§!: "
+ consumer_goods_label:0 "\n£consumer_goods£ §Y$consumer_goods$§!: "
+ unity_label:0 "\n£unity£ §Y$unity$§!: "
+ physics_research_label:0 "\n£physics£ §Y$physics_research$§!: "
+ society_research_label:0 "\n£society£ §Y$society_research$§!: "
+ engineering_research_label:0 "\n£engineering£ §Y$engineering_research$§!: "
+ volatile_motes_label:0 "\n£volatile_motes£ §Y$volatile_motes$§!: "
+ exotic_gases_label:0 "\n£exotic_gases£ §Y$exotic_gases$§!: "
+ rare_crystals_label:0 "\n£rare_crystals£ §Y$rare_crystals$§!: "
+ sr_living_metal_label:0 "\n£sr_living_metal£ §Y$sr_living_metal$§!: "
+ sr_dark_matter_label:0 "\n£sr_dark_matter£ §Y$sr_dark_matter$§!: "
+ sr_zro_label:0 "\n£sr_zro£ §Y$sr_zro$§!: "
+ nanites_label:0 "\n£nanites£ §Y$nanites$§!: "

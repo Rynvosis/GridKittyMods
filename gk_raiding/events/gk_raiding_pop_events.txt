@@ -1,0 +1,658 @@
+namespace = gk_raiding
+
+@gk_decay_rate_at_peace = 0.90
+@gk_decay_rate_at_war = 0.95
+@gk_decay_clear_threshold = 1
+
+############################
+# Pop Tracking             #
+############################
+
+# Pop group abducted by raiding bombardment stance
+# This = Pop Group scope
+# From = Planet abducted from
+pop_group_event = {
+	id = gk_raiding.101
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = from
+		from = {
+			exists = owner
+			has_orbital_bombardment = yes
+			has_orbital_bombardment_stance = raiding
+		}
+	}
+	immediate = {
+		save_event_target_as = gk_abducted_pop_group
+
+		this.planet.owner = {
+			save_event_target_as = gk_raider
+		}
+
+		if = {
+			limit = {
+				exists = event_target:gk_raider
+			}
+			from.owner = {
+				gk_track_raided_pops = { AMOUNT = event_target:gk_abducted_pop_group.trigger:pop_group_size }
+			}
+		}
+	}
+}
+
+# Yearly decay of raidee plundered/emancipated counters
+# This = Country scope (from on_yearly_pulse_country)
+country_event = {
+	id = gk_raiding.50
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			is_variable_set = gk_raidee_plundered
+			is_variable_set = gk_raidee_emancipated
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				is_variable_set = gk_raidee_plundered
+			}
+			if = {
+				limit = {
+					any_war = {
+						OR = {
+							AND = {
+								is_war_participant = { who = root side = defenders }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = attacker }
+									using_war_goal = { type = wg_plunder owner = attacker }
+									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+									using_war_goal = { type = wg_gk_reaping owner = attacker }
+								}
+							}
+							AND = {
+								is_war_participant = { who = root side = attackers }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = defender }
+									using_war_goal = { type = wg_plunder owner = defender }
+									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+									using_war_goal = { type = wg_gk_reaping owner = defender }
+								}
+							}
+						}
+					}
+				}
+				multiply_variable = {
+					which = gk_raidee_plundered
+					value = @gk_decay_rate_at_war
+				}
+			}
+			else = {
+				multiply_variable = {
+					which = gk_raidee_plundered
+					value = @gk_decay_rate_at_peace
+				}
+			}
+			if = {
+				limit = {
+					is_at_war = no
+					check_variable = {
+						which = gk_raidee_plundered
+						value <= @gk_decay_clear_threshold
+					}
+				}
+				clear_variable = gk_raidee_plundered
+			}
+		}
+		if = {
+			limit = {
+				is_variable_set = gk_raidee_emancipated
+			}
+			if = {
+				limit = {
+					any_war = {
+						OR = {
+							AND = {
+								is_war_participant = { who = root side = defenders }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = attacker }
+									using_war_goal = { type = wg_plunder owner = attacker }
+									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+									using_war_goal = { type = wg_gk_reaping owner = attacker }
+								}
+							}
+							AND = {
+								is_war_participant = { who = root side = attackers }
+								OR = {
+									using_war_goal = { type = wg_gk_emancipation owner = defender }
+									using_war_goal = { type = wg_plunder owner = defender }
+									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+									using_war_goal = { type = wg_gk_reaping owner = defender }
+								}
+							}
+						}
+					}
+				}
+				multiply_variable = {
+					which = gk_raidee_emancipated
+					value = @gk_decay_rate_at_war
+				}
+			}
+			else = {
+				multiply_variable = {
+					which = gk_raidee_emancipated
+					value = @gk_decay_rate_at_peace
+				}
+			}
+			if = {
+				limit = {
+					is_at_war = no
+					check_variable = {
+						which = gk_raidee_emancipated
+						value <= @gk_decay_clear_threshold
+					}
+				}
+				clear_variable = gk_raidee_emancipated
+			}
+		}
+		gk_update_plunder_recovery_modifier = yes
+	}
+}
+
+# Yearly cleanup of raid tracker leaders and cap flags
+# This = Country scope (from on_yearly_pulse_country)
+country_event = {
+	id = gk_raiding.52
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			has_country_flag = gk_raid_cap_reached_by_@root
+		}
+	}
+	immediate = {
+		every_country = {
+			limit = {
+				has_country_flag = gk_raid_cap_reached_by_@root
+			}
+			if = {
+				limit = {
+					NOT = {
+						root = {
+							any_war = {
+								is_war_participant = {
+									who = prevprev
+								}
+							}
+						}
+					}
+				}
+				remove_country_flag = gk_raid_cap_reached_by_@root
+			}
+		}
+		save_event_target_as = gk_raider
+		event_target:global_event_country = {
+			every_owned_leader = {
+				limit = {
+					has_leader_flag = gk_raid_tracker
+					has_leader_flag = gk_raid_tracker_attacker_@root
+				}
+				if = {
+					limit = {
+						root = { is_at_war = no }
+					}
+					kill_leader = { show_notification = no }
+				}
+			}
+		}
+	}
+}
+
+############################
+# Pop Forced Surrender     #
+############################
+
+# Forced orbital surrender - pop-raiding side only
+# This = Planet
+# From = Damaging country
+planet_event = {
+	id = gk_raiding.150
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = owner
+		exists = from
+		from = {
+			gk_can_pop_raid_personally = yes
+		}
+		owner = {
+			from = {
+				OR = {
+					prev = { gk_has_standard_raiding_war_with = yes }
+					prev = { gk_has_emancipation_war_with = yes }
+					prev = { gk_has_robo_liberation_war_with = yes }
+					prev = { gk_has_reaping_war_with = yes }
+				}
+			}
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				has_orbital_bombardment = yes
+				num_armies < 1
+				NOT = { has_ground_combat = yes }
+				NOT = { has_planet_flag = gk_pop_forced_surrender_resolved_by_@from }
+			}
+			set_planet_flag = gk_pop_forced_surrender_resolved_by_@from
+			from = {
+				country_event = {
+					id = gk_raiding.250
+					scopes = {
+						from = root.owner
+						fromfrom = root
+					}
+				}
+			}
+		}
+	}
+}
+
+############################
+# Pop Invasion             #
+############################
+
+# On planet attackers win or forced orbital surrender - instant pop raid
+# This = Attacking Country
+# From = Defending Country
+# FromFrom = Planet
+country_event = {
+	id = gk_raiding.250
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		fromfrom = {
+			is_colony = yes
+		}
+		gk_can_pop_raid_personally = yes
+		from = {
+			OR = {
+				root = { gk_has_standard_raiding_war_with = yes }
+				root = { gk_has_emancipation_war_with = yes }
+				root = { gk_has_robo_liberation_war_with = yes }
+				root = { gk_has_reaping_war_with = yes }
+			}
+		}
+	}
+	immediate = {
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+		}
+		fromfrom = {
+			save_event_target_as = gk_target_planet
+			save_event_target_as = gk_raiding_target
+		}
+
+		gk_abduct_on_invasion = yes
+		gk_retrieve_pop_result_tracker = yes
+		gk_copy_pop_result_values_for_display = yes
+
+		if = {
+			limit = {
+				check_variable = { which = gk_forfeited_pops value > 0 }
+			}
+			event_target:gk_raider = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_POP_RAIDED
+					localization = MESSAGE_GK_POP_RAIDED_INVASION
+					days = 30
+					target = event_target:gk_target_planet
+					variable = {
+						type = name
+						localization = PLANET
+						scope = event_target:gk_target_planet
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+			event_target:gk_raidee = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+					localization = MESSAGE_GK_OUR_POPS_RAIDED_INVASION
+					days = 30
+					target = event_target:gk_target_planet
+					variable = {
+						type = name
+						localization = PLANET
+						scope = event_target:gk_target_planet
+					}
+					variable = {
+						type = name
+						localization = FROM
+						scope = event_target:gk_raider
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+		}
+
+		gk_destroy_pop_result_tracker = yes
+	}
+}
+
+# Planet conquered after forced bombardment surrender - clear the pre-conquer marker
+# This = Planet
+# From = New Owner
+planet_event = {
+	id = gk_raiding.251
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = from
+		has_planet_flag = gk_pop_forced_surrender_resolved_by_@from
+	}
+	immediate = {
+		remove_planet_flag = gk_pop_forced_surrender_resolved_by_@from
+	}
+}
+
+############################
+# Pop Surrender            #
+############################
+
+country_event = {
+	id = gk_raiding.400
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+		gk_retrieve_pop_result_tracker = yes
+		gk_copy_pop_result_values_for_display = yes
+		if = {
+			limit = {
+				check_variable = { which = gk_forfeited_pops value > 0 }
+			}
+			event_target:gk_raider = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_POP_RAIDED
+					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = TARGET
+						scope = event_target:gk_raidee
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+			event_target:gk_raidee = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = FROM
+						scope = event_target:gk_raider
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+		}
+		gk_destroy_pop_result_tracker = yes
+	}
+}
+
+country_event = {
+	id = gk_raiding.500
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+		gk_retrieve_pop_result_tracker = yes
+		gk_copy_pop_result_values_for_display = yes
+		if = {
+			limit = {
+				check_variable = { which = gk_forfeited_pops value > 0 }
+			}
+			event_target:gk_raider = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_POP_RAIDED
+					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = TARGET
+						scope = event_target:gk_raidee
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+			event_target:gk_raidee = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = FROM
+						scope = event_target:gk_raider
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+		}
+		gk_destroy_pop_result_tracker = yes
+	}
+}
+
+country_event = {
+	id = gk_raiding.600
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+		gk_retrieve_pop_result_tracker = yes
+		gk_copy_pop_result_values_for_display = yes
+		if = {
+			limit = {
+				check_variable = { which = gk_forfeited_pops value > 0 }
+			}
+			event_target:gk_raider = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_POP_RAIDED
+					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = TARGET
+						scope = event_target:gk_raidee
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+			event_target:gk_raidee = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = FROM
+						scope = event_target:gk_raider
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+		}
+		gk_destroy_pop_result_tracker = yes
+	}
+}
+
+country_event = {
+	id = gk_raiding.700
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+		gk_retrieve_pop_result_tracker = yes
+		gk_copy_pop_result_values_for_display = yes
+		if = {
+			limit = {
+				check_variable = { which = gk_forfeited_pops value > 0 }
+			}
+			every_country = {
+				limit = {
+					has_communications = root
+					NOT = { is_country = root }
+					OR = {
+						is_country_type = default
+						has_ai_personality = awakened_fallen_empire_xenophile
+					}
+				}
+				while = {
+					count = root.gk_forfeited_pops
+					add_opinion_modifier = { who = root modifier = opinion_gk_reaped_pops }
+				}
+			}
+			event_target:gk_raider = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_POP_RAIDED
+					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = TARGET
+						scope = event_target:gk_raidee
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+			event_target:gk_raidee = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = FROM
+						scope = event_target:gk_raider
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = event_target:gk_raider
+					}
+				}
+			}
+		}
+		gk_destroy_pop_result_tracker = yes
+	}
+}
+
+##############################
+# REAPING WAR DECLARATION    #
+##############################
+
+country_event = {
+	id = gk_raiding.800
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			using_war_goal = {
+				type = wg_gk_reaping
+				owner = root
+			}
+			any_attacker = {
+				is_war_leader = yes
+				is_same_value = root
+			}
+		}
+	}
+	immediate = {
+		every_country = {
+			limit = {
+				has_communications = root
+				NOT = { is_country = root }
+				OR = {
+					is_country_type = default
+					has_ai_personality = awakened_fallen_empire_xenophile
+				}
+			}
+			add_opinion_modifier = { who = root modifier = opinion_gk_declared_reaping }
+		}
+	}
+}

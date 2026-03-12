@@ -1,0 +1,11 @@
+# GK Raiding Core Game Concepts
+
+concept_gk_raiding_mechanics = {
+	alias = { concept_gk_raiding concept_gk_advanced_raiding }
+	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_exploding_ship"
+	}
+}

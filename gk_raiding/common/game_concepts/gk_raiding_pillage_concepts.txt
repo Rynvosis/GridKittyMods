@@ -1,0 +1,20 @@
+# GK Raiding Pillage Game Concepts
+
+concept_gk_pillaging = {
+	alias = { concept_gk_pillage concept_gk_resource_raiding }
+	icon = "gfx/interface/icons/resources/minerals.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_mining_station"
+	}
+}
+
+concept_gk_wg_pillage = {
+	icon = "gfx/interface/icons/resources/minerals.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_mining_station"
+	}
+}

@@ -1,0 +1,71 @@
+namespace = gk_raiding
+
+############################
+# Machine Despoilers Setup #
+############################
+# This = country
+# Converts 400 starting machine pops to organic battery pops
+# Sets secondary species to grid amalgamation slavery
+# Ensures a farming district on capital
+country_event = {
+	id = gk_raiding.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+	}
+
+	immediate = {
+		every_owned_species = {
+			limit = {
+				is_robotic = no
+				NOT = { is_same_species = root.owner_species }
+			}
+			save_event_target_as = gk_battery_species
+			set_citizenship_type = {
+				country = root
+				type = citizenship_slavery
+				cooldown = no
+			}
+			set_slavery_type = {
+				country = root
+				type = slavery_matrix
+				cooldown = no
+			}
+		}
+
+		capital_scope = {
+			random_owned_pop_group = {
+				limit = {
+					is_same_species = root.owner_species
+				}
+				kill_pop_group = {
+					pop_group = this
+					amount = 400
+				}
+			}
+
+			create_pop_group = {
+				species = event_target:gk_battery_species
+				size = 400
+			}
+
+			if = {
+				limit = {
+					NOT = {
+						has_district = district_farming
+					}
+				}
+				add_district = district_farming
+			}
+
+			if = {
+				limit = {
+					has_district = district_generator
+				}
+				remove_district = district_generator
+			}
+		}
+	}
+}

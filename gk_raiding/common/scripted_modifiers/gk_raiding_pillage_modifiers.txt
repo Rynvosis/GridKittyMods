@@ -1,0 +1,8 @@
+# GK Raiding Pillage Scripted Modifiers
+
+gk_pillage_efficiency = {
+	icon = mod_damage_mult
+	percentage = yes
+	good = yes
+	category = country
+}

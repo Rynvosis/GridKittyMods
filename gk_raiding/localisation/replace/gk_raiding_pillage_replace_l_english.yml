@@ -1,0 +1,12 @@
+﻿l_english:
+ # Version last updated: v4.2.3
+ # Pillage-facing overrides.
+
+ civic_crusader_spirit_corporate_desc:0 "['concept_gk_raiding_mechanics']\nThis megacorporation employs notorious pirates as military advisors and fleet commanders."
+ civic_tooltip_crusader_spirit_corporate_effects:0 "- §Y$commander_plural_with_icon$§! start with the §Y$leader_trait_corsair$§! trait\n- Grants the §YPillaging§! Casus Belli on all other empires\n- Unlocks the ['concept_gk_wg_pillage'] War Goal\n- §YCan only pillage resources, cannot raid pops§!\n- The £building£ §Y$building_military_contractors$§! $megacorp_civic_branch_office_building_effect$"
+
+ war_goal_wg_plunder_raid:0 "Pillage"
+ war_goal_wg_plunder_raid_desc:0 "War is waged to pillage enemy worlds for resources.\n\n§L- Greatly increases pillage yields\n- Guarantees enemy surrender tribute from defeated colonies§!"
+ wg_plunder_raid_accept_tooltip:0 "§Y[From.GetName]§!'s surviving colonies will be stripped for tribute before peace is restored."
+
+ casus_belli_cb_pirate_raid:0 "Pillaging"

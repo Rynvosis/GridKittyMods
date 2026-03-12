@@ -1,4 +1,4 @@
-# GK Raiding War Goals
+# GK Raiding Pop War Goals
 
 @gk_reaping_cap_rate = 100
 

@@ -1,0 +1,27 @@
+# GK Raiding Pop Notification Messages
+
+message_type = {
+	key = MESSAGE_TYPE_GK_POP_RAIDED
+	message_setting_key = "MESSAGE_GK_POP_RAIDED_KEY"
+	icon = "GFX_message_event_generic"
+	icon_frame = 2
+
+	name = "MESSAGE_TYPE_GK_POP_RAIDED_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}
+
+message_type = {
+	key = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+	message_setting_key = "MESSAGE_GK_OUR_POPS_RAIDED_KEY"
+	icon = "GFX_message_other_alert"
+	icon_frame = 2
+
+	name = "MESSAGE_TYPE_GK_POP_RAIDED_TITLE"
+	sound = "notification"
+	ping = "ping_notification_red"
+
+	category = planets
+}

@@ -1,4 +1,4 @@
-# GK Raiding Scripted Triggers
+# GK Raiding Pop Scripted Triggers
 
 #############################
 # Raiding Bombardment Check #
@@ -44,17 +44,6 @@ gk_can_use_raiding_cb = {
 }
 
 # This = country scope
-# Personal resource pillage capability. Extend this later with traditions or other unlocks.
-gk_can_pillage = {
-	OR = {
-		has_valid_civic = civic_barbaric_despoilers
-		has_valid_civic = civic_gk_barbaric_despoilers_machine
-		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
-		has_valid_civic = civic_crusader_spirit_corporate
-	}
-}
-
-# This = country scope
 # Personal pop-raiding capability.
 gk_can_pop_raid_personally = {
 	gk_can_use_raiding_cb = yes
@@ -86,50 +75,6 @@ gk_can_use_reaping_cb = {
 # War Goal Checks  #
 ####################
 # This = country scope
-gk_has_emancipation_war = {
-	any_war = {
-		OR = {
-			AND = {
-				is_war_participant = { who = prev side = attackers }
-				using_war_goal = {
-					type = wg_gk_emancipation
-					owner = attacker
-				}
-			}
-			AND = {
-				is_war_participant = { who = prev side = defenders }
-				using_war_goal = {
-					type = wg_gk_emancipation
-					owner = defender
-				}
-			}
-		}
-	}
-}
-
-# This = country scope
-gk_has_raiding_war = {
-	any_war = {
-		OR = {
-			AND = {
-				is_war_participant = { who = prev side = attackers }
-				using_war_goal = {
-					type = wg_plunder
-					owner = attacker
-				}
-			}
-			AND = {
-				is_war_participant = { who = prev side = defenders }
-				using_war_goal = {
-					type = wg_plunder
-					owner = defender
-				}
-			}
-		}
-	}
-}
-
-# This = country scope
 gk_has_robo_liberation_war = {
 	any_war = {
 		OR = {
@@ -145,90 +90,6 @@ gk_has_robo_liberation_war = {
 				using_war_goal = {
 					type = wg_gk_robo_liberation
 					owner = defender
-				}
-			}
-		}
-	}
-}
-
-# This = country scope
-gk_has_reaping_war = {
-	any_war = {
-		OR = {
-			AND = {
-				is_war_participant = { who = prev side = attackers }
-				using_war_goal = {
-					type = wg_gk_reaping
-					owner = attacker
-				}
-			}
-			AND = {
-				is_war_participant = { who = prev side = defenders }
-				using_war_goal = {
-					type = wg_gk_reaping
-					owner = defender
-				}
-			}
-		}
-	}
-}
-
-# This = country scope
-gk_has_any_raiding_war = {
-	any_war = {
-		OR = {
-			AND = {
-				is_war_participant = { who = prev side = attackers }
-				OR = {
-					using_war_goal = { type = wg_gk_emancipation owner = attacker }
-					using_war_goal = { type = wg_plunder owner = attacker }
-					using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
-					using_war_goal = { type = wg_gk_reaping owner = attacker }
-					using_war_goal = { type = wg_plunder_raid owner = attacker }
-				}
-			}
-			AND = {
-				is_war_participant = { who = prev side = defenders }
-				OR = {
-					using_war_goal = { type = wg_gk_emancipation owner = defender }
-					using_war_goal = { type = wg_plunder owner = defender }
-					using_war_goal = { type = wg_gk_robo_liberation owner = defender }
-					using_war_goal = { type = wg_gk_reaping owner = defender }
-					using_war_goal = { type = wg_plunder_raid owner = defender }
-				}
-			}
-		}
-	}
-}
-
-# This = country scope (defender/raidee)
-# Root = country scope (attacker/raider)
-# Check if raider (root) is in ANY raiding war against this country (defender)
-gk_has_raiding_war_with = {
-	root = {
-		any_war = {
-			OR = {
-				AND = {
-					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = prevprev side = defenders }
-					OR = {
-						using_war_goal = { type = wg_gk_emancipation owner = attacker }
-						using_war_goal = { type = wg_plunder owner = attacker }
-						using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
-						using_war_goal = { type = wg_gk_reaping owner = attacker }
-						using_war_goal = { type = wg_plunder_raid owner = attacker }
-					}
-				}
-				AND = {
-					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = prevprev side = attackers }
-					OR = {
-						using_war_goal = { type = wg_gk_emancipation owner = defender }
-						using_war_goal = { type = wg_plunder owner = defender }
-						using_war_goal = { type = wg_gk_robo_liberation owner = defender }
-						using_war_goal = { type = wg_gk_reaping owner = defender }
-						using_war_goal = { type = wg_plunder_raid owner = defender }
-					}
 				}
 			}
 		}
@@ -251,50 +112,6 @@ gk_has_standard_raiding_war_with = {
 					is_war_participant = { who = prev side = defenders }
 					is_war_participant = { who = prevprev side = attackers }
 					using_war_goal = { type = wg_plunder owner = defender }
-				}
-			}
-		}
-	}
-}
-
-gk_has_resource_raiding_war_with = {
-	root = {
-		any_war = {
-			OR = {
-				AND = {
-					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = prevprev side = defenders }
-					OR = {
-						using_war_goal = { type = wg_plunder owner = attacker }
-						using_war_goal = { type = wg_plunder_raid owner = attacker }
-					}
-				}
-				AND = {
-					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = prevprev side = attackers }
-					OR = {
-						using_war_goal = { type = wg_plunder owner = defender }
-						using_war_goal = { type = wg_plunder_raid owner = defender }
-					}
-				}
-			}
-		}
-	}
-}
-
-gk_has_pillage_war_with = {
-	root = {
-		any_war = {
-			OR = {
-				AND = {
-					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = prevprev side = defenders }
-					using_war_goal = { type = wg_plunder_raid owner = attacker }
-				}
-				AND = {
-					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = prevprev side = attackers }
-					using_war_goal = { type = wg_plunder_raid owner = defender }
 				}
 			}
 		}
@@ -356,24 +173,6 @@ gk_has_reaping_war_with = {
 			}
 		}
 	}
-}
-
-# This = country scope
-# Can raid pops in current context (war or non-war)
-gk_can_raid_pops = {
-	OR = {
-		# In a war that allows pop raiding
-		gk_has_any_raiding_war = yes
-		# Not in a raiding war but can still raid (primitives, pre-contact, etc.)
-		# Will be expanded with policy checks later
-	}
-}
-
-# This = country scope
-# Can pillage resources in current context
-gk_can_raid_resources = {
-	gk_can_pillage = yes
-	is_at_war = yes
 }
 
 ####################
@@ -601,21 +400,6 @@ gk_can_abduct_pop_group = {
 	gk_can_abduct_pop_group_cap_check = yes
 	# Check 3: Robot Raiding Policy
 	gk_can_abduct_pop_group_robot_check = yes
-}
-
-####################
-# Planet Checks    #
-####################
-# This = planet scope
-# From = raider country
-# Visible devastation-based: any ongoing resource-raiding war allows further pillage
-gk_can_be_pillaged = {
-	is_colony = yes
-	exists = owner
-	from = {
-		gk_can_pillage = yes
-		is_at_war_with = prevprev.owner
-	}
 }
 
 # This = planet scope

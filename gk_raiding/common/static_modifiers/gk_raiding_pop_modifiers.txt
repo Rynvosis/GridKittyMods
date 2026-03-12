@@ -1,0 +1,9 @@
+# GK Raiding - Pop Static Modifiers
+
+gk_plunder_recovery = {
+	icon = "gfx/interface/icons/modifiers/mod_planet_stability_add.dds"
+	pop_bonus_workforce_mult = 1
+	founder_species_growth_mult = 3
+	show_only_custom_tooltip = no
+	custom_tooltip = gk_plunder_recovery.tooltip
+}

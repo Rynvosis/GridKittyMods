@@ -1,0 +1,22 @@
+# GK Raiding Pillage Scripted Triggers
+
+# This = country scope
+gk_can_pillage = {
+	OR = {
+		has_valid_civic = civic_barbaric_despoilers
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		has_valid_civic = civic_crusader_spirit_corporate
+	}
+}
+
+# This = planet scope
+# From = raider country
+gk_can_be_pillaged = {
+	is_colony = yes
+	exists = owner
+	from = {
+		gk_can_pillage = yes
+		is_at_war_with = prevprev.owner
+	}
+}

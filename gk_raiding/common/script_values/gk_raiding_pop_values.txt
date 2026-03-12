@@ -1,4 +1,4 @@
-# GK Raiding Script Values
+# GK Raiding Pop Script Values
 
 @gk_surrender_base_cap_rate = 0.10
 @gk_invasion_base_cap_rate = 0.10
@@ -225,40 +225,6 @@ gk_pops_to_abduct = {
 gk_raiding_capacity_mult = {
 	base = 1
 	add = modifier:gk_raiding_capacity
-}
-
-####################
-# Pillage Values   #
-####################
-
-# Pillage efficiency multiplier (1 + modifier value)
-# This = country scope (the raider)
-# Used to multiply resources gained from pillaging
-gk_pillage_efficiency_mult = {
-	base = 1
-	add = modifier:gk_pillage_efficiency
-}
-
-####################
-# Resource Calcs   #
-####################
-
-# Base resource production per resource type
-# These get multiplied by devastation-derived loot months and loot multipliers in scripted_effects
-# This = planet scope
-# Parameters: RESOURCE - the resource type to check production for
-# Usage: value:gk_base_loot_value|RESOURCE|energy|
-gk_base_loot_value = {
-	base = 0
-	complex_trigger_modifier = {
-		trigger = planet_resource_compare
-		parameters = {
-			resource = $RESOURCE$
-			type = produces
-		}
-		mode = add
-	}
-	floor = yes
 }
 
 ####################

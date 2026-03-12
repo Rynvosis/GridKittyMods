@@ -1,42 +1,30 @@
-# GK Raiding Scripted Localization for Dynamic Text
+# GK Raiding Pop Scripted Localization
 
-# Raider's pillage efficiency multiplier
-defined_text = {
-	name = GkRaiderPillageEfficiency
-	value = value:gk_pillage_efficiency_mult
-}
-
-# Forfeited pops count (variable on country/galactic_object)
 defined_text = {
 	name = GkForfeitedPops
 	value = value:gk_forfeited_pops_value
 }
 
-# Plundered pops count (variable on country)
 defined_text = {
 	name = GkRaideePlundered
 	value = value:gk_raidee_plundered_value
 }
 
-# Total lifetime pops raided (variable on raider country)
 defined_text = {
 	name = GkTotalPopsRaided
 	value = value:gk_total_pops_raided_value
 }
 
-# Estimated surrender pops (evaluated in defender scope, root = raider)
 defined_text = {
 	name = GkEstimatedSurrenderPops
 	value = value:gk_estimated_surrender_pops
 }
 
-# Bombardment cap percentage (evaluated in raider scope)
 defined_text = {
 	name = GkBombardmentCapPercent
 	value = value:gk_bombardment_cap_percent
 }
 
-# Surrender cap percentage (evaluated in raider scope)
 defined_text = {
 	name = GkSurrenderCapPercent
 	value = value:gk_surrender_cap_percent

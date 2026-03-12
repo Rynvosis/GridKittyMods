@@ -1,17 +1,5 @@
-# GK Raiding - Static Modifiers
+# GK Raiding - Pillage Static Modifiers
 
-# Plunder Recovery - applied to countries that have had pops plundered
-# Base: +1% workforce and +3% founder species growth per 1% of pops plundered
-# Scaled by plunder percentage. so at 0.01. +100% bonus workforce becomes +1% workforce
-gk_plunder_recovery = {
-	icon = "gfx/interface/icons/modifiers/mod_planet_stability_add.dds"
-	pop_bonus_workforce_mult = 1
-	founder_species_growth_mult = 3
-	show_only_custom_tooltip = no
-	custom_tooltip = gk_plunder_recovery.tooltip
-}
-
-# Local tribute aftermath applied to colonies after surrender
 gk_planet_tribute_0 = {
 	icon = "gfx/interface/icons/modifiers/mod_pop_bonus_workforce_mult.dds"
 	pop_bonus_workforce_mult = -0.05
