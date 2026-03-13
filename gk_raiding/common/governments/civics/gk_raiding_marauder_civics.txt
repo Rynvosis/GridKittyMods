@@ -1,0 +1,14 @@
+# GK Raiding — Marauder Enclave civic
+
+civic_gk_marauder_enclave = {
+	potential = {
+		is_country_type = gk_marauder_enclave
+	}
+	modifier = {
+		ship_speed_mult = 0.15
+		ship_weapon_damage = 0.10
+		ship_hull_regen_add_perc = 0.05
+		ship_armor_regen_add_perc = 0.05
+	}
+	random_weight = { base = 0 }
+}

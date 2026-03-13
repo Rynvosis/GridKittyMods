@@ -1,0 +1,30 @@
+# GK Raiding — Marauder Enclave scripted triggers
+
+# Country scope — is this a marauder enclave?
+gk_is_marauder_enclave = {
+	is_country_type = gk_marauder_enclave
+}
+
+# Country scope — is this empire the patron of a marauder enclave?
+# Flag set on the patron at founding time.
+gk_is_marauder_patron = {
+	has_country_flag = gk_is_marauder_patron
+}
+
+# Country scope — can this empire found a marauder enclave?
+gk_can_found_marauder_enclave = {
+	has_country_flag = gk_can_found_marauder_enclave
+	NOT = { has_origin = origin_mindwardens }
+	enclave_capacity_left >= 1
+}
+
+# Fleet scope — is marauder enclave founding allowed from this fleet?
+gk_is_marauder_founding_allowed = {
+	owner = {
+		gk_can_found_marauder_enclave = yes
+	}
+	is_enclave_founding_allowed = {
+		FLEET_SIZE = 100
+		STARBASE_SHIP_SIZE = gk_marauder_station
+	}
+}

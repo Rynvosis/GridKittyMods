@@ -1,0 +1,9 @@
+﻿l_english:
+ # GK Raiding — Marauder Enclave localisation
+
+ # Civic
+ civic_gk_marauder_enclave: "Marauder Enclave"
+ civic_gk_marauder_enclave_desc: "This enclave operates as a marauder outpost, launching raids against nearby empires on behalf of its patron."
+
+ # Ship design
+ NAME_GK_Marauder_Enclave_Station: "Marauder Outpost"
