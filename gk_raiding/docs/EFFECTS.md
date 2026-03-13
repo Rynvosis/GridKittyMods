@@ -113,6 +113,7 @@ Cannot be changed while at war.
 | Robo-Liberation | `gk_focus_robo_liberation` | Unlocks Robo-Liberation war goal access |
 
 This policy only governs the **pop-raiding** side of the mod. It does not disable pillaging for empires that can pillage.
+`civic_crusader_spirit_corporate` does not use this policy, because it is pillaging-only.
 
 ### Robot Raiding (`gk_robot_raiding`)
 
@@ -123,6 +124,61 @@ Cannot be changed while at war.
 | Capture Robots | `gk_allow_robot_raiding` | Organics and robots may be captured |
 | Organics Only | `gk_forbid_robot_raiding` | Skip robotic pops |
 | Robots Only | `gk_robots_only_raiding` | Only robotic pops may be captured |
+
+This policy is only available to empires with **pop-raiding** access.
+
+### Debris (`debris`)
+
+| Option | Unlock | Effect |
+|---|---|---|
+| Research Debris | Default non-scavenger option | Research debris only |
+| Scavenge Debris | Default non-scavenger option | Salvage debris only |
+| Research & Scavenge Debris | `civic_scavengers`, `civic_corporate_scavengers`, or `tr_gk_raiding_despoliation_4` | Research and salvage debris at the same time |
+
+## Tradition Tree
+
+### Despoliation (`tradition_gk_raiding_despoliation`)
+
+Available to: Any default empire
+
+**Adoption Effects**
+- Enables resource pillaging through `gk_can_pillage`, even without a native pillage civic
+- Unlocks `cb_pirate_raid`
+- Unlocks `wg_plunder_raid`
+- Unlocks the `Recovery Fleets` council agenda
+  - Active agenda: `Salvage Chance: +10%`, `Ship Alloys Upkeep: -5%`
+  - Finish modifier: `Salvage Chance: +30%`, `Ship Alloys Upkeep: -10%`
+- If the empire already has native pillaging through `gk_has_native_pillage_access`, adoption instead adds `+2` effective loot-months to pillaging in all wars
+
+**Layout**
+- Uses the `Unyielding` 3+2 layout: `1 -> 2 -> 3` on the left and `4 -> 5` on the right
+
+**Traditions**
+- `tr_gk_raiding_despoliation_1` `Reserved Doctrine`
+  - No gameplay effect yet
+- `tr_gk_raiding_despoliation_2` `Predatory Bombardment`
+  - `Orbital Bombardment Damage: +20%`
+  - `Army Collateral Damage: +50%`
+- `tr_gk_raiding_despoliation_3` `Triumph in Ruin`
+  - Gain unity equal to `1 month` of current unity output per `10` devastation inflicted, prorated by the exact devastation delta
+- `tr_gk_raiding_despoliation_4` `Prize Recovery`
+  - Unlocks `scavenge_and_research_debris`
+  - Automatically switches the debris policy to `scavenge_and_research_debris` if legal
+  - `Ship Alloys Upkeep: -5%`
+  - `Building Refund: +10%`
+  - `Megastructure Dismantle Refund: +10%`
+  - `Salvage Chance: +10%` with `civic_scavengers` or `civic_corporate_scavengers`
+- `tr_gk_raiding_despoliation_5` `Acquisitive Officers`
+  - Existing and future admiral-commanders gain or improve `leader_trait_corsair` and `leader_trait_shipbreaker`
+  - If neither trait line exists, add one at random
+  - If one line is missing, add the missing line
+  - If both lines exist and one is still tier I, upgrade the tier I line
+  - If both lines are tier I, upgrade one line at random
+  - `Corsair` and `Shipbreaker` ship-kill resource rewards: `+50%`
+  - Stacks multiplicatively with `leader_trait_admiral_hells_heart` for `2.25x` total payout when both apply
+
+**Finish Effect**
+- `Ascension Perks Unlocked: +1`
 
 ## War Goals
 
@@ -148,10 +204,11 @@ Vanilla overwrite. CB: `cb_pirate_raid`
 | Mechanic | Value |
 |---|---|
 | Pop capture | None |
-| Pillage multiplier | 6x devastation-based resource yield for the war-goal side |
+| Pillage bonus | `+4` effective loot-months per loot packet |
 | Peace outcome | Guaranteed surrender tribute |
 
 Notes:
+- This war goal is available from the existing pirate-raid sources and from adopting `Despoliation`.
 - This war goal does not unlock pillaging by itself. It magnifies pillaging for empires that can already pillage.
 - Surrender tribute is now exclusive to this war goal.
 
@@ -221,15 +278,19 @@ Resource pillaging is available to empires that pass `gk_can_pillage`:
 - `civic_gk_barbaric_despoilers_machine`
 - `civic_gk_barbaric_despoilers_megacorp`
 - `civic_crusader_spirit_corporate`
+- `tr_gk_raiding_despoliation_adopt`
 
 If an empire can pillage, it can pillage in **any hostile war**.
+`civic_crusader_spirit_corporate` is pillaging-only and does not unlock the `Raiding` bombardment stance or pop-raiding policies.
 
 ### Devastation-Driven Extraction
 
 1. `on_planet_bombarded` and `on_ground_combat_devastation` add `local_devastation` to a per `raider + planet` loot receipt
 2. Every 10 stored devastation resolves 1 loot packet
-3. Each packet pays out 1 month of the planet's current output immediately
-4. In `wg_plunder_raid`, that packet is multiplied by 6 for pillage-capable empires on the war-goal side
+3. Each packet starts at `2` effective loot-months
+4. `wg_plunder_raid` adds `+4` effective loot-months to each packet
+5. Empires with `gk_has_native_pillage_access` that adopt `tr_gk_raiding_despoliation_adopt` add another `+2` effective loot-months to each packet in all wars
+6. Each effective loot-month also adds flat infrastructure spoils: `+100 Trade` and `+100 Minerals`, or `+100 Alloys` instead of Minerals on habitats and ecumenopoleis
 
 ### Loot Transformation
 
@@ -237,9 +298,10 @@ After base loot is calculated:
 
 - Trade value is doubled
 - Unity converts to Consumer Goods at 2:1
-- Physics Research converts to Consumer Goods at 2:1
-- Society Research converts to Consumer Goods at 2:1
-- Engineering Research converts to Consumer Goods at 2:1
+- Physics Research converts to Consumer Goods at 3:1
+- Society Research converts to Consumer Goods at 3:1
+- Engineering Research converts to Consumer Goods at 3:1
+- Flat infrastructure spoils are added after conversions so their Trade is not doubled and their mineral/alloy package is not converted
 
 ### Invasion Cashout
 

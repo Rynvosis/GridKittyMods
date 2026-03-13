@@ -23,13 +23,10 @@ gk_planet_tribute_5_desc:0 "This planet's economy was devastatingly disrupted by
 gk_planet_tribute_5.tooltip:0 "Lasts §Y5§! years."
 
  # Pillage Concepts
- concept_gk_pillaging:0 "Pillage Resources"
- concept_gk_pillaging_desc:0 "Extract resources from hostile planets during war.\n\n- §YBombardment§!: every §Y10§! devastation produces §Y1 month§! of planet output\n- §YInvasion§!: produces planet output on conquest\n- £trade_value£ §YTrade§! is doubled; £unity£ §YUnity§! and £research£ §YResearch§! are turned into £consumer_goods£ §YConsumer Goods§!\n- §YPillage§! wars produce significantly more and guarantee enemy surrender tribute"
- concept_gk_pillage:0 "Pillage"
- concept_gk_resource_raiding:0 "Resource Raiding"
-
- concept_gk_wg_pillage:0 "Pillage"
- concept_gk_wg_pillage_desc:0 "Strip enemy worlds of resources.\n\n§L- Greatly increases pillage yields\n- Guarantees enemy surrender tribute from defeated colonies§!"
+ concept_gk_pillaging:0 "Resource Pillaging"
+ concept_gk_pillaging_desc:0 "Enemy planets can be pillaged during war by inflicting §YDevastation§! and through §YInvasion§!.\n\nThe §Y$war_goal_wg_plunder_raid$§! war goal increases the resources gained from pillaging and guarantees surrender tribute.\n\nPillaged £trade_value£ §YTrade Value§! is doubled. £research£ §YResearch§! and £unity£ §YUnity§! production are instead pillaged as £consumer_goods£ §YConsumer Goods§!."
+ concept_gk_pillage:0 "Resource Pillaging"
+ concept_gk_resource_raiding:0 "Resource Pillaging"
 
  # Pillage Notifications
  MESSAGE_TYPE_GK_PILLAGE_DEVASTATION_TITLE:0 "Planet Pillaged"

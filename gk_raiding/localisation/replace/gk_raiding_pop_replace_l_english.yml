@@ -2,10 +2,11 @@
  # Version last updated: v4.2.3
  # Pop-raiding-facing overrides.
 
- allow_raiding:0 "Unlocks the §Y$bombardment_raiding$§! bombardment stance, enabling pop capture during eligible wars."
+ allow_raiding_base:0 "Unlocks §Y$concept_gk_pop_raiding$§! and the §Y$bombardment_raiding$§! bombardment stance"
+ allow_raiding:0 "$allow_raiding_base$\nUnlocks the §Y$war_goal_wg_gk_reaping$§! war goal"
 
  war_goal_wg_plunder:0 "Raiding"
- war_goal_wg_plunder_desc:0 "War is waged to raid enemy worlds for captives.\n\n§L- Up to §Y20%§! of enemy pops captured during war\n- Total cap: §Y10%§! of enemy's original population\n- On surrender: remaining pops up to cap are forfeited\n- Rates scale with ['concept_gk_raiding_capacity']§!"
- wg_plunder_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap)."
+ war_goal_wg_plunder_desc:0 "War is waged to raid the enemy for captives. Using this wargoal allows us to abduct pops during war and claim additional captives on enemy surrender."
+ wg_plunder_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! pops to §Y[Root.GetName]§! on surrender (§Y[Root.GkSurrenderCapPercent]%§! total cap)."
 
- casus_belli_cb_despoliation:0 "Raiding"
+ casus_belli_cb_despoliation:0 "Despoliation"

@@ -1,11 +1,11 @@
-# GK Raiding Pillage On Actions
+# GK Raiding Pillaging On Actions
 
 # A war has ended
 # Root = Loser
 # From = Main Winner
 on_war_ended = {
 	events = {
-		gk_raiding.53  # Cleanup invasion pillage cashout flags
+		gk_raiding_pillaging.220  # Cleanup invasion pillage cashout flags
 	}
 }
 
@@ -14,7 +14,7 @@ on_war_ended = {
 # From = Bombarder (country)
 on_planet_bombarded = {
 	events = {
-		gk_raiding.100  # Resource pillage from devastation + forced surrender resolution
+		gk_raiding_pillaging.100  # Resource pillage from devastation + forced surrender resolution
 	}
 }
 
@@ -23,7 +23,7 @@ on_planet_bombarded = {
 # From = Damaging country
 on_ground_combat_devastation = {
 	events = {
-		gk_raiding.100  # Resource pillage from devastation
+		gk_raiding_pillaging.100  # Resource pillage from devastation
 	}
 }
 
@@ -33,7 +33,7 @@ on_ground_combat_devastation = {
 # FromFrom = Planet
 on_planet_attackers_win = {
 	events = {
-		gk_raiding.200  # Pillage landing - instant pillage
+		gk_raiding_pillaging.200  # Pillage landing - instant pillage
 	}
 }
 
@@ -43,6 +43,6 @@ on_planet_attackers_win = {
 # FromFrom = Former Owner
 on_planet_conquer = {
 	events = {
-		gk_raiding.201  # Pillage forced-surrender cleanup
+		gk_raiding_pillaging.210  # Pillage forced-surrender cleanup
 	}
 }

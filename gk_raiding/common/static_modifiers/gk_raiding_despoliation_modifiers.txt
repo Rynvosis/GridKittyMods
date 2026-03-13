@@ -1,0 +1,6 @@
+# GK Raiding Despoliation Static Modifiers
+
+agenda_gk_raiding_despoliation_recovery_fleets_finish = {
+	salvage_chance_add = 0.30
+	ships_alloys_upkeep_mult = -0.10
+}

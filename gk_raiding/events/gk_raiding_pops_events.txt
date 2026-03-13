@@ -1,4 +1,4 @@
-namespace = gk_raiding
+namespace = gk_raiding_pops
 
 @gk_decay_rate_at_peace = 0.90
 @gk_decay_rate_at_war = 0.95
@@ -12,9 +12,10 @@ namespace = gk_raiding
 # This = Pop Group scope
 # From = Planet abducted from
 pop_group_event = {
-	id = gk_raiding.101
+	id = gk_raiding_pops.100
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		exists = from
 		from = {
@@ -23,6 +24,7 @@ pop_group_event = {
 			has_orbital_bombardment_stance = raiding
 		}
 	}
+
 	immediate = {
 		save_event_target_as = gk_abducted_pop_group
 
@@ -44,15 +46,17 @@ pop_group_event = {
 # Yearly decay of raidee plundered/emancipated counters
 # This = Country scope (from on_yearly_pulse_country)
 country_event = {
-	id = gk_raiding.50
+	id = gk_raiding_pops.110
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		OR = {
 			is_variable_set = gk_raidee_plundered
 			is_variable_set = gk_raidee_emancipated
 		}
 	}
+
 	immediate = {
 		if = {
 			limit = {
@@ -163,14 +167,16 @@ country_event = {
 # Yearly cleanup of raid tracker leaders and cap flags
 # This = Country scope (from on_yearly_pulse_country)
 country_event = {
-	id = gk_raiding.52
+	id = gk_raiding_pops.120
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		any_country = {
 			has_country_flag = gk_raid_cap_reached_by_@root
 		}
 	}
+
 	immediate = {
 		every_country = {
 			limit = {
@@ -217,9 +223,10 @@ country_event = {
 # This = Planet
 # From = Damaging country
 planet_event = {
-	id = gk_raiding.150
+	id = gk_raiding_pops.200
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		exists = owner
 		exists = from
@@ -237,6 +244,7 @@ planet_event = {
 			}
 		}
 	}
+
 	immediate = {
 		if = {
 			limit = {
@@ -248,7 +256,7 @@ planet_event = {
 			set_planet_flag = gk_pop_forced_surrender_resolved_by_@from
 			from = {
 				country_event = {
-					id = gk_raiding.250
+					id = gk_raiding_pops.210
 					scopes = {
 						from = root.owner
 						fromfrom = root
@@ -268,9 +276,10 @@ planet_event = {
 # From = Defending Country
 # FromFrom = Planet
 country_event = {
-	id = gk_raiding.250
+	id = gk_raiding_pops.210
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		fromfrom = {
 			is_colony = yes
@@ -285,6 +294,7 @@ country_event = {
 			}
 		}
 	}
+
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -356,13 +366,15 @@ country_event = {
 # This = Planet
 # From = New Owner
 planet_event = {
-	id = gk_raiding.251
+	id = gk_raiding_pops.220
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		exists = from
 		has_planet_flag = gk_pop_forced_surrender_resolved_by_@from
 	}
+
 	immediate = {
 		remove_planet_flag = gk_pop_forced_surrender_resolved_by_@from
 	}
@@ -373,9 +385,10 @@ planet_event = {
 ############################
 
 country_event = {
-	id = gk_raiding.400
+	id = gk_raiding_pops.300
 	hide_window = yes
 	is_triggered_only = yes
+
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -432,9 +445,10 @@ country_event = {
 }
 
 country_event = {
-	id = gk_raiding.500
+	id = gk_raiding_pops.310
 	hide_window = yes
 	is_triggered_only = yes
+
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -491,9 +505,10 @@ country_event = {
 }
 
 country_event = {
-	id = gk_raiding.600
+	id = gk_raiding_pops.320
 	hide_window = yes
 	is_triggered_only = yes
+
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -550,9 +565,10 @@ country_event = {
 }
 
 country_event = {
-	id = gk_raiding.700
+	id = gk_raiding_pops.330
 	hide_window = yes
 	is_triggered_only = yes
+
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -623,13 +639,14 @@ country_event = {
 }
 
 ##############################
-# REAPING WAR DECLARATION    #
+# Reaping War Declaration    #
 ##############################
 
 country_event = {
-	id = gk_raiding.800
+	id = gk_raiding_pops.400
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		from = {
 			using_war_goal = {
@@ -642,6 +659,7 @@ country_event = {
 			}
 		}
 	}
+
 	immediate = {
 		every_country = {
 			limit = {

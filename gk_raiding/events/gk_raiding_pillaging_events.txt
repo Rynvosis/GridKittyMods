@@ -1,4 +1,4 @@
-namespace = gk_raiding
+namespace = gk_raiding_pillaging
 
 ############################
 # Pillage Bombardment      #
@@ -9,14 +9,16 @@ namespace = gk_raiding
 # This = Planet
 # From = Damaging country
 planet_event = {
-	id = gk_raiding.100
+	id = gk_raiding_pillaging.100
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		exists = owner
 		exists = from
 		gk_can_be_pillaged = yes
 	}
+
 	immediate = {
 		from = {
 			save_event_target_as = gk_raider
@@ -36,7 +38,7 @@ planet_event = {
 			set_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
 			from = {
 				country_event = {
-					id = gk_raiding.200
+					id = gk_raiding_pillaging.200
 					scopes = {
 						from = root.owner
 						fromfrom = root
@@ -51,9 +53,10 @@ planet_event = {
 # Root = Loser
 # From = Main Winner
 country_event = {
-	id = gk_raiding.53
+	id = gk_raiding_pillaging.220
 	hide_window = yes
 	is_triggered_only = yes
+
 	immediate = {
 		if = {
 			limit = {
@@ -87,9 +90,10 @@ country_event = {
 # From = Defending Country
 # FromFrom = Planet
 country_event = {
-	id = gk_raiding.200
+	id = gk_raiding_pillaging.200
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		fromfrom = {
 			is_colony = yes
@@ -99,6 +103,7 @@ country_event = {
 			is_at_war_with = root
 		}
 	}
+
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -190,13 +195,15 @@ country_event = {
 # This = Planet
 # From = New Owner
 planet_event = {
-	id = gk_raiding.201
+	id = gk_raiding_pillaging.210
 	hide_window = yes
 	is_triggered_only = yes
+
 	trigger = {
 		exists = from
 		has_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
 	}
+
 	immediate = {
 		remove_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
 	}
@@ -210,9 +217,10 @@ planet_event = {
 # This = Winner (raider)
 # From = Loser (raidee)
 country_event = {
-	id = gk_raiding.900
+	id = gk_raiding_pillaging.300
 	hide_window = yes
 	is_triggered_only = yes
+
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {

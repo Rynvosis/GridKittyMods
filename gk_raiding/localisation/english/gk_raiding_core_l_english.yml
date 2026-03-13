@@ -6,9 +6,3 @@
 
  # Shared Concepts
  db_gk_raiding:0 "Raiding"
-
- concept_gk_raiding_mechanics:0 "Raiding Mechanics"
- concept_gk_raiding_mechanics_desc:0 "§YPop Raiding§! captures enemy pops through dedicated raiding war goals, limited by ['concept_gk_raiding_capacity'].\n§YPillaging§! extracts resources from hostile worlds during any war. The §YPillage§! war goal increases yields and guarantees surrender tribute."
-
- concept_gk_raiding:0 "Raiding"
- concept_gk_advanced_raiding:0 "Advanced Raiding"

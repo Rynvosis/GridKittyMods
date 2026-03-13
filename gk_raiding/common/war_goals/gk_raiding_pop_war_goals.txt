@@ -73,7 +73,7 @@ wg_gk_reaping = {
 			gk_abduct_on_surrender = { RATE = @gk_reaping_cap_rate }
 			# Fire reaping surrender event
 			country_event = {
-				id = gk_raiding.700
+				id = gk_raiding_pops.330
 				scopes = { from = event_target:gk_raidee }
 			}
 		}
@@ -159,7 +159,7 @@ wg_gk_emancipation = {
 			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
 			# Fire reward collection event with raidee as from
 			country_event = {
-				id = gk_raiding.400
+				id = gk_raiding_pops.300
 				scopes = { from = event_target:gk_raidee }
 			}
 		}
@@ -250,7 +250,7 @@ wg_gk_robo_liberation = {
 			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
 			# Fire reward collection event with raidee as from
 			country_event = {
-				id = gk_raiding.600
+				id = gk_raiding_pops.320
 				scopes = { from = event_target:gk_raidee }
 			}
 		}

@@ -1,0 +1,12 @@
+# GK Raiding Despoliation Script Values
+
+# Evaluated inside add_resource while the admiral is the parent scope.
+gk_despoliation_shipkill_trait_mult = {
+	base = 0.5
+	modifier = {
+		mult = 1.5
+		prev = {
+			has_trait = leader_trait_admiral_hells_heart
+		}
+	}
+}

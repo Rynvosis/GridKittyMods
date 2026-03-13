@@ -4,7 +4,7 @@
 #####################
 # PILLAGE WAR       #
 #####################
-# Resource-only pillaging with 6x devastation-driven extraction and guaranteed surrender tribute
+# Resource-only pillaging with stronger plunder-war extraction and guaranteed surrender tribute
 wg_plunder_raid = {
 	casus_belli = cb_pirate_raid
 	hide_if_no_cb = yes
@@ -22,6 +22,7 @@ wg_plunder_raid = {
 		OR = {
 			has_valid_civic = civic_crusader_spirit_corporate
 			has_country_flag = unlocked_pirate_raid_cb
+			has_tradition = tr_gk_raiding_despoliation_adopt
 			has_ascension_perk = ap_nihilistic_acquisition
 			has_valid_civic = civic_barbaric_despoilers
 			has_valid_civic = civic_gk_barbaric_despoilers_machine
@@ -71,7 +72,7 @@ wg_plunder_raid = {
 			from = { save_event_target_as = gk_raidee }
 			gk_pillage_on_surrender = yes
 			country_event = {
-				id = gk_raiding.900
+				id = gk_raiding_pillaging.300
 				scopes = { from = event_target:gk_raidee }
 			}
 		}

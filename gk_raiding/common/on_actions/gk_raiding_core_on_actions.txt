@@ -1,8 +1,0 @@
-# GK Raiding Core On Actions
-
-# Setup machine despoilers secondary species
-on_game_start_country = {
-	events = {
-		gk_raiding.2
-	}
-}

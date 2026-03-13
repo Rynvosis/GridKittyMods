@@ -6,9 +6,6 @@
 gk_can_use_raiding_bombardment = {
 	owner = {
 		OR = {
-			#enabled resource raiding for privateers
-			has_valid_civic = civic_crusader_spirit_corporate
-
 			#new raiding civics
 			has_valid_civic = civic_gk_emancipators
 			has_valid_civic = civic_gk_emancipators_megacorp

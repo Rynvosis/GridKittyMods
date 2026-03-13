@@ -2,8 +2,12 @@
 # Dedicated file for pillaging mechanics
 
 @gk_pillage_devastation_per_packet = 10
-@gk_loot_months_per_packet = 1
-@gk_pillage_war_resource_mult = 6
+@gk_base_loot_months_per_packet = 2
+@gk_pillage_war_bonus_loot_months_per_packet = 4
+@gk_native_despoliation_bonus_loot_months_per_packet = 2
+@gk_flat_trade_spoils_per_loot_month = 100
+@gk_flat_mineral_spoils_per_loot_month = 100
+@gk_flat_alloy_spoils_per_loot_month = 100
 @gk_max_planet_devastation = 100
 @gk_surrender_planet_devastation = 50
 @gk_surrender_aftermath_days = 1825
@@ -13,7 +17,7 @@
 ######################
 # Resource pillaging is now driven by visible devastation:
 #   1. Orbital bombardment and ground combat add local_devastation to a per raider+planet receipt bank.
-#   2. Every 10 devastation pays out 1 month of the planet's current output immediately.
+#   2. Every 10 devastation pays out plunder based on additive loot-month sources and flat spoils.
 #   3. Invasion and surrender cash out the remaining devastation headroom at the current planet rate
 #      without applying additional devastation.
 #   4. Surrender only cashes out the first 50 devastation worth on each surviving colony and applies
@@ -122,16 +126,12 @@ gk_pillage_on_invasion = {
 					check_variable = { which = gk_remaining_pillage_damage_budget value > 0 }
 				}
 				set_variable = {
-					which = gk_total_loot_months
+					which = gk_total_loot_packets
 					value = gk_remaining_pillage_damage_budget
 				}
 				divide_variable = {
-					which = gk_total_loot_months
+					which = gk_total_loot_packets
 					value = @gk_pillage_devastation_per_packet
-				}
-				multiply_variable = {
-					which = gk_total_loot_months
-					value = @gk_loot_months_per_packet
 				}
 				gk_calculate_base_loot = yes
 			}
@@ -199,12 +199,8 @@ gk_pillage_on_devastation = {
 		save_event_target_as = gk_storage_scope
 		gk_init_loot_variables = yes
 		set_variable = {
-			which = gk_total_loot_months
+			which = gk_total_loot_packets
 			value = gk_pillage_packet_count
-		}
-		multiply_variable = {
-			which = gk_total_loot_months
-			value = @gk_loot_months_per_packet
 		}
 		gk_calculate_base_loot = yes
 		gk_transform_loot = yes
@@ -353,16 +349,12 @@ gk_add_surrender_planet_pillage_to_storage = {
 			check_variable = { which = gk_remaining_pillage_damage_budget value > 0 }
 		}
 		set_variable = {
-			which = gk_total_loot_months
+			which = gk_total_loot_packets
 			value = gk_remaining_pillage_damage_budget
 		}
 		divide_variable = {
-			which = gk_total_loot_months
+			which = gk_total_loot_packets
 			value = @gk_pillage_devastation_per_packet
-		}
-		multiply_variable = {
-			which = gk_total_loot_months
-			value = @gk_loot_months_per_packet
 		}
 		gk_calculate_base_loot = yes
 	}
@@ -374,19 +366,18 @@ gk_add_surrender_planet_pillage_to_storage = {
 # Calculate Base Loot #
 ######################
 
-# Calculate base loot values (raw production * loot months)
+# Calculate base loot values (raw production * effective loot months)
 # This = Planet
-# Requires: gk_total_loot_months set
+# Requires: gk_total_loot_packets set
 # Stores: gk_loot_$RESOURCE$ on gk_storage_scope
 gk_calculate_base_loot = {
 	save_event_target_as = gk_loot_planet
 
 	set_variable = {
-		which = gk_effective_loot_months
-		value = gk_total_loot_months
+		which = gk_loot_months_per_packet
+		value = @gk_base_loot_months_per_packet
 	}
 
-	# Pillage war = 6x resources
 	event_target:gk_raider = {
 		if = {
 			limit = {
@@ -406,12 +397,33 @@ gk_calculate_base_loot = {
 				}
 			}
 			event_target:gk_loot_planet = {
-				multiply_variable = {
-					which = gk_effective_loot_months
-					value = @gk_pillage_war_resource_mult
+				change_variable = {
+					which = gk_loot_months_per_packet
+					value = @gk_pillage_war_bonus_loot_months_per_packet
 				}
 			}
 		}
+		if = {
+			limit = {
+				gk_has_native_pillage_access = yes
+				has_tradition = tr_gk_raiding_despoliation_adopt
+			}
+			event_target:gk_loot_planet = {
+				change_variable = {
+					which = gk_loot_months_per_packet
+					value = @gk_native_despoliation_bonus_loot_months_per_packet
+				}
+			}
+		}
+	}
+
+	set_variable = {
+		which = gk_effective_loot_months
+		value = gk_total_loot_packets
+	}
+	multiply_variable = {
+		which = gk_effective_loot_months
+		value = gk_loot_months_per_packet
 	}
 
 	gk_calc_base_resource = { RESOURCE = trade }
@@ -431,9 +443,11 @@ gk_calculate_base_loot = {
 	gk_calc_base_resource = { RESOURCE = sr_zro }
 	gk_calc_base_resource = { RESOURCE = sr_dark_matter }
 	gk_calc_base_resource = { RESOURCE = nanites }
+	gk_add_flat_pillage_spoils = yes
 
+	clear_variable = gk_loot_months_per_packet
 	clear_variable = gk_effective_loot_months
-	clear_variable = gk_total_loot_months
+	clear_variable = gk_total_loot_packets
 }
 
 # Calculate base loot for single resource (accumulates to storage scope)
@@ -454,6 +468,62 @@ gk_calc_base_resource = {
 		}
 	}
 	clear_variable = gk_temp_loot
+}
+
+# Add non-output spoils per effective loot month. Trade is always added; mineral spoils become alloys
+# on habitats and ecumenopoleis.
+# This = Planet
+gk_add_flat_pillage_spoils = {
+	set_variable = {
+		which = gk_temp_flat_spoils
+		value = gk_effective_loot_months
+	}
+	multiply_variable = {
+		which = gk_temp_flat_spoils
+		value = @gk_flat_trade_spoils_per_loot_month
+	}
+	event_target:gk_storage_scope = {
+		change_variable = {
+			which = gk_flat_spoils_trade
+			value = prev.gk_temp_flat_spoils
+		}
+	}
+
+	set_variable = {
+		which = gk_temp_flat_spoils
+		value = gk_effective_loot_months
+	}
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_habitat
+				is_planet_class = pc_city
+			}
+		}
+		multiply_variable = {
+			which = gk_temp_flat_spoils
+			value = @gk_flat_alloy_spoils_per_loot_month
+		}
+		event_target:gk_storage_scope = {
+			change_variable = {
+				which = gk_flat_spoils_alloys
+				value = prev.gk_temp_flat_spoils
+			}
+		}
+	}
+	else = {
+		multiply_variable = {
+			which = gk_temp_flat_spoils
+			value = @gk_flat_mineral_spoils_per_loot_month
+		}
+		event_target:gk_storage_scope = {
+			change_variable = {
+				which = gk_flat_spoils_minerals
+				value = prev.gk_temp_flat_spoils
+			}
+		}
+	}
+	clear_variable = gk_temp_flat_spoils
 }
 
 ######################
@@ -486,6 +556,7 @@ gk_transform_loot = {
 	gk_apply_efficiency = { RESOURCE = nanites }
 
 	gk_apply_loot_conversions = yes
+	gk_apply_flat_pillage_spoils = yes
 }
 
 gk_apply_efficiency = {
@@ -545,6 +616,56 @@ gk_apply_loot_conversions = {
 			value = gk_loot_engineering_research
 		}
 		set_variable = { which = gk_loot_engineering_research value = 0 }
+	}
+}
+
+gk_apply_flat_pillage_spoils = {
+	event_target:gk_storage_scope = {
+		if = {
+			limit = {
+				is_variable_set = gk_flat_spoils_trade
+				check_variable = { which = gk_flat_spoils_trade value > 0 }
+			}
+			multiply_variable = {
+				which = gk_flat_spoils_trade
+				value = event_target:gk_raider.value:gk_pillage_efficiency_mult
+			}
+			change_variable = {
+				which = gk_loot_trade
+				value = gk_flat_spoils_trade
+			}
+			clear_variable = gk_flat_spoils_trade
+		}
+		if = {
+			limit = {
+				is_variable_set = gk_flat_spoils_minerals
+				check_variable = { which = gk_flat_spoils_minerals value > 0 }
+			}
+			multiply_variable = {
+				which = gk_flat_spoils_minerals
+				value = event_target:gk_raider.value:gk_pillage_efficiency_mult
+			}
+			change_variable = {
+				which = gk_loot_minerals
+				value = gk_flat_spoils_minerals
+			}
+			clear_variable = gk_flat_spoils_minerals
+		}
+		if = {
+			limit = {
+				is_variable_set = gk_flat_spoils_alloys
+				check_variable = { which = gk_flat_spoils_alloys value > 0 }
+			}
+			multiply_variable = {
+				which = gk_flat_spoils_alloys
+				value = event_target:gk_raider.value:gk_pillage_efficiency_mult
+			}
+			change_variable = {
+				which = gk_loot_alloys
+				value = gk_flat_spoils_alloys
+			}
+			clear_variable = gk_flat_spoils_alloys
+		}
 	}
 }
 
@@ -865,10 +986,6 @@ gk_clear_invasion_pillage_cashed_out_flags = {
 	}
 }
 
-######################
-# Variable Helpers   #
-######################
-
 # Initialize loot variables to 0 on storage scope
 # This = any scope
 # event_target:gk_storage_scope = where to init
@@ -891,6 +1008,9 @@ gk_init_loot_variables = {
 		set_variable = { which = gk_loot_sr_zro value = 0 }
 		set_variable = { which = gk_loot_sr_dark_matter value = 0 }
 		set_variable = { which = gk_loot_nanites value = 0 }
+		set_variable = { which = gk_flat_spoils_trade value = 0 }
+		set_variable = { which = gk_flat_spoils_minerals value = 0 }
+		set_variable = { which = gk_flat_spoils_alloys value = 0 }
 	}
 }
 
@@ -967,6 +1087,18 @@ gk_ensure_loot_variables = {
 			limit = { NOT = { is_variable_set = gk_loot_nanites } }
 			set_variable = { which = gk_loot_nanites value = 0 }
 		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_flat_spoils_trade } }
+			set_variable = { which = gk_flat_spoils_trade value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_flat_spoils_minerals } }
+			set_variable = { which = gk_flat_spoils_minerals value = 0 }
+		}
+		if = {
+			limit = { NOT = { is_variable_set = gk_flat_spoils_alloys } }
+			set_variable = { which = gk_flat_spoils_alloys value = 0 }
+		}
 	}
 }
 
@@ -991,5 +1123,8 @@ gk_clear_loot_variables = {
 		clear_variable = gk_loot_sr_zro
 		clear_variable = gk_loot_sr_dark_matter
 		clear_variable = gk_loot_nanites
+		clear_variable = gk_flat_spoils_trade
+		clear_variable = gk_flat_spoils_minerals
+		clear_variable = gk_flat_spoils_alloys
 	}
 }

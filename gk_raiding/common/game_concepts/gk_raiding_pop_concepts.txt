@@ -1,17 +1,8 @@
 # GK Raiding Pop Game Concepts
 
-concept_gk_pop_raiding_limit = {
-	alias = { concept_gk_pop_limit concept_gk_raiding_cap }
-	icon = "gfx/interface/icons/pop_categories/pop_cat_worker.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_emergency_workers"
-	}
-}
-
-concept_gk_raiding_capacity = {
-	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
+concept_gk_pop_raiding = {
+	alias = { concept_gk_pop_raiding_limit concept_gk_pop_limit concept_gk_raiding_cap concept_gk_raiding_capacity }
+	icon = "GFX_fleet_order_button_ground_support_raiding"
 	databank = {
 		category = db_gk_raiding
 		icon = "GFX_text_databank_empire"
@@ -26,41 +17,5 @@ concept_gk_raiding_focus = {
 		category = db_gk_raiding
 		icon = "GFX_text_databank_empire"
 		picture = "GFX_evt_busy_spaceport"
-	}
-}
-
-concept_gk_wg_raiding = {
-	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_exploding_ship"
-	}
-}
-
-concept_gk_wg_reaping = {
-	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_exploding_ship"
-	}
-}
-
-concept_gk_wg_emancipation = {
-	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_emergency_workers"
-	}
-}
-
-concept_gk_wg_robo_liberation = {
-	icon = "gfx/interface/icons/diplomacy/diplomacy_war.dds"
-	databank = {
-		category = db_gk_raiding
-		icon = "GFX_text_databank_empire"
-		picture = "GFX_evt_emergency_workers"
 	}
 }
