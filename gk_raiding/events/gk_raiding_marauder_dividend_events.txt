@@ -1,0 +1,565 @@
+namespace = gk_raiding_marauder
+
+# Resource payout tiers (3 tiers, breakpoints at upgrade_2 and upgrade_4)
+# Alloys
+@alloy_t1_value = 3
+@alloy_t1_min = 50
+@alloy_t1_max = 500
+@alloy_t2_value = 5
+@alloy_t2_min = 75
+@alloy_t2_max = 1000
+@alloy_t3_value = 8
+@alloy_t3_min = 100
+@alloy_t3_max = 2000
+
+# Consumer goods (.510) / trade (.515)
+@cg_t1_value = 6
+@cg_t1_min = 100
+@cg_t1_max = 1000
+@cg_t2_value = 10
+@cg_t2_min = 150
+@cg_t2_max = 2000
+@cg_t3_value = 16
+@cg_t3_min = 200
+@cg_t3_max = 4000
+
+# Strategic resources
+@sr_t1_value = 2
+@sr_t1_min = 25
+@sr_t1_max = 250
+@sr_t2_value = 3
+@sr_t2_min = 50
+@sr_t2_max = 500
+@sr_t3_value = 5
+@sr_t3_min = 75
+@sr_t3_max = 1000
+
+# ──────────────────────────────────────────────────────────────────
+# Dividend Payouts (500–599)
+# ──────────────────────────────────────────────────────────────────
+
+# Dispatcher — hidden, fires on enclave country from situation completion
+# This = enclave country, From = situation
+country_event = {
+	id = gk_raiding_marauder.500
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# Find patron via station system space_owner
+		random_owned_fleet = {
+			limit = {
+				is_ship_size = gk_marauder_station
+			}
+			solar_system = {
+				if = {
+					limit = {
+						exists = space_owner
+					}
+					space_owner = {
+						save_event_target_as = gk_marauder_patron
+					}
+				}
+			}
+		}
+		root = {
+			save_event_target_as = gk_marauder_enclave_country
+		}
+		if = {
+			limit = {
+				exists = event_target:gk_marauder_patron
+			}
+			event_target:gk_marauder_patron = {
+				random_list = {
+					35 = { country_event = { id = gk_raiding_marauder.510 } }
+					35 = { country_event = { id = gk_raiding_marauder.515 } }
+					25 = { country_event = { id = gk_raiding_marauder.520 } }
+					5 = {
+						modifier = {
+							factor = 0
+							event_target:gk_marauder_enclave_country = {
+								NOT = { has_modifier = gk_marauder_upgrade_1 }
+							}
+						}
+						country_event = { id = gk_raiding_marauder.530 }
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		start_situation = {
+			type = gk_marauder_dividends
+			target = event_target:gk_marauder_patron
+		}
+		destroy_situation = from
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .510 — Scrapped Goods (alloys + consumer goods)
+# This = patron country
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_marauder.510
+	title = gk_raiding_marauder.510.name
+	inline_script = {
+		script = gk_raiding/marauder_personality_desc
+		KEY = gk_raiding_marauder.510.desc
+		SCOPE = event_target:gk_marauder_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	# Tier 1 (ranks 0-1)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				NOT = { has_modifier = gk_marauder_upgrade_2 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t1_value
+			min = @alloy_t1_min
+			max = @alloy_t1_max
+		}
+		add_monthly_resource_mult = {
+			resource = consumer_goods
+			value = @cg_t1_value
+			min = @cg_t1_min
+			max = @cg_t1_max
+		}
+	}
+
+	# Tier 2 (ranks 2-3)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				has_modifier = gk_marauder_upgrade_2
+				NOT = { has_modifier = gk_marauder_upgrade_4 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t2_value
+			min = @alloy_t2_min
+			max = @alloy_t2_max
+		}
+		add_monthly_resource_mult = {
+			resource = consumer_goods
+			value = @cg_t2_value
+			min = @cg_t2_min
+			max = @cg_t2_max
+		}
+	}
+
+	# Tier 3 (ranks 4-5)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				has_modifier = gk_marauder_upgrade_4
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t3_value
+			min = @alloy_t3_min
+			max = @alloy_t3_max
+		}
+		add_monthly_resource_mult = {
+			resource = consumer_goods
+			value = @cg_t3_value
+			min = @cg_t3_min
+			max = @cg_t3_max
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .515 — Intercepted Cargo (alloys + trade)
+# This = patron country
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_marauder.515
+	title = gk_raiding_marauder.515.name
+	inline_script = {
+		script = gk_raiding/marauder_personality_desc
+		KEY = gk_raiding_marauder.515.desc
+		SCOPE = event_target:gk_marauder_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	# Tier 1 (ranks 0-1)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				NOT = { has_modifier = gk_marauder_upgrade_2 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t1_value
+			min = @alloy_t1_min
+			max = @alloy_t1_max
+		}
+		add_monthly_resource_mult = {
+			resource = trade
+			value = @cg_t1_value
+			min = @cg_t1_min
+			max = @cg_t1_max
+		}
+	}
+
+	# Tier 2 (ranks 2-3)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				has_modifier = gk_marauder_upgrade_2
+				NOT = { has_modifier = gk_marauder_upgrade_4 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t2_value
+			min = @alloy_t2_min
+			max = @alloy_t2_max
+		}
+		add_monthly_resource_mult = {
+			resource = trade
+			value = @cg_t2_value
+			min = @cg_t2_min
+			max = @cg_t2_max
+		}
+	}
+
+	# Tier 3 (ranks 4-5)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				has_modifier = gk_marauder_upgrade_4
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t3_value
+			min = @alloy_t3_min
+			max = @alloy_t3_max
+		}
+		add_monthly_resource_mult = {
+			resource = trade
+			value = @cg_t3_value
+			min = @cg_t3_min
+			max = @cg_t3_max
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .520 — Plundered Cargo (alloys + random strategic resource)
+# This = patron country
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_marauder.520
+	title = gk_raiding_marauder.520.name
+	inline_script = {
+		script = gk_raiding/marauder_personality_desc
+		KEY = gk_raiding_marauder.520.desc
+		SCOPE = event_target:gk_marauder_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		# Pick a random strategic resource
+		random_list = {
+			1 = { set_country_flag = gk_dividend_sr_crystals }
+			1 = { set_country_flag = gk_dividend_sr_gases }
+			1 = { set_country_flag = gk_dividend_sr_motes }
+		}
+	}
+
+	# Tier 1 (ranks 0-1)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				NOT = { has_modifier = gk_marauder_upgrade_2 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t1_value
+			min = @alloy_t1_min
+			max = @alloy_t1_max
+		}
+		if = {
+			limit = { has_country_flag = gk_dividend_sr_crystals }
+			add_monthly_resource_mult = {
+				resource = rare_crystals
+				value = @sr_t1_value
+				min = @sr_t1_min
+				max = @sr_t1_max
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = gk_dividend_sr_gases }
+			add_monthly_resource_mult = {
+				resource = exotic_gases
+				value = @sr_t1_value
+				min = @sr_t1_min
+				max = @sr_t1_max
+			}
+		}
+		else = {
+			add_monthly_resource_mult = {
+				resource = volatile_motes
+				value = @sr_t1_value
+				min = @sr_t1_min
+				max = @sr_t1_max
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_sr_crystals
+			remove_country_flag = gk_dividend_sr_gases
+			remove_country_flag = gk_dividend_sr_motes
+		}
+	}
+
+	# Tier 2 (ranks 2-3)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				has_modifier = gk_marauder_upgrade_2
+				NOT = { has_modifier = gk_marauder_upgrade_4 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t2_value
+			min = @alloy_t2_min
+			max = @alloy_t2_max
+		}
+		if = {
+			limit = { has_country_flag = gk_dividend_sr_crystals }
+			add_monthly_resource_mult = {
+				resource = rare_crystals
+				value = @sr_t2_value
+				min = @sr_t2_min
+				max = @sr_t2_max
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = gk_dividend_sr_gases }
+			add_monthly_resource_mult = {
+				resource = exotic_gases
+				value = @sr_t2_value
+				min = @sr_t2_min
+				max = @sr_t2_max
+			}
+		}
+		else = {
+			add_monthly_resource_mult = {
+				resource = volatile_motes
+				value = @sr_t2_value
+				min = @sr_t2_min
+				max = @sr_t2_max
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_sr_crystals
+			remove_country_flag = gk_dividend_sr_gases
+			remove_country_flag = gk_dividend_sr_motes
+		}
+	}
+
+	# Tier 3 (ranks 4-5)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_marauder_enclave_country = {
+				has_modifier = gk_marauder_upgrade_4
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t3_value
+			min = @alloy_t3_min
+			max = @alloy_t3_max
+		}
+		if = {
+			limit = { has_country_flag = gk_dividend_sr_crystals }
+			add_monthly_resource_mult = {
+				resource = rare_crystals
+				value = @sr_t3_value
+				min = @sr_t3_min
+				max = @sr_t3_max
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = gk_dividend_sr_gases }
+			add_monthly_resource_mult = {
+				resource = exotic_gases
+				value = @sr_t3_value
+				min = @sr_t3_min
+				max = @sr_t3_max
+			}
+		}
+		else = {
+			add_monthly_resource_mult = {
+				resource = volatile_motes
+				value = @sr_t3_value
+				min = @sr_t3_min
+				max = @sr_t3_max
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_sr_crystals
+			remove_country_flag = gk_dividend_sr_gases
+			remove_country_flag = gk_dividend_sr_motes
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .530 — Scavenged Fleet (marauder ships gifted to patron)
+# This = patron country
+# Only fires at rank 1+; dispatcher zeroes weight at rank 0
+# Fleet size scales with payout tier breakpoints (upgrade_2, upgrade_4)
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_marauder.530
+	title = gk_raiding_marauder.530.name
+	inline_script = {
+		script = gk_raiding/marauder_personality_desc
+		KEY = gk_raiding_marauder.530.desc
+		SCOPE = event_target:gk_marauder_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		create_fleet = {
+			name = random
+			settings = { spawn_debris = no }
+			effect = {
+				set_owner = root
+				# Tier 1 base: 8 corvettes + 4 destroyers + 2 cruisers
+				while = {
+					count = 8
+					create_ship = {
+						name = random
+						design = "NAME_Outrider"
+						graphical_culture = "pirate_01"
+					}
+				}
+				while = {
+					count = 4
+					create_ship = {
+						name = random
+						design = "NAME_Lancer"
+						graphical_culture = "pirate_01"
+					}
+				}
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						design = "NAME_Void_Champion"
+						graphical_culture = "pirate_01"
+					}
+				}
+				# Tier 2 bonus (ranks 2+): +4 corvettes, +2 destroyers, +2 cruisers
+				if = {
+					limit = {
+						event_target:gk_marauder_enclave_country = {
+							has_modifier = gk_marauder_upgrade_2
+						}
+					}
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							design = "NAME_Outrider"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Lancer"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Void_Champion"
+							graphical_culture = "pirate_01"
+						}
+					}
+				}
+				# Tier 3 bonus (ranks 4+): +4 corvettes, +2 destroyers, +2 cruisers
+				if = {
+					limit = {
+						event_target:gk_marauder_enclave_country = {
+							has_modifier = gk_marauder_upgrade_4
+						}
+					}
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							design = "NAME_Outrider"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Lancer"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Void_Champion"
+							graphical_culture = "pirate_01"
+						}
+					}
+				}
+				set_location = event_target:gk_marauder_enclave_country
+				auto_move_to_planet = {
+					target = root.capital_scope
+					clear_auto_move_on_arrival = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}

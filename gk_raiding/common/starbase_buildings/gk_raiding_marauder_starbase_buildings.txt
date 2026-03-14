@@ -1,0 +1,62 @@
+# GK Raiding — Marauder Starbase Buildings
+
+gk_marauder_garrison = {
+	icon = "GFX_starbase_mercenary_garrison"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			is_homicidal = no
+			has_country_flag = gk_marauder_bought_garrison
+		}
+		is_normal_starbase = yes
+		is_space_citadel = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+		}
+		solar_system = {
+			count_starbase_buildings = {
+				type = gk_marauder_garrison
+				count < 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	abort_construction_trigger = {
+		solar_system = {
+			count_starbase_buildings = {
+				type = gk_marauder_garrison
+				count > 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	equipped_component = "STARBASE_AURA_MERCENARY_GARRISON"
+
+	country_modifier = {
+		planet_crime_add = 3
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 10
+			trade = 5
+		}
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+}

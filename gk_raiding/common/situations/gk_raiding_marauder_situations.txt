@@ -1,0 +1,134 @@
+# GK Raiding — Marauder Enclave Dividend Situation
+# Owner = enclave country, Target = patron country
+
+# Progress rates
+@dividend_base_rate = 1
+@dividend_patron_at_war_rate = 1
+@dividend_rank_rate = 0.4
+@dividend_resolution_1_rate = 0.5
+@dividend_resolution_2_rate = 1.0
+@dividend_resolution_3_rate = 1.5
+@dividend_resolution_4_rate = 2.0
+@dividend_resolution_5_rate = 2.5
+@dividend_lord_of_war_rate = 2.5
+
+gk_marauder_dividends = {
+	picture = GFX_evt_pirate_armada
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+	complete_icon = GFX_situation_outcome_meh
+	on_progress_complete = {
+		custom_tooltip = situation_unknown_outcome_approach
+		owner = { country_event = { id = gk_raiding_marauder.500 } }
+	}
+	on_fail = {
+		log_error = "gk_marauder_dividends situation failed, this is not meant to happen"
+		destroy_situation = this
+	}
+	stages = {
+		high_level = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 240
+		}
+	}
+	monthly_progress = {
+		base = @dividend_base_rate
+
+		# Patron at war
+		modifier = {
+			add = @dividend_patron_at_war_rate
+			desc = GK_RAIDING_DIVIDEND_PATRON_AT_WAR
+			owner = {
+				any_owned_fleet = {
+					is_ship_size = gk_marauder_station
+					solar_system = {
+						exists = space_owner
+						space_owner = {
+							is_at_war = yes
+						}
+					}
+				}
+			}
+		}
+
+		# Enclave upgrade ranks (5 ranks, +0.4 each)
+		modifier = {
+			add = @dividend_rank_rate
+			desc = enclave_rank
+			owner = { has_modifier = gk_marauder_upgrade_1 }
+		}
+		modifier = {
+			add = @dividend_rank_rate
+			desc = enclave_rank
+			owner = { has_modifier = gk_marauder_upgrade_2 }
+		}
+		modifier = {
+			add = @dividend_rank_rate
+			desc = enclave_rank
+			owner = { has_modifier = gk_marauder_upgrade_3 }
+		}
+		modifier = {
+			add = @dividend_rank_rate
+			desc = enclave_rank
+			owner = { has_modifier = gk_marauder_upgrade_4 }
+		}
+		modifier = {
+			add = @dividend_rank_rate
+			desc = enclave_rank
+			owner = { has_modifier = gk_marauder_upgrade_5 }
+		}
+
+		# GalCom resolutions
+		modifier = {
+			add = @dividend_resolution_1_rate
+			desc = RESOLUTIONS
+			is_active_resolution = resolution_defenseprivatization_defense_contracts
+		}
+		modifier = {
+			add = @dividend_resolution_2_rate
+			desc = RESOLUTIONS
+			is_active_resolution = resolution_defenseprivatization_private_support_troops
+		}
+		modifier = {
+			add = @dividend_resolution_3_rate
+			desc = RESOLUTIONS
+			is_active_resolution = resolution_defenseprivatization_condottieri
+		}
+		modifier = {
+			add = @dividend_resolution_4_rate
+			desc = RESOLUTIONS
+			is_active_resolution = resolution_defenseprivatization_security_business
+		}
+		modifier = {
+			add = @dividend_resolution_5_rate
+			desc = RESOLUTIONS
+			is_active_resolution = resolution_defenseprivatization_corporate_warlords
+		}
+
+		# Lord of War AP
+		modifier = {
+			add = @dividend_lord_of_war_rate
+			desc = lord_of_war
+			owner = {
+				any_owned_fleet = {
+					is_ship_size = gk_marauder_station
+					solar_system = {
+						exists = space_owner
+						space_owner = {
+							has_ascension_perk = ap_lord_of_war
+						}
+					}
+				}
+			}
+		}
+	}
+	approach = {
+		name = approach_revolt_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+	}
+}
