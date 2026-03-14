@@ -6,7 +6,7 @@ ship_section_template = {
 	ship_size = gk_marauder_station
 
 	fits_on_slot = "mid"
-	entity = "pirate_01_pirate_station_entity"
+	entity = "station_generic_01_entity"
 	icon = "GFX_ship_part_core_mid"
 
 	component_slot = {

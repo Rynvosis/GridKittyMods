@@ -1,0 +1,185 @@
+namespace = gk_raiding_marauder
+
+# ──────────────────────────────────────────────────────────────────
+# Enclave Founding (100–199)
+# ──────────────────────────────────────────────────────────────────
+
+# Execute creation — hidden
+# This = Fleet
+fleet_event = {
+	id = gk_raiding_marauder.101
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_enclave_with_country = {
+			PREFIX = gk_marauder
+			EFFECT = gk_create_marauder_enclave_country
+			TRUST = 30
+		}
+	}
+
+	after = {
+		event_target:gk_marauder_enclave_creator = {
+			country_event = { id = gk_raiding_marauder.102 }
+			set_country_flag = gk_is_marauder_patron
+		}
+	}
+}
+
+# Haven established — notification to patron
+# This = Patron country
+country_event = {
+	id = gk_raiding_marauder.102
+	title = "gk_raiding_marauder.102.name"
+	inline_script = {
+		script = gk_raiding/marauder_personality_desc
+		KEY = gk_raiding_marauder.102.desc
+		SCOPE = event_target:gk_marauder_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Diplomacy Window — Gatekeeper + Greeting (200–299)
+# ──────────────────────────────────────────────────────────────────
+
+# Gatekeeper — redirects on_custom_diplomacy to greeting
+# This = player country, From = enclave country
+country_event = {
+	id = gk_raiding_marauder.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			is_country_type = gk_marauder_enclave
+		}
+		NOT = {
+			has_active_event = {
+				gk_raiding_marauder.205
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			save_event_target_as = gk_marauder_enclave_country
+		}
+		country_event = { id = gk_raiding_marauder.205 }
+	}
+}
+
+# Greeting — scaffold placeholder
+# This = player country; event_target:gk_marauder_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_marauder.205
+	title = gk_raiding_marauder.205.name
+	# Friendly greetings — one per personality
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_marauder_enclave_country }
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_stoic }
+		}
+		text = gk_raiding_marauder.205.desc.stoic
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_marauder_enclave_country }
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_screamer }
+		}
+		text = gk_raiding_marauder.205.desc.screamer
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_marauder_enclave_country }
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_cultist }
+		}
+		text = gk_raiding_marauder.205.desc.cultist
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_marauder_enclave_country }
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_calculating }
+		}
+		text = gk_raiding_marauder.205.desc.calculating
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_marauder_enclave_country }
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_merchant }
+		}
+		text = gk_raiding_marauder.205.desc.merchant
+	}
+	# Hostile greetings — one per personality
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_marauder_enclave_country
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_stoic }
+		}
+		text = gk_raiding_marauder.205.desc.stoic.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_marauder_enclave_country
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_screamer }
+		}
+		text = gk_raiding_marauder.205.desc.screamer.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_marauder_enclave_country
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_cultist }
+		}
+		text = gk_raiding_marauder.205.desc.cultist.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_marauder_enclave_country
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_calculating }
+		}
+		text = gk_raiding_marauder.205.desc.calculating.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_marauder_enclave_country
+			event_target:gk_marauder_enclave_country = { has_country_flag = gk_marauder_merchant }
+		}
+		text = gk_raiding_marauder.205.desc.merchant.hostile
+	}
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "gk_marauder_enclave_window"
+	custom_gui_option = "gk_marauder_enclave_option"
+	picture_event_data = {
+		portrait = event_target:gk_marauder_enclave_country
+		room = enclave_mercenary_room
+	}
+	location = event_target:gk_marauder_enclave_system
+
+	immediate = {
+		event_target:gk_marauder_enclave_country = {
+			random_owned_fleet = {
+				limit = {
+					is_ship_size = gk_marauder_station
+				}
+				solar_system = {
+					save_event_target_as = gk_marauder_enclave_system
+				}
+			}
+		}
+	}
+
+	option = {
+		name = CLOSE
+		default_hide_option = yes
+	}
+}

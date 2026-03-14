@@ -13,8 +13,9 @@ gk_is_marauder_patron = {
 
 # Country scope — can this empire found a marauder enclave?
 gk_can_found_marauder_enclave = {
-	has_country_flag = gk_can_found_marauder_enclave
+	has_tradition = tr_gk_raiding_despoliation_finish
 	NOT = { has_origin = origin_mindwardens }
+	NOT = { has_civic = civic_fanatic_purifiers }
 	enclave_capacity_left >= 1
 }
 

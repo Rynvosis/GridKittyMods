@@ -1,0 +1,5 @@
+on_custom_diplomacy = {
+	events = {
+		gk_raiding_marauder.200
+	}
+}

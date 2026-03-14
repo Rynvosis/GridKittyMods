@@ -1,11 +1,11 @@
 # GK Raiding — Marauder Enclave station ship size
 # Based on enclave_mercenary_station (vanilla ship_sizes/21_overlord.txt:331-367)
-# Differences: entity = pirate_01_pirate_station_entity (marauder look)
+# Differences: entity = station_generic_01_entity (marauder void dwelling model)
 
 @station_gk_marauder_hp = 40000
 
 gk_marauder_station = {
-	entity = pirate_01_pirate_station_entity
+	entity = station_generic_01_entity
 	is_space_object = no
 	graphical_culture = no
 	max_speed = 0.0

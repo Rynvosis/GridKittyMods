@@ -1,8 +1,9 @@
 # GK Raiding — Marauder Enclave civic
 
 civic_gk_marauder_enclave = {
+	icon = "gfx/interface/icons/governments/civics/civic_trading_posts.dds"
 	potential = {
-		is_country_type = gk_marauder_enclave
+		country_type = { value = gk_marauder_enclave }
 	}
 	modifier = {
 		ship_speed_mult = 0.15

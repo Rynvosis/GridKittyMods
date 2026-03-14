@@ -1,0 +1,31 @@
+# Marauder personality triggered desc blocks
+# Generates one desc per personality, gated by country flag on $SCOPE$
+# Expects loc keys: $KEY$.stoic, $KEY$.screamer, $KEY$.cultist, $KEY$.calculating, $KEY$.merchant
+#
+# Usage:
+# inline_script = {
+#     script = gk_raiding/marauder_personality_desc
+#     KEY = gk_raiding_marauder.102.desc
+#     SCOPE = event_target:gk_marauder_enclave_country
+# }
+
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_marauder_stoic } }
+	text = $KEY$.stoic
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_marauder_screamer } }
+	text = $KEY$.screamer
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_marauder_cultist } }
+	text = $KEY$.cultist
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_marauder_calculating } }
+	text = $KEY$.calculating
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_marauder_merchant } }
+	text = $KEY$.merchant
+}

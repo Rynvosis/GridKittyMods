@@ -1,0 +1,217 @@
+# GK Raiding — Marauder Enclave effects
+# Event targets set by parent: gk_marauder_enclave_creator, gk_marauder_enclave_species,
+#   gk_marauder_enclave_leader, gk_marauder_enclave_planet
+
+# Assigns a personality flag to the enclave country
+# This = enclave country (inside create_country effect block)
+# Prefers unique personalities across existing enclaves; falls back to repeats if pool exhausted
+gk_assign_marauder_personality = {
+	random_list = {
+		1 = {
+			modifier = {
+				factor = 0
+				any_country = {
+					is_country_type = gk_marauder_enclave
+					has_country_flag = gk_marauder_stoic
+				}
+			}
+			set_country_flag = gk_marauder_stoic
+		}
+		1 = {
+			modifier = {
+				factor = 0
+				any_country = {
+					is_country_type = gk_marauder_enclave
+					has_country_flag = gk_marauder_screamer
+				}
+			}
+			set_country_flag = gk_marauder_screamer
+		}
+		1 = {
+			modifier = {
+				factor = 0
+				event_target:gk_marauder_enclave_creator = {
+					NOT = { is_spiritualist = yes }
+				}
+			}
+			modifier = {
+				factor = 0
+				any_country = {
+					is_country_type = gk_marauder_enclave
+					has_country_flag = gk_marauder_cultist
+				}
+			}
+			set_country_flag = gk_marauder_cultist
+		}
+		1 = {
+			modifier = {
+				factor = 0
+				event_target:gk_marauder_enclave_creator = {
+					NOT = { is_materialist = yes }
+				}
+			}
+			modifier = {
+				factor = 0
+				any_country = {
+					is_country_type = gk_marauder_enclave
+					has_country_flag = gk_marauder_calculating
+				}
+			}
+			set_country_flag = gk_marauder_calculating
+		}
+		1 = {
+			modifier = {
+				factor = 0
+				event_target:gk_marauder_enclave_creator = {
+					NOT = { is_xenophile = yes }
+				}
+			}
+			modifier = {
+				factor = 0
+				any_country = {
+					is_country_type = gk_marauder_enclave
+					has_country_flag = gk_marauder_merchant
+				}
+			}
+			set_country_flag = gk_marauder_merchant
+		}
+	}
+	# Fallback: if all eligible personalities are taken, pick without uniqueness checks
+	if = {
+		limit = {
+			NOR = {
+				has_country_flag = gk_marauder_stoic
+				has_country_flag = gk_marauder_screamer
+				has_country_flag = gk_marauder_cultist
+				has_country_flag = gk_marauder_calculating
+				has_country_flag = gk_marauder_merchant
+			}
+		}
+		random_list = {
+			1 = { set_country_flag = gk_marauder_stoic }
+			1 = { set_country_flag = gk_marauder_screamer }
+			1 = {
+				modifier = {
+					factor = 0
+					event_target:gk_marauder_enclave_creator = {
+						NOT = { is_spiritualist = yes }
+					}
+				}
+				set_country_flag = gk_marauder_cultist
+			}
+			1 = {
+				modifier = {
+					factor = 0
+					event_target:gk_marauder_enclave_creator = {
+						NOT = { is_materialist = yes }
+					}
+				}
+				set_country_flag = gk_marauder_calculating
+			}
+			1 = {
+				modifier = {
+					factor = 0
+					event_target:gk_marauder_enclave_creator = {
+						NOT = { is_xenophile = yes }
+					}
+				}
+				set_country_flag = gk_marauder_merchant
+			}
+		}
+	}
+}
+
+# Creates the marauder enclave country
+# Fleet scope | owner = original empire
+# Called by create_enclave_with_country with INHERITED_ETHIC param
+
+gk_create_marauder_enclave_country = {
+	create_country = {
+		name = random
+		type = gk_marauder_enclave
+		authority = "auth_oligarchic"
+		civics = {
+			civic = civic_gk_marauder_enclave
+		}
+		origin = "origin_default"
+		species = event_target:gk_marauder_enclave_species
+		flag = random
+		ethos = {
+			ethic = ethic_fanatic_militarist
+			ethic = $INHERITED_ETHIC$
+		}
+		ignore_initial_colony_error = yes
+		effect = {
+			save_event_target_as = gk_marauder_enclave_country
+			set_country_flag = gk_marauder_enclave_country
+			gk_assign_marauder_personality = yes
+			set_graphical_culture = event_target:gk_marauder_enclave_creator
+			create_fleet = {
+				settings = { spawn_debris = no }
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = random
+						design = "NAME_GK_Marauder_Enclave_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = event_target:gk_marauder_enclave_planet
+						distance = 90
+					}
+					save_event_target_as = gk_marauder_enclave_station
+				}
+			}
+			set_custom_capital_location = event_target:gk_marauder_enclave_planet
+			set_leader = event_target:gk_marauder_enclave_leader
+			establish_communications_no_message = event_target:gk_marauder_enclave_creator
+			# TODO: start_situation for marauder dividends (later phase)
+			# Check for active resolutions and give associated modifiers
+			if = {
+				limit = {
+					is_active_resolution = resolution_defenseprivatization_defense_contracts
+				}
+				add_modifier = {
+					modifier = resolution_defenseprivatization_defense_contracts_merc_naval_cap
+				}
+			}
+			if = {
+				limit = {
+					is_active_resolution = resolution_defenseprivatization_private_support_troops
+				}
+				add_modifier = {
+					modifier = resolution_defenseprivatization_private_support_troops_merc_naval_cap
+				}
+			}
+			if = {
+				limit = {
+					is_active_resolution = resolution_defenseprivatization_condottieri
+				}
+				add_modifier = {
+					modifier = resolution_defenseprivatization_condottieri_merc_naval_cap
+				}
+			}
+			if = {
+				limit = {
+					is_active_resolution = resolution_defenseprivatization_security_business
+				}
+				add_modifier = {
+					modifier = resolution_defenseprivatization_security_business_merc_naval_cap
+				}
+			}
+			if = {
+				limit = {
+					is_active_resolution = resolution_defenseprivatization_corporate_warlords
+				}
+				add_modifier = {
+					modifier = resolution_defenseprivatization_corporate_warlords_merc_naval_cap
+				}
+			}
+			# Prevent AI from instantly hiring
+			set_timed_country_flag = {
+				flag = merc_ai_delay
+				years = 1
+			}
+		}
+	}
+}

@@ -11,7 +11,6 @@ tr_gk_raiding_despoliation_adopt = {
 		trigger = {
 			gk_has_native_pillage_access = yes
 		}
-		unlocks_agenda = agenda_gk_raiding_despoliation_recovery_fleets
 		custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_ADOPT_NATIVE_EFFECT
 
 		weight = {
@@ -23,6 +22,35 @@ tr_gk_raiding_despoliation_adopt = {
 tr_gk_raiding_despoliation_finish = {
 	modifier = {
 		ascension_perks_add = 1
+		country_enclave_capacity_add = 1
+	}
+	custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_EFFECT
+
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_finish_mindwarden
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = { has_origin = origin_mindwardens }
+		modifier = {
+			ascension_perks_add = 1
+			country_enclave_capacity_add = 2
+		}
+		custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_MINDWARDEN_EFFECT
+		weight = { factor = 1 }
+	}
+
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_finish_purifier
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = { has_civic = civic_fanatic_purifiers }
+		modifier = {
+			ascension_perks_add = 1
+			ship_fire_rate_mult = 0.05
+			army_damage_mult = 0.10
+		}
+		custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_PURIFIER_EFFECT
+		weight = { factor = 2 }
 	}
 }
 
