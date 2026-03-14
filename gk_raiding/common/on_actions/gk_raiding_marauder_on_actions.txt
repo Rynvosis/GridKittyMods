@@ -3,3 +3,21 @@ on_custom_diplomacy = {
 		gk_raiding_marauder.200
 	}
 }
+
+# Monthly pulse — autonomous raid check
+# This = Country
+on_monthly_pulse_country = {
+	events = {
+		gk_raiding_marauder.210  # Autonomous raid pulse
+		gk_raiding_marauder.215  # Orphaned raid cleanup
+	}
+}
+
+# Bombardment — corsair pillage accumulation
+# This = Planet
+# From = Bombarder (country)
+on_planet_bombarded = {
+	events = {
+		gk_raiding_marauder.230  # Corsair bombardment loot accumulation
+	}
+}

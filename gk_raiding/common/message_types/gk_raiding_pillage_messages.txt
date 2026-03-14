@@ -77,3 +77,15 @@ message_type = {
 
 	category = planets
 }
+message_type = {
+	key = MESSAGE_TYPE_GK_CORSAIR_RAID_LOOT
+	message_setting_key = "MESSAGE_GK_CORSAIR_RAID_LOOT_KEY"
+	icon = "GFX_gk_raiding_message_pillage_devastation"
+	icon_frame = 1
+
+	name = "MESSAGE_TYPE_GK_CORSAIR_RAID_LOOT_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}

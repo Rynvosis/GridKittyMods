@@ -229,3 +229,336 @@ gk_create_marauder_enclave_country = {
 		}
 	}
 }
+
+# ──────────────────────────────────────────────────────────────────
+# Autonomous Raiding Effects
+# ──────────────────────────────────────────────────────────────────
+
+# Accumulate post-transform loot onto the receipt (for deferred payout)
+# This = Planet (loot source)
+# event_target:gk_loot_receipt = receipt leader
+# event_target:gk_storage_scope = planet (temp storage with loot vars)
+gk_accumulate_loot_on_receipt = {
+	event_target:gk_loot_receipt = {
+		gk_accumulate_resource_on_receipt = { RESOURCE = trade }
+		gk_accumulate_resource_on_receipt = { RESOURCE = energy }
+		gk_accumulate_resource_on_receipt = { RESOURCE = minerals }
+		gk_accumulate_resource_on_receipt = { RESOURCE = food }
+		gk_accumulate_resource_on_receipt = { RESOURCE = consumer_goods }
+		gk_accumulate_resource_on_receipt = { RESOURCE = alloys }
+		gk_accumulate_resource_on_receipt = { RESOURCE = volatile_motes }
+		gk_accumulate_resource_on_receipt = { RESOURCE = exotic_gases }
+		gk_accumulate_resource_on_receipt = { RESOURCE = rare_crystals }
+		gk_accumulate_resource_on_receipt = { RESOURCE = sr_living_metal }
+		gk_accumulate_resource_on_receipt = { RESOURCE = sr_zro }
+		gk_accumulate_resource_on_receipt = { RESOURCE = sr_dark_matter }
+		gk_accumulate_resource_on_receipt = { RESOURCE = nanites }
+	}
+}
+
+gk_accumulate_resource_on_receipt = {
+	if = {
+		limit = {
+			event_target:gk_storage_scope = {
+				is_variable_set = gk_loot_$RESOURCE$
+				check_variable = { which = gk_loot_$RESOURCE$ value > 0 }
+			}
+		}
+		change_variable = {
+			which = gk_loot_$RESOURCE$
+			value = event_target:gk_storage_scope.gk_loot_$RESOURCE$
+		}
+	}
+}
+
+# Find patron empire via enclave station fleet → system → space_owner
+# This = enclave country
+# Saves event_target:gk_marauder_patron (if patron exists)
+gk_get_marauder_patron = {
+	random_owned_fleet = {
+		limit = {
+			any_owned_ship = {
+				is_ship_size = gk_marauder_station
+			}
+		}
+		solar_system = {
+			if = {
+				limit = { exists = space_owner }
+				space_owner = {
+					save_event_target_as = gk_marauder_patron
+				}
+			}
+		}
+	}
+}
+
+# Initialize all gk_total_* display variables to 0
+# This = country scope
+gk_init_display_totals = {
+	set_variable = { which = gk_total_trade value = 0 }
+	set_variable = { which = gk_total_energy value = 0 }
+	set_variable = { which = gk_total_minerals value = 0 }
+	set_variable = { which = gk_total_food value = 0 }
+	set_variable = { which = gk_total_consumer_goods value = 0 }
+	set_variable = { which = gk_total_alloys value = 0 }
+	set_variable = { which = gk_total_volatile_motes value = 0 }
+	set_variable = { which = gk_total_exotic_gases value = 0 }
+	set_variable = { which = gk_total_rare_crystals value = 0 }
+	set_variable = { which = gk_total_sr_living_metal value = 0 }
+	set_variable = { which = gk_total_sr_zro value = 0 }
+	set_variable = { which = gk_total_sr_dark_matter value = 0 }
+	set_variable = { which = gk_total_nanites value = 0 }
+}
+
+# Round all gk_total_* display variables for UI
+# This = country scope
+gk_round_display_totals = {
+	round_variable = gk_total_trade
+	round_variable = gk_total_energy
+	round_variable = gk_total_minerals
+	round_variable = gk_total_food
+	round_variable = gk_total_consumer_goods
+	round_variable = gk_total_alloys
+	round_variable = gk_total_volatile_motes
+	round_variable = gk_total_exotic_gases
+	round_variable = gk_total_rare_crystals
+	round_variable = gk_total_sr_living_metal
+	round_variable = gk_total_sr_zro
+	round_variable = gk_total_sr_dark_matter
+	round_variable = gk_total_nanites
+}
+
+# Clear all gk_total_* display variables + gk_corsair_has_loot
+# This = country scope
+gk_clear_display_totals = {
+	clear_variable = gk_total_trade
+	clear_variable = gk_total_energy
+	clear_variable = gk_total_minerals
+	clear_variable = gk_total_food
+	clear_variable = gk_total_consumer_goods
+	clear_variable = gk_total_alloys
+	clear_variable = gk_total_volatile_motes
+	clear_variable = gk_total_exotic_gases
+	clear_variable = gk_total_rare_crystals
+	clear_variable = gk_total_sr_living_metal
+	clear_variable = gk_total_sr_zro
+	clear_variable = gk_total_sr_dark_matter
+	clear_variable = gk_total_nanites
+	clear_variable = gk_corsair_has_loot
+}
+
+# End a corsair raid: cashout all receipts to patron, cleanup, destroy temp country
+# This = enclave country
+# event_target:gk_corsair_raider = temp raider country
+# Expects enclave to have gk_auto_raid_ongoing flag
+gk_end_corsair_raid = {
+	save_event_target_as = gk_marauder_enclave_country
+
+	# Find patron and enclave star (single fleet scan)
+	random_owned_fleet = {
+		limit = {
+			any_owned_ship = {
+				is_ship_size = gk_marauder_station
+			}
+		}
+		solar_system = {
+			if = {
+				limit = { exists = space_owner }
+				space_owner = {
+					save_event_target_as = gk_marauder_patron
+				}
+			}
+			star = {
+				save_event_target_as = gk_enclave_star
+			}
+		}
+	}
+
+	# Find raid target from temp raider's flags
+	if = {
+		limit = { exists = event_target:gk_corsair_raider }
+		random_country = {
+			limit = {
+				is_country_type = default
+				event_target:gk_corsair_raider = {
+					has_country_flag = gk_corsair_targeting_@prev
+				}
+			}
+			save_event_target_as = gk_raid_target
+			# Mark target as recently raided by this enclave
+			set_timed_country_flag = {
+				flag = gk_raided_by_@event_target:gk_marauder_enclave_country
+				days = 720
+			}
+		}
+	}
+
+	# Initialize display totals on enclave scope
+	gk_init_display_totals = yes
+	set_variable = { which = gk_corsair_has_loot value = 0 }
+
+	# Iterate all receipts tagged to this temp raider and cash out to patron
+	if = {
+		limit = {
+			exists = event_target:gk_corsair_raider
+			exists = event_target:gk_marauder_patron
+		}
+		event_target:gk_marauder_patron = {
+			save_event_target_as = gk_raider
+		}
+		event_target:global_event_country = {
+			every_owned_leader = {
+				limit = {
+					has_leader_flag = gk_loot_receipt_to_@event_target:gk_corsair_raider
+				}
+				save_event_target_as = gk_loot_receipt
+				save_event_target_as = gk_storage_scope
+
+				# Accumulate display totals before collection
+				event_target:gk_marauder_enclave_country = {
+					gk_accumulate_display_total = { RESOURCE = trade }
+					gk_accumulate_display_total = { RESOURCE = energy }
+					gk_accumulate_display_total = { RESOURCE = minerals }
+					gk_accumulate_display_total = { RESOURCE = food }
+					gk_accumulate_display_total = { RESOURCE = consumer_goods }
+					gk_accumulate_display_total = { RESOURCE = alloys }
+					gk_accumulate_display_total = { RESOURCE = volatile_motes }
+					gk_accumulate_display_total = { RESOURCE = exotic_gases }
+					gk_accumulate_display_total = { RESOURCE = rare_crystals }
+					gk_accumulate_display_total = { RESOURCE = sr_living_metal }
+					gk_accumulate_display_total = { RESOURCE = sr_zro }
+					gk_accumulate_display_total = { RESOURCE = sr_dark_matter }
+					gk_accumulate_display_total = { RESOURCE = nanites }
+				}
+
+				# Collect to patron
+				gk_collect_loot_from_storage = yes
+
+				# Destroy receipt
+				kill_leader = { show_notification = no }
+			}
+		}
+
+		# Check if we got any loot
+		if = {
+			limit = {
+				OR = {
+					check_variable = { which = gk_total_trade value > 0 }
+					check_variable = { which = gk_total_energy value > 0 }
+					check_variable = { which = gk_total_minerals value > 0 }
+					check_variable = { which = gk_total_food value > 0 }
+					check_variable = { which = gk_total_consumer_goods value > 0 }
+					check_variable = { which = gk_total_alloys value > 0 }
+					check_variable = { which = gk_total_volatile_motes value > 0 }
+					check_variable = { which = gk_total_exotic_gases value > 0 }
+					check_variable = { which = gk_total_rare_crystals value > 0 }
+					check_variable = { which = gk_total_sr_living_metal value > 0 }
+					check_variable = { which = gk_total_sr_zro value > 0 }
+					check_variable = { which = gk_total_sr_dark_matter value > 0 }
+					check_variable = { which = gk_total_nanites value > 0 }
+				}
+			}
+			set_variable = { which = gk_corsair_has_loot value = 1 }
+			gk_round_display_totals = yes
+		}
+	}
+
+	# Transfer fleet back to enclave (if it still exists)
+	if = {
+		limit = {
+			exists = event_target:gk_corsair_raider
+			event_target:gk_corsair_raider = {
+				any_owned_fleet = {
+					num_ships > 0
+				}
+			}
+		}
+		event_target:gk_corsair_raider = {
+			every_owned_fleet = {
+				set_owner = event_target:gk_marauder_enclave_country
+				remove_fleet_flag = gk_fleet_locked
+				# Return to enclave station system
+				if = {
+					limit = { exists = event_target:gk_enclave_star }
+					queue_actions = {
+						move_to = event_target:gk_enclave_star
+					}
+				}
+			}
+		}
+	}
+
+	# Notify patron if loot > 0
+	if = {
+		limit = {
+			exists = event_target:gk_marauder_patron
+			check_variable = { which = gk_corsair_has_loot value > 0 }
+		}
+		event_target:gk_marauder_patron = {
+			# Copy display vars
+			set_variable = { which = gk_total_trade value = event_target:gk_marauder_enclave_country.gk_total_trade }
+			set_variable = { which = gk_total_energy value = event_target:gk_marauder_enclave_country.gk_total_energy }
+			set_variable = { which = gk_total_minerals value = event_target:gk_marauder_enclave_country.gk_total_minerals }
+			set_variable = { which = gk_total_food value = event_target:gk_marauder_enclave_country.gk_total_food }
+			set_variable = { which = gk_total_consumer_goods value = event_target:gk_marauder_enclave_country.gk_total_consumer_goods }
+			set_variable = { which = gk_total_alloys value = event_target:gk_marauder_enclave_country.gk_total_alloys }
+			set_variable = { which = gk_total_volatile_motes value = event_target:gk_marauder_enclave_country.gk_total_volatile_motes }
+			set_variable = { which = gk_total_exotic_gases value = event_target:gk_marauder_enclave_country.gk_total_exotic_gases }
+			set_variable = { which = gk_total_rare_crystals value = event_target:gk_marauder_enclave_country.gk_total_rare_crystals }
+			set_variable = { which = gk_total_sr_living_metal value = event_target:gk_marauder_enclave_country.gk_total_sr_living_metal }
+			set_variable = { which = gk_total_sr_zro value = event_target:gk_marauder_enclave_country.gk_total_sr_zro }
+			set_variable = { which = gk_total_sr_dark_matter value = event_target:gk_marauder_enclave_country.gk_total_sr_dark_matter }
+			set_variable = { which = gk_total_nanites value = event_target:gk_marauder_enclave_country.gk_total_nanites }
+			country_event = { id = gk_raiding_marauder.221 }
+		}
+	}
+
+	# Notify target that raiders withdrew
+	if = {
+		limit = {
+			exists = event_target:gk_raid_target
+		}
+		event_target:gk_raid_target = {
+			country_event = { id = gk_raiding_marauder.402 }
+		}
+	}
+
+	# Cleanup flags
+	remove_country_flag = gk_auto_raid_ongoing
+
+	# Set cooldown
+	set_timed_country_flag = {
+		flag = gk_auto_raid_cooldown
+		days = 540
+	}
+
+	# Destroy temp raider country
+	if = {
+		limit = {
+			exists = event_target:gk_corsair_raider
+		}
+		event_target:gk_corsair_raider = {
+			destroy_country = yes
+		}
+	}
+
+	# Clear display vars
+	gk_clear_display_totals = yes
+}
+
+# Helper: accumulate one resource from receipt to display total on enclave
+# This = enclave country
+gk_accumulate_display_total = {
+	if = {
+		limit = {
+			event_target:gk_loot_receipt = {
+				is_variable_set = gk_loot_$RESOURCE$
+				check_variable = { which = gk_loot_$RESOURCE$ value > 0 }
+			}
+		}
+		change_variable = {
+			which = gk_total_$RESOURCE$
+			value = event_target:gk_loot_receipt.gk_loot_$RESOURCE$
+		}
+	}
+}

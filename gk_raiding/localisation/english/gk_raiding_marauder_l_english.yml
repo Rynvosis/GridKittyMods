@@ -5,6 +5,10 @@
  civic_gk_marauder_enclave: "Marauder Enclave"
  civic_gk_marauder_enclave_desc: "This enclave operates as a marauder outpost, launching raids against nearby empires on behalf of its patron."
 
+ # Ship size
+ gk_marauder_station: "Marauder Station"
+ gk_marauder_station_plural: "Marauder Stations"
+
  # Ship design
  NAME_GK_Marauder_Enclave_Station: "Marauder Outpost"
 
@@ -33,11 +37,11 @@
  gk_raiding_marauder.205.desc.merchant:0 "The haven's communication array opens to a warmly lit interior. A grinning figure raises a drink in greeting, lounging comfortably amid trophy displays and trade ledgers.\n\n§Y\"Well, well! If it isn't our favorite client! Come in, come in. What can the [event_target:gk_marauder_enclave_country.GetName] do for you today? We have some exciting new opportunities on the table.\"§!"
  gk_raiding_marauder.205.desc.automaton:0 "The haven's communication array responds instantly, the connection established before the hail sequence completes. No face appears on screen. A tactical overlay fills the display: fleet positions, threat vectors, patrol routes updated in real time. A flat synthetic voice speaks over the data feed.\n\n§Y\"Command authority recognized. Connection secured. Current operational status: all combat platforms nominal. Query: state desired service or directive.\"§!"
  # Greeting options (205)
- gk_raiding_marauder.205.a:0 "Smuggling Network"
- gk_raiding_marauder.205.b:0 "Raider Intelligence"
- gk_raiding_marauder.205.c:0 "Raider Garrison"
- gk_raiding_marauder.205.d:0 "Recruit Raiders"
- gk_raiding_marauder.205.e:0 "Patron Panel"
+ gk_raiding_marauder.205.a:0 "We are interested in your §YSmuggling Network§!."
+ gk_raiding_marauder.205.b:0 "We want access to your §YRaider Intelligence§!."
+ gk_raiding_marauder.205.c:0 "We are interested in setting up a §YRaider Garrison§!."
+ gk_raiding_marauder.205.d:0 "We wish to §Yrecruit raiders§!."
+ gk_raiding_marauder.205.e:0 "As your §YPatron§!, we want to review our options."
  # Greeting option tooltips
  gk_marauder_tt_smuggling:0 "Temporary §Ytrade value§! boost at the cost of increased §Ycrime§!."
  gk_marauder_tt_intel:0 "Permanent §Ydamage bonus§! against your §Yrivals§! at the cost of increased §Ycrime§!."
@@ -112,8 +116,8 @@
  gk_raiding_marauder.325.desc.calculating:0 "The haven's commander displays personnel readiness data.\n\n§Y\"Ground force requisition available. Personnel are combat-rated and transport-ready. Deployment time to your capital system: estimated 24 standard hours. Two force packages available, scaled by mission requirements.\"§!"
  gk_raiding_marauder.325.desc.merchant:0 "The haven's commander pulls out a catalog with a grin.\n\n§Y\"Looking for some muscle? You've come to the right place! We have experienced ground fighters ready to ship out to your capital at a moment's notice. Small squad, large squad, pick your package!\"§!"
  gk_raiding_marauder.325.desc.automaton:0 "A personnel deployment manifest populates the display.\n\n§Y\"Service available: ground assault unit requisition. Combat-rated personnel are transport-ready. Estimated deployment time to command authority capital: minimal. Two force configurations available. Select desired package.\"§!"
- gk_raiding_marauder.325.a:0 "Small Squad (5 armies)"
- gk_raiding_marauder.325.b:0 "Large Squad (10 armies)"
+ gk_raiding_marauder.325.a:0 "A small squad of raiders. §Y(5 armies)§!"
+ gk_raiding_marauder.325.b:0 "A large squad of raiders. §Y(10 armies)§!"
  gk_raiding_marauder.325.a.tooltip:0 "§Y5§! mercenary armies will be deployed to our capital system."
  gk_raiding_marauder.325.b.tooltip:0 "§Y10§! mercenary armies will be deployed to our capital system."
 
@@ -135,8 +139,8 @@
  gk_raiding_marauder.335.desc.calculating:0 "The haven's commander opens an administrative interface.\n\n§Y\"Patron access confirmed. System ownership verified. Administrative functions unlocked. All strategic options are available for your review.\"§!"
  gk_raiding_marauder.335.desc.merchant:0 "The haven's commander greets you with extra warmth.\n\n§Y\"The boss of bosses! Welcome to the VIP lounge, friend. As our patron and landlord, you get access to the premium services. What can we do for you today?\"§!"
  gk_raiding_marauder.335.desc.automaton:0 "An administrative interface unlocks on the display.\n\n§Y\"Command authority verified. System sovereignty confirmed. Elevated access granted. All strategic directives are available. State your command.\"§!"
- gk_raiding_marauder.335.upgrade:0 "Upgrade Haven"
- gk_raiding_marauder.335.tech:0 "Share Technology"
+ gk_raiding_marauder.335.upgrade:0 "We want to §Yupgrade§! the haven."
+ gk_raiding_marauder.335.tech:0 "We are inclined to share our §Ytechnology§! with you."
  gk_raiding_marauder.335.tech.timeout:0 "The enclave is still processing the last technology transfer."
 
  # ──────────────────────────────────────────────────────────────────
@@ -204,3 +208,33 @@
  gk_raiding_marauder.530.desc.calculating:0 "A detailed transmission from the [event_target:gk_marauder_enclave_country.GetName], accompanied by full technical readouts.\n\n§Y\"Asset transfer notification: multiple combat-capable vessels acquired through precision boarding operations. All systems restored to 97.8% operational capacity. Cost-benefit analysis favors transfer over salvage by a factor of 3.2. Fleet is en route to your capital. Crew complements are at standard levels.\"§!"
  gk_raiding_marauder.530.desc.merchant:0 "A beaming transmission from the [event_target:gk_marauder_enclave_country.GetName]. Their leader looks like they just closed the deal of a lifetime.\n\n§Y\"Friend, have I got a surprise for you! We managed to acquire some ships in, shall we say, lightly used condition. Rather than breaking them down, we thought, why not give them to our favorite patron? A fleet, courtesy of the [event_target:gk_marauder_enclave_country.GetName]. Consider it an investment in our partnership!\"§!"
  gk_raiding_marauder.530.desc.automaton:0 "An asset transfer notification from the [event_target:gk_marauder_enclave_country.GetName].\n\n§Y\"Asset transfer report: multiple combat-capable vessels captured intact during boarding operations. All systems restored to operational capacity. Analysis indicates transfer to command authority yields superior strategic value over salvage. Fleet is en route. End of report.\"§!"
+
+ # ──────────────────────────────────────────────────────────────────
+ # Autonomous Raiding Events (210–230, 400–402)
+ # ──────────────────────────────────────────────────────────────────
+
+ # .400 — Tribute Demand
+ gk_raiding_marauder.400.name:0 "Corsair Ultimatum"
+ gk_raiding_marauder.400.desc.stoic:0 "An encrypted transmission cuts through standard comms. A scarred face regards us with cold appraisal.\n\n§Y\"[Root.GetSpeciesNamePlural]. Your worlds have caught our attention. We can do this the easy way or the hard way. Transfer a tribute payment and we move on. Refuse, and our fleet will extract what we are owed. The choice is yours.\"§!"
+ gk_raiding_marauder.400.desc.screamer:0 "Our comms array nearly overloads with the volume of the incoming signal. A wild-eyed figure is shrieking into the pickup.\n\n§Y\"HYEEEIIIEEE!!!! Stupid [Root.GetSpeciesNamePlural]! We see your pretty worlds! So many shinies! You give us credits NOW or we come take EVERYTHING! We very good at taking! HYEEEIIIEEE!!!!\"§!"
+ gk_raiding_marauder.400.desc.cultist:0 "A low, resonant chanting precedes the visual feed. A robed figure materializes from shadow, eyes burning with conviction.\n\n§Y\"She of the Void has marked the worlds of the [Root.GetSpeciesNamePlural] for harvest. There is no escaping Her gaze. You may offer tribute willingly and be spared Her wrath, or you may resist and learn the true meaning of devotion. Choose.\"§!"
+ gk_raiding_marauder.400.desc.calculating:0 "A precisely formatted data packet arrives on a tight-beam frequency. A composed figure studies readouts as they speak.\n\n§Y\"Analysis complete. [Root.GetSpeciesName] defensive capabilities have been assessed. Projected extraction yield: significant. Proposal: transfer energy credits as tribute. Alternative: forced extraction at reduced efficiency for you, optimal efficiency for us. Response requested within standard cycle.\"§!"
+ gk_raiding_marauder.400.desc.merchant:0 "A cheerful hail arrives on an open frequency. A grinning figure raises a drink in mock greeting.\n\n§Y\"Well hello there, [Root.GetSpeciesName] friend! I have a business proposition for you. See, my crews are getting restless, and they have their eyes on your lovely colonies. Now, we can settle this like civilized beings, a small tribute and we part ways. Or we can settle it the other way. Your call!\"§!"
+ gk_raiding_marauder.400.desc.automaton:0 "A machine-precise transmission arrives without preamble. A tactical overlay of our systems fills the display.\n\n§Y\"ALERT: Extraction fleet allocated. Target: [Root.GetSpeciesName] territorial holdings. Optimal resolution: tribute transfer. Suboptimal resolution: forced resource extraction with collateral projections. Input required: compliance or resistance. Standing by.\"§!"
+ gk_raiding_marauder.400.a:0 "Offer Tribute §Y(Energy Credits)§!"
+ gk_raiding_marauder.400.b:0 "You'll get nothing from us."
+ gk_raiding_marauder.400.a.response:0 "Your tribute has been noted. Our fleet will stand down. Consider this a lesson in pragmatism."
+ gk_raiding_marauder.400.b.response:0 "Then we shall take by force what you should have offered in tribute. You have made a terrible mistake this day."
+
+ # .221 — Raid Complete (patron popup)
+ gk_raiding_marauder.221.name:0 "Corsair Raid Complete"
+ gk_raiding_marauder.221.desc.stoic:0 "A transmission from the [event_target:gk_marauder_enclave_country.GetName]. Their commander delivers the report with characteristic brevity.\n\n§Y\"Raid concluded. The fleet has returned with plunder. Your share has been processed and transferred. Details attached.\"§!"
+ gk_raiding_marauder.221.desc.screamer:0 "Deafening celebration erupts from the [event_target:gk_marauder_enclave_country.GetName]. The commander can barely be heard over the revelry.\n\n§Y\"HYEEEIIIEEE!!!! WE BACK! WE BACK WITH SO MUCH STUFF! Dwamak worlds burn good! Your share, boss! TAKE TAKE TAKE! HYEEEIIIEEE!!!!\"§!"
+ gk_raiding_marauder.221.desc.cultist:0 "A reverent transmission from the [event_target:gk_marauder_enclave_country.GetName]. Sacred chanting underscores every word.\n\n§Y\"She of the Void guided our blades true. The harvest is complete. We have offered a portion unto Her altar and return the rest to you, patron. May these spoils serve Her greater purpose.\"§!"
+ gk_raiding_marauder.221.desc.calculating:0 "A detailed after-action report from the [event_target:gk_marauder_enclave_country.GetName].\n\n§Y\"Raid operation complete. All objectives met within projected parameters. Resource extraction summary attached. Patron allocation calculated per standard distribution model. Recommend strategic reserve allocation.\"§!"
+ gk_raiding_marauder.221.desc.merchant:0 "A beaming transmission from the [event_target:gk_marauder_enclave_country.GetName]. Their commander raises a glass.\n\n§Y\"Excellent news, friend! The raid was a smashing success. Our crews are celebrating, and your cut is already boxed and ready. What a haul! Business is booming at the [event_target:gk_marauder_enclave_country.GetName]!\"§!"
+ gk_raiding_marauder.221.desc.automaton:0 "An automated after-action report from the [event_target:gk_marauder_enclave_country.GetName].\n\n§Y\"Raid operation complete. Resource extraction within projected yield. Fleet returned to station. All combat platforms nominal. Command authority allocation dispatched. End of report.\"§!"
+
+ # .402 — Raiders Withdrew
+ gk_raiding_marauder.402.name:0 "Raiders Withdraw"
+ gk_raiding_marauder.402.desc:0 "The heavy losses inflicted upon the [From.GetSpeciesName] raiding fleet have been enough to discourage further attacks. Their remaining ships have withdrawn from our space, though the devastation left in their wake will take time to repair."

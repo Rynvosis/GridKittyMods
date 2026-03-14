@@ -1,0 +1,29 @@
+# GK Raiding — Temp Raider country type (bombardment wrapper for corsair raids)
+# Minimal country: no government, no AI. Fleet ownership transfers here during active raids
+# so the enclave's corsairs can bombard without being at war.
+
+gk_marauder_raiders = {
+	government = no
+	observable = no
+	playable = no
+	needs_survey = no
+	ship_disengagement = no
+	has_complete_sensor = no
+	orbital_bombardment = yes
+	attack_unarmed_orbital_stations = yes
+	destroys_starbases = yes
+
+	ai = {
+		enabled = no
+	}
+	faction = {
+		hostile = no
+		needs_border_access = no
+		generate_borders = no
+		needs_colony = no
+	}
+	modules = {
+		standard_event_module = {}
+		exclusive_diplomacy_module = {}
+	}
+}
