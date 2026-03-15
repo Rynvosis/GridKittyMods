@@ -2,17 +2,17 @@ variable = {
 	type = key
 	localization = $RESOURCE$_label
 	value = $RESOURCE$_label
-	scope = prev
+	scope = $SCOPE$
 	trigger = {
-		prev = { check_variable = { which = gk_loot_$RESOURCE$ value > 0 } }
+		$SCOPE$ = { check_variable = { which = gk_loot_$RESOURCE$ value > 0 } }
 	}
 }
 variable = {
 	type = variable
 	localization = $RESOURCE$
 	varname = gk_loot_$RESOURCE$
-	scope = prev
+	scope = $SCOPE$
 	trigger = {
-		prev = { check_variable = { which = gk_loot_$RESOURCE$ value > 0 } }
+		$SCOPE$ = { check_variable = { which = gk_loot_$RESOURCE$ value > 0 } }
 	}
 }

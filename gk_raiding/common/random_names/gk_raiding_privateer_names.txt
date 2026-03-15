@@ -1,0 +1,97 @@
+# GK Raiding — Privateer Enclave random names
+
+empire_name_parts_list = {
+	key = "gk_privateer_names"
+	parts = {
+		gk_prv_Bloodhound = 10
+		gk_prv_Cutlass = 10
+		gk_prv_Dreadnought = 5
+		gk_prv_Harrier = 10
+		gk_prv_Ironmaw = 10
+		gk_prv_Raptor = 10
+		gk_prv_Scourge = 10
+		gk_prv_Stormcrow = 10
+		gk_prv_Tempest = 10
+		gk_prv_Voidfang = 10
+		gk_prv_Blacktide = 10
+		gk_prv_Razorback = 10
+		gk_prv_Vulture = 10
+		gk_prv_Barracuda = 10
+		gk_prv_Nighthawk = 10
+		gk_prv_Prowler = 10
+		gk_prv_Obsidian = 10
+		gk_prv_Scarlet = 10
+		gk_prv_Phantom = 5
+		gk_prv_Leviathan = 5
+	}
+}
+empire_name_parts_list = {
+	key = "gk_privateer_groups"
+	parts = {
+		gk_prv_Raiders = 10
+		gk_prv_Corsairs = 10
+		gk_prv_Reavers = 10
+		gk_prv_Plunderers = 10
+		gk_prv_Buccaneers = 10
+		gk_prv_Freebooters = 10
+		gk_prv_Ravagers = 5
+		gk_prv_Wolves = 10
+		gk_prv_Marauders = 10
+		gk_prv_Pillagers = 5
+	}
+}
+empire_name_parts_list = {
+	key = "gk_privateer_companies"
+	parts = {
+		gk_prv_Syndicate = 10
+		gk_prv_Compact = 5
+		gk_prv_Flotilla = 10
+		gk_prv_Cartel = 10
+		gk_prv_Consortium = 5
+		gk_prv_Enterprise = 10
+		gk_prv_Venture = 10
+		gk_prv_Collective = 5
+		gk_prv_Holdings = 5
+		gk_prv_Privateers = 10
+		gk_prv_Fleet = 10
+		gk_prv_Outriders = 10
+	}
+}
+
+# Privateer Enclave: e.g. "Bloodhound Raiders"
+empire_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 10
+			is_country_type = gk_privateer_enclave
+		}
+	}
+	format = "{AassocB{<gk_privateer_names> <gk_privateer_groups>}}"
+	noun = "{<gk_privateer_names>}"
+}
+# Privateer Enclave: e.g. "Tempest Syndicate"
+empire_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 10
+			is_country_type = gk_privateer_enclave
+		}
+	}
+	format = "{AassocB{<gk_privateer_names> <gk_privateer_companies>}}"
+	noun = "{<gk_privateer_names>}"
+}
+# Privateer Enclave: e.g. "Human Corsairs"
+empire_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 4
+			is_country_type = gk_privateer_enclave
+		}
+	}
+	format = "{[This.GetSpeciesAdj] {<gk_privateer_groups>}}"
+	adjective = "{[This.GetSpeciesAdj]}"
+	prefix_format = "{[This.GetSpeciesAdj] {<gk_privateer_groups>}}"
+}

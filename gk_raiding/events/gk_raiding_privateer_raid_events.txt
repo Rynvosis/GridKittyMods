@@ -1,4 +1,4 @@
-namespace = gk_raiding_marauder
+namespace = gk_raiding_privateers
 
 # Tribute demand tiers (energy, scaled by target economy)
 @tribute_tier_1 = 500
@@ -9,6 +9,48 @@ namespace = gk_raiding_marauder
 # Devastation per pillage packet (must match @gk_pillage_devastation_per_packet in pillaging events)
 @gk_pillage_devastation_per_packet = 10
 
+# Commission raid cost (energy, flat)
+@commission_raid_cost = 750
+
+# ──────────────────────────────────────────────────────────────────
+# Raider Click → Enclave Diplomacy Redirect (201)
+# ──────────────────────────────────────────────────────────────────
+
+# 201 — Gatekeeper: clicking a privateer fleet opens the parent enclave's diplomacy
+# This = player country, From = temp raider country (gk_privateer_raiders)
+country_event = {
+	id = gk_raiding_privateers.201
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			is_country_type = gk_privateer_raiders
+		}
+		NOT = {
+			has_active_event = {
+				gk_raiding_privateers.205
+			}
+		}
+	}
+
+	immediate = {
+		# Find the parent enclave via the raider's flag
+		random_country = {
+			limit = {
+				is_country_type = gk_privateer_enclave
+				from = { has_country_flag = gk_privateer_raider_of_@prev }
+			}
+			save_event_target_as = gk_privateer_enclave_country
+		}
+
+		if = {
+			limit = { exists = event_target:gk_privateer_enclave_country }
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+}
+
 # ──────────────────────────────────────────────────────────────────
 # Autonomous Raiding (210–230)
 # ──────────────────────────────────────────────────────────────────
@@ -16,33 +58,33 @@ namespace = gk_raiding_marauder
 # 210 — Monthly pulse: should the enclave launch an autonomous raid?
 # This = enclave country (from on_monthly_pulse_country)
 country_event = {
-	id = gk_raiding_marauder.210
+	id = gk_raiding_privateers.210
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		is_country_type = gk_marauder_enclave
+		is_country_type = gk_privateer_enclave
 		NOT = { has_country_flag = gk_auto_raid_ongoing }
 		NOT = { has_country_flag = gk_auto_raid_cooldown }
 		gk_has_available_raid_fleet = yes
 		# Find patron to validate targets against
 		any_owned_fleet = {
 			any_owned_ship = {
-				is_ship_size = gk_marauder_station
+				is_ship_size = gk_privateer_station
 			}
 		}
 	}
 
 	immediate = {
-		save_event_target_as = gk_marauder_enclave_country
+		save_event_target_as = gk_privateer_enclave_country
 
 		# Find patron
-		gk_get_marauder_patron = yes
+		gk_get_privateer_patron = yes
 
 		# Only proceed if patron exists and valid targets exist
 		if = {
 			limit = {
-				exists = event_target:gk_marauder_patron
+				exists = event_target:gk_privateer_patron
 				any_country = {
 					gk_is_valid_raid_target = yes
 				}
@@ -52,46 +94,46 @@ country_event = {
 				25 = {
 					modifier = {
 						add = 5
-						has_modifier = gk_marauder_upgrade_1
+						has_modifier = gk_privateer_upgrade_1
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_marauder_upgrade_2
+						has_modifier = gk_privateer_upgrade_2
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_marauder_upgrade_3
+						has_modifier = gk_privateer_upgrade_3
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_marauder_upgrade_4
+						has_modifier = gk_privateer_upgrade_4
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_marauder_upgrade_5
+						has_modifier = gk_privateer_upgrade_5
 					}
-					country_event = { id = gk_raiding_marauder.211 }
+					country_event = { id = gk_raiding_privateers.211 }
 				}
 				75 = {
 					modifier = {
 						add = -5
-						has_modifier = gk_marauder_upgrade_1
+						has_modifier = gk_privateer_upgrade_1
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_marauder_upgrade_2
+						has_modifier = gk_privateer_upgrade_2
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_marauder_upgrade_3
+						has_modifier = gk_privateer_upgrade_3
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_marauder_upgrade_4
+						has_modifier = gk_privateer_upgrade_4
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_marauder_upgrade_5
+						has_modifier = gk_privateer_upgrade_5
 					}
 				}
 			}
@@ -102,7 +144,7 @@ country_event = {
 # 211 — Target + fleet selection
 # This = enclave country
 country_event = {
-	id = gk_raiding_marauder.211
+	id = gk_raiding_privateers.211
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -133,7 +175,7 @@ country_event = {
 
 			# Send tribute demand to target
 			event_target:gk_raid_target = {
-				country_event = { id = gk_raiding_marauder.400 }
+				country_event = { id = gk_raiding_privateers.400 }
 			}
 		}
 		else = {
@@ -153,29 +195,52 @@ country_event = {
 # event_target:gk_raid_fleet = locked fleet
 # event_target:gk_raid_target = target empire
 country_event = {
-	id = gk_raiding_marauder.212
+	id = gk_raiding_privateers.212
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		save_event_target_as = gk_marauder_enclave_country
+		save_event_target_as = gk_privateer_enclave_country
 
 		# Create temp raider country
 		create_country = {
 			name = root
-			type = gk_marauder_raiders
+			type = gk_privateer_raiders
 			species = root.species
 			flag = root.flag
 			effect = {
-				save_event_target_as = gk_corsair_raider
-				set_country_flag = gk_corsair_raider_of_@root
-				set_country_flag = gk_corsair_targeting_@event_target:gk_raid_target
+				save_event_target_as = gk_privateer_raider
+				set_country_flag = gk_privateer_raider_of_@root
+				set_country_flag = gk_privateer_targeting_@event_target:gk_raid_target
 				establish_communications_no_message = event_target:gk_raid_target
 			}
 		}
 
+		# Establish comms with all countries (prevents engine garbage-collection)
+		every_country = {
+			establish_communications_no_message = event_target:gk_privateer_raider
+		}
+
+		# Set raider hostile to target only
+		event_target:gk_privateer_raider = {
+			set_faction_hostility = {
+				target = event_target:gk_raid_target
+				set_hostile = yes
+				set_neutral = no
+				set_friendly = no
+			}
+		}
+
+		# Set enclave friendly to raider
+		set_faction_hostility = {
+			target = event_target:gk_privateer_raider
+			set_hostile = no
+			set_neutral = no
+			set_friendly = yes
+		}
+
 		# Store relationship flags on enclave
-		set_country_flag = gk_has_active_corsair_raider
+		set_country_flag = gk_has_active_privateer_raider
 
 		# Pick a target planet
 		event_target:gk_raid_target = {
@@ -190,21 +255,23 @@ country_event = {
 
 		# Transfer fleet to temp raider and send to target
 		event_target:gk_raid_fleet = {
-			set_owner = event_target:gk_corsair_raider
+			set_owner = event_target:gk_privateer_raider
 			set_fleet_bombardment_stance = indiscriminate
+			set_fleet_stance = aggressive
 			set_aggro_range_measure_from = self
 			set_aggro_range = 150
 
 			# Move to target planet
 			if = {
 				limit = { exists = event_target:gk_raid_planet }
-				queue_actions = {
-					orbit_planet = event_target:gk_raid_planet
+				auto_move_to_planet = {
+					target = event_target:gk_raid_planet
+					clear_auto_move_on_arrival = no
 				}
 			}
 
-			# Queue withdrawal timer
-			fleet_event = { id = gk_raiding_marauder.220 days = 60 random = 30 }
+			# Safety fallback: withdraw after 5 years if devastation trigger never fires
+			fleet_event = { id = gk_raiding_privateers.220 days = 1800 }
 		}
 	}
 }
@@ -213,17 +280,17 @@ country_event = {
 # Detects if a raid is ongoing but the temp raider country is gone
 # This = enclave country
 country_event = {
-	id = gk_raiding_marauder.215
+	id = gk_raiding_privateers.215
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		is_country_type = gk_marauder_enclave
+		is_country_type = gk_privateer_enclave
 		has_country_flag = gk_auto_raid_ongoing
 		NOT = {
 			any_country = {
-				is_country_type = gk_marauder_raiders
-				has_country_flag = gk_corsair_raider_of_@root
+				is_country_type = gk_privateer_raiders
+				has_country_flag = gk_privateer_raider_of_@root
 			}
 		}
 	}
@@ -231,7 +298,7 @@ country_event = {
 	immediate = {
 		# No temp raider exists; raid failed or was cleaned up externally
 		remove_country_flag = gk_auto_raid_ongoing
-		remove_country_flag = gk_has_active_corsair_raider
+		remove_country_flag = gk_has_active_privateer_raider
 		set_timed_country_flag = {
 			flag = gk_auto_raid_cooldown
 			days = 360
@@ -248,23 +315,23 @@ country_event = {
 # 220 — Withdrawal timer fires: end the raid
 # This = fleet (owned by temp raider)
 fleet_event = {
-	id = gk_raiding_marauder.220
+	id = gk_raiding_privateers.220
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
 		owner = {
-			save_event_target_as = gk_corsair_raider
+			save_event_target_as = gk_privateer_raider
 			# Find the enclave that owns this raider
 			random_country = {
 				limit = {
-					is_country_type = gk_marauder_enclave
-					prev = { has_country_flag = gk_corsair_raider_of_@prev }
+					is_country_type = gk_privateer_enclave
+					prev = { has_country_flag = gk_privateer_raider_of_@prev }
 				}
-				save_event_target_as = gk_marauder_enclave_country
+				save_event_target_as = gk_privateer_enclave_country
 
 				# End the raid (handles raided-by flag, loot cashout, notifications, cleanup)
-				gk_end_corsair_raid = yes
+				gk_end_privateer_raid = yes
 			}
 		}
 	}
@@ -272,16 +339,16 @@ fleet_event = {
 
 # 221 — Raid complete popup to patron
 # This = patron country
-# event_target:gk_marauder_enclave_country = enclave
+# event_target:gk_privateer_enclave_country = enclave
 # event_target:gk_raid_target = target (may not exist if destroyed)
 # Display vars: gk_total_* set on this scope
 country_event = {
-	id = gk_raiding_marauder.221
-	title = gk_raiding_marauder.221.name
+	id = gk_raiding_privateers.221
+	title = gk_raiding_privateers.221.name
 	inline_script = {
-		script = gk_raiding/marauder_personality_desc
-		KEY = gk_raiding_marauder.221.desc
-		SCOPE = event_target:gk_marauder_enclave_country
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.221.desc
+		SCOPE = event_target:gk_privateer_enclave_country
 	}
 	picture = GFX_evt_pirate_armada
 	show_sound = event_ship_bridge
@@ -290,28 +357,28 @@ country_event = {
 	immediate = {
 		# Send detailed loot breakdown as a notification message
 		create_message = {
-			type = MESSAGE_TYPE_GK_CORSAIR_RAID_LOOT
-			localization = MESSAGE_GK_CORSAIR_RAID_COMPLETE
+			type = MESSAGE_TYPE_GK_PRIVATEER_RAID_LOOT
+			localization = MESSAGE_GK_PRIVATEER_RAID_COMPLETE
 			days = 30
-			target = event_target:gk_marauder_enclave_country
+			target = event_target:gk_privateer_enclave_country.capital_scope
 			variable = {
 				type = name
 				localization = ENCLAVE
-				scope = event_target:gk_marauder_enclave_country
+				scope = event_target:gk_privateer_enclave_country
 			}
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = trade }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = energy }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = minerals }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = food }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = consumer_goods }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = alloys }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = volatile_motes }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = exotic_gases }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = rare_crystals }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_living_metal }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_zro }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_dark_matter }
-			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = nanites }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = trade SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = energy SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = minerals SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = food SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = consumer_goods SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = alloys SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = volatile_motes SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = exotic_gases SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = rare_crystals SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_living_metal SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_zro SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_dark_matter SCOPE = this }
+			inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = nanites SCOPE = this }
 		}
 	}
 
@@ -324,11 +391,11 @@ country_event = {
 	}
 }
 
-# 230 — Corsair bombardment pillage: accumulate loot on receipt
+# 230 — Privateer bombardment pillage: accumulate loot on receipt
 # This = Planet
-# From = Bombarder country (gk_marauder_raiders)
+# From = Bombarder country (gk_privateer_raiders)
 planet_event = {
-	id = gk_raiding_marauder.230
+	id = gk_raiding_privateers.230
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -337,7 +404,7 @@ planet_event = {
 		is_colony = yes
 		exists = from
 		from = {
-			is_country_type = gk_marauder_raiders
+			is_country_type = gk_privateer_raiders
 		}
 	}
 
@@ -414,21 +481,107 @@ planet_event = {
 	}
 }
 
+# 231 — Devastation-based withdrawal trigger
+# Fires alongside 230 on_planet_bombarded; schedules withdrawal once target is sufficiently damaged
+# This = Planet, From = Bombarder country (gk_privateer_raiders)
+planet_event = {
+	id = gk_raiding_privateers.231
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		is_colony = yes
+		exists = from
+		from = {
+			is_country_type = gk_privateer_raiders
+			NOT = { has_country_flag = gk_privateer_raid_accomplished }
+		}
+		# 51 ensures the 50-devastation loot packet fires before withdrawal
+		planet_devastation >= 51
+	}
+
+	immediate = {
+		from = {
+			set_country_flag = gk_privateer_raid_accomplished
+
+			# Schedule withdrawal on the raider's fleet (30–60 days grace period for final loot)
+			random_owned_fleet = {
+				fleet_event = { id = gk_raiding_privateers.220 days = 30 random = 30 }
+			}
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Commissioned Raid Dispatch (341)
+# ──────────────────────────────────────────────────────────────────
+
+# 341 — Hidden dispatch for commissioned raid
+# This = enclave country (fired from patron's event 340)
+# gk_commissioned_raid_target flag on target country
+# gk_fleet_locked flag on one fleet
+country_event = {
+	id = gk_raiding_privateers.341
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gk_privateer_enclave_country
+
+		# Find the commissioned target
+		random_country = {
+			limit = { has_country_flag = gk_commissioned_raid_target }
+			save_event_target_as = gk_raid_target
+			remove_country_flag = gk_commissioned_raid_target
+		}
+
+		# Find the locked fleet
+		random_owned_fleet = {
+			limit = { has_fleet_flag = gk_fleet_locked }
+			save_event_target_as = gk_raid_fleet
+		}
+
+		if = {
+			limit = {
+				exists = event_target:gk_raid_target
+				exists = event_target:gk_raid_fleet
+			}
+			set_country_flag = gk_auto_raid_ongoing
+			country_event = { id = gk_raiding_privateers.212 }
+		}
+		else = {
+			# Fallback: clean up stale locks and refund the commissioning player
+			# from = commissioning player (root of event 340)
+			every_owned_fleet = {
+				limit = { has_fleet_flag = gk_fleet_locked }
+				remove_fleet_flag = gk_fleet_locked
+			}
+			if = {
+				limit = { exists = from }
+				from = {
+					add_resource = { energy = @commission_raid_cost }
+				}
+			}
+		}
+	}
+}
+
 # ──────────────────────────────────────────────────────────────────
 # Tribute Demand + Target Events (400–499)
 # ──────────────────────────────────────────────────────────────────
 
 # 400 — Tribute demand sent to target
 # This = target country
-# From = enclave country (event_target:gk_marauder_enclave_country)
+# From = enclave country (event_target:gk_privateer_enclave_country)
 # event_target:gk_raid_fleet = locked fleet
 country_event = {
-	id = gk_raiding_marauder.400
-	title = gk_raiding_marauder.400.name
+	id = gk_raiding_privateers.400
+	title = gk_raiding_privateers.400.name
 	diplomatic = yes
 	inline_script = {
-		script = gk_raiding/marauder_personality_desc
-		KEY = gk_raiding_marauder.400.desc
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.400.desc
 		SCOPE = from
 	}
 	picture_event_data = {
@@ -440,14 +593,14 @@ country_event = {
 
 	immediate = {
 		from = {
-			save_event_target_as = gk_marauder_enclave_country
+			save_event_target_as = gk_privateer_enclave_country
 		}
 	}
 
 	# Option A: Pay tribute (4 tiers by income)
 	option = {
-		name = gk_raiding_marauder.400.a
-		response_text = gk_raiding_marauder.400.a.response
+		name = gk_raiding_privateers.400.a
+		response_text = gk_raiding_privateers.400.a.response
 		trigger = {
 			has_monthly_income = { resource = energy value < 100 }
 		}
@@ -456,7 +609,7 @@ country_event = {
 		}
 		add_resource = { energy = -500 }
 		hidden_effect = {
-			country_event = { id = gk_raiding_marauder.401 }
+			country_event = { id = gk_raiding_privateers.401 }
 		}
 		ai_chance = {
 			factor = 50
@@ -471,8 +624,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = gk_raiding_marauder.400.a
-		response_text = gk_raiding_marauder.400.a.response
+		name = gk_raiding_privateers.400.a
+		response_text = gk_raiding_privateers.400.a.response
 		trigger = {
 			has_monthly_income = { resource = energy value >= 100 }
 			has_monthly_income = { resource = energy value < 200 }
@@ -482,7 +635,7 @@ country_event = {
 		}
 		add_resource = { energy = -1000 }
 		hidden_effect = {
-			country_event = { id = gk_raiding_marauder.401 }
+			country_event = { id = gk_raiding_privateers.401 }
 		}
 		ai_chance = {
 			factor = 50
@@ -497,8 +650,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = gk_raiding_marauder.400.a
-		response_text = gk_raiding_marauder.400.a.response
+		name = gk_raiding_privateers.400.a
+		response_text = gk_raiding_privateers.400.a.response
 		trigger = {
 			has_monthly_income = { resource = energy value >= 200 }
 			has_monthly_income = { resource = energy value < 400 }
@@ -508,7 +661,7 @@ country_event = {
 		}
 		add_resource = { energy = -2000 }
 		hidden_effect = {
-			country_event = { id = gk_raiding_marauder.401 }
+			country_event = { id = gk_raiding_privateers.401 }
 		}
 		ai_chance = {
 			factor = 50
@@ -523,8 +676,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = gk_raiding_marauder.400.a
-		response_text = gk_raiding_marauder.400.a.response
+		name = gk_raiding_privateers.400.a
+		response_text = gk_raiding_privateers.400.a.response
 		trigger = {
 			has_monthly_income = { resource = energy value >= 400 }
 		}
@@ -533,7 +686,7 @@ country_event = {
 		}
 		add_resource = { energy = -3000 }
 		hidden_effect = {
-			country_event = { id = gk_raiding_marauder.401 }
+			country_event = { id = gk_raiding_privateers.401 }
 		}
 		ai_chance = {
 			factor = 50
@@ -550,12 +703,12 @@ country_event = {
 
 	# Option B: Refuse
 	option = {
-		name = gk_raiding_marauder.400.b
-		response_text = gk_raiding_marauder.400.b.response
+		name = gk_raiding_privateers.400.b
+		response_text = gk_raiding_privateers.400.b.response
 		hidden_effect = {
 			set_country_flag = gk_tribute_responded
-			event_target:gk_marauder_enclave_country = {
-				country_event = { id = gk_raiding_marauder.212 }
+			event_target:gk_privateer_enclave_country = {
+				country_event = { id = gk_raiding_privateers.212 }
 			}
 		}
 		ai_chance = {
@@ -578,8 +731,8 @@ country_event = {
 				limit = {
 					NOT = { has_country_flag = gk_tribute_responded }
 				}
-				event_target:gk_marauder_enclave_country = {
-					country_event = { id = gk_raiding_marauder.212 }
+				event_target:gk_privateer_enclave_country = {
+					country_event = { id = gk_raiding_privateers.212 }
 				}
 			}
 			remove_country_flag = gk_tribute_responded
@@ -589,9 +742,9 @@ country_event = {
 
 # 401 — Tribute accepted routing
 # This = target country
-# event_target:gk_marauder_enclave_country = enclave
+# event_target:gk_privateer_enclave_country = enclave
 country_event = {
-	id = gk_raiding_marauder.401
+	id = gk_raiding_privateers.401
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -599,8 +752,8 @@ country_event = {
 		set_country_flag = gk_tribute_responded
 
 		# Find patron and give them the tribute energy
-		event_target:gk_marauder_enclave_country = {
-			gk_get_marauder_patron = yes
+		event_target:gk_privateer_enclave_country = {
+			gk_get_privateer_patron = yes
 
 			# Unlock fleet
 			if = {
@@ -616,7 +769,7 @@ country_event = {
 			# Set 2-year truce (can't raid same target)
 			root = {
 				set_timed_country_flag = {
-					flag = gk_raided_by_@event_target:gk_marauder_enclave_country
+					flag = gk_raided_by_@event_target:gk_privateer_enclave_country
 					days = 720
 				}
 			}
@@ -630,8 +783,8 @@ country_event = {
 
 		# Transfer tribute to patron
 		if = {
-			limit = { exists = event_target:gk_marauder_patron }
-			event_target:gk_marauder_patron = {
+			limit = { exists = event_target:gk_privateer_patron }
+			event_target:gk_privateer_patron = {
 				# Reimburse the energy that was paid as tribute
 				if = {
 					limit = {
@@ -662,9 +815,9 @@ country_event = {
 # 402 — Raiders withdrew notification to target
 # This = target country
 country_event = {
-	id = gk_raiding_marauder.402
-	title = gk_raiding_marauder.402.name
-	desc = gk_raiding_marauder.402.desc
+	id = gk_raiding_privateers.402
+	title = gk_raiding_privateers.402.name
+	desc = gk_raiding_privateers.402.desc
 	picture = GFX_evt_pirate_armada
 	is_triggered_only = yes
 

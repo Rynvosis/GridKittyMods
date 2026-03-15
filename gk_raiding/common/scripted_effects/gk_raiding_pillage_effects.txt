@@ -748,19 +748,19 @@ gk_send_pillage_notifications = {
 				localization = PLANET
 				scope = prev
 			}
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = trade }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = energy }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = minerals }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = food }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = consumer_goods }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = alloys }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = volatile_motes }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = exotic_gases }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = rare_crystals }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = sr_living_metal }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = sr_zro }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = sr_dark_matter }
-			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = nanites }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = trade SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = energy SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = minerals SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = food SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = consumer_goods SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = alloys SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = volatile_motes SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = exotic_gases SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = rare_crystals SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = sr_living_metal SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = sr_zro SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = sr_dark_matter SCOPE = prev }
+			inline_script = { script = gk_raiding/loot_message_resource_parameter RESOURCE = nanites SCOPE = prev }
 		}
 	}
 

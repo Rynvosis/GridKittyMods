@@ -1,6 +1,6 @@
-# GK Raiding — Marauder Starbase Buildings
+# GK Raiding — Privateer Starbase Buildings
 
-gk_marauder_garrison = {
+gk_privateer_garrison = {
 	icon = "GFX_starbase_mercenary_garrison"
 	construction_days = 360
 
@@ -8,7 +8,7 @@ gk_marauder_garrison = {
 		exists = owner
 		owner = {
 			is_homicidal = no
-			has_country_flag = gk_marauder_bought_garrison
+			has_country_flag = gk_privateer_bought_garrison
 		}
 		is_normal_starbase = yes
 		is_space_citadel = no
@@ -21,7 +21,7 @@ gk_marauder_garrison = {
 		}
 		solar_system = {
 			count_starbase_buildings = {
-				type = gk_marauder_garrison
+				type = gk_privateer_garrison
 				count < 1
 				include_being_constructed = yes
 			}
@@ -31,7 +31,7 @@ gk_marauder_garrison = {
 	abort_construction_trigger = {
 		solar_system = {
 			count_starbase_buildings = {
-				type = gk_marauder_garrison
+				type = gk_privateer_garrison
 				count > 1
 				include_being_constructed = yes
 			}

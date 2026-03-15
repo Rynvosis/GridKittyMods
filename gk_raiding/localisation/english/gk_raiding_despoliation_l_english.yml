@@ -1,8 +1,8 @@
 ﻿l_english:
- concept_gk_material_liberator:0 "$leader_trait_corsair$"
+ concept_gk_material_liberator:0 "$leader_trait_privateer$"
  concept_gk_material_liberator_desc:0 "An admiral trait that yields £energy£ §YEnergy§! from destroyed enemy ships."
- concept_gk_corsair:0 "$leader_trait_corsair$"
- concept_gk_corsair_desc:0 "An admiral trait that yields £energy£ §YEnergy§! from destroyed enemy ships."
+ concept_gk_privateer:0 "$leader_trait_privateer$"
+ concept_gk_privateer_desc:0 "An admiral trait that yields £energy£ §YEnergy§! from destroyed enemy ships."
  concept_gk_shipbreaker:0 "$leader_trait_shipbreaker$"
  concept_gk_shipbreaker_desc:0 "An admiral trait that yields £alloys£ §YAlloys§! from destroyed enemy ships."
 
@@ -33,8 +33,8 @@
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_1_EFFECT:0 "While at war: §G+10%§! £happiness£ §YHappiness§!, §G+25%§! £unity£ §YUnity§! production"
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_EFFECT:0 "Unlocks the §Y$scavenge_and_research_debris$§! debris policy"
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_ARCHIVE_EFFECT:0 "Unlocks the §Y$scavenge_and_research_debris$§! debris policy\nTechnology granted: ['technology:tech_boarding_cables', £engineering£$tech_boarding_cables$]"
- GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_5_EFFECT:0 "£commander£ §YCommanders§! get one of: ['concept_gk_material_liberator'] or ['concept_gk_shipbreaker']\n\nGain §G50%§! more resources from §H$leader_trait_corsair$§! and §H$leader_trait_shipbreaker$§!."
+ GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_5_EFFECT:0 "£commander£ §YCommanders§! get one of: ['concept_gk_material_liberator'] or ['concept_gk_shipbreaker']\n\nGain §G50%§! more resources from §H$leader_trait_privateer$§! and §H$leader_trait_shipbreaker$§!."
 
- GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_EFFECT:0 "Unlocks the ability to found §YMarauder Enclaves§!, pirate havens that can be hired as mercenaries."
+ GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_EFFECT:0 "Unlocks the ability to found §YPrivateer Enclaves§!, pirate havens that can be hired as mercenaries."
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_MINDWARDEN_EFFECT:0 "§Y+2§! Enclave Capacity"
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_PURIFIER_EFFECT:0 "The weak build havens. We build pyres."

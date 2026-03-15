@@ -1,7 +1,7 @@
 # GK Raiding Despoliation Game Concepts
 
 concept_gk_material_liberator = {
-	alias = { concept_gk_corsair }
+	alias = { concept_gk_privateer }
 	icon = "gfx/interface/icons/resources/energy.dds"
 	databank = {
 		category = db_gk_raiding

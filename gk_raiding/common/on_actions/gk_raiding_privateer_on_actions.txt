@@ -1,0 +1,25 @@
+on_custom_diplomacy = {
+	events = {
+		gk_raiding_privateers.200
+		gk_raiding_privateers.201
+	}
+}
+
+# Monthly pulse — autonomous raid check
+# This = Country
+on_monthly_pulse_country = {
+	events = {
+		gk_raiding_privateers.210  # Autonomous raid pulse
+		gk_raiding_privateers.215  # Orphaned raid cleanup
+	}
+}
+
+# Bombardment — privateer pillage accumulation
+# This = Planet
+# From = Bombarder (country)
+on_planet_bombarded = {
+	events = {
+		gk_raiding_privateers.230  # Privateer bombardment loot accumulation
+		gk_raiding_privateers.231  # Devastation-based withdrawal trigger
+	}
+}

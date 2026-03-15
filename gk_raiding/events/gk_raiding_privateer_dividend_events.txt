@@ -1,4 +1,4 @@
-namespace = gk_raiding_marauder
+namespace = gk_raiding_privateers
 
 # Resource payout tiers (3 tiers, breakpoints at upgrade_2 and upgrade_4)
 # Alloys
@@ -41,7 +41,7 @@ namespace = gk_raiding_marauder
 # Dispatcher — hidden, fires on enclave country from situation completion
 # This = enclave country, From = situation
 country_event = {
-	id = gk_raiding_marauder.500
+	id = gk_raiding_privateers.500
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -49,7 +49,7 @@ country_event = {
 		# Find patron via station system space_owner
 		random_owned_fleet = {
 			limit = {
-				is_ship_size = gk_marauder_station
+				is_ship_size = gk_privateer_station
 			}
 			solar_system = {
 				if = {
@@ -57,31 +57,31 @@ country_event = {
 						exists = space_owner
 					}
 					space_owner = {
-						save_event_target_as = gk_marauder_patron
+						save_event_target_as = gk_privateer_patron
 					}
 				}
 			}
 		}
 		root = {
-			save_event_target_as = gk_marauder_enclave_country
+			save_event_target_as = gk_privateer_enclave_country
 		}
 		if = {
 			limit = {
-				exists = event_target:gk_marauder_patron
+				exists = event_target:gk_privateer_patron
 			}
-			event_target:gk_marauder_patron = {
+			event_target:gk_privateer_patron = {
 				random_list = {
-					35 = { country_event = { id = gk_raiding_marauder.510 } }
-					35 = { country_event = { id = gk_raiding_marauder.515 } }
-					25 = { country_event = { id = gk_raiding_marauder.520 } }
+					35 = { country_event = { id = gk_raiding_privateers.510 } }
+					35 = { country_event = { id = gk_raiding_privateers.515 } }
+					25 = { country_event = { id = gk_raiding_privateers.520 } }
 					5 = {
 						modifier = {
 							factor = 0
-							event_target:gk_marauder_enclave_country = {
-								NOT = { has_modifier = gk_marauder_upgrade_1 }
+							event_target:gk_privateer_enclave_country = {
+								NOT = { has_modifier = gk_privateer_upgrade_1 }
 							}
 						}
-						country_event = { id = gk_raiding_marauder.530 }
+						country_event = { id = gk_raiding_privateers.530 }
 					}
 				}
 			}
@@ -90,8 +90,8 @@ country_event = {
 
 	after = {
 		start_situation = {
-			type = gk_marauder_dividends
-			target = event_target:gk_marauder_patron
+			type = gk_privateer_dividends
+			target = event_target:gk_privateer_patron
 		}
 		destroy_situation = from
 	}
@@ -103,12 +103,12 @@ country_event = {
 # ──────────────────────────────────────────────────────────────────
 
 country_event = {
-	id = gk_raiding_marauder.510
-	title = gk_raiding_marauder.510.name
+	id = gk_raiding_privateers.510
+	title = gk_raiding_privateers.510.name
 	inline_script = {
-		script = gk_raiding/marauder_personality_desc
-		KEY = gk_raiding_marauder.510.desc
-		SCOPE = event_target:gk_marauder_enclave_country
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.510.desc
+		SCOPE = event_target:gk_privateer_enclave_country
 	}
 	picture = GFX_evt_pirate_armada
 	show_sound = event_ship_bridge
@@ -118,8 +118,8 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				NOT = { has_modifier = gk_marauder_upgrade_2 }
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -140,9 +140,9 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				has_modifier = gk_marauder_upgrade_2
-				NOT = { has_modifier = gk_marauder_upgrade_4 }
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -163,8 +163,8 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				has_modifier = gk_marauder_upgrade_4
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
 			}
 		}
 		add_monthly_resource_mult = {
@@ -188,12 +188,12 @@ country_event = {
 # ──────────────────────────────────────────────────────────────────
 
 country_event = {
-	id = gk_raiding_marauder.515
-	title = gk_raiding_marauder.515.name
+	id = gk_raiding_privateers.515
+	title = gk_raiding_privateers.515.name
 	inline_script = {
-		script = gk_raiding/marauder_personality_desc
-		KEY = gk_raiding_marauder.515.desc
-		SCOPE = event_target:gk_marauder_enclave_country
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.515.desc
+		SCOPE = event_target:gk_privateer_enclave_country
 	}
 	picture = GFX_evt_pirate_armada
 	show_sound = event_ship_bridge
@@ -203,8 +203,8 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				NOT = { has_modifier = gk_marauder_upgrade_2 }
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -225,9 +225,9 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				has_modifier = gk_marauder_upgrade_2
-				NOT = { has_modifier = gk_marauder_upgrade_4 }
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -248,8 +248,8 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				has_modifier = gk_marauder_upgrade_4
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
 			}
 		}
 		add_monthly_resource_mult = {
@@ -273,12 +273,12 @@ country_event = {
 # ──────────────────────────────────────────────────────────────────
 
 country_event = {
-	id = gk_raiding_marauder.520
-	title = gk_raiding_marauder.520.name
+	id = gk_raiding_privateers.520
+	title = gk_raiding_privateers.520.name
 	inline_script = {
-		script = gk_raiding/marauder_personality_desc
-		KEY = gk_raiding_marauder.520.desc
-		SCOPE = event_target:gk_marauder_enclave_country
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.520.desc
+		SCOPE = event_target:gk_privateer_enclave_country
 	}
 	picture = GFX_evt_pirate_armada
 	show_sound = event_ship_bridge
@@ -297,8 +297,8 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				NOT = { has_modifier = gk_marauder_upgrade_2 }
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -344,9 +344,9 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				has_modifier = gk_marauder_upgrade_2
-				NOT = { has_modifier = gk_marauder_upgrade_4 }
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -392,8 +392,8 @@ country_event = {
 	option = {
 		name = EXCELLENT
 		trigger = {
-			event_target:gk_marauder_enclave_country = {
-				has_modifier = gk_marauder_upgrade_4
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
 			}
 		}
 		add_monthly_resource_mult = {
@@ -437,19 +437,19 @@ country_event = {
 }
 
 # ──────────────────────────────────────────────────────────────────
-# .530 — Scavenged Fleet (marauder ships gifted to patron)
+# .530 — Scavenged Fleet (privateer ships gifted to patron)
 # This = patron country
 # Only fires at rank 1+; dispatcher zeroes weight at rank 0
 # Fleet size scales with payout tier breakpoints (upgrade_2, upgrade_4)
 # ──────────────────────────────────────────────────────────────────
 
 country_event = {
-	id = gk_raiding_marauder.530
-	title = gk_raiding_marauder.530.name
+	id = gk_raiding_privateers.530
+	title = gk_raiding_privateers.530.name
 	inline_script = {
-		script = gk_raiding/marauder_personality_desc
-		KEY = gk_raiding_marauder.530.desc
-		SCOPE = event_target:gk_marauder_enclave_country
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.530.desc
+		SCOPE = event_target:gk_privateer_enclave_country
 	}
 	picture = GFX_evt_pirate_armada
 	show_sound = event_ship_bridge
@@ -489,8 +489,8 @@ country_event = {
 				# Tier 2 bonus (ranks 2+): +4 corvettes, +2 destroyers, +2 cruisers
 				if = {
 					limit = {
-						event_target:gk_marauder_enclave_country = {
-							has_modifier = gk_marauder_upgrade_2
+						event_target:gk_privateer_enclave_country = {
+							has_modifier = gk_privateer_upgrade_2
 						}
 					}
 					while = {
@@ -521,8 +521,8 @@ country_event = {
 				# Tier 3 bonus (ranks 4+): +4 corvettes, +2 destroyers, +2 cruisers
 				if = {
 					limit = {
-						event_target:gk_marauder_enclave_country = {
-							has_modifier = gk_marauder_upgrade_4
+						event_target:gk_privateer_enclave_country = {
+							has_modifier = gk_privateer_upgrade_4
 						}
 					}
 					while = {
@@ -550,7 +550,7 @@ country_event = {
 						}
 					}
 				}
-				set_location = event_target:gk_marauder_enclave_country
+				set_location = event_target:gk_privateer_enclave_country
 				auto_move_to_planet = {
 					target = root.capital_scope
 					clear_auto_move_on_arrival = yes

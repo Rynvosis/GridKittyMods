@@ -1,9 +1,9 @@
-# GK Raiding — Marauder Enclave civic
+# GK Raiding — Privateer Enclave civic
 
-civic_gk_marauder_enclave = {
+civic_gk_privateer_enclave = {
 	icon = "gfx/interface/icons/governments/civics/civic_trading_posts.dds"
 	potential = {
-		country_type = { value = gk_marauder_enclave }
+		country_type = { value = gk_privateer_enclave }
 	}
 	modifier = {
 		ship_speed_mult = 0.15

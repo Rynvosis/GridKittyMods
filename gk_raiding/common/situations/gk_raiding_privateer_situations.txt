@@ -1,4 +1,4 @@
-# GK Raiding — Marauder Enclave Dividend Situation
+# GK Raiding — Privateer Enclave Dividend Situation
 # Owner = enclave country, Target = patron country
 
 # Progress rates
@@ -12,16 +12,16 @@
 @dividend_resolution_5_rate = 2.5
 @dividend_lord_of_war_rate = 2.5
 
-gk_marauder_dividends = {
+gk_privateer_dividends = {
 	picture = GFX_evt_pirate_armada
 	complete_icon_frame = GFX_situation_outcome_frame_blue
 	complete_icon = GFX_situation_outcome_meh
 	on_progress_complete = {
 		custom_tooltip = situation_unknown_outcome_approach
-		owner = { country_event = { id = gk_raiding_marauder.500 } }
+		owner = { country_event = { id = gk_raiding_privateers.500 } }
 	}
 	on_fail = {
-		log_error = "gk_marauder_dividends situation failed, this is not meant to happen"
+		log_error = "gk_privateer_dividends situation failed, this is not meant to happen"
 		destroy_situation = this
 	}
 	stages = {
@@ -40,7 +40,7 @@ gk_marauder_dividends = {
 			desc = GK_RAIDING_DIVIDEND_PATRON_AT_WAR
 			owner = {
 				any_owned_fleet = {
-					is_ship_size = gk_marauder_station
+					is_ship_size = gk_privateer_station
 					solar_system = {
 						exists = space_owner
 						space_owner = {
@@ -55,27 +55,27 @@ gk_marauder_dividends = {
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_marauder_upgrade_1 }
+			owner = { has_modifier = gk_privateer_upgrade_1 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_marauder_upgrade_2 }
+			owner = { has_modifier = gk_privateer_upgrade_2 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_marauder_upgrade_3 }
+			owner = { has_modifier = gk_privateer_upgrade_3 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_marauder_upgrade_4 }
+			owner = { has_modifier = gk_privateer_upgrade_4 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_marauder_upgrade_5 }
+			owner = { has_modifier = gk_privateer_upgrade_5 }
 		}
 
 		# GalCom resolutions
@@ -111,7 +111,7 @@ gk_marauder_dividends = {
 			desc = lord_of_war
 			owner = {
 				any_owned_fleet = {
-					is_ship_size = gk_marauder_station
+					is_ship_size = gk_privateer_station
 					solar_system = {
 						exists = space_owner
 						space_owner = {

@@ -1,10 +1,10 @@
-# GK Raiding — Marauder Enclave station ship size
+# GK Raiding — Privateer Enclave station ship size
 # Based on enclave_mercenary_station (vanilla ship_sizes/21_overlord.txt:331-367)
 # Differences: entity = station_generic_01_entity (marauder void dwelling model)
 
-@station_gk_marauder_hp = 40000
+@station_gk_privateer_hp = 40000
 
-gk_marauder_station = {
+gk_privateer_station = {
 	entity = station_generic_01_entity
 	is_space_object = no
 	graphical_culture = no
@@ -19,7 +19,7 @@ gk_marauder_station = {
 		starbase_shipyard_capacity_add = 4
 		starbase_defense_platform_capacity_add = 8
 	}
-	max_hitpoints = @station_gk_marauder_hp
+	max_hitpoints = @station_gk_privateer_hp
 	combat_size_multiplier = 100
 	size_multiplier = 100
 	map_counter_icon = ship_counter_128

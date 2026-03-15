@@ -1,0 +1,1349 @@
+namespace = gk_raiding_privateers
+
+# ──────────────────────────────────────────────────────────────────
+# Enclave Founding (100–199)
+# ──────────────────────────────────────────────────────────────────
+
+# Execute creation — hidden
+# This = Fleet
+fleet_event = {
+	id = gk_raiding_privateers.101
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_enclave_with_country = {
+			PREFIX = gk_privateer
+			EFFECT = gk_create_privateer_enclave_country
+			TRUST = 30
+		}
+	}
+
+	after = {
+		event_target:gk_privateer_enclave_creator = {
+			country_event = { id = gk_raiding_privateers.102 }
+			set_country_flag = gk_is_privateer_patron
+		}
+	}
+}
+
+# Haven established — notification to patron
+# This = Patron country
+country_event = {
+	id = gk_raiding_privateers.102
+	title = "gk_raiding_privateers.102.name"
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.102.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Diplomacy Window — Gatekeeper + Greeting (200–299)
+# ──────────────────────────────────────────────────────────────────
+
+# Gatekeeper — redirects on_custom_diplomacy to greeting
+# This = player country, From = enclave country
+country_event = {
+	id = gk_raiding_privateers.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			is_country_type = gk_privateer_enclave
+		}
+		NOT = {
+			has_active_event = {
+				gk_raiding_privateers.205
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			save_event_target_as = gk_privateer_enclave_country
+		}
+		country_event = { id = gk_raiding_privateers.205 }
+	}
+}
+
+# Greeting — scaffold placeholder
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.205
+	title = gk_raiding_privateers.205.name
+	# Friendly greetings — one per personality
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_stoic }
+		}
+		text = gk_raiding_privateers.205.desc.stoic
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_screamer }
+		}
+		text = gk_raiding_privateers.205.desc.screamer
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_cultist }
+		}
+		text = gk_raiding_privateers.205.desc.cultist
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_calculating }
+		}
+		text = gk_raiding_privateers.205.desc.calculating
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_merchant }
+		}
+		text = gk_raiding_privateers.205.desc.merchant
+	}
+	desc = {
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_automaton }
+		}
+		text = gk_raiding_privateers.205.desc.automaton
+	}
+	# Hostile greetings — one per personality
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_privateer_enclave_country
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_stoic }
+		}
+		text = gk_raiding_privateers.205.desc.stoic.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_privateer_enclave_country
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_screamer }
+		}
+		text = gk_raiding_privateers.205.desc.screamer.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_privateer_enclave_country
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_cultist }
+		}
+		text = gk_raiding_privateers.205.desc.cultist.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_privateer_enclave_country
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_calculating }
+		}
+		text = gk_raiding_privateers.205.desc.calculating.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_privateer_enclave_country
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_merchant }
+		}
+		text = gk_raiding_privateers.205.desc.merchant.hostile
+	}
+	desc = {
+		trigger = {
+			is_hostile = event_target:gk_privateer_enclave_country
+			event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_automaton }
+		}
+		text = gk_raiding_privateers.205.desc.automaton.hostile
+	}
+
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "gk_privateer_enclave_window"
+	custom_gui_option = "gk_privateer_enclave_option"
+	picture_event_data = {
+		portrait = event_target:gk_privateer_enclave_country
+		room = enclave_mercenary_room
+	}
+	location = event_target:gk_privateer_enclave_system
+
+	immediate = {
+		event_target:gk_privateer_enclave_country = {
+			random_owned_fleet = {
+				limit = {
+					is_ship_size = gk_privateer_station
+				}
+				solar_system = {
+					save_event_target_as = gk_privateer_enclave_system
+				}
+			}
+			species = {
+				save_event_target_as = gk_privateer_enclave_species
+			}
+		}
+	}
+
+	# ── Smuggling Network ──
+	option = {
+		name = gk_raiding_privateers.205.a
+		custom_tooltip = gk_privateer_tt_smuggling
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			NOT = { has_modifier = gk_privateer_smuggling_network }
+		}
+		allow = {
+			event_target:gk_privateer_enclave_country = {
+				trust = {
+					who = root
+					value >= 20
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.310 }
+		}
+	}
+
+	# ── Raider Intelligence ──
+	option = {
+		name = gk_raiding_privateers.205.b
+		custom_tooltip = gk_privateer_tt_intel
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			NOT = { has_modifier = gk_privateer_raider_intel }
+		}
+		allow = {
+			event_target:gk_privateer_enclave_country = {
+				trust = {
+					who = root
+					value >= 50
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.315 }
+		}
+	}
+
+	# ── Raider Garrison ──
+	option = {
+		name = gk_raiding_privateers.205.c
+		custom_tooltip = gk_privateer_tt_garrison
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			NOT = { has_country_flag = gk_privateer_bought_garrison }
+		}
+		allow = {
+			event_target:gk_privateer_enclave_country = {
+				trust = {
+					who = root
+					value >= 40
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.320 }
+		}
+	}
+
+	# ── Recruit Raiders ──
+	option = {
+		name = gk_raiding_privateers.205.d
+		custom_tooltip = gk_privateer_tt_armies
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			NOT = { event_target:gk_privateer_enclave_country = { has_country_flag = gk_privateer_army_hired } }
+		}
+		allow = {
+			event_target:gk_privateer_enclave_country = {
+				trust = {
+					who = root
+					value >= 20
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.325 }
+		}
+	}
+
+	# ── Patron Panel ──
+	option = {
+		name = gk_raiding_privateers.205.e
+		custom_tooltip = gk_privateer_tt_patron
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_system = {
+				space_owner = {
+					is_same_value = root
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.335 }
+		}
+	}
+
+	# ── Commission Raid ──
+	option = {
+		name = gk_raiding_privateers.205.f
+		custom_tooltip = gk_privateer_tt_commission
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+		}
+		allow = {
+			event_target:gk_privateer_enclave_country = {
+				trust = {
+					who = root
+					value >= 30
+				}
+			}
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_commission_no_fleet
+				event_target:gk_privateer_enclave_country = {
+					gk_has_available_raid_fleet = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_commission_raid_ongoing
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_country_flag = gk_auto_raid_ongoing }
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.340 }
+		}
+	}
+
+	option = {
+		name = CLOSE
+		default_hide_option = yes
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Diplomacy Services (300–399)
+# ──────────────────────────────────────────────────────────────────
+
+# Upgrade Haven — 5 cumulative tiers
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.300
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	desc = {
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_1 }
+			}
+		}
+		text = gk_raiding_privateers.300.1.desc
+	}
+	desc = {
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_1
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
+			}
+		}
+		text = gk_raiding_privateers.300.2.desc
+	}
+	desc = {
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_3 }
+			}
+		}
+		text = gk_raiding_privateers.300.3.desc
+	}
+	desc = {
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_3
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
+			}
+		}
+		text = gk_raiding_privateers.300.4.desc
+	}
+	desc = {
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
+				NOT = { has_modifier = gk_privateer_upgrade_5 }
+			}
+		}
+		text = gk_raiding_privateers.300.5.desc
+	}
+
+	# Return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+
+	# Tier 1: 500 alloys + 1000 energy/food
+	option = {
+		name = DEAL
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_1 }
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = alloys value >= 500 }
+			if = {
+				limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+				resource_stockpile_compare = { resource = food value >= 1000 }
+			}
+			else = {
+				resource_stockpile_compare = { resource = energy value >= 1000 }
+			}
+		}
+		add_resource = { alloys = -500 }
+		if = {
+			limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+			add_resource = { food = -1000 }
+		}
+		else = {
+			add_resource = { energy = -1000 }
+		}
+		custom_tooltip = opinion20
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+				add_modifier = {
+					modifier = gk_privateer_upgrade_1
+					days = -1
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	# Tier 2: 1250 alloys + 2500 energy/food
+	option = {
+		name = DEAL
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_1
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = alloys value >= 1250 }
+			if = {
+				limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+				resource_stockpile_compare = { resource = food value >= 2500 }
+			}
+			else = {
+				resource_stockpile_compare = { resource = energy value >= 2500 }
+			}
+		}
+		add_resource = { alloys = -1250 }
+		if = {
+			limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+			add_resource = { food = -2500 }
+		}
+		else = {
+			add_resource = { energy = -2500 }
+		}
+		custom_tooltip = opinion20
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+				add_modifier = {
+					modifier = gk_privateer_upgrade_2
+					days = -1
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	# Tier 3: 2750 alloys + 5500 energy/food
+	option = {
+		name = DEAL
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_3 }
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = alloys value >= 2750 }
+			if = {
+				limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+				resource_stockpile_compare = { resource = food value >= 5500 }
+			}
+			else = {
+				resource_stockpile_compare = { resource = energy value >= 5500 }
+			}
+		}
+		add_resource = { alloys = -2750 }
+		if = {
+			limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+			add_resource = { food = -5500 }
+		}
+		else = {
+			add_resource = { energy = -5500 }
+		}
+		custom_tooltip = opinion20
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+				add_modifier = {
+					modifier = gk_privateer_upgrade_3
+					days = -1
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	# Tier 4: 5000 alloys + 10000 energy/food
+	option = {
+		name = DEAL
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_3
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = alloys value >= 5000 }
+			if = {
+				limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+				resource_stockpile_compare = { resource = food value >= 10000 }
+			}
+			else = {
+				resource_stockpile_compare = { resource = energy value >= 10000 }
+			}
+		}
+		add_resource = { alloys = -5000 }
+		if = {
+			limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+			add_resource = { food = -10000 }
+		}
+		else = {
+			add_resource = { energy = -10000 }
+		}
+		custom_tooltip = opinion20
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+				add_modifier = {
+					modifier = gk_privateer_upgrade_4
+					days = -1
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	# Tier 5: 6500 alloys + 13000 energy/food
+	option = {
+		name = DEAL
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
+				NOT = { has_modifier = gk_privateer_upgrade_5 }
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = alloys value >= 6500 }
+			if = {
+				limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+				resource_stockpile_compare = { resource = food value >= 13000 }
+			}
+			else = {
+				resource_stockpile_compare = { resource = energy value >= 13000 }
+			}
+		}
+		add_resource = { alloys = -6500 }
+		if = {
+			limit = { event_target:gk_privateer_enclave_country = { country_uses_bio_ships = yes } }
+			add_resource = { food = -13000 }
+		}
+		else = {
+			add_resource = { energy = -13000 }
+		}
+		custom_tooltip = opinion20
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+				add_modifier = {
+					modifier = gk_privateer_upgrade_5
+					days = -1
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+}
+
+# Thanks for purchase — confirmation
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.305
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.305.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+}
+
+# Smuggling Network — trade value boost with crime
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.310
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.310.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	# Return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		trigger = { max_naval_capacity < 76 }
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 1000 }
+		}
+		add_resource = { energy = -1000 }
+		custom_tooltip = opinion10
+		add_modifier = {
+			modifier = gk_privateer_smuggling_network
+			days = 3600
+		}
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		trigger = {
+			max_naval_capacity > 75
+			max_naval_capacity < 151
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 1500 }
+		}
+		add_resource = { energy = -1500 }
+		custom_tooltip = opinion10
+		add_modifier = {
+			modifier = gk_privateer_smuggling_network
+			days = 3600
+		}
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		trigger = {
+			max_naval_capacity > 150
+			max_naval_capacity < 276
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2500 }
+		}
+		add_resource = { energy = -2500 }
+		custom_tooltip = opinion10
+		add_modifier = {
+			modifier = gk_privateer_smuggling_network
+			days = 3600
+		}
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		trigger = {
+			max_naval_capacity > 275
+			max_naval_capacity < 451
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 4000 }
+		}
+		add_resource = { energy = -4000 }
+		custom_tooltip = opinion10
+		add_modifier = {
+			modifier = gk_privateer_smuggling_network
+			days = 3600
+		}
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		trigger = {
+			max_naval_capacity > 450
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 5500 }
+		}
+		add_resource = { energy = -5500 }
+		custom_tooltip = opinion10
+		add_modifier = {
+			modifier = gk_privateer_smuggling_network
+			days = 3600
+		}
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+}
+
+# Raider Intelligence — permanent damage vs rivals
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.315
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.315.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	# Return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 1500 }
+		}
+		add_resource = { energy = -1500 }
+		custom_tooltip = opinion15
+		add_modifier = {
+			modifier = gk_privateer_raider_intel
+			days = -1
+		}
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 15
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	option = {
+		name = TOOPOOR
+		trigger = {
+			resource_stockpile_compare = { resource = energy value < 1500 }
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+}
+
+# Raider Garrison — starbase building unlock
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.320
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.320.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	# Return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 1500 }
+		}
+		add_resource = { energy = -1500 }
+		custom_tooltip = opinion15
+		set_country_flag = gk_privateer_bought_garrison
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 15
+				}
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	option = {
+		name = TOOPOOR
+		trigger = {
+			resource_stockpile_compare = { resource = energy value < 1500 }
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+}
+
+# Recruit Raiders — hire mercenary armies
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.325
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.325.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	# Return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+
+	# Small squad — 5 mercenary_army, 600 energy
+	option = {
+		name = gk_raiding_privateers.325.a
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 600 }
+		}
+		add_resource = { energy = -600 }
+		custom_tooltip = gk_raiding_privateers.325.a.tooltip
+		custom_tooltip = opinion5
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				set_timed_country_flag = { flag = gk_privateer_army_hired days = 360 }
+				add_trust = {
+					who = root
+					amount = 5
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = root
+					while = {
+						count = 5
+						create_army_transport = {
+							army_type = "mercenary_army"
+							army_name = "NAME_military_contractors"
+							species = event_target:gk_privateer_enclave_species
+						}
+					}
+					set_location = {
+						target = root.capital_scope.solar_system
+					}
+				}
+			}
+
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	# Large squad — 10 mercenary_army, 1100 energy
+	option = {
+		name = gk_raiding_privateers.325.b
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 1100 }
+		}
+		add_resource = { energy = -1100 }
+		custom_tooltip = gk_raiding_privateers.325.b.tooltip
+		custom_tooltip = opinion10
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				set_timed_country_flag = { flag = gk_privateer_army_hired days = 540 }
+				add_trust = {
+					who = root
+					amount = 10
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = root
+					while = {
+						count = 10
+						create_army_transport = {
+							army_type = "mercenary_army"
+							army_name = "NAME_military_contractors"
+							species = event_target:gk_privateer_enclave_species
+						}
+					}
+					set_location = {
+						target = root.capital_scope.solar_system
+					}
+				}
+			}
+
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+}
+
+# Share Technology — patron gives tech, gets energy
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.330
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.330.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	# Return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+
+	option = {
+		name = DEAL
+		add_resource = { energy = 1000 }
+		custom_tooltip = opinion15
+		custom_tooltip = gk_raiding_privateers.330.tooltip
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 15
+				}
+				set_timed_country_flag = { flag = gk_updating_databanks days = 3600 }
+				copy_techs_from = { target = root }
+			}
+			country_event = { id = gk_raiding_privateers.305 }
+		}
+	}
+
+	option = {
+		name = GOODBYE
+		default_hide_option = yes
+	}
+}
+
+# Patron Panel — hub for patron-only services
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.335
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.335.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	# Return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+
+	# Upgrade Haven
+	option = {
+		name = gk_raiding_privateers.335.upgrade
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_5 }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.300 }
+		}
+	}
+
+	# Share Technology
+	option = {
+		name = gk_raiding_privateers.335.tech
+		allow = {
+			custom_tooltip = {
+				fail_text = gk_raiding_privateers.335.tech.timeout
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_country_flag = gk_updating_databanks }
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.330 }
+		}
+	}
+}
+
+# Commission Raid — target selection
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.340
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.340.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	immediate = {
+		# Lock a fleet for the raid
+		event_target:gk_privateer_enclave_country = {
+			random_owned_fleet = {
+				limit = { gk_is_eligible_raid_fleet = yes }
+				save_event_target_as = gk_raid_fleet
+				set_fleet_flag = gk_fleet_locked
+			}
+		}
+
+		# Pre-roll up to 3 rival targets (vanilla marauder.31 pattern)
+		random_rival_country = {
+			limit = {
+				is_country_type = default
+				any_owned_planet = {
+					is_colony = yes
+					count_owned_pop_amount = { count >= 1 }
+				}
+				NOT = { has_country_flag = gk_raided_by_@event_target:gk_privateer_enclave_country }
+			}
+			save_event_target_as = gk_commission_target_1
+		}
+		random_rival_country = {
+			limit = {
+				is_country_type = default
+				any_owned_planet = {
+					is_colony = yes
+					count_owned_pop_amount = { count >= 1 }
+				}
+				NOT = { has_country_flag = gk_raided_by_@event_target:gk_privateer_enclave_country }
+				NOT = { is_same_value = event_target:gk_commission_target_1 }
+			}
+			save_event_target_as = gk_commission_target_2
+		}
+		random_rival_country = {
+			limit = {
+				is_country_type = default
+				any_owned_planet = {
+					is_colony = yes
+					count_owned_pop_amount = { count >= 1 }
+				}
+				NOT = { has_country_flag = gk_raided_by_@event_target:gk_privateer_enclave_country }
+				NOR = {
+					is_same_value = event_target:gk_commission_target_1
+					is_same_value = event_target:gk_commission_target_2
+				}
+			}
+			save_event_target_as = gk_commission_target_3
+		}
+
+		# Save patron for the greyed-out option
+		event_target:gk_privateer_enclave_country = { gk_get_privateer_patron = yes }
+	}
+
+	# Target 1
+	option = {
+		name = gk_raiding_privateers.340.a
+		trigger = {
+			exists = event_target:gk_raid_fleet
+			exists = event_target:gk_commission_target_1
+			OR = {
+				NOT = { exists = event_target:gk_privateer_patron }
+				NOT = {
+					event_target:gk_commission_target_1 = {
+						is_same_value = event_target:gk_privateer_patron
+					}
+				}
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 750 }
+		}
+		add_resource = { energy = -750 }
+		custom_tooltip = opinion10
+		hidden_effect = {
+			event_target:gk_commission_target_1 = {
+				set_country_flag = gk_commissioned_raid_target
+			}
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+				country_event = { id = gk_raiding_privateers.341 }
+			}
+			country_event = { id = gk_raiding_privateers.342 }
+		}
+	}
+
+	# Target 2
+	option = {
+		name = gk_raiding_privateers.340.b
+		trigger = {
+			exists = event_target:gk_raid_fleet
+			exists = event_target:gk_commission_target_2
+			OR = {
+				NOT = { exists = event_target:gk_privateer_patron }
+				NOT = {
+					event_target:gk_commission_target_2 = {
+						is_same_value = event_target:gk_privateer_patron
+					}
+				}
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 750 }
+		}
+		add_resource = { energy = -750 }
+		custom_tooltip = opinion10
+		hidden_effect = {
+			event_target:gk_commission_target_2 = {
+				set_country_flag = gk_commissioned_raid_target
+			}
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+				country_event = { id = gk_raiding_privateers.341 }
+			}
+			country_event = { id = gk_raiding_privateers.342 }
+		}
+	}
+
+	# Target 3
+	option = {
+		name = gk_raiding_privateers.340.c
+		trigger = {
+			exists = event_target:gk_raid_fleet
+			exists = event_target:gk_commission_target_3
+			OR = {
+				NOT = { exists = event_target:gk_privateer_patron }
+				NOT = {
+					event_target:gk_commission_target_3 = {
+						is_same_value = event_target:gk_privateer_patron
+					}
+				}
+			}
+		}
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 750 }
+		}
+		add_resource = { energy = -750 }
+		custom_tooltip = opinion10
+		hidden_effect = {
+			event_target:gk_commission_target_3 = {
+				set_country_flag = gk_commissioned_raid_target
+			}
+			event_target:gk_privateer_enclave_country = {
+				add_trust = {
+					who = root
+					amount = 10
+				}
+				country_event = { id = gk_raiding_privateers.341 }
+			}
+			country_event = { id = gk_raiding_privateers.342 }
+		}
+	}
+
+	# Patron rival — greyed out
+	option = {
+		name = gk_raiding_privateers.340.patron
+		trigger = {
+			exists = event_target:gk_raid_fleet
+			exists = event_target:gk_privateer_patron
+			OR = {
+				AND = {
+					exists = event_target:gk_commission_target_1
+					event_target:gk_commission_target_1 = { is_same_value = event_target:gk_privateer_patron }
+				}
+				AND = {
+					exists = event_target:gk_commission_target_2
+					event_target:gk_commission_target_2 = { is_same_value = event_target:gk_privateer_patron }
+				}
+				AND = {
+					exists = event_target:gk_commission_target_3
+					event_target:gk_commission_target_3 = { is_same_value = event_target:gk_privateer_patron }
+				}
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_commission_patron
+				always = no
+			}
+		}
+	}
+
+	# No fleet available (race condition)
+	option = {
+		name = gk_raiding_privateers.340.no_fleet
+		trigger = {
+			NOT = { exists = event_target:gk_raid_fleet }
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_commission_no_fleet_340
+				always = no
+			}
+		}
+	}
+
+	# No valid targets
+	option = {
+		name = gk_raiding_privateers.340.no_targets
+		trigger = {
+			exists = event_target:gk_raid_fleet
+			NOT = { exists = event_target:gk_commission_target_1 }
+			NOT = { exists = event_target:gk_commission_target_2 }
+			NOT = { exists = event_target:gk_commission_target_3 }
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_no_valid_targets
+				always = no
+			}
+		}
+	}
+
+	# Discuss Another Matter — unlock fleet
+	option = {
+		name = gk_raiding_privateers.300.return
+		default_hide_option = yes
+		hidden_effect = {
+			if = {
+				limit = { exists = event_target:gk_raid_fleet }
+				event_target:gk_raid_fleet = {
+					remove_fleet_flag = gk_fleet_locked
+				}
+			}
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+}
+
+# Commission Raid — confirmation
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+country_event = {
+	id = gk_raiding_privateers.342
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.342.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+}

@@ -1,12 +1,12 @@
-# GK Raiding — Marauder Enclave station design
+# GK Raiding — Privateer Enclave station design
 # Based on NAME_Mercenary_Enclave_Station (vanilla global_ship_designs/overlord_designs.txt:2-153)
 
 ship_design = {
-	name = "NAME_GK_Marauder_Enclave_Station"
-	ship_size = gk_marauder_station
+	name = "NAME_GK_Privateer_Enclave_Station"
+	ship_size = gk_privateer_station
 
 	section = {
-		template = "station_gk_marauder_01_key"
+		template = "station_gk_privateer_01_key"
 		slot = "mid"
 
 		component = {

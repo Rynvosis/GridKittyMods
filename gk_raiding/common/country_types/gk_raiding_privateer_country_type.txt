@@ -1,8 +1,8 @@
-# GK Raiding — Marauder Enclave country type
+# GK Raiding — Privateer Enclave country type
 # Based on enclave_mercenary (vanilla 00_country_types.txt:1109-1316)
 # Differences: has_pulse_events = yes
 
-gk_marauder_enclave = {
+gk_privateer_enclave = {
 	is_enclave = yes
 	blocks_piracy = yes
 	show_in_contacts_list = yes

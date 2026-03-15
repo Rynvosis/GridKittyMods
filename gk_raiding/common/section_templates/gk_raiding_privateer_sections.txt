@@ -1,9 +1,9 @@
-# GK Raiding — Marauder Enclave station section
+# GK Raiding — Privateer Enclave station section
 # Based on station_enclave_mercenary_01_key (vanilla section_templates/overlord.txt:1416-1561)
 
 ship_section_template = {
-	key = "station_gk_marauder_01_key"
-	ship_size = gk_marauder_station
+	key = "station_gk_privateer_01_key"
+	ship_size = gk_privateer_station
 
 	fits_on_slot = "mid"
 	entity = "station_generic_01_entity"

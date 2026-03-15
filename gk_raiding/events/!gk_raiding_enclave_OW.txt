@@ -2,9 +2,9 @@
 # Overwrites: enclave.2
 # Source: overlord_enclaves_events.txt:76-200
 # Method: Alphabetical load-order override (! prefix loads before vanilla)
-# Change: Adds "Establish Corsair Haven" option for empires with
+# Change: Adds "Establish Privateer Haven" option for empires with
 #   despoliation tradition finisher. DEAL renamed to GK_RAIDING_ENCLAVE_2_MERCENARY.
-#   Conditional desc/picture for corsair-capable empires.
+#   Conditional desc/picture for privateer-capable empires.
 #   NODEAL and abort_trigger unchanged.
 
 namespace = enclave
@@ -12,9 +12,9 @@ namespace = enclave
 fleet_event = {
 	id = enclave.2
 	title = "enclave.2.name"
-	# Corsair-capable empire sees corsair flavor
+	# Privateer-capable empire sees privateer flavor
 	desc = {
-		trigger = { owner = { gk_can_found_marauder_enclave = yes } }
+		trigger = { owner = { gk_can_found_privateer_enclave = yes } }
 		text = GK_RAIDING_ENCLAVE_2_DESC
 	}
 	# Everyone else sees vanilla
@@ -22,9 +22,9 @@ fleet_event = {
 		text = "enclave.2.desc"
 	}
 
-	# Corsair-capable empire sees pirate base art
+	# Privateer-capable empire sees pirate base art
 	picture = {
-		trigger = { owner = { gk_can_found_marauder_enclave = yes } }
+		trigger = { owner = { gk_can_found_privateer_enclave = yes } }
 		picture = GFX_evt_pirate_base
 	}
 	# Everyone else sees vanilla mercenary art
@@ -126,14 +126,14 @@ fleet_event = {
 		}
 	}
 
-	# GK Raiding: Corsair Haven option — only for empires with despoliation perk
+	# GK Raiding: Privateer Haven option — only for empires with despoliation perk
 	option = {
-		name = GK_RAIDING_ENCLAVE_2_CORSAIR
-		custom_tooltip = GK_RAIDING_ENCLAVE_2_CORSAIR_TOOLTIP
+		name = GK_RAIDING_ENCLAVE_2_PRIVATEER
+		custom_tooltip = GK_RAIDING_ENCLAVE_2_PRIVATEER_TOOLTIP
 
 		trigger = {
 			owner = {
-				gk_can_found_marauder_enclave = yes
+				gk_can_found_privateer_enclave = yes
 			}
 		}
 
@@ -174,7 +174,7 @@ fleet_event = {
 		}
 
 		hidden_effect = {
-			fleet_event = { id = gk_raiding_marauder.101 }
+			fleet_event = { id = gk_raiding_privateers.101 }
 		}
 
 		ai_chance = {

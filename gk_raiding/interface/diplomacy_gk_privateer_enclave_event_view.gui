@@ -1,15 +1,15 @@
 guiTypes = {
-	### ENCLAVE gk_marauder_enclave EVENT OPTION ###
+	### ENCLAVE gk_privateer_enclave EVENT OPTION ###
 
 	containerWindowType = {
-		name = "gk_marauder_enclave_option"
+		name = "gk_privateer_enclave_option"
 		position = { x=0 y=0 }
 		size = { width = 388 height = 30 }
 		moveable = no
 
 		buttonType = {
 			name = "option_button"
-			quadTextureSprite = "GFX_event_button_452_gk_marauder_enclave"
+			quadTextureSprite = "GFX_event_button_452_gk_privateer_enclave"
 			position = { x=0 y=8 }
 			font = "cg_16b"
 			text = "OPTION_TEXT"
@@ -29,10 +29,10 @@ guiTypes = {
 		}
 	}
 
-	### ENCLAVE gk_marauder_enclave EVENT WINDOW ###
+	### ENCLAVE gk_privateer_enclave EVENT WINDOW ###
 
 	containerWindowType = {
-		name = "gk_marauder_enclave_window"
+		name = "gk_privateer_enclave_window"
 		orientation = center
 		origo = center
 		moveable = yes
@@ -40,19 +40,19 @@ guiTypes = {
 
 		background = {
 			name = "background"
-			quadTextureSprite ="GFX_tile_large_bg_gk_marauder_enclave"
+			quadTextureSprite ="GFX_tile_large_bg_gk_privateer_enclave"
 		}
 
 		iconType = {
 			name = "hex_bg"
-			spriteType = "GFX_hex_bg_gk_marauder_enclave"
+			spriteType = "GFX_hex_bg_gk_privateer_enclave"
 			position = { x = -10 y = -14 }
 			alwaysTransparent = yes
 		}
 
 		iconType = {
 			name = "empire_header_line"
-			quadTextureSprite = "GFX_line_long_gk_marauder_enclave"
+			quadTextureSprite = "GFX_line_long_gk_privateer_enclave"
 			position = { x = 6 y = 22 }
 			alwaysTransparent = yes
 		}
@@ -61,14 +61,14 @@ guiTypes = {
 			name = "focus_button"
 			position = { x = -80 y = 16 }
 			orientation = "UPPER_RIGHT"
-			spriteType = "GFX_fleetview_focus_gk_marauder_enclave"
+			spriteType = "GFX_fleetview_focus_gk_privateer_enclave"
 			buttonFont = "cg_16b"
 			shortcut = "q"
 		}
 
 		buttonType = {
 			name = "close"
-			quadTextureSprite = "GFX_main_close_button_gk_marauder_enclave"
+			quadTextureSprite = "GFX_main_close_button_gk_privateer_enclave"
 			position = { x= -45 y = 16 }
 			Orientation = "UPPER_RIGHT"
 			clicksound = "back_click"
@@ -170,7 +170,7 @@ guiTypes = {
 
 			iconType = {
 				name = "city_frame"
-				spriteType = "GFX_diplomacy_portrait_frame_gk_marauder_enclave"
+				spriteType = "GFX_diplomacy_portrait_frame_gk_privateer_enclave"
 				position = { x = -6 y = -5 }
 				alwaysTransparent = yes
 			}
@@ -230,7 +230,7 @@ guiTypes = {
 
 		buttonType = {
 			name = "empire_flag"
-			quadTextureSprite = "GFX_empire_flag_128_gk_marauder_enclave"
+			quadTextureSprite = "GFX_empire_flag_128_gk_privateer_enclave"
 			position = { x = 25 y = 240 }
 			orientation = UPPER_LEFT
 		}
