@@ -46,22 +46,8 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		# Find patron via station system space_owner
-		random_owned_fleet = {
-			limit = {
-				is_ship_size = gk_privateer_station
-			}
-			solar_system = {
-				if = {
-					limit = {
-						exists = space_owner
-					}
-					space_owner = {
-						save_event_target_as = gk_privateer_patron
-					}
-				}
-			}
-		}
+		# Find patron, system, and star via station fleet
+		gk_get_privateer_station_context = yes
 		root = {
 			save_event_target_as = gk_privateer_enclave_country
 		}
@@ -71,8 +57,8 @@ country_event = {
 			}
 			event_target:gk_privateer_patron = {
 				random_list = {
-					35 = { country_event = { id = gk_raiding_privateers.510 } }
-					35 = { country_event = { id = gk_raiding_privateers.515 } }
+					30 = { country_event = { id = gk_raiding_privateers.510 } }
+					30 = { country_event = { id = gk_raiding_privateers.515 } }
 					25 = { country_event = { id = gk_raiding_privateers.520 } }
 					5 = {
 						modifier = {
@@ -83,6 +69,7 @@ country_event = {
 						}
 						country_event = { id = gk_raiding_privateers.530 }
 					}
+					10 = { country_event = { id = gk_raiding_privateers.525 } }
 				}
 			}
 		}
@@ -561,5 +548,99 @@ country_event = {
 
 	option = {
 		name = EXCELLENT
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .525 — Exotic Specimens (specimen or minor artifacts)
+# This = patron country
+# Grand Archives: awards a random privateer-themed specimen
+# No Grand Archives: awards minor artifacts scaled by enclave tier
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_privateers.525
+	title = gk_raiding_privateers.525.name
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.525.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		# Pick a random specimen category
+		random_list = {
+			1 = { set_country_flag = gk_dividend_specimen_geology }
+			1 = { set_country_flag = gk_dividend_specimen_aesthetic }
+			1 = { set_country_flag = gk_dividend_specimen_history }
+		}
+	}
+
+	# Grand Archives installed — give specimen
+	option = {
+		name = EXCELLENT
+		trigger = { has_grand_archive_dlc = yes }
+		if = {
+			limit = { has_country_flag = gk_dividend_specimen_geology }
+			random_list = {
+				1 = { give_specimen = { key = gk_privateer_amber_fossil origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				1 = { give_specimen = { key = gk_privateer_stellar_tear origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				1 = { give_specimen = { key = gk_privateer_fossilized_growth origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = gk_dividend_specimen_aesthetic }
+			random_list = {
+				1 = { give_specimen = { key = gk_privateer_alien_headpiece origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				1 = { give_specimen = { key = gk_privateer_ornamental_circlet origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				1 = { give_specimen = { key = gk_privateer_alien_effigy origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+			}
+		}
+		else = {
+			random_list = {
+				1 = { give_specimen = { key = gk_privateer_bio_vial origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				1 = { give_specimen = { key = gk_privateer_data_core origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				1 = { give_specimen = { key = gk_privateer_processing_unit origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_specimen_geology
+			remove_country_flag = gk_dividend_specimen_aesthetic
+			remove_country_flag = gk_dividend_specimen_history
+		}
+	}
+
+	# No Grand Archives — give minor artifacts instead
+	option = {
+		name = EXCELLENT
+		trigger = { has_grand_archive_dlc = no }
+		if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_modifier = gk_privateer_upgrade_2 }
+				}
+			}
+			add_resource = { minor_artifacts = 15 }
+		}
+		else_if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					has_modifier = gk_privateer_upgrade_2
+					NOT = { has_modifier = gk_privateer_upgrade_4 }
+				}
+			}
+			add_resource = { minor_artifacts = 25 }
+		}
+		else = {
+			add_resource = { minor_artifacts = 40 }
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_specimen_geology
+			remove_country_flag = gk_dividend_specimen_aesthetic
+			remove_country_flag = gk_dividend_specimen_history
+		}
 	}
 }

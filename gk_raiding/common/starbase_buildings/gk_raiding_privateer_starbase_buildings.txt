@@ -1,7 +1,7 @@
 # GK Raiding — Privateer Starbase Buildings
 
 gk_privateer_garrison = {
-	icon = "GFX_starbase_mercenary_garrison"
+	icon = "GFX_starbase_offworld_trading_company"
 	construction_days = 360
 
 	potential = {
@@ -19,29 +19,21 @@ gk_privateer_garrison = {
 			fail_text = "requires_starport"
 			has_starbase_size >= starbase_starport
 		}
-		solar_system = {
-			count_starbase_buildings = {
-				type = gk_privateer_garrison
-				count < 1
-				include_being_constructed = yes
+		OR = {
+			has_starbase_module = trading_hub
+			starbase_buildable_is_in_queue_before = {
+				first = trading_hub
+				second = gk_privateer_garrison
 			}
 		}
 	}
-
-	abort_construction_trigger = {
-		solar_system = {
-			count_starbase_buildings = {
-				type = gk_privateer_garrison
-				count > 1
-				include_being_constructed = yes
-			}
-		}
-	}
-
-	equipped_component = "STARBASE_AURA_MERCENARY_GARRISON"
 
 	country_modifier = {
-		planet_crime_add = 3
+		planet_crime_add = 5
+	}
+
+	system_modifier = {
+		country_trade_produces_mult = 0.20
 	}
 
 	resources = {
@@ -49,14 +41,26 @@ gk_privateer_garrison = {
 		cost = {
 			alloys = 100
 		}
-
+		produces = {
+			trigger = {
+				has_starbase_module = trading_hub
+			}
+			trade = 4
+			mult = value:num_starbase_modules_of_type|TYPE|trading_hub|
+		}
 		upkeep = {
-			energy = 10
-			trade = 5
+			energy = 5
 		}
 	}
 
 	ai_weight = {
-		weight = 50
+		weight = 100
+		modifier = {
+			factor = 0
+			count_starbase_modules = {
+				type = trading_hub
+				count < 2
+			}
+		}
 	}
 }

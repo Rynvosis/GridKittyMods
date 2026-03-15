@@ -181,14 +181,7 @@ country_event = {
 
 	immediate = {
 		event_target:gk_privateer_enclave_country = {
-			random_owned_fleet = {
-				limit = {
-					is_ship_size = gk_privateer_station
-				}
-				solar_system = {
-					save_event_target_as = gk_privateer_enclave_system
-				}
-			}
+			gk_get_privateer_station_context = yes
 			species = {
 				save_event_target_as = gk_privateer_enclave_species
 			}
@@ -222,7 +215,6 @@ country_event = {
 		custom_tooltip = gk_privateer_tt_intel
 		trigger = {
 			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
-			NOT = { has_modifier = gk_privateer_raider_intel }
 		}
 		allow = {
 			event_target:gk_privateer_enclave_country = {
@@ -809,7 +801,7 @@ country_event = {
 		custom_tooltip = opinion15
 		add_modifier = {
 			modifier = gk_privateer_raider_intel
-			days = -1
+			days = 3600
 		}
 		hidden_effect = {
 			event_target:gk_privateer_enclave_country = {
@@ -1150,7 +1142,7 @@ country_event = {
 		}
 
 		# Save patron for the greyed-out option
-		event_target:gk_privateer_enclave_country = { gk_get_privateer_patron = yes }
+		event_target:gk_privateer_enclave_country = { gk_get_privateer_station_context = yes }
 	}
 
 	# Target 1
@@ -1345,5 +1337,358 @@ country_event = {
 		script = gk_raiding/privateer_personality_desc
 		KEY = gk_raiding_privateers.342.desc
 		SCOPE = event_target:gk_privateer_enclave_country
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Station Destruction (600–609)
+# ──────────────────────────────────────────────────────────────────
+
+# 600 — Hidden: Privateer station destroyed
+# Fired from on_ship_destroyed_victim
+# This = enclave country (owner of destroyed ship)
+# From = destroyer country
+# FromFrom = destroyed ship
+country_event = {
+	id = gk_raiding_privateers.600
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = gk_privateer_enclave
+		fromfrom = {
+			is_ship_size = gk_privateer_station
+		}
+	}
+
+	immediate = {
+		save_event_target_as = gk_privateer_enclave_country
+
+		# Save the system for notification loc
+		fromfrom = {
+			solar_system = {
+				save_event_target_as = gk_privateer_enclave_system
+				remove_star_flag = enclave
+			}
+		}
+
+		# Save destroyer
+		from = {
+			save_event_target_as = gk_privateer_destroyer
+		}
+
+		# Find patron
+		gk_get_privateer_station_context = yes
+
+		# If a raid is active, clean up the temp raider
+		if = {
+			limit = {
+				has_country_flag = gk_auto_raid_ongoing
+				any_country = {
+					is_country_type = gk_privateer_raiders
+					has_country_flag = gk_privateer_raider_of_@root
+				}
+			}
+			random_country = {
+				limit = {
+					is_country_type = gk_privateer_raiders
+					has_country_flag = gk_privateer_raider_of_@root
+				}
+				save_event_target_as = gk_privateer_raider
+			}
+			gk_cleanup_privateer_raid = yes
+		}
+
+		# Remove patron flag
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			event_target:gk_privateer_patron = {
+				remove_country_flag = gk_is_privateer_patron
+			}
+		}
+
+		# Destroy the dividend situation
+		every_situation = {
+			limit = { is_situation_type = gk_privateer_dividends }
+			destroy_situation = this
+		}
+
+		# Notify patron
+		if = {
+			limit = {
+				exists = event_target:gk_privateer_patron
+				NOT = {
+					event_target:gk_privateer_patron = {
+						is_same_value = event_target:gk_privateer_destroyer
+					}
+				}
+			}
+			event_target:gk_privateer_patron = {
+				country_event = { id = gk_raiding_privateers.601 }
+			}
+		}
+
+		# Notify destroyer
+		if = {
+			limit = {
+				exists = event_target:gk_privateer_destroyer
+				event_target:gk_privateer_destroyer = {
+					is_country_type = default
+				}
+			}
+			event_target:gk_privateer_destroyer = {
+				country_event = { id = gk_raiding_privateers.602 }
+			}
+		}
+
+		# Notify all communicating empires (except patron and destroyer)
+		every_country = {
+			limit = {
+				has_communications = root
+				is_country_type = default
+				NOT = { is_same_value = event_target:gk_privateer_destroyer }
+				NOT = { is_same_value = event_target:gk_privateer_patron }
+			}
+			country_event = { id = gk_raiding_privateers.603 }
+		}
+	}
+
+	after = {
+		destroy_country = yes
+		# Restore enclave capacity for all empires that have the modifier
+		every_country = {
+			limit = {
+				has_modifier = country_enclave_capacity_decrease_modifier
+			}
+			country_event = { id = enclave.24 days = 2 }
+		}
+	}
+}
+
+# 601 — Station destroyed notification to patron
+# This = patron country
+# event_target:gk_privateer_enclave_country = destroyed enclave
+# event_target:gk_privateer_enclave_system = system where station was
+country_event = {
+	id = gk_raiding_privateers.601
+	title = gk_raiding_privateers.601.name
+	desc = gk_raiding_privateers.601.desc
+	picture = GFX_evt_space_debris
+	location = event_target:gk_privateer_enclave_system
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+# 602 — Station destroyed notification to destroyer
+# This = destroyer country
+# event_target:gk_privateer_enclave_country = destroyed enclave
+# event_target:gk_privateer_enclave_system = system where station was
+country_event = {
+	id = gk_raiding_privateers.602
+	title = gk_raiding_privateers.602.name
+	desc = gk_raiding_privateers.602.desc
+	picture = GFX_evt_space_debris
+	location = event_target:gk_privateer_enclave_system
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = destroyed_mercs
+	}
+
+	option = {
+		name = EXCELLENT
+		add_resource = {
+			alloys = 2000
+			energy = 2000
+		}
+	}
+}
+
+# 603 — Station destroyed notification to all communicating empires
+# This = notified country
+# event_target:gk_privateer_enclave_country = destroyed enclave
+# event_target:gk_privateer_enclave_system = system where station was
+country_event = {
+	id = gk_raiding_privateers.603
+	title = gk_raiding_privateers.603.name
+	desc = gk_raiding_privateers.603.desc
+	picture = GFX_evt_space_debris
+	location = event_target:gk_privateer_enclave_system
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = INTERESTING
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Patron Change / System Ownership Validation (610–619)
+# ──────────────────────────────────────────────────────────────────
+
+# 610 — Monthly: check if the station's system ownership has changed
+# This = enclave country (from on_monthly_pulse_country)
+country_event = {
+	id = gk_raiding_privateers.610
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = gk_privateer_enclave
+		# Only fire if we have a station
+		any_owned_fleet = {
+			any_owned_ship = {
+				is_ship_size = gk_privateer_station
+			}
+		}
+	}
+
+	immediate = {
+		save_event_target_as = gk_privateer_enclave_country
+
+		# Find station system, star, and current space_owner
+		gk_get_privateer_station_context = yes
+		# Alias: gk_privateer_patron here is the current system owner, not necessarily the patron
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			event_target:gk_privateer_patron = {
+				save_event_target_as = gk_current_system_owner
+			}
+		}
+
+		# Get old patron from the dividend situation target (authoritative source)
+		random_situation = {
+			limit = { is_situation_type = gk_privateer_dividends }
+			target = {
+				save_event_target_as = gk_old_patron
+			}
+		}
+
+		# Case 1: System has a new owner different from old patron
+		if = {
+			limit = {
+				exists = event_target:gk_current_system_owner
+				exists = event_target:gk_old_patron
+				NOT = {
+					event_target:gk_current_system_owner = {
+						is_same_value = event_target:gk_old_patron
+					}
+				}
+			}
+			# Remove old patron flag
+			event_target:gk_old_patron = {
+				remove_country_flag = gk_is_privateer_patron
+			}
+
+			# Destroy old dividend situation
+			every_situation = {
+				limit = { is_situation_type = gk_privateer_dividends }
+				destroy_situation = this
+			}
+
+			# Set new patron
+			event_target:gk_current_system_owner = {
+				set_country_flag = gk_is_privateer_patron
+			}
+
+			# Start new dividend situation
+			start_situation = {
+				type = gk_privateer_dividends
+				target = event_target:gk_current_system_owner
+			}
+
+			# Notify old patron
+			event_target:gk_old_patron = {
+				country_event = { id = gk_raiding_privateers.611 }
+			}
+
+			# Notify new patron
+			event_target:gk_current_system_owner = {
+				country_event = { id = gk_raiding_privateers.612 }
+			}
+		}
+		# Case 2: System has no owner and we had an old patron
+		else_if = {
+			limit = {
+				NOT = { exists = event_target:gk_current_system_owner }
+				exists = event_target:gk_old_patron
+			}
+			# Remove old patron flag
+			event_target:gk_old_patron = {
+				remove_country_flag = gk_is_privateer_patron
+			}
+
+			# Destroy dividend situation (no patron to pay)
+			every_situation = {
+				limit = { is_situation_type = gk_privateer_dividends }
+				destroy_situation = this
+			}
+
+			# Notify old patron
+			event_target:gk_old_patron = {
+				country_event = { id = gk_raiding_privateers.611 }
+			}
+		}
+		# Case 3: System has an owner but no dividend situation (patron was destroyed)
+		else_if = {
+			limit = {
+				exists = event_target:gk_current_system_owner
+				NOT = { exists = event_target:gk_old_patron }
+				NOT = {
+					any_situation = {
+						is_situation_type = gk_privateer_dividends
+					}
+				}
+			}
+			event_target:gk_current_system_owner = {
+				set_country_flag = gk_is_privateer_patron
+			}
+			start_situation = {
+				type = gk_privateer_dividends
+				target = event_target:gk_current_system_owner
+			}
+			event_target:gk_current_system_owner = {
+				country_event = { id = gk_raiding_privateers.612 }
+			}
+		}
+	}
+}
+
+# 611 — Patron lost notification (old patron)
+# This = old patron country
+# event_target:gk_privateer_enclave_country = enclave
+country_event = {
+	id = gk_raiding_privateers.611
+	title = gk_raiding_privateers.611.name
+	desc = gk_raiding_privateers.611.desc
+	picture = GFX_evt_pirate_armada
+	location = event_target:gk_privateer_enclave_system
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+# 612 — New patron notification
+# This = new patron country
+# event_target:gk_privateer_enclave_country = enclave
+country_event = {
+	id = gk_raiding_privateers.612
+	title = gk_raiding_privateers.612.name
+	desc = gk_raiding_privateers.612.desc
+	picture = GFX_evt_pirate_armada
+	location = event_target:gk_privateer_enclave_system
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = INTERESTING
 	}
 }

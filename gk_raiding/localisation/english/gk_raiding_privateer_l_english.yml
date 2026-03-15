@@ -44,8 +44,8 @@
  gk_raiding_privateers.205.e:0 "As your §YPatron§!, we want to review our options."
  # Greeting option tooltips
  gk_privateer_tt_smuggling:0 "Temporary §Ytrade value§! boost at the cost of increased §Ycrime§!."
- gk_privateer_tt_intel:0 "Permanent §Ydamage bonus§! against your §Yrivals§! at the cost of increased §Ycrime§!."
- gk_privateer_tt_garrison:0 "Purchase a §Ystarbase building§! license."
+ gk_privateer_tt_intel:0 "Temporary §Ydamage bonus§! against your §Yrivals§! at the cost of increased §Ycrime§!."
+ gk_privateer_tt_garrison:0 "Purchase a §Ystarbase building§! license that boosts §Ytrade§! in the system."
  gk_privateer_tt_armies:0 "Hire §Yarmies§! for ground invasions."
  gk_privateer_tt_patron:0 "As §YPatron§!, upgrade the haven or share technology."
 
@@ -159,8 +159,8 @@
  gk_privateer_raider_intel:0 "Raider Intelligence"
 
  # Starbase building
- gk_privateer_garrison:0 "Privateer Garrison"
- gk_privateer_garrison_desc:0 "A contingent of privateer fighters stationed aboard the starbase. Their presence boosts the combat effectiveness of all friendly ships in the system, though their disregard for local law increases criminal activity."
+ gk_privateer_garrison:0 "Smuggler's Port"
+ gk_privateer_garrison_desc:0 "A network of privateer contacts fencing stolen goods through the starbase. Their operations boost local trade significantly, though their disregard for the law increases criminal activity."
 
  # ──────────────────────────────────────────────────────────────────
  # Situation
@@ -212,6 +212,17 @@
  gk_raiding_privateers.530.desc.calculating:0 "A detailed transmission from the [event_target:gk_privateer_enclave_country.GetName], accompanied by full technical readouts.\n\n§Y\"Asset transfer notification: multiple combat-capable vessels acquired through precision boarding operations. All systems restored to 97.8% operational capacity. Cost-benefit analysis favors transfer over salvage by a factor of 3.2. Fleet is en route to your capital. Crew complements are at standard levels.\"§!"
  gk_raiding_privateers.530.desc.merchant:0 "A beaming transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader looks like they just closed the deal of a lifetime.\n\n§Y\"Friend, have I got a surprise for you! We managed to acquire some ships in, shall we say, lightly used condition. Rather than breaking them down, we thought, why not give them to our favorite patron? A fleet, courtesy of the [event_target:gk_privateer_enclave_country.GetName]. Consider it an investment in our partnership!\"§!"
  gk_raiding_privateers.530.desc.automaton:0 "An asset transfer notification from the [event_target:gk_privateer_enclave_country.GetName].\n\n§Y\"Asset transfer report: multiple combat-capable vessels captured intact during boarding operations. All systems restored to operational capacity. Analysis indicates transfer to command authority yields superior strategic value over salvage. Fleet is en route. End of report.\"§!"
+
+ # .525 — Exotic Specimens
+ gk_raiding_privateers.525.name:0 "Exotic Specimens"
+ gk_raiding_privateers.525.desc.stoic:0 "A transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader holds up a sealed container, its contents faintly luminous.\n\n§Y\"Patron. We intercepted a collector's shipment transiting through unpatrolled space. Rare specimens, alien curiosities, the sort of things that fetch a fortune on the right markets. We have set aside the most interesting pieces for your archives. Do with them as you see fit.\"§!"
+ gk_raiding_privateers.525.desc.screamer:0 "Excited chittering floods the comms as the [event_target:gk_privateer_enclave_country.GetName] reports in.\n\n§Y\"HYEEEIIIEEE!!!! You see what we find?! Pretty pretty things! Shiny rocks! Weird alien doohickeys! One of them GLOWS! We want to keep but no, good privateers share the best stuff with boss! Take take take! Put in your fancy display case! HYEEEIIIEEE!!!!\"§!"
+ gk_raiding_privateers.525.desc.cultist:0 "A hushed, reverent transmission from the [event_target:gk_privateer_enclave_country.GetName]. The speaker cradles a wrapped object like a holy relic.\n\n§Y\"She of the Void has revealed hidden treasures to us, patron. Among the plundered cargo were artifacts of singular beauty and mystery. Relics that hum with the resonance of distant worlds. We have cleansed them of profane ownership. Accept these offerings for your grand collection.\"§!"
+ gk_raiding_privateers.525.desc.calculating:0 "A catalogued data burst from the [event_target:gk_privateer_enclave_country.GetName], cross-referenced with known specimen databases.\n\n§Y\"Specimen acquisition report: intercepted shipment containing items of scientific and cultural significance. Preliminary classification complete. Estimated archival value exceeds standard cargo yield by factor 2.7. Specimens packaged for secure transfer. Recommend immediate integration into collection infrastructure.\"§!"
+ gk_raiding_privateers.525.desc.merchant:0 "A delighted transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader is practically vibrating with excitement.\n\n§Y\"Oh, you are going to love this one, friend! We hit a collector's transport and the hold was full of rare specimens! Alien curios, geological wonders, the works! I was tempted to auction them off myself, but a deal is a deal. Your cut is the cream of the crop. Enjoy!\"§!"
+ gk_raiding_privateers.525.desc.automaton:0 "A specimen transfer manifest from the [event_target:gk_privateer_enclave_country.GetName].\n\n§Y\"Acquisition report: intercepted cargo vessel carrying specimens of scientific and cultural value. Items catalogued, classified, and packaged for transfer to command authority collection. Estimated research and cultural utility: significant. End of report.\"§!"
+
+ GK_PRIVATEER_SPECIMEN_ORIGIN: "Privateer Plunder"
 
  # ──────────────────────────────────────────────────────────────────
  # Autonomous Raiding Events (210–230, 400–402)
@@ -283,6 +294,24 @@
  gk_raiding_privateers.342.desc.calculating:0 "The haven's commander updates the operational display as the fleet exits the station.\n\n§Y\"Fleet dispatched. Estimated arrival at target: within standard transit window. Engagement parameters locked. You will receive an after-action report upon completion. Do you have additional directives?\"§!"
  gk_raiding_privateers.342.desc.merchant:0 "The haven's commander beams as cargo bay doors open and the raid fleet launches.\n\n§Y\"And they're off! Excellent decision, friend. Our best crew is on the job. You'll get a full report when they return with the goods. In the meantime, care to browse our other services?\"§!"
  gk_raiding_privateers.342.desc.automaton:0 "Fleet deployment status updates scroll across the display in real time.\n\n§Y\"Fleet deployed. Course locked. Target engagement imminent. Raid completion report will be transmitted upon fleet return. Query: additional directives pending?\"§!"
+
+ # Events — Station Destroyed (600–603)
+ gk_raiding_privateers.601.name:0 "Privateer Haven Destroyed"
+ gk_raiding_privateers.601.desc:0 "We have received word that the [event_target:gk_privateer_enclave_country.GetName], our privateer enclave in the [event_target:gk_privateer_enclave_system.GetName] system, has been destroyed. The station was overwhelmed and all hands are presumed lost.\n\nOur dividend arrangement with the enclave has been terminated. Any ongoing raids have been disrupted."
+ gk_raiding_privateers.602.name:0 "Privateer Haven Destroyed"
+ gk_raiding_privateers.602.desc:0 "Our forces have destroyed the [event_target:gk_privateer_enclave_country.GetName], a privateer outpost operating in the [event_target:gk_privateer_enclave_system.GetName] system. Salvage teams have recovered usable materials from the wreckage."
+ gk_raiding_privateers.603.name:0 "Privateer Haven Destroyed"
+ gk_raiding_privateers.603.desc:0 "Reports indicate that the [event_target:gk_privateer_enclave_country.GetName], a privateer enclave based in the [event_target:gk_privateer_enclave_system.GetName] system, has been destroyed."
+
+ # Events — Patron Change (610–612)
+ gk_raiding_privateers.611.name:0 "Privateer Patronage Lost"
+ gk_raiding_privateers.611.desc:0 "The [event_target:gk_privateer_enclave_country.GetName] in the [event_target:gk_privateer_enclave_system.GetName] system is no longer under our patronage. Control of the system has changed hands, and the enclave now answers to whoever holds that space.\n\nOur dividend arrangement has ended."
+ gk_raiding_privateers.612.name:0 "Privateer Enclave Acquired"
+ gk_raiding_privateers.612.desc:0 "A privateer enclave, the [event_target:gk_privateer_enclave_country.GetName], operates in the [event_target:gk_privateer_enclave_system.GetName] system, which is now under our control. As the new patron of this enclave, we will receive periodic dividends from their raiding operations.\n\nThe enclave's diplomatic channel is now open to us."
+
+ # Events — Raid Failed (217)
+ gk_raiding_privateers.217.name:0 "Raid Fleet Lost"
+ gk_raiding_privateers.217.desc:0 "The [event_target:gk_privateer_enclave_country.GetName] reports that their raid fleet has been destroyed in hostile space. The crew and cargo are lost. The enclave will need time to recover before launching further operations."
 
  # Random name parts
  gk_prv_Bloodhound:0 "Bloodhound"

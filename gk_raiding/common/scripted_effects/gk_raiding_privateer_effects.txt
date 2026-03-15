@@ -271,10 +271,10 @@ gk_accumulate_resource_on_receipt = {
 	}
 }
 
-# Find patron empire via enclave station fleet → system → space_owner
+# Find station context: system, star, and patron via enclave station fleet
 # This = enclave country
-# Saves event_target:gk_privateer_patron (if patron exists)
-gk_get_privateer_patron = {
+# Saves event_target:gk_privateer_enclave_system, gk_enclave_star, gk_privateer_patron (if patron exists)
+gk_get_privateer_station_context = {
 	random_owned_fleet = {
 		limit = {
 			any_owned_ship = {
@@ -282,6 +282,10 @@ gk_get_privateer_patron = {
 			}
 		}
 		solar_system = {
+			save_event_target_as = gk_privateer_enclave_system
+			star = {
+				save_event_target_as = gk_enclave_star
+			}
 			if = {
 				limit = { exists = space_owner }
 				space_owner = {
@@ -354,25 +358,8 @@ gk_clear_display_totals = {
 gk_end_privateer_raid = {
 	save_event_target_as = gk_privateer_enclave_country
 
-	# Find patron and enclave star (single fleet scan)
-	random_owned_fleet = {
-		limit = {
-			any_owned_ship = {
-				is_ship_size = gk_privateer_station
-			}
-		}
-		solar_system = {
-			if = {
-				limit = { exists = space_owner }
-				space_owner = {
-					save_event_target_as = gk_privateer_patron
-				}
-			}
-			star = {
-				save_event_target_as = gk_enclave_star
-			}
-		}
-	}
+	# Find patron, system, and enclave star
+	gk_get_privateer_station_context = yes
 
 	# Find raid target from temp raider's flags
 	if = {
@@ -545,6 +532,40 @@ gk_end_privateer_raid = {
 
 	# Clear display vars
 	gk_clear_display_totals = yes
+}
+
+# Clean up an active privateer raid without cashout (station destroyed, fleet lost, orphaned)
+# This = enclave country (clears flags and unlocks fleets on this scope)
+# Expects event_target:gk_privateer_raider to be set (temp raider country)
+# Destroys all loot receipts tagged to the raider, then destroys the raider country
+gk_cleanup_privateer_raid = {
+	# Destroy all loot receipts tagged to this raider
+	event_target:global_event_country = {
+		every_owned_leader = {
+			limit = {
+				has_leader_flag = gk_loot_receipt_to_@event_target:gk_privateer_raider
+			}
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	# Destroy the temp raider country
+	event_target:gk_privateer_raider = {
+		every_owned_fleet = {
+			delete_fleet = this
+		}
+		destroy_country = yes
+	}
+
+	# Clear raid flags on enclave
+	remove_country_flag = gk_auto_raid_ongoing
+	remove_country_flag = gk_has_active_privateer_raider
+
+	# Unlock any lingering locked fleets
+	every_owned_fleet = {
+		limit = { has_fleet_flag = gk_fleet_locked }
+		remove_fleet_flag = gk_fleet_locked
+	}
 }
 
 # Helper: accumulate one resource from receipt to display total on enclave

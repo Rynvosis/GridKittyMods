@@ -79,7 +79,7 @@ country_event = {
 		save_event_target_as = gk_privateer_enclave_country
 
 		# Find patron
-		gk_get_privateer_patron = yes
+		gk_get_privateer_station_context = yes
 
 		# Only proceed if patron exists and valid targets exist
 		if = {
@@ -753,7 +753,7 @@ country_event = {
 
 		# Find patron and give them the tribute energy
 		event_target:gk_privateer_enclave_country = {
-			gk_get_privateer_patron = yes
+			gk_get_privateer_station_context = yes
 
 			# Unlock fleet
 			if = {
@@ -823,5 +823,189 @@ country_event = {
 
 	option = {
 		name = UNDERSTOOD
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Lifecycle Maintenance (216, 615, 620)
+# ──────────────────────────────────────────────────────────────────
+
+# 216 — Monthly: raid ongoing but raider has zero ships (fleet destroyed mid-raid)
+# This = enclave country (from on_monthly_pulse_country)
+country_event = {
+	id = gk_raiding_privateers.216
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = gk_privateer_enclave
+		has_country_flag = gk_auto_raid_ongoing
+		any_country = {
+			is_country_type = gk_privateer_raiders
+			has_country_flag = gk_privateer_raider_of_@root
+			NOT = {
+				any_owned_fleet = {
+					num_ships > 0
+				}
+			}
+		}
+	}
+
+	immediate = {
+		save_event_target_as = gk_privateer_enclave_country
+
+		# Find the empty raider
+		random_country = {
+			limit = {
+				is_country_type = gk_privateer_raiders
+				has_country_flag = gk_privateer_raider_of_@root
+			}
+			save_event_target_as = gk_privateer_raider
+		}
+
+		# Clean up receipts and destroy raider
+		gk_cleanup_privateer_raid = yes
+
+		# Set cooldown before next raid
+		set_timed_country_flag = {
+			flag = gk_auto_raid_cooldown
+			days = 360
+		}
+
+		# Notify patron that the raid failed
+		gk_get_privateer_station_context = yes
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			event_target:gk_privateer_patron = {
+				country_event = { id = gk_raiding_privateers.217 }
+			}
+		}
+	}
+}
+
+# 217 — Raid failed notification to patron (fleet destroyed)
+# This = patron country
+# event_target:gk_privateer_enclave_country = enclave
+country_event = {
+	id = gk_raiding_privateers.217
+	title = gk_raiding_privateers.217.name
+	desc = gk_raiding_privateers.217.desc
+	picture = GFX_evt_space_debris
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+# 615 — Monthly: return idle fleets to home system
+# This = enclave country (from on_monthly_pulse_country)
+country_event = {
+	id = gk_raiding_privateers.615
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = gk_privateer_enclave
+		NOT = { has_country_flag = gk_auto_raid_ongoing }
+	}
+
+	immediate = {
+		# Find station system, star, and patron
+		gk_get_privateer_station_context = yes
+
+		# Send any idle non-station fleet back home
+		every_owned_fleet = {
+			limit = {
+				is_fleet_idle = yes
+				NOT = { has_fleet_flag = gk_fleet_locked }
+				NOT = {
+					any_owned_ship = {
+						is_ship_size = gk_privateer_station
+					}
+				}
+				NOT = {
+					solar_system = {
+						is_same_value = event_target:gk_privateer_enclave_system
+					}
+				}
+			}
+			if = {
+				limit = { exists = event_target:gk_enclave_star }
+				queue_actions = {
+					move_to = event_target:gk_enclave_star
+				}
+			}
+		}
+	}
+}
+
+# 620 — Monthly global pulse: orphaned raider country failsafe
+# Finds any gk_privateer_raiders country with no ships or no matching parent enclave
+# This = n/a (global scope, from on_monthly_pulse)
+event = {
+	id = gk_raiding_privateers.620
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_country_type = gk_privateer_raiders
+			OR = {
+				# No ships left
+				NOT = {
+					any_owned_fleet = {
+						num_ships > 0
+					}
+				}
+				# No matching parent enclave
+				NOT = {
+					any_country = {
+						is_country_type = gk_privateer_enclave
+						prev = { has_country_flag = gk_privateer_raider_of_@prev }
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				is_country_type = gk_privateer_raiders
+				OR = {
+					NOT = {
+						any_owned_fleet = {
+							num_ships > 0
+						}
+					}
+					NOT = {
+						any_country = {
+							is_country_type = gk_privateer_enclave
+							prev = { has_country_flag = gk_privateer_raider_of_@prev }
+						}
+					}
+				}
+			}
+			save_event_target_as = gk_privateer_raider
+
+			# Inline cleanup (can't use gk_cleanup_privateer_raid: scope is raider, not enclave)
+			# Clean up any lingering receipts
+			event_target:global_event_country = {
+				every_owned_leader = {
+					limit = {
+						has_leader_flag = gk_loot_receipt_to_@event_target:gk_privateer_raider
+					}
+					kill_leader = { show_notification = no }
+				}
+			}
+
+			# Delete fleets and destroy country
+			every_owned_fleet = {
+				delete_fleet = this
+			}
+			destroy_country = yes
+		}
 	}
 }
