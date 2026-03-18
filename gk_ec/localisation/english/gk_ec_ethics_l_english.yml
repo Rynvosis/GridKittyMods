@@ -4,10 +4,10 @@
   ethic_fanatic_individualist:0 "Fanatic Individualist"
   ethic_collectivist:0 "Collectivist"
   ethic_fanatic_collectivist:0 "Fanatic Collectivist"
-  ethic_individualist_desc:0 "This society prizes private ownership, personal initiative, and competitive enterprise. Individuals are free to pursue success, and economic coordination emerges from voluntary exchange rather than collective control."
-  ethic_fanatic_individualist_desc:0 "Personal sovereignty and private enterprise stand above all. Collective claims are subordinated to individual rights, and economic life is driven by unfettered initiative."
-  ethic_collectivist_desc:0 "This society favors shared ownership and cooperative production. Economic life is organized to serve the common good rather than private accumulation."
-  ethic_fanatic_collectivist_desc:0 "The means of production belong to the people as a whole. Collective control and social obligation define the economy, and private monopoly is rejected."
+  ethic_individualist_desc:0 "§LThis society prizes private ownership, personal initiative, and competitive enterprise. Individuals are free to pursue success, and economic coordination emerges from voluntary exchange rather than collective control.§!\n"
+  ethic_fanatic_individualist_desc:0 "§LPersonal sovereignty and private enterprise stand above all. Collective claims are subordinated to individual rights, and economic life is driven by unfettered initiative.§!\n"
+  ethic_collectivist_desc:0 "§LThis society favors shared ownership and cooperative production. Economic life is organized to serve the common good rather than private accumulation.§!\n"
+  ethic_fanatic_collectivist_desc:0 "§LThe means of production belong to the people as a whole. Collective control and social obligation define the economy, and private monopoly is rejected.§!\n"
 
   # Trigger tooltips
   empire_not_individualist:0 "Empire is not §YIndividualist§!"
@@ -56,7 +56,7 @@
 
   GK_EC_INDIVIDUALIST_NO_WELFARE:0 "No Welfare State"
   GK_EC_INDIVIDUALIST_WELFARE:0 "Excessive Redistribution"
-  GK_EC_INDIVIDUALIST_NO_WELFARE_DESC:0 "Wealth redistribution destroys incentive. §YUtopian Abundance§! and §YShared Burden§! reward mediocrity — citizens should earn their own prosperity."
+  GK_EC_INDIVIDUALIST_NO_WELFARE_DESC:0 "Wealth redistribution destroys incentive. §YUtopian Abundance§! and §YShared Burden§! reward mediocrity. Citizens should earn their own prosperity."
 
   GK_EC_INDIVIDUALIST_MERCANTILE_STANCE:0 "Mercantile Diplomacy"
   GK_EC_INDIVIDUALIST_NO_MERCANTILE_STANCE:0 "No Trade Focus"
@@ -68,11 +68,11 @@
 
   GK_EC_INDIVIDUALIST_PRIVATE_ENTERPRISE:0 "Private Enterprise"
   GK_EC_INDIVIDUALIST_NO_PRIVATE_ENTERPRISE:0 "No Private Enterprise"
-  GK_EC_INDIVIDUALIST_PRIVATE_ENTERPRISE_DESC:0 "The economy thrives with §YMerchant Guilds§!, §YCorporate Dominion§!, or §YFree Traders§! — individual enterprise, free from collective control."
+  GK_EC_INDIVIDUALIST_PRIVATE_ENTERPRISE_DESC:0 "The economy thrives with §YMerchant Guilds§!, §YCorporate Dominion§!, or §YFree Traders§! at its helm, championing individual enterprise free from collective control."
 
   GK_EC_INDIVIDUALIST_TRADE_FEDERATION:0 "Trade League Membership"
   GK_EC_INDIVIDUALIST_NO_TRADE_FEDERATION:0 "No Trade League"
-  GK_EC_INDIVIDUALIST_TRADE_FEDERATION_DESC:0 "A §YTrade League§! represents the ideal form of interstellar cooperation — mutual profit without political entanglement."
+  GK_EC_INDIVIDUALIST_TRADE_FEDERATION_DESC:0 "A §YTrade League§! represents the ideal form of interstellar cooperation, offering mutual profit without political entanglement."
 
   GK_EC_INDIVIDUALIST_CIVILIAN_ECONOMY:0 "Civilian Economy"
   GK_EC_INDIVIDUALIST_NO_CIVILIAN_ECONOMY:0 "Militarized Economy"
@@ -119,3 +119,7 @@
   GK_EC_COLLECTIVIST_NO_TRADE_FEDERATION:0 "Reject Trade League"
   GK_EC_COLLECTIVIST_TRADE_FEDERATION:0 "Trade Federation Membership"
   GK_EC_COLLECTIVIST_NO_TRADE_FEDERATION_DESC:0 "§YTrade Leagues§! entrench capitalist interests at the interstellar level. We should seek more equitable forms of cooperation."
+
+  # Custom ethic modifier tooltips
+  GK_EC_AUTH_TT_FANATIC:0 "$MOD_COUNTRY_INFLUENCE_GAIN_ADD$: §G+1§!$TABBED_NEW_LINE$$BONUS_WORKFORCE_FOR$ ['concept_planet_enforcers']: §G+20%§!$TABBED_NEW_LINE$$BONUS_WORKFORCE_FOR$ $pop_cat_slave_plural$: §G+10%§!"
+  GK_EC_AUTH_TT_REGULAR:0 "$MOD_COUNTRY_INFLUENCE_GAIN_ADD$: §G+0.50§!$TABBED_NEW_LINE$$BONUS_WORKFORCE_FOR$ ['concept_planet_enforcers']: §G+10%§!$TABBED_NEW_LINE$$BONUS_WORKFORCE_FOR$ $pop_cat_slave_plural$: §G+5%§!"

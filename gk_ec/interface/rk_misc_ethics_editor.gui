@@ -12,10 +12,10 @@
 guiTypes = {
 	containerWindowType = {
 		name = "empire_ethics_and_government_editor"
-	moveable = @movable_editors
-	position = { x = @sub_window_pos_x y = @sub_window_pos_y }
-	size = { width = @sub_window_width height = @sub_window_height }
-	orientation = center
+		moveable = @movable_editors
+		position = { x = @sub_window_pos_x y = @sub_window_pos_y }
+		size = { width = @sub_window_width height = @sub_window_height }
+		orientation = center
 
 	background = {
 		name = "background"

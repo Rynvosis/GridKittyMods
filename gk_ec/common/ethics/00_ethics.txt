@@ -12,8 +12,11 @@ ethic_fanatic_authoritarian = {
 	regular_variant = ethic_authoritarian
 
 	country_modifier = {
+		show_only_custom_tooltip = yes
+		custom_tooltip = GK_EC_AUTH_TT_FANATIC
 		country_ethic_influence_produces_add = 1
 		enforcer_jobs_bonus_workforce_mult = 0.20
+		pop_cat_slave_bonus_workforce_mult = 0.10
 		add_attunement_the_instrument_of_desire = @ethic_attunement2
 	}
 
@@ -44,8 +47,11 @@ ethic_authoritarian = {
 	}
 
 	country_modifier = {
+		show_only_custom_tooltip = yes
+		custom_tooltip = GK_EC_AUTH_TT_REGULAR
 		country_ethic_influence_produces_add = 0.5
 		enforcer_jobs_bonus_workforce_mult = 0.10
+		pop_cat_slave_bonus_workforce_mult = 0.05
 		add_attunement_the_instrument_of_desire = @ethic_attunement1
 	}
 

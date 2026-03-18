@@ -1,0 +1,21 @@
+﻿l_english:
+
+ # Gap-filling personalities
+ personality_gk_ec_spiritual_commune:0 "Spiritual Commune"
+ personality_gk_ec_spiritual_commune_desc:0 "A deeply devout society that holds all things in common, believing that shared worship and collective stewardship bring them closer to transcendence."
+ personality_gk_ec_prosperity_seekers:0 "Prosperity Seekers"
+ personality_gk_ec_prosperity_seekers_desc:0 "Enterprising spiritualists who see personal wealth as a sign of cosmic favour. They pursue material success as proof of their higher calling."
+ personality_gk_ec_peaceful_collective:0 "Peaceful Collective"
+ personality_gk_ec_peaceful_collective_desc:0 "A harmonious society built on mutual aid and communal labour, content to tend their worlds in peace and share the fruits of their work equally."
+ personality_gk_ec_free_traders:0 "Free Traders"
+ personality_gk_ec_free_traders_desc:0 "Libertarian merchants who believe the free exchange of goods is the highest expression of peaceful coexistence. They seek profit, not conquest."
+
+ # Bonus personalities
+ personality_gk_ec_revolutionary_vanguard:0 "Revolutionary Vanguard"
+ personality_gk_ec_revolutionary_vanguard_desc:0 "Militant collectivists driven to spread their revolution across the stars. They subjugate and liberate in equal measure, forging a new galactic order."
+ personality_gk_ec_internationalist_collective:0 "Internationalist Collective"
+ personality_gk_ec_internationalist_collective_desc:0 "An open collective that welcomes all species into the commune. They build federations and migration pacts to weave a multispecies tapestry of shared purpose."
+ personality_gk_ec_isolationist_profiteers:0 "Isolationist Profiteers"
+ personality_gk_ec_isolationist_profiteers_desc:0 "Insular capitalists who wall off their markets and extract tribute from their neighbours. They have no interest in integration — only in profit behind closed borders."
+ personality_gk_ec_tech_entrepreneurs:0 "Tech Entrepreneurs"
+ personality_gk_ec_tech_entrepreneurs_desc:0 "Innovation-driven individualists who see technology as the engine of commercial dominance. They trade aggressively and are not above hostile acquisitions."

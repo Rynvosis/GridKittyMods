@@ -1,0 +1,601 @@
+# GK Ethics & Civics — Custom AI Personalities
+# Adds personality coverage for the Individualist / Collectivist ethic axis.
+
+###########################
+# GAP-FILLING PERSONALITIES
+# These cover ethic combos that have no valid vanilla personality match.
+###########################
+
+# Spiritualist + Collectivist — religious commune, shared devotion
+gk_ec_spiritual_commune = {
+	aggressiveness = 0.5
+	trade_willingness = 0.7
+	bravery = 1.0
+	combat_bravery = 1.0
+
+	military_spending = 0.8
+	colony_spending = 1.1
+
+	federation_acceptance = 10
+	nap_acceptance = 10
+	commercial_pact_acceptance = -10
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 10
+	migration_pact_acceptance = 10
+	loyalty_acceptance = 1.5
+
+	advanced_start_chance = 10
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.5
+	shields_ratio = 0.3
+	hull_ratio = 0.2
+
+	threat_modifier = 1.1
+	threat_others_modifier = 0.75
+	friction_modifier = 0.5
+	claims_modifier = 1.0
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = no
+		opportunist = no
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = no
+	}
+
+	allow = {
+		is_country_type = default
+		is_collectivist = yes
+		OR = {
+			has_ethic = "ethic_spiritualist"
+			has_ethic = "ethic_fanatic_spiritualist"
+		}
+		NOR = {
+			is_xenophobe = yes
+			is_militarist = yes
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = 3
+			is_fanatic_collectivist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_spiritualist"
+		}
+	}
+}
+
+# Spiritualist + Individualist — prosperity theology, spiritual entrepreneurs
+gk_ec_prosperity_seekers = {
+	aggressiveness = 0.5
+	trade_willingness = 0.9
+	bravery = 0.75
+	combat_bravery = 1.0
+
+	military_spending = 0.8
+	colony_spending = 1.1
+
+	federation_acceptance = 0
+	nap_acceptance = 10
+	commercial_pact_acceptance = 20
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 5
+	migration_pact_acceptance = 0
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 10
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.4
+	shields_ratio = 0.4
+	hull_ratio = 0.2
+
+	threat_modifier = 1.1
+	threat_others_modifier = 0.9
+	friction_modifier = 0.5
+	claims_modifier = 1.0
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = yes
+		opportunist = yes
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = yes
+	}
+
+	allow = {
+		is_country_type = default
+		is_individualist = yes
+		OR = {
+			has_ethic = "ethic_spiritualist"
+			has_ethic = "ethic_fanatic_spiritualist"
+		}
+		NOR = {
+			is_xenophobe = yes
+			is_militarist = yes
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = 3
+			is_fanatic_individualist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_spiritualist"
+		}
+	}
+}
+
+# Pacifist + Collectivist — agrarian cooperatives, communal harmony
+gk_ec_peaceful_collective = {
+	aggressiveness = 0.25
+	trade_willingness = 0.8
+	bravery = 0.5
+	combat_bravery = 0.75
+
+	military_spending = 0.7
+	colony_spending = 1.2
+
+	federation_acceptance = 10
+	nap_acceptance = 20
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 10
+	defensive_pact_acceptance = 20
+	migration_pact_acceptance = 10
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 10
+
+	weapon_preferences = weapon_type_strike_craft
+	armor_ratio = 0.3
+	shields_ratio = 0.5
+	hull_ratio = 0.2
+
+	threat_modifier = 1.3
+	threat_others_modifier = 1.0
+	friction_modifier = 0.25
+	claims_modifier = 0.5
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = no
+		opportunist = no
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = no
+	}
+
+	allow = {
+		is_country_type = default
+		is_collectivist = yes
+		OR = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+		NOR = {
+			is_xenophobe = yes
+			is_militarist = yes
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = 3
+			is_fanatic_collectivist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+	}
+}
+
+# Pacifist + Individualist — libertarian free traders
+gk_ec_free_traders = {
+	aggressiveness = 0.25
+	trade_willingness = 1.0
+	bravery = 0.5
+	combat_bravery = 0.75
+
+	military_spending = 0.7
+	colony_spending = 1.1
+
+	federation_acceptance = 0
+	nap_acceptance = 20
+	commercial_pact_acceptance = 30
+	research_agreement_acceptance = 10
+	defensive_pact_acceptance = 5
+	migration_pact_acceptance = 5
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 10
+
+	weapon_preferences = weapon_type_strike_craft
+	armor_ratio = 0.3
+	shields_ratio = 0.5
+	hull_ratio = 0.2
+
+	threat_modifier = 1.3
+	threat_others_modifier = 1.0
+	friction_modifier = 0.25
+	claims_modifier = 0.75
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = yes
+		opportunist = no
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = no
+	}
+
+	allow = {
+		is_country_type = default
+		is_individualist = yes
+		OR = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+		NOR = {
+			is_xenophobe = yes
+			is_militarist = yes
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = 3
+			is_fanatic_individualist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+	}
+}
+
+###########################
+# BONUS PERSONALITIES
+# These override bland vanilla fallbacks with better-fitting alternatives.
+###########################
+
+# Militarist + Collectivist — revolutionary vanguard, spreads the collective
+gk_ec_revolutionary_vanguard = {
+	aggressiveness = 1.5
+	trade_willingness = 0.6
+	bravery = 1.5
+	combat_bravery = 1.75
+
+	military_spending = 1.3
+	colony_spending = 0.9
+
+	federation_acceptance = -10
+	nap_acceptance = -10
+	commercial_pact_acceptance = -20
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 0
+	migration_pact_acceptance = 0
+	loyalty_acceptance = 0.75
+
+	advanced_start_chance = 50
+
+	weapon_preferences = weapon_type_kinetic
+	armor_ratio = 0.5
+	shields_ratio = 0.3
+	hull_ratio = 0.2
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.5
+	friction_modifier = 1.5
+	claims_modifier = 2.0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = yes
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		wants_tribute = no
+	}
+
+	allow = {
+		is_country_type = default
+		is_collectivist = yes
+		OR = {
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+		}
+	}
+
+	weight_modifier = {
+		weight = 15
+		modifier = {
+			add = 3
+			is_fanatic_collectivist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_militarist"
+		}
+	}
+}
+
+# Xenophile + Collectivist — multispecies commune, aggressive federation builder
+gk_ec_internationalist_collective = {
+	aggressiveness = 0.5
+	trade_willingness = 0.8
+	bravery = 1.0
+	combat_bravery = 1.0
+
+	military_spending = 0.9
+	colony_spending = 1.1
+
+	federation_acceptance = 30
+	nap_acceptance = 10
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 10
+	defensive_pact_acceptance = 20
+	migration_pact_acceptance = 30
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 10
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.3
+	shields_ratio = 0.5
+	hull_ratio = 0.2
+
+	threat_modifier = 1.1
+	threat_others_modifier = 0.75
+	friction_modifier = 0.25
+	claims_modifier = 0.5
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = yes
+		opportunist = no
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = no
+	}
+
+	allow = {
+		is_country_type = default
+		is_collectivist = yes
+		OR = {
+			has_ethic = "ethic_xenophile"
+			has_ethic = "ethic_fanatic_xenophile"
+		}
+	}
+
+	weight_modifier = {
+		weight = 15
+		modifier = {
+			add = 3
+			is_fanatic_collectivist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_xenophile"
+		}
+	}
+}
+
+# Xenophobe + Individualist — tribute-seeking closed economy
+gk_ec_isolationist_profiteers = {
+	aggressiveness = 1.0
+	trade_willingness = 0.5
+	bravery = 0.75
+	combat_bravery = 1.0
+
+	military_spending = 1.1
+	colony_spending = 1.0
+
+	federation_acceptance = -50
+	nap_acceptance = -20
+	commercial_pact_acceptance = -30
+	research_agreement_acceptance = -20
+	defensive_pact_acceptance = -20
+	migration_pact_acceptance = -100
+	loyalty_acceptance = 0.5
+
+	advanced_start_chance = 25
+
+	weapon_preferences = weapon_type_kinetic
+	armor_ratio = 0.4
+	shields_ratio = 0.4
+	hull_ratio = 0.2
+
+	threat_modifier = 0.9
+	threat_others_modifier = 1.0
+	friction_modifier = 1.5
+	claims_modifier = 2.0
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		wants_tribute = yes
+		isolationist = yes
+	}
+
+	allow = {
+		is_country_type = default
+		is_individualist = yes
+		OR = {
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+		}
+	}
+
+	weight_modifier = {
+		weight = 20
+		modifier = {
+			add = 3
+			is_fanatic_individualist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_xenophobe"
+		}
+	}
+}
+
+# Materialist + Individualist — commercial dominance, trade-focused tech
+gk_ec_tech_entrepreneurs = {
+	aggressiveness = 0.75
+	trade_willingness = 1.0
+	bravery = 0.75
+	combat_bravery = 1.0
+
+	military_spending = 1.0
+	colony_spending = 1.0
+
+	federation_acceptance = 0
+	nap_acceptance = 5
+	commercial_pact_acceptance = 30
+	research_agreement_acceptance = 20
+	defensive_pact_acceptance = 5
+	migration_pact_acceptance = 0
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 25
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.2
+	shields_ratio = 0.6
+	hull_ratio = 0.2
+
+	threat_modifier = 1.0
+	threat_others_modifier = 0.9
+	friction_modifier = 0.75
+	claims_modifier = 1.5
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = yes
+	}
+
+	allow = {
+		is_country_type = default
+		is_individualist = yes
+		OR = {
+			has_ethic = "ethic_materialist"
+			has_ethic = "ethic_fanatic_materialist"
+		}
+	}
+
+	weight_modifier = {
+		weight = 15
+		modifier = {
+			add = 3
+			is_fanatic_individualist = yes
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_materialist"
+		}
+		modifier = {
+			add = 2
+			is_megacorp = yes
+		}
+	}
+}

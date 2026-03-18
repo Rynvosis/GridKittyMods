@@ -12,8 +12,8 @@ Changed vs vanilla: removed Worker Bonus Workforce and Leader Lifespan, added En
 
 | Ethic | Modifiers |
 |---|---|
-| **Fanatic Authoritarian** | Influence +1, Enforcer Jobs Bonus Workforce +20% |
-| **Authoritarian** | Influence +0.5, Enforcer Jobs Bonus Workforce +10% |
+| **Fanatic Authoritarian** | Influence +1, Enforcer Jobs Bonus Workforce +20%, Slave Bonus Workforce +10% |
+| **Authoritarian** | Influence +0.5, Enforcer Jobs Bonus Workforce +10%, Slave Bonus Workforce +5% |
 
 ### Egalitarian (`00_ethics.txt` — vanilla overwrite)
 
@@ -39,8 +39,8 @@ Unchanged from vanilla.
 
 | Ethic | Modifiers |
 |---|---|
-| **Fanatic Collectivist** | Amenities Usage -20%, Housing Usage -20%, Worker Production +10% |
-| **Collectivist** | Amenities Usage -10%, Housing Usage -10%, Worker Production +5% |
+| **Fanatic Collectivist** | Amenities Usage -10%, Housing Usage -10%, Worker Bonus Workforce +20% |
+| **Collectivist** | Amenities Usage -5%, Housing Usage -5%, Worker Bonus Workforce +10% |
 
 - Allows Utopian Abundance (living standard override)
 - **Faction** (`gk_ec_collectivist`): Wants social welfare, worker ownership, cooperative stance, nutritional plenitude. Opposes stratification, private monopolies, mercantilism, trade leagues.
