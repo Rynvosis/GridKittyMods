@@ -1,0 +1,319 @@
+namespace = gk_raiding_pillaging
+
+############################
+# Pillage Bombardment      #
+############################
+
+# Daily devastation from bombardment or ground combat - immediate pillage packets
+# Also resolves forced orbital surrender before ownership flips.
+# This = Planet
+# From = Damaging country
+planet_event = {
+	id = gk_raiding_pillaging.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		exists = from
+		gk_can_be_pillaged = yes
+	}
+
+	immediate = {
+		from = {
+			save_event_target_as = gk_raider
+		}
+		gk_pillage_on_devastation = yes
+		if = {
+			limit = {
+				has_orbital_bombardment = yes
+				num_armies < 1
+				NOT = { has_ground_combat = yes }
+				NOT = { has_planet_flag = gk_pillage_forced_surrender_resolved_by_@from }
+				from = {
+					gk_can_pillage = yes
+					is_at_war_with = prev.owner
+				}
+			}
+			set_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
+			from = {
+				country_event = {
+					id = gk_raiding_pillaging.200
+					scopes = {
+						from = root.owner
+						fromfrom = root
+					}
+				}
+			}
+		}
+	}
+}
+
+# Immediate cleanup for invasion cashout flags when a war pair ends
+# Root = Loser
+# From = Main Winner
+country_event = {
+	id = gk_raiding_pillaging.220
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = gk_has_pillage_invasion_cashed_out_by_@from
+			}
+			from = {
+				save_event_target_as = gk_raider
+			}
+			gk_clear_invasion_pillage_cashed_out_flags = yes
+		}
+		from = {
+			if = {
+				limit = {
+					has_country_flag = gk_has_pillage_invasion_cashed_out_by_@root
+				}
+				root = {
+					save_event_target_as = gk_raider
+				}
+				gk_clear_invasion_pillage_cashed_out_flags = yes
+			}
+		}
+
+		# Clear stale forced surrender markers on loser's planets (winner was the bombarder)
+		every_owned_planet = {
+			limit = { has_planet_flag = gk_pillage_forced_surrender_resolved_by_@from }
+			remove_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
+		}
+		# Clear stale forced surrender markers on winner's planets (loser was the bombarder)
+		from = {
+			every_owned_planet = {
+				limit = { has_planet_flag = gk_pillage_forced_surrender_resolved_by_@root }
+				remove_planet_flag = gk_pillage_forced_surrender_resolved_by_@root
+			}
+		}
+	}
+}
+
+############################
+# Pillage Invasion         #
+############################
+
+# On planet attackers win or forced orbital surrender - instant pillage
+# This = Attacking Country
+# From = Defending Country
+# FromFrom = Planet
+country_event = {
+	id = gk_raiding_pillaging.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = {
+			is_colony = yes
+			NOT = { has_planet_flag = gk_pillage_forced_surrender_resolved_by_@root }
+		}
+		gk_can_pillage = yes
+		from = {
+			is_at_war_with = root
+		}
+	}
+
+	immediate = {
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+		}
+		fromfrom = {
+			save_event_target_as = gk_target_planet
+			save_event_target_as = gk_raiding_target
+		}
+
+		gk_pillage_on_invasion = yes
+		gk_retrieve_loot_receipt = yes
+		gk_copy_receipt_values_for_display = yes
+
+		if = {
+			limit = {
+				OR = {
+					check_variable = { which = gk_total_trade value > 0 }
+					check_variable = { which = gk_total_energy value > 0 }
+					check_variable = { which = gk_total_minerals value > 0 }
+					check_variable = { which = gk_total_food value > 0 }
+					check_variable = { which = gk_total_consumer_goods value > 0 }
+					check_variable = { which = gk_total_alloys value > 0 }
+					check_variable = { which = gk_total_volatile_motes value > 0 }
+					check_variable = { which = gk_total_exotic_gases value > 0 }
+					check_variable = { which = gk_total_rare_crystals value > 0 }
+					check_variable = { which = gk_total_sr_living_metal value > 0 }
+					check_variable = { which = gk_total_sr_zro value > 0 }
+					check_variable = { which = gk_total_sr_dark_matter value > 0 }
+					check_variable = { which = gk_total_nanites value > 0 }
+				}
+			}
+			event_target:gk_raider = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_PILLAGE_INVASION
+					localization = MESSAGE_GK_PLANET_PILLAGED_INVASION
+					days = 30
+					target = event_target:gk_target_planet
+					variable = {
+						type = name
+						localization = PLANET
+						scope = event_target:gk_target_planet
+					}
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = trade SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = energy SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = minerals SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = food SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = consumer_goods SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = alloys SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = volatile_motes SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = exotic_gases SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = rare_crystals SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_living_metal SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_zro SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_dark_matter SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = nanites SCOPE = prev }
+				}
+			}
+			event_target:gk_raidee = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_OUR_PILLAGE_INVASION
+					localization = MESSAGE_GK_OUR_PLANET_PILLAGED_INVASION
+					days = 30
+					target = event_target:gk_target_planet
+					variable = {
+						type = name
+						localization = PLANET
+						scope = event_target:gk_target_planet
+					}
+					variable = {
+						type = name
+						localization = FROM
+						scope = event_target:gk_raider
+					}
+				}
+			}
+		}
+
+		gk_retrieve_loot_receipt = yes
+		event_target:gk_loot_receipt = {
+			save_event_target_as = gk_storage_scope
+		}
+		gk_collect_loot_from_storage = yes
+		gk_destroy_loot_receipt = yes
+	}
+}
+
+# Planet conquered after forced bombardment surrender - clear the pre-conquer marker
+# This = Planet
+# From = New Owner
+planet_event = {
+	id = gk_raiding_pillaging.210
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from
+		has_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
+	}
+
+	immediate = {
+		remove_planet_flag = gk_pillage_forced_surrender_resolved_by_@from
+	}
+}
+
+############################
+# Pillage Surrender        #
+############################
+
+# Pillage surrender - resources only, no pop count
+# This = Winner (raider)
+# From = Loser (raidee)
+country_event = {
+	id = gk_raiding_pillaging.300
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gk_raider
+		from = {
+			save_event_target_as = gk_raidee
+			save_event_target_as = gk_raiding_target
+		}
+
+		gk_pillage_on_surrender = yes
+		gk_retrieve_loot_receipt = yes
+		gk_copy_receipt_values_for_display = yes
+
+		if = {
+			limit = {
+				OR = {
+					check_variable = { which = gk_total_trade value > 0 }
+					check_variable = { which = gk_total_energy value > 0 }
+					check_variable = { which = gk_total_minerals value > 0 }
+					check_variable = { which = gk_total_food value > 0 }
+					check_variable = { which = gk_total_consumer_goods value > 0 }
+					check_variable = { which = gk_total_alloys value > 0 }
+					check_variable = { which = gk_total_volatile_motes value > 0 }
+					check_variable = { which = gk_total_exotic_gases value > 0 }
+					check_variable = { which = gk_total_rare_crystals value > 0 }
+					check_variable = { which = gk_total_sr_living_metal value > 0 }
+					check_variable = { which = gk_total_sr_zro value > 0 }
+					check_variable = { which = gk_total_sr_dark_matter value > 0 }
+					check_variable = { which = gk_total_nanites value > 0 }
+				}
+			}
+			event_target:gk_raider = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_PILLAGE_SURRENDER
+					localization = MESSAGE_GK_PLANET_PILLAGED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = TARGET
+						scope = event_target:gk_raidee
+					}
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = trade SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = energy SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = minerals SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = food SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = consumer_goods SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = alloys SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = volatile_motes SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = exotic_gases SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = rare_crystals SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_living_metal SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_zro SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = sr_dark_matter SCOPE = prev }
+					inline_script = { script = gk_raiding/loot_message_display_parameter RESOURCE = nanites SCOPE = prev }
+				}
+			}
+			event_target:gk_raidee = {
+				create_message = {
+					type = MESSAGE_TYPE_GK_OUR_PILLAGE_SURRENDER
+					localization = MESSAGE_GK_OUR_PLANET_PILLAGED_SURRENDER
+					days = 30
+					target = event_target:gk_raidee
+					variable = {
+						type = name
+						localization = FROM
+						scope = event_target:gk_raider
+					}
+				}
+			}
+		}
+
+		gk_retrieve_loot_receipt = yes
+		event_target:gk_loot_receipt = {
+			save_event_target_as = gk_storage_scope
+		}
+		gk_collect_loot_from_storage = yes
+		gk_destroy_loot_receipt = yes
+	}
+}

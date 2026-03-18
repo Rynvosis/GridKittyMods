@@ -1,0 +1,91 @@
+# GK Raiding Pillage Notification Messages
+
+message_type = {
+	key = MESSAGE_TYPE_GK_PILLAGE_DEVASTATION
+	message_setting_key = "MESSAGE_GK_PILLAGE_DEVASTATION_KEY"
+	icon = "GFX_gk_raiding_message_pillage_devastation"
+	icon_frame = 1
+
+	name = "MESSAGE_TYPE_GK_PILLAGE_DEVASTATION_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}
+
+message_type = {
+	key = MESSAGE_TYPE_GK_OUR_PILLAGE_DEVASTATION
+	message_setting_key = "MESSAGE_GK_OUR_PILLAGE_DEVASTATION_KEY"
+	icon = "GFX_gk_raiding_message_pillage_devastation"
+	icon_frame = 2
+
+	name = "MESSAGE_TYPE_GK_PILLAGE_DEVASTATION_TITLE"
+	sound = "notification"
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+message_type = {
+	key = MESSAGE_TYPE_GK_PILLAGE_INVASION
+	message_setting_key = "MESSAGE_GK_PILLAGE_INVASION_KEY"
+	icon = "GFX_gk_raiding_message_pillage_invasion"
+	icon_frame = 2
+
+	name = "MESSAGE_TYPE_GK_PILLAGE_INVASION_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}
+
+message_type = {
+	key = MESSAGE_TYPE_GK_OUR_PILLAGE_INVASION
+	message_setting_key = "MESSAGE_GK_OUR_PILLAGE_INVASION_KEY"
+	icon = "GFX_gk_raiding_message_pillage_invasion"
+	icon_frame = 2
+
+	name = "MESSAGE_TYPE_GK_PILLAGE_INVASION_TITLE"
+	sound = "notification"
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+message_type = {
+	key = MESSAGE_TYPE_GK_PILLAGE_SURRENDER
+	message_setting_key = "MESSAGE_GK_PILLAGE_SURRENDER_KEY"
+	icon = "GFX_gk_raiding_message_pillage_surrender"
+	icon_frame = 2
+
+	name = "MESSAGE_TYPE_GK_PILLAGE_SURRENDER_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}
+
+message_type = {
+	key = MESSAGE_TYPE_GK_OUR_PILLAGE_SURRENDER
+	message_setting_key = "MESSAGE_GK_OUR_PILLAGE_SURRENDER_KEY"
+	icon = "GFX_gk_raiding_message_pillage_surrender"
+	icon_frame = 2
+
+	name = "MESSAGE_TYPE_GK_PILLAGE_SURRENDER_TITLE"
+	sound = "notification"
+	ping = "ping_notification_red"
+
+	category = planets
+}
+message_type = {
+	key = MESSAGE_TYPE_GK_PRIVATEER_RAID_LOOT
+	message_setting_key = "MESSAGE_GK_PRIVATEER_RAID_LOOT_KEY"
+	icon = "GFX_gk_raiding_message_pillage_devastation"
+	icon_frame = 1
+
+	name = "MESSAGE_TYPE_GK_PRIVATEER_RAID_LOOT_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}

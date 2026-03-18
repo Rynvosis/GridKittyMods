@@ -1,0 +1,15 @@
+# GK Raiding — Privateer Enclave civic
+
+civic_gk_privateer_enclave = {
+	icon = "gfx/interface/icons/governments/civics/civic_trading_posts.dds"
+	potential = {
+		country_type = { value = gk_privateer_enclave }
+	}
+	modifier = {
+		ship_speed_mult = 0.15
+		ship_weapon_damage = 0.10
+		ship_hull_regen_add_perc = 0.05
+		ship_armor_regen_add_perc = 0.05
+	}
+	random_weight = { base = 0 }
+}

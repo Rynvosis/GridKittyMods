@@ -1,0 +1,71 @@
+# GK Raiding — Privateer Enclave scripted triggers
+
+# Country scope — is this a privateer enclave?
+gk_is_privateer_enclave = {
+	is_country_type = gk_privateer_enclave
+}
+
+# Country scope — is this empire the patron of a privateer enclave?
+# Flag set on the patron at founding time.
+gk_is_privateer_patron = {
+	has_country_flag = gk_is_privateer_patron
+}
+
+# Country scope — can this empire found a privateer enclave?
+gk_can_found_privateer_enclave = {
+	has_tradition = tr_gk_raiding_despoliation_finish
+	NOT = { has_origin = origin_mindwardens }
+	NOT = { has_civic = civic_fanatic_purifiers }
+	enclave_capacity_left >= 1
+}
+
+# Fleet scope — is privateer enclave founding allowed from this fleet?
+gk_is_privateer_founding_allowed = {
+	owner = {
+		gk_can_found_privateer_enclave = yes
+	}
+	is_enclave_founding_allowed = {
+		FLEET_SIZE = 100
+		STARBASE_SHIP_SIZE = gk_privateer_station
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Autonomous Raiding — Fleet Pool + Target Selection
+# ──────────────────────────────────────────────────────────────────
+
+# Fleet scope — is this fleet eligible for a privateer raid?
+gk_is_eligible_raid_fleet = {
+	is_fleet_idle = yes
+	NOT = { has_fleet_flag = gk_fleet_locked }
+	NOT = {
+		any_owned_ship = {
+			is_ship_size = gk_privateer_station
+		}
+	}
+	fleet_power > 500
+}
+
+# Country scope — does this enclave have at least one eligible raid fleet?
+gk_has_available_raid_fleet = {
+	any_owned_fleet = {
+		gk_is_eligible_raid_fleet = yes
+	}
+}
+
+# Country scope — is this empire a valid autonomous raid target?
+# Checked from enclave scope (prev = enclave)
+gk_is_valid_raid_target = {
+	is_country_type = default
+	has_communications = prev
+	NOT = { is_same_value = event_target:gk_privateer_patron }
+	NOT = { is_in_federation_with = event_target:gk_privateer_patron }
+	NOT = { has_defensive_pact = event_target:gk_privateer_patron }
+	NOT = { is_overlord_to = event_target:gk_privateer_patron }
+	NOT = { has_overlord = event_target:gk_privateer_patron }
+	any_owned_planet = {
+		is_colony = yes
+		count_owned_pop_amount = { count >= 1 }
+	}
+	NOT = { has_country_flag = gk_raided_by_@prev }
+}

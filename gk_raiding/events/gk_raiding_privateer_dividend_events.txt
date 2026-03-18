@@ -1,0 +1,641 @@
+namespace = gk_raiding_privateers
+
+# ──────────────────────────────────────────────────────────────────
+# Dividend Payouts (500–599)
+# ──────────────────────────────────────────────────────────────────
+
+# Dispatcher — hidden, fires on enclave country from situation completion
+# This = enclave country, From = situation
+country_event = {
+	id = gk_raiding_privateers.500
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# Find patron, system, and star via station fleet
+		gk_get_privateer_station_context = yes
+		root = {
+			save_event_target_as = gk_privateer_enclave_country
+		}
+		if = {
+			limit = {
+				exists = event_target:gk_privateer_patron
+			}
+			event_target:gk_privateer_patron = {
+				random_list = {
+					30 = { country_event = { id = gk_raiding_privateers.510 } }
+					30 = { country_event = { id = gk_raiding_privateers.515 } }
+					25 = { country_event = { id = gk_raiding_privateers.520 } }
+					5 = {
+						modifier = {
+							factor = 0
+							event_target:gk_privateer_enclave_country = {
+								NOT = { has_modifier = gk_privateer_upgrade_1 }
+							}
+						}
+						country_event = { id = gk_raiding_privateers.530 }
+					}
+					10 = { country_event = { id = gk_raiding_privateers.525 } }
+				}
+			}
+		}
+	}
+
+	after = {
+		start_situation = {
+			type = gk_privateer_dividends
+			target = event_target:gk_privateer_patron
+		}
+		destroy_situation = from
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .510 — Scrapped Goods (alloys + consumer goods)
+# This = patron country
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_privateers.510
+	title = gk_raiding_privateers.510.name
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.510.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_ship_offloading_cargo
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	# Tier 1 (ranks 0-1)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t1_value
+			min = @alloy_t1_min
+			max = @alloy_t1_max
+		}
+		add_monthly_resource_mult = {
+			resource = consumer_goods
+			value = @cg_t1_value
+			min = @cg_t1_min
+			max = @cg_t1_max
+		}
+	}
+
+	# Tier 2 (ranks 2-3)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t2_value
+			min = @alloy_t2_min
+			max = @alloy_t2_max
+		}
+		add_monthly_resource_mult = {
+			resource = consumer_goods
+			value = @cg_t2_value
+			min = @cg_t2_min
+			max = @cg_t2_max
+		}
+	}
+
+	# Tier 3 (ranks 4-5)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t3_value
+			min = @alloy_t3_min
+			max = @alloy_t3_max
+		}
+		add_monthly_resource_mult = {
+			resource = consumer_goods
+			value = @cg_t3_value
+			min = @cg_t3_min
+			max = @cg_t3_max
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .515 — Intercepted Cargo (alloys + trade)
+# This = patron country
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_privateers.515
+	title = gk_raiding_privateers.515.name
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.515.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_ship_offloading_cargo
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	# Tier 1 (ranks 0-1)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t1_value
+			min = @alloy_t1_min
+			max = @alloy_t1_max
+		}
+		add_monthly_resource_mult = {
+			resource = trade
+			value = @cg_t1_value
+			min = @cg_t1_min
+			max = @cg_t1_max
+		}
+	}
+
+	# Tier 2 (ranks 2-3)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t2_value
+			min = @alloy_t2_min
+			max = @alloy_t2_max
+		}
+		add_monthly_resource_mult = {
+			resource = trade
+			value = @cg_t2_value
+			min = @cg_t2_min
+			max = @cg_t2_max
+		}
+	}
+
+	# Tier 3 (ranks 4-5)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t3_value
+			min = @alloy_t3_min
+			max = @alloy_t3_max
+		}
+		add_monthly_resource_mult = {
+			resource = trade
+			value = @cg_t3_value
+			min = @cg_t3_min
+			max = @cg_t3_max
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .520 — Plundered Cargo (alloys + random strategic resource)
+# This = patron country
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_privateers.520
+	title = gk_raiding_privateers.520.name
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.520.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_ship_offloading_cargo
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		# Pick a random strategic resource
+		random_list = {
+			1 = { set_country_flag = gk_dividend_sr_crystals }
+			1 = { set_country_flag = gk_dividend_sr_gases }
+			1 = { set_country_flag = gk_dividend_sr_motes }
+		}
+	}
+
+	# Tier 1 (ranks 0-1)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				NOT = { has_modifier = gk_privateer_upgrade_2 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t1_value
+			min = @alloy_t1_min
+			max = @alloy_t1_max
+		}
+		if = {
+			limit = { has_country_flag = gk_dividend_sr_crystals }
+			add_monthly_resource_mult = {
+				resource = rare_crystals
+				value = @sr_t1_value
+				min = @sr_t1_min
+				max = @sr_t1_max
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = gk_dividend_sr_gases }
+			add_monthly_resource_mult = {
+				resource = exotic_gases
+				value = @sr_t1_value
+				min = @sr_t1_min
+				max = @sr_t1_max
+			}
+		}
+		else = {
+			add_monthly_resource_mult = {
+				resource = volatile_motes
+				value = @sr_t1_value
+				min = @sr_t1_min
+				max = @sr_t1_max
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_sr_crystals
+			remove_country_flag = gk_dividend_sr_gases
+			remove_country_flag = gk_dividend_sr_motes
+		}
+	}
+
+	# Tier 2 (ranks 2-3)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_2
+				NOT = { has_modifier = gk_privateer_upgrade_4 }
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t2_value
+			min = @alloy_t2_min
+			max = @alloy_t2_max
+		}
+		if = {
+			limit = { has_country_flag = gk_dividend_sr_crystals }
+			add_monthly_resource_mult = {
+				resource = rare_crystals
+				value = @sr_t2_value
+				min = @sr_t2_min
+				max = @sr_t2_max
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = gk_dividend_sr_gases }
+			add_monthly_resource_mult = {
+				resource = exotic_gases
+				value = @sr_t2_value
+				min = @sr_t2_min
+				max = @sr_t2_max
+			}
+		}
+		else = {
+			add_monthly_resource_mult = {
+				resource = volatile_motes
+				value = @sr_t2_value
+				min = @sr_t2_min
+				max = @sr_t2_max
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_sr_crystals
+			remove_country_flag = gk_dividend_sr_gases
+			remove_country_flag = gk_dividend_sr_motes
+		}
+	}
+
+	# Tier 3 (ranks 4-5)
+	option = {
+		name = EXCELLENT
+		trigger = {
+			event_target:gk_privateer_enclave_country = {
+				has_modifier = gk_privateer_upgrade_4
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = @alloy_t3_value
+			min = @alloy_t3_min
+			max = @alloy_t3_max
+		}
+		if = {
+			limit = { has_country_flag = gk_dividend_sr_crystals }
+			add_monthly_resource_mult = {
+				resource = rare_crystals
+				value = @sr_t3_value
+				min = @sr_t3_min
+				max = @sr_t3_max
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = gk_dividend_sr_gases }
+			add_monthly_resource_mult = {
+				resource = exotic_gases
+				value = @sr_t3_value
+				min = @sr_t3_min
+				max = @sr_t3_max
+			}
+		}
+		else = {
+			add_monthly_resource_mult = {
+				resource = volatile_motes
+				value = @sr_t3_value
+				min = @sr_t3_min
+				max = @sr_t3_max
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_sr_crystals
+			remove_country_flag = gk_dividend_sr_gases
+			remove_country_flag = gk_dividend_sr_motes
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .530 — Scavenged Fleet (privateer ships gifted to patron)
+# This = patron country
+# Only fires at rank 1+; dispatcher zeroes weight at rank 0
+# Fleet size scales with payout tier breakpoints (upgrade_2, upgrade_4)
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_privateers.530
+	title = gk_raiding_privateers.530.name
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.530.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_pirates_attacking_cargo
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		create_fleet = {
+			name = random
+			settings = { spawn_debris = no }
+			effect = {
+				set_owner = root
+				# Tier 1 base: 8 corvettes + 4 destroyers + 2 cruisers
+				while = {
+					count = 8
+					create_ship = {
+						name = random
+						design = "NAME_Outrider"
+						graphical_culture = "pirate_01"
+					}
+				}
+				while = {
+					count = 4
+					create_ship = {
+						name = random
+						design = "NAME_Lancer"
+						graphical_culture = "pirate_01"
+					}
+				}
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						design = "NAME_Void_Champion"
+						graphical_culture = "pirate_01"
+					}
+				}
+				# Tier 2 bonus (ranks 2+): +4 corvettes, +2 destroyers, +2 cruisers
+				if = {
+					limit = {
+						event_target:gk_privateer_enclave_country = {
+							has_modifier = gk_privateer_upgrade_2
+						}
+					}
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							design = "NAME_Outrider"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Lancer"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Void_Champion"
+							graphical_culture = "pirate_01"
+						}
+					}
+				}
+				# Tier 3 bonus (ranks 4+): +4 corvettes, +2 destroyers, +2 cruisers
+				if = {
+					limit = {
+						event_target:gk_privateer_enclave_country = {
+							has_modifier = gk_privateer_upgrade_4
+						}
+					}
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							design = "NAME_Outrider"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Lancer"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							design = "NAME_Void_Champion"
+							graphical_culture = "pirate_01"
+						}
+					}
+				}
+				set_location = event_target:gk_privateer_enclave_country
+				auto_move_to_planet = {
+					target = root.capital_scope
+					clear_auto_move_on_arrival = yes
+				}
+			}
+		}
+	}
+
+	# Accept the fleet
+	option = {
+		name = gk_raiding_privateers.530.a
+	}
+
+	# Scrap for alloys instead
+	option = {
+		name = gk_raiding_privateers.530.b
+		hidden_effect = {
+			last_created_fleet = { delete_fleet = this }
+		}
+		if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_modifier = gk_privateer_upgrade_2 }
+				}
+			}
+			add_resource = { alloys = 500 }
+		}
+		else_if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					has_modifier = gk_privateer_upgrade_2
+					NOT = { has_modifier = gk_privateer_upgrade_4 }
+				}
+			}
+			add_resource = { alloys = 1000 }
+		}
+		else = {
+			add_resource = { alloys = 1750 }
+		}
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# .525 — Exotic Specimens (specimen or minor artifacts)
+# This = patron country
+# Grand Archives: awards a random privateer-themed specimen
+# No Grand Archives: awards minor artifacts scaled by enclave tier
+# ──────────────────────────────────────────────────────────────────
+
+country_event = {
+	id = gk_raiding_privateers.525
+	title = gk_raiding_privateers.525.name
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.525.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_ship_offloading_cargo
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	immediate = {
+		# Pick a random specimen category
+		random_list = {
+			1 = { set_country_flag = gk_dividend_specimen_geology }
+			1 = { set_country_flag = gk_dividend_specimen_aesthetic }
+			1 = { set_country_flag = gk_dividend_specimen_history }
+		}
+	}
+
+	# Keep as specimen (Grand Archives only)
+	option = {
+		name = gk_raiding_privateers.525.a
+		trigger = { has_grand_archive_dlc = yes }
+		custom_tooltip = GK_RAIDING_DIVIDEND_SPECIMEN_TOOLTIP
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = gk_dividend_specimen_geology }
+				random_list = {
+					1 = { give_specimen = { key = gk_privateer_amber_fossil origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_stellar_tear origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_fossilized_growth origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = gk_dividend_specimen_aesthetic }
+				random_list = {
+					1 = { give_specimen = { key = gk_privateer_alien_headpiece origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_xenolithic_relic origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_alien_effigy origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				}
+			}
+			else = {
+				random_list = {
+					1 = { give_specimen = { key = gk_privateer_bio_vial origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_data_core origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_processing_unit origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				}
+			}
+			remove_country_flag = gk_dividend_specimen_geology
+			remove_country_flag = gk_dividend_specimen_aesthetic
+			remove_country_flag = gk_dividend_specimen_history
+		}
+	}
+
+	# Sell for minor artifacts instead
+	option = {
+		name = gk_raiding_privateers.525.b
+		if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_modifier = gk_privateer_upgrade_2 }
+				}
+			}
+			add_resource = { minor_artifacts = 15 }
+		}
+		else_if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					has_modifier = gk_privateer_upgrade_2
+					NOT = { has_modifier = gk_privateer_upgrade_4 }
+				}
+			}
+			add_resource = { minor_artifacts = 25 }
+		}
+		else = {
+			add_resource = { minor_artifacts = 40 }
+		}
+		hidden_effect = {
+			remove_country_flag = gk_dividend_specimen_geology
+			remove_country_flag = gk_dividend_specimen_aesthetic
+			remove_country_flag = gk_dividend_specimen_history
+		}
+	}
+}

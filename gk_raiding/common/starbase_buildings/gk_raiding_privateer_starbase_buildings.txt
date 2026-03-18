@@ -1,0 +1,58 @@
+# GK Raiding — Privateer Starbase Buildings
+
+gk_privateer_garrison = {
+	icon = "GFX_starbase_offworld_trading_company"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			is_homicidal = no
+			has_country_flag = gk_privateer_bought_garrison
+		}
+		is_normal_starbase = yes
+		is_space_citadel = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+		}
+	}
+
+	country_modifier = {
+		planet_crime_add = 5
+	}
+
+	custom_tooltip_with_modifiers = GK_PRIVATEER_GARRISON_TRADE_TOOLTIP
+
+	system_modifier = {
+		planet_jobs_trade_produces_mult = 0.20
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+		produces = {
+			trade = 4
+			mult = value:num_starbase_modules_of_type|TYPE|trading_hub|
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			count_starbase_modules = {
+				type = trading_hub
+				count < 2
+			}
+		}
+	}
+}

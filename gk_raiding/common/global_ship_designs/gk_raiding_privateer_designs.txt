@@ -1,0 +1,155 @@
+# GK Raiding — Privateer Enclave station design
+# Based on NAME_Mercenary_Enclave_Station (vanilla global_ship_designs/overlord_designs.txt:2-153)
+
+ship_design = {
+	name = "NAME_GK_Privateer_Enclave_Station"
+	ship_size = gk_privateer_station
+
+	section = {
+		template = "station_gk_privateer_01_key"
+		slot = "mid"
+
+		component = {
+			slot = "TORPEDO_01"
+			template = "ENERGY_TORPEDO_1"
+		}
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "KINETIC_ARTILLERY_1"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "KINETIC_ARTILLERY_1"
+		}
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_MASS_DRIVER_1"
+		}
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PLASMA_1"
+		}
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "MEDIUM_PLASMA_1"
+		}
+		component = {
+			slot = "PD_01"
+			template = "POINT_DEFENCE_1"
+		}
+		component = {
+			slot = "PD_02"
+			template = "FLAK_BATTERY_1"
+		}
+		component = {
+			slot = "MEDIUM_GUN_07"
+			template = "SWARMER_MISSILE_1"
+		}
+		component = {
+			slot = "MEDIUM_GUN_08"
+			template = "SWARMER_MISSILE_1"
+		}
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_AUTOCANNON_1"
+		}
+		component = {
+			slot = "STRIKE_CRAFT_01"
+			template = "STRIKE_CRAFT_HANGAR_1"
+		}
+		component = {
+			slot = "STRIKE_CRAFT_02"
+			template = "STRIKE_CRAFT_HANGAR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_7"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_8"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_9"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_10"
+			template = "LARGE_ARMOR_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_11"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_12"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
+			template = "LARGE_SHIELD_1"
+		}
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "SHIELD_BOOSTER"
+		}
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+	required_component = "STARBASE_ZERO_POINT_REACTOR"
+	required_component = "SENSOR_1"
+}

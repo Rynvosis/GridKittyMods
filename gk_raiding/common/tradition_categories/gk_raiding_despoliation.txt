@@ -1,0 +1,51 @@
+tradition_gk_raiding_despoliation = {
+	tree_template = "tree_111_11"
+	adoption_bonus = "tr_gk_raiding_despoliation_adopt"
+	finish_bonus = "tr_gk_raiding_despoliation_finish"
+	traditions = {
+		"tr_gk_raiding_despoliation_1"
+		"tr_gk_raiding_despoliation_2"
+		"tr_gk_raiding_despoliation_3"
+		"tr_gk_raiding_despoliation_4"
+		"tr_gk_raiding_despoliation_5"
+	}
+
+	potential = {
+		is_country_type = default
+	}
+
+	ai_weight = {
+		factor = 12
+		modifier = {
+			factor = 2
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			gk_has_native_pillage_access = yes
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_valid_civic = civic_scavengers
+				has_valid_civic = civic_corporate_scavengers
+			}
+		}
+		modifier = {
+			factor = 0.25
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 0.10
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+}

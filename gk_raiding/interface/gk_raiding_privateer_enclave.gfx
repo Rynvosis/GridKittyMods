@@ -1,0 +1,64 @@
+spriteTypes = {
+	# Background tile
+	corneredTileSpriteType = {
+		name = "GFX_tile_large_bg_gk_privateer_enclave"
+		textureFile = "gfx/interface/tiles/tile_large_bg_gk_privateer_enclave.dds"
+		borderSize = { x=330 y=296 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+
+	# Hex background
+	spriteType = {
+		name = "GFX_hex_bg_gk_privateer_enclave"
+		textureFile = "gfx/interface/planetview/planet_view_hex_bg_gk_privateer_enclave.dds"
+	}
+
+	# Header line
+	spriteType = {
+		name = "GFX_line_long_gk_privateer_enclave"
+		textureFile = "gfx/interface/planetview/line_long_gk_privateer_enclave.dds"
+	}
+
+	# Event button (3 frames: normal, hover, pressed)
+	spriteType = {
+		name = "GFX_event_button_452_gk_privateer_enclave"
+		texturefile = "gfx/interface/buttons/button_452_animated_gk_privateer_enclave.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+		noOfFrames = 3
+	}
+
+	# Close button
+	spriteType = {
+		name = "GFX_main_close_button_gk_privateer_enclave"
+		texturefile = "gfx/interface/buttons/close_button_gk_privateer_enclave.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+
+	# Focus button
+	spriteType = {
+		name = "GFX_fleetview_focus_gk_privateer_enclave"
+		texturefile = "gfx/interface/fleet_view/fleet_action_button_focus_on_gk_privateer_enclave.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+
+	# Portrait frame
+	spriteType = {
+		name = "GFX_diplomacy_portrait_frame_gk_privateer_enclave"
+		textureFile = "gfx/interface/diplomacy/diplomacy_portrait_frame_gk_privateer_enclave.dds"
+	}
+
+	# Empire flag frame
+	flagSpriteType = {
+		name = "GFX_empire_flag_128_gk_privateer_enclave"
+		textureFile = "gfx/interface/flags/empire_flag_128_frame_gk_privateer_enclave.dds"
+		masking_texture = "gfx/interface/flags/empire_flag_128_mask.dds"
+		effectFile = "gfx/FX/flag_sprite.shader"
+		noOfFrames = 1
+		bg_position = { x = 10 y = 10 }
+		bg_size = { width = 111 height = 111 }
+		symbol_position = { x = 24 y = 24 }
+		symbol_size = { width = 83 height = 83 }
+	}
+}

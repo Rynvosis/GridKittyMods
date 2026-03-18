@@ -1,0 +1,40 @@
+# GK Raiding — Privateer Enclave station ship size
+# Based on enclave_mercenary_station (vanilla ship_sizes/21_overlord.txt:331-367)
+# Differences: entity = station_generic_01_entity (marauder void dwelling model)
+
+gk_privateer_station = {
+	entity = station_generic_01_entity
+	is_space_object = no
+	graphical_culture = no
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.002
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_mult = 1
+		ship_shield_mult = 1
+		ship_fire_rate_mult = 1
+		starbase_shipyard_capacity_add = 4
+		starbase_defense_platform_capacity_add = 8
+	}
+	max_hitpoints = @station_gk_privateer_hp
+	combat_size_multiplier = 100
+	size_multiplier = 100
+	icon = ship_size_military_station
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	can_disable = no
+	is_space_station = yes
+	build_block_radius = @build_block_radius_civilian
+
+	use_shipnames_from = military_station_small
+
+	class = shipclass_starbase
+	construction_type = starbase_shipyard
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+
+	is_designable = no
+}

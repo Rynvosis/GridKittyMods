@@ -1,0 +1,48 @@
+# GK Raiding Pillaging On Actions
+
+# A war has ended
+# Root = Loser
+# From = Main Winner
+on_war_ended = {
+	events = {
+		gk_raiding_pillaging.220  # Cleanup invasion pillage cashout flags
+	}
+}
+
+# Planet has taken damage from orbital bombardment - Damage is applied daily
+# This = Planet
+# From = Bombarder (country)
+on_planet_bombarded = {
+	events = {
+		gk_raiding_pillaging.100  # Resource pillage from devastation + forced surrender resolution
+	}
+}
+
+# Planet has taken damage from ground combat - Damage is applied daily
+# This = Planet
+# From = Damaging country
+on_ground_combat_devastation = {
+	events = {
+		gk_raiding_pillaging.100  # Resource pillage from devastation
+	}
+}
+
+# Attackers win ground combat (before controller switches)
+# This = Attacking Country
+# From = Defending Country
+# FromFrom = Planet
+on_planet_attackers_win = {
+	events = {
+		gk_raiding_pillaging.200  # Pillage landing - instant pillage
+	}
+}
+
+# Planet changes hands through aggressive conquest (after ownership switches)
+# This = Planet
+# From = New Owner
+# FromFrom = Former Owner
+on_planet_conquer = {
+	events = {
+		gk_raiding_pillaging.210  # Pillage forced-surrender cleanup
+	}
+}

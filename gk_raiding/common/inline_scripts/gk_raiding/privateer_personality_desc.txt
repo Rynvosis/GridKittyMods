@@ -1,0 +1,35 @@
+# Privateer personality triggered desc blocks
+# Generates one desc per personality, gated by country flag on $SCOPE$
+# Expects loc keys: $KEY$.stoic, $KEY$.screamer, $KEY$.cultist, $KEY$.calculating, $KEY$.merchant, $KEY$.automaton
+#
+# Usage:
+# inline_script = {
+#     script = gk_raiding/privateer_personality_desc
+#     KEY = gk_raiding_privateers.102.desc
+#     SCOPE = event_target:gk_privateer_enclave_country
+# }
+
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_privateer_stoic } }
+	text = $KEY$.stoic
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_privateer_screamer } }
+	text = $KEY$.screamer
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_privateer_cultist } }
+	text = $KEY$.cultist
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_privateer_calculating } }
+	text = $KEY$.calculating
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_privateer_merchant } }
+	text = $KEY$.merchant
+}
+desc = {
+	trigger = { $SCOPE$ = { has_country_flag = gk_privateer_automaton } }
+	text = $KEY$.automaton
+}

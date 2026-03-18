@@ -1,0 +1,41 @@
+﻿l_english:
+ # GK Raiding — Privateer Specimen Localisation
+
+ # xeno_geology — Looted Natural Specimens
+ gk_privateer_amber_fossil: "Xenoform Amber Inclusion"
+ gk_privateer_amber_fossil_desc_short: "A chunk of alien amber containing a perfectly preserved organism."
+ gk_privateer_amber_fossil_desc_details: "Seized from a collector's shipment, this fist-sized piece of hardened resin contains the intact remains of a winged organism from an uncharted world. The privateers who found it had been using it as a paperweight. Xenobiologists consider it invaluable."
+
+ gk_privateer_stellar_tear: "Stellar Tear Fragment"
+ gk_privateer_stellar_tear_desc_short: "A luminous crystallized fragment of unknown origin."
+ gk_privateer_stellar_tear_desc_details: "This crystalline formation pulses with a faint internal light and registers on spectrographic analysis as partially composed of elements not found on any periodic table. The privateer crew reported it was warm to the touch when they pulled it from a research vessel's shielded cargo bay."
+
+ gk_privateer_fossilized_growth: "Fossilized Appendage"
+ gk_privateer_fossilized_growth_desc_short: "A mineralized alien claw embedded in sedimentary rock."
+ gk_privateer_fossilized_growth_desc_details: "This partially mineralized growth was recovered from a geological survey transport. The claw-like structure retains traces of bio-metallic composition, suggesting an organism that incorporated heavy metals into its skeletal structure. The surrounding rock matrix dates to several hundred million years."
+
+ # aesthetic_wonder — Looted Alien Artifacts
+ gk_privateer_alien_headpiece: "Looted Ceremonial Headpiece"
+ gk_privateer_alien_headpiece_desc_short: "An ornate alien headpiece taken from a diplomatic courier. Probably."
+ gk_privateer_alien_headpiece_desc_details: "This ceremonial headpiece was recovered from an unescorted diplomatic vessel. Wrought from an unknown alloy and adorned with bioluminescent inlays, our xenoanthropologists are §H100%§! confident it was worn atop the head of a high-ranking official. Alternative interpretations of its purpose have been noted and dismissed."
+
+ gk_privateer_xenolithic_relic: "Plundered Xenolithic Relic"
+ gk_privateer_xenolithic_relic_desc_short: "An inscribed alien pyramid stripped from a raided colony shipment."
+ gk_privateer_xenolithic_relic_desc_details: "This small stone pyramid was seized from a collector's transport bound for a frontier world. Its faces are covered in deeply carved alien script that resists all translation attempts. Under certain light conditions the inscriptions appear to shift, drawing the eye in ways that unsettle some observers and fascinate others. Displaying it publicly tends to improve local morale."
+
+ gk_privateer_alien_effigy: "Seized Alien Effigy"
+ gk_privateer_alien_effigy_desc_short: "A strange statuette seized from a xeno merchant vessel."
+ gk_privateer_alien_effigy_desc_details: "This unsettling figurine was found aboard a merchant vessel transiting through contested space. Carved from a single piece of petrified organic matter, it depicts an entity from an unknown species' mythology. Trade specialists believe similar artifacts command high prices on the galactic market."
+
+ # historical_item — Seized Tech / Intercepted Data
+ gk_privateer_bio_vial: "Seized Biocontainment Vial"
+ gk_privateer_bio_vial_desc_short: "A sealed vial of biological samples taken from a research transport."
+ gk_privateer_bio_vial_desc_details: "This hermetically sealed container holds biological samples from an unidentified xeno species. Intercepted from a research transport, the vial's contents appear to be tissue cultures preserved in a stabilizing medium. Preliminary analysis suggests significant potential for xenobiological research."
+
+ gk_privateer_data_core: "Intercepted Data Core"
+ gk_privateer_data_core_desc_short: "An encrypted data core pulled from a captured courier ship."
+ gk_privateer_data_core_desc_details: "Extracted from the wreckage of an encrypted courier vessel, this data core contains administrative records, policy frameworks, and bureaucratic templates from a foreign government. While the intelligence value has faded, the organizational models within have proven remarkably useful for streamlining domestic governance."
+
+ gk_privateer_processing_unit: "Salvaged Processing Unit"
+ gk_privateer_processing_unit_desc_short: "An alien processing unit recovered from a derelict freighter."
+ gk_privateer_processing_unit_desc_details: "This compact processing unit was salvaged from a freighter that ran afoul of the privateers. Its architecture is based on unfamiliar computational principles, and reverse-engineering its logic pathways has yielded insights that enhance cultural and administrative data processing."

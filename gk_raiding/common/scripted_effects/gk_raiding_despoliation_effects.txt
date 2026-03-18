@@ -1,0 +1,159 @@
+# GK Raiding Despoliation Effects
+
+# This = leader scope
+gk_raiding_grant_despoliation_commander_trait = {
+	if = {
+		limit = {
+			leader_class = commander
+			NOT = { has_leader_flag = gk_raiding_despoliation_trait_applied }
+		}
+
+		set_leader_flag = gk_raiding_despoliation_trait_applied
+
+		if = {
+			limit = {
+				NOR = {
+					has_trait = leader_trait_corsair
+					has_trait = leader_trait_corsair_2
+					has_trait = leader_trait_shipbreaker
+					has_trait = leader_trait_shipbreaker_2
+				}
+			}
+			random_list = {
+				50 = {
+					give_trait_no_notify_ignore_autocracy_restriction = {
+						TRAIT = leader_trait_corsair
+					}
+				}
+				50 = {
+					give_trait_no_notify_ignore_autocracy_restriction = {
+						TRAIT = leader_trait_shipbreaker
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_trait = leader_trait_corsair
+					has_trait = leader_trait_corsair_2
+				}
+				NOR = {
+					has_trait = leader_trait_shipbreaker
+					has_trait = leader_trait_shipbreaker_2
+				}
+			}
+			give_trait_no_notify_ignore_autocracy_restriction = {
+				TRAIT = leader_trait_shipbreaker
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_trait = leader_trait_shipbreaker
+					has_trait = leader_trait_shipbreaker_2
+				}
+				NOR = {
+					has_trait = leader_trait_corsair
+					has_trait = leader_trait_corsair_2
+				}
+			}
+			give_trait_no_notify_ignore_autocracy_restriction = {
+				TRAIT = leader_trait_corsair
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					AND = {
+						has_trait = leader_trait_corsair
+						has_trait = leader_trait_shipbreaker_2
+					}
+					AND = {
+						has_trait = leader_trait_shipbreaker
+						has_trait = leader_trait_corsair_2
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_trait = leader_trait_corsair
+				}
+				give_trait_no_notify_ignore_autocracy_restriction = {
+					TRAIT = leader_trait_corsair_2
+				}
+			}
+			else = {
+				give_trait_no_notify_ignore_autocracy_restriction = {
+					TRAIT = leader_trait_shipbreaker_2
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_trait = leader_trait_corsair
+				has_trait = leader_trait_shipbreaker
+			}
+			random_list = {
+				50 = {
+					give_trait_no_notify_ignore_autocracy_restriction = {
+						TRAIT = leader_trait_corsair_2
+					}
+				}
+				50 = {
+					give_trait_no_notify_ignore_autocracy_restriction = {
+						TRAIT = leader_trait_shipbreaker_2
+					}
+				}
+			}
+		}
+	}
+}
+
+# This = country scope
+gk_raiding_apply_despoliation_commander_traits = {
+	every_owned_leader = {
+		gk_raiding_grant_despoliation_commander_trait = yes
+	}
+
+	every_pool_leader = {
+		gk_raiding_grant_despoliation_commander_trait = yes
+	}
+}
+
+# This = country scope
+# Prev = planet that just took devastation
+gk_gain_despoliation_devastation_unity = {
+	if = {
+		limit = {
+			has_tradition = tr_gk_raiding_despoliation_3
+		}
+		export_resource_income_to_variable = {
+			resource = unity
+			variable = gk_despoliation_unity_reward
+		}
+		if = {
+			limit = {
+				check_variable = { which = gk_despoliation_unity_reward value > 0 }
+			}
+			multiply_variable = {
+				which = gk_despoliation_unity_reward
+				value = prev.local_devastation
+			}
+			divide_variable = {
+				which = gk_despoliation_unity_reward
+				value = @gk_pillage_devastation_per_packet
+			}
+			if = {
+				limit = {
+					check_variable = { which = gk_despoliation_unity_reward value > 0 }
+				}
+				add_resource = {
+					unity = 1
+					mult = gk_despoliation_unity_reward
+				}
+			}
+		}
+		clear_variable = gk_despoliation_unity_reward
+	}
+}

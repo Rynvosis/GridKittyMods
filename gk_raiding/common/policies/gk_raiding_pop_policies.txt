@@ -1,0 +1,230 @@
+# GK Raiding Pop Policies
+# Determines pop-raiding focus and robot capture rules
+
+gk_raiding_focus = {
+	allow = {
+		is_at_war = no # Not allowed to change policies in this group while at war
+	}
+
+	potential = {
+		OR = {
+			has_valid_civic = civic_barbaric_despoilers
+			has_ascension_perk = ap_nihilistic_acquisition
+			has_valid_civic = civic_gk_emancipators
+			has_valid_civic = civic_gk_emancipators_megacorp
+			has_valid_civic = civic_gk_robo_liberators
+			has_valid_civic = civic_gk_robo_liberators_megacorp
+			has_valid_civic = civic_gk_robo_liberators_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		}
+	}
+
+	option = {
+		name = "gk_raiding_focus_plunder"
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_gk_emancipators
+				has_valid_civic = civic_gk_emancipators_megacorp
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
+		}
+
+		policy_flags = {
+			gk_focus_plunder
+		}
+
+		AI_weight = {
+			factor = 2
+		}
+	}
+
+	option = {
+		name = "gk_raiding_focus_no_raiding"
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_gk_emancipators
+				has_valid_civic = civic_gk_emancipators_megacorp
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
+		}
+
+		policy_flags = {
+			gk_focus_no_pop_raiding
+		}
+
+		AI_weight = {
+			factor = 1
+			modifier = {
+				factor = 2
+				has_ethic = ethic_fanatic_militarist
+			}
+		}
+	}
+
+
+	option = {
+		name = "gk_raiding_focus_emancipation"
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
+			OR = {
+				has_valid_civic = civic_gk_emancipators
+				has_valid_civic = civic_gk_emancipators_megacorp
+				has_ethic = ethic_egalitarian
+				has_ethic = ethic_fanatic_egalitarian
+			}
+		}
+
+		policy_flags = {
+			gk_focus_emancipation
+		}
+
+		AI_weight = {
+			factor = 2
+			modifier = {
+				factor = 3
+				has_ethic = ethic_fanatic_egalitarian
+			}
+			modifier = {
+				factor = 2
+				has_valid_civic = civic_gk_emancipators
+			}
+		}
+	}
+	option = {
+		name = "gk_raiding_focus_robo_liberation"
+
+		valid = {
+			OR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
+		}
+
+		policy_flags = {
+			gk_focus_robo_liberation
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 2
+				has_valid_civic = civic_gk_robo_liberators
+			}
+		}
+	}
+}
+
+# Policy to determine if robots can be raided
+# Hidden for robo-liberators (they are forced to robots only)
+gk_robot_raiding = {
+	allow = {
+		is_at_war = no # Not allowed to change policies in this group while at war
+	}
+
+	potential = {
+		OR = {
+			has_valid_civic = civic_barbaric_despoilers
+			has_ascension_perk = ap_nihilistic_acquisition
+			has_valid_civic = civic_gk_emancipators
+			has_valid_civic = civic_gk_emancipators_megacorp
+			has_valid_civic = civic_gk_robo_liberators
+			has_valid_civic = civic_gk_robo_liberators_megacorp
+			has_valid_civic = civic_gk_robo_liberators_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_machine
+			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		}
+	}
+
+	option = {
+		name = "gk_robot_raiding_allowed"
+
+		policy_flags = {
+			gk_allow_robot_raiding
+		}
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
+		}
+
+		AI_weight = {
+			factor = 2
+			modifier = {
+				factor = 3
+				has_ethic = ethic_materialist
+			}
+			modifier = {
+				factor = 3
+				has_ethic = ethic_fanatic_materialist
+			}
+		}
+	}
+
+	option = {
+		name = "gk_robot_raiding_forbidden"
+
+		policy_flags = {
+			gk_forbid_robot_raiding
+		}
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
+		}
+
+		AI_weight = {
+			factor = 1
+			modifier = {
+				factor = 3
+				has_ethic = ethic_spiritualist
+			}
+			modifier = {
+				factor = 3
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+	}
+
+	option = {
+		name = "gk_robot_raiding_only"
+
+		policy_flags = {
+			gk_robots_only_raiding
+		}
+
+		potential = {
+			OR = {
+				has_valid_civic = civic_gk_robo_liberators
+				has_valid_civic = civic_gk_robo_liberators_megacorp
+				has_valid_civic = civic_gk_robo_liberators_machine
+			}
+		}
+
+		AI_weight = {
+			factor = 1
+			modifier = {
+				factor = 5
+				has_ethic = ethic_fanatic_materialist
+			}
+		}
+	}
+}

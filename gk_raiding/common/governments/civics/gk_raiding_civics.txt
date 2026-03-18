@@ -1,0 +1,295 @@
+# GK Raiding Civics
+
+####################
+# EMANCIPATORS     #
+####################
+# Egalitarian civic focused on "liberating" enslaved pops
+# Grants access to Emancipation policy/war goal and bonus efficiency
+civic_gk_emancipators = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_emancipators_effects
+
+	potential = {
+		authority = {
+			NOT = { value = auth_corporate }
+		}
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_egalitarian
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_egalitarian
+		}
+	}
+
+	modifier = {
+		army_morale = 0.50
+	}
+
+	alternate_civic_version = civic_gk_emancipators_megacorp
+
+	modification = yes
+
+	# Grants access to Emancipation policy option via potential check
+	# The policy itself grants the base modifiers
+}
+
+####################
+# ROBO-LIBERATORS  #
+####################
+# Materialist civic focused on "liberating" robotic pops
+# Grants access to Robo-Liberation policy/war goal
+civic_gk_robo_liberators = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_robo_liberators_effects
+
+	potential = {
+		authority = {
+			NOT = { value = auth_corporate }
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+
+	alternate_civic_version = civic_gk_robo_liberators_megacorp
+
+	modification = yes
+}
+
+##############################
+# MEGACORP VARIANTS          #
+##############################
+
+# Megacorp variant of Emancipators
+civic_gk_emancipators_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_emancipators_megacorp_effects
+
+	potential = {
+		authority = {
+			value = auth_corporate
+		}
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_egalitarian
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_egalitarian
+		}
+	}
+
+	modifier = {
+		army_morale = 0.50
+	}
+
+	alternate_civic_version = civic_gk_emancipators
+
+	modification = yes
+}
+
+# Megacorp variant of Robo-Liberators
+civic_gk_robo_liberators_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_robo_liberators_megacorp_effects
+
+	potential = {
+		authority = {
+			value = auth_corporate
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+
+	alternate_civic_version = civic_gk_robo_liberators
+
+	modification = yes
+}
+
+##############################
+# MACHINE VARIANT            #
+##############################
+
+# Machine Intelligence despoilers — abducts pops for grid amalgamation
+# Starts with organic battery pops; grants raiding CB
+civic_gk_barbaric_despoilers_machine = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_barbaric_despoilers_machine_effects
+
+	potential = {
+		authority = {
+			value = auth_machine_intelligence
+		}
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_machine_servitor
+				value = civic_machine_assimilator
+				value = civic_machine_terminator
+			}
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 0
+			has_global_flag = game_started
+		}
+	}
+
+	modification = no
+
+	has_secondary_species = {
+		title = civic_gk_barbaric_despoilers_machine_secondary_species
+	}
+
+	modifier = {
+		planet_organic_batteries_energy_produces_add = 1
+		planet_organic_batteries_unity_produces_add = 1
+		councilor_gestalt_legion_exp_gain = 0.25
+	}
+
+	#TODO: Add buildable versions of the synaptic lathe buildings to this civic so they can juice up their grid amalgamated pops even better.
+	#and maybe for each of the 3 ascensions, a new special building related to the ascesnion
+}
+
+# Machine Intelligence variant of Robo-Liberators
+civic_gk_robo_liberators_machine = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_robo_liberators_machine_effects
+
+	potential = {
+		authority = {
+			value = auth_machine_intelligence
+		}
+	}
+
+	random_weight = {
+		base = 5
+	}
+
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.15
+		planet_pop_assembly_mult = 0.10
+		councilor_gestalt_legion_exp_gain = 0.25
+	}
+}
+
+
+
+
+##############################
+# MEGACORP DESPOILERS        #
+##############################
+
+# Corporate population harvester — pops as commodities
+# Grants Raiding CB + Reaping war goal
+civic_gk_barbaric_despoilers_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_barbaric_despoilers_megacorp_effects
+
+	potential = {
+		authority = {
+			value = auth_corporate
+		}
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+			OR = {
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+			}
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_militarist
+		}
+	}
+
+	modifier = {
+		pop_slave_bonus_workforce_mult = 0.10
+		pop_cat_purge_bonus_workforce_mult = 1.00
+	}
+
+	modification = yes
+}
+
+# gestalt civics:
+# - the best place for hive civics is likely going to be adding raiding to the existing bodysnatchers civic
+# That will need overwrite of the locs and we can just pretends its a raiding civic in all our internal triggers. Probably organic only raiding by default? they dont need machines

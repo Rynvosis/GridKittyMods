@@ -1,0 +1,14 @@
+﻿l_english:
+ # Version last updated: v4.2.3
+ # Pop-raiding-facing overrides.
+
+ allow_raiding_base:0 "Unlocks §Y$concept_gk_pop_raiding$§! and the §Y$bombardment_raiding$§! bombardment stance"
+ allow_raiding:0 "$allow_raiding_base$\nUnlocks the §Y$war_goal_wg_gk_reaping$§! war goal"
+
+ war_goal_wg_plunder:0 "Raiding"
+ war_goal_wg_plunder_desc:0 "War is waged to raid the enemy for captives. Using this wargoal allows us to abduct pops during war and claim additional captives on enemy surrender."
+ wg_plunder_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §G[Root.GkSurrenderPopEstimate]§! pops to §Y[Root.GetName]§!."
+
+ casus_belli_cb_despoliation:0 "Despoliation"
+
+ bombardment_raiding_desc:5 "$bombardment_raiding$ Bombardment targets enemy population centers with specialized raiding craft that abduct their people and resettle them to our worlds.\n- §ELight§! damage to §YArmies§!\n- §ELight§! damage to §YPlanet§!\n- Will §Yabduct§! Pops when possible instead of killing them\n- Will §RNOT§! abduct or kill the last Pop. Each army on the planet increases the number of protected Pops\n- Subject to ['concept_gk_pop_raiding'] limits"

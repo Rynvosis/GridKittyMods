@@ -1,0 +1,185 @@
+# GK Raiding Pillage Storage Effects - Loot Receipt Management
+# Handles loot receipt creation, retrieval, collection, and destruction
+# Uses a global event target leader to store values, preventing overwrites from simultaneous raids
+# Receipt is identified by flags: gk_loot_receipt_to_@raider and gk_loot_receipt_from_@target
+####################
+# Core Receipt Effects
+####################
+# Get or create a loot receipt - order agnostic (retrieves existing or creates new)
+# Expects event_target:gk_raider and event_target:gk_raiding_target to be set
+# NOTE: Always set event targets before calling this effect
+gk_get_or_create_loot_receipt = {
+	# Check if receipt already exists
+	if = {
+		limit = {
+			event_target:global_event_country = {
+				any_owned_leader = {
+					has_leader_flag = gk_loot_receipt_to_@event_target:gk_raider
+					has_leader_flag = gk_loot_receipt_from_@event_target:gk_raiding_target
+				}
+			}
+		}
+		# Retrieve existing receipt
+		event_target:global_event_country = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gk_loot_receipt_to_@event_target:gk_raider
+					has_leader_flag = gk_loot_receipt_from_@event_target:gk_raiding_target
+				}
+				save_event_target_as = gk_loot_receipt
+			}
+		}
+	}
+	else = {
+		# Create hidden leader in global_event_country scope
+		event_target:global_event_country = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = "Loot Receipt"
+				skill = 1
+				hide_leader = yes
+				event_leader = yes
+			}
+			# Set flags AFTER creation, while still in global_event_country scope
+			# This way the event_targets resolve correctly
+			last_created_leader = {
+				set_leader_flag = gk_loot_receipt_to_@event_target:gk_raider
+				set_leader_flag = gk_loot_receipt_from_@event_target:gk_raiding_target
+				save_event_target_as = gk_loot_receipt
+			}
+		}
+		# Initialize loot variables only on new receipts
+		event_target:gk_loot_receipt = {
+			save_event_target_as = gk_storage_scope
+			# Initialize on the receipt leader itself
+			gk_init_loot_variables = yes
+			set_variable = { which = gk_pillage_damage_bank value = 0 }
+		}
+	}
+}
+
+# Retrieve the loot receipt and save as local event target
+# Expects event_target:gk_raider and event_target:gk_raiding_target to be set
+gk_retrieve_loot_receipt = {
+	# Find the receipt in global_event_country by matching both flags
+	event_target:global_event_country = {
+		random_owned_leader = {
+			limit = {
+				has_leader_flag = gk_loot_receipt_to_@event_target:gk_raider
+				has_leader_flag = gk_loot_receipt_from_@event_target:gk_raiding_target
+			}
+			save_event_target_as = gk_loot_receipt
+		}
+	}
+}
+
+# Delete the loot receipt leader after collection
+# Requires event_target:gk_loot_receipt to exist (call retrieve first)
+gk_destroy_loot_receipt = {
+	if = {
+		limit = {
+			exists = event_target:gk_loot_receipt
+		}
+		event_target:gk_loot_receipt = {
+			kill_leader = {
+				show_notification = no
+			}
+		}
+	}
+	# Clean up display variables from root
+	clear_variable = gk_total_trade
+	clear_variable = gk_total_energy
+	clear_variable = gk_total_minerals
+	clear_variable = gk_total_food
+	clear_variable = gk_total_consumer_goods
+	clear_variable = gk_total_alloys
+	clear_variable = gk_total_volatile_motes
+	clear_variable = gk_total_exotic_gases
+	clear_variable = gk_total_rare_crystals
+	clear_variable = gk_total_sr_living_metal
+	clear_variable = gk_total_sr_zro
+	clear_variable = gk_total_sr_dark_matter
+	clear_variable = gk_total_nanites
+}
+
+# Copy loot receipt values to current scope for localisation display
+# This = country to copy values to
+# Requires event_target:gk_loot_receipt to exist (call retrieve first)
+gk_copy_receipt_values_for_display = {
+	if = {
+		limit = {
+			exists = event_target:gk_loot_receipt
+		}
+		event_target:gk_loot_receipt = {
+			save_event_target_as = gk_storage_scope
+		}
+		gk_ensure_loot_variables = yes
+		# Copy loot values (now stored as gk_loot_* on storage scope/receipt)
+		set_variable = {
+			which = gk_total_trade
+			value = event_target:gk_loot_receipt.gk_loot_trade
+		}
+		round_variable = gk_total_trade
+		set_variable = {
+			which = gk_total_energy
+			value = event_target:gk_loot_receipt.gk_loot_energy
+		}
+		round_variable = gk_total_energy
+		set_variable = {
+			which = gk_total_minerals
+			value = event_target:gk_loot_receipt.gk_loot_minerals
+		}
+		round_variable = gk_total_minerals
+		set_variable = {
+			which = gk_total_food
+			value = event_target:gk_loot_receipt.gk_loot_food
+		}
+		round_variable = gk_total_food
+		set_variable = {
+			which = gk_total_consumer_goods
+			value = event_target:gk_loot_receipt.gk_loot_consumer_goods
+		}
+		round_variable = gk_total_consumer_goods
+		set_variable = {
+			which = gk_total_alloys
+			value = event_target:gk_loot_receipt.gk_loot_alloys
+		}
+		round_variable = gk_total_alloys
+		set_variable = {
+			which = gk_total_volatile_motes
+			value = event_target:gk_loot_receipt.gk_loot_volatile_motes
+		}
+		round_variable = gk_total_volatile_motes
+		set_variable = {
+			which = gk_total_exotic_gases
+			value = event_target:gk_loot_receipt.gk_loot_exotic_gases
+		}
+		round_variable = gk_total_exotic_gases
+		set_variable = {
+			which = gk_total_rare_crystals
+			value = event_target:gk_loot_receipt.gk_loot_rare_crystals
+		}
+		round_variable = gk_total_rare_crystals
+		set_variable = {
+			which = gk_total_sr_living_metal
+			value = event_target:gk_loot_receipt.gk_loot_sr_living_metal
+		}
+		round_variable = gk_total_sr_living_metal
+		set_variable = {
+			which = gk_total_sr_zro
+			value = event_target:gk_loot_receipt.gk_loot_sr_zro
+		}
+		round_variable = gk_total_sr_zro
+		set_variable = {
+			which = gk_total_sr_dark_matter
+			value = event_target:gk_loot_receipt.gk_loot_sr_dark_matter
+		}
+		round_variable = gk_total_sr_dark_matter
+		set_variable = {
+			which = gk_total_nanites
+			value = event_target:gk_loot_receipt.gk_loot_nanites
+		}
+		round_variable = gk_total_nanites
+	}
+}

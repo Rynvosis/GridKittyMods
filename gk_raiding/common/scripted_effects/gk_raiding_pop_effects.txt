@@ -1,0 +1,760 @@
+# GK Raiding Pop Scripted Effects
+
+######################
+# Core Abduction Flow #
+######################
+# Surrender/Invasion:
+#   1. Entry point sets up gk_storage_scope = gk_pop_result_tracker
+#   2. Initialize abduction cap on raidee, forfeited pops counter on the pop result tracker
+#   3. For each planet: gk_abduct_pops_from_planet processes eligible pops
+#   4. Pop result tracker has gk_forfeited_pops count for notification payloads
+
+######################
+# Raid Tracker CRUD  #
+######################
+
+# Get or create a raid tracker for a specific raid-side-leader/defender pair
+# This = any scope
+# event_target:gk_cap_raider = side leader country whose quota is being spent
+# event_target:gk_raidee = defender country
+# Sets: event_target:gk_raid_tracker
+gk_get_or_create_raid_tracker = {
+	if = {
+		limit = {
+			event_target:global_event_country = {
+				any_owned_leader = {
+					has_leader_flag = gk_raid_tracker
+					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_cap_raider
+					has_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
+				}
+			}
+		}
+		event_target:global_event_country = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gk_raid_tracker
+					has_leader_flag = gk_raid_tracker_attacker_@event_target:gk_cap_raider
+					has_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
+				}
+				save_event_target_as = gk_raid_tracker
+
+			}
+		}
+	}
+	else = {
+		event_target:global_event_country = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = "Raid Tracker"
+				skill = 1
+				hide_leader = yes
+				event_leader = yes
+			}
+			last_created_leader = {
+				set_leader_flag = gk_raid_tracker
+				set_leader_flag = gk_raid_tracker_attacker_@event_target:gk_cap_raider
+				set_leader_flag = gk_raid_tracker_defender_@event_target:gk_raidee
+				set_variable = { which = gk_pops_taken value = 0 }
+				set_variable = { which = gk_escalation_tier value = 0 }
+				set_variable = { which = gk_bucket_pops_taken value = 0 }
+				save_event_target_as = gk_raid_tracker
+			}
+		}
+	}
+	# Save tracker as global event target keyed by war + side for tooltip access
+	# Runs on both create and retrieve so it survives save/load
+	event_target:gk_cap_raider = {
+		every_war = {
+			limit = { is_war_participant = { who = event_target:gk_raidee } }
+			save_event_target_as = gk_current_war
+			if = {
+				limit = { attacker = { is_same_value = event_target:gk_cap_raider } }
+				event_target:gk_raid_tracker = {
+					save_global_event_target_as = gk_raid_tracker_atk_@event_target:gk_current_war
+				}
+			}
+			else = {
+				event_target:gk_raid_tracker = {
+					save_global_event_target_as = gk_raid_tracker_def_@event_target:gk_current_war
+				}
+			}
+		}
+	}
+}
+
+############################
+# Pop Result Tracker CRUD  #
+############################
+
+# Get or create a pop result tracker for the current raider + target scope
+# event_target:gk_raider = acting raider
+# event_target:gk_raiding_target = invaded planet or surrendered country
+# Sets: event_target:gk_pop_result_tracker
+gk_get_or_create_pop_result_tracker = {
+	if = {
+		limit = {
+			event_target:global_event_country = {
+				any_owned_leader = {
+					has_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+					has_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+				}
+			}
+		}
+		event_target:global_event_country = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+					has_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+				}
+				save_event_target_as = gk_pop_result_tracker
+			}
+		}
+	}
+	else = {
+		event_target:global_event_country = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = "Pop Result Tracker"
+				skill = 1
+				hide_leader = yes
+				event_leader = yes
+			}
+			last_created_leader = {
+				set_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+				set_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+				set_variable = { which = gk_forfeited_pops value = 0 }
+				save_event_target_as = gk_pop_result_tracker
+			}
+		}
+	}
+}
+
+gk_retrieve_pop_result_tracker = {
+	event_target:global_event_country = {
+		random_owned_leader = {
+			limit = {
+				has_leader_flag = gk_pop_result_tracker_to_@event_target:gk_raider
+				has_leader_flag = gk_pop_result_tracker_from_@event_target:gk_raiding_target
+			}
+			save_event_target_as = gk_pop_result_tracker
+		}
+	}
+}
+
+gk_destroy_pop_result_tracker = {
+	if = {
+		limit = {
+			exists = event_target:gk_pop_result_tracker
+		}
+		event_target:gk_pop_result_tracker = {
+			kill_leader = { show_notification = no }
+		}
+	}
+	clear_variable = gk_forfeited_pops
+}
+
+gk_copy_pop_result_values_for_display = {
+	if = {
+		limit = {
+			exists = event_target:gk_pop_result_tracker
+		}
+		set_variable = {
+			which = gk_forfeited_pops
+			value = event_target:gk_pop_result_tracker.gk_forfeited_pops
+		}
+	}
+}
+
+# Update the cap flag on the defender after an abduction
+# This = defender/raidee country
+# event_target:gk_cap_raider = side leader country whose quota is being spent
+# event_target:gk_raid_tracker = tracker with gk_pops_taken, gk_escalation_tier, gk_bucket_pops_taken
+gk_update_raid_cap_flag = {
+	# Unlimited raiding (reaping war, tier 5, etc.) bypasses all caps
+	if = {
+		limit = { gk_has_unlimited_raiding = yes }
+		remove_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider
+	}
+	else = {
+		# Compute bucket cap: (current_pops + bucket_taken) * rate
+		# Using (current + taken) reconstructs the effective pool dynamically
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop_amount
+			variable = gk_cap_calc_temp
+		}
+		change_variable = {
+			which = gk_cap_calc_temp
+			value = event_target:gk_raid_tracker.gk_bucket_pops_taken
+		}
+		multiply_variable = {
+			which = gk_cap_calc_temp
+			value = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
+		}
+		# gk_cap_calc_temp = effective_pool * rate = total tier quota
+		# Compare bucket_pops_taken against total tier quota
+		if = {
+			limit = {
+				event_target:gk_raid_tracker = {
+					check_variable = {
+						which = gk_bucket_pops_taken
+						value >= prev.gk_cap_calc_temp
+					}
+				}
+			}
+			# Only fire escalation event on fresh transition (flag not already set)
+			if = {
+				limit = {
+					NOT = { has_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider }
+				}
+				set_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider
+				set_country_flag = gk_escalation_pending_for_@event_target:gk_cap_raider
+			}
+		}
+		else = {
+			remove_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider
+		}
+		# Cleanup
+		clear_variable = gk_cap_calc_temp
+	}
+}
+
+# Resolve the war-goal side leader whose pop-raiding quota applies against the current target.
+# This = acting raider country
+# event_target:gk_raidee = defender country
+# Sets: event_target:gk_cap_raider when a qualifying war goal exists
+gk_save_pop_raid_side_leader_against_target = {
+	every_war = {
+		limit = {
+			OR = {
+				AND = {
+					is_war_participant = { who = prev side = attackers }
+					is_war_participant = { who = event_target:gk_raidee side = defenders }
+					OR = {
+						using_war_goal = { type = wg_plunder owner = attacker }
+						using_war_goal = { type = wg_gk_emancipation owner = attacker }
+						using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+						using_war_goal = { type = wg_gk_reaping owner = attacker }
+					}
+				}
+				AND = {
+					is_war_participant = { who = prev side = defenders }
+					is_war_participant = { who = event_target:gk_raidee side = attackers }
+					OR = {
+						using_war_goal = { type = wg_plunder owner = defender }
+						using_war_goal = { type = wg_gk_emancipation owner = defender }
+						using_war_goal = { type = wg_gk_robo_liberation owner = defender }
+						using_war_goal = { type = wg_gk_reaping owner = defender }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					using_war_goal = { type = wg_plunder owner = attacker }
+					using_war_goal = { type = wg_gk_emancipation owner = attacker }
+					using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
+					using_war_goal = { type = wg_gk_reaping owner = attacker }
+				}
+			}
+			attacker = { save_event_target_as = gk_cap_raider }
+		}
+		else = {
+			defender = { save_event_target_as = gk_cap_raider }
+		}
+	}
+}
+
+######################
+# Entry Points       #
+######################
+
+# Abduct pops on war surrender - from ALL planets
+# This = Raider (Winner)
+# event_target:gk_raidee = Raidee (Loser)
+gk_abduct_on_surrender = {
+	save_event_target_as = gk_raider
+	save_event_target_as = gk_cap_raider
+	event_target:gk_raidee = {
+		save_event_target_as = gk_raiding_target
+	}
+
+	# Get or create raid tracker (need tier for bucket rate)
+	gk_get_or_create_raid_tracker = yes
+
+	# Create pop result tracker - this IS the storage scope
+	gk_get_or_create_pop_result_tracker = yes
+	event_target:gk_pop_result_tracker = {
+		save_event_target_as = gk_storage_scope
+	}
+
+	# Compute remaining cap from bucket system
+	event_target:gk_raidee = {
+		if = {
+			limit = { gk_has_unlimited_raiding = yes }
+			export_trigger_value_to_variable = {
+				trigger = count_owned_pop_amount
+				variable = gk_remaining_cap
+			}
+		}
+		else = {
+			# Bucket cap: (current_pops + bucket_taken) * rate - bucket_taken
+			export_trigger_value_to_variable = {
+				trigger = count_owned_pop_amount
+				variable = gk_remaining_cap
+			}
+			change_variable = {
+				which = gk_remaining_cap
+				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
+			}
+			multiply_variable = {
+				which = gk_remaining_cap
+				value = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
+			}
+			subtract_variable = {
+				which = gk_remaining_cap
+				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
+			}
+			# Floor at 0
+			if = {
+				limit = {
+					check_variable = { which = gk_remaining_cap value < 0 }
+				}
+				set_variable = { which = gk_remaining_cap value = 0 }
+			}
+		}
+	}
+	event_target:gk_storage_scope = {
+		set_variable = { which = gk_forfeited_pops value = 0 }
+	}
+
+	# Phase 1: Transfer pops (loop only, no tracking sub-calls)
+	event_target:gk_raidee = {
+		gk_abduct_pops_from_target = yes
+	}
+
+	# Phase 2: Track the accumulated total
+	event_target:gk_raidee = {
+		gk_track_raided_pops = { AMOUNT = event_target:gk_storage_scope.gk_forfeited_pops }
+	}
+}
+
+# Abduct pops on invasion - from single planet
+# This = Raider country
+# event_target:gk_target_planet = Planet being invaded
+gk_abduct_on_invasion = {
+	save_event_target_as = gk_raider
+	event_target:gk_target_planet = {
+		save_event_target_as = gk_raiding_target
+	}
+
+	# Save the defender for cap calculation unless it was already passed in
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_raidee }
+		}
+		event_target:gk_target_planet = {
+			owner = {
+				save_event_target_as = gk_raidee
+			}
+		}
+	}
+	gk_save_pop_raid_side_leader_against_target = yes
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_cap_raider }
+		}
+		save_event_target_as = gk_cap_raider
+	}
+
+	# Get or create raid tracker (need tier for bucket rate)
+	gk_get_or_create_raid_tracker = yes
+
+	# Create or retrieve the pop-only result tracker
+	gk_get_or_create_pop_result_tracker = yes
+	event_target:gk_pop_result_tracker = {
+		save_event_target_as = gk_storage_scope
+	}
+
+	# Compute remaining cap from bucket system
+	event_target:gk_raidee = {
+		if = {
+			limit = { gk_has_unlimited_raiding = yes }
+			export_trigger_value_to_variable = {
+				trigger = count_owned_pop_amount
+				variable = gk_remaining_cap
+			}
+		}
+		else = {
+			# Bucket cap: (current_pops + bucket_taken) * rate - bucket_taken
+			export_trigger_value_to_variable = {
+				trigger = count_owned_pop_amount
+				variable = gk_remaining_cap
+			}
+			change_variable = {
+				which = gk_remaining_cap
+				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
+			}
+			multiply_variable = {
+				which = gk_remaining_cap
+				value = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
+			}
+			subtract_variable = {
+				which = gk_remaining_cap
+				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
+			}
+			# Floor at 0
+			if = {
+				limit = {
+					check_variable = { which = gk_remaining_cap value < 0 }
+				}
+				set_variable = { which = gk_remaining_cap value = 0 }
+			}
+		}
+	}
+	event_target:gk_storage_scope = {
+		set_variable = { which = gk_forfeited_pops value = 0 }
+	}
+
+	# Phase 1: Transfer pops from target planet (loop only, no tracking sub-calls)
+	event_target:gk_target_planet = {
+		gk_abduct_pops_from_target = yes
+	}
+
+	# Phase 2: Track the accumulated total
+	event_target:gk_raidee = {
+		gk_track_raided_pops = { AMOUNT = event_target:gk_storage_scope.gk_forfeited_pops }
+	}
+}
+
+######################
+# Process Abduction  #
+######################
+
+# Abduct eligible pops from target scope (planet or country)
+# This = Planet or Country to abduct from
+# Requires: event_target:gk_raider, event_target:gk_raidee (with gk_remaining_cap), event_target:gk_storage_scope
+gk_abduct_pops_from_target = {
+
+	# Pass 1: Sum eligible pops to compute proportional rate
+	event_target:gk_raidee = {
+		set_variable = { which = gk_eligible_pops value = 0 }
+	}
+	every_owned_pop_group = {
+		limit = {
+			pop_group_size > 0
+			is_sapient = yes
+			gk_can_abduct_pop_group_war_goal_check = yes
+			gk_can_abduct_pop_group_robot_check = yes
+		}
+		export_trigger_value_to_variable = {
+			trigger = pop_group_size
+			variable = gk_pg_size_temp
+		}
+		event_target:gk_raidee = {
+			change_variable = {
+				which = gk_eligible_pops
+				value = prev.gk_pg_size_temp
+			}
+		}
+	}
+
+	# Compute rate: remaining_cap / eligible_pops, clamped to [0, 1]
+	event_target:gk_raidee = {
+		if = {
+			limit = {
+				check_variable = { which = gk_eligible_pops value > 0 }
+				check_variable = { which = gk_remaining_cap value > 0 }
+			}
+			set_variable = { which = gk_abduct_rate value = gk_remaining_cap }
+			divide_variable = { which = gk_abduct_rate value = gk_eligible_pops }
+			if = {
+				limit = { check_variable = { which = gk_abduct_rate value > 1 } }
+				set_variable = { which = gk_abduct_rate value = 1 }
+			}
+		}
+		else = {
+			set_variable = { which = gk_abduct_rate value = 0 }
+		}
+	}
+
+	# Pass 2: Transfer proportional share from each eligible pop group
+	every_owned_pop_group = {
+		limit = {
+			pop_group_size > 0
+			is_sapient = yes
+			gk_can_abduct_pop_group_war_goal_check = yes
+			gk_can_abduct_pop_group_robot_check = yes
+			event_target:gk_raidee = {
+				check_variable = { which = gk_remaining_cap value > 0 }
+			}
+		}
+		save_event_target_as = gk_source_pop_group
+
+		# Find destination planet
+		gk_find_destination_planet = yes
+
+		# Compute proportional amount (rounded, clamped to remaining cap)
+		event_target:gk_raidee = {
+			set_variable = {
+				which = gk_transfer_amount
+				value = event_target:gk_source_pop_group.value:gk_pops_to_abduct
+			}
+		}
+
+		# Skip if rounded amount is 0
+		if = {
+			limit = {
+				event_target:gk_raidee = {
+					check_variable = { which = gk_transfer_amount value > 0 }
+				}
+			}
+
+			# Create pop group on destination and transfer
+			event_target:gk_destination_planet = {
+				create_pop_group = {
+					pop_group = event_target:gk_source_pop_group
+					size = 0
+					effect = {
+						save_event_target_as = gk_target_pop_group
+						transfer_pop_amount = {
+							source = event_target:gk_source_pop_group
+							target = this
+							amount = event_target:gk_raidee.gk_transfer_amount
+						}
+					}
+				}
+			}
+
+			# Track for display on storage scope
+			event_target:gk_storage_scope = {
+				change_variable = {
+					which = gk_forfeited_pops
+					value = event_target:gk_raidee.gk_transfer_amount
+				}
+			}
+			# Reduce cap
+			event_target:gk_raidee = {
+				subtract_variable = {
+					which = gk_remaining_cap
+					value = gk_transfer_amount
+				}
+			}
+		}
+	}
+
+	# Cleanup
+	event_target:gk_raidee = {
+		clear_variable = gk_eligible_pops
+		clear_variable = gk_abduct_rate
+		clear_variable = gk_transfer_amount
+	}
+}
+
+######################
+# Pop Resettlement   #
+######################
+
+# Find destination planet for resettlement
+# This = pop_group being resettled
+# event_target:gk_raider = raider country
+# Sets: event_target:gk_destination_planet
+gk_find_destination_planet = {
+	# Try to find an ideal planet with weighted random
+	event_target:gk_raider = {
+		random_owned_planet = {
+			limit = {
+				gk_is_valid_pop_destination = yes
+			}
+			weights = {
+				base = 1
+				# Prefer planets with more free housing
+				modifier = {
+					add = trigger:free_housing
+				}
+				modifier = {
+					add = trigger:free_jobs
+				}
+				# Prefer higher habitability for the pop
+				modifier = {
+					factor = 2
+					habitability = {
+						who = prevprev
+						value >= 0.7
+					}
+				}
+				modifier = {
+					factor = 1.5
+					habitability = {
+						who = prevprev
+						value >= 0.5
+					}
+				}
+			}
+			save_event_target_as = gk_destination_planet
+		}
+	}
+	# Fallback to capital if no suitable planet found
+	if = {
+		limit = {
+			NOT = {
+				exists = event_target:gk_destination_planet
+			}
+		}
+		event_target:gk_raider = {
+			capital_scope = {
+				save_event_target_as = gk_destination_planet
+			}
+		}
+	}
+}
+
+######################
+# Tracking           #
+######################
+
+# Unified tracking effect for raided pops
+# Called by both force resettle and on_pop_group_abducted on_action
+# This = Country (the raidee/defender)
+# event_target:gk_raider = attacker country
+# Parameters:
+#   AMOUNT = number of pops taken (variable or value)
+gk_track_raided_pops = {
+	# Store amount for cross-scope access
+	set_variable = {
+		which = gk_track_amount_temp
+		value = $AMOUNT$
+	}
+	save_event_target_as = gk_track_raidee_temp
+
+	event_target:gk_raider = {
+		save_event_target_as = gk_acting_raider
+	}
+
+	# Determine if this is emancipation or plunder based on the acting raider's war type
+	if = {
+		limit = {
+			event_target:gk_acting_raider = {
+				any_war = {
+					OR = {
+						AND = {
+							is_war_participant = { who = prev side = attackers }
+							is_war_participant = { who = prevprev side = defenders }
+							using_war_goal = { type = wg_gk_emancipation owner = attacker }
+						}
+						AND = {
+							is_war_participant = { who = prev side = defenders }
+							is_war_participant = { who = prevprev side = attackers }
+							using_war_goal = { type = wg_gk_emancipation owner = defender }
+						}
+					}
+				}
+			}
+		}
+		# Emancipation - track separately
+		if = {
+			limit = {
+				NOT = { is_variable_set = gk_raidee_emancipated }
+			}
+			set_variable = {
+				which = gk_raidee_emancipated
+				value = 0
+			}
+		}
+		change_variable = {
+			which = gk_raidee_emancipated
+			value = gk_track_amount_temp
+		}
+	}
+	else = {
+		# Plunder - track separately
+		if = {
+			limit = {
+				NOT = { is_variable_set = gk_raidee_plundered }
+			}
+			set_variable = {
+				which = gk_raidee_plundered
+				value = 0
+			}
+		}
+		change_variable = {
+			which = gk_raidee_plundered
+			value = gk_track_amount_temp
+		}
+	}
+
+	# Update per-war tracker — resolve side leader and tracker only if not already set by entry point
+	save_event_target_as = gk_raidee
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_cap_raider }
+		}
+		event_target:gk_acting_raider = {
+			gk_save_pop_raid_side_leader_against_target = yes
+		}
+		if = {
+			limit = {
+				NOT = { exists = event_target:gk_cap_raider }
+			}
+			event_target:gk_acting_raider = {
+				save_event_target_as = gk_cap_raider
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_raid_tracker }
+		}
+		gk_get_or_create_raid_tracker = yes
+	}
+	event_target:gk_raid_tracker = {
+		change_variable = {
+			which = gk_pops_taken
+			value = event_target:gk_track_raidee_temp.gk_track_amount_temp
+		}
+		change_variable = {
+			which = gk_bucket_pops_taken
+			value = event_target:gk_track_raidee_temp.gk_track_amount_temp
+		}
+	}
+	# Update cap flag
+	gk_update_raid_cap_flag = yes
+
+	# Fire escalation event if pending (moved here from gk_update_raid_cap_flag to reduce call depth)
+	if = {
+		limit = {
+			has_country_flag = gk_escalation_pending_for_@event_target:gk_cap_raider
+		}
+		remove_country_flag = gk_escalation_pending_for_@event_target:gk_cap_raider
+		event_target:gk_cap_raider = {
+			country_event = {
+				id = gk_raiding_pops.500
+				scopes = { from = event_target:gk_track_raidee_temp }
+			}
+		}
+	}
+
+	# Track lifetime total on raider (never cleared)
+	event_target:gk_acting_raider = {
+		if = {
+			limit = {
+				NOT = { is_variable_set = gk_total_pops_raided }
+			}
+			set_variable = {
+				which = gk_total_pops_raided
+				value = 0
+			}
+		}
+		change_variable = {
+			which = gk_total_pops_raided
+			value = event_target:gk_track_raidee_temp.gk_track_amount_temp
+		}
+	}
+
+	# Clean up
+	clear_variable = gk_track_amount_temp
+}
+
+

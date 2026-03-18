@@ -1,0 +1,36 @@
+# GK Raiding Pop Scripted Localization
+
+defined_text = {
+	name = GkForfeitedPops
+	value = value:gk_forfeited_pops_value
+}
+
+defined_text = {
+	name = GkTotalPopsRaided
+	value = value:gk_total_pops_raided_value
+}
+
+defined_text = {
+	name = GkDisplayPopsTaken
+	value = value:gk_display_pops_taken_value
+}
+
+defined_text = {
+	name = GkDisplayInfluenceCost
+	value = value:gk_display_influence_cost_value
+}
+
+defined_text = {
+	name = GkDisplayBucketRemaining
+	value = value:gk_display_bucket_remaining_value
+}
+
+defined_text = {
+	name = GkSurrenderPopEstimate
+	value = value:gk_surrender_pop_estimate
+}
+
+defined_text = {
+	name = GkSurrenderPopTotal
+	value = value:gk_surrender_pop_total
+}

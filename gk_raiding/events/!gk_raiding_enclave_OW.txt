@@ -1,0 +1,241 @@
+# Version last updated: 4.3.0
+# Overwrites: enclave.2
+# Source: overlord_enclaves_events.txt:76-200
+# Method: Alphabetical load-order override (! prefix loads before vanilla)
+# Change: Adds "Establish Privateer Haven" option for empires with
+#   despoliation tradition finisher. DEAL renamed to GK_RAIDING_ENCLAVE_2_MERCENARY.
+#   Conditional desc/picture for privateer-capable empires.
+#   NODEAL and abort_trigger unchanged.
+
+namespace = enclave
+
+fleet_event = {
+	id = enclave.2
+	title = "enclave.2.name"
+	# Privateer-capable empire sees privateer flavor
+	desc = {
+		trigger = { owner = { gk_can_found_privateer_enclave = yes } }
+		text = GK_RAIDING_ENCLAVE_2_DESC
+	}
+	# Everyone else sees vanilla
+	desc = {
+		text = "enclave.2.desc"
+	}
+
+	# Privateer-capable empire sees pirate base art
+	picture = {
+		trigger = { owner = { gk_can_found_privateer_enclave = yes } }
+		picture = GFX_evt_pirate_base
+	}
+	# Everyone else sees vanilla mercenary art
+	picture = {
+		picture = GFX_evt_mercenary_enclave
+	}
+	show_sound = event_cityscape
+	is_triggered_only = yes
+
+	trigger = {
+		is_merc_enclave_founding_allowed = yes
+	}
+
+	immediate = {
+		set_event_locked = yes
+	}
+
+	# Vanilla mercenary option
+	option = {
+		name = GK_RAIDING_ENCLAVE_2_MERCENARY
+		custom_tooltip = "enclave.2.a.tooltip"
+
+		allow = {
+			is_merc_enclave_founding_allowed = yes
+			owner = {
+				if = {
+					limit = {
+						country_uses_bio_ships = yes
+					}
+					resource_stockpile_compare = { resource = food value >= 1500 }
+				}
+				else = {
+					resource_stockpile_compare = { resource = energy value >= 1500 }
+				}
+				resource_stockpile_compare = { resource = alloys value >= 2000 }
+				resource_stockpile_compare = { resource = influence value >= 100 }
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					country_uses_bio_ships = yes
+				}
+				add_resource = {
+					food = -1500
+				}
+			}
+			else = {
+				add_resource = {
+					energy = -1500
+				}
+			}
+			add_resource = {
+				alloys = -2000
+				influence = -100
+			}
+		}
+
+		hidden_effect = {
+			owner = {
+				set_country_flag = tutorial_met_mercenary_enclave
+				set_country_flag = formed_mercenaries
+			}
+			fleet_event = { id = enclave.21 }
+		}
+
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				owner = {
+					is_fanatic_pacifist = yes
+				}
+			}
+			modifier = {
+				factor = 0.1
+				owner = {
+					has_ethic = ethic_pacifist
+				}
+			}
+			modifier = {
+				factor = 5
+				owner = {
+					has_ethic = ethic_militarist
+				}
+			}
+			modifier = {
+				factor = 10
+				owner = {
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+			modifier = {
+				factor = 5
+				owner = {
+					is_megacorp = yes
+				}
+			}
+		}
+	}
+
+	# GK Raiding: Privateer Haven option — only for empires with despoliation perk
+	option = {
+		name = GK_RAIDING_ENCLAVE_2_PRIVATEER
+		custom_tooltip = GK_RAIDING_ENCLAVE_2_PRIVATEER_TOOLTIP
+
+		trigger = {
+			owner = {
+				gk_can_found_privateer_enclave = yes
+			}
+		}
+
+		allow = {
+			is_merc_enclave_founding_allowed = yes
+			owner = {
+				if = {
+					limit = {
+						country_uses_bio_ships = yes
+					}
+					resource_stockpile_compare = { resource = food value >= 1500 }
+				}
+				else = {
+					resource_stockpile_compare = { resource = energy value >= 1500 }
+				}
+				resource_stockpile_compare = { resource = alloys value >= 2000 }
+				resource_stockpile_compare = { resource = influence value >= 100 }
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					country_uses_bio_ships = yes
+				}
+				add_resource = {
+					food = -1500
+				}
+			}
+			else = {
+				add_resource = {
+					energy = -1500
+				}
+			}
+			add_resource = {
+				alloys = -2000
+				influence = -100
+			}
+		}
+
+		hidden_effect = {
+			fleet_event = { id = gk_raiding_privateers.101 }
+		}
+
+		ai_chance = {
+			factor = 15
+			modifier = {
+				factor = 0
+				owner = {
+					is_fanatic_pacifist = yes
+				}
+			}
+			modifier = {
+				factor = 0.1
+				owner = {
+					has_ethic = ethic_pacifist
+				}
+			}
+			modifier = {
+				factor = 5
+				owner = {
+					has_ethic = ethic_militarist
+				}
+			}
+			modifier = {
+				factor = 10
+				owner = {
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+			modifier = {
+				factor = 5
+				owner = {
+					is_megacorp = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = NODEAL
+
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0.1
+				owner = {
+					is_militarist = yes
+					is_fanatic_pacifist = no
+				}
+			}
+		}
+	}
+
+	abort_trigger = {
+		owner = {
+			has_origin = origin_mindwardens
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			set_event_locked = no
+		}
+	}
+}

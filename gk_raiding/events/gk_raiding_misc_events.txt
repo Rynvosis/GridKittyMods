@@ -1,0 +1,220 @@
+namespace = gk_raiding_misc
+
+############################
+# Machine Despoilers Setup #
+############################
+# This = country
+# Converts 400 starting machine pops to organic battery pops
+# Sets secondary species to grid amalgamation slavery
+# Ensures a farming district on capital
+country_event = {
+	id = gk_raiding_misc.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+	}
+
+	immediate = {
+		every_owned_species = {
+			limit = {
+				is_robotic = no
+				NOT = { is_same_species = root.owner_species }
+			}
+			save_event_target_as = gk_battery_species
+			set_citizenship_type = {
+				country = root
+				type = citizenship_slavery
+				cooldown = no
+			}
+			set_slavery_type = {
+				country = root
+				type = slavery_matrix
+				cooldown = no
+			}
+		}
+
+		capital_scope = {
+			random_owned_pop_group = {
+				limit = {
+					is_same_species = root.owner_species
+				}
+				kill_pop_group = {
+					pop_group = this
+					amount = 400
+				}
+			}
+
+			create_pop_group = {
+				species = event_target:gk_battery_species
+				size = 400
+			}
+
+			if = {
+				limit = {
+					NOT = {
+						has_district = district_farming
+					}
+				}
+				add_district = district_farming
+			}
+
+			if = {
+				limit = {
+					has_district = district_generator
+				}
+				remove_district = district_generator
+			}
+		}
+	}
+}
+
+##########################
+# Despoliation Traditions #
+##########################
+
+# Fired by on_planet_bombarded and on_ground_combat_devastation
+# This = Planet
+# From = damaging country
+planet_event = {
+	id = gk_raiding_misc.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from
+		from = {
+			has_tradition = tr_gk_raiding_despoliation_3
+		}
+	}
+
+	immediate = {
+		from = {
+			gk_gain_despoliation_devastation_unity = yes
+		}
+	}
+}
+
+# Fired by on_added_to_leader_pool
+# Scope = country
+# From = leader added to the pool
+country_event = {
+	id = gk_raiding_misc.110
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_tradition = tr_gk_raiding_despoliation_5
+	}
+
+	immediate = {
+		from = {
+			gk_raiding_grant_despoliation_commander_trait = yes
+		}
+	}
+}
+
+# Fired by on_ship_destroyed_perp
+# This = owner of winning ship
+# From = owner of destroyed ship
+# FromFrom = winning ship
+# FromFromFrom = destroyed ship
+country_event = {
+	id = gk_raiding_misc.111
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_tradition = tr_gk_raiding_despoliation_5
+		FROM = {
+			is_default_or_fallen = yes
+		}
+	}
+
+	immediate = {
+		FROMFROM = {
+			if = {
+				limit = {
+					exists = fleet.leader
+				}
+				fleet.leader = {
+					if = {
+						limit = {
+							OR = {
+								has_trait = leader_trait_corsair
+								has_trait = leader_trait_corsair_2
+							}
+						}
+						if = {
+							limit = {
+								has_trait = leader_trait_corsair
+							}
+							ROOT = {
+								add_resource = {
+									energy = @trait_corsair_amt
+									mult = value:gk_despoliation_shipkill_trait_mult
+								}
+							}
+						}
+						else = {
+							ROOT = {
+								add_resource = {
+									energy = @trait_corsair_2_amt
+									mult = value:gk_despoliation_shipkill_trait_mult
+								}
+							}
+						}
+					}
+
+					if = {
+						limit = {
+							OR = {
+								has_trait = leader_trait_shipbreaker
+								has_trait = leader_trait_shipbreaker_2
+							}
+						}
+						if = {
+							limit = {
+								has_trait = leader_trait_shipbreaker
+							}
+							ROOT = {
+								add_resource = {
+									alloys = @trait_shipbreaker_amt
+									mult = value:gk_despoliation_shipkill_trait_mult
+								}
+							}
+						}
+						else = {
+							ROOT = {
+								add_resource = {
+									alloys = @trait_shipbreaker_2_amt
+									mult = value:gk_despoliation_shipkill_trait_mult
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Fired by on_leader_hired
+# Scope = leader
+leader_event = {
+	id = gk_raiding_misc.112
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		owner = {
+			has_tradition = tr_gk_raiding_despoliation_5
+		}
+	}
+
+	immediate = {
+		gk_raiding_grant_despoliation_commander_trait = yes
+	}
+}

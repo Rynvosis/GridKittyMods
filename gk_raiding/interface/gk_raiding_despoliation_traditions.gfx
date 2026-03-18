@@ -1,0 +1,53 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_tradition_hex_bg_tradition_gk_raiding_despoliation"
+		textureFile = "gfx/interface/traditions/tradition_hex_bg_gk_raiding_despoliation.dds"
+	}
+
+	spriteType = {
+		name = "GFX_tradition_category_bg_tradition_gk_raiding_despoliation"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_gk_raiding_despoliation.dds"
+	}
+
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tradition_gk_raiding_despoliation"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_gk_raiding_despoliation.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+
+	spriteType = {
+		name = "GFX_tradition_category_icon_tradition_gk_raiding_despoliation"
+		textureFile = "gfx/interface/icons/traditions/tree_icons/tradition_icon_gk_raiding_despoliation.dds"
+	}
+
+	spriteType = {
+		name = "GFX_tr_gk_raiding_despoliation_1"
+		textureFile = "gfx/interface/icons/traditions/tr_gk_raiding_despoliation_1.dds"
+	}
+
+	spriteType = {
+		name = "GFX_tr_gk_raiding_despoliation_2"
+		textureFile = "gfx/interface/icons/traditions/tr_gk_raiding_despoliation_2.dds"
+	}
+
+	spriteType = {
+		name = "GFX_tr_gk_raiding_despoliation_3"
+		textureFile = "gfx/interface/icons/traditions/tr_gk_raiding_despoliation_3.dds"
+	}
+
+	spriteType = {
+		name = "GFX_tr_gk_raiding_despoliation_4"
+		textureFile = "gfx/interface/icons/traditions/tr_gk_raiding_despoliation_4.dds"
+	}
+
+	spriteType = {
+		name = "GFX_tr_gk_raiding_despoliation_5"
+		textureFile = "gfx/interface/icons/traditions/tr_gk_raiding_despoliation_5.dds"
+	}
+
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_gk_raiding_despoliation_recovery_fleets"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_military_buildup.dds"
+	}
+}

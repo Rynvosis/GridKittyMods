@@ -1,0 +1,14 @@
+agenda_gk_raiding_despoliation_recovery_fleets = {
+	agenda_cost = @base_tradition_agenda_cost
+	allow = {
+		has_tradition = tr_gk_raiding_despoliation_adopt
+	}
+	potential = {
+		has_paragon_dlc = yes
+	}
+	modifier = {
+		salvage_chance_add = 0.10
+		ships_alloys_upkeep_mult = -0.05
+	}
+	finish_modifier = agenda_gk_raiding_despoliation_recovery_fleets_finish
+}

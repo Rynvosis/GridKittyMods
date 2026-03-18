@@ -1,0 +1,28 @@
+# GK Raiding Despoliation Game Concepts
+
+concept_gk_material_liberator = {
+	alias = { concept_gk_privateer }
+	icon = "gfx/interface/icons/resources/energy.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_exploding_ship"
+	}
+}
+
+concept_gk_privateer_enclave = {
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_pirate_encounter"
+	}
+}
+
+concept_gk_shipbreaker = {
+	icon = "gfx/interface/icons/resources/alloys.dds"
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_exploding_ship"
+	}
+}

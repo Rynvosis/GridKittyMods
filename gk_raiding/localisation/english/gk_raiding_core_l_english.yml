@@ -1,0 +1,8 @@
+﻿l_english:
+ # Shared Fail Texts
+ gk_requires_enemy_has_slaves:0 "Target must have enslaved pops"
+ gk_requires_enemy_has_robots:0 "Target must have robotic pops"
+ gk_requires_despoiler_civic:0 "Requires Barbaric Despoilers or equivalent civic"
+
+ # Shared Concepts
+ db_gk_raiding:0 "Raiding"

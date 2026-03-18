@@ -1,0 +1,20 @@
+# Version last updated: v4.2.3
+# Overwrite: can_spawn_debris (allow privateer raiders and enclaves to generate debris)
+# Vanilla: common/game_rules/00_rules.txt — only allows is_country_type = default
+
+# this = ship (destroyed)
+# root = country that kills ship
+can_spawn_debris = {
+	root = {
+		OR = {
+			AND = {
+				is_country_type = default
+				NOT = { has_policy_flag = debris_destruction }
+			}
+			is_country_type = gk_privateer_raiders
+			is_country_type = gk_privateer_enclave
+		}
+	}
+	exists = owner
+	owner = { NOT = { has_ascension_perk = ap_enigmatic_engineering } }
+}

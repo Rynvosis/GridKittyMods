@@ -1,0 +1,18 @@
+variable = {
+	type = key
+	localization = $RESOURCE$_label
+	value = $RESOURCE$_label
+	scope = $SCOPE$
+	trigger = {
+		$SCOPE$ = { check_variable = { which = gk_total_$RESOURCE$ value > 0 } }
+	}
+}
+variable = {
+	type = variable
+	localization = $RESOURCE$
+	varname = gk_total_$RESOURCE$
+	scope = $SCOPE$
+	trigger = {
+		$SCOPE$ = { check_variable = { which = gk_total_$RESOURCE$ value > 0 } }
+	}
+}

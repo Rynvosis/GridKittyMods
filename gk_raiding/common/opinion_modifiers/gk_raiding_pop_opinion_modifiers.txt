@@ -1,0 +1,107 @@
+# GK Raiding Pop Opinion Modifiers
+
+# They declared a Reaping war — flat opinion hit on declaration
+opinion_gk_declared_reaping = {
+	opinion = {
+		base = -50
+		modifier = {
+			add = -25
+			has_ethic = ethic_egalitarian
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -50
+			has_ethic = ethic_fanatic_egalitarian
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -25
+			values_others = yes
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -50
+			has_ethic = ethic_fanatic_xenophile
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	decay = {
+		base = 1
+	}
+}
+
+# They reaped pops — accumulative per pop, applied on surrender
+opinion_gk_reaped_pops = {
+	opinion = {
+		base = 0
+		modifier = {
+			add = -0.05
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+				is_homicidal = yes
+			}
+		}
+		modifier = {
+			add = -0.05
+			has_ethic = ethic_egalitarian
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -0.10
+			has_ethic = ethic_fanatic_egalitarian
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -0.05
+			values_others = yes
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -0.10
+			has_ethic = ethic_fanatic_xenophile
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	accumulative = yes
+
+	min = -1000
+
+	decay = {
+		base = 1
+	}
+}

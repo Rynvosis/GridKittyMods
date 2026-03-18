@@ -1,0 +1,15 @@
+# MIGRATION — safe to delete once all saves have loaded with this version
+
+# SP: fires on save load before UI interaction
+on_single_player_save_game_load = {
+	events = {
+		gk_raiding_migration.1
+	}
+}
+
+# MP fallback: first monthly tick after load
+on_monthly_pulse_country = {
+	events = {
+		gk_raiding_migration.2
+	}
+}

@@ -1,0 +1,38 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_amber_fossil"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_amber_fossil.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_stellar_tear"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_stellar_tear.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_fossilized_growth"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_fossilized_growth.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_alien_headpiece"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_alien_headpiece.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_xenolithic_relic"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_xenolithic_relic.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_alien_effigy"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_alien_effigy.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_bio_vial"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_bio_vial.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_data_core"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_data_core.dds"
+	}
+	spriteType = {
+		name = "GFX_specimen_gk_privateer_processing_unit"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_processing_unit.dds"
+	}
+}

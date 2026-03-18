@@ -1,0 +1,216 @@
+# GK Raiding Despoliation Traditions
+
+tr_gk_raiding_despoliation_adopt = {
+	unlocks_agenda = agenda_gk_raiding_despoliation_recovery_fleets
+	custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_ADOPT_EFFECT
+
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_adopt_native
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			gk_has_native_pillage_access = yes
+		}
+		custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_ADOPT_NATIVE_EFFECT
+
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+tr_gk_raiding_despoliation_finish = {
+	# Default: no Overlord DLC — combat bonuses instead of enclave capacity
+	modifier = {
+		ship_fire_rate_mult = 0.05
+		army_damage_mult = 0.10
+		ascension_perks_add = 1
+	}
+
+	# Overlord DLC: privateer enclave access
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_finish_overlord
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_overlord_dlc = yes
+			NOT = { has_origin = origin_mindwardens }
+			NOT = { has_civic = civic_fanatic_purifiers }
+		}
+		modifier = {
+			country_enclave_capacity_add = 1
+			ascension_perks_add = 1
+		}
+		custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_EFFECT
+		weight = { factor = 1 }
+	}
+
+	# Overlord DLC + Mindwarden: extra enclave capacity
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_finish_mindwarden
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_overlord_dlc = yes
+			has_origin = origin_mindwardens
+		}
+		modifier = {
+			country_enclave_capacity_add = 2
+			ascension_perks_add = 1
+		}
+		weight = { factor = 2 }
+	}
+
+	# Fanatic Purifiers: combat bonuses (same with or without Overlord)
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_finish_purifier
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = { has_civic = civic_fanatic_purifiers }
+		modifier = {
+			ship_fire_rate_mult = 0.05
+			army_damage_mult = 0.10
+			ascension_perks_add = 1
+		}
+		weight = { factor = 3 }
+	}
+}
+
+tr_gk_raiding_despoliation_1 = {
+	triggered_modifier = {
+		potential = { is_at_war = yes }
+		pop_happiness = 0.10
+		country_unity_produces_mult = 0.25
+	}
+
+	custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_1_EFFECT
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_gk_raiding_despoliation_2 = {
+	possible = {
+		has_tradition = tr_gk_raiding_despoliation_1
+	}
+
+	modifier = {
+		ship_orbital_bombardment_mult = 0.20
+		army_collateral_damage_mult = 0.50
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_gk_raiding_despoliation_3 = {
+	possible = {
+		has_tradition = tr_gk_raiding_despoliation_2
+	}
+
+	custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_3_EFFECT
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_gk_raiding_despoliation_4 = {
+	# Base: no scavenger, no Grand Archive
+	custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_EFFECT
+
+	# Swap: has Grand Archive, no scavenger
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_4_archive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_grand_archive_dlc = yes
+			NOT = {
+				OR = {
+					has_valid_civic = civic_scavengers
+					has_valid_civic = civic_corporate_scavengers
+				}
+			}
+		}
+		on_enabled = {
+			give_technology = { tech = tech_boarding_cables message = no }
+		}
+		custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_ARCHIVE_EFFECT
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	# Swap: has scavenger, no Grand Archive
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_4_scavenger
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				has_valid_civic = civic_scavengers
+				has_valid_civic = civic_corporate_scavengers
+			}
+			NOT = { has_grand_archive_dlc = yes }
+		}
+		modifier = {
+			salvage_chance_add = 0.10
+		}
+		custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_EFFECT
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	# Swap: has scavenger AND Grand Archive
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_4_scavenger_archive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				has_valid_civic = civic_scavengers
+				has_valid_civic = civic_corporate_scavengers
+			}
+			has_grand_archive_dlc = yes
+		}
+		on_enabled = {
+			give_technology = { tech = tech_boarding_cables message = no }
+		}
+		modifier = {
+			salvage_chance_add = 0.10
+		}
+		custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_ARCHIVE_EFFECT
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+tr_gk_raiding_despoliation_5 = {
+	possible = {
+		has_tradition = tr_gk_raiding_despoliation_4
+	}
+
+	on_enabled = {
+		hidden_effect = {
+			gk_raiding_apply_despoliation_commander_traits = yes
+		}
+	}
+
+	custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_5_EFFECT
+
+	ai_weight = {
+		factor = 1000
+	}
+}

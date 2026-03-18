@@ -1,0 +1,158 @@
+####################################
+# GK Raiding — Privateer Specimens #
+####################################
+
+# xeno_geology — Looted Natural Specimens
+
+gk_privateer_amber_fossil = {
+	icon = "GFX_specimen_gk_privateer_amber_fossil"
+	type = xeno_geology
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = rare
+	}
+
+	triggered_country_modifier = {
+		mult = value:xeno_geology_specimens_modifiers_mult
+		planet_jobs_energy_produces_mult = 0.04
+	}
+}
+
+gk_privateer_stellar_tear = {
+	icon = "GFX_specimen_gk_privateer_stellar_tear"
+	type = xeno_geology
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = common
+	}
+
+	triggered_country_modifier = {
+		mult = value:xeno_geology_specimens_modifiers_mult
+		planet_jobs_minerals_produces_mult = 0.02
+	}
+}
+
+gk_privateer_fossilized_growth = {
+	icon = "GFX_specimen_gk_privateer_fossilized_growth"
+	type = xeno_geology
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = common
+	}
+
+	triggered_country_modifier = {
+		mult = value:xeno_geology_specimens_modifiers_mult
+		potential = { is_gestalt = no }
+		planet_jobs_consumer_goods_produces_mult = 0.02
+	}
+	triggered_country_modifier = {
+		mult = value:xeno_geology_specimens_modifiers_mult
+		potential = { is_gestalt = yes }
+		planet_jobs_alloys_produces_mult = 0.005
+	}
+}
+
+# aesthetic_wonder — Looted Alien Artifacts
+
+gk_privateer_alien_headpiece = {
+	icon = "GFX_specimen_gk_privateer_alien_headpiece"
+	type = aesthetic_wonder
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = rare
+	}
+
+	triggered_country_modifier = {
+		mult = value:aesthetic_wonder_specimens_modifiers_mult
+		planet_stability_add = 2
+	}
+}
+
+gk_privateer_xenolithic_relic = {
+	icon = "GFX_specimen_gk_privateer_xenolithic_relic"
+	type = aesthetic_wonder
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = common
+	}
+
+	triggered_country_modifier = {
+		mult = value:aesthetic_wonder_specimens_modifiers_mult
+		planet_amenities_add = 300
+	}
+}
+
+gk_privateer_alien_effigy = {
+	icon = "GFX_specimen_gk_privateer_alien_effigy"
+	type = aesthetic_wonder
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = common
+	}
+
+	triggered_country_modifier = {
+		mult = value:aesthetic_wonder_specimens_modifiers_mult
+		potential = { is_gestalt = no }
+		planet_jobs_trade_produces_mult = 0.03
+	}
+	triggered_country_modifier = {
+		mult = value:aesthetic_wonder_specimens_modifiers_mult
+		potential = { is_gestalt = yes }
+		planet_jobs_energy_produces_mult = 0.02
+	}
+}
+
+# historical_item — Seized Tech / Intercepted Data
+
+gk_privateer_bio_vial = {
+	icon = "GFX_specimen_gk_privateer_bio_vial"
+	type = historical_item
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = common
+	}
+
+	resources = {
+		category = specimens
+		produces = {
+			society_research = 5
+		}
+	}
+}
+
+gk_privateer_data_core = {
+	icon = "GFX_specimen_gk_privateer_data_core"
+	type = historical_item
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = rare
+	}
+
+	triggered_country_modifier = {
+		mult = value:historical_item_specimens_modifiers_mult
+		country_edict_fund_add = 20
+	}
+}
+
+gk_privateer_processing_unit = {
+	icon = "GFX_specimen_gk_privateer_processing_unit"
+	type = historical_item
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = common
+	}
+
+	triggered_country_modifier = {
+		mult = value:historical_item_specimens_modifiers_mult
+		country_unity_produces_mult = 0.02
+	}
+}

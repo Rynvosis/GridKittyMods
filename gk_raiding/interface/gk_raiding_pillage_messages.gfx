@@ -1,0 +1,16 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_gk_raiding_message_pillage_devastation"
+		texturefile = "gfx/interface/icons/message/gk_raiding_pillage_open_treasure_chest.dds"
+	}
+
+	spriteType = {
+		name = "GFX_gk_raiding_message_pillage_invasion"
+		texturefile = "gfx/interface/icons/message/gk_raiding_pillage_open_treasure_chest.dds"
+	}
+
+	spriteType = {
+		name = "GFX_gk_raiding_message_pillage_surrender"
+		texturefile = "gfx/interface/icons/message/gk_raiding_pillage_open_treasure_chest.dds"
+	}
+}

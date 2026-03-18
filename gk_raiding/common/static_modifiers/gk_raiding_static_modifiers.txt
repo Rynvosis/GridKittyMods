@@ -1,0 +1,13 @@
+# Combines trade_produces_add across all 3 livestock job types into one displayed modifier
+gk_livestock_trade_produces_add = {
+	custom_tooltip = gk_livestock_trade_produces_add_tt
+	planet_livestock_farmers_trade_produces_add = 1
+	planet_livestock_miners_trade_produces_add = 1
+	planet_livestock_metallurgists_trade_produces_add = 1
+}
+
+# Combines trade_produces_add for purge pops
+gk_purge_trade_produces_add = {
+	custom_tooltip = gk_purge_trade_produces_add_tt
+	pop_category_purge_trade_produces_add = 1
+}

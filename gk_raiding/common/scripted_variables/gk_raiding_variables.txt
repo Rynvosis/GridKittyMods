@@ -1,0 +1,109 @@
+# GK Raiding — Shared Constants
+# All @constants consolidated here for cross-file access.
+
+############################
+# Pop Raiding — Bucket Cap #
+############################
+
+@gk_bucket_rate_0 = 0.10
+@gk_bucket_rate_1 = 0.125
+@gk_bucket_rate_2 = 0.167
+@gk_bucket_rate_3 = 0.25
+@gk_bucket_rate_4 = 0.50
+@gk_bucket_rate_5 = 1.00
+
+@gk_escalation_base_cost = 50
+@gk_escalation_cost_per_tier = 25
+
+@gk_max_pops_per_abduction = 100
+@gk_reaping_cap_rate = 100
+
+############################
+# Pop Raiding — Decay      #
+############################
+
+@gk_decay_rate_at_peace = 0.90
+@gk_decay_rate_at_war = 0.95
+@gk_decay_clear_threshold = 1
+
+############################
+# Pillage Mechanics        #
+############################
+
+@gk_pillage_devastation_per_packet = 10
+@gk_base_loot_months_per_packet = 1
+@gk_pillage_war_bonus_loot_months_per_packet = 2
+@gk_native_despoliation_bonus_loot_months_per_packet = 1
+@gk_flat_trade_spoils_per_loot_month = 100
+@gk_flat_mineral_spoils_per_loot_month = 100
+@gk_flat_alloy_spoils_per_loot_month_habitat = 25
+@gk_flat_alloy_spoils_per_loot_month_ecu = 100
+@gk_max_planet_devastation = 100
+@gk_surrender_planet_devastation = 50
+@gk_surrender_aftermath_days = 1825
+
+############################
+# Privateer — Ship         #
+############################
+
+@station_gk_privateer_hp = 40000
+
+############################
+# Privateer — Raids        #
+############################
+
+@tribute_tier_1 = 500
+@tribute_tier_2 = 1000
+@tribute_tier_3 = 2000
+@tribute_tier_4 = 3000
+@commission_raid_cost = 750
+
+############################
+# Privateer — Dividends    #
+############################
+
+@alloy_t1_value = 3
+@alloy_t1_min = 50
+@alloy_t1_max = 500
+@alloy_t2_value = 5
+@alloy_t2_min = 75
+@alloy_t2_max = 1000
+@alloy_t3_value = 8
+@alloy_t3_min = 100
+@alloy_t3_max = 2000
+
+@cg_t1_value = 6
+@cg_t1_min = 100
+@cg_t1_max = 1000
+@cg_t2_value = 10
+@cg_t2_min = 150
+@cg_t2_max = 2000
+@cg_t3_value = 16
+@cg_t3_min = 200
+@cg_t3_max = 4000
+
+@sr_t1_value = 2
+@sr_t1_min = 25
+@sr_t1_max = 250
+@sr_t2_value = 3
+@sr_t2_min = 50
+@sr_t2_max = 500
+@sr_t3_value = 5
+@sr_t3_min = 75
+@sr_t3_max = 1000
+
+@dividend_base_rate = 1
+@dividend_patron_at_war_rate = 1
+@dividend_rank_rate = 0.4
+@dividend_resolution_1_rate = 0.5
+@dividend_resolution_2_rate = 1.0
+@dividend_resolution_3_rate = 1.5
+@dividend_resolution_4_rate = 2.0
+@dividend_resolution_5_rate = 2.5
+@dividend_lord_of_war_rate = 2.5
+
+############################
+# Council Agendas          #
+############################
+
+@base_tradition_agenda_cost = 7000

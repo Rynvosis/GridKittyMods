@@ -1,0 +1,47 @@
+on_custom_diplomacy = {
+	events = {
+		gk_raiding_privateers.200
+		gk_raiding_privateers.201
+	}
+}
+
+# Station destroyed — privateer enclave destruction chain
+# This = owner of destroyed ship (enclave country)
+# From = destroyer country
+# FromFrom = destroyed ship
+on_ship_destroyed_victim = {
+	events = {
+		gk_raiding_privateers.600  # Privateer station destroyed
+	}
+}
+
+# Monthly pulse — autonomous raid check + lifecycle maintenance
+# This = Country
+on_monthly_pulse_country = {
+	events = {
+		gk_raiding_privateers.210  # Autonomous raid pulse
+		gk_raiding_privateers.215  # Orphaned raid cleanup (raider country gone)
+		gk_raiding_privateers.216  # Fleet-destroyed raid cleanup (raider has zero ships)
+		gk_raiding_privateers.610  # Patron change / system ownership validation
+		gk_raiding_privateers.615  # Fleet return home check
+		gk_raiding_privateers.700  # Debris scavenge sweep (raider)
+	}
+}
+
+# Monthly pulse — global failsafe cleanup
+# This = n/a (global scope)
+on_monthly_pulse = {
+	events = {
+		gk_raiding_privateers.620  # Orphaned raider country failsafe
+	}
+}
+
+# Bombardment — privateer pillage accumulation
+# This = Planet
+# From = Bombarder (country)
+on_planet_bombarded = {
+	events = {
+		gk_raiding_privateers.230  # Privateer bombardment loot accumulation
+		gk_raiding_privateers.231  # Devastation-based withdrawal trigger
+	}
+}
