@@ -1,0 +1,31 @@
+# Physics
+gkrb_tech_physics_research_mod = {
+	country_rubberbanding_physics_research_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+# Society
+gkrb_tech_society_research_mod = {
+	country_rubberbanding_society_research_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+# Engineering
+gkrb_tech_engineering_research_mod = {
+	country_rubberbanding_engineering_research_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_tech_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_negative.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = gkrb_tech_mod.tooltip
+}
+
+gkrb_tech_behind_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_positive.dds"
+	tech_alternatives_add = 1
+	all_technology_research_speed = 0.1
+	custom_tooltip = gkrb_tech_behind_mod.tooltip
+	show_only_custom_tooltip = no
+}

@@ -1,0 +1,279 @@
+# Gatekeeper event pattern copied from /dubbobanding.
+# Goal: compute a galactic average econ score, then apply per-country output scaling.
+namespace = gkrb_econ
+# Init globals once on game start.
+event = {
+	id = gkrb_econ.1
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		event_target:global_event_country = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = gkrb_econ_has_global_variables
+					}
+				}
+				set_variable = {
+					which = gkrb_econ_global_econ_sum
+					value = 0
+				}
+				set_variable = {
+					which = gkrb_econ_global_country_count
+					value = 0
+				}
+				set_variable = {
+					which = gkrb_econ_global_econ_avg
+					value = 0
+				}
+				# Load resource weights from scripted_variables
+				# Basic resources
+				set_variable = {
+					which = gkrb_econ_weight_energy
+					value = @gkrb_econ_weight_energy
+				}
+				set_variable = {
+					which = gkrb_econ_weight_minerals
+					value = @gkrb_econ_weight_minerals
+				}
+				set_variable = {
+					which = gkrb_econ_weight_food
+					value = @gkrb_econ_weight_food
+				}
+				# Advanced resources
+				set_variable = {
+					which = gkrb_econ_weight_consumer_goods
+					value = @gkrb_econ_weight_consumer_goods
+				}
+				set_variable = {
+					which = gkrb_econ_weight_alloys
+					value = @gkrb_econ_weight_alloys
+				}
+				# Trade
+				set_variable = {
+					which = gkrb_econ_weight_trade
+					value = @gkrb_econ_weight_trade
+				}
+				# Strategic resources
+				set_variable = {
+					which = gkrb_econ_weight_volatile_motes
+					value = @gkrb_econ_weight_volatile_motes
+				}
+				set_variable = {
+					which = gkrb_econ_weight_exotic_gases
+					value = @gkrb_econ_weight_exotic_gases
+				}
+				set_variable = {
+					which = gkrb_econ_weight_rare_crystals
+					value = @gkrb_econ_weight_rare_crystals
+				}
+				# Exotic resources
+				set_variable = {
+					which = gkrb_econ_weight_sr_living_metal
+					value = @gkrb_econ_weight_sr_living_metal
+				}
+				set_variable = {
+					which = gkrb_econ_weight_sr_zro
+					value = @gkrb_econ_weight_sr_zro
+				}
+				set_variable = {
+					which = gkrb_econ_weight_sr_dark_matter
+					value = @gkrb_econ_weight_sr_dark_matter
+				}
+				set_variable = {
+					which = gkrb_econ_weight_nanites
+					value = @gkrb_econ_weight_nanites
+				}
+				# Unity and Research
+				set_variable = {
+					which = gkrb_econ_weight_unity
+					value = @gkrb_econ_weight_unity
+				}
+				set_variable = {
+					which = gkrb_econ_weight_physics_research
+					value = @gkrb_econ_weight_physics_research
+				}
+				set_variable = {
+					which = gkrb_econ_weight_society_research
+					value = @gkrb_econ_weight_society_research
+				}
+				set_variable = {
+					which = gkrb_econ_weight_engineering_research
+					value = @gkrb_econ_weight_engineering_research
+				}
+				set_country_flag = gkrb_econ_has_global_variables
+			}
+		}
+	}
+}
+
+# Monthly gatekeeper: recalc average, then apply per-country modifiers.
+event = {
+	id = gkrb_econ.10
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		event_target:global_event_country = {
+			set_variable = {
+				which = gkrb_econ_global_country_count
+				value = 0
+			}
+			set_variable = {
+				which = gkrb_econ_global_econ_sum
+				value = 0
+			}
+			set_variable = {
+				which = gkrb_econ_global_econ_avg
+				value = 0
+			}
+		}
+		every_playable_country = {
+			country_event = {
+				id = gkrb_econ.20
+			}
+		}
+		event_target:global_event_country = {
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_econ_global_country_count
+						value > 0
+					}
+				}
+				set_variable = {
+					which = gkrb_econ_global_econ_avg
+					value = gkrb_econ_global_econ_sum
+				}
+				divide_variable = {
+					which = gkrb_econ_global_econ_avg
+					value = gkrb_econ_global_country_count
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = gkrb_econ_global_econ_avg
+							value < 1
+						}
+					}
+					set_variable = {
+						which = gkrb_econ_global_econ_avg
+						value = 1
+					}
+				}
+			}
+		}
+		every_playable_country = {
+			country_event = {
+				id = gkrb_econ.30
+			}
+		}
+		every_playable_country = {
+			country_event = {
+				id = gkrb_econ.40
+			}
+		}
+		every_playable_country = {
+			country_event = {
+				id = gkrb_econ.50
+			}
+		}
+	}
+}
+
+# Compute per-country econ score and contribute to global sum.
+country_event = {
+	id = gkrb_econ.20
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		# Compute econ score using resource_revenue_compare directly
+		gkrb_calculate_econ_score = yes
+		# Contribute to global sum.
+		event_target:global_event_country = {
+			change_variable = {
+				which = gkrb_econ_global_econ_sum
+				value = prev.gkrb_econ_score
+			}
+			change_variable = {
+				which = gkrb_econ_global_country_count
+				value = 1
+			}
+		}
+	}
+}
+
+# Compute per-country relative score (self / galactic avg).
+country_event = {
+	id = gkrb_econ.30
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		set_variable = {
+			which = gkrb_econ_relative
+			value = value:gkrb_relative_score|SCORE_VAR|gkrb_econ_score|GLOBAL_AVG_VAR|gkrb_econ_global_econ_avg|
+		}
+	}
+}
+
+# Calculate malus scalar (0..@gkrb_econ_max_malus).
+country_event = {
+	id = gkrb_econ.40
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		set_variable = {
+			which = gkrb_econ_mult
+			value = value:gkrb_econ_mult
+		}
+		round_variable_to_closest = {
+			which = gkrb_econ_mult
+			value = 0.0001
+		}
+		# Cache game modifier mults for each resource
+		set_variable = { which = gkrb_econ_energy_game_mult value = value:scripted_modifier_mult|MODIFIER|country_energy_produces_mult| }
+		set_variable = { which = gkrb_econ_minerals_game_mult value = value:scripted_modifier_mult|MODIFIER|country_minerals_produces_mult| }
+		set_variable = { which = gkrb_econ_food_game_mult value = value:scripted_modifier_mult|MODIFIER|country_food_produces_mult| }
+		set_variable = { which = gkrb_econ_trade_game_mult value = value:scripted_modifier_mult|MODIFIER|country_trade_produces_mult| }
+		set_variable = { which = gkrb_econ_consumer_goods_game_mult value = value:scripted_modifier_mult|MODIFIER|country_consumer_goods_produces_mult| }
+		set_variable = { which = gkrb_econ_alloys_game_mult value = value:scripted_modifier_mult|MODIFIER|country_alloys_produces_mult| }
+		set_variable = { which = gkrb_econ_volatile_motes_game_mult value = value:scripted_modifier_mult|MODIFIER|country_volatile_motes_produces_mult| }
+		set_variable = { which = gkrb_econ_exotic_gases_game_mult value = value:scripted_modifier_mult|MODIFIER|country_exotic_gases_produces_mult| }
+		set_variable = { which = gkrb_econ_rare_crystals_game_mult value = value:scripted_modifier_mult|MODIFIER|country_rare_crystals_produces_mult| }
+		# set_variable = { which = gkrb_econ_sr_living_metal_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_living_metal_produces_mult| }
+		# set_variable = { which = gkrb_econ_sr_zro_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_zro_produces_mult| }
+		# set_variable = { which = gkrb_econ_sr_dark_matter_game_mult value = value:scripted_modifier_mult|MODIFIER|country_sr_dark_matter_produces_mult| }
+		# set_variable = { which = gkrb_econ_nanites_game_mult value = value:scripted_modifier_mult|MODIFIER|country_nanites_produces_mult|
+	}
+}
+
+# Apply per-resource income reduction modifiers.
+country_event = {
+	id = gkrb_econ.50
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		# Always clear first
+		gkrb_clear_econ_rubberbanding_modifiers = yes
+		
+		# If behind, apply catch-up bonuses only
+		if = {
+			limit = {
+				check_variable = {
+					which = gkrb_econ_relative
+					value < 0.98
+				}
+			}
+			gkrb_apply_behind_econ_rubberbanding_modifiers = yes
+		}
+		# If ahead, apply per-resource upkeep penalties
+		else_if = {
+			limit = {
+				check_variable = {
+					which = gkrb_econ_relative
+					value > 1.02
+				}
+			}
+			gkrb_apply_ahead_econ_rubberbanding_modifiers = yes
+		}
+	}
+}

@@ -1,0 +1,208 @@
+# Unity Rubberbanding Events
+# Tracks lifetime effective unity production for rubberbanding
+namespace = gkrb_unity
+
+# Init globals once on game start
+event = {
+	id = gkrb_unity.1
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		event_target:global_event_country = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = gkrb_unity_has_global_variables }
+				}
+				set_variable = {
+					which = gkrb_unity_global_sum
+					value = 0
+				}
+				set_variable = {
+					which = gkrb_unity_global_country_count
+					value = 0
+				}
+				set_variable = {
+					which = gkrb_unity_global_avg
+					value = 0
+				}
+				set_country_flag = gkrb_unity_has_global_variables
+			}
+		}
+	}
+}
+
+# Monthly gatekeeper: recalc average, then apply per-country modifiers
+event = {
+	id = gkrb_unity.10
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		# Reset global counters
+		event_target:global_event_country = {
+			set_variable = {
+				which = gkrb_unity_global_country_count
+				value = 0
+			}
+			set_variable = {
+				which = gkrb_unity_global_sum
+				value = 0
+			}
+			set_variable = {
+				which = gkrb_unity_global_avg
+				value = 0
+			}
+		}
+		
+		# Phase 1: Calculate scores and contribute to global sum
+		every_playable_country = {
+			country_event = { id = gkrb_unity.20 }
+		}
+		
+		# Calculate global average
+		event_target:global_event_country = {
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_unity_global_country_count
+						value > 0
+					}
+				}
+				set_variable = {
+					which = gkrb_unity_global_avg
+					value = gkrb_unity_global_sum
+				}
+				divide_variable = {
+					which = gkrb_unity_global_avg
+					value = gkrb_unity_global_country_count
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = gkrb_unity_global_avg
+							value < 1
+						}
+					}
+					set_variable = {
+						which = gkrb_unity_global_avg
+						value = 1
+					}
+				}
+			}
+		}
+		
+		# Phase 2: Calculate relative scores
+		every_playable_country = {
+			country_event = { id = gkrb_unity.30 }
+		}
+		
+		# Phase 3: Calculate multipliers
+		every_playable_country = {
+			country_event = { id = gkrb_unity.40 }
+		}
+		
+		# Phase 4: Apply modifiers
+		every_playable_country = {
+			country_event = { id = gkrb_unity.50 }
+		}
+	}
+}
+
+# Calculate per-country unity score and contribute to global sum
+country_event = {
+	id = gkrb_unity.20
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		# Calculate effective unity and update running total
+		gkrb_calculate_unity_score = yes
+		
+		# Contribute normalized score to global sum
+		event_target:global_event_country = {
+			change_variable = {
+				which = gkrb_unity_global_sum
+				value = prev.gkrb_unity_score
+			}
+			change_variable = {
+				which = gkrb_unity_global_country_count
+				value = 1
+			}
+		}
+	}
+}
+
+# Calculate per-country relative score (self / galactic avg)
+country_event = {
+	id = gkrb_unity.30
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		set_variable = {
+			which = gkrb_unity_relative
+			value = value:gkrb_relative_score|SCORE_VAR|gkrb_unity_score|GLOBAL_AVG_VAR|gkrb_unity_global_avg|
+		}
+	}
+}
+
+# Calculate unity multiplier
+country_event = {
+	id = gkrb_unity.40
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		set_variable = {
+			which = gkrb_unity_mult
+			value = value:gkrb_unity_mult
+		}
+		round_variable_to_closest = {
+			which = gkrb_unity_mult
+			value = 0.0001
+		}
+		
+		# gkrb_unity_unity_adjust = the upkeep being added by the modifier
+		# upkeep = income × mult (percentage of income as penalty)
+		set_variable = {
+			which = gkrb_unity_unity_adjust
+			value = gkrb_unity_income
+		}
+		multiply_variable = {
+			which = gkrb_unity_unity_adjust
+			value = gkrb_unity_mult
+		}
+		round_variable_to_closest = {
+			which = gkrb_unity_unity_adjust
+			value = 0.01
+		}
+	}
+}
+
+# Apply unity modifiers
+country_event = {
+	id = gkrb_unity.50
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		# Always clear first
+		gkrb_clear_unity_rubberbanding_modifiers = yes
+		
+		# If behind, apply catch-up bonuses
+		if = {
+			limit = {
+				check_variable = {
+					which = gkrb_unity_relative
+					value < 0.98
+				}
+			}
+			gkrb_apply_behind_unity_rubberbanding_modifiers = yes
+		}
+		# If ahead, apply upkeep penalty
+		else_if = {
+			limit = {
+				check_variable = {
+					which = gkrb_unity_relative
+					value > 1.02
+				}
+			}
+			gkrb_apply_ahead_unity_rubberbanding_modifiers = yes
+		}
+	}
+}

@@ -1,0 +1,15 @@
+on_game_start = {
+	events = {
+		gkrb_econ.1
+		gkrb_tech.1
+		gkrb_unity.1
+	}
+}
+
+on_monthly_pulse = {
+	events = {
+		gkrb_econ.10
+		gkrb_tech.10
+		gkrb_unity.10
+	}
+}

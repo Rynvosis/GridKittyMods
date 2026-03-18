@@ -1,0 +1,13 @@
+gkrb_unity_unity_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_unity_loss_mult.dds"
+	country_rubberbanding_unity_upkeep_add = 1
+	custom_tooltip = gkrb_unity_unity_mod.tooltip
+	show_only_custom_tooltip = no
+}
+
+gkrb_unity_behind_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_unity_produces_mult.dds"
+	leaders_unity_upkeep_mult = -0.5
+	custom_tooltip = gkrb_unity_behind_mod.tooltip
+	show_only_custom_tooltip = no
+}

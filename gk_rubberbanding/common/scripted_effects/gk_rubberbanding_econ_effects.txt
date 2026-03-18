@@ -1,0 +1,191 @@
+####################################
+# Economy Score Calculations      #
+####################################
+# Calculate current economic power (snapshot) by summing weighted resource values
+# Then blend into rolling EMA score for smoother rubberbanding
+gkrb_calculate_econ_score = {
+	# First calculate current power (snapshot)
+	set_variable = {
+		which = gkrb_econ_current_power
+		value = 0
+	}
+	# Basic resources
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = energy
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = minerals
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = food
+	}
+	# Advanced resources
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = trade
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = consumer_goods
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = alloys
+	}
+	# Strategic resources
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = volatile_motes
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = exotic_gases
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = rare_crystals
+	}
+	# Rare resources
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = sr_living_metal
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = sr_zro
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = sr_dark_matter
+	}
+	# Unity and Research
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = unity
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = physics_research
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = society_research
+	}
+	gkrb_add_weighted_resource_score = {
+		RESOURCE = engineering_research
+	}
+	
+	# Blend current power into rolling EMA score
+	# Formula: score = score * decay + current_power * alpha
+	# If score not initialized, use current_power directly
+	if = {
+		limit = { NOT = { is_variable_set = gkrb_econ_score } }
+		set_variable = {
+			which = gkrb_econ_score
+			value = gkrb_econ_current_power
+		}
+	}
+	else = {
+		# score = score * decay
+		multiply_variable = {
+			which = gkrb_econ_score
+			value = value:gkrb_econ_ema_decay
+		}
+		# temp = current_power * alpha
+		set_variable = {
+			which = gkrb_temp_ema
+			value = gkrb_econ_current_power
+		}
+		multiply_variable = {
+			which = gkrb_temp_ema
+			value = value:gkrb_econ_ema_alpha
+		}
+		# score = score + temp
+		change_variable = {
+			which = gkrb_econ_score
+			value = gkrb_temp_ema
+		}
+	}
+}
+
+# Helper to add a single resource's weighted value to the score
+# Now uses resource_revenue_compare directly (no caching needed)
+gkrb_add_weighted_resource_score = {
+	export_trigger_value_to_variable = {
+		trigger = resource_revenue_compare
+		parameters = {
+			resource = $RESOURCE$
+		}
+		variable = gkrb_temp_score
+	}
+	multiply_variable = {
+		which = gkrb_temp_score
+		value = event_target:global_event_country.gkrb_econ_weight_$RESOURCE$
+	}
+	change_variable = {
+		which = gkrb_econ_current_power
+		value = gkrb_temp_score
+	}
+}
+
+# Clear all economy rubberbanding modifiers/markers.
+gkrb_clear_econ_rubberbanding_modifiers = {
+	#basic resources
+	remove_modifier = gkrb_econ_energy_mod
+	remove_modifier = gkrb_econ_minerals_mod
+	remove_modifier = gkrb_econ_food_mod
+	# advanced resources
+	remove_modifier = gkrb_econ_trade_mod
+	remove_modifier = gkrb_econ_consumer_goods_mod
+	remove_modifier = gkrb_econ_alloys_mod
+	# strategic resources
+	remove_modifier = gkrb_econ_volatile_motes_mod
+	remove_modifier = gkrb_econ_exotic_gases_mod
+	remove_modifier = gkrb_econ_rare_crystals_mod
+	# exotic resources
+	remove_modifier = gkrb_econ_sr_living_metal_mod
+	remove_modifier = gkrb_econ_sr_zro_mod
+	remove_modifier = gkrb_econ_sr_dark_matter_mod
+	remove_modifier = gkrb_econ_nanites_mod
+	# abstract resources
+	remove_modifier = gkrb_econ_unity_mod
+	remove_modifier = gkrb_econ_physics_research_mod
+	remove_modifier = gkrb_econ_society_research_mod
+	remove_modifier = gkrb_econ_engineering_research_mod
+
+
+	remove_modifier = gkrb_econ_mod
+	remove_modifier = gkrb_econ_behind_mod
+}
+
+# Apply economy rubberbanding modifiers when ahead (malus only).
+gkrb_apply_ahead_econ_rubberbanding_modifiers = {
+	# Apply adjustment for all resources
+	# basic resources
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = energy TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = minerals TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = food TYPE = econ }
+	# advanced resources
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = trade TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = consumer_goods TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = alloys TYPE = econ }
+	# strategic resources
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = volatile_motes TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = exotic_gases TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = rare_crystals TYPE = econ }
+	# exotic resources
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = sr_living_metal TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = sr_zro TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = sr_dark_matter TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = nanites TYPE = econ }
+	# abstract resources
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = unity TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = physics_research TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = society_research TYPE = econ }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = engineering_research TYPE = econ }
+
+	# Apply marker modifier (tooltip)
+	add_modifier = {
+		modifier = gkrb_econ_mod
+		days = -1
+		multiplier = gkrb_econ_mult
+	}
+}
+
+# Apply economy rubberbanding when behind (no per-resource modifiers; behind buff only).
+gkrb_apply_behind_econ_rubberbanding_modifiers = {
+	# Apply behind modifier with catch-up bonuses
+	add_modifier = {
+		modifier = gkrb_econ_behind_mod
+		days = -1
+		multiplier = gkrb_econ_mult
+	}
+}

@@ -1,0 +1,15 @@
+# Unity Rubberbanding Variables
+
+# Maximum modifier values
+@gkrb_unity_max_malus = 0.25
+@gkrb_unity_min_malus = -0.25
+@gkrb_unity_slope_malus = 0.5
+
+# Bucket overflow threshold (1 million)
+# When low bucket exceeds this, overflow into high bucket
+@gkrb_unity_bucket_threshold = 1000000
+
+# Vanilla Defines (from common/defines/00_defines.txt)
+# Update these if Paradox changes the base game values
+@gkrb_vanilla_empire_size_base = 100
+@gkrb_vanilla_empire_size_tradition_cost_penalty = 0.002

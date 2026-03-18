@@ -1,0 +1,95 @@
+# basic resources
+gkrb_econ_energy_mod = {
+	country_rubberbanding_energy_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_minerals_mod = {
+	country_rubberbanding_minerals_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_food_mod = {
+	country_rubberbanding_food_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+# advanced resources
+gkrb_econ_trade_mod = {
+	country_rubberbanding_trade_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_consumer_goods_mod = {
+	country_rubberbanding_consumer_goods_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_alloys_mod = {
+	country_rubberbanding_alloys_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+# strategic resources
+gkrb_econ_volatile_motes_mod = {
+	country_rubberbanding_volatile_motes_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_exotic_gases_mod = {
+	country_rubberbanding_exotic_gases_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_rare_crystals_mod = {
+	country_rubberbanding_rare_crystals_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+# exotic resources
+gkrb_econ_sr_living_metal_mod = {
+	country_rubberbanding_sr_living_metal_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_sr_zro_mod = {
+	country_rubberbanding_sr_zro_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_sr_dark_matter_mod = {
+	country_rubberbanding_sr_dark_matter_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_nanites_mod = {
+	country_rubberbanding_nanites_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+# abstract resources
+gkrb_econ_unity_mod = {
+	country_rubberbanding_unity_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_physics_research_mod = {
+	country_rubberbanding_physics_research_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_society_research_mod = {
+	country_rubberbanding_society_research_upkeep_add = 1
+	hide_from_country_list = yes
+}
+gkrb_econ_engineering_research_mod = {
+	country_rubberbanding_engineering_research_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+
+# Marker modifier for tooltip
+gkrb_econ_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_trade_produces_mult_negative.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = gkrb_econ_mod.tooltip
+}
+gkrb_econ_behind_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_trade_produces_mult.dds" 
+	planet_resettlement_unemployed_mult = 2
+	planet_buildings_cost_mult = -1
+	planet_building_build_speed_mult = 2
+	planet_building_refund_mult = 1
+	founder_species_growth_mult = 0.5
+	custom_tooltip = gkrb_econ_behind_mod.tooltip
+	show_only_custom_tooltip = no
+}

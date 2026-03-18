@@ -1,0 +1,9 @@
+defined_text = {
+	name = GKRBEconPercentage
+	value = value:gkrb_econ_score_percent
+}
+
+defined_text = {
+	name = GKRBEconEffectiveMult
+	value = value:gkrb_econ_mult_percent
+}

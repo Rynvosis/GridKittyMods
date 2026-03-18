@@ -1,0 +1,8 @@
+@gkrb_tech_tier0score = 1
+@gkrb_tech_tier1score = 1
+@gkrb_tech_tier2score = 2
+@gkrb_tech_tier3score = 4
+@gkrb_tech_tier4score = 8
+@gkrb_tech_tier5score = 16
+@gkrb_tech_repeatable_score = 32
+@gkrb_tech_repeatable_scaling = 1

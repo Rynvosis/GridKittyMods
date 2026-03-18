@@ -1,0 +1,92 @@
+
+gkrb_tech_score_percent = {
+	add = gkrb_tech_relative
+	mult = 100
+	round = yes
+}
+
+gkrb_tech_mult_percent = {
+	add = gkrb_tech_mult
+	mult = 100
+	round = yes
+}
+
+
+
+###########################
+# tech score calculations #
+###########################
+
+gkrb_tech_score = {
+	base = 0
+	add = value:gkrb_tech_score_intermediary|TIER|0|
+	add = value:gkrb_tech_score_intermediary|TIER|1|
+	add = value:gkrb_tech_score_intermediary|TIER|2|
+	add = value:gkrb_tech_score_intermediary|TIER|3|
+	add = value:gkrb_tech_score_intermediary|TIER|4|
+	add = value:gkrb_tech_score_intermediary|TIER|5|
+	add = value:gkrb_tech_score_repeatable
+}
+
+#this just prevents cwtools lint errors :3, doesnt parse $PARAMS$ directly for scripted variables
+gkrb_tech_score_intermediary = {
+	add = value:gkrb_tech_score_tier|TIER|$TIER$|COST|@gkrb_tech_tier$TIER$score|
+}
+
+gkrb_tech_score_tier = {
+	base = 0
+
+	complex_trigger_modifier = {
+		trigger = num_researched_techs_of_tier
+		parameters = {
+			tier = $TIER$
+		}
+		mode = add
+	}
+	mult = $COST$
+}
+
+gkrb_tech_score_repeatable = {
+	base = 0
+
+	add = trigger:num_repeatable_techs
+	subtract = @gkrb_tech_repeatable_scaling #so the first doesnt penalize its own score
+	mult = @gkrb_tech_repeatable_scaling
+	
+	add = @gkrb_tech_repeatable_score
+
+	mult = trigger:num_repeatable_techs
+}
+
+
+
+
+##########################
+# tech mult calculations #
+##########################
+
+gkrb_tech_old_mult = {
+	base = 0.25
+	mult = gkrb_tech_relative
+	mult = gkrb_tech_relative
+	subtract = 0.25
+	max = 1.0
+}
+
+# (1-x)^2 formula: always positive, used as upkeep multiplier when ahead
+# When behind, the behind_mod is applied instead
+gkrb_tech_mult = {
+	base = 0
+	add = value:gkrb_tech_offset_relative
+	mult = value:gkrb_tech_offset_relative
+	
+	max = 1.0
+	min = 0
+}
+
+
+gkrb_tech_offset_relative = {
+	# originally 1 = middle, instead this is making it so 0 is middle
+	base = 1
+	subtract = value:gkrb_relative_score|SCORE_VAR|gkrb_tech_score|GLOBAL_AVG_VAR|gkrb_tech_global_avg|
+}

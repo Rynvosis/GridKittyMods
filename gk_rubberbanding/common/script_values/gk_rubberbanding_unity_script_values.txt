@@ -1,0 +1,148 @@
+####################################
+# Unity Score Display              #
+####################################
+
+gkrb_unity_score_percent = {
+	add = gkrb_unity_relative
+	mult = 100
+	round = yes
+}
+
+gkrb_unity_mult_percent = {
+	add = gkrb_unity_mult
+	mult = 100
+	round = yes
+}
+
+####################################
+# Effective Unity Calculation      #
+####################################
+
+# Uses @gkrb_vanilla_empire_size_base and @gkrb_vanilla_empire_size_tradition_cost_penalty
+# from gk_rubberbanding_unity_variables.txt (mirrors vanilla defines)
+
+# Calculate excess empire size above base
+gkrb_unity_excess_empire_size = {
+	base = 0
+	add = trigger:empire_size
+	subtract = @gkrb_vanilla_empire_size_base
+	min = 0
+}
+
+# Calculate raw penalty from excess size
+gkrb_unity_raw_size_penalty = {
+	base = 0
+	add = value:gkrb_unity_excess_empire_size
+	mult = @gkrb_vanilla_empire_size_tradition_cost_penalty
+}
+
+# Apply tradition_cost_empire_size_mult modifier (reduces/increases the penalty)
+gkrb_unity_tradition_size_mult = {
+	base = 1
+	add = modifier:tradition_cost_empire_size_mult
+	min = 0
+}
+
+# Apply empire_size_penalty_mult modifier (stacks with above)
+gkrb_unity_empire_size_penalty_mult = {
+	base = 1
+	add = modifier:empire_size_penalty_mult
+	min = 0
+}
+
+# Final tradition cost multiplier:
+# 1 + (raw_penalty * tradition_size_mult * empire_penalty_mult)
+gkrb_unity_tradition_cost_mult = {
+	add = value:gkrb_unity_raw_size_penalty
+	mult = value:gkrb_unity_tradition_size_mult
+	mult = value:gkrb_unity_empire_size_penalty_mult
+	add = 1
+	min = 0.1  # Prevent division by zero
+}
+
+# Calculate effective unity from raw unity gain (income or stockpile delta)
+# Effective = raw / tradition_cost_mult
+# If tradition cost is +100% (mult=2), effective unity is halved
+gkrb_unity_effective_gain = {
+	base = 0
+	add = gkrb_unity_raw_gain
+	divide = value:gkrb_unity_tradition_cost_mult
+}
+
+####################################
+# Total Score Reconstruction       #
+####################################
+
+# Proper division of high/low bucket representation by months_elapsed:
+# To divide (high * BASE + low) by n without overflow:
+#   high_quotient = floor(high / n)
+#   remainder = high % n = high - high_quotient * n
+#   low_with_carry = remainder * BASE + low
+#   low_quotient = low_with_carry / n
+#   result = high_quotient * BASE + low_quotient
+
+# Step 1: floor(high / months)
+gkrb_unity_high_quotient = {
+	base = 0
+	add = gkrb_unity_total_high
+	divide = gkrb_unity_months_elapsed
+	floor = yes
+}
+
+# Step 2: quotient * months (for computing remainder)
+gkrb_unity_quotient_times_months = {
+	base = 0
+	add = value:gkrb_unity_high_quotient
+	mult = gkrb_unity_months_elapsed
+}
+
+# Step 3: remainder = high - quotient * months (this is high % months)
+gkrb_unity_high_remainder = {
+	base = 0
+	add = gkrb_unity_total_high
+	subtract = value:gkrb_unity_quotient_times_months
+}
+
+# Step 4: low_with_carry = remainder * threshold + low
+gkrb_unity_low_with_carry = {
+	base = 0
+	add = value:gkrb_unity_high_remainder
+	mult = @gkrb_unity_bucket_threshold
+	add = gkrb_unity_total_low
+}
+
+# Step 5: low_quotient = low_with_carry / months
+gkrb_unity_low_quotient = {
+	base = 0
+	add = value:gkrb_unity_low_with_carry
+	divide = gkrb_unity_months_elapsed
+}
+
+# Final score = high_quotient * threshold + low_quotient
+gkrb_unity_score = {
+	base = 0
+	add = value:gkrb_unity_high_quotient
+	mult = @gkrb_unity_bucket_threshold
+	add = value:gkrb_unity_low_quotient
+	min = 1
+}
+
+####################################
+# Unity Mult Calculations          #
+####################################
+
+# (1-x)^2 formula: always positive, used as upkeep multiplier when ahead
+# When behind, the behind_mod is applied instead
+gkrb_unity_mult = {
+	base = 0
+	add = value:gkrb_unity_offset_relative
+	mult = value:gkrb_unity_offset_relative
+	
+	max = 1.0
+	min = 0
+}
+
+gkrb_unity_offset_relative = {
+	base = 1
+	subtract = value:gkrb_relative_score|SCORE_VAR|gkrb_unity_score|GLOBAL_AVG_VAR|gkrb_unity_global_avg|
+}
