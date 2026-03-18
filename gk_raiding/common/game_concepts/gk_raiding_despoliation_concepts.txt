@@ -10,6 +10,14 @@ concept_gk_material_liberator = {
 	}
 }
 
+concept_gk_privateer_enclave = {
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_pirate_encounter"
+	}
+}
+
 concept_gk_shipbreaker = {
 	icon = "gfx/interface/icons/resources/alloys.dds"
 	databank = {

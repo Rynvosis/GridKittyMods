@@ -68,12 +68,9 @@ wg_plunder_raid = {
 	on_accept = {
 		custom_tooltip = wg_plunder_raid_accept_tooltip
 		hidden_effect = {
-			save_event_target_as = gk_raider
-			from = { save_event_target_as = gk_raidee }
-			gk_pillage_on_surrender = yes
 			country_event = {
 				id = gk_raiding_pillaging.300
-				scopes = { from = event_target:gk_raidee }
+				scopes = { from = from }
 			}
 		}
 	}

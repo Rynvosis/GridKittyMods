@@ -1,6 +1,43 @@
 # GK Raiding Pop Scripted Triggers
 
 #############################
+# Unlimited Raiding Check   #
+#############################
+
+# Checks if raiding should bypass all bucket caps
+# This = raidee country
+# event_target:gk_cap_raider = side leader
+# event_target:gk_raid_tracker = tracker (optional, checked for tier 5)
+gk_has_unlimited_raiding = {
+	OR = {
+		# Tier 5: total depopulation authorized
+		AND = {
+			exists = event_target:gk_raid_tracker
+			event_target:gk_raid_tracker = {
+				check_variable = { which = gk_escalation_tier value >= 5 }
+			}
+		}
+		# Reaping war goal
+		event_target:gk_cap_raider = {
+			any_war = {
+				OR = {
+					AND = {
+						is_war_participant = { who = prev side = attackers }
+						is_war_participant = { who = prevprev side = defenders }
+						using_war_goal = { type = wg_gk_reaping owner = attacker }
+					}
+					AND = {
+						is_war_participant = { who = prev side = defenders }
+						is_war_participant = { who = prevprev side = attackers }
+						using_war_goal = { type = wg_gk_reaping owner = defender }
+					}
+				}
+			}
+		}
+	}
+}
+
+#############################
 # Raiding Bombardment Check #
 #############################
 gk_can_use_raiding_bombardment = {
@@ -304,8 +341,10 @@ gk_can_abduct_pop_group_cap_check = {
 									using_war_goal = { type = wg_gk_emancipation owner = attacker }
 									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
 								}
-								prevprev = {
-									NOT = { has_country_flag = gk_raid_cap_reached_by_@attacker }
+								attacker = {
+									prevprevprev = {
+										NOT = { has_country_flag = gk_raid_cap_reached_by_@prev }
+									}
 								}
 							}
 							AND = {
@@ -316,8 +355,10 @@ gk_can_abduct_pop_group_cap_check = {
 									using_war_goal = { type = wg_gk_emancipation owner = defender }
 									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
 								}
-								prevprev = {
-									NOT = { has_country_flag = gk_raid_cap_reached_by_@defender }
+								defender = {
+									prevprevprev = {
+										NOT = { has_country_flag = gk_raid_cap_reached_by_@prev }
+									}
 								}
 							}
 						}

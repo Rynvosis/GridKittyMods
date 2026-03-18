@@ -1,5 +1,3 @@
-@base_tradition_agenda_cost = 7000
-
 agenda_gk_raiding_despoliation_recovery_fleets = {
 	agenda_cost = @base_tradition_agenda_cost
 	allow = {

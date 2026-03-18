@@ -37,7 +37,7 @@ civic_gk_barbaric_despoilers_megacorp_effects:0 "Has the '§Y$casus_belli_cb_des
  councilor_gk_emancipators_megacorp:0 "Liberation Commander"
  councilor_gk_robo_liberators:0 "Synthetic Rights Advocate"
  councilor_gk_robo_liberators_megacorp:0 "Synthetic Rights Advocate"
- councilor_gk_barbaric_despoilers_megacorp:0 "Acquisitions Director"
+ councilor_gk_barbaric_despoilers_megacorp:0 "Renderings Director"
 
  # Organic Battery Job Modifier Localisation
  job_organic_battery_plural_with_icon:0 "£job_organic_battery£ $job_organic_battery_plural$"
@@ -96,11 +96,6 @@ civic_gk_barbaric_despoilers_megacorp_effects:0 "Has the '§Y$casus_belli_cb_des
  mod_planet_organic_batteries_advanced_logic_upkeep_add:0 "$advanced_logic_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
  mod_planet_organic_batteries_feral_insight_produces_add:0 "$feral_insight_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
  mod_planet_organic_batteries_feral_insight_upkeep_add:0 "$feral_insight_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
- # Not Resources
- mod_planet_organic_batteries_amenities_produces_add:0 "$amenities_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
- mod_planet_organic_batteries_amenities_upkeep_add:0 "$amenities_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
- mod_planet_organic_batteries_stability_produces_add:0 "$stability_produced_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
- mod_planet_organic_batteries_stability_upkeep_add:0 "$stability_upkeep_per_pop_group_unit$ $job_organic_battery_plural_with_icon$"
 
  # Mult Modifiers
  # Everything
@@ -159,8 +154,294 @@ civic_gk_barbaric_despoilers_megacorp_effects:0 "Has the '§Y$casus_belli_cb_des
  mod_planet_organic_batteries_advanced_logic_upkeep_mult:0 "$advanced_logic_upkeep_for$ $job_organic_battery_plural_with_icon$"
  mod_planet_organic_batteries_feral_insight_produces_mult:0 "$feral_insight_produced_from$ $job_organic_battery_plural_with_icon$"
  mod_planet_organic_batteries_feral_insight_upkeep_mult:0 "$feral_insight_upkeep_for$ $job_organic_battery_plural_with_icon$"
- # Not Resources
- mod_planet_organic_batteries_amenities_produces_mult:0 "$amenities_produced_from$ $job_organic_battery_plural_with_icon$"
- mod_planet_organic_batteries_amenities_upkeep_mult:0 "$amenities_upkeep_for$ $job_organic_battery_plural_with_icon$"
- mod_planet_organic_batteries_stability_produces_mult:0 "$stability_produced_from$ $job_organic_battery_plural_with_icon$"
- mod_planet_organic_batteries_stability_upkeep_mult:0 "$stability_upkeep_for$ $job_organic_battery_plural_with_icon$"
+
+ # Static Modifier Localisation
+ mod_gk_livestock_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ £job_livestock£ $job_livestock_plural$"
+ mod_gk_purge_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ gk_livestock_trade_produces_add_tt:0 "$t$- £trade_value£ §YTrade Value§! from ['concept_planet_livestock']: $VARIABLE|+=0$"
+ gk_purge_trade_produces_add_tt:0 "$t$- £trade_value£ §YTrade Value§! from §YProcessing§!: $VARIABLE|+=0$"
+
+ # Helper keys
+ job_livestock_organic_plural_with_icon:0 "£job_livestock£ Organic $job_livestock_plural$"
+ job_livestock_lithoid_plural_with_icon:0 "£job_livestock£ Lithoid $job_livestock_plural$"
+ job_livestock_infernal_plural_with_icon:0 "£job_livestock£ Infernal $job_livestock_plural$"
+
+ ################################
+ # Livestock Farmer Modifiers   #
+ ################################
+
+ # Add Modifiers
+ # Basic Resources
+ mod_planet_livestock_farmers_energy_produces_add:0 "$energy_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_minerals_produces_add:0 "$minerals_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_food_produces_add:0 "$food_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_livestock_farmers_physics_research_produces_add:0 "$physics_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_society_research_produces_add:0 "$society_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_engineering_research_produces_add:0 "$engineering_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_influence_produces_add:0 "$influence_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_unity_produces_add:0 "$unity_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_livestock_farmers_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_consumer_goods_produces_add:0 "$consumer_goods_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_alloys_produces_add:0 "$alloys_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_livestock_farmers_volatile_motes_produces_add:0 "$volatile_motes_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_exotic_gases_produces_add:0 "$exotic_gases_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_rare_crystals_produces_add:0 "$rare_crystals_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ # Rare Resources
+ mod_planet_livestock_farmers_sr_living_metal_produces_add:0 "$sr_living_metal_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_sr_zro_produces_add:0 "$sr_zro_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_sr_dark_matter_produces_add:0 "$sr_dark_matter_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_nanites_produces_add:0 "$nanites_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_livestock_farmers_minor_artifacts_produces_add:0 "$minor_artifacts_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_astral_threads_produces_add:0 "$astral_threads_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_livestock_farmers_menace_produces_add:0 "$menace_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_advanced_logic_produces_add:0 "$advanced_logic_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_feral_insight_produces_add:0 "$feral_insight_produced_per_pop_group_unit$ $job_livestock_organic_plural_with_icon$"
+
+ # Mult Modifiers
+ # Everything
+ mod_planet_livestock_farmers_produces_mult:0 "Resources Produced from $job_livestock_organic_plural_with_icon$"
+ # Basic Resources
+ mod_planet_livestock_farmers_energy_produces_mult:0 "$energy_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_minerals_produces_mult:0 "$minerals_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_food_produces_mult:0 "$food_produced_from$ $job_livestock_organic_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_livestock_farmers_physics_research_produces_mult:0 "$physics_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_society_research_produces_mult:0 "$society_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_engineering_research_produces_mult:0 "$engineering_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_influence_produces_mult:0 "$influence_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_unity_produces_mult:0 "$unity_produced_from$ $job_livestock_organic_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_livestock_farmers_trade_produces_mult:0 "$trade_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_consumer_goods_produces_mult:0 "$consumer_goods_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_alloys_produces_mult:0 "$alloys_produced_from$ $job_livestock_organic_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_livestock_farmers_volatile_motes_produces_mult:0 "$volatile_motes_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_exotic_gases_produces_mult:0 "$exotic_gases_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_rare_crystals_produces_mult:0 "$rare_crystals_produced_from$ $job_livestock_organic_plural_with_icon$"
+ # Rare Resources
+ mod_planet_livestock_farmers_sr_living_metal_produces_mult:0 "$sr_living_metal_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_sr_zro_produces_mult:0 "$sr_zro_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_sr_dark_matter_produces_mult:0 "$sr_dark_matter_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_nanites_produces_mult:0 "$nanites_produced_from$ $job_livestock_organic_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_livestock_farmers_minor_artifacts_produces_mult:0 "$minor_artifacts_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_astral_threads_produces_mult:0 "$astral_threads_produced_from$ $job_livestock_organic_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_livestock_farmers_menace_produces_mult:0 "$menace_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_advanced_logic_produces_mult:0 "$advanced_logic_produced_from$ $job_livestock_organic_plural_with_icon$"
+ mod_planet_livestock_farmers_feral_insight_produces_mult:0 "$feral_insight_produced_from$ $job_livestock_organic_plural_with_icon$"
+
+ ################################
+ # Livestock Miner Modifiers    #
+ ################################
+
+ # Add Modifiers
+ # Basic Resources
+ mod_planet_livestock_miners_energy_produces_add:0 "$energy_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_minerals_produces_add:0 "$minerals_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_food_produces_add:0 "$food_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_livestock_miners_physics_research_produces_add:0 "$physics_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_society_research_produces_add:0 "$society_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_engineering_research_produces_add:0 "$engineering_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_influence_produces_add:0 "$influence_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_unity_produces_add:0 "$unity_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_livestock_miners_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_consumer_goods_produces_add:0 "$consumer_goods_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_alloys_produces_add:0 "$alloys_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_livestock_miners_volatile_motes_produces_add:0 "$volatile_motes_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_exotic_gases_produces_add:0 "$exotic_gases_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_rare_crystals_produces_add:0 "$rare_crystals_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ # Rare Resources
+ mod_planet_livestock_miners_sr_living_metal_produces_add:0 "$sr_living_metal_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_sr_zro_produces_add:0 "$sr_zro_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_sr_dark_matter_produces_add:0 "$sr_dark_matter_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_nanites_produces_add:0 "$nanites_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_livestock_miners_minor_artifacts_produces_add:0 "$minor_artifacts_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_astral_threads_produces_add:0 "$astral_threads_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_livestock_miners_menace_produces_add:0 "$menace_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_advanced_logic_produces_add:0 "$advanced_logic_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_feral_insight_produces_add:0 "$feral_insight_produced_per_pop_group_unit$ $job_livestock_lithoid_plural_with_icon$"
+
+ # Mult Modifiers
+ # Everything
+ mod_planet_livestock_miners_produces_mult:0 "Resources Produced from $job_livestock_lithoid_plural_with_icon$"
+ # Basic Resources
+ mod_planet_livestock_miners_energy_produces_mult:0 "$energy_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_minerals_produces_mult:0 "$minerals_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_food_produces_mult:0 "$food_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_livestock_miners_physics_research_produces_mult:0 "$physics_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_society_research_produces_mult:0 "$society_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_engineering_research_produces_mult:0 "$engineering_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_influence_produces_mult:0 "$influence_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_unity_produces_mult:0 "$unity_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_livestock_miners_trade_produces_mult:0 "$trade_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_consumer_goods_produces_mult:0 "$consumer_goods_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_alloys_produces_mult:0 "$alloys_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_livestock_miners_volatile_motes_produces_mult:0 "$volatile_motes_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_exotic_gases_produces_mult:0 "$exotic_gases_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_rare_crystals_produces_mult:0 "$rare_crystals_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ # Rare Resources
+ mod_planet_livestock_miners_sr_living_metal_produces_mult:0 "$sr_living_metal_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_sr_zro_produces_mult:0 "$sr_zro_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_sr_dark_matter_produces_mult:0 "$sr_dark_matter_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_nanites_produces_mult:0 "$nanites_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_livestock_miners_minor_artifacts_produces_mult:0 "$minor_artifacts_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_astral_threads_produces_mult:0 "$astral_threads_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_livestock_miners_menace_produces_mult:0 "$menace_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_advanced_logic_produces_mult:0 "$advanced_logic_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+ mod_planet_livestock_miners_feral_insight_produces_mult:0 "$feral_insight_produced_from$ $job_livestock_lithoid_plural_with_icon$"
+
+ #######################################
+ # Livestock Metallurgist Modifiers    #
+ #######################################
+
+ # Add Modifiers
+ # Basic Resources
+ mod_planet_livestock_metallurgists_energy_produces_add:0 "$energy_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_minerals_produces_add:0 "$minerals_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_food_produces_add:0 "$food_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_livestock_metallurgists_physics_research_produces_add:0 "$physics_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_society_research_produces_add:0 "$society_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_engineering_research_produces_add:0 "$engineering_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_influence_produces_add:0 "$influence_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_unity_produces_add:0 "$unity_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_livestock_metallurgists_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_consumer_goods_produces_add:0 "$consumer_goods_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_alloys_produces_add:0 "$alloys_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_livestock_metallurgists_volatile_motes_produces_add:0 "$volatile_motes_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_exotic_gases_produces_add:0 "$exotic_gases_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_rare_crystals_produces_add:0 "$rare_crystals_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ # Rare Resources
+ mod_planet_livestock_metallurgists_sr_living_metal_produces_add:0 "$sr_living_metal_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_sr_zro_produces_add:0 "$sr_zro_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_sr_dark_matter_produces_add:0 "$sr_dark_matter_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_nanites_produces_add:0 "$nanites_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_livestock_metallurgists_minor_artifacts_produces_add:0 "$minor_artifacts_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_astral_threads_produces_add:0 "$astral_threads_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_livestock_metallurgists_menace_produces_add:0 "$menace_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_advanced_logic_produces_add:0 "$advanced_logic_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_feral_insight_produces_add:0 "$feral_insight_produced_per_pop_group_unit$ $job_livestock_infernal_plural_with_icon$"
+
+ # Mult Modifiers
+ # Everything
+ mod_planet_livestock_metallurgists_produces_mult:0 "Resources Produced from $job_livestock_infernal_plural_with_icon$"
+ # Basic Resources
+ mod_planet_livestock_metallurgists_energy_produces_mult:0 "$energy_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_minerals_produces_mult:0 "$minerals_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_food_produces_mult:0 "$food_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ # Intangible Resources
+ mod_planet_livestock_metallurgists_physics_research_produces_mult:0 "$physics_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_society_research_produces_mult:0 "$society_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_engineering_research_produces_mult:0 "$engineering_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_influence_produces_mult:0 "$influence_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_unity_produces_mult:0 "$unity_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ # Advanced Resources
+ mod_planet_livestock_metallurgists_trade_produces_mult:0 "$trade_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_consumer_goods_produces_mult:0 "$consumer_goods_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_alloys_produces_mult:0 "$alloys_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ # Strategic Resources
+ mod_planet_livestock_metallurgists_volatile_motes_produces_mult:0 "$volatile_motes_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_exotic_gases_produces_mult:0 "$exotic_gases_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_rare_crystals_produces_mult:0 "$rare_crystals_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ # Rare Resources
+ mod_planet_livestock_metallurgists_sr_living_metal_produces_mult:0 "$sr_living_metal_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_sr_zro_produces_mult:0 "$sr_zro_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_sr_dark_matter_produces_mult:0 "$sr_dark_matter_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_nanites_produces_mult:0 "$nanites_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ # Exceptional Materials
+ mod_planet_livestock_metallurgists_minor_artifacts_produces_mult:0 "$minor_artifacts_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_astral_threads_produces_mult:0 "$astral_threads_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ # Crisis Resources
+ mod_planet_livestock_metallurgists_menace_produces_mult:0 "$menace_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_advanced_logic_produces_mult:0 "$advanced_logic_produced_from$ $job_livestock_infernal_plural_with_icon$"
+ mod_planet_livestock_metallurgists_feral_insight_produces_mult:0 "$feral_insight_produced_from$ $job_livestock_infernal_plural_with_icon$"
+
+ ################################
+ # Purge Pop Category Modifiers #
+ ################################
+
+ # Add Modifiers
+ # Basic Resources
+ mod_pop_category_purge_energy_produces_add:0 "$energy_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_minerals_produces_add:0 "$minerals_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_food_produces_add:0 "$food_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ # Intangible Resources
+ mod_pop_category_purge_physics_research_produces_add:0 "$physics_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_society_research_produces_add:0 "$society_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_engineering_research_produces_add:0 "$engineering_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_influence_produces_add:0 "$influence_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_unity_produces_add:0 "$unity_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ # Advanced Resources
+ mod_pop_category_purge_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_consumer_goods_produces_add:0 "$consumer_goods_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_alloys_produces_add:0 "$alloys_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ # Strategic Resources
+ mod_pop_category_purge_volatile_motes_produces_add:0 "$volatile_motes_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_exotic_gases_produces_add:0 "$exotic_gases_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_rare_crystals_produces_add:0 "$rare_crystals_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ # Rare Resources
+ mod_pop_category_purge_sr_living_metal_produces_add:0 "$sr_living_metal_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_sr_zro_produces_add:0 "$sr_zro_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_sr_dark_matter_produces_add:0 "$sr_dark_matter_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_nanites_produces_add:0 "$nanites_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ # Exceptional Materials
+ mod_pop_category_purge_minor_artifacts_produces_add:0 "$minor_artifacts_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_astral_threads_produces_add:0 "$astral_threads_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ # Crisis Resources
+ mod_pop_category_purge_menace_produces_add:0 "$menace_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_advanced_logic_produces_add:0 "$advanced_logic_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_feral_insight_produces_add:0 "$feral_insight_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
+
+ # Mult Modifiers
+ # Everything
+ mod_pop_category_purge_produces_mult:0 "Resources Produced from $pop_cat_purge_plural$"
+ # Basic Resources
+ mod_pop_category_purge_energy_produces_mult:0 "$energy_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_minerals_produces_mult:0 "$minerals_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_food_produces_mult:0 "$food_produced_from$ $pop_cat_purge_plural$"
+ # Intangible Resources
+ mod_pop_category_purge_physics_research_produces_mult:0 "$physics_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_society_research_produces_mult:0 "$society_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_engineering_research_produces_mult:0 "$engineering_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_influence_produces_mult:0 "$influence_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_unity_produces_mult:0 "$unity_produced_from$ $pop_cat_purge_plural$"
+ # Advanced Resources
+ mod_pop_category_purge_trade_produces_mult:0 "$trade_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_consumer_goods_produces_mult:0 "$consumer_goods_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_alloys_produces_mult:0 "$alloys_produced_from$ $pop_cat_purge_plural$"
+ # Strategic Resources
+ mod_pop_category_purge_volatile_motes_produces_mult:0 "$volatile_motes_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_exotic_gases_produces_mult:0 "$exotic_gases_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_rare_crystals_produces_mult:0 "$rare_crystals_produced_from$ $pop_cat_purge_plural$"
+ # Rare Resources
+ mod_pop_category_purge_sr_living_metal_produces_mult:0 "$sr_living_metal_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_sr_zro_produces_mult:0 "$sr_zro_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_sr_dark_matter_produces_mult:0 "$sr_dark_matter_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_nanites_produces_mult:0 "$nanites_produced_from$ $pop_cat_purge_plural$"
+ # Exceptional Materials
+ mod_pop_category_purge_minor_artifacts_produces_mult:0 "$minor_artifacts_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_astral_threads_produces_mult:0 "$astral_threads_produced_from$ $pop_cat_purge_plural$"
+ # Crisis Resources
+ mod_pop_category_purge_menace_produces_mult:0 "$menace_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_advanced_logic_produces_mult:0 "$advanced_logic_produced_from$ $pop_cat_purge_plural$"
+ mod_pop_category_purge_feral_insight_produces_mult:0 "$feral_insight_produced_from$ $pop_cat_purge_plural$"

@@ -8,7 +8,7 @@
  gk_focus_no_pop_raiding_name:0 "No Pop-Raiding"
 
  gk_raiding_focus_plunder:0 "Plunder"
- gk_raiding_focus_plunder_desc:0 "Raiders capture any eligible pops. Capture rate scales with §Y$mod_gk_raiding_capacity$§!."
+ gk_raiding_focus_plunder_desc:0 "Raiders capture any eligible pops."
 
  gk_raiding_focus_emancipation:0 "Emancipation"
  gk_raiding_focus_emancipation_desc:0 "Raiders target enslaved populations. Unlocks the §YEmancipation§! war goal. Only enslaved pops may be taken."
@@ -39,28 +39,32 @@
  # War Goals
 war_goal_wg_gk_reaping:0 "Reaping"
 war_goal_wg_gk_reaping_desc:0 "War is waged to harvest the enemy's population. Using this wargoal allows unlimited pop capture during war and claims all remaining pops on surrender."
-wg_gk_reaping_accept_tooltip:0 "§Y[From.GetName]§! forfeits §Rall§! of their population to §Y[Root.GetName]§!."
+wg_gk_reaping_accept_tooltip:0 "§Y[From.GetName]§! forfeits §Rall§! §G[Root.GkSurrenderPopTotal]§! pops to §Y[Root.GetName]§!."
 
 war_goal_wg_gk_emancipation:0 "Emancipation"
 war_goal_wg_gk_emancipation_desc:0 "War is waged to free enslaved populations. Using this wargoal allows us to abduct enslaved pops during war and claim additional captives on enemy surrender."
-wg_gk_emancipation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining enslaved pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap)."
+wg_gk_emancipation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §G[Root.GkSurrenderPopEstimate]§! enslaved pops to §Y[Root.GetName]§!."
 wg_gk_emancipation_status_quo_tooltip:0 "No pops are transferred on status quo."
 
 war_goal_wg_gk_robo_liberation:0 "Robo-Liberation"
 war_goal_wg_gk_robo_liberation_desc:0 "War is waged to liberate robotic populations. Using this wargoal allows us to abduct robotic pops during war and claim additional captives on enemy surrender."
-wg_gk_robo_liberation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! remaining robotic pops to §Y[Root.GetName]§! (§Y[Root.GkSurrenderCapPercent]%§! total cap)."
+wg_gk_robo_liberation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §G[Root.GkSurrenderPopEstimate]§! robotic pops to §Y[Root.GetName]§!."
 wg_gk_robo_liberation_status_quo_tooltip:0 "No pops are transferred on status quo."
 
- # Scripted Modifiers
- mod_gk_raiding_capacity:0 "Raiding Capacity"
-
- gk_plunder_recovery:0 "Raided"
- gk_plunder_recovery_desc:0 "Population growth increased to compensate for pops lost to enemy raiders."
- gk_plunder_recovery.tooltip:0 "§Y[This.GkRaideePlundered]§! pops lost to raiders. Modifier scales with percentage of population lost. Decays §Y10%§! per year."
+ # Escalation Events
+GK_RAIDING_ESCALATION_TITLE:0 "Raiding Report"
+GK_RAIDING_ESCALATION_DESC:0 "Our raiders have reached their current limit against [From.GetName]. We have taken [Root.GkDisplayPopsTaken] pops so far in this war. Our commanders await further orders."
+GK_RAIDING_ESCALATION_DESC_FINAL:0 "Our raiders have nearly exhausted the population of [From.GetName]. We have taken [Root.GkDisplayPopsTaken] pops so far in this war. Our commanders request authorization for total depopulation."
+GK_RAIDING_ESCALATION_CONSOLIDATE:0 "Consolidate our gains"
+GK_RAIDING_ESCALATION_CONSOLIDATE_TOOLTIP:0 "Raiding pauses. We will reconsider in one year."
+GK_RAIDING_ESCALATION_PRESS:0 "Press the Raid"
+GK_RAIDING_ESCALATION_PRESS_FINAL:0 "Authorize Total Depopulation"
+GK_RAIDING_ESCALATION_PRESS_TOOLTIP:0 "Costs §Y[Root.GkDisplayInfluenceCost]§! Influence to authorize deeper raids. Our raiders will target up to §G[Root.GkDisplayBucketRemaining]§! more pops."
+GK_RAIDING_ESCALATION_CANNOT_AFFORD:0 "Requires more Influence"
 
  # Pop Concepts
 concept_gk_pop_raiding:0 "Pop Raiding"
-concept_gk_pop_raiding_desc:0 "Enemy planets can be raided during war with the §Y$bombardment_raiding$§! bombardment stance and through §YInvasion§!.\n\nThe §Y$war_goal_wg_plunder$§!, §Y$war_goal_wg_gk_emancipation$§!, and §Y$war_goal_wg_gk_robo_liberation$§! war goals allow pop raiding. §Y$war_goal_wg_gk_reaping$§! ignores the normal capture limits.\n\nStandard pop raiding can capture up to §Y20%§! of a planet's pops during war and up to §Y10%§! of the target empire's original population on surrender. §Y$mod_gk_raiding_capacity$§! increases these limits."
+concept_gk_pop_raiding_desc:0 "The §Y$war_goal_wg_plunder$§!, §Y$war_goal_wg_gk_emancipation$§!, §Y$war_goal_wg_gk_robo_liberation$§!, and §Y$war_goal_wg_gk_reaping$§! war goals allow pop raiding via §Ybombardment§! and §Yinvasion§!.\n\nRaiding proceeds in tiers. The initial tier captures a portion of the target population. When a tier is filled, the war leader may spend §YInfluence§! to authorize deeper raids, or consolidate their gains.\n\n§YReaping§! bypasses all limits and prevents the defender from surrendering."
 
  concept_gk_pop_raiding_limit:0 "Pop Raiding"
  concept_gk_pop_raiding_limit_desc:0 "$concept_gk_pop_raiding_desc$"
@@ -70,9 +74,6 @@ concept_gk_pop_raiding_desc:0 "Enemy planets can be raided during war with the �
  concept_gk_raiding_policy:0 "Raiding Policy"
  concept_gk_raiding_focus:0 "Raiding Focus"
  concept_gk_raiding_focus_desc:0 "This policy selects which pop-raiding war goals are available.\n\n§YPlunder§! enables standard pop raiding. §YNo Pop-Raiding§! disables pop-raiding war goals.\n\n§YEmancipation§! targets enslaved pops only. §YRobo-Liberation§! targets robotic pops only."
- concept_gk_raiding_capacity:0 "Pop Raiding"
- concept_gk_raiding_capacity_desc:0 "$concept_gk_pop_raiding_desc$"
-
  # Pop Notifications
  MESSAGE_TYPE_GK_POP_RAIDED_TITLE:0 "Captives Taken"
 

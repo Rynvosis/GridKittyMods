@@ -1,345 +1,124 @@
 # GK Raiding — Effects Reference
 
-Quick reference for the current GK Raiding mechanics. Keep this file up to date when war goals, civics, policies, pillaging, or pop-raiding behavior changes.
-
-## Overview
-
-GK Raiding now runs as two separate systems:
-
-- **Pillaging** is a resource-only system. Empires that pass `gk_can_pillage` can strip resources from hostile colonies in any war through devastation and invasion.
-- **Pop Raiding** is a pop-only system. It is gated by explicit raiding war goals and personal pop-raiding capability.
-
-The two systems now have separate event flows, separate notifications, and separate storage:
-
-- **Pillaging** uses loot receipts.
-- **Pop Raiding** uses dedicated pop trackers.
+Quick reference for player-facing mechanics. Keep this file up to date when war goals, civics, policies, pillaging, or pop-raiding behavior changes.
 
 ## Civics
 
 ### Emancipators / Liberation Enterprise
 
-Available to: Standard (`civic_gk_emancipators`) and Megacorp (`civic_gk_emancipators_megacorp`)
+Available to: Standard and Megacorp
 
 **Requirements:** Egalitarian + Militarist
-
-| Modifier | Value |
-|---|---|
-| Army Morale | +50% |
-| Raiding Capacity | +50% |
-
-**Councilor:** Liberation Commander (Commander)
-- Ship Fire Rate: +2% per level
-
-**Effects**
-- Unlocks the Emancipation policy option
-- Unlocks the Emancipation war goal
+**Modifiers:** Army Morale +50%
+**Councilor:** Liberation Commander (Commander) — Ship Fire Rate +2%/level
+**Effects:** Unlocks the Emancipation policy option and war goal
 
 ### Robo-Liberators / Synthetic Liberation Corp
 
-Available to: Standard (`civic_gk_robo_liberators`) and Megacorp (`civic_gk_robo_liberators_megacorp`)
+Available to: Standard and Megacorp
 
-| Modifier | Value |
-|---|---|
-| Raiding Capacity | +50% |
-
-**Councilor:** Synthetic Rights Advocate (Scientist / Commander)
-- Robot Upkeep: -2% per level
-- Robot Happiness: +1% per level
-
-**Effects**
-- Unlocks the Robo-Liberation policy option
-- Unlocks the Robo-Liberation war goal
+**Councilor:** Synthetic Rights Advocate (Scientist / Commander) — Robot Upkeep -2%/level, Robot Happiness +1%/level
+**Effects:** Unlocks the Robo-Liberation policy option and war goal
 
 ### Harvest Incorporated
 
-Available to: Megacorp only (`civic_gk_barbaric_despoilers_megacorp`)
+Available to: Megacorp only
 
-| Modifier | Value |
-|---|---|
-| Slave Market Cost | -20% |
-| Slave Bonus Workforce | +10% |
-
-**Councilor:** Acquisitions Director (Commander / Official)
-- Slave Market Cost: -4% per level
-- Slave Upkeep: -2% per level
-
-**Effects**
-- Grants the Raiding and Pillaging casus belli
-- Unlocks Raiding, Reaping, and Pillage war goals
-- Can pillage resources through `gk_can_pillage`
+**Requirements:** Militarist + (Authoritarian or Xenophobe), not Xenophile
+**Modifiers:** Slave Bonus Workforce +10%, Purge Workforce +100%
+**Councilor:** Renderings Director (Commander / Official) — Livestock Trade +0.25/level, Purge Trade +1.00/level
+**Effects:** Grants Raiding and Pillaging CBs. Unlocks Raiding, Reaping, and Pillage war goals. Can pillage resources.
 
 ### Harvesting Protocol
 
-Available to: Machine Intelligence only (`civic_gk_barbaric_despoilers_machine`)
+Available to: Machine Intelligence only
 
-| Modifier | Value |
-|---|---|
-| Organic Battery Energy | +1 |
-| Organic Battery Unity | +1 |
-| Legion Node XP | +25% |
-
-**Effects**
-- Starts with Grid Amalgamated organic battery pops
-- Grants the Raiding and Pillaging casus belli
-- Unlocks Raiding, Reaping, and Pillage war goals
-- Can pillage resources through `gk_can_pillage`
+**Modifiers:** Organic Battery Energy +1, Organic Battery Unity +1, Legion Node XP +25%
+**Effects:** Starts with Grid Amalgamated organic battery pops. Grants Raiding and Pillaging CBs. Unlocks Raiding, Reaping, and Pillage war goals. Can pillage resources.
 
 ### Freedom Directive
 
-Available to: Machine Intelligence only (`civic_gk_robo_liberators_machine`)
+Available to: Machine Intelligence only
 
-| Modifier | Value |
-|---|---|
-| Robot Upkeep | -15% |
-| Pop Assembly | +10% |
-| Raiding Capacity | +50% |
-| Legion Node XP | +25% |
-
-**Effects**
-- Unlocks the Robo-Liberation policy option
-- Unlocks the Robo-Liberation war goal
+**Modifiers:** Robot Upkeep -15%, Pop Assembly +10%, Legion Node XP +25%
+**Effects:** Unlocks the Robo-Liberation policy option and war goal
 
 ## Policies
 
-### Raiding Focus (`gk_raiding_focus`)
+### Raiding Focus
 
-Cannot be changed while at war.
+Cannot be changed while at war. Only governs pop-raiding; does not disable pillaging.
 
-| Option | Policy Flag | Effect |
-|---|---|---|
-| Plunder | `gk_focus_plunder` | Standard pop-raiding setup |
-| No Pop-Raiding | `gk_focus_no_pop_raiding` | Disables pop-raiding war goals |
-| Emancipation | `gk_focus_emancipation` | Unlocks Emancipation war goal access |
-| Robo-Liberation | `gk_focus_robo_liberation` | Unlocks Robo-Liberation war goal access |
+- **Plunder**: Standard pop-raiding setup
+- **No Pop-Raiding**: Disables pop-raiding war goals
+- **Emancipation**: Unlocks **Emancipation** war goal access
+- **Robo-Liberation**: Unlocks **Robo-Liberation** war goal access
 
-This policy only governs the **pop-raiding** side of the mod. It does not disable pillaging for empires that can pillage.
-`civic_crusader_spirit_corporate` does not use this policy, because it is pillaging-only.
+**Letters of Marque** does not use this policy (pillaging-only).
 
-### Robot Raiding (`gk_robot_raiding`)
+### Robot Raiding
 
-Cannot be changed while at war.
+Cannot be changed while at war. Only available to empires with pop-raiding access.
 
-| Option | Policy Flag | Effect |
-|---|---|---|
-| Capture Robots | `gk_allow_robot_raiding` | Organics and robots may be captured |
-| Organics Only | `gk_forbid_robot_raiding` | Skip robotic pops |
-| Robots Only | `gk_robots_only_raiding` | Only robotic pops may be captured |
+- **Capture Robots**: Organics and robots
+- **Organics Only**: Skip robotic pops
+- **Robots Only**: Only robotic pops
 
-This policy is only available to empires with **pop-raiding** access.
+## Tradition Tree — Despoliation
 
-### Debris (`debris`)
+Available to any default empire. Uses the Unyielding 3+2 layout.
 
-| Option | Unlock | Effect |
-|---|---|---|
-| Research Debris | Default non-scavenger option | Research debris only |
-| Scavenge Debris | Default non-scavenger option | Salvage debris only |
-| Research & Scavenge Debris | `civic_scavengers`, `civic_corporate_scavengers`, or `tr_gk_raiding_despoliation_4` | Research and salvage debris at the same time |
-
-## Tradition Tree
-
-### Despoliation (`tradition_gk_raiding_despoliation`)
-
-Available to: Any default empire
-
-**Adoption Effects**
-- Enables resource pillaging through `gk_can_pillage`, even without a native pillage civic
-- Unlocks `cb_pirate_raid`
-- Unlocks `wg_plunder_raid`
-- Unlocks the `Recovery Fleets` council agenda
-  - Active agenda: `Salvage Chance: +10%`, `Ship Alloys Upkeep: -5%`
-  - Finish modifier: `Salvage Chance: +30%`, `Ship Alloys Upkeep: -10%`
-- If the empire already has native pillaging through `gk_has_native_pillage_access`, adoption instead adds `+2` effective loot-months to pillaging in all wars
-
-**Layout**
-- Uses the `Unyielding` 3+2 layout: `1 -> 2 -> 3` on the left and `4 -> 5` on the right
+**Adoption**
+- Enables resource pillaging, even without a native pillage civic
+- Unlocks the **Pillaging** casus belli and **Pillage** war goal
+- Unlocks the **Recovery Fleets** council agenda (active: Salvage +10%, Ship Alloys Upkeep -5%; finish: Salvage +30%, Ship Alloys Upkeep -10%)
+- If the empire already has native pillaging, adoption instead adds +2 effective loot-months in all wars
 
 **Traditions**
-- `tr_gk_raiding_despoliation_1` `Reserved Doctrine`
-  - No gameplay effect yet
-- `tr_gk_raiding_despoliation_2` `Predatory Bombardment`
-  - `Orbital Bombardment Damage: +20%`
-  - `Army Collateral Damage: +50%`
-- `tr_gk_raiding_despoliation_3` `Triumph in Ruin`
-  - Gain unity equal to `1 month` of current unity output per `10` devastation inflicted, prorated by the exact devastation delta
-- `tr_gk_raiding_despoliation_4` `Prize Recovery`
-  - Unlocks `scavenge_and_research_debris`
-  - Automatically switches the debris policy to `scavenge_and_research_debris` if legal
-  - `Ship Alloys Upkeep: -5%`
-  - `Building Refund: +10%`
-  - `Megastructure Dismantle Refund: +10%`
-  - `Salvage Chance: +10%` with `civic_scavengers` or `civic_corporate_scavengers`
-- `tr_gk_raiding_despoliation_5` `Acquisitive Officers`
-  - Existing and future admiral-commanders gain or improve `leader_trait_corsair` and `leader_trait_shipbreaker`
-  - If neither trait line exists, add one at random
-  - If one line is missing, add the missing line
-  - If both lines exist and one is still tier I, upgrade the tier I line
-  - If both lines are tier I, upgrade one line at random
-  - `Corsair` and `Shipbreaker` ship-kill resource rewards: `+50%`
-  - Stacks multiplicatively with `leader_trait_admiral_hells_heart` for `2.25x` total payout when both apply
+1. **Raider's Fervor** — While at war: Happiness +10%, Unity +25%
+2. **Predatory Bombardment** — Orbital Bombardment Damage +20%, Army Collateral Damage +50%
+3. **Triumph in Ruin** — Gain 1 month of unity output per 10 devastation inflicted, prorated
+4. **Boarding Cables** — Unlocks Research & Scavenge Debris policy option. Ship Alloys Upkeep -5%, Building Refund +10%, Megastructure Dismantle Refund +10%. Salvage Chance +10% with Scavenger civics. Grants the **Boarding Cables** technology with Grand Archive DLC.
+5. **Acquisitive Officers** — Grants or upgrades Corsair and Shipbreaker traits on admiral-commanders. Ship-kill resource rewards +50% (stacks to 2.25x with Hell's Heart).
 
-**Finish Effect**
-- `Ascension Perks Unlocked: +1`
+**Finish:** Ascension Perks +1. With **Overlord** DLC: +1 Enclave Capacity and unlocks **Privateer Enclaves**. Without Overlord: Ship Fire Rate +5%, Army Damage +10%. Mindwardens get +2 Enclave Capacity instead. Fanatic Purifiers always get the combat bonuses.
 
 ## War Goals
 
-### Raiding (`wg_plunder`)
+All pop-raiding war goals use the **Despoliation** casus belli.
 
-Vanilla overwrite. CB: `cb_despoliation`
+| War Goal | Pop Type | During-War Cap | Surrender Cap | Pillage |
+|---|---|---|---|---|
+| **Raiding** (vanilla OW) | All | 20% | 10% | Separate system, no tribute |
+| **Pillage** (vanilla OW) | None | — | — | +4 loot-months, surrender tribute |
+| **Emancipation** | Enslaved | 30% | 15% | No |
+| **Robo-Liberation** | Robotic | 30% | 15% | No |
+| **Reaping** | All | Unlimited | Unlimited | No |
 
-| Mechanic | Value |
-|---|---|
-| During-war pop cap | 20% of enemy population, scaled by Raiding Capacity |
-| Surrender pop cap | 10% of enemy population, scaled by Raiding Capacity |
-| Peace outcome | Pops only |
-| Resource surrender tribute | None |
-
-Notes:
-- Pillage-capable empires may still pillage resources during the war through the separate pillaging system.
-- The war goal itself no longer grants surrender tribute.
-
-### Pillage (`wg_plunder_raid`)
-
-Vanilla overwrite. CB: `cb_pirate_raid`
-
-| Mechanic | Value |
-|---|---|
-| Pop capture | None |
-| Pillage bonus | `+4` effective loot-months per loot packet |
-| Peace outcome | Guaranteed surrender tribute |
-
-Notes:
-- This war goal is available from the existing pirate-raid sources and from adopting `Despoliation`.
-- This war goal does not unlock pillaging by itself. It magnifies pillaging for empires that can already pillage.
-- Surrender tribute is now exclusive to this war goal.
-
-### Emancipation (`wg_gk_emancipation`)
-
-CB: `cb_despoliation`
-
-| Mechanic | Value |
-|---|---|
-| Pop type | Enslaved pops only |
-| During-war pop cap | 20% of enemy population, scaled by Raiding Capacity |
-| Surrender pop cap | 10% of enemy population, scaled by Raiding Capacity |
-| Resource surrender tribute | None |
-
-### Robo-Liberation (`wg_gk_robo_liberation`)
-
-CB: `cb_despoliation`
-
-| Mechanic | Value |
-|---|---|
-| Pop type | Robotic pops only |
-| During-war pop cap | 20% of enemy population, scaled by Raiding Capacity |
-| Surrender pop cap | 10% of enemy population, scaled by Raiding Capacity |
-| Resource surrender tribute | None |
-
-### Reaping (`wg_gk_reaping`)
-
-CB: `cb_despoliation`
-
-| Mechanic | Value |
-|---|---|
-| Pop type | All sapient pops |
-| Pop cap | Unlimited |
-| Resource surrender tribute | None |
-
-## Pop Raiding
-
-### Core Rules
-
-- Pop raiding only happens in explicit pop-raiding contexts:
-  - `wg_plunder`
-  - `wg_gk_emancipation`
-  - `wg_gk_robo_liberation`
-  - `wg_gk_reaping`
-- Pop raiding requires personal pop-raiding capability.
-- Non-raiding wars do not grant pop capture, except primitive / total-war style exceptions already handled by the trigger layer.
-
-### Side-Wide Quotas
-
-- During-war pop quotas are tracked by **war-goal side leader vs defender**, not by each allied raider separately.
-- Any eligible ally on that side may capture pops for itself.
-- Those captures all spend the same shared quota against that defender.
-- Final surrender pop payouts remain owned by the war-goal owner.
-
-### Result Reporting
-
-- Invasion and surrender pop outcomes are reported through notification messages.
-- No visible invade/surrender popup windows remain in the pop system.
+- Pillage-capable empires can still pillage resources during any war via the separate pillaging system.
+- Surrender tribute is exclusive to the Pillage war goal.
+- During-war pop quotas are shared across all allies on the same war-goal side.
 
 ## Pillaging
 
-### Capability
+Resource pillaging is available to empires with **Barbaric Despoilers**, **Harvesting Protocol**, **Harvest Incorporated**, **Letters of Marque**, or the **Despoliation** tradition adoption. Pillaging works in **any hostile war**.
 
-Resource pillaging is available to empires that pass `gk_can_pillage`:
+- Loot scales with what the planet actually produces. Doubling trade and converting Research/Unity to CGs
+- Bombardment and ground combat both generate loot, Invasions cash out whatever a planet had left to give
+- The **Pillage** war goal doubles to triples resources from raiding and grants surrender tribute
+- Invaded colonies receive a 5-year workforce penalty (-5% to -50%) based on how much was extracted
 
-- `civic_barbaric_despoilers`
-- `civic_gk_barbaric_despoilers_machine`
-- `civic_gk_barbaric_despoilers_megacorp`
-- `civic_crusader_spirit_corporate`
-- `tr_gk_raiding_despoliation_adopt`
+## Privateer Enclave
 
-If an empire can pillage, it can pillage in **any hostile war**.
-`civic_crusader_spirit_corporate` is pillaging-only and does not unlock the `Raiding` bombardment stance or pop-raiding policies.
+Requires **Overlord** DLC.
 
-### Devastation-Driven Extraction
+Founded by completing the **Despoliation** tradition finisher. Uses a mercenary enclave slot. Not available to Mindwardens or Fanatic Purifiers. The enclave inherits one ethic from its patron alongside Fanatic Militarist.
 
-1. `on_planet_bombarded` and `on_ground_combat_devastation` add `local_devastation` to a per `raider + planet` loot receipt
-2. Every 10 stored devastation resolves 1 loot packet
-3. Each packet starts at `2` effective loot-months
-4. `wg_plunder_raid` adds `+4` effective loot-months to each packet
-5. Empires with `gk_has_native_pillage_access` that adopt `tr_gk_raiding_despoliation_adopt` add another `+2` effective loot-months to each packet in all wars
-6. Each effective loot-month also adds flat infrastructure spoils: `+100 Trade` and `+100 Minerals`, or `+100 Alloys` instead of Minerals on habitats and ecumenopoleis
+Six personality types assigned at founding (Automaton, Stoic, Screamer, Cultist, Calculating, Merchant), some gated by patron ethics.
 
-### Loot Transformation
-
-After base loot is calculated:
-
-- Trade value is doubled
-- Unity converts to Consumer Goods at 2:1
-- Physics Research converts to Consumer Goods at 3:1
-- Society Research converts to Consumer Goods at 3:1
-- Engineering Research converts to Consumer Goods at 3:1
-- Flat infrastructure spoils are added after conversions so their Trade is not doubled and their mineral/alloy package is not converted
-
-### Invasion Cashout
-
-When a pillage-capable empire seizes a colony by ground victory or forced orbital surrender:
-
-- It cashes out the planet's remaining `0-100` devastation headroom at the current rate
-- It does **not** add extra devastation
-- It applies a local tribute modifier tier based on half of that remaining headroom
-- It marks the colony as already cashed out for the relevant Pillage-war surrender owner, preventing future Pillage-war surrender double dipping
-
-### Surrender Tribute
-
-Only `wg_plunder_raid` grants final surrender tribute.
-
-On surrender:
-- Each surviving colony pays from its remaining `0-50` devastation band
-- Colonies already cashed out by invasion for that same surrender owner are skipped
-- No extra devastation is applied
-- A local tribute modifier is applied to colonies that still had tribute left to pay
-
-### Planet Tribute Modifiers
-
-Duration: 5 years
-
-| Modifier | Workforce |
-|---|---|
-| `gk_planet_tribute_0` | -5% |
-| `gk_planet_tribute_1` | -10% |
-| `gk_planet_tribute_2` | -20% |
-| `gk_planet_tribute_3` | -30% |
-| `gk_planet_tribute_4` | -40% |
-| `gk_planet_tribute_5` | -50% |
-
-These are local planet aftermath modifiers, not country-wide tribute modifiers.
-
-### Result Reporting
-
-- Daily devastation packets create pillage notifications
-- Invasion cashouts create pillage notifications
-- Pillage-war surrender tribute creates pillage notifications
-- No visible invade/surrender popup windows remain in the pillage system
+- Raids autonomously each month (25% base chance, scaling with upgrades to 50%) and pays dividends on a recurring cycle
+- Patron can commission raids against rivals and purchase services (intelligence, Smuggler's Port, mercenary armies) through the diplomacy menu
+- Five upgrade tiers increase fleet size, raid frequency, and dividend payouts
+- Enclave fleets: +15% speed, +10% weapon damage, +5%/day hull regen, +5%/day armor regen
+- **Smuggler's Port**: Purchasable starbase building. +20% Trade from Jobs in-system, produces 4 Trade Value per Trade Hub on the starbase, +5 Crime empire-wide.
+- **Debris Scavenging**: Battles during raids generate debris. The enclave auto-salvages debris at raid end, with a 30% base chance to recover ships per debris field.

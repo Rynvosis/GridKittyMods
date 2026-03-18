@@ -1,44 +1,30 @@
 namespace = gk_raiding_pops
 
-@gk_decay_rate_at_peace = 0.90
-@gk_decay_rate_at_war = 0.95
-@gk_decay_clear_threshold = 1
-
 ############################
 # Pop Tracking             #
 ############################
 
-# Pop group abducted by raiding bombardment stance
-# This = Pop Group scope
-# From = Planet abducted from
-pop_group_event = {
+# Pop abducted by raiding bombardment stance
+# This = Planet where pop was "killed" (source)
+# From = Bombarder country
+# FromFrom = Biggest fleet bombarding
+# local_kill_pop_amount = exact number of pops transferred
+planet_event = {
 	id = gk_raiding_pops.100
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		exists = from
-		from = {
-			exists = owner
-			has_orbital_bombardment = yes
-			has_orbital_bombardment_stance = raiding
-		}
+		has_orbital_bombardment = yes
+		has_orbital_bombardment_stance = raiding
 	}
 
 	immediate = {
-		save_event_target_as = gk_abducted_pop_group
-
-		this.planet.owner = {
+		from = {
 			save_event_target_as = gk_raider
 		}
-
-		if = {
-			limit = {
-				exists = event_target:gk_raider
-			}
-			from.owner = {
-				gk_track_raided_pops = { AMOUNT = event_target:gk_abducted_pop_group.trigger:pop_group_size }
-			}
+		owner = {
+			gk_track_raided_pops = { AMOUNT = root.local_kill_pop_amount }
 		}
 	}
 }
@@ -160,7 +146,6 @@ country_event = {
 				clear_variable = gk_raidee_emancipated
 			}
 		}
-		gk_update_plunder_recovery_modifier = yes
 	}
 }
 
@@ -216,62 +201,10 @@ country_event = {
 }
 
 ############################
-# Pop Forced Surrender     #
-############################
-
-# Forced orbital surrender - pop-raiding side only
-# This = Planet
-# From = Damaging country
-planet_event = {
-	id = gk_raiding_pops.200
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		exists = owner
-		exists = from
-		from = {
-			gk_can_pop_raid_personally = yes
-		}
-		owner = {
-			from = {
-				OR = {
-					prev = { gk_has_standard_raiding_war_with = yes }
-					prev = { gk_has_emancipation_war_with = yes }
-					prev = { gk_has_robo_liberation_war_with = yes }
-					prev = { gk_has_reaping_war_with = yes }
-				}
-			}
-		}
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				has_orbital_bombardment = yes
-				num_armies < 1
-				NOT = { has_ground_combat = yes }
-				NOT = { has_planet_flag = gk_pop_forced_surrender_resolved_by_@from }
-			}
-			set_planet_flag = gk_pop_forced_surrender_resolved_by_@from
-			from = {
-				country_event = {
-					id = gk_raiding_pops.210
-					scopes = {
-						from = root.owner
-						fromfrom = root
-					}
-				}
-			}
-		}
-	}
-}
-
-############################
 # Pop Invasion             #
 ############################
 
-# On planet attackers win or forced orbital surrender - instant pop raid
+# On planet attackers win - instant pop raid
 # This = Attacking Country
 # From = Defending Country
 # FromFrom = Planet
@@ -287,10 +220,10 @@ country_event = {
 		gk_can_pop_raid_personally = yes
 		from = {
 			OR = {
-				root = { gk_has_standard_raiding_war_with = yes }
-				root = { gk_has_emancipation_war_with = yes }
-				root = { gk_has_robo_liberation_war_with = yes }
-				root = { gk_has_reaping_war_with = yes }
+				gk_has_standard_raiding_war_with = yes
+				gk_has_emancipation_war_with = yes
+				gk_has_robo_liberation_war_with = yes
+				gk_has_reaping_war_with = yes
 			}
 		}
 	}
@@ -362,24 +295,6 @@ country_event = {
 	}
 }
 
-# Planet conquered after forced bombardment surrender - clear the pre-conquer marker
-# This = Planet
-# From = New Owner
-planet_event = {
-	id = gk_raiding_pops.220
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		exists = from
-		has_planet_flag = gk_pop_forced_surrender_resolved_by_@from
-	}
-
-	immediate = {
-		remove_planet_flag = gk_pop_forced_surrender_resolved_by_@from
-	}
-}
-
 ############################
 # Pop Surrender            #
 ############################
@@ -395,18 +310,22 @@ country_event = {
 			save_event_target_as = gk_raidee
 			save_event_target_as = gk_raiding_target
 		}
+		gk_abduct_on_surrender = yes
 		gk_retrieve_pop_result_tracker = yes
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
 				check_variable = { which = gk_forfeited_pops value > 0 }
 			}
+			event_target:gk_raidee = {
+				capital_scope = { save_event_target_as = gk_raidee_capital }
+			}
 			event_target:gk_raider = {
 				create_message = {
 					type = MESSAGE_TYPE_GK_POP_RAIDED
 					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = TARGET
@@ -425,7 +344,7 @@ country_event = {
 					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
 					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = FROM
@@ -455,18 +374,22 @@ country_event = {
 			save_event_target_as = gk_raidee
 			save_event_target_as = gk_raiding_target
 		}
+		gk_abduct_on_surrender = yes
 		gk_retrieve_pop_result_tracker = yes
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
 				check_variable = { which = gk_forfeited_pops value > 0 }
 			}
+			event_target:gk_raidee = {
+				capital_scope = { save_event_target_as = gk_raidee_capital }
+			}
 			event_target:gk_raider = {
 				create_message = {
 					type = MESSAGE_TYPE_GK_POP_RAIDED
 					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = TARGET
@@ -485,7 +408,7 @@ country_event = {
 					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
 					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = FROM
@@ -515,18 +438,22 @@ country_event = {
 			save_event_target_as = gk_raidee
 			save_event_target_as = gk_raiding_target
 		}
+		gk_abduct_on_surrender = yes
 		gk_retrieve_pop_result_tracker = yes
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
 				check_variable = { which = gk_forfeited_pops value > 0 }
 			}
+			event_target:gk_raidee = {
+				capital_scope = { save_event_target_as = gk_raidee_capital }
+			}
 			event_target:gk_raider = {
 				create_message = {
 					type = MESSAGE_TYPE_GK_POP_RAIDED
 					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = TARGET
@@ -545,7 +472,7 @@ country_event = {
 					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
 					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = FROM
@@ -575,11 +502,15 @@ country_event = {
 			save_event_target_as = gk_raidee
 			save_event_target_as = gk_raiding_target
 		}
+		gk_abduct_on_surrender = yes
 		gk_retrieve_pop_result_tracker = yes
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
 				check_variable = { which = gk_forfeited_pops value > 0 }
+			}
+			event_target:gk_raidee = {
+				capital_scope = { save_event_target_as = gk_raidee_capital }
 			}
 			every_country = {
 				limit = {
@@ -600,7 +531,7 @@ country_event = {
 					type = MESSAGE_TYPE_GK_POP_RAIDED
 					localization = MESSAGE_GK_POP_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = TARGET
@@ -619,7 +550,7 @@ country_event = {
 					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
 					localization = MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER
 					days = 30
-					target = event_target:gk_raidee
+					target = event_target:gk_raidee_capital
 					variable = {
 						type = name
 						localization = FROM
@@ -635,6 +566,168 @@ country_event = {
 			}
 		}
 		gk_destroy_pop_result_tracker = yes
+	}
+}
+
+############################
+# Escalation Events        #
+############################
+
+# Bucket completed — offer escalation to side leader
+# This = gk_cap_raider (side leader)
+# From = raidee country
+country_event = {
+	id = gk_raiding_pops.500
+	title = GK_RAIDING_ESCALATION_TITLE
+	desc = {
+		trigger = {
+			event_target:gk_raid_tracker = {
+				check_variable = { which = gk_escalation_tier value >= 4 }
+			}
+		}
+		text = GK_RAIDING_ESCALATION_DESC_FINAL
+	}
+	desc = {
+		trigger = { always = yes }
+		text = GK_RAIDING_ESCALATION_DESC
+	}
+	picture = GFX_evt_ground_combat
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	trigger = {
+		# Only show if war still ongoing and cap still reached
+		is_at_war_with = from
+		from = {
+			has_country_flag = gk_raid_cap_reached_by_@root
+		}
+	}
+
+	immediate = {
+		save_event_target_as = gk_cap_raider
+		from = {
+			save_event_target_as = gk_raidee
+		}
+		gk_get_or_create_raid_tracker = yes
+		# Compute next bucket yield for display: raidee pops * next tier rate
+		set_variable = { which = gk_display_bucket_remaining value = from.trigger:count_owned_pop_amount }
+		# Next tier rate lookup (current tier just completed, so next = tier + 1)
+		set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_1 }
+		if = {
+			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 1 } } }
+			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_2 }
+		}
+		if = {
+			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 2 } } }
+			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_3 }
+		}
+		if = {
+			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 3 } } }
+			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_4 }
+		}
+		if = {
+			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 4 } } }
+			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_5 }
+		}
+		multiply_variable = {
+			which = gk_display_bucket_remaining
+			value = gk_display_next_rate
+		}
+		clear_variable = gk_display_next_rate
+	}
+
+	# Option A: Consolidate
+	option = {
+		name = GK_RAIDING_ESCALATION_CONSOLIDATE
+		custom_tooltip = GK_RAIDING_ESCALATION_CONSOLIDATE_TOOLTIP
+		hidden_effect = {
+			# Re-fire after 360 days
+			country_event = {
+				id = gk_raiding_pops.500
+				days = 360
+				scopes = { from = event_target:gk_raidee }
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 3
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+			modifier = {
+				factor = 2
+				resource_stockpile_compare = {
+					resource = influence
+					value < 100
+				}
+			}
+		}
+	}
+
+	# Option B: Press the Raid
+	option = {
+		name = {
+			trigger = {
+				event_target:gk_raid_tracker = {
+					check_variable = { which = gk_escalation_tier value >= 4 }
+				}
+			}
+			text = GK_RAIDING_ESCALATION_PRESS_FINAL
+		}
+		name = GK_RAIDING_ESCALATION_PRESS
+		custom_tooltip = GK_RAIDING_ESCALATION_PRESS_TOOLTIP
+		allow = {
+			resource_stockpile_compare = {
+				resource = influence
+				value >= value:gk_escalation_influence_cost
+			}
+		}
+		hidden_effect = {
+			# Charge influence
+			add_resource = {
+				influence = -1
+				mult = value:gk_escalation_influence_cost
+			}
+			# Advance bucket (rate is derived from tier via value:gk_bucket_rate_for_tier)
+			event_target:gk_raid_tracker = {
+				change_variable = { which = gk_escalation_tier value = 1 }
+				set_variable = { which = gk_bucket_pops_taken value = 0 }
+			}
+			# Remove cap flag so raiding can continue
+			from = {
+				remove_country_flag = gk_raid_cap_reached_by_@root
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 3
+				OR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_authoritarian
+				}
+			}
+			modifier = {
+				factor = 0.5
+				resource_stockpile_compare = {
+					resource = influence
+					value < 100
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			clear_variable = gk_display_bucket_remaining
+		}
 	}
 }
 

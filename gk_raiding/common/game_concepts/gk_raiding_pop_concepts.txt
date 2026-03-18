@@ -1,7 +1,7 @@
 # GK Raiding Pop Game Concepts
 
 concept_gk_pop_raiding = {
-	alias = { concept_gk_pop_raiding_limit concept_gk_pop_limit concept_gk_raiding_cap concept_gk_raiding_capacity }
+	alias = { concept_gk_pop_raiding_limit concept_gk_pop_limit concept_gk_raiding_cap }
 	icon = "GFX_fleet_order_button_ground_support_raiding"
 	databank = {
 		category = db_gk_raiding

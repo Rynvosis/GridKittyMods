@@ -1,8 +1,0 @@
-# GK Raiding Pop Scripted Modifiers
-
-gk_raiding_capacity = {
-	icon = mod_army_morale
-	percentage = yes
-	good = yes
-	category = country
-}

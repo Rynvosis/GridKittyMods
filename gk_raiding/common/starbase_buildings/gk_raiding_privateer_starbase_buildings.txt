@@ -19,21 +19,16 @@ gk_privateer_garrison = {
 			fail_text = "requires_starport"
 			has_starbase_size >= starbase_starport
 		}
-		OR = {
-			has_starbase_module = trading_hub
-			starbase_buildable_is_in_queue_before = {
-				first = trading_hub
-				second = gk_privateer_garrison
-			}
-		}
 	}
 
 	country_modifier = {
 		planet_crime_add = 5
 	}
 
+	custom_tooltip_with_modifiers = GK_PRIVATEER_GARRISON_TRADE_TOOLTIP
+
 	system_modifier = {
-		country_trade_produces_mult = 0.20
+		planet_jobs_trade_produces_mult = 0.20
 	}
 
 	resources = {
@@ -42,9 +37,6 @@ gk_privateer_garrison = {
 			alloys = 100
 		}
 		produces = {
-			trigger = {
-				has_starbase_module = trading_hub
-			}
 			trade = 4
 			mult = value:num_starbase_modules_of_type|TYPE|trading_hub|
 		}

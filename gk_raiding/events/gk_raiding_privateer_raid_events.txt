@@ -1,17 +1,5 @@
 namespace = gk_raiding_privateers
 
-# Tribute demand tiers (energy, scaled by target economy)
-@tribute_tier_1 = 500
-@tribute_tier_2 = 1000
-@tribute_tier_3 = 2000
-@tribute_tier_4 = 3000
-
-# Devastation per pillage packet (must match @gk_pillage_devastation_per_packet in pillaging events)
-@gk_pillage_devastation_per_packet = 10
-
-# Commission raid cost (energy, flat)
-@commission_raid_cost = 750
-
 # ──────────────────────────────────────────────────────────────────
 # Raider Click → Enclave Diplomacy Redirect (201)
 # ──────────────────────────────────────────────────────────────────

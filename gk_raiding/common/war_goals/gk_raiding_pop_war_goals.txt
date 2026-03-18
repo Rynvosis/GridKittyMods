@@ -1,7 +1,5 @@
 # GK Raiding Pop War Goals
 
-@gk_reaping_cap_rate = 100
-
 #####################
 # REAPING WAR       #
 #####################
@@ -66,15 +64,9 @@ wg_gk_reaping = {
 	on_accept = {
 		custom_tooltip = wg_gk_reaping_accept_tooltip
 		hidden_effect = {
-			# Set up event targets
-			save_event_target_as = gk_raider
-			from = { save_event_target_as = gk_raidee }
-			# Abduct only - no pillaging (unlimited cap for reaping)
-			gk_abduct_on_surrender = { RATE = @gk_reaping_cap_rate }
-			# Fire reaping surrender event
 			country_event = {
 				id = gk_raiding_pops.330
-				scopes = { from = event_target:gk_raidee }
+				scopes = { from = from }
 			}
 		}
 	}
@@ -96,7 +88,7 @@ wg_gk_reaping = {
 # EMANCIPATION WAR  #
 #####################
 # Enslaved pops only, no resource pillaging
-# Bombardment/invasion cap: 30%, Surrender cap: 15%
+# Bucket-based escalation cap
 wg_gk_emancipation = {
 	casus_belli = cb_despoliation
 	hide_if_no_cb = no
@@ -107,7 +99,7 @@ wg_gk_emancipation = {
 		imperial_authority >= 100
 	}
 
-	surrender_acceptance = -50
+	surrender_acceptance = -75
 
 	potential = {
 		has_total_war_cb = no
@@ -151,16 +143,9 @@ wg_gk_emancipation = {
 	on_accept = {
 		custom_tooltip = wg_gk_emancipation_accept_tooltip
 		hidden_effect = {
-			# Set up event targets
-			save_event_target_as = gk_raider
-			from = { save_event_target_as = gk_raidee }
-			# Abduct only (enslaved pops via war goal check)
-			# Emancipation civic provides +50% gk_raiding_capacity, making effective rate ~15%
-			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
-			# Fire reward collection event with raidee as from
 			country_event = {
 				id = gk_raiding_pops.300
-				scopes = { from = event_target:gk_raidee }
+				scopes = { from = from }
 			}
 		}
 	}
@@ -187,7 +172,7 @@ wg_gk_emancipation = {
 # ROBO-LIBERATION   #
 #####################
 # Robotic pops only, no resource pillaging
-# Bombardment/invasion cap: 30%, Surrender cap: 15%
+# Bucket-based escalation cap
 wg_gk_robo_liberation = {
 	casus_belli = cb_despoliation
 	hide_if_no_cb = no
@@ -198,7 +183,7 @@ wg_gk_robo_liberation = {
 		imperial_authority >= 100
 	}
 
-	surrender_acceptance = -50
+	surrender_acceptance = -75
 
 	potential = {
 		has_total_war_cb = no
@@ -242,16 +227,9 @@ wg_gk_robo_liberation = {
 	on_accept = {
 		custom_tooltip = wg_gk_robo_liberation_accept_tooltip
 		hidden_effect = {
-			# Set up event targets
-			save_event_target_as = gk_raider
-			from = { save_event_target_as = gk_raidee }
-			# Abduct only (robotic pops via robot check)
-			# Robo-liberation civic provides +50% gk_raiding_capacity, making effective rate ~15%
-			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
-			# Fire reward collection event with raidee as from
 			country_event = {
 				id = gk_raiding_pops.320
-				scopes = { from = event_target:gk_raidee }
+				scopes = { from = from }
 			}
 		}
 	}

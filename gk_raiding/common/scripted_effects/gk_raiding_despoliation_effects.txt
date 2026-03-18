@@ -1,7 +1,5 @@
 # GK Raiding Despoliation Effects
 
-@gk_pillage_devastation_per_packet = 10
-
 # This = leader scope
 gk_raiding_grant_despoliation_commander_trait = {
 	if = {

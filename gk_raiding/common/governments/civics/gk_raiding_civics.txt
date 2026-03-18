@@ -42,7 +42,6 @@ civic_gk_emancipators = {
 
 	modifier = {
 		army_morale = 0.50
-		gk_raiding_capacity = 0.50
 	}
 
 	alternate_civic_version = civic_gk_emancipators_megacorp
@@ -76,10 +75,6 @@ civic_gk_robo_liberators = {
 			factor = 2
 			has_ethic = ethic_fanatic_materialist
 		}
-	}
-
-	modifier = {
-		gk_raiding_capacity = 0.50
 	}
 
 	alternate_civic_version = civic_gk_robo_liberators_megacorp
@@ -129,7 +124,6 @@ civic_gk_emancipators_megacorp = {
 
 	modifier = {
 		army_morale = 0.50
-		gk_raiding_capacity = 0.50
 	}
 
 	alternate_civic_version = civic_gk_emancipators
@@ -156,10 +150,6 @@ civic_gk_robo_liberators_megacorp = {
 			factor = 2
 			has_ethic = ethic_fanatic_materialist
 		}
-	}
-
-	modifier = {
-		gk_raiding_capacity = 0.50
 	}
 
 	alternate_civic_version = civic_gk_robo_liberators
@@ -239,7 +229,6 @@ civic_gk_robo_liberators_machine = {
 	modifier = {
 		planet_pops_robotics_upkeep_mult = -0.15
 		planet_pop_assembly_mult = 0.10
-		gk_raiding_capacity = 0.50
 		councilor_gestalt_legion_exp_gain = 0.25
 	}
 }
@@ -272,6 +261,16 @@ civic_gk_barbaric_despoilers_megacorp = {
 				value = ethic_militarist
 				value = ethic_fanatic_militarist
 			}
+			OR = {
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+			NOR = {
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+			}
 		}
 	}
 
@@ -284,8 +283,8 @@ civic_gk_barbaric_despoilers_megacorp = {
 	}
 
 	modifier = {
-		slave_market_cost_mult = -0.20
 		pop_slave_bonus_workforce_mult = 0.10
+		pop_cat_purge_bonus_workforce_mult = 1.00
 	}
 
 	modification = yes

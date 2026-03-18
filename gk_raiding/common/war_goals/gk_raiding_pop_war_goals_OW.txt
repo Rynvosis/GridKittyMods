@@ -5,7 +5,7 @@
 # RAIDING WAR       #
 #####################
 # General raiding: pop-focused peace outcome
-# Bombardment/invasion cap: 20%, Surrender cap: 10%
+# Bucket-based escalation cap
 wg_plunder = {
 	casus_belli = cb_despoliation
 	hide_if_no_cb = yes
@@ -21,7 +21,7 @@ wg_plunder = {
 	potential = {
 		has_total_war_cb = no
 		gk_can_use_raiding_cb = yes
-		NOT = { has_policy_flag = gk_focus_no_pop_raiding }
+		has_policy_flag = gk_focus_plunder
 		NOT = { is_in_federation_with = from }
 		NAND = {
 			is_galactic_emperor = yes
@@ -62,12 +62,9 @@ wg_plunder = {
 	on_accept = {
 		custom_tooltip = wg_plunder_accept_tooltip
 		hidden_effect = {
-			save_event_target_as = gk_raider
-			from = { save_event_target_as = gk_raidee }
-			gk_abduct_on_surrender = { RATE = value:gk_surrender_cap_rate }
 			country_event = {
 				id = gk_raiding_pops.310
-				scopes = { from = event_target:gk_raidee }
+				scopes = { from = from }
 			}
 		}
 	}

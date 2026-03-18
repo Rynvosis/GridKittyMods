@@ -16,8 +16,8 @@ spriteTypes = {
 		texturefile = "gfx/interface/icons/specimens/gk_privateer_alien_headpiece.dds"
 	}
 	spriteType = {
-		name = "GFX_specimen_gk_privateer_ornamental_circlet"
-		texturefile = "gfx/interface/icons/specimens/gk_privateer_ornamental_circlet.dds"
+		name = "GFX_specimen_gk_privateer_xenolithic_relic"
+		texturefile = "gfx/interface/icons/specimens/gk_privateer_xenolithic_relic.dds"
 	}
 	spriteType = {
 		name = "GFX_specimen_gk_privateer_alien_effigy"

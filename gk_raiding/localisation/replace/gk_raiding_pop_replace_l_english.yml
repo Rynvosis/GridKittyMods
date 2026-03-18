@@ -7,6 +7,8 @@
 
  war_goal_wg_plunder:0 "Raiding"
  war_goal_wg_plunder_desc:0 "War is waged to raid the enemy for captives. Using this wargoal allows us to abduct pops during war and claim additional captives on enemy surrender."
- wg_plunder_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §Y[From.GkEstimatedSurrenderPops]§! pops to §Y[Root.GetName]§! on surrender (§Y[Root.GkSurrenderCapPercent]%§! total cap)."
+ wg_plunder_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §G[Root.GkSurrenderPopEstimate]§! pops to §Y[Root.GetName]§!."
 
  casus_belli_cb_despoliation:0 "Despoliation"
+
+ bombardment_raiding_desc:5 "$bombardment_raiding$ Bombardment targets enemy population centers with specialized raiding craft that abduct their people and resettle them to our worlds.\n- §ELight§! damage to §YArmies§!\n- §ELight§! damage to §YPlanet§!\n- Will §Yabduct§! Pops when possible instead of killing them\n- Will §RNOT§! abduct or kill the last Pop. Each army on the planet increases the number of protected Pops\n- Subject to ['concept_gk_pop_raiding'] limits"

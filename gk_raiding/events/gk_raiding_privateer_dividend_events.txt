@@ -1,39 +1,5 @@
 namespace = gk_raiding_privateers
 
-# Resource payout tiers (3 tiers, breakpoints at upgrade_2 and upgrade_4)
-# Alloys
-@alloy_t1_value = 3
-@alloy_t1_min = 50
-@alloy_t1_max = 500
-@alloy_t2_value = 5
-@alloy_t2_min = 75
-@alloy_t2_max = 1000
-@alloy_t3_value = 8
-@alloy_t3_min = 100
-@alloy_t3_max = 2000
-
-# Consumer goods (.510) / trade (.515)
-@cg_t1_value = 6
-@cg_t1_min = 100
-@cg_t1_max = 1000
-@cg_t2_value = 10
-@cg_t2_min = 150
-@cg_t2_max = 2000
-@cg_t3_value = 16
-@cg_t3_min = 200
-@cg_t3_max = 4000
-
-# Strategic resources
-@sr_t1_value = 2
-@sr_t1_min = 25
-@sr_t1_max = 250
-@sr_t2_value = 3
-@sr_t2_min = 50
-@sr_t2_max = 500
-@sr_t3_value = 5
-@sr_t3_min = 75
-@sr_t3_max = 1000
-
 # ──────────────────────────────────────────────────────────────────
 # Dividend Payouts (500–599)
 # ──────────────────────────────────────────────────────────────────
@@ -97,7 +63,7 @@ country_event = {
 		KEY = gk_raiding_privateers.510.desc
 		SCOPE = event_target:gk_privateer_enclave_country
 	}
-	picture = GFX_evt_pirate_armada
+	picture = GFX_evt_ship_offloading_cargo
 	show_sound = event_ship_bridge
 	is_triggered_only = yes
 
@@ -182,7 +148,7 @@ country_event = {
 		KEY = gk_raiding_privateers.515.desc
 		SCOPE = event_target:gk_privateer_enclave_country
 	}
-	picture = GFX_evt_pirate_armada
+	picture = GFX_evt_ship_offloading_cargo
 	show_sound = event_ship_bridge
 	is_triggered_only = yes
 
@@ -267,7 +233,7 @@ country_event = {
 		KEY = gk_raiding_privateers.520.desc
 		SCOPE = event_target:gk_privateer_enclave_country
 	}
-	picture = GFX_evt_pirate_armada
+	picture = GFX_evt_ship_offloading_cargo
 	show_sound = event_ship_bridge
 	is_triggered_only = yes
 
@@ -438,7 +404,7 @@ country_event = {
 		KEY = gk_raiding_privateers.530.desc
 		SCOPE = event_target:gk_privateer_enclave_country
 	}
-	picture = GFX_evt_pirate_armada
+	picture = GFX_evt_pirates_attacking_cargo
 	show_sound = event_ship_bridge
 	is_triggered_only = yes
 
@@ -546,8 +512,37 @@ country_event = {
 		}
 	}
 
+	# Accept the fleet
 	option = {
-		name = EXCELLENT
+		name = gk_raiding_privateers.530.a
+	}
+
+	# Scrap for alloys instead
+	option = {
+		name = gk_raiding_privateers.530.b
+		hidden_effect = {
+			last_created_fleet = { delete_fleet = this }
+		}
+		if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_modifier = gk_privateer_upgrade_2 }
+				}
+			}
+			add_resource = { alloys = 500 }
+		}
+		else_if = {
+			limit = {
+				event_target:gk_privateer_enclave_country = {
+					has_modifier = gk_privateer_upgrade_2
+					NOT = { has_modifier = gk_privateer_upgrade_4 }
+				}
+			}
+			add_resource = { alloys = 1000 }
+		}
+		else = {
+			add_resource = { alloys = 1750 }
+		}
 	}
 }
 
@@ -566,7 +561,7 @@ country_event = {
 		KEY = gk_raiding_privateers.525.desc
 		SCOPE = event_target:gk_privateer_enclave_country
 	}
-	picture = GFX_evt_pirate_armada
+	picture = GFX_evt_ship_offloading_cargo
 	show_sound = event_ship_bridge
 	is_triggered_only = yes
 
@@ -579,44 +574,44 @@ country_event = {
 		}
 	}
 
-	# Grand Archives installed — give specimen
+	# Keep as specimen (Grand Archives only)
 	option = {
-		name = EXCELLENT
+		name = gk_raiding_privateers.525.a
 		trigger = { has_grand_archive_dlc = yes }
-		if = {
-			limit = { has_country_flag = gk_dividend_specimen_geology }
-			random_list = {
-				1 = { give_specimen = { key = gk_privateer_amber_fossil origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-				1 = { give_specimen = { key = gk_privateer_stellar_tear origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-				1 = { give_specimen = { key = gk_privateer_fossilized_growth origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-			}
-		}
-		else_if = {
-			limit = { has_country_flag = gk_dividend_specimen_aesthetic }
-			random_list = {
-				1 = { give_specimen = { key = gk_privateer_alien_headpiece origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-				1 = { give_specimen = { key = gk_privateer_ornamental_circlet origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-				1 = { give_specimen = { key = gk_privateer_alien_effigy origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-			}
-		}
-		else = {
-			random_list = {
-				1 = { give_specimen = { key = gk_privateer_bio_vial origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-				1 = { give_specimen = { key = gk_privateer_data_core origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-				1 = { give_specimen = { key = gk_privateer_processing_unit origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
-			}
-		}
+		custom_tooltip = GK_RAIDING_DIVIDEND_SPECIMEN_TOOLTIP
 		hidden_effect = {
+			if = {
+				limit = { has_country_flag = gk_dividend_specimen_geology }
+				random_list = {
+					1 = { give_specimen = { key = gk_privateer_amber_fossil origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_stellar_tear origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_fossilized_growth origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = gk_dividend_specimen_aesthetic }
+				random_list = {
+					1 = { give_specimen = { key = gk_privateer_alien_headpiece origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_xenolithic_relic origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_alien_effigy origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				}
+			}
+			else = {
+				random_list = {
+					1 = { give_specimen = { key = gk_privateer_bio_vial origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_data_core origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+					1 = { give_specimen = { key = gk_privateer_processing_unit origin = GK_PRIVATEER_SPECIMEN_ORIGIN } }
+				}
+			}
 			remove_country_flag = gk_dividend_specimen_geology
 			remove_country_flag = gk_dividend_specimen_aesthetic
 			remove_country_flag = gk_dividend_specimen_history
 		}
 	}
 
-	# No Grand Archives — give minor artifacts instead
+	# Sell for minor artifacts instead
 	option = {
-		name = EXCELLENT
-		trigger = { has_grand_archive_dlc = no }
+		name = gk_raiding_privateers.525.b
 		if = {
 			limit = {
 				event_target:gk_privateer_enclave_country = {

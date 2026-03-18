@@ -68,8 +68,8 @@ councilor_gk_barbaric_despoilers_megacorp = {
 	leader_class = { commander official }
 	civic = civic_gk_barbaric_despoilers_megacorp
 	modifier = {
-		slave_market_cost_mult = -0.04
-		pop_category_slave_upkeep_mult = -0.02
+		gk_livestock_trade_produces_add = 0.25
+		gk_purge_trade_produces_add = 1.00
 	}
 	ai_hiring_weight = {
 		inline_script = councilor_leader_weights

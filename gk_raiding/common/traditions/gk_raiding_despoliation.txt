@@ -20,37 +20,59 @@ tr_gk_raiding_despoliation_adopt = {
 }
 
 tr_gk_raiding_despoliation_finish = {
+	# Default: no Overlord DLC — combat bonuses instead of enclave capacity
 	modifier = {
+		ship_fire_rate_mult = 0.05
+		army_damage_mult = 0.10
 		ascension_perks_add = 1
-		country_enclave_capacity_add = 1
 	}
-	custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_EFFECT
 
+	# Overlord DLC: privateer enclave access
+	tradition_swap = {
+		name = tr_gk_raiding_despoliation_finish_overlord
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_overlord_dlc = yes
+			NOT = { has_origin = origin_mindwardens }
+			NOT = { has_civic = civic_fanatic_purifiers }
+		}
+		modifier = {
+			country_enclave_capacity_add = 1
+			ascension_perks_add = 1
+		}
+		custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_EFFECT
+		weight = { factor = 1 }
+	}
+
+	# Overlord DLC + Mindwarden: extra enclave capacity
 	tradition_swap = {
 		name = tr_gk_raiding_despoliation_finish_mindwarden
 		inherit_name = yes
 		inherit_icon = yes
-		trigger = { has_origin = origin_mindwardens }
-		modifier = {
-			ascension_perks_add = 1
-			country_enclave_capacity_add = 2
+		trigger = {
+			has_overlord_dlc = yes
+			has_origin = origin_mindwardens
 		}
-		custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_MINDWARDEN_EFFECT
-		weight = { factor = 1 }
+		modifier = {
+			country_enclave_capacity_add = 2
+			ascension_perks_add = 1
+		}
+		weight = { factor = 2 }
 	}
 
+	# Fanatic Purifiers: combat bonuses (same with or without Overlord)
 	tradition_swap = {
 		name = tr_gk_raiding_despoliation_finish_purifier
 		inherit_name = yes
 		inherit_icon = yes
 		trigger = { has_civic = civic_fanatic_purifiers }
 		modifier = {
-			ascension_perks_add = 1
 			ship_fire_rate_mult = 0.05
 			army_damage_mult = 0.10
+			ascension_perks_add = 1
 		}
-		custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_FINISH_PURIFIER_EFFECT
-		weight = { factor = 2 }
+		weight = { factor = 3 }
 	}
 }
 

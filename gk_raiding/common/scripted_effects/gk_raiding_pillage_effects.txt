@@ -1,17 +1,6 @@
 # GK Raiding Pillage Effects
 # Dedicated file for pillaging mechanics
 
-@gk_pillage_devastation_per_packet = 10
-@gk_base_loot_months_per_packet = 2
-@gk_pillage_war_bonus_loot_months_per_packet = 4
-@gk_native_despoliation_bonus_loot_months_per_packet = 2
-@gk_flat_trade_spoils_per_loot_month = 100
-@gk_flat_mineral_spoils_per_loot_month = 100
-@gk_flat_alloy_spoils_per_loot_month = 100
-@gk_max_planet_devastation = 100
-@gk_surrender_planet_devastation = 50
-@gk_surrender_aftermath_days = 1825
-
 ######################
 # Core Pillage Flow  #
 ######################
@@ -495,14 +484,26 @@ gk_add_flat_pillage_spoils = {
 	}
 	if = {
 		limit = {
-			OR = {
-				is_planet_class = pc_habitat
-				is_planet_class = pc_city
-			}
+			is_planet_class = pc_city
 		}
 		multiply_variable = {
 			which = gk_temp_flat_spoils
-			value = @gk_flat_alloy_spoils_per_loot_month
+			value = @gk_flat_alloy_spoils_per_loot_month_ecu
+		}
+		event_target:gk_storage_scope = {
+			change_variable = {
+				which = gk_flat_spoils_alloys
+				value = prev.gk_temp_flat_spoils
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_habitat
+		}
+		multiply_variable = {
+			which = gk_temp_flat_spoils
+			value = @gk_flat_alloy_spoils_per_loot_month_habitat
 		}
 		event_target:gk_storage_scope = {
 			change_variable = {
@@ -827,6 +828,33 @@ gk_apply_planet_invasion_tribute = {
 	divide_variable = {
 		which = gk_effective_remaining_temp
 		value = 2
+	}
+	# Halve tribute when not in a dedicated pillaging war
+	if = {
+		limit = {
+			event_target:gk_raider = {
+				NOT = {
+					any_war = {
+						OR = {
+							AND = {
+								is_war_participant = { who = prev side = attackers }
+								is_war_participant = { who = prevprev.owner side = defenders }
+								using_war_goal = { type = wg_plunder_raid owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = prev side = defenders }
+								is_war_participant = { who = prevprev.owner side = attackers }
+								using_war_goal = { type = wg_plunder_raid owner = defender }
+							}
+						}
+					}
+				}
+			}
+		}
+		divide_variable = {
+			which = gk_effective_remaining_temp
+			value = 2
+		}
 	}
 	gk_apply_planet_tribute_from_effective_remaining = yes
 }

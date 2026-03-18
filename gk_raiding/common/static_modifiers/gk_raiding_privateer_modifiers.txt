@@ -38,14 +38,8 @@ gk_privateer_upgrade_5 = {
 # Perk Modifiers (applied to patron country)
 # ──────────────────────────────────────────────────────────────────
 
-# Smuggling Network — timed (3600 days)
-gk_privateer_smuggling_network = {
-	country_trade_produces_mult = 0.10
-	planet_crime_add = 5
-}
-
 # Raider Intelligence — timed (3600 days)
 gk_privateer_raider_intel = {
 	damage_vs_rival_mult = 0.15
-	planet_crime_add = 3
+	planet_crime_add = 10
 }

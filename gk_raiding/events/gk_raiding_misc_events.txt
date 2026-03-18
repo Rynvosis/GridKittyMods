@@ -142,17 +142,17 @@ country_event = {
 					if = {
 						limit = {
 							OR = {
-								has_trait = leader_trait_privateer
-								has_trait = leader_trait_privateer_2
+								has_trait = leader_trait_corsair
+								has_trait = leader_trait_corsair_2
 							}
 						}
 						if = {
 							limit = {
-								has_trait = leader_trait_privateer
+								has_trait = leader_trait_corsair
 							}
 							ROOT = {
 								add_resource = {
-									energy = @trait_privateer_amt
+									energy = @trait_corsair_amt
 									mult = value:gk_despoliation_shipkill_trait_mult
 								}
 							}
@@ -160,7 +160,7 @@ country_event = {
 						else = {
 							ROOT = {
 								add_resource = {
-									energy = @trait_privateer_2_amt
+									energy = @trait_corsair_2_amt
 									mult = value:gk_despoliation_shipkill_trait_mult
 								}
 							}

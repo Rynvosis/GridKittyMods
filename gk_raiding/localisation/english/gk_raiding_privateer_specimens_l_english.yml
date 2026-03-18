@@ -19,9 +19,9 @@
  gk_privateer_alien_headpiece_desc_short: "An ornate alien headpiece taken from a diplomatic courier. Probably."
  gk_privateer_alien_headpiece_desc_details: "This ceremonial headpiece was recovered from an unescorted diplomatic vessel. Wrought from an unknown alloy and adorned with bioluminescent inlays, our xenoanthropologists are §H100%§! confident it was worn atop the head of a high-ranking official. Alternative interpretations of its purpose have been noted and dismissed."
 
- gk_privateer_ornamental_circlet: "Plundered Ornamental Circlet"
- gk_privateer_ornamental_circlet_desc_short: "A delicate circlet stripped from a raided colony shipment."
- gk_privateer_ornamental_circlet_desc_details: "Part of a colonial shipment of luxury goods destined for a frontier world's elite. The circlet's filigree work is exceptionally fine, incorporating micro-etched patterns that shift under different spectra of light. Displaying it publicly tends to improve local morale."
+ gk_privateer_xenolithic_relic: "Plundered Xenolithic Relic"
+ gk_privateer_xenolithic_relic_desc_short: "An inscribed alien pyramid stripped from a raided colony shipment."
+ gk_privateer_xenolithic_relic_desc_details: "This small stone pyramid was seized from a collector's transport bound for a frontier world. Its faces are covered in deeply carved alien script that resists all translation attempts. Under certain light conditions the inscriptions appear to shift, drawing the eye in ways that unsettle some observers and fascinate others. Displaying it publicly tends to improve local morale."
 
  gk_privateer_alien_effigy: "Seized Alien Effigy"
  gk_privateer_alien_effigy_desc_short: "A strange statuette seized from a xeno merchant vessel."

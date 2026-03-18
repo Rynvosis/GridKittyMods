@@ -37,13 +37,11 @@
  gk_raiding_privateers.205.desc.merchant:0 "The haven's communication array opens to a warmly lit interior. A grinning figure raises a drink in greeting, lounging comfortably amid trophy displays and trade ledgers.\n\n§Y\"Well, well! If it isn't our favorite client! Come in, come in. What can the [event_target:gk_privateer_enclave_country.GetName] do for you today? We have some exciting new opportunities on the table.\"§!"
  gk_raiding_privateers.205.desc.automaton:0 "The haven's communication array responds instantly, the connection established before the hail sequence completes. No face appears on screen. A tactical overlay fills the display: fleet positions, threat vectors, patrol routes updated in real time. A flat synthetic voice speaks over the data feed.\n\n§Y\"Command authority recognized. Connection secured. Current operational status: all combat platforms nominal. Query: state desired service or directive.\"§!"
  # Greeting options (205)
- gk_raiding_privateers.205.a:0 "We are interested in your §YSmuggling Network§!."
  gk_raiding_privateers.205.b:0 "We want access to your §YRaider Intelligence§!."
- gk_raiding_privateers.205.c:0 "We are interested in setting up a §YRaider Garrison§!."
+ gk_raiding_privateers.205.c:0 "We are interested in setting up a §YSmuggler's Port§!."
  gk_raiding_privateers.205.d:0 "We wish to §Yrecruit raiders§!."
  gk_raiding_privateers.205.e:0 "As your §YPatron§!, we want to review our options."
  # Greeting option tooltips
- gk_privateer_tt_smuggling:0 "Temporary §Ytrade value§! boost at the cost of increased §Ycrime§!."
  gk_privateer_tt_intel:0 "Temporary §Ydamage bonus§! against your §Yrivals§! at the cost of increased §Ycrime§!."
  gk_privateer_tt_garrison:0 "Purchase a §Ystarbase building§! license that boosts §Ytrade§! in the system."
  gk_privateer_tt_armies:0 "Hire §Yarmies§! for ground invasions."
@@ -81,14 +79,6 @@
  gk_raiding_privateers.305.desc.merchant:0 "The haven's commander raises a glass with a broad grin.\n\n§Y\"Pleasure doing business! Always a pleasure! You won't regret this, friend. The [event_target:gk_privateer_enclave_country.GetName] takes care of its partners!\"§!"
  gk_raiding_privateers.305.desc.automaton:0 "A brief confirmation pulse over the data link.\n\n§Y\"Transaction complete. Resources received and allocated. Operational parameters updated. Standing by for further directives.\"§!"
 
- # .310 — Smuggling Network
- gk_raiding_privateers.310.name:0 "Smuggling Network"
- gk_raiding_privateers.310.desc.stoic:0 "The haven's commander leans forward, voice low and businesslike.\n\n§Y\"We can route contraband through your trade lanes. Discreet. Profitable. Your merchants will see a boost in revenue, and our fences get access to your markets. Some of your administrators may notice the uptick in illicit activity, but the credits speak for themselves.\"§!"
- gk_raiding_privateers.310.desc.screamer:0 "The haven's commander grins wide, eyes gleaming with mischief.\n\n§Y\"HYEEEIIIEEE!!!! We have GREAT idea! We sneak stuff through your space, you get cut! Nobody see nothing! Well, maybe little bit more crime but WHO CARES when you have SO MANY CREDITS! HYEEEIIIEEE!!!!\"§!"
- gk_raiding_privateers.310.desc.cultist:0 "The haven's commander speaks with conspiratorial reverence.\n\n§Y\"She of the Void moves unseen through the spaces between stars. Let us move Her gifts through your trade routes in the same fashion. Your coffers will swell with Her blessing, though the uninitiated may call it... crime.\"§!"
- gk_raiding_privateers.310.desc.calculating:0 "The haven's commander pulls up a network diagram on the display.\n\n§Y\"Proposal: integrate our distribution network with your existing trade infrastructure. Projected revenue increase: 10%. Side effect analysis indicates a measurable increase in criminal activity on affected worlds. Cost-benefit ratio remains favorable.\"§!"
- gk_raiding_privateers.310.desc.merchant:0 "The haven's commander leans back with a knowing smile.\n\n§Y\"I have a business proposition for you, friend. We have goods. You have markets. Let us connect the two, and we both profit. Your trade value goes up, guaranteed. There may be some, shall we say, regulatory complications, but nothing your enforcers can't manage.\"§!"
- gk_raiding_privateers.310.desc.automaton:0 "A logistics schematic populates the display, showing trade lane integration points.\n\n§Y\"Service available: covert distribution network overlay. Projections indicate increased trade throughput via parallel supply channels. Side effect: elevated irregularity indices on connected worlds. Risk assessment: within acceptable parameters.\"§!"
 
  # .315 — Raider Intelligence
  gk_raiding_privateers.315.name:0 "Raider Intelligence"
@@ -155,12 +145,13 @@
  gk_privateer_upgrade_5:0 "Privateer Haven Rank 5"
 
  # Perk modifiers
- gk_privateer_smuggling_network:0 "Smuggling Network"
  gk_privateer_raider_intel:0 "Raider Intelligence"
 
  # Starbase building
  gk_privateer_garrison:0 "Smuggler's Port"
+ sm_gk_privateer_garrison:0 "Smuggler's Port"
  gk_privateer_garrison_desc:0 "A network of privateer contacts fencing stolen goods through the starbase. Their operations boost local trade significantly, though their disregard for the law increases criminal activity."
+ GK_PRIVATEER_GARRISON_TRADE_TOOLTIP:0 "Produces £trade_value£ §Y4 Trade Value§! per §YTrade Hub§! on this starbase."
 
  # ──────────────────────────────────────────────────────────────────
  # Situation
@@ -172,6 +163,7 @@
  gk_privateer_dividends_desc:0 "Our privateer haven is actively raiding nearby systems. When the plunder cycle completes, a dividend of seized resources will be delivered."
  gk_privateer_dividends_monthly_change_tooltip:0 "$situation_monthly_change_tooltip_no_control$"
  GK_RAIDING_DIVIDEND_PATRON_AT_WAR:0 "Patron at War"
+ GK_RAIDING_DIVIDEND_SPECIMEN_TOOLTIP:0 "Gain a random §YSpecimen§! for the Grand Archive."
 
  # ──────────────────────────────────────────────────────────────────
  # Dividend Events (500–530)
@@ -212,6 +204,8 @@
  gk_raiding_privateers.530.desc.calculating:0 "A detailed transmission from the [event_target:gk_privateer_enclave_country.GetName], accompanied by full technical readouts.\n\n§Y\"Asset transfer notification: multiple combat-capable vessels acquired through precision boarding operations. All systems restored to 97.8% operational capacity. Cost-benefit analysis favors transfer over salvage by a factor of 3.2. Fleet is en route to your capital. Crew complements are at standard levels.\"§!"
  gk_raiding_privateers.530.desc.merchant:0 "A beaming transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader looks like they just closed the deal of a lifetime.\n\n§Y\"Friend, have I got a surprise for you! We managed to acquire some ships in, shall we say, lightly used condition. Rather than breaking them down, we thought, why not give them to our favorite patron? A fleet, courtesy of the [event_target:gk_privateer_enclave_country.GetName]. Consider it an investment in our partnership!\"§!"
  gk_raiding_privateers.530.desc.automaton:0 "An asset transfer notification from the [event_target:gk_privateer_enclave_country.GetName].\n\n§Y\"Asset transfer report: multiple combat-capable vessels captured intact during boarding operations. All systems restored to operational capacity. Analysis indicates transfer to command authority yields superior strategic value over salvage. Fleet is en route. End of report.\"§!"
+ gk_raiding_privateers.530.a:0 "Accept the fleet."
+ gk_raiding_privateers.530.b:0 "Have them scrapped for §Yalloys§! instead."
 
  # .525 — Exotic Specimens
  gk_raiding_privateers.525.name:0 "Exotic Specimens"
@@ -222,6 +216,8 @@
  gk_raiding_privateers.525.desc.merchant:0 "A delighted transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader is practically vibrating with excitement.\n\n§Y\"Oh, you are going to love this one, friend! We hit a collector's transport and the hold was full of rare specimens! Alien curios, geological wonders, the works! I was tempted to auction them off myself, but a deal is a deal. Your cut is the cream of the crop. Enjoy!\"§!"
  gk_raiding_privateers.525.desc.automaton:0 "A specimen transfer manifest from the [event_target:gk_privateer_enclave_country.GetName].\n\n§Y\"Acquisition report: intercepted cargo vessel carrying specimens of scientific and cultural value. Items catalogued, classified, and packaged for transfer to command authority collection. Estimated research and cultural utility: significant. End of report.\"§!"
 
+ gk_raiding_privateers.525.a:0 "Take the centerpiece."
+ gk_raiding_privateers.525.b:0 "Take your share."
  GK_PRIVATEER_SPECIMEN_ORIGIN: "Privateer Plunder"
 
  # ──────────────────────────────────────────────────────────────────

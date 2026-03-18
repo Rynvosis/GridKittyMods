@@ -6,26 +6,31 @@ defined_text = {
 }
 
 defined_text = {
-	name = GkRaideePlundered
-	value = value:gk_raidee_plundered_value
-}
-
-defined_text = {
 	name = GkTotalPopsRaided
 	value = value:gk_total_pops_raided_value
 }
 
 defined_text = {
-	name = GkEstimatedSurrenderPops
-	value = value:gk_estimated_surrender_pops
+	name = GkDisplayPopsTaken
+	value = value:gk_display_pops_taken_value
 }
 
 defined_text = {
-	name = GkBombardmentCapPercent
-	value = value:gk_bombardment_cap_percent
+	name = GkDisplayInfluenceCost
+	value = value:gk_display_influence_cost_value
 }
 
 defined_text = {
-	name = GkSurrenderCapPercent
-	value = value:gk_surrender_cap_percent
+	name = GkDisplayBucketRemaining
+	value = value:gk_display_bucket_remaining_value
+}
+
+defined_text = {
+	name = GkSurrenderPopEstimate
+	value = value:gk_surrender_pop_estimate
+}
+
+defined_text = {
+	name = GkSurrenderPopTotal
+	value = value:gk_surrender_pop_total
 }

@@ -2,8 +2,6 @@
 # Based on enclave_mercenary_station (vanilla ship_sizes/21_overlord.txt:331-367)
 # Differences: entity = station_generic_01_entity (marauder void dwelling model)
 
-@station_gk_privateer_hp = 40000
-
 gk_privateer_station = {
 	entity = station_generic_01_entity
 	is_space_object = no
@@ -22,7 +20,6 @@ gk_privateer_station = {
 	max_hitpoints = @station_gk_privateer_hp
 	combat_size_multiplier = 100
 	size_multiplier = 100
-	map_counter_icon = ship_counter_128
 	icon = ship_size_military_station
 	fleet_slot_size = 4
 	section_slots = { "mid" = { locator = "part1" } }

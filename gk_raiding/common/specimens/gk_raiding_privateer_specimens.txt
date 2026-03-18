@@ -72,8 +72,8 @@ gk_privateer_alien_headpiece = {
 	}
 }
 
-gk_privateer_ornamental_circlet = {
-	icon = "GFX_specimen_gk_privateer_ornamental_circlet"
+gk_privateer_xenolithic_relic = {
+	icon = "GFX_specimen_gk_privateer_xenolithic_relic"
 	type = aesthetic_wonder
 
 	inline_script = {
