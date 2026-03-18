@@ -404,6 +404,18 @@ gk_calculate_base_loot = {
 				}
 			}
 		}
+		# Pivot to Pillaging bonus from escalation
+		if = {
+			limit = {
+				has_country_flag = gk_pivoted_to_pillaging_against_@event_target:gk_loot_planet.owner
+			}
+			event_target:gk_loot_planet = {
+				change_variable = {
+					which = gk_loot_months_per_packet
+					value = @gk_pivot_bonus_loot_months_per_packet
+				}
+			}
+		}
 	}
 
 	set_variable = {

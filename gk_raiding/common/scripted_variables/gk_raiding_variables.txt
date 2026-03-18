@@ -14,9 +14,18 @@
 
 @gk_escalation_base_cost = 50
 @gk_escalation_cost_per_tier = 25
+@gk_significant_raid_baseline = 0.05
 
 @gk_max_pops_per_abduction = 100
 @gk_reaping_cap_rate = 100
+
+############################
+# Pop Raiding — Escalation #
+############################
+
+@gk_pivot_bonus_loot_months_per_packet = 1
+@gk_tribute_offer_timeout_days = 90
+@gk_tribute_alloy_ratio = 0.25
 
 ############################
 # Pop Raiding — Decay      #

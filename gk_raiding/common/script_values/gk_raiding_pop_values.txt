@@ -191,38 +191,6 @@ gk_display_pops_taken_value = {
 # Influence cost for next escalation (readable from loc)
 # This = cap_raider country
 # event_target:gk_raid_tracker = tracker with gk_escalation_tier
-gk_display_influence_cost_value = {
-	base = @gk_escalation_base_cost
-	modifier = {
-		exists = event_target:gk_raid_tracker
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 1 }
-		}
-		add = @gk_escalation_cost_per_tier
-	}
-	modifier = {
-		exists = event_target:gk_raid_tracker
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 2 }
-		}
-		add = @gk_escalation_cost_per_tier
-	}
-	modifier = {
-		exists = event_target:gk_raid_tracker
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 3 }
-		}
-		add = @gk_escalation_cost_per_tier
-	}
-	modifier = {
-		exists = event_target:gk_raid_tracker
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 4 }
-		}
-		add = @gk_escalation_cost_per_tier
-	}
-	floor = yes
-}
 
 # Next bucket estimated yield (pre-computed in event immediate, stored on root)
 gk_display_bucket_remaining_value = {
@@ -236,36 +204,97 @@ gk_display_bucket_remaining_value = {
 }
 
 ####################
+# Display: Intel   #
+####################
+
+gk_display_eligible_remaining_value = {
+	base = 0
+	modifier = {
+		is_variable_set = gk_display_eligible_remaining
+		add = gk_display_eligible_remaining
+	}
+	floor = yes
+	min = 0
+}
+
+####################
+# Display: Tribute #
+####################
+
+# Primary resource amount (energy or food) = base
+# This = country with access to event_target:gk_raid_tracker
+gk_display_tribute_primary_value = {
+	base = 0
+	modifier = {
+		exists = event_target:gk_raid_tracker
+		add = event_target:gk_raid_tracker.gk_tribute_base
+	}
+	floor = yes
+	min = 0
+}
+
+# Alloy amount = base * 0.25
+gk_display_tribute_alloys_value = {
+	base = 0
+	modifier = {
+		exists = event_target:gk_raid_tracker
+		add = event_target:gk_raid_tracker.gk_tribute_base
+	}
+	mult = @gk_tribute_alloy_ratio
+	floor = yes
+	min = 0
+}
+
+# Alloy amount for add_resource mult (used in event options)
+# event_target:gk_raid_tracker must exist
+gk_tribute_alloy_amount = {
+	base = 0
+	modifier = {
+		exists = event_target:gk_raid_tracker
+		add = event_target:gk_raid_tracker.gk_tribute_base
+	}
+	mult = @gk_tribute_alloy_ratio
+}
+
+####################
+# Tribute Values   #
+####################
+
+# Years of target production for tribute calculation
+# This = cap_raider country
+# event_target:gk_raid_tracker = tracker with gk_escalation_tier
+gk_tribute_production_years = {
+	base = 4
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 1 } }
+		set = 3
+	}
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 2 } }
+		set = 2
+	}
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 3 } }
+		set = 1
+	}
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 4 } }
+		set = 1
+	}
+}
+
+####################
 # Escalation Cost  #
 ####################
 
-# Influence cost to press the raid: 50 + 25 * current_tier
+# Influence cost: 50 base + dynamic tier premium scaled by raid significance
+# Premium = 25 * tier * (bucket_yield / raider_pops) / 0.05, rounded to nearest 25
+# Pre-computed as gk_influence_ratio_adj in .500 immediate
 # This = cap_raider country
-# event_target:gk_raid_tracker = tracker with gk_escalation_tier
 gk_escalation_influence_cost = {
 	base = @gk_escalation_base_cost
 	modifier = {
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 1 }
-		}
-		add = @gk_escalation_cost_per_tier
-	}
-	modifier = {
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 2 }
-		}
-		add = @gk_escalation_cost_per_tier
-	}
-	modifier = {
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 3 }
-		}
-		add = @gk_escalation_cost_per_tier
-	}
-	modifier = {
-		event_target:gk_raid_tracker = {
-			check_variable = { which = gk_escalation_tier value >= 4 }
-		}
-		add = @gk_escalation_cost_per_tier
+		is_variable_set = gk_influence_ratio_adj
+		add = gk_influence_ratio_adj
 	}
 }

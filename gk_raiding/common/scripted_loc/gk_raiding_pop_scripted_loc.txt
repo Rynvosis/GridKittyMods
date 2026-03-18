@@ -17,7 +17,7 @@ defined_text = {
 
 defined_text = {
 	name = GkDisplayInfluenceCost
-	value = value:gk_display_influence_cost_value
+	value = value:gk_escalation_influence_cost
 }
 
 defined_text = {
@@ -33,4 +33,50 @@ defined_text = {
 defined_text = {
 	name = GkSurrenderPopTotal
 	value = value:gk_surrender_pop_total
+}
+
+defined_text = {
+	name = GkDisplayEligibleRemaining
+	value = value:gk_display_eligible_remaining_value
+}
+
+defined_text = {
+	name = GkDisplayTributePrimary
+	value = value:gk_display_tribute_primary_value
+}
+
+defined_text = {
+	name = GkDisplayTributeAlloys
+	value = value:gk_display_tribute_alloys_value
+}
+
+# Dynamic press tooltip: normal vs final tier
+defined_text = {
+	name = GkPressTooltip
+	text = {
+		trigger = {
+			exists = event_target:gk_raid_tracker
+			event_target:gk_raid_tracker = {
+				check_variable = { which = gk_escalation_tier value >= 4 }
+			}
+		}
+		localization_key = GK_RAIDING_ESCALATION_PRESS_FINAL_TOOLTIP
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = GK_RAIDING_ESCALATION_PRESS_NORMAL_TOOLTIP
+	}
+}
+
+# Dynamic resource icon: £energy£ or £food£ based on bio-ship status
+defined_text = {
+	name = GkTributePrimaryIcon
+	text = {
+		trigger = { country_uses_bio_ships = yes }
+		localization_key = GK_ICON_FOOD
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = GK_ICON_ENERGY
+	}
 }

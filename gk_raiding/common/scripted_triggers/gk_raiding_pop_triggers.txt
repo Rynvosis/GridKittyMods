@@ -210,6 +210,46 @@ gk_has_reaping_war_with = {
 }
 
 ####################
+# Escalation Checks #
+####################
+
+# This = raider country, From = raidee country (event scope)
+gk_is_plunder_war_with_from = {
+	any_war = {
+		OR = {
+			AND = {
+				is_war_participant = { who = prev side = attackers }
+				is_war_participant = { who = from side = defenders }
+				using_war_goal = { type = wg_plunder owner = attacker }
+			}
+			AND = {
+				is_war_participant = { who = prev side = defenders }
+				is_war_participant = { who = from side = attackers }
+				using_war_goal = { type = wg_plunder owner = defender }
+			}
+		}
+	}
+}
+
+# This = raider country, From = raidee country (event scope)
+gk_is_emancipation_war_with_from = {
+	any_war = {
+		OR = {
+			AND = {
+				is_war_participant = { who = prev side = attackers }
+				is_war_participant = { who = from side = defenders }
+				using_war_goal = { type = wg_gk_emancipation owner = attacker }
+			}
+			AND = {
+				is_war_participant = { who = prev side = defenders }
+				is_war_participant = { who = from side = attackers }
+				using_war_goal = { type = wg_gk_emancipation owner = defender }
+			}
+		}
+	}
+}
+
+####################
 # Pop Group Checks #
 ####################
 # Root = hostile country (attacker/raider)
@@ -282,6 +322,14 @@ gk_can_abduct_pop_group_war_goal_check = {
 # This = pop_group
 # Flag-based cap check - all rate logic is in gk_update_raid_cap_flag
 gk_can_abduct_pop_group_cap_check = {
+	# Terminal state: pop raiding terminated for this raider
+	NOT = {
+		planet = {
+			owner = {
+				has_country_flag = gk_pop_raiding_terminated_by_@root
+			}
+		}
+	}
 	OR = {
 		# Total war - no cap
 		planet = {
