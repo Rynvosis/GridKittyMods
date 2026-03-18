@@ -24,8 +24,13 @@ gkrb_tech_mod = {
 
 gkrb_tech_behind_mod = {
 	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_positive.dds"
-	tech_alternatives_add = 1
-	all_technology_research_speed = 0.1
+	num_tech_alternatives_add = 3.33 #roughly +1 alterntiave for each 30$ you are behind
 	custom_tooltip = gkrb_tech_behind_mod.tooltip
 	show_only_custom_tooltip = no
+}
+
+gkrb_tech_neutral_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_positive.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = gkrb_tech_relative
 }

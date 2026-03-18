@@ -1,0 +1,18 @@
+# Inline script: Calculate revenue adjustment variable
+# Parameters:
+#   $RESOURCE$ - Resource name (e.g., energy)
+#   $TYPE$     - System type (e.g., tech)
+#
+# Exports resource revenue to variable: gkrb_$TYPE$_$RESOURCE$_adjust
+# This variable will be modified by multipliers in the apply stage
+
+remove_modifier = gkrb_$TYPE$_$RESOURCE$_mod
+
+# Get current revenue directly
+export_trigger_value_to_variable = {
+	trigger = resource_revenue_compare
+	parameters = {
+		resource = $RESOURCE$
+	}
+	variable = gkrb_$TYPE$_$RESOURCE$_adjust
+}

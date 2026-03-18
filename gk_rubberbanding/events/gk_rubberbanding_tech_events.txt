@@ -1,8 +1,10 @@
 # Tech Rubberbanding Events
-# Tracks technology progress for rubberbanding
+# Self-contained monthly tech rubberbanding pipeline
 namespace = gkrb_tech
 
-# Init globals once on game start
+####################################
+# Game Start: Init globals
+####################################
 event = {
 	id = gkrb_tech.1
 	is_triggered_only = yes
@@ -31,13 +33,18 @@ event = {
 	}
 }
 
-# Monthly gatekeeper: recalc average, then apply per-country modifiers
+####################################
+# Monthly Pipeline
+####################################
+# Orchestrates all stages: score → aggregate → relative → mult → apply
 event = {
 	id = gkrb_tech.10
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		# Reset global counters
+		####################################
+		# STAGE 1: Reset globals and calculate per-country scores
+		####################################
 		event_target:global_event_country = {
 			set_variable = {
 				which = gkrb_tech_global_country_count
@@ -47,18 +54,29 @@ event = {
 				which = gkrb_tech_global_sum
 				value = 0
 			}
+		}
+		every_playable_country = {
+			# Calculate tech score
 			set_variable = {
-				which = gkrb_tech_global_avg
-				value = 0
+				which = gkrb_tech_score
+				value = value:gkrb_tech_score
+			}
+			# Contribute to global sum
+			event_target:global_event_country = {
+				change_variable = {
+					which = gkrb_tech_global_sum
+					value = prev.gkrb_tech_score
+				}
+				change_variable = {
+					which = gkrb_tech_global_country_count
+					value = 1
+				}
 			}
 		}
-		
-		# Phase 1: Calculate scores and contribute to global sum
-		every_playable_country = {
-			country_event = { id = gkrb_tech.20 }
-		}
-		
-		# Calculate global average
+
+		####################################
+		# STAGE 2: Calculate global average
+		####################################
 		event_target:global_event_country = {
 			if = {
 				limit = {
@@ -89,108 +107,52 @@ event = {
 				}
 			}
 		}
-		
-		# Phase 2: Calculate relative scores
-		every_playable_country = {
-			country_event = { id = gkrb_tech.30 }
-		}
-		
-		# Phase 3: Calculate multipliers
-		every_playable_country = {
-			country_event = { id = gkrb_tech.40 }
-		}
-		
-		# Phase 4: Apply modifiers
-		every_playable_country = {
-			country_event = { id = gkrb_tech.50 }
-		}
-	}
-}
 
-# Calculate per-country tech score and contribute to global sum
-country_event = {
-	id = gkrb_tech.20
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		# Tech score is based on tech count, not resource income
-		set_variable = {
-			which = gkrb_tech_score
-			value = value:gkrb_tech_score
-		}
-		
-		# Contribute score to global sum
-		event_target:global_event_country = {
-			change_variable = {
-				which = gkrb_tech_global_sum
-				value = prev.gkrb_tech_score
+		####################################
+		# STAGE 3: Calculate relative scores, multipliers, and apply
+		####################################
+		every_playable_country = {
+			# Relative score
+			set_variable = {
+				which = gkrb_tech_relative
+				value = value:gkrb_relative_score|SCORE_VAR|gkrb_tech_score|GLOBAL_AVG_VAR|gkrb_tech_global_avg|
 			}
-			change_variable = {
-				which = gkrb_tech_global_country_count
-				value = 1
+			# Multiplier
+			set_variable = {
+				which = gkrb_tech_mult
+				value = value:gkrb_tech_mult
 			}
-		}
-	}
-}
+			round_variable_to_closest = {
+				which = gkrb_tech_mult
+				value = 0.0001
+			}
+			# Apply modifiers
+			gkrb_clear_tech_rubberbanding_modifiers = yes
 
-# Calculate per-country relative score (self / galactic avg)
-country_event = {
-	id = gkrb_tech.30
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		set_variable = {
-			which = gkrb_tech_relative
-			value = value:gkrb_relative_score|SCORE_VAR|gkrb_tech_score|GLOBAL_AVG_VAR|gkrb_tech_global_avg|
-		}
-	}
-}
-
-# Calculate tech multiplier
-country_event = {
-	id = gkrb_tech.40
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		set_variable = {
-			which = gkrb_tech_mult
-			value = value:gkrb_tech_mult
-		}
-		round_variable_to_closest = {
-			which = gkrb_tech_mult
-			value = 0.0001
-		}
-	}
-}
-
-# Apply tech modifiers
-country_event = {
-	id = gkrb_tech.50
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		# Always clear first
-		gkrb_clear_tech_rubberbanding_modifiers = yes
-		
-		# If behind, apply catch-up bonuses
-		if = {
-			limit = {
-				check_variable = {
-					which = gkrb_tech_relative
-					value < 0.98
+			if = {
+				limit = {
+					check_variable = {
+						which = gkrb_tech_relative
+						value < 0.95
+					}
+				}
+				gkrb_apply_behind_tech_rubberbanding_modifiers = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = gkrb_tech_relative
+						value > 1.05
+					}
+				}
+				gkrb_apply_ahead_tech_rubberbanding_modifiers = yes
+			}
+			else = {
+				add_modifier = {
+					modifier = gkrb_tech_neutral_mod
+					days = -1
 				}
 			}
-			gkrb_apply_behind_tech_rubberbanding_modifiers = yes
-		}
-		# If ahead, apply upkeep penalty
-		else_if = {
-			limit = {
-				check_variable = {
-					which = gkrb_tech_relative
-					value > 1.02
-				}
-			}
-			gkrb_apply_ahead_tech_rubberbanding_modifiers = yes
 		}
 	}
 }

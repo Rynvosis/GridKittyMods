@@ -1,9 +1,0 @@
-defined_text = {
-	name = GKRBUnityPercentage
-	value = value:gkrb_unity_score_percent
-}
-
-defined_text = {
-	name = GKRBUnityEffectiveMult
-	value = value:gkrb_unity_mult_percent
-}

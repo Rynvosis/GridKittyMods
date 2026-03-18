@@ -1,0 +1,26 @@
+# Inline script: Apply revenue adjustment (multiply and add modifier)
+# Parameters:
+#   $RESOURCE$ - Resource name (e.g., energy)
+#   $TYPE$     - System type (e.g., tech)
+#
+# Expects variable gkrb_$TYPE$_$RESOURCE$_adjust to be set and configured
+# This script multiplies by the appropriate penalty and applies the modifier
+
+# Multiply by rubberbanding multiplier
+multiply_variable = {
+	which = gkrb_$TYPE$_$RESOURCE$_adjust
+	value = gkrb_$TYPE$_mult
+}
+
+# Round to 2 decimal places
+round_variable_to_closest = {
+	which = gkrb_$TYPE$_$RESOURCE$_adjust
+	value = 0.01
+}
+
+# Apply modifier (upkeep scales with how far ahead you are)
+add_modifier = {
+	modifier = gkrb_$TYPE$_$RESOURCE$_mod
+	days = -1
+	multiplier = gkrb_$TYPE$_$RESOURCE$_adjust
+}

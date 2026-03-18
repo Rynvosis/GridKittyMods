@@ -13,10 +13,15 @@ gkrb_clear_tech_rubberbanding_modifiers = {
 
 # Apply tech rubberbanding when ahead (per-resource upkeep penalties)
 gkrb_apply_ahead_tech_rubberbanding_modifiers = {
-	# Apply adjustment for all research types
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = physics_research TYPE = tech }
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = society_research TYPE = tech }
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier RESOURCE = engineering_research TYPE = tech }
+	# Stage 1: Calculate adjustments for all research types
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = physics_research TYPE = tech }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = society_research TYPE = tech }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = engineering_research TYPE = tech }
+	
+	# Stage 2: Apply base multiplier and modifiers (no concentration for tech)
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = physics_research TYPE = tech }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = society_research TYPE = tech }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = engineering_research TYPE = tech }
 
 	# Apply marker modifier (tooltip)
 	add_modifier = {
