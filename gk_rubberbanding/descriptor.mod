@@ -5,4 +5,4 @@ tags={
 }
 name="GK Tech Rubberbanding"
 picture="thumbnail.png"
-supported_version="v4.2.3"
+supported_version="v4.3.0"
