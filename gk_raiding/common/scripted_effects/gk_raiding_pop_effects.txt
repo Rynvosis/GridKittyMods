@@ -239,7 +239,6 @@ gk_save_pop_raid_side_leader_against_target = {
 					OR = {
 						using_war_goal = { type = wg_plunder owner = attacker }
 						using_war_goal = { type = wg_gk_emancipation owner = attacker }
-						using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
 						using_war_goal = { type = wg_gk_reaping owner = attacker }
 					}
 				}
@@ -249,7 +248,6 @@ gk_save_pop_raid_side_leader_against_target = {
 					OR = {
 						using_war_goal = { type = wg_plunder owner = defender }
 						using_war_goal = { type = wg_gk_emancipation owner = defender }
-						using_war_goal = { type = wg_gk_robo_liberation owner = defender }
 						using_war_goal = { type = wg_gk_reaping owner = defender }
 					}
 				}
@@ -260,7 +258,6 @@ gk_save_pop_raid_side_leader_against_target = {
 				OR = {
 					using_war_goal = { type = wg_plunder owner = attacker }
 					using_war_goal = { type = wg_gk_emancipation owner = attacker }
-					using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
 					using_war_goal = { type = wg_gk_reaping owner = attacker }
 				}
 			}
@@ -734,6 +731,27 @@ gk_track_raided_pops = {
 				scopes = { from = event_target:gk_track_raidee_temp }
 			}
 		}
+	}
+
+	# Per-pop opinion: apply to all communicating empires (once per pop taken)
+	every_country = {
+		limit = {
+			has_communications = event_target:gk_acting_raider
+			is_country_type = default
+			NOT = { is_same_value = event_target:gk_acting_raider }
+		}
+		while = {
+			count = event_target:gk_track_raidee_temp.gk_track_amount_temp
+			add_opinion_modifier = {
+				who = event_target:gk_acting_raider
+				modifier = opinion_gk_raided_pops
+			}
+		}
+	}
+	# Target always gets an extra hit
+	add_opinion_modifier = {
+		who = event_target:gk_acting_raider
+		modifier = opinion_gk_raided_target
 	}
 
 	# Track lifetime total on raider (never cleared)

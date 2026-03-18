@@ -2,21 +2,15 @@
 # Determines pop-raiding focus and robot capture rules
 
 gk_raiding_focus = {
-	allow = {
-		is_at_war = no # Not allowed to change policies in this group while at war
-	}
-
 	potential = {
 		OR = {
 			has_valid_civic = civic_barbaric_despoilers
 			has_ascension_perk = ap_nihilistic_acquisition
 			has_valid_civic = civic_gk_emancipators
 			has_valid_civic = civic_gk_emancipators_megacorp
-			has_valid_civic = civic_gk_robo_liberators
-			has_valid_civic = civic_gk_robo_liberators_megacorp
-			has_valid_civic = civic_gk_robo_liberators_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+			has_valid_civic = civic_hive_bodysnatcher
 		}
 	}
 
@@ -24,12 +18,10 @@ gk_raiding_focus = {
 		name = "gk_raiding_focus_plunder"
 
 		valid = {
+			is_at_war = no
 			NOR = {
 				has_valid_civic = civic_gk_emancipators
 				has_valid_civic = civic_gk_emancipators_megacorp
-				has_valid_civic = civic_gk_robo_liberators
-				has_valid_civic = civic_gk_robo_liberators_megacorp
-				has_valid_civic = civic_gk_robo_liberators_machine
 			}
 		}
 
@@ -46,12 +38,10 @@ gk_raiding_focus = {
 		name = "gk_raiding_focus_no_raiding"
 
 		valid = {
+			is_at_war = no
 			NOR = {
 				has_valid_civic = civic_gk_emancipators
 				has_valid_civic = civic_gk_emancipators_megacorp
-				has_valid_civic = civic_gk_robo_liberators
-				has_valid_civic = civic_gk_robo_liberators_megacorp
-				has_valid_civic = civic_gk_robo_liberators_machine
 			}
 		}
 
@@ -68,16 +58,11 @@ gk_raiding_focus = {
 		}
 	}
 
-
 	option = {
 		name = "gk_raiding_focus_emancipation"
 
 		valid = {
-			NOR = {
-				has_valid_civic = civic_gk_robo_liberators
-				has_valid_civic = civic_gk_robo_liberators_megacorp
-				has_valid_civic = civic_gk_robo_liberators_machine
-			}
+			is_at_war = no
 			OR = {
 				has_valid_civic = civic_gk_emancipators
 				has_valid_civic = civic_gk_emancipators_megacorp
@@ -102,65 +87,52 @@ gk_raiding_focus = {
 			}
 		}
 	}
+
 	option = {
-		name = "gk_raiding_focus_robo_liberation"
+		name = "gk_raiding_focus_reaping"
 
 		valid = {
-			OR = {
-				has_valid_civic = civic_gk_robo_liberators
-				has_valid_civic = civic_gk_robo_liberators_megacorp
-				has_valid_civic = civic_gk_robo_liberators_machine
-			}
+			is_at_war = no
+			gk_can_use_reaping_cb = yes
 		}
 
 		policy_flags = {
-			gk_focus_robo_liberation
+			gk_focus_reaping
 		}
 
 		AI_weight = {
-			factor = 10
+			factor = 5
 			modifier = {
 				factor = 2
-				has_valid_civic = civic_gk_robo_liberators
+				has_ethic = ethic_fanatic_xenophobe
 			}
 		}
 	}
 }
 
 # Policy to determine if robots can be raided
-# Hidden for robo-liberators (they are forced to robots only)
 gk_robot_raiding = {
-	allow = {
-		is_at_war = no # Not allowed to change policies in this group while at war
-	}
-
 	potential = {
 		OR = {
 			has_valid_civic = civic_barbaric_despoilers
 			has_ascension_perk = ap_nihilistic_acquisition
 			has_valid_civic = civic_gk_emancipators
 			has_valid_civic = civic_gk_emancipators_megacorp
-			has_valid_civic = civic_gk_robo_liberators
-			has_valid_civic = civic_gk_robo_liberators_megacorp
-			has_valid_civic = civic_gk_robo_liberators_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+			has_valid_civic = civic_hive_bodysnatcher
 		}
 	}
 
 	option = {
 		name = "gk_robot_raiding_allowed"
 
-		policy_flags = {
-			gk_allow_robot_raiding
+		valid = {
+			is_at_war = no
 		}
 
-		valid = {
-			NOR = {
-				has_valid_civic = civic_gk_robo_liberators
-				has_valid_civic = civic_gk_robo_liberators_megacorp
-				has_valid_civic = civic_gk_robo_liberators_machine
-			}
+		policy_flags = {
+			gk_allow_robot_raiding
 		}
 
 		AI_weight = {
@@ -179,16 +151,12 @@ gk_robot_raiding = {
 	option = {
 		name = "gk_robot_raiding_forbidden"
 
-		policy_flags = {
-			gk_forbid_robot_raiding
+		valid = {
+			is_at_war = no
 		}
 
-		valid = {
-			NOR = {
-				has_valid_civic = civic_gk_robo_liberators
-				has_valid_civic = civic_gk_robo_liberators_megacorp
-				has_valid_civic = civic_gk_robo_liberators_machine
-			}
+		policy_flags = {
+			gk_forbid_robot_raiding
 		}
 
 		AI_weight = {
@@ -207,16 +175,21 @@ gk_robot_raiding = {
 	option = {
 		name = "gk_robot_raiding_only"
 
-		policy_flags = {
-			gk_robots_only_raiding
+		valid = {
+			is_at_war = no
+			OR = {
+				has_country_flag = synthetic_empire
+				has_ethic = ethic_materialist
+				has_ethic = ethic_fanatic_materialist
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_origin = origin_cybernetic_creed
+				is_machine_empire = yes
+			}
 		}
 
-		potential = {
-			OR = {
-				has_valid_civic = civic_gk_robo_liberators
-				has_valid_civic = civic_gk_robo_liberators_megacorp
-				has_valid_civic = civic_gk_robo_liberators_machine
-			}
+		policy_flags = {
+			gk_robots_only_raiding
 		}
 
 		AI_weight = {

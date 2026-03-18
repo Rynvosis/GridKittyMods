@@ -1,11 +1,19 @@
 # GK Raiding Pop Opinion Modifiers
 
-# They declared a Reaping war — flat opinion hit on declaration
+# Declared a Reaping war — flat opinion hit on declaration
 opinion_gk_declared_reaping = {
 	opinion = {
-		base = -50
+		base = -100
 		modifier = {
-			add = -25
+			set = 0
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+				is_homicidal = yes
+			}
+		}
+		modifier = {
+			add = -50
 			has_ethic = ethic_egalitarian
 			allows_purge = no
 			NOR = {
@@ -14,7 +22,7 @@ opinion_gk_declared_reaping = {
 			}
 		}
 		modifier = {
-			add = -50
+			add = -100
 			has_ethic = ethic_fanatic_egalitarian
 			allows_purge = no
 			NOR = {
@@ -23,7 +31,7 @@ opinion_gk_declared_reaping = {
 			}
 		}
 		modifier = {
-			add = -25
+			add = -50
 			values_others = yes
 			allows_purge = no
 			NOR = {
@@ -32,7 +40,7 @@ opinion_gk_declared_reaping = {
 			}
 		}
 		modifier = {
-			add = -50
+			add = -100
 			has_ethic = ethic_fanatic_xenophile
 			allows_purge = no
 			NOR = {
@@ -43,24 +51,25 @@ opinion_gk_declared_reaping = {
 	}
 
 	decay = {
-		base = 1
+		base = 0.5
 	}
 }
 
-# They reaped pops — accumulative per pop, applied on surrender
-opinion_gk_reaped_pops = {
+# Raided pops — unified per-pop rate for both plunder and reaping
+# Half of vanilla opinion_genocidal rate
+opinion_gk_raided_pops = {
 	opinion = {
-		base = 0
+		base = -0.025
 		modifier = {
-			add = -0.05
-			NOR = {
+			set = 0
+			OR = {
 				is_country_type = fallen_empire
 				is_country_type = awakened_fallen_empire
 				is_homicidal = yes
 			}
 		}
 		modifier = {
-			add = -0.05
+			add = -0.025
 			has_ethic = ethic_egalitarian
 			allows_purge = no
 			NOR = {
@@ -69,7 +78,7 @@ opinion_gk_reaped_pops = {
 			}
 		}
 		modifier = {
-			add = -0.10
+			add = -0.05
 			has_ethic = ethic_fanatic_egalitarian
 			allows_purge = no
 			NOR = {
@@ -78,7 +87,7 @@ opinion_gk_reaped_pops = {
 			}
 		}
 		modifier = {
-			add = -0.05
+			add = -0.025
 			values_others = yes
 			allows_purge = no
 			NOR = {
@@ -87,7 +96,7 @@ opinion_gk_reaped_pops = {
 			}
 		}
 		modifier = {
-			add = -0.10
+			add = -0.05
 			has_ethic = ethic_fanatic_xenophile
 			allows_purge = no
 			NOR = {
@@ -98,10 +107,89 @@ opinion_gk_reaped_pops = {
 	}
 
 	accumulative = yes
-
 	min = -1000
 
 	decay = {
 		base = 1
+	}
+}
+
+# Escalated plunder raids — per-press opinion hit, plunder only
+opinion_gk_escalated_plunder = {
+	opinion = {
+		base = -12
+		modifier = {
+			set = 0
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+				is_homicidal = yes
+			}
+		}
+		modifier = {
+			add = -6
+			has_ethic = ethic_egalitarian
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -12
+			has_ethic = ethic_fanatic_egalitarian
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -6
+			values_others = yes
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			add = -12
+			has_ethic = ethic_fanatic_xenophile
+			allows_purge = no
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	accumulative = yes
+	min = -200
+
+	decay = {
+		base = 1
+	}
+}
+
+# Target bonus — the actual victim always gets an extra opinion hit
+opinion_gk_raided_target = {
+	opinion = {
+		base = -25
+		modifier = {
+			set = 0
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+				is_homicidal = yes
+			}
+		}
+	}
+
+	accumulative = yes
+	min = -500
+
+	decay = {
+		base = 0.5
 	}
 }

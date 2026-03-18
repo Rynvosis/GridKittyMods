@@ -43,14 +43,11 @@ gk_has_unlimited_raiding = {
 gk_can_use_raiding_bombardment = {
 	owner = {
 		OR = {
-			#new raiding civics
 			has_valid_civic = civic_gk_emancipators
 			has_valid_civic = civic_gk_emancipators_megacorp
-			has_valid_civic = civic_gk_robo_liberators
-			has_valid_civic = civic_gk_robo_liberators_megacorp
-			has_valid_civic = civic_gk_robo_liberators_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+			has_valid_civic = civic_hive_bodysnatcher
 		}
 	}
 }
@@ -69,11 +66,9 @@ gk_can_use_raiding_cb = {
 		has_ascension_perk = ap_nihilistic_acquisition
 		has_valid_civic = civic_gk_emancipators
 		has_valid_civic = civic_gk_emancipators_megacorp
-		has_valid_civic = civic_gk_robo_liberators
-		has_valid_civic = civic_gk_robo_liberators_megacorp
-		has_valid_civic = civic_gk_robo_liberators_machine
 		has_valid_civic = civic_gk_barbaric_despoilers_machine
 		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		has_valid_civic = civic_hive_bodysnatcher
 	}
 }
 
@@ -90,46 +85,19 @@ gk_can_use_emancipation_cb = {
 }
 
 # This = country scope
-# Can use Robo-Liberation war goal (requires robo-liberation policy)
-gk_can_use_robo_liberation_cb = {
-	has_policy_flag = gk_focus_robo_liberation
-}
-
-# This = country scope
-# Can use Reaping war goal (requires despoiler civic)
+# Can use Reaping war goal (despoiler/predator civics only, NOT Nihilistic Acquisition)
 gk_can_use_reaping_cb = {
 	OR = {
 		has_valid_civic = civic_barbaric_despoilers
 		has_valid_civic = civic_gk_barbaric_despoilers_machine
 		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		has_valid_civic = civic_hive_bodysnatcher
 	}
 }
 
 ####################
 # War Goal Checks  #
 ####################
-# This = country scope
-gk_has_robo_liberation_war = {
-	any_war = {
-		OR = {
-			AND = {
-				is_war_participant = { who = prev side = attackers }
-				using_war_goal = {
-					type = wg_gk_robo_liberation
-					owner = attacker
-				}
-			}
-			AND = {
-				is_war_participant = { who = prev side = defenders }
-				using_war_goal = {
-					type = wg_gk_robo_liberation
-					owner = defender
-				}
-			}
-		}
-	}
-}
-
 # War-type specific "war with" triggers
 # This = country scope (defender/raidee)
 # Root = country scope (attacker/raider)
@@ -165,25 +133,6 @@ gk_has_emancipation_war_with = {
 					is_war_participant = { who = prev side = defenders }
 					is_war_participant = { who = prevprev side = attackers }
 					using_war_goal = { type = wg_gk_emancipation owner = defender }
-				}
-			}
-		}
-	}
-}
-
-gk_has_robo_liberation_war_with = {
-	root = {
-		any_war = {
-			OR = {
-				AND = {
-					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = prevprev side = defenders }
-					using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
-				}
-				AND = {
-					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = prevprev side = attackers }
-					using_war_goal = { type = wg_gk_robo_liberation owner = defender }
 				}
 			}
 		}
@@ -310,11 +259,6 @@ gk_can_abduct_pop_group_war_goal_check = {
 			planet = { owner = { gk_has_emancipation_war_with = yes } }
 			is_enslaved = yes
 		}
-		# Robo-liberation war with this defender - robots only
-		AND = {
-			planet = { owner = { gk_has_robo_liberation_war_with = yes } }
-			is_robotic_species = yes
-		}
 	}
 }
 
@@ -387,7 +331,6 @@ gk_can_abduct_pop_group_cap_check = {
 								OR = {
 									using_war_goal = { type = wg_plunder owner = attacker }
 									using_war_goal = { type = wg_gk_emancipation owner = attacker }
-									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
 								}
 								attacker = {
 									prevprevprev = {
@@ -401,7 +344,6 @@ gk_can_abduct_pop_group_cap_check = {
 								OR = {
 									using_war_goal = { type = wg_plunder owner = defender }
 									using_war_goal = { type = wg_gk_emancipation owner = defender }
-									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
 								}
 								defender = {
 									prevprevprev = {
@@ -420,26 +362,8 @@ gk_can_abduct_pop_group_cap_check = {
 # Root = hostile country (attacker/raider)
 # This = pop_group
 gk_can_abduct_pop_group_robot_check = {
-	# Check: Robot raiding policy and robo-liberation war restrictions
+	# Check: Robot raiding policy restrictions
 	OR = {
-		# Robo-liberators civic OR in robo-liberation war - ONLY robots
-		AND = {
-			OR = {
-				root = {
-					has_valid_civic = civic_gk_robo_liberators
-				}
-				root = {
-					has_valid_civic = civic_gk_robo_liberators_megacorp
-				}
-				root = {
-					has_valid_civic = civic_gk_robo_liberators_machine
-				}
-				root = {
-					gk_has_robo_liberation_war = yes
-				}
-			}
-			is_robotic_species = yes
-		}
 		# Robots only policy - ONLY robots
 		AND = {
 			root = {
@@ -454,18 +378,10 @@ gk_can_abduct_pop_group_robot_check = {
 			}
 			is_robotic_species = no
 		}
-		# Allow robot raiding (and not robo-liberator/robo-lib war) - both allowed
+		# Allow robot raiding - both allowed
 		AND = {
 			root = {
 				has_policy_flag = gk_allow_robot_raiding
-				NOR = {
-					has_valid_civic = civic_gk_robo_liberators
-					has_valid_civic = civic_gk_robo_liberators_megacorp
-					has_valid_civic = civic_gk_robo_liberators_machine
-				}
-				NOT = {
-					gk_has_robo_liberation_war = yes
-				}
 			}
 		}
 	}

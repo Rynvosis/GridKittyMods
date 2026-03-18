@@ -1,0 +1,34 @@
+# GK Raiding — Deprecated Civics
+# These civics are no longer selectable but remain defined so existing saves don't break.
+# Empires that already have them keep them until migration events swap them.
+# Remove this file in the next major update.
+
+civic_gk_robo_liberators = {
+	playable = { always = no }
+	ai_playable = { always = no }
+	description = civic_gk_robo_liberators_effects
+	potential = {
+		authority = { NOT = { value = auth_corporate } }
+	}
+	modification = yes
+}
+
+civic_gk_robo_liberators_megacorp = {
+	playable = { always = no }
+	ai_playable = { always = no }
+	description = civic_gk_robo_liberators_megacorp_effects
+	potential = {
+		authority = { value = auth_corporate }
+	}
+	modification = yes
+}
+
+civic_gk_robo_liberators_machine = {
+	playable = { always = no }
+	ai_playable = { always = no }
+	description = civic_gk_robo_liberators_machine_effects
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	modification = yes
+}

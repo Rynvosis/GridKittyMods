@@ -1,0 +1,19 @@
+# GK Raiding — Deprecated Councilors
+# Stub definitions for deprecated civics. No modifiers.
+# Remove this file in the next major update.
+
+councilor_gk_robo_liberators = {
+	leader_class = { scientist commander }
+	civic = civic_gk_robo_liberators
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_gk_robo_liberators_megacorp = {
+	leader_class = { scientist commander }
+	civic = civic_gk_robo_liberators_megacorp
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}

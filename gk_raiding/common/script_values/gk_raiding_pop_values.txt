@@ -207,11 +207,22 @@ gk_display_bucket_remaining_value = {
 # Display: Intel   #
 ####################
 
+# Eligible pops on raidee for intel display
+# This = raider, From = raidee (event scope)
 gk_display_eligible_remaining_value = {
 	base = 0
-	modifier = {
-		is_variable_set = gk_display_eligible_remaining
-		add = gk_display_eligible_remaining
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		trigger_scope = from
+		parameters = {
+			limit = {
+				pop_group_size > 0
+				is_sapient = yes
+				gk_can_abduct_pop_group_war_goal_check = yes
+				gk_can_abduct_pop_group_robot_check = yes
+			}
+		}
+		mode = add
 	}
 	floor = yes
 	min = 0

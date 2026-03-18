@@ -57,7 +57,6 @@ country_event = {
 								OR = {
 									using_war_goal = { type = wg_gk_emancipation owner = attacker }
 									using_war_goal = { type = wg_plunder owner = attacker }
-									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
 									using_war_goal = { type = wg_gk_reaping owner = attacker }
 								}
 							}
@@ -66,7 +65,6 @@ country_event = {
 								OR = {
 									using_war_goal = { type = wg_gk_emancipation owner = defender }
 									using_war_goal = { type = wg_plunder owner = defender }
-									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
 									using_war_goal = { type = wg_gk_reaping owner = defender }
 								}
 							}
@@ -108,7 +106,6 @@ country_event = {
 								OR = {
 									using_war_goal = { type = wg_gk_emancipation owner = attacker }
 									using_war_goal = { type = wg_plunder owner = attacker }
-									using_war_goal = { type = wg_gk_robo_liberation owner = attacker }
 									using_war_goal = { type = wg_gk_reaping owner = attacker }
 								}
 							}
@@ -117,7 +114,6 @@ country_event = {
 								OR = {
 									using_war_goal = { type = wg_gk_emancipation owner = defender }
 									using_war_goal = { type = wg_plunder owner = defender }
-									using_war_goal = { type = wg_gk_robo_liberation owner = defender }
 									using_war_goal = { type = wg_gk_reaping owner = defender }
 								}
 							}
@@ -238,7 +234,6 @@ country_event = {
 			OR = {
 				gk_has_standard_raiding_war_with = yes
 				gk_has_emancipation_war_with = yes
-				gk_has_robo_liberation_war_with = yes
 				gk_has_reaping_war_with = yes
 			}
 		}
@@ -578,7 +573,7 @@ country_event = {
 				}
 				while = {
 					count = root.gk_forfeited_pops
-					add_opinion_modifier = { who = root modifier = opinion_gk_reaped_pops }
+					add_opinion_modifier = { who = root modifier = opinion_gk_raided_pops }
 				}
 			}
 			event_target:gk_raider = {
@@ -755,22 +750,6 @@ country_event = {
 				}
 			}
 			set_country_flag = gk_escalation_has_intel
-			# Sum eligible pops on raidee for display
-			from = {
-				export_trigger_value_to_variable = {
-					trigger = count_owned_pop_amount
-					parameters = {
-						limit = {
-							pop_group_size > 0
-							is_sapient = yes
-							gk_can_abduct_pop_group_war_goal_check = yes
-							gk_can_abduct_pop_group_robot_check = yes
-						}
-					}
-					variable = gk_display_eligible_remaining
-				}
-			}
-			set_variable = { which = gk_display_eligible_remaining value = from.gk_display_eligible_remaining }
 		}
 		# Pre-compute tribute base for display (plunder only)
 		if = {
@@ -847,6 +826,28 @@ country_event = {
 			# Remove cap flag so raiding can continue
 			from = {
 				remove_country_flag = gk_raid_cap_reached_by_@root
+			}
+			# Opinion: escalation penalty (plunder only, not reaping)
+			if = {
+				limit = { gk_is_plunder_war_with_from = yes }
+				every_country = {
+					limit = {
+						has_communications = root
+						is_country_type = default
+						NOT = { is_same_value = root }
+					}
+					add_opinion_modifier = {
+						who = root
+						modifier = opinion_gk_escalated_plunder
+					}
+				}
+				# Extra hit on the target
+				from = {
+					add_opinion_modifier = {
+						who = root
+						modifier = opinion_gk_raided_target
+					}
+				}
 			}
 		}
 		ai_chance = {
@@ -1074,9 +1075,7 @@ country_event = {
 	after = {
 		hidden_effect = {
 			clear_variable = gk_display_bucket_remaining
-			clear_variable = gk_display_eligible_remaining
 			clear_variable = gk_influence_ratio_adj
-			from = { clear_variable = gk_display_eligible_remaining }
 			remove_country_flag = gk_escalation_has_intel
 			remove_country_flag = gk_raid_is_significant
 		}
@@ -1289,7 +1288,7 @@ country_event = {
 	id = gk_raiding_pops.511
 	title = GK_RAIDING_TRIBUTE_DEPOSIT_TITLE
 	desc = GK_RAIDING_TRIBUTE_DEPOSIT_DESC
-	picture = GFX_evt_treasure_chamber
+	picture = GFX_evt_treasure_pile
 	show_sound = event_celebration
 	is_triggered_only = yes
 
@@ -1373,7 +1372,7 @@ country_event = {
 	title = GK_RAIDING_TRIBUTE_REJECTED_TITLE
 	desc = GK_RAIDING_TRIBUTE_REJECTED_DESC
 	picture = GFX_evt_throne_room
-	show_sound = event_negative
+	show_sound = event_default
 	is_triggered_only = yes
 
 	option = {
@@ -1467,7 +1466,7 @@ country_event = {
 			factor = 30
 			modifier = {
 				factor = 3
-				war_exhaustion >= 0.5
+				def_war_exhaustion_sum >= 0.5
 			}
 			modifier = {
 				factor = 2
@@ -1548,7 +1547,7 @@ country_event = {
 	title = GK_RAIDING_REFORMS_REJECTED_TITLE
 	desc = GK_RAIDING_REFORMS_REJECTED_DESC
 	picture = GFX_evt_alien_propaganda
-	show_sound = event_negative
+	show_sound = event_default
 	is_triggered_only = yes
 
 	option = {
@@ -1641,7 +1640,7 @@ country_event = {
 			factor = 30
 			modifier = {
 				factor = 3
-				war_exhaustion >= 0.5
+				def_war_exhaustion_sum >= 0.5
 			}
 			modifier = {
 				factor = 2
@@ -1722,7 +1721,7 @@ country_event = {
 	title = GK_RAIDING_AUTONOMY_REJECTED_TITLE
 	desc = GK_RAIDING_AUTONOMY_REJECTED_DESC
 	picture = GFX_evt_robot_assembly_plant
-	show_sound = event_negative
+	show_sound = event_default
 	is_triggered_only = yes
 
 	option = {

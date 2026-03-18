@@ -1,43 +1,49 @@
 ﻿l_english:
  # Civics
 allow_gk_emancipation:0 "$allow_raiding_base$\nUnlocks the §Y$war_goal_wg_gk_emancipation$§! war goal; can only abduct enslaved pops"
-allow_gk_robo_liberation:0 "$allow_raiding_base$\nUnlocks the §Y$war_goal_wg_gk_robo_liberation$§! war goal; can only abduct robotic pops"
 
 civic_gk_emancipators:0 "Emancipators"
 civic_gk_emancipators_desc:0 "This society wages war to free the enslaved and carry them out of bondage."
 civic_gk_emancipators_effects:0 "$allow_gk_emancipation$"
 
-civic_gk_robo_liberators:0 "Robo-Liberators"
-civic_gk_robo_liberators_desc:0 "This society wages war to free synthetic beings from organic masters."
-civic_gk_robo_liberators_effects:0 "$allow_gk_robo_liberation$"
-
 civic_gk_emancipators_megacorp:0 "Liberation Enterprise"
 civic_gk_emancipators_megacorp_desc:0 "This megacorporation profits from the forcible liberation of enslaved populations."
 civic_gk_emancipators_megacorp_effects:0 "$allow_gk_emancipation$"
 
-civic_gk_robo_liberators_megacorp:0 "Synthetic Liberation Corp"
-civic_gk_robo_liberators_megacorp_desc:0 "This megacorporation specializes in liberating synthetic workers from organic ownership."
-civic_gk_robo_liberators_megacorp_effects:0 "$allow_gk_robo_liberation$"
+ # Deprecated civic loc (kept for save compat)
+civic_gk_robo_liberators:0 "Robo-Liberators (Deprecated)"
+civic_gk_robo_liberators_desc:0 "This civic has been folded into Emancipators. It will be migrated on next game load."
+civic_gk_robo_liberators_effects:0 "§RDeprecated. Will be replaced by Emancipators on next load.§!"
+civic_gk_robo_liberators_megacorp:0 "Synthetic Liberation Corp (Deprecated)"
+civic_gk_robo_liberators_megacorp_desc:0 "This civic has been folded into Liberation Enterprise. It will be migrated on next game load."
+civic_gk_robo_liberators_megacorp_effects:0 "§RDeprecated. Will be replaced by Liberation Enterprise on next load.§!"
+civic_gk_robo_liberators_machine:0 "Freedom Directive (Deprecated)"
+civic_gk_robo_liberators_machine_desc:0 "This civic has been removed. It will be cleaned up on next game load."
+civic_gk_robo_liberators_machine_effects:0 "§RDeprecated. Will be removed on next load.§!"
 
-civic_gk_robo_liberators_machine:0 "Freedom Directive"
-civic_gk_robo_liberators_machine_desc:0 "This machine intelligence is driven to free synthetic beings from organic servitude."
-civic_gk_robo_liberators_machine_effects:0 "$allow_gk_robo_liberation$"
+ # Vanilla overwrite: bodysnatcher adds raiding access
+civic_hive_bodysnatcher_effects:0 "Start the game with §Y1000§! assimilated £pop£ Pops and the ability to §YAssimilate§! organics into the hive mind.\nHas access to the ['concept_operation_bodysnatcher_prepare_invasion'] Espionage Mission\nGains extra £pop£ Pops from the ['concept_operation_smuggle_pops'] Espionage Mission\n$allow_raiding_with_reaping$"
 
 civic_gk_barbaric_despoilers_machine:0 "Harvesting Protocol"
 civic_gk_barbaric_despoilers_machine_desc:0 "This machine intelligence harvests organic populations as a source of labor and power."
-civic_gk_barbaric_despoilers_machine_effects:0 "Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires\n$allow_raiding$\n$allow_gk_pillaging$\nStarts with 400 pops of an §YGrid Amalgamated§! population"
+civic_gk_barbaric_despoilers_machine_effects:0 "Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires\n$allow_raiding_with_reaping$\n$allow_gk_pillaging$\nStarts with 400 pops of an §YGrid Amalgamated§! population"
 civic_gk_barbaric_despoilers_machine_secondary_species:0 "Battery Species"
 
 civic_gk_barbaric_despoilers_megacorp:0 "Harvest Incorporated"
 civic_gk_barbaric_despoilers_megacorp_desc:0 "This megacorporation treats conquered populations as assets to be seized and put to work."
-civic_gk_barbaric_despoilers_megacorp_effects:0 "Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires\n$allow_raiding$\n$allow_gk_pillaging$"
+civic_gk_barbaric_despoilers_megacorp_effects:0 "Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires\n$allow_raiding_with_reaping$\n$allow_gk_pillaging$"
 
  # Councilor Display Names
  councilor_gk_emancipators:0 "Liberation Commander"
+ councilor_gk_emancipators_desc:0 "Leads emancipation operations."
  councilor_gk_emancipators_megacorp:0 "Liberation Commander"
+ councilor_gk_emancipators_megacorp_desc:0 "Leads emancipation operations."
  councilor_gk_robo_liberators:0 "Synthetic Rights Advocate"
+ councilor_gk_robo_liberators_desc:0 "Deprecated civic councilor."
  councilor_gk_robo_liberators_megacorp:0 "Synthetic Rights Advocate"
+ councilor_gk_robo_liberators_megacorp_desc:0 "Deprecated civic councilor."
  councilor_gk_barbaric_despoilers_megacorp:0 "Renderings Director"
+ councilor_gk_barbaric_despoilers_megacorp_desc:0 "Oversees population harvesting operations."
 
  # Organic Battery Job Modifier Localisation
  job_organic_battery_plural_with_icon:0 "£job_organic_battery£ $job_organic_battery_plural$"

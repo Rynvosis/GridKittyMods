@@ -23,7 +23,7 @@ wg_gk_reaping = {
 
 	potential = {
 		has_total_war_cb = no
-		gk_can_use_reaping_cb = yes
+		has_policy_flag = gk_focus_reaping
 		NOT = { is_in_federation_with = from }
 		NAND = {
 			is_galactic_emperor = yes
@@ -90,7 +90,7 @@ wg_gk_reaping = {
 # Enslaved pops only, no resource pillaging
 # Bucket-based escalation cap
 wg_gk_emancipation = {
-	casus_belli = cb_despoliation
+	casus_belli = cb_gk_emancipation
 	hide_if_no_cb = no
 	total_war = no
 
@@ -164,90 +164,6 @@ wg_gk_emancipation = {
 		modifier = {
 			factor = 3
 			has_ethic = ethic_fanatic_egalitarian
-		}
-	}
-}
-
-#####################
-# ROBO-LIBERATION   #
-#####################
-# Robotic pops only, no resource pillaging
-# Bucket-based escalation cap
-wg_gk_robo_liberation = {
-	casus_belli = cb_despoliation
-	hide_if_no_cb = no
-	total_war = no
-
-	galactic_empire_joins_defender = {
-		from = { is_galactic_emperor = yes }
-		imperial_authority >= 100
-	}
-
-	surrender_acceptance = -75
-
-	potential = {
-		has_total_war_cb = no
-		gk_can_use_robo_liberation_cb = yes
-		NOT = { is_in_federation_with = from }
-		NAND = {
-			is_galactic_emperor = yes
-			from = { is_galactic_community_member = yes }
-		}
-	}
-
-	possible = {
-		custom_tooltip = {
-			fail_text = gk_requires_enemy_has_robots
-			from = {
-				is_country_type = default
-				any_owned_planet = {
-					any_owned_pop_group = {
-						is_robotic_species = yes
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = cannot_use_against_emperor
-			OR = {
-				from = { is_galactic_emperor = no }
-				is_galactic_community_member = no
-			}
-		}
-		custom_tooltip = {
-			fail_text = pax_galactica_active
-			NAND = {
-				is_active_resolution = resolution_emperor_pax_galactica
-				is_galactic_community_member = yes
-				from = { is_galactic_community_member = yes }
-			}
-		}
-	}
-
-	on_accept = {
-		custom_tooltip = wg_gk_robo_liberation_accept_tooltip
-		hidden_effect = {
-			country_event = {
-				id = gk_raiding_pops.320
-				scopes = { from = from }
-			}
-		}
-	}
-
-	on_status_quo = {
-		custom_tooltip = wg_gk_robo_liberation_status_quo_tooltip
-		# Keep what you've already taken
-	}
-
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 3
-			has_ethic = ethic_materialist
-		}
-		modifier = {
-			factor = 3
-			has_ethic = ethic_fanatic_materialist
 		}
 	}
 }

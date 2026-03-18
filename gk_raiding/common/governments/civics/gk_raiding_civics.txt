@@ -52,36 +52,6 @@ civic_gk_emancipators = {
 	# The policy itself grants the base modifiers
 }
 
-####################
-# ROBO-LIBERATORS  #
-####################
-# Materialist civic focused on "liberating" robotic pops
-# Grants access to Robo-Liberation policy/war goal
-civic_gk_robo_liberators = {
-	playable = { always = yes }
-	ai_playable = { always = yes }
-
-	description = civic_gk_robo_liberators_effects
-
-	potential = {
-		authority = {
-			NOT = { value = auth_corporate }
-		}
-	}
-
-	random_weight = {
-		base = 5
-		modifier = {
-			factor = 2
-			has_ethic = ethic_fanatic_materialist
-		}
-	}
-
-	alternate_civic_version = civic_gk_robo_liberators_megacorp
-
-	modification = yes
-}
-
 ##############################
 # MEGACORP VARIANTS          #
 ##############################
@@ -127,32 +97,6 @@ civic_gk_emancipators_megacorp = {
 	}
 
 	alternate_civic_version = civic_gk_emancipators
-
-	modification = yes
-}
-
-# Megacorp variant of Robo-Liberators
-civic_gk_robo_liberators_megacorp = {
-	playable = { always = yes }
-	ai_playable = { always = yes }
-
-	description = civic_gk_robo_liberators_megacorp_effects
-
-	potential = {
-		authority = {
-			value = auth_corporate
-		}
-	}
-
-	random_weight = {
-		base = 5
-		modifier = {
-			factor = 2
-			has_ethic = ethic_fanatic_materialist
-		}
-	}
-
-	alternate_civic_version = civic_gk_robo_liberators
 
 	modification = yes
 }
@@ -208,32 +152,6 @@ civic_gk_barbaric_despoilers_machine = {
 	#TODO: Add buildable versions of the synaptic lathe buildings to this civic so they can juice up their grid amalgamated pops even better.
 	#and maybe for each of the 3 ascensions, a new special building related to the ascesnion
 }
-
-# Machine Intelligence variant of Robo-Liberators
-civic_gk_robo_liberators_machine = {
-	playable = { always = yes }
-	ai_playable = { always = yes }
-
-	description = civic_gk_robo_liberators_machine_effects
-
-	potential = {
-		authority = {
-			value = auth_machine_intelligence
-		}
-	}
-
-	random_weight = {
-		base = 5
-	}
-
-	modifier = {
-		planet_pops_robotics_upkeep_mult = -0.15
-		planet_pop_assembly_mult = 0.10
-		councilor_gestalt_legion_exp_gain = 0.25
-	}
-}
-
-
 
 
 ##############################

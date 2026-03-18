@@ -1,4 +1,6 @@
 # MIGRATION — safe to delete once all saves have loaded with this version
+# 1-2: bucket rate migration (Phase 1)
+# 10-11: robo-liberator civic deprecation (Phase 3)
 namespace = gk_raiding_migration
 
 # SP entry point — fires the migration on global_event_country
@@ -96,3 +98,4 @@ country_event = {
 		}
 	}
 }
+

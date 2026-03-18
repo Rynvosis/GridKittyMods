@@ -1,8 +1,9 @@
 # Version last updated: v4.2.3
-# Overwrite: cb_despoliation (expanded for all gk_raiding pop-raiding war goals)
-# Overwrite: cb_pirate_raid (expanded for gk_raiding resource pillaging)
+# Overwrite: cb_despoliation (plunder + reaping war goals)
+# Overwrite: cb_pirate_raid (resource pillaging)
 
-# Pop raiding CB — all Barbaric Despoiler variants, Nihilistic Acquisition, Emancipators, Robo-Liberators
+# Pop raiding CB — plunder and reaping wars
+# Access gated by raiding focus policy
 cb_despoliation = {
 	show_in_diplomacy = no
 	show_notification = no
@@ -10,15 +11,8 @@ cb_despoliation = {
 	potential = {
 		is_country_type = default
 		OR = {
-			has_valid_civic = civic_barbaric_despoilers
-			has_ascension_perk = ap_nihilistic_acquisition
-			has_valid_civic = civic_gk_emancipators
-			has_valid_civic = civic_gk_emancipators_megacorp
-			has_valid_civic = civic_gk_robo_liberators
-			has_valid_civic = civic_gk_robo_liberators_megacorp
-			has_valid_civic = civic_gk_robo_liberators_machine
-			has_valid_civic = civic_gk_barbaric_despoilers_machine
-			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+			has_policy_flag = gk_focus_plunder
+			has_policy_flag = gk_focus_reaping
 		}
 	}
 
@@ -28,6 +22,53 @@ cb_despoliation = {
 		OR = {
 			is_subject = no
 			overlord = { NOT = { is_same_value = from } }
+		}
+	}
+
+	proxy_war_resources = {
+		category = proxy_war
+		cost = {
+			influence = 100
+		}
+	}
+	on_proxy_war_start = {
+		pay_proxy_war_additional_resources = { VALUE = -25 }
+	}
+}
+
+# Emancipation CB — separate from despoliation
+# Used by wg_gk_emancipation
+cb_gk_emancipation = {
+	show_in_diplomacy = no
+	show_notification = no
+
+	potential = {
+		is_country_type = default
+		has_policy_flag = gk_focus_emancipation
+	}
+
+	is_valid = {
+		has_total_war_cb = no
+		NOT = { is_overlord_to = FROM }
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+		# Target must have enslaved pops (organic or synthetic)
+		FROM = {
+			OR = {
+				any_owned_pop_group = {
+					is_enslaved = yes
+				}
+				# Synthetics with servitude rights (if attacker has robots-only policy)
+				AND = {
+					root = { has_policy_flag = gk_robots_only_raiding }
+					any_owned_pop_group = {
+						is_robotic_species = yes
+						is_enslaved = yes
+					}
+				}
+			}
 		}
 	}
 

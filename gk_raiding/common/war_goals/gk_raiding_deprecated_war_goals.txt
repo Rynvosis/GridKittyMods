@@ -1,0 +1,38 @@
+# GK Raiding — Deprecated War Goals
+# Stub definitions so existing wars resolve normally.
+# potential = always no prevents new wars from using this goal.
+# Remove this file in the next major update.
+
+wg_gk_robo_liberation = {
+	casus_belli = cb_despoliation
+	hide_if_no_cb = no
+	total_war = no
+
+	surrender_acceptance = -75
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		always = yes
+	}
+
+	on_accept = {
+		custom_tooltip = wg_gk_robo_liberation_accept_tooltip
+		hidden_effect = {
+			country_event = {
+				id = gk_raiding_pops.320
+				scopes = { from = from }
+			}
+		}
+	}
+
+	on_status_quo = {
+		custom_tooltip = wg_gk_robo_liberation_status_quo_tooltip
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
