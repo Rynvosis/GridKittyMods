@@ -362,60 +362,10 @@ gk_add_surrender_planet_pillage_to_storage = {
 gk_calculate_base_loot = {
 	save_event_target_as = gk_loot_planet
 
+	# Effective yield: base + modifier + war goal + pivot (all in one script value)
 	set_variable = {
 		which = gk_loot_months_per_packet
-		value = @gk_base_loot_months_per_packet
-	}
-
-	event_target:gk_raider = {
-		if = {
-			limit = {
-				any_war = {
-					OR = {
-						AND = {
-							is_war_participant = { who = prev side = attackers }
-							is_war_participant = { who = event_target:gk_loot_planet.owner side = defenders }
-							using_war_goal = { type = wg_plunder_raid owner = attacker }
-						}
-						AND = {
-							is_war_participant = { who = prev side = defenders }
-							is_war_participant = { who = event_target:gk_loot_planet.owner side = attackers }
-							using_war_goal = { type = wg_plunder_raid owner = defender }
-						}
-					}
-				}
-			}
-			event_target:gk_loot_planet = {
-				change_variable = {
-					which = gk_loot_months_per_packet
-					value = @gk_pillage_war_bonus_loot_months_per_packet
-				}
-			}
-		}
-		if = {
-			limit = {
-				gk_has_native_pillage_access = yes
-				has_tradition = tr_gk_raiding_despoliation_adopt
-			}
-			event_target:gk_loot_planet = {
-				change_variable = {
-					which = gk_loot_months_per_packet
-					value = @gk_native_despoliation_bonus_loot_months_per_packet
-				}
-			}
-		}
-		# Pivot to Pillaging bonus from escalation
-		if = {
-			limit = {
-				has_country_flag = gk_pivoted_to_pillaging_against_@event_target:gk_loot_planet.owner
-			}
-			event_target:gk_loot_planet = {
-				change_variable = {
-					which = gk_loot_months_per_packet
-					value = @gk_pivot_bonus_loot_months_per_packet
-				}
-			}
-		}
+		value = event_target:gk_raider.value:gk_effective_pillage_yield|TARGET|event_target:gk_loot_planet.owner|
 	}
 
 	set_variable = {
@@ -550,36 +500,10 @@ gk_add_flat_pillage_spoils = {
 gk_transform_loot = {
 	gk_ensure_loot_variables = yes
 
-	gk_apply_efficiency = { RESOURCE = trade }
-	gk_apply_efficiency = { RESOURCE = energy }
-	gk_apply_efficiency = { RESOURCE = minerals }
-	gk_apply_efficiency = { RESOURCE = food }
-	gk_apply_efficiency = { RESOURCE = consumer_goods }
-	gk_apply_efficiency = { RESOURCE = alloys }
-	gk_apply_efficiency = { RESOURCE = unity }
-	gk_apply_efficiency = { RESOURCE = physics_research }
-	gk_apply_efficiency = { RESOURCE = society_research }
-	gk_apply_efficiency = { RESOURCE = engineering_research }
-	gk_apply_efficiency = { RESOURCE = volatile_motes }
-	gk_apply_efficiency = { RESOURCE = exotic_gases }
-	gk_apply_efficiency = { RESOURCE = rare_crystals }
-	gk_apply_efficiency = { RESOURCE = sr_living_metal }
-	gk_apply_efficiency = { RESOURCE = sr_zro }
-	gk_apply_efficiency = { RESOURCE = sr_dark_matter }
-	gk_apply_efficiency = { RESOURCE = nanites }
-
 	gk_apply_loot_conversions = yes
 	gk_apply_flat_pillage_spoils = yes
 }
 
-gk_apply_efficiency = {
-	event_target:gk_storage_scope = {
-		multiply_variable = {
-			which = gk_loot_$RESOURCE$
-			value = event_target:gk_raider.value:gk_pillage_efficiency_mult
-		}
-	}
-}
 
 gk_apply_loot_conversions = {
 	event_target:gk_storage_scope = {
@@ -639,10 +563,6 @@ gk_apply_flat_pillage_spoils = {
 				is_variable_set = gk_flat_spoils_trade
 				check_variable = { which = gk_flat_spoils_trade value > 0 }
 			}
-			multiply_variable = {
-				which = gk_flat_spoils_trade
-				value = event_target:gk_raider.value:gk_pillage_efficiency_mult
-			}
 			change_variable = {
 				which = gk_loot_trade
 				value = gk_flat_spoils_trade
@@ -654,10 +574,6 @@ gk_apply_flat_pillage_spoils = {
 				is_variable_set = gk_flat_spoils_minerals
 				check_variable = { which = gk_flat_spoils_minerals value > 0 }
 			}
-			multiply_variable = {
-				which = gk_flat_spoils_minerals
-				value = event_target:gk_raider.value:gk_pillage_efficiency_mult
-			}
 			change_variable = {
 				which = gk_loot_minerals
 				value = gk_flat_spoils_minerals
@@ -668,10 +584,6 @@ gk_apply_flat_pillage_spoils = {
 			limit = {
 				is_variable_set = gk_flat_spoils_alloys
 				check_variable = { which = gk_flat_spoils_alloys value > 0 }
-			}
-			multiply_variable = {
-				which = gk_flat_spoils_alloys
-				value = event_target:gk_raider.value:gk_pillage_efficiency_mult
 			}
 			change_variable = {
 				which = gk_loot_alloys
@@ -875,9 +787,30 @@ gk_apply_planet_invasion_tribute = {
 # Checks from highest tier down; never downgrades an existing higher-tier modifier
 # This = Planet
 gk_apply_planet_tribute_from_effective_remaining = {
+	# Convert effective_remaining (0-50) to tier (0-5) by dividing by 10
+	set_variable = { which = gk_tribute_tier_temp value = gk_effective_remaining_temp }
+	divide_variable = { which = gk_tribute_tier_temp value = 10 }
+	floor_variable = gk_tribute_tier_temp
+	# Cap at raider's effective pillage yield
+	set_variable = {
+		which = gk_yield_cap_temp
+		value = event_target:gk_raider.value:gk_effective_pillage_yield|TARGET|owner|
+	}
+	if = {
+		limit = { check_variable = { which = gk_tribute_tier_temp value > gk_yield_cap_temp } }
+		set_variable = { which = gk_tribute_tier_temp value = gk_yield_cap_temp }
+	}
+	# Cap at max tier 5
+	if = {
+		limit = { check_variable = { which = gk_tribute_tier_temp value > 5 } }
+		set_variable = { which = gk_tribute_tier_temp value = 5 }
+	}
+	clear_variable = gk_yield_cap_temp
+	clear_variable = gk_effective_remaining_temp
+
 	if = {
 		limit = {
-			check_variable = { which = gk_effective_remaining_temp value > 49 }
+			check_variable = { which = gk_tribute_tier_temp value >= 5 }
 		}
 		# Tier 5 (50%) — don't downgrade from existing tier 5
 		if = {
@@ -895,9 +828,9 @@ gk_apply_planet_tribute_from_effective_remaining = {
 	}
 	else_if = {
 		limit = {
-			check_variable = { which = gk_effective_remaining_temp value > 39 }
+			check_variable = { which = gk_tribute_tier_temp value >= 4 }
 		}
-		# Tier 4 (40%) — skip if planet already has tier 4 or 5
+		# Tier 4 — skip if planet already has tier 4 or 5
 		if = {
 			limit = {
 				NOT = { has_modifier = gk_planet_tribute_5 }
@@ -915,9 +848,9 @@ gk_apply_planet_tribute_from_effective_remaining = {
 	}
 	else_if = {
 		limit = {
-			check_variable = { which = gk_effective_remaining_temp value > 29 }
+			check_variable = { which = gk_tribute_tier_temp value >= 3 }
 		}
-		# Tier 3 (30%) — skip if planet already has tier 3, 4, or 5
+		# Tier 3 — skip if planet already has tier 3, 4, or 5
 		if = {
 			limit = {
 				NOT = { has_modifier = gk_planet_tribute_5 }
@@ -935,9 +868,9 @@ gk_apply_planet_tribute_from_effective_remaining = {
 	}
 	else_if = {
 		limit = {
-			check_variable = { which = gk_effective_remaining_temp value > 19 }
+			check_variable = { which = gk_tribute_tier_temp value >= 2 }
 		}
-		# Tier 2 (20%) — skip if planet already has tier 2+
+		# Tier 2 — skip if planet already has tier 2+
 		if = {
 			limit = {
 				NOT = { has_modifier = gk_planet_tribute_5 }
@@ -955,9 +888,9 @@ gk_apply_planet_tribute_from_effective_remaining = {
 	}
 	else_if = {
 		limit = {
-			check_variable = { which = gk_effective_remaining_temp value > 9 }
+			check_variable = { which = gk_tribute_tier_temp value >= 1 }
 		}
-		# Tier 1 (10%) — skip if planet already has tier 1+
+		# Tier 1 — skip if planet already has tier 1+
 		if = {
 			limit = {
 				NOT = { has_modifier = gk_planet_tribute_5 }
@@ -991,7 +924,7 @@ gk_apply_planet_tribute_from_effective_remaining = {
 		}
 	}
 
-	clear_variable = gk_effective_remaining_temp
+	clear_variable = gk_tribute_tier_temp
 }
 
 # Mark a planet as already fully cashed out by invasion for this raider

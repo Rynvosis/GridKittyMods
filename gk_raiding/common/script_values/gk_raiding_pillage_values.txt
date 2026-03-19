@@ -4,9 +4,35 @@
 # Pillage Values   #
 ####################
 
-gk_pillage_efficiency_mult = {
-	base = 1
-	add = modifier:gk_pillage_efficiency
+# Effective pillage yield: base + modifier + war goal bonus if applicable
+# This = raider country
+# Parameter: TARGET = target country scope to check war goal against
+gk_effective_pillage_yield = {
+	base = @gk_base_loot_months_per_packet
+	add = modifier:gk_pillage_yield
+	# +3 if in pillage war against this target
+	modifier = {
+		any_war = {
+			OR = {
+				AND = {
+					is_war_participant = { who = prev side = attackers }
+					is_war_participant = { who = $TARGET$ side = defenders }
+					using_war_goal = { type = wg_plunder_raid owner = attacker }
+				}
+				AND = {
+					is_war_participant = { who = prev side = defenders }
+					is_war_participant = { who = $TARGET$ side = attackers }
+					using_war_goal = { type = wg_plunder_raid owner = defender }
+				}
+			}
+		}
+		add = @gk_pillage_war_bonus_loot_months
+	}
+	# +1 if pivoted to pillaging against this target
+	modifier = {
+		has_country_flag = gk_pivoted_to_pillaging_against_@$TARGET$
+		add = 1
+	}
 }
 
 gk_base_loot_value = {

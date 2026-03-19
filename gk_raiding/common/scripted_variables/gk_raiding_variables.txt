@@ -23,7 +23,6 @@
 # Pop Raiding — Escalation #
 ############################
 
-@gk_pivot_bonus_loot_months_per_packet = 1
 @gk_tribute_offer_timeout_days = 90
 @gk_tribute_alloy_ratio = 0.25
 
@@ -40,9 +39,8 @@
 ############################
 
 @gk_pillage_devastation_per_packet = 10
-@gk_base_loot_months_per_packet = 1
-@gk_pillage_war_bonus_loot_months_per_packet = 2
-@gk_native_despoliation_bonus_loot_months_per_packet = 1
+@gk_base_loot_months_per_packet = 2
+@gk_pillage_war_bonus_loot_months = 3
 @gk_flat_trade_spoils_per_loot_month = 100
 @gk_flat_mineral_spoils_per_loot_month = 100
 @gk_flat_alloy_spoils_per_loot_month_habitat = 25

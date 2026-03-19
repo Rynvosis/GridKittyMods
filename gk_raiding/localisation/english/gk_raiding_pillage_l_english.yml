@@ -1,6 +1,6 @@
 ﻿l_english:
  # Scripted Modifiers
- mod_gk_pillage_efficiency:0 "Resources from Pillaging"
+ mod_gk_pillage_yield:0 "Pillage Yield"
 
 gk_planet_tribute_0:0 "Lightly Ransacked"
 gk_planet_tribute_0_desc:0 "Raiding forces made off with a small share of this planet's output."

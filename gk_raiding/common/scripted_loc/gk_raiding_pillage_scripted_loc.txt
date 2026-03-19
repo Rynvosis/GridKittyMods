@@ -1,6 +1,1 @@
 # GK Raiding Pillage Scripted Localization
-
-defined_text = {
-	name = GkRaiderPillageEfficiency
-	value = value:gk_pillage_efficiency_mult
-}
