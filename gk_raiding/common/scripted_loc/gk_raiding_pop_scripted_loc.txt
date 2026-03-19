@@ -63,7 +63,14 @@ defined_text = {
 		localization_key = GK_RAIDING_ESCALATION_PRESS_FINAL_TOOLTIP
 	}
 	text = {
-		trigger = { always = yes }
+		trigger = {
+			OR = {
+				NOT = { exists = event_target:gk_raid_tracker }
+				event_target:gk_raid_tracker = {
+					NOT = { check_variable = { which = gk_escalation_tier value >= 4 } }
+				}
+			}
+		}
 		localization_key = GK_RAIDING_ESCALATION_PRESS_NORMAL_TOOLTIP
 	}
 }

@@ -14,11 +14,14 @@ gk_raiding_focus = {
 		}
 	}
 
+	allow = {
+		is_at_war = no
+	}
+
 	option = {
 		name = "gk_raiding_focus_plunder"
 
 		valid = {
-			is_at_war = no
 			NOR = {
 				has_valid_civic = civic_gk_emancipators
 				has_valid_civic = civic_gk_emancipators_megacorp
@@ -38,7 +41,6 @@ gk_raiding_focus = {
 		name = "gk_raiding_focus_no_raiding"
 
 		valid = {
-			is_at_war = no
 			NOR = {
 				has_valid_civic = civic_gk_emancipators
 				has_valid_civic = civic_gk_emancipators_megacorp
@@ -62,7 +64,6 @@ gk_raiding_focus = {
 		name = "gk_raiding_focus_emancipation"
 
 		valid = {
-			is_at_war = no
 			OR = {
 				has_valid_civic = civic_gk_emancipators
 				has_valid_civic = civic_gk_emancipators_megacorp
@@ -92,7 +93,6 @@ gk_raiding_focus = {
 		name = "gk_raiding_focus_reaping"
 
 		valid = {
-			is_at_war = no
 			gk_can_use_reaping_cb = yes
 		}
 
@@ -124,12 +124,12 @@ gk_robot_raiding = {
 		}
 	}
 
+	allow = {
+		is_at_war = no
+	}
+
 	option = {
 		name = "gk_robot_raiding_allowed"
-
-		valid = {
-			is_at_war = no
-		}
 
 		policy_flags = {
 			gk_allow_robot_raiding
@@ -150,10 +150,6 @@ gk_robot_raiding = {
 
 	option = {
 		name = "gk_robot_raiding_forbidden"
-
-		valid = {
-			is_at_war = no
-		}
 
 		policy_flags = {
 			gk_forbid_robot_raiding
@@ -176,7 +172,6 @@ gk_robot_raiding = {
 		name = "gk_robot_raiding_only"
 
 		valid = {
-			is_at_war = no
 			OR = {
 				has_country_flag = synthetic_empire
 				has_ethic = ethic_materialist

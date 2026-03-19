@@ -693,53 +693,17 @@ country_event = {
 			save_event_target_as = gk_raidee
 		}
 		gk_get_or_create_raid_tracker = yes
-		# Compute next bucket yield for display: raidee pops * next tier rate
-		set_variable = { which = gk_display_bucket_remaining value = from.trigger:count_owned_pop_amount }
-		# Next tier rate lookup (current tier just completed, so next = tier + 1)
-		set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_1 }
-		if = {
-			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 1 } } }
-			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_2 }
-		}
-		if = {
-			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 2 } } }
-			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_3 }
-		}
-		if = {
-			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 3 } } }
-			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_4 }
-		}
-		if = {
-			limit = { event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value >= 4 } } }
-			set_variable = { which = gk_display_next_rate value = @gk_bucket_rate_5 }
-		}
-		multiply_variable = {
-			which = gk_display_bucket_remaining
-			value = gk_display_next_rate
-		}
-		clear_variable = gk_display_next_rate
-		# Compute dynamic influence cost adjustment: 25 * tier * (yield / raider_pops) / baseline
-		# Round to nearest 25
-		export_trigger_value_to_variable = {
-			trigger = count_owned_pop_amount
-			variable = gk_raider_pops_temp
-		}
-		set_variable = { which = gk_influence_ratio_adj value = gk_display_bucket_remaining }
-		divide_variable = { which = gk_influence_ratio_adj value = gk_raider_pops_temp }
-		divide_variable = { which = gk_influence_ratio_adj value = @gk_significant_raid_baseline }
-		multiply_variable = { which = gk_influence_ratio_adj value = @gk_escalation_cost_per_tier }
-		multiply_variable = { which = gk_influence_ratio_adj value = event_target:gk_raid_tracker.gk_escalation_tier }
-		# Round to nearest 25
-		change_variable = { which = gk_influence_ratio_adj value = 12.5 }
-		divide_variable = { which = gk_influence_ratio_adj value = 25 }
-		floor_variable = gk_influence_ratio_adj
-		multiply_variable = { which = gk_influence_ratio_adj value = 25 }
 		# Set significance flag for descriptions and AI weights
+		# (influence cost > base means the raid is meaningful relative to our size)
 		if = {
-			limit = { check_variable = { which = gk_influence_ratio_adj value > 0 } }
+			limit = {
+				check_variable = {
+					which = value:gk_escalation_influence_cost
+					value > @gk_escalation_base_cost
+				}
+			}
 			set_country_flag = gk_raid_is_significant
 		}
-		clear_variable = gk_raider_pops_temp
 		# Intel hook: show eligible pop count if sufficient intel
 		if = {
 			limit = {
@@ -1074,8 +1038,6 @@ country_event = {
 
 	after = {
 		hidden_effect = {
-			clear_variable = gk_display_bucket_remaining
-			clear_variable = gk_influence_ratio_adj
 			remove_country_flag = gk_escalation_has_intel
 			remove_country_flag = gk_raid_is_significant
 		}

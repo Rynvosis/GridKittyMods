@@ -192,13 +192,38 @@ gk_display_pops_taken_value = {
 # This = cap_raider country
 # event_target:gk_raid_tracker = tracker with gk_escalation_tier
 
-# Next bucket estimated yield (pre-computed in event immediate, stored on root)
+# Next tier rate (current tier just completed, so next = tier + 1)
+# This = raider, event_target:gk_raid_tracker must exist
+gk_next_bucket_rate = {
+	base = @gk_bucket_rate_1
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 1 } }
+		set = @gk_bucket_rate_2
+	}
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 2 } }
+		set = @gk_bucket_rate_3
+	}
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 3 } }
+		set = @gk_bucket_rate_4
+	}
+	modifier = {
+		event_target:gk_raid_tracker = { check_variable = { which = gk_escalation_tier value = 4 } }
+		set = @gk_bucket_rate_5
+	}
+}
+
+# Next bucket estimated yield: raidee_pops * next_tier_rate
+# This = raider, From = raidee, event_target:gk_raid_tracker must exist
 gk_display_bucket_remaining_value = {
 	base = 0
-	modifier = {
-		is_variable_set = gk_display_bucket_remaining
-		add = gk_display_bucket_remaining
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		trigger_scope = from
+		mode = add
 	}
+	mult = value:gk_next_bucket_rate
 	floor = yes
 	min = 0
 }
@@ -298,14 +323,33 @@ gk_tribute_production_years = {
 # Escalation Cost  #
 ####################
 
-# Influence cost: 50 base + dynamic tier premium scaled by raid significance
-# Premium = 25 * tier * (bucket_yield / raider_pops) / 0.05, rounded to nearest 25
-# Pre-computed as gk_influence_ratio_adj in .500 immediate
-# This = cap_raider country
-gk_escalation_influence_cost = {
-	base = @gk_escalation_base_cost
-	modifier = {
-		is_variable_set = gk_influence_ratio_adj
-		add = gk_influence_ratio_adj
+# Raider pop count (this = raider)
+gk_raider_pop_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = add
 	}
+	min = 1
+}
+
+# Dynamic influence cost: 50 + 25 * tier * (yield / raider_pops) / 0.05, round to 25
+# This = raider, From = raidee, event_target:gk_raid_tracker must exist
+gk_escalation_influence_cost = {
+	base = 0
+	# Start with bucket yield (raidee pops * next tier rate)
+	add = value:gk_display_bucket_remaining_value
+	# Divide by raider pops to get ratio
+	divide = value:gk_raider_pop_count
+	# Divide by baseline (0.05) to get significance factor
+	divide = @gk_significant_raid_baseline
+	# Multiply by cost per tier
+	multiply = @gk_escalation_cost_per_tier
+	# Multiply by current tier
+	multiply = event_target:gk_raid_tracker.gk_escalation_tier
+	# Round to nearest 25
+	round_to = 25
+	min = 0
+	# Add base cost
+	add = @gk_escalation_base_cost
 }
