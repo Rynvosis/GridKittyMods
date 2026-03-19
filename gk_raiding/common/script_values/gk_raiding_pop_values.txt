@@ -183,22 +183,47 @@ gk_bucket_remaining = {
 # Abduction Values #
 ####################
 
-# Auto-raid monthly soft cap: (5 + offensive raiding armies) * 10
-# This = raider, event_target:gk_target_planet = planet being auto-raided
-gk_auto_raid_soft_cap = {
-	base = 5
+# Auto-raid cap: (base_if_controller + stationed armies) * per_army * months
+# This = country scope, event_target:gk_target_planet must exist
+# Uses count_planet_army (excludes armies in ground combat)
+gk_army_raid_cap = {
+	base = 0
+	modifier = {
+		event_target:gk_target_planet = { is_controlled_by = $OWNER$ }
+		add = @gk_auto_raid_base
+	}
 	complex_trigger_modifier = {
 		trigger = count_planet_army
 		trigger_scope = event_target:gk_target_planet
 		parameters = {
 			limit = {
 				is_defensive_army = no
-				owner = { gk_can_pop_raid_personally = yes }
+				owner = { is_same_value = $OWNER$ }
 			}
 		}
 		mode = add
 	}
-	mult = 10
+	mult = @gk_auto_raid_per_army
+	mult = $MONTHS$
+}
+
+# Invasion cap: attacking armies * per_army * months (no base, that's auto-raid's job)
+# This = country scope, event_target:gk_target_planet must exist
+# Uses count_ground_combat_attacker (works during on_planet_attackers_win)
+gk_invasion_raid_cap = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_ground_combat_attacker
+		trigger_scope = event_target:gk_target_planet
+		parameters = {
+			limit = {
+				owner = { is_same_value = $OWNER$ }
+			}
+		}
+		mode = add
+	}
+	mult = @gk_auto_raid_per_army
+	mult = $MONTHS$
 }
 
 # Abduction rate: remaining_cap / eligible_pops, clamped [0, 1]

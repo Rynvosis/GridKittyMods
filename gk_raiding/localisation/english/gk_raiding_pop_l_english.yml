@@ -67,7 +67,7 @@ GK_RAIDING_ESCALATION_PRESS_FINAL:0 "Authorize total depopulation"
 GK_RAIDING_ESCALATION_PRESS_TOOLTIP:0 "[Root.GkPressTooltip]"
 GK_RAIDING_ESCALATION_PRESS_NORMAL_TOOLTIP:0 "Authorize the capture of up to §G[Root.GkDisplayBucketRemaining]§! more pops.[Root.GkOccupiedPopsLine]"
 GK_RAIDING_ESCALATION_PRESS_FINAL_TOOLTIP:0 "Remove all restrictions. Our raiders will take §Reverything§! that remains.[Root.GkOccupiedPopsLine]"
-GK_OCCUPIED_POPS_LINE:0 "\n\n§G[Root.GkOccupiedEligiblePops]§! eligible pops on occupied planets will be [Root.GkAutoRaidVerb] to our empire at a rate of 50 per month, plus 10 for each army stationed."
+GK_OCCUPIED_POPS_LINE:0 "\n\n§G[Root.GkOccupiedEligiblePops]§! eligible pops on occupied planets will be [Root.GkAutoRaidVerb] to our empire monthly. Stationing more armies increases the rate."
 GK_EMPTY_STRING:0 ""
 GK_RAIDING_ESCALATION_CANNOT_AFFORD:0 "Insufficient Influence"
 
@@ -129,6 +129,10 @@ GK_RAIDING_DEPOPULATED_TITLE:0 "Total Depopulation"
 GK_RAIDING_DEPOPULATED_DESC:0 "Our raiders have seized the last remaining population of [From.GetName]. Their worlds stand empty. [Root.GkDisplayPopsTaken] pops were taken over the course of this campaign."
 GK_RAIDING_DEPOPULATED_ACK:0 "They all belong to us now"
 
+ # Planet Modifiers
+ mod_gk_planet_auto_raid:0 "Population Seizure"
+ gk_planet_auto_raid.tooltip:0 "Eligible pops are being seized monthly. The more armies stationed on the planet, the faster the population is taken."
+
  # Shared
 GK_RAIDING_OFFER_EXPIRED:0 "This offer has expired"
 GK_AUTO_RAID_VERB_RESETTLED:0 "forcefully resettled"
@@ -154,8 +158,11 @@ concept_gk_pop_raiding_desc:0 "During §Y$war_goal_wg_plunder$§!, §Y$war_goal_
  MESSAGE_GK_POP_RAIDED_KEY:0 "$MESSAGE_TYPE_GK_POP_RAIDED_TITLE$ by our raiders!"
  MESSAGE_GK_OUR_POPS_RAIDED_KEY:0 "$MESSAGE_TYPE_GK_POP_RAIDED_TITLE$ by enemy raiders!"
 
- MESSAGE_GK_POP_RAIDED_INVASION:0 "Our warriors seized §Y$POPS$§! pops from $PLANET|Y$.\n"
- MESSAGE_GK_OUR_POPS_RAIDED_INVASION:0 "$FROM|Y$ seized §Y$POPS$§! pops from $PLANET|Y$.\n"
+ MESSAGE_GK_POP_RAIDED_INVASION:0 "Our warriors seized §Y$POPS$§! pops from $PLANET|Y$. Remaining population can be taken while the planet remains under our control.\n"
+ MESSAGE_GK_OUR_POPS_RAIDED_INVASION:0 "$FROM|Y$ seized §Y$POPS$§! pops from $PLANET|Y$. They can continue to take our people while they hold the planet.\n"
+
+ MESSAGE_GK_POP_RAIDED_OCCUPATION:0 "Pops seized from $PLANET|Y$ under occupation.\n"
+ MESSAGE_GK_OUR_POPS_RAIDED_OCCUPATION:0 "Pops seized from $PLANET|Y$ by $FROM|Y$ under their occupation.\n"
 
  MESSAGE_GK_POP_RAIDED_ALLY_INVASION:0 "$ALLY|Y$ seized §Y$POPS$§! pops from $PLANET|Y$ in our name.\n"
 

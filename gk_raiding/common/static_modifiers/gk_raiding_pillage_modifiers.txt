@@ -1,5 +1,11 @@
 # GK Raiding - Pillage Static Modifiers
 
+gk_planet_auto_raid = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_expel_population.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_planet_auto_raid.tooltip
+}
+
 gk_planet_tribute_0 = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
 	pop_bonus_workforce_mult = -0.05

@@ -20,6 +20,14 @@
 @gk_reaping_cap_rate = 100
 
 ############################
+# Pop Raiding — Auto-Raid  #
+############################
+
+@gk_auto_raid_base = 5
+@gk_auto_raid_per_army = 20
+@gk_invasion_months = 3
+
+############################
 # Pop Raiding — Escalation #
 ############################
 

@@ -152,7 +152,6 @@ gk_destroy_pop_result_tracker = {
 			kill_leader = { show_notification = no }
 		}
 	}
-	clear_variable = gk_forfeited_pops
 }
 
 gk_copy_pop_result_values_for_display = {
@@ -261,9 +260,12 @@ gk_save_pop_raid_side_leader_against_target = {
 # event_target:gk_raidee = defender
 # event_target:gk_raiding_target = planet or country to abduct from
 # event_target:gk_cap_raider = side leader
-# Optional: SOFT_CAP = additional cap value (e.g. value:gk_auto_raid_soft_cap)
+# Optional: SOFT_CAP = additional cap value (e.g. value:gk_army_raid_cap)
 gk_raid_from_target = {
-	gk_get_or_create_raid_tracker = yes
+	if = {
+		limit = { NOT = { exists = event_target:gk_raid_tracker } }
+		gk_get_or_create_raid_tracker = yes
+	}
 	gk_get_or_create_pop_result_tracker = yes
 	event_target:gk_pop_result_tracker = {
 		save_event_target_as = gk_storage_scope
@@ -309,107 +311,99 @@ gk_abduct_on_surrender = {
 	gk_raid_from_target = yes
 }
 
-# Abduct pops on invasion - from single planet
-# This = Raider country
-# event_target:gk_target_planet = Planet being invaded
-gk_abduct_on_invasion = {
+##############################
+# Per-Army-Owner Distribution #
+##############################
+
+# Auto-raid: distribute raid across army owners on an occupied planet
+# This = side leader, event_target:gk_target_planet/gk_raidee/gk_raiding_target/gk_cap_raider set
+# Uses count_planet_army (stationed armies, excludes ground combat)
+gk_raid_per_army_owner = {
+	# Reset accumulated total
+	set_variable = { which = gk_forfeited_pops value = 0 }
+
+	# Root raids with their armies (+ base if controller)
 	save_event_target_as = gk_raider
-	event_target:gk_target_planet = {
-		save_event_target_as = gk_raiding_target
-	}
-
-	# Save the defender for cap calculation unless it was already passed in
-	if = {
-		limit = {
-			NOT = { exists = event_target:gk_raidee }
+	gk_raid_from_target = { SOFT_CAP = value:gk_army_raid_cap|OWNER|root|MONTHS|$MONTHS$| }
+	event_target:gk_storage_scope = {
+		root = {
+			change_variable = { which = gk_forfeited_pops value = prev.gk_forfeited_pops }
 		}
-		event_target:gk_target_planet = {
-			owner = {
-				save_event_target_as = gk_raidee
-			}
-		}
-	}
-	gk_save_pop_raid_side_leader_against_target = yes
-	if = {
-		limit = {
-			NOT = { exists = event_target:gk_cap_raider }
-		}
-		save_event_target_as = gk_cap_raider
-	}
-	# If invader can't pop raid, redirect pops to the war leader
-	if = {
-		limit = {
-			NOT = { gk_can_pop_raid_personally = yes }
-			exists = event_target:gk_cap_raider
-			NOT = { is_same_value = event_target:gk_cap_raider }
-		}
-		event_target:gk_cap_raider = {
-			save_event_target_as = gk_raider
-		}
-	}
-
-	gk_raid_from_target = yes
-}
-
-######################
-# Auto-Raid Occupied #
-######################
-
-# Monthly auto-raid: process a single occupied planet
-# This = raider (side leader)
-# event_target:gk_target_planet = planet to auto-raid
-# event_target:gk_raidee = planet owner
-# event_target:gk_cap_raider = side leader (= this)
-gk_auto_raid_occupied_planet = {
-	save_event_target_as = gk_raider
-	event_target:gk_target_planet = {
-		save_event_target_as = gk_raiding_target
-	}
-
-	# Raid with army-based soft cap (computed via script value)
-	gk_raid_from_target = { SOFT_CAP = value:gk_auto_raid_soft_cap }
-
-	# Check if planet depopulated
-	if = {
-		limit = {
-			event_target:gk_storage_scope = {
-				check_variable = { which = gk_forfeited_pops value > 0 }
-			}
-			event_target:gk_target_planet = {
-				count_owned_pop_amount = { count = 0 }
-			}
-		}
-		# Notify raider
-		country_event = {
-			id = gk_raiding_pops.135
-			scopes = { from = event_target:gk_target_planet }
-		}
-		# Notify defender
-		event_target:gk_raidee = {
-			country_event = {
-				id = gk_raiding_pops.136
-				scopes = { from = root }
-			}
-		}
-		# Check empire-wide depopulation
-		if = {
-			limit = {
-				event_target:gk_raidee = {
-					count_owned_pop_amount = { count = 0 }
-				}
-			}
-			country_event = {
-				id = gk_raiding_pops.215
-				scopes = { from = event_target:gk_raidee }
-			}
-		}
-	}
-
-	# Cleanup
-	event_target:gk_raidee = {
-		clear_variable = gk_remaining_cap
 	}
 	gk_destroy_pop_result_tracker = yes
+
+	# Each ally with raiding armies gets their share
+	every_country = {
+		limit = {
+			NOT = { is_same_value = root }
+			gk_can_pop_raid_personally = yes
+			event_target:gk_target_planet = {
+				count_planet_army = {
+					limit = {
+						is_defensive_army = no
+						owner = { is_same_value = prevprevprev }
+					}
+					count > 0
+				}
+			}
+		}
+		save_event_target_as = gk_current_raider
+		save_event_target_as = gk_raider
+		root = {
+			gk_raid_from_target = { SOFT_CAP = value:gk_army_raid_cap|OWNER|event_target:gk_current_raider|MONTHS|$MONTHS$| }
+			event_target:gk_storage_scope = {
+				root = {
+					change_variable = { which = gk_forfeited_pops value = prev.gk_forfeited_pops }
+				}
+			}
+			gk_destroy_pop_result_tracker = yes
+		}
+	}
+}
+
+# Invasion: distribute raid across army owners during ground combat
+# This = attacking country, event_target:gk_target_planet/gk_raidee/gk_raiding_target/gk_cap_raider set
+# Uses count_ground_combat_attacker (works at on_planet_attackers_win timing)
+gk_invasion_per_army_owner = {
+	# Reset accumulated total
+	set_variable = { which = gk_forfeited_pops value = 0 }
+
+	# Root raids with their attacking armies (no base — that's auto-raid's job)
+	save_event_target_as = gk_raider
+	gk_raid_from_target = { SOFT_CAP = value:gk_invasion_raid_cap|OWNER|root|MONTHS|$MONTHS$| }
+	event_target:gk_storage_scope = {
+		root = {
+			change_variable = { which = gk_forfeited_pops value = prev.gk_forfeited_pops }
+		}
+	}
+	gk_destroy_pop_result_tracker = yes
+
+	# Each ally with attacking armies gets their share
+	every_country = {
+		limit = {
+			NOT = { is_same_value = root }
+			gk_can_pop_raid_personally = yes
+			event_target:gk_target_planet = {
+				count_ground_combat_attacker = {
+					limit = {
+						owner = { is_same_value = prevprevprev }
+					}
+					count > 0
+				}
+			}
+		}
+		save_event_target_as = gk_current_raider
+		save_event_target_as = gk_raider
+		root = {
+			gk_raid_from_target = { SOFT_CAP = value:gk_invasion_raid_cap|OWNER|event_target:gk_current_raider|MONTHS|$MONTHS$| }
+			event_target:gk_storage_scope = {
+				root = {
+					change_variable = { which = gk_forfeited_pops value = prev.gk_forfeited_pops }
+				}
+			}
+			gk_destroy_pop_result_tracker = yes
+		}
+	}
 }
 
 ######################

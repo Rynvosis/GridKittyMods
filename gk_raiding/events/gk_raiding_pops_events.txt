@@ -116,8 +116,106 @@ country_event = {
 					}
 					save_event_target_as = gk_target_planet
 					save_event_target_as = gk_raiding_target
+					add_modifier = { modifier = gk_planet_auto_raid days = 35 }
 					root = {
-						gk_auto_raid_occupied_planet = yes
+						# Per-army-owner auto-raid with monthly cap
+						gk_raid_per_army_owner = { MONTHS = 1 }
+
+						# Notify if pops were taken (throttled to once per 6 months per planet)
+						if = {
+							limit = {
+								check_variable = { which = gk_forfeited_pops value > 0 }
+								event_target:gk_target_planet = {
+									NOT = { has_planet_flag = gk_recently_auto_raided }
+								}
+							}
+							event_target:gk_target_planet = {
+								set_timed_planet_flag = {
+									flag = gk_recently_auto_raided
+									months = 6
+								}
+							}
+							create_message = {
+								type = MESSAGE_TYPE_GK_POP_RAIDED
+								localization = MESSAGE_GK_POP_RAIDED_OCCUPATION
+								days = 30
+								target = event_target:gk_target_planet
+								variable = {
+									type = name
+									localization = PLANET
+									scope = event_target:gk_target_planet
+								}
+								variable = {
+									type = variable
+									localization = POPS
+									varname = gk_forfeited_pops
+									scope = root
+								}
+							}
+							event_target:gk_raidee = {
+								create_message = {
+									type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+									localization = MESSAGE_GK_OUR_POPS_RAIDED_OCCUPATION
+									days = 30
+									target = event_target:gk_target_planet
+									variable = {
+										type = name
+										localization = PLANET
+										scope = event_target:gk_target_planet
+									}
+									variable = {
+										type = name
+										localization = FROM
+										scope = root
+									}
+									variable = {
+										type = variable
+										localization = POPS
+										varname = gk_forfeited_pops
+										scope = root
+									}
+								}
+							}
+						}
+
+						# Check if planet depopulated
+						if = {
+							limit = {
+								event_target:gk_target_planet = {
+									count_owned_pop_amount = { count = 0 }
+								}
+							}
+							# Only show planet cleared if raidee still has pops elsewhere
+							if = {
+								limit = {
+									event_target:gk_raidee = {
+										count_owned_pop_amount = { count > 0 }
+									}
+								}
+								country_event = {
+									id = gk_raiding_pops.135
+									scopes = { from = event_target:gk_target_planet }
+								}
+								event_target:gk_raidee = {
+									country_event = {
+										id = gk_raiding_pops.136
+										scopes = { from = root }
+									}
+								}
+							}
+							# Check empire-wide depopulation
+							if = {
+								limit = {
+									event_target:gk_raidee = {
+										count_owned_pop_amount = { count = 0 }
+									}
+								}
+								country_event = {
+									id = gk_raiding_pops.215
+									scopes = { from = event_target:gk_raidee }
+								}
+							}
+						}
 					}
 				}
 			}
@@ -270,33 +368,41 @@ country_event = {
 			save_event_target_as = gk_raiding_target
 		}
 
-		gk_abduct_on_invasion = yes
-		gk_retrieve_pop_result_tracker = yes
-		gk_copy_pop_result_values_for_display = yes
+		# Resolve side leader for bucket tracking
+		gk_save_pop_raid_side_leader_against_target = yes
+		if = {
+			limit = {
+				NOT = { exists = event_target:gk_cap_raider }
+			}
+			save_event_target_as = gk_cap_raider
+		}
+
+		# Per-army-owner invasion burst (accumulates gk_forfeited_pops on root)
+		gk_invasion_per_army_owner = { MONTHS = @gk_invasion_months }
 
 		if = {
 			limit = {
 				check_variable = { which = gk_forfeited_pops value > 0 }
 			}
-			event_target:gk_raider = {
-				create_message = {
-					type = MESSAGE_TYPE_GK_POP_RAIDED
-					localization = MESSAGE_GK_POP_RAIDED_INVASION
-					days = 30
-					target = event_target:gk_target_planet
-					variable = {
-						type = name
-						localization = PLANET
-						scope = event_target:gk_target_planet
-					}
-					variable = {
-						type = variable
-						localization = POPS
-						varname = gk_forfeited_pops
-						scope = event_target:gk_raider
-					}
+			# Notify attacker
+			create_message = {
+				type = MESSAGE_TYPE_GK_POP_RAIDED
+				localization = MESSAGE_GK_POP_RAIDED_INVASION
+				days = 30
+				target = event_target:gk_target_planet
+				variable = {
+					type = name
+					localization = PLANET
+					scope = event_target:gk_target_planet
+				}
+				variable = {
+					type = variable
+					localization = POPS
+					varname = gk_forfeited_pops
+					scope = root
 				}
 			}
+			# Notify defender
 			event_target:gk_raidee = {
 				create_message = {
 					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
@@ -311,13 +417,13 @@ country_event = {
 					variable = {
 						type = name
 						localization = FROM
-						scope = event_target:gk_raider
+						scope = root
 					}
 					variable = {
 						type = variable
 						localization = POPS
 						varname = gk_forfeited_pops
-						scope = event_target:gk_raider
+						scope = root
 					}
 				}
 			}
@@ -329,7 +435,7 @@ country_event = {
 				check_variable = { which = gk_forfeited_pops value > 0 }
 				exists = event_target:gk_cap_raider
 				event_target:gk_cap_raider = {
-					NOT = { is_same_value = event_target:gk_raider }
+					NOT = { is_same_value = root }
 				}
 			}
 			event_target:gk_cap_raider = {
@@ -341,7 +447,7 @@ country_event = {
 					variable = {
 						type = name
 						localization = ALLY
-						scope = event_target:gk_raider
+						scope = root
 					}
 					variable = {
 						type = name
@@ -371,7 +477,6 @@ country_event = {
 			}
 		}
 
-		gk_destroy_pop_result_tracker = yes
 	}
 }
 
