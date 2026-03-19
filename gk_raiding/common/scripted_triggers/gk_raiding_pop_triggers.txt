@@ -88,9 +88,16 @@ gk_can_use_emancipation_cb = {
 # Can use Reaping war goal (despoiler/predator civics only, NOT Nihilistic Acquisition)
 gk_can_use_reaping_cb = {
 	OR = {
-		has_valid_civic = civic_barbaric_despoilers
+		# Normal/corp despoilers require xenophobe
+		AND = {
+			OR = {
+				has_valid_civic = civic_barbaric_despoilers
+				has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+			}
+			is_xenophobe = yes
+		}
+		# Gestalt despoilers always qualify
 		has_valid_civic = civic_gk_barbaric_despoilers_machine
-		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
 		has_valid_civic = civic_hive_bodysnatcher
 	}
 }
