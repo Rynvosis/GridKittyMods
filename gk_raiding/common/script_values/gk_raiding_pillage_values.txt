@@ -35,6 +35,20 @@ gk_effective_pillage_yield = {
 	}
 }
 
+# Remaining devastation budget for loot extraction
+# This = Planet, event_target:gk_loot_receipt = receipt with damage bank
+# $MAX$ = max devastation to consider (100 for invasion, 50 for surrender)
+gk_remaining_pillage_budget = {
+	base = $MAX$
+	subtract = trigger:planet_devastation
+	modifier = {
+		exists = event_target:gk_loot_receipt
+		event_target:gk_loot_receipt = { is_variable_set = gk_pillage_damage_bank }
+		add = event_target:gk_loot_receipt.gk_pillage_damage_bank
+	}
+	min = 0
+}
+
 gk_base_loot_value = {
 	base = 0
 	complex_trigger_modifier = {

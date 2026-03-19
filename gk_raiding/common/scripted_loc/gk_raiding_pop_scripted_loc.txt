@@ -50,6 +50,87 @@ defined_text = {
 	value = value:gk_display_tribute_alloys_value
 }
 
+defined_text = {
+	name = GkDisplayOwnContribution
+	value = value:gk_display_own_contribution_value
+}
+
+# Conditional own-contribution line: only shows when own < total
+defined_text = {
+	name = GkOwnContributionLine
+	text = {
+		trigger = {
+			exists = event_target:gk_own_contributor
+			exists = event_target:gk_raid_tracker
+			NOT = {
+				check_variable = {
+					which = event_target:gk_own_contributor.gk_contributor_pops_taken
+					value >= event_target:gk_raid_tracker.gk_pops_taken
+				}
+			}
+		}
+		localization_key = GK_OWN_CONTRIBUTION_LINE
+	}
+	text = {
+		trigger = {
+			OR = {
+				NOT = { exists = event_target:gk_own_contributor }
+				NOT = { exists = event_target:gk_raid_tracker }
+				check_variable = {
+					which = event_target:gk_own_contributor.gk_contributor_pops_taken
+					value >= event_target:gk_raid_tracker.gk_pops_taken
+				}
+			}
+		}
+		localization_key = GK_EMPTY_STRING
+	}
+}
+
+defined_text = {
+	name = GkOccupiedEligiblePops
+	value = value:gk_occupied_eligible_pops_value
+}
+
+# War-goal-aware verb for auto-raid descriptions
+defined_text = {
+	name = GkAutoRaidVerb
+	text = {
+		trigger = { gk_is_emancipation_war_with_from = yes }
+		localization_key = GK_AUTO_RAID_VERB_RESCUED
+	}
+	text = {
+		trigger = {
+			NOT = { gk_is_emancipation_war_with_from = yes }
+		}
+		localization_key = GK_AUTO_RAID_VERB_RESETTLED
+	}
+}
+
+# Conditional occupied pops line for tooltips
+defined_text = {
+	name = GkOccupiedPopsLine
+	text = {
+		trigger = {
+			check_variable = {
+				which = value:gk_occupied_eligible_pops_value
+				value > 0
+			}
+		}
+		localization_key = GK_OCCUPIED_POPS_LINE
+	}
+	text = {
+		trigger = {
+			NOT = {
+				check_variable = {
+					which = value:gk_occupied_eligible_pops_value
+					value > 0
+				}
+			}
+		}
+		localization_key = GK_EMPTY_STRING
+	}
+}
+
 # Dynamic press tooltip: normal vs final tier
 defined_text = {
 	name = GkPressTooltip

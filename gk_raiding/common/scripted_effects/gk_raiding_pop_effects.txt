@@ -183,28 +183,13 @@ gk_update_raid_cap_flag = {
 		remove_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider
 	}
 	else = {
-		# Compute bucket cap: (current_pops + bucket_taken) * rate
-		# Using (current + taken) reconstructs the effective pool dynamically
-		export_trigger_value_to_variable = {
-			trigger = count_owned_pop_amount
-			variable = gk_cap_calc_temp
-		}
-		change_variable = {
-			which = gk_cap_calc_temp
-			value = event_target:gk_raid_tracker.gk_bucket_pops_taken
-		}
-		multiply_variable = {
-			which = gk_cap_calc_temp
-			value = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
-		}
-		# gk_cap_calc_temp = effective_pool * rate = total tier quota
-		# Compare bucket_pops_taken against total tier quota
+		# Compare bucket_pops_taken against tier quota (script value)
 		if = {
 			limit = {
 				event_target:gk_raid_tracker = {
 					check_variable = {
 						which = gk_bucket_pops_taken
-						value >= prev.gk_cap_calc_temp
+						value >= prev.value:gk_tier_quota
 					}
 				}
 			}
@@ -220,8 +205,6 @@ gk_update_raid_cap_flag = {
 		else = {
 			remove_country_flag = gk_raid_cap_reached_by_@event_target:gk_cap_raider
 		}
-		# Cleanup
-		clear_variable = gk_cap_calc_temp
 	}
 }
 
@@ -270,6 +253,47 @@ gk_save_pop_raid_side_leader_against_target = {
 }
 
 ######################
+# Shared Raid Core   #
+######################
+
+# Core raid-from-target: tracker setup → bucket cap → abduct → track
+# This = raider country
+# event_target:gk_raidee = defender
+# event_target:gk_raiding_target = planet or country to abduct from
+# event_target:gk_cap_raider = side leader
+# Optional: SOFT_CAP = additional cap value (e.g. value:gk_auto_raid_soft_cap)
+gk_raid_from_target = {
+	gk_get_or_create_raid_tracker = yes
+	gk_get_or_create_pop_result_tracker = yes
+	event_target:gk_pop_result_tracker = {
+		save_event_target_as = gk_storage_scope
+	}
+
+	event_target:gk_raidee = {
+		set_variable = { which = gk_remaining_cap value = value:gk_bucket_remaining }
+	}
+	[[SOFT_CAP]
+		event_target:gk_raidee = {
+			if = {
+				limit = { check_variable = { which = gk_remaining_cap value > $SOFT_CAP$ } }
+				set_variable = { which = gk_remaining_cap value = $SOFT_CAP$ }
+			}
+		}
+	]
+	event_target:gk_storage_scope = {
+		set_variable = { which = gk_forfeited_pops value = 0 }
+	}
+
+	event_target:gk_raiding_target = {
+		gk_abduct_pops_from_target = yes
+	}
+
+	event_target:gk_raidee = {
+		gk_track_raided_pops = { AMOUNT = event_target:gk_storage_scope.gk_forfeited_pops }
+	}
+}
+
+######################
 # Entry Points       #
 ######################
 
@@ -282,65 +306,7 @@ gk_abduct_on_surrender = {
 	event_target:gk_raidee = {
 		save_event_target_as = gk_raiding_target
 	}
-
-	# Get or create raid tracker (need tier for bucket rate)
-	gk_get_or_create_raid_tracker = yes
-
-	# Create pop result tracker - this IS the storage scope
-	gk_get_or_create_pop_result_tracker = yes
-	event_target:gk_pop_result_tracker = {
-		save_event_target_as = gk_storage_scope
-	}
-
-	# Compute remaining cap from bucket system
-	event_target:gk_raidee = {
-		if = {
-			limit = { gk_has_unlimited_raiding = yes }
-			export_trigger_value_to_variable = {
-				trigger = count_owned_pop_amount
-				variable = gk_remaining_cap
-			}
-		}
-		else = {
-			# Bucket cap: (current_pops + bucket_taken) * rate - bucket_taken
-			export_trigger_value_to_variable = {
-				trigger = count_owned_pop_amount
-				variable = gk_remaining_cap
-			}
-			change_variable = {
-				which = gk_remaining_cap
-				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
-			}
-			multiply_variable = {
-				which = gk_remaining_cap
-				value = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
-			}
-			subtract_variable = {
-				which = gk_remaining_cap
-				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
-			}
-			# Floor at 0
-			if = {
-				limit = {
-					check_variable = { which = gk_remaining_cap value < 0 }
-				}
-				set_variable = { which = gk_remaining_cap value = 0 }
-			}
-		}
-	}
-	event_target:gk_storage_scope = {
-		set_variable = { which = gk_forfeited_pops value = 0 }
-	}
-
-	# Phase 1: Transfer pops (loop only, no tracking sub-calls)
-	event_target:gk_raidee = {
-		gk_abduct_pops_from_target = yes
-	}
-
-	# Phase 2: Track the accumulated total
-	event_target:gk_raidee = {
-		gk_track_raided_pops = { AMOUNT = event_target:gk_storage_scope.gk_forfeited_pops }
-	}
+	gk_raid_from_target = yes
 }
 
 # Abduct pops on invasion - from single planet
@@ -370,65 +336,80 @@ gk_abduct_on_invasion = {
 		}
 		save_event_target_as = gk_cap_raider
 	}
-
-	# Get or create raid tracker (need tier for bucket rate)
-	gk_get_or_create_raid_tracker = yes
-
-	# Create or retrieve the pop-only result tracker
-	gk_get_or_create_pop_result_tracker = yes
-	event_target:gk_pop_result_tracker = {
-		save_event_target_as = gk_storage_scope
-	}
-
-	# Compute remaining cap from bucket system
-	event_target:gk_raidee = {
-		if = {
-			limit = { gk_has_unlimited_raiding = yes }
-			export_trigger_value_to_variable = {
-				trigger = count_owned_pop_amount
-				variable = gk_remaining_cap
-			}
+	# If invader can't pop raid, redirect pops to the war leader
+	if = {
+		limit = {
+			NOT = { gk_can_pop_raid_personally = yes }
+			exists = event_target:gk_cap_raider
+			NOT = { is_same_value = event_target:gk_cap_raider }
 		}
-		else = {
-			# Bucket cap: (current_pops + bucket_taken) * rate - bucket_taken
-			export_trigger_value_to_variable = {
-				trigger = count_owned_pop_amount
-				variable = gk_remaining_cap
-			}
-			change_variable = {
-				which = gk_remaining_cap
-				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
-			}
-			multiply_variable = {
-				which = gk_remaining_cap
-				value = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
-			}
-			subtract_variable = {
-				which = gk_remaining_cap
-				value = event_target:gk_raid_tracker.gk_bucket_pops_taken
-			}
-			# Floor at 0
-			if = {
-				limit = {
-					check_variable = { which = gk_remaining_cap value < 0 }
-				}
-				set_variable = { which = gk_remaining_cap value = 0 }
-			}
+		event_target:gk_cap_raider = {
+			save_event_target_as = gk_raider
 		}
 	}
-	event_target:gk_storage_scope = {
-		set_variable = { which = gk_forfeited_pops value = 0 }
-	}
 
-	# Phase 1: Transfer pops from target planet (loop only, no tracking sub-calls)
+	gk_raid_from_target = yes
+}
+
+######################
+# Auto-Raid Occupied #
+######################
+
+# Monthly auto-raid: process a single occupied planet
+# This = raider (side leader)
+# event_target:gk_target_planet = planet to auto-raid
+# event_target:gk_raidee = planet owner
+# event_target:gk_cap_raider = side leader (= this)
+gk_auto_raid_occupied_planet = {
+	save_event_target_as = gk_raider
 	event_target:gk_target_planet = {
-		gk_abduct_pops_from_target = yes
+		save_event_target_as = gk_raiding_target
 	}
 
-	# Phase 2: Track the accumulated total
-	event_target:gk_raidee = {
-		gk_track_raided_pops = { AMOUNT = event_target:gk_storage_scope.gk_forfeited_pops }
+	# Raid with army-based soft cap (computed via script value)
+	gk_raid_from_target = { SOFT_CAP = value:gk_auto_raid_soft_cap }
+
+	# Check if planet depopulated
+	if = {
+		limit = {
+			event_target:gk_storage_scope = {
+				check_variable = { which = gk_forfeited_pops value > 0 }
+			}
+			event_target:gk_target_planet = {
+				count_owned_pop_amount = { count = 0 }
+			}
+		}
+		# Notify raider
+		country_event = {
+			id = gk_raiding_pops.135
+			scopes = { from = event_target:gk_target_planet }
+		}
+		# Notify defender
+		event_target:gk_raidee = {
+			country_event = {
+				id = gk_raiding_pops.136
+				scopes = { from = root }
+			}
+		}
+		# Check empire-wide depopulation
+		if = {
+			limit = {
+				event_target:gk_raidee = {
+					count_owned_pop_amount = { count = 0 }
+				}
+			}
+			country_event = {
+				id = gk_raiding_pops.215
+				scopes = { from = event_target:gk_raidee }
+			}
+		}
 	}
+
+	# Cleanup
+	event_target:gk_raidee = {
+		clear_variable = gk_remaining_cap
+	}
+	gk_destroy_pop_result_tracker = yes
 }
 
 ######################
@@ -457,25 +438,6 @@ gk_abduct_pops_from_target = {
 		set_variable = { which = gk_eligible_pops value = prev.gk_eligible_pops }
 	}
 
-	# Compute rate: remaining_cap / eligible_pops, clamped to [0, 1]
-	event_target:gk_raidee = {
-		if = {
-			limit = {
-				check_variable = { which = gk_eligible_pops value > 0 }
-				check_variable = { which = gk_remaining_cap value > 0 }
-			}
-			set_variable = { which = gk_abduct_rate value = gk_remaining_cap }
-			divide_variable = { which = gk_abduct_rate value = gk_eligible_pops }
-			if = {
-				limit = { check_variable = { which = gk_abduct_rate value > 1 } }
-				set_variable = { which = gk_abduct_rate value = 1 }
-			}
-		}
-		else = {
-			set_variable = { which = gk_abduct_rate value = 0 }
-		}
-	}
-
 	# Pass 2: Transfer proportional share from each eligible pop group
 	every_owned_pop_group = {
 		limit = {
@@ -500,11 +462,14 @@ gk_abduct_pops_from_target = {
 			}
 		}
 
-		# Skip if rounded amount is 0
+		# Floor and skip if amount is 0
+		event_target:gk_raidee = {
+			floor_variable = gk_transfer_amount
+		}
 		if = {
 			limit = {
 				event_target:gk_raidee = {
-					check_variable = { which = gk_transfer_amount value > 0 }
+					check_variable = { which = gk_transfer_amount value >= 1 }
 				}
 			}
 
@@ -541,10 +506,69 @@ gk_abduct_pops_from_target = {
 		}
 	}
 
+	# Cleanup pass: mop up rounding leftovers
+	# Set rate to 1.0 so gk_pops_to_abduct takes up to remaining_cap from each group
+	event_target:gk_raidee = {
+		set_variable = { which = gk_eligible_pops value = gk_remaining_cap }
+	}
+	every_owned_pop_group = {
+		limit = {
+			pop_group_size > 0
+			is_sapient = yes
+			gk_can_abduct_pop_group_war_goal_check = yes
+			gk_can_abduct_pop_group_robot_check = yes
+			event_target:gk_raidee = {
+				check_variable = { which = gk_remaining_cap value > 0 }
+			}
+		}
+		save_event_target_as = gk_source_pop_group
+		gk_find_destination_planet = yes
+
+		event_target:gk_raidee = {
+			set_variable = {
+				which = gk_transfer_amount
+				value = event_target:gk_source_pop_group.value:gk_pops_to_abduct
+			}
+			floor_variable = gk_transfer_amount
+		}
+		if = {
+			limit = {
+				event_target:gk_raidee = {
+					check_variable = { which = gk_transfer_amount value >= 1 }
+				}
+			}
+			event_target:gk_destination_planet = {
+				create_pop_group = {
+					pop_group = event_target:gk_source_pop_group
+					size = 0
+					effect = {
+						save_event_target_as = gk_target_pop_group
+						transfer_pop_amount = {
+							source = event_target:gk_source_pop_group
+							target = this
+							amount = event_target:gk_raidee.gk_transfer_amount
+						}
+					}
+				}
+			}
+			event_target:gk_storage_scope = {
+				change_variable = {
+					which = gk_forfeited_pops
+					value = event_target:gk_raidee.gk_transfer_amount
+				}
+			}
+			event_target:gk_raidee = {
+				subtract_variable = {
+					which = gk_remaining_cap
+					value = gk_transfer_amount
+				}
+			}
+		}
+	}
+
 	# Cleanup
 	event_target:gk_raidee = {
 		clear_variable = gk_eligible_pops
-		clear_variable = gk_abduct_rate
 		clear_variable = gk_transfer_amount
 		clear_variable = gk_remaining_cap
 	}
@@ -771,79 +795,134 @@ gk_track_raided_pops = {
 		}
 	}
 
+	# Per-raider contribution tracking
+	gk_track_contributor = yes
+
 	# Clean up
 	clear_variable = gk_track_amount_temp
 }
 
 ######################
-# Tribute Calc       #
+# Contributor Track  #
 ######################
 
-# Calculate tribute amount based on target's economy
-# This = raider country (cap_raider)
-# event_target:gk_raidee = target country
-# event_target:gk_raid_tracker = tracker with gk_escalation_tier
-# Sets on raid tracker: gk_tribute_base
-gk_calculate_tribute_amount = {
-	# Bio-ship raiders compare food vs alloys; others compare energy vs alloys
-	event_target:gk_raidee = {
-		if = {
-			limit = { root = { country_uses_bio_ships = yes } }
-			export_resource_income_to_variable = {
-				resource = food
-				variable = gk_monthly_primary_temp
+# Find or create a contributor tracker for the acting raider in the current war
+# Requires: event_target:gk_acting_raider, event_target:gk_raid_tracker, event_target:gk_track_raidee_temp
+gk_track_contributor = {
+	# Find existing contributor for this raider
+	if = {
+		limit = {
+			event_target:global_event_country = {
+				any_owned_leader = {
+					has_leader_flag = gk_contributor_tracker
+					has_leader_flag = gk_contributor_for_tracker_@event_target:gk_raid_tracker
+					has_leader_flag = gk_contributor_country_@event_target:gk_acting_raider
+				}
 			}
 		}
-		else = {
-			export_resource_income_to_variable = {
-				resource = energy
-				variable = gk_monthly_primary_temp
+		event_target:global_event_country = {
+			random_owned_leader = {
+				limit = {
+					has_leader_flag = gk_contributor_tracker
+					has_leader_flag = gk_contributor_for_tracker_@event_target:gk_raid_tracker
+					has_leader_flag = gk_contributor_country_@event_target:gk_acting_raider
+				}
+				change_variable = {
+					which = gk_contributor_pops_taken
+					value = event_target:gk_track_raidee_temp.gk_track_amount_temp
+				}
 			}
 		}
-		export_resource_income_to_variable = {
-			resource = alloys
-			variable = gk_monthly_alloys_temp
+	}
+	else = {
+		# Create new contributor tracker for this raider
+		event_target:global_event_country = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = "Contributor Tracker"
+				skill = 1
+				hide_leader = yes
+				event_leader = yes
+			}
+			last_created_leader = {
+				set_leader_flag = gk_contributor_tracker
+				set_leader_flag = gk_contributor_for_tracker_@event_target:gk_raid_tracker
+				set_leader_flag = gk_contributor_country_@event_target:gk_acting_raider
+				set_variable = { which = gk_contributor_pops_taken value = event_target:gk_track_raidee_temp.gk_track_amount_temp }
+			}
 		}
-		# Floor monthly production at 50
-		if = {
-			limit = { check_variable = { which = gk_monthly_primary_temp value < 50 } }
-			set_variable = { which = gk_monthly_primary_temp value = 50 }
+	}
+}
+
+######################
+# Offer Rejection    #
+######################
+
+# Shared rejection logic for tribute/reforms/autonomy offers
+# This = raidee, From = raider
+# $PENDING_FLAG$ = the offer pending flag name (without _from_@from suffix)
+# $REJECTION_EVENT$ = event ID to notify raider of rejection
+gk_reject_offer = {
+	remove_country_flag = $PENDING_FLAG$_from_@from
+	remove_country_flag = gk_raid_cap_reached_by_@from
+	from = {
+		country_event = {
+			id = $REJECTION_EVENT$
+			scopes = { from = root }
 		}
-		# Convert alloys to primary-equivalent at 4:1
-		set_variable = { which = gk_alloys_as_primary_temp value = gk_monthly_alloys_temp }
-		multiply_variable = { which = gk_alloys_as_primary_temp value = 4 }
-		# Take the higher
+		country_event = {
+			id = gk_raiding_pops.500
+			days = 360
+			scopes = { from = root }
+		}
+	}
+}
+
+######################
+# Decay              #
+######################
+
+# Decay a single raid counter. Called from event .110 yearly pulse.
+# This = raidee country
+gk_decay_raid_counter = {
+	if = {
+		limit = { is_variable_set = $COUNTER$ }
 		if = {
 			limit = {
-				check_variable = { which = gk_alloys_as_primary_temp value > gk_monthly_primary_temp }
+				any_war = {
+					OR = {
+						AND = {
+							is_war_participant = { who = root side = defenders }
+							OR = {
+								using_war_goal = { type = wg_gk_emancipation owner = attacker }
+								using_war_goal = { type = wg_plunder owner = attacker }
+								using_war_goal = { type = wg_gk_reaping owner = attacker }
+							}
+						}
+						AND = {
+							is_war_participant = { who = root side = attackers }
+							OR = {
+								using_war_goal = { type = wg_gk_emancipation owner = defender }
+								using_war_goal = { type = wg_plunder owner = defender }
+								using_war_goal = { type = wg_gk_reaping owner = defender }
+							}
+						}
+					}
+				}
 			}
-			set_variable = { which = gk_tribute_base_temp value = gk_alloys_as_primary_temp }
+			multiply_variable = { which = $COUNTER$ value = @gk_decay_rate_at_war }
 		}
 		else = {
-			set_variable = { which = gk_tribute_base_temp value = gk_monthly_primary_temp }
+			multiply_variable = { which = $COUNTER$ value = @gk_decay_rate_at_peace }
 		}
-		multiply_variable = { which = gk_tribute_base_temp value = 12 }
-		multiply_variable = {
-			which = gk_tribute_base_temp
-			value = root.value:gk_tribute_production_years
+		if = {
+			limit = {
+				is_at_war = no
+				check_variable = { which = $COUNTER$ value <= @gk_decay_clear_threshold }
+			}
+			clear_variable = $COUNTER$
 		}
-		# Round to nearest 100 for clean display
-		change_variable = { which = gk_tribute_base_temp value = 50 }
-		divide_variable = { which = gk_tribute_base_temp value = 100 }
-		floor_variable = gk_tribute_base_temp
-		multiply_variable = { which = gk_tribute_base_temp value = 100 }
-	}
-	event_target:gk_raid_tracker = {
-		set_variable = {
-			which = gk_tribute_base
-			value = event_target:gk_raidee.gk_tribute_base_temp
-		}
-	}
-	event_target:gk_raidee = {
-		clear_variable = gk_monthly_primary_temp
-		clear_variable = gk_monthly_alloys_temp
-		clear_variable = gk_alloys_as_primary_temp
-		clear_variable = gk_tribute_base_temp
 	}
 }
 

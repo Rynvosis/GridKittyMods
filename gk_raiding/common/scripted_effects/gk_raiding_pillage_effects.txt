@@ -107,7 +107,7 @@ gk_pillage_on_invasion = {
 		}
 
 		event_target:gk_target_planet = {
-			gk_set_remaining_pillage_damage_budget = yes
+			set_variable = { which = gk_remaining_pillage_damage_budget value = value:gk_remaining_pillage_budget|MAX|@gk_max_planet_devastation| }
 			gk_apply_planet_invasion_tribute = yes
 			gk_mark_planet_invasion_pillage_cashed_out = yes
 			if = {
@@ -207,39 +207,6 @@ gk_pillage_on_devastation = {
 # Setup Helpers      #
 ######################
 
-# Calculate the remaining devastation worth that can still be converted into loot on this planet
-# Used for invasion cashouts across the full 0-100 devastation band.
-# This = Planet
-# event_target:gk_loot_receipt = per-planet receipt with gk_pillage_damage_bank
-gk_set_remaining_pillage_damage_budget = {
-	set_variable = {
-		which = gk_remaining_pillage_damage_budget
-		value = @gk_max_planet_devastation
-	}
-	subtract_variable = {
-		which = gk_remaining_pillage_damage_budget
-		value = trigger:planet_devastation
-	}
-	if = {
-		limit = {
-			check_variable = { which = gk_remaining_pillage_damage_budget value < 0 }
-		}
-		set_variable = { which = gk_remaining_pillage_damage_budget value = 0 }
-	}
-	if = {
-		limit = {
-			exists = event_target:gk_loot_receipt
-			event_target:gk_loot_receipt = {
-				is_variable_set = gk_pillage_damage_bank
-			}
-		}
-		change_variable = {
-			which = gk_remaining_pillage_damage_budget
-			value = event_target:gk_loot_receipt.gk_pillage_damage_bank
-		}
-	}
-}
-
 # Resolve the war-goal side leader whose surrender payout should be reduced by an invasion cashout.
 # This = acting raider country
 # event_target:gk_raidee = defender country
@@ -280,20 +247,7 @@ gk_save_resource_surrender_raider_against_target = {
 gk_add_surrender_planet_pillage_to_storage = {
 	save_event_target_as = gk_target_planet
 
-	set_variable = {
-		which = gk_remaining_pillage_damage_budget
-		value = @gk_surrender_planet_devastation
-	}
-	subtract_variable = {
-		which = gk_remaining_pillage_damage_budget
-		value = trigger:planet_devastation
-	}
-	if = {
-		limit = {
-			check_variable = { which = gk_remaining_pillage_damage_budget value < 0 }
-		}
-		set_variable = { which = gk_remaining_pillage_damage_budget value = 0 }
-	}
+	set_variable = { which = gk_remaining_pillage_damage_budget value = value:gk_remaining_pillage_budget|MAX|@gk_surrender_planet_devastation| }
 
 	# Fold any saved partial bank into the same remaining surrender-band calculation, then delete the planet receipt
 	if = {
@@ -712,6 +666,7 @@ gk_send_pillage_notifications = {
 # Apply the local tribute aftermath modifier based on remaining surrender budget
 # This = Planet
 gk_apply_planet_surrender_tribute = {
+	owner = { save_event_target_as = gk_raidee }
 	# effective_remaining = (100 - planet_devastation) / 2, range 0-50
 	# Integer division truncates, so this always rounds down
 	export_trigger_value_to_variable = {
@@ -736,6 +691,7 @@ gk_apply_planet_surrender_tribute = {
 # Apply the local tribute aftermath modifier based on an invasion cashout
 # This = Planet
 gk_apply_planet_invasion_tribute = {
+	owner = { save_event_target_as = gk_raidee }
 	# Same formula: effective_remaining = (100 - planet_devastation) / 2
 	export_trigger_value_to_variable = {
 		trigger = planet_devastation
@@ -794,7 +750,7 @@ gk_apply_planet_tribute_from_effective_remaining = {
 	# Cap at raider's effective pillage yield
 	set_variable = {
 		which = gk_yield_cap_temp
-		value = event_target:gk_raider.value:gk_effective_pillage_yield|TARGET|owner|
+		value = event_target:gk_raider.value:gk_effective_pillage_yield|TARGET|event_target:gk_raidee|
 	}
 	if = {
 		limit = { check_variable = { which = gk_tribute_tier_temp value > gk_yield_cap_temp } }

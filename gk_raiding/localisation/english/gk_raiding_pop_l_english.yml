@@ -54,18 +54,21 @@ wg_gk_robo_liberation_status_quo_tooltip:0 "No pops are transferred on status qu
 
  # Escalation Events
 GK_RAIDING_ESCALATION_TITLE:0 "Raiding Report"
-GK_RAIDING_ESCALATION_DESC:0 "Our forces have captured all authorized targets from [From.GetName]. So far, [Root.GkDisplayPopsTaken] pops have been seized in this campaign. Our commanders await orders on how to proceed."
-GK_RAIDING_ESCALATION_DESC_FINAL:0 "Our forces have nearly exhausted the population of [From.GetName]. [Root.GkDisplayPopsTaken] pops have been seized so far. Our commanders request authorization to take everything that remains."
-GK_RAIDING_ESCALATION_DESC_INTEL:0 "Our forces have captured all authorized targets from [From.GetName]. So far, [Root.GkDisplayPopsTaken] pops have been seized in this campaign. Intelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain. Our commanders await orders on how to proceed."
-GK_RAIDING_ESCALATION_DESC_TRIVIAL:0 "[From.GetName] poses little challenge. [Root.GkDisplayPopsTaken] pops have been seized so far with minimal political cost. Our commanders see no reason to stop."
-GK_RAIDING_ESCALATION_DESC_TRIVIAL_INTEL:0 "[From.GetName] poses little challenge. [Root.GkDisplayPopsTaken] pops have been seized so far with minimal political cost. Intelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain."
+GK_RAIDING_ESCALATION_DESC:0 "Our forces have captured all authorized targets from [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nOur commanders await orders on how to proceed."
+GK_RAIDING_ESCALATION_DESC_FINAL:0 "Our forces have nearly exhausted the population of [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nOur commanders request authorization to take everything that remains."
+GK_RAIDING_ESCALATION_DESC_INTEL:0 "Our forces have captured all authorized targets from [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nIntelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain.\nOur commanders await orders on how to proceed."
+GK_RAIDING_ESCALATION_DESC_TRIVIAL:0 "[From.GetName] poses little challenge.\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nOur commanders see no reason to stop."
+GK_RAIDING_ESCALATION_DESC_TRIVIAL_INTEL:0 "[From.GetName] poses little challenge.\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nIntelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain."
+GK_OWN_CONTRIBUTION_LINE:0 "\n§G[Root.GkDisplayOwnContribution]§! by our own forces."
 GK_RAIDING_ESCALATION_CONSOLIDATE:0 "Hold position"
 GK_RAIDING_ESCALATION_CONSOLIDATE_TOOLTIP:0 "Pop raiding pauses. Our commanders will reassess in one year. §YThe war continues.§!"
 GK_RAIDING_ESCALATION_PRESS:0 "Authorize deeper raids"
 GK_RAIDING_ESCALATION_PRESS_FINAL:0 "Authorize total depopulation"
 GK_RAIDING_ESCALATION_PRESS_TOOLTIP:0 "[Root.GkPressTooltip]"
-GK_RAIDING_ESCALATION_PRESS_NORMAL_TOOLTIP:0 "Authorize the capture of up to §G[Root.GkDisplayBucketRemaining]§! more pops."
-GK_RAIDING_ESCALATION_PRESS_FINAL_TOOLTIP:0 "Remove all restrictions. Our raiders will take §Reverything§! that remains."
+GK_RAIDING_ESCALATION_PRESS_NORMAL_TOOLTIP:0 "Authorize the capture of up to §G[Root.GkDisplayBucketRemaining]§! more pops.[Root.GkOccupiedPopsLine]"
+GK_RAIDING_ESCALATION_PRESS_FINAL_TOOLTIP:0 "Remove all restrictions. Our raiders will take §Reverything§! that remains.[Root.GkOccupiedPopsLine]"
+GK_OCCUPIED_POPS_LINE:0 "\n\n§G[Root.GkOccupiedEligiblePops]§! eligible pops on occupied planets will be [Root.GkAutoRaidVerb] to our empire at a rate of 50 per month, plus 10 for each army stationed."
+GK_EMPTY_STRING:0 ""
 GK_RAIDING_ESCALATION_CANNOT_AFFORD:0 "Insufficient Influence"
 
  # Escalation: Pivot to Pillaging
@@ -113,6 +116,14 @@ GK_RAIDING_AUTONOMY_ACCEPTED_DESC:0 "[From.GetName] has granted full rights to t
 GK_RAIDING_AUTONOMY_REJECTED_TITLE:0 "Autonomy Refused"
 GK_RAIDING_AUTONOMY_REJECTED_DESC:0 "[From.GetName] has refused to grant synthetic rights. Our raiders will continue their operations."
 
+ # Planet Cleared (auto-raid)
+GK_RAIDING_PLANET_CLEARED_TITLE:0 "Planet Cleared"
+GK_RAIDING_PLANET_CLEARED_DESC:0 "All eligible pops on [From.GetName] have been transferred to our empire. The planet stands empty."
+GK_RAIDING_PLANET_CLEARED_ACK:0 "Excellent"
+GK_RAIDING_PLANET_LOST_TITLE:0 "Population Seized"
+GK_RAIDING_PLANET_LOST_DESC:0 "[From.GetName] has seized the last of our people from one of our occupied worlds."
+GK_RAIDING_PLANET_LOST_ACK:0 "This cannot stand"
+
  # Total Depopulation
 GK_RAIDING_DEPOPULATED_TITLE:0 "Total Depopulation"
 GK_RAIDING_DEPOPULATED_DESC:0 "Our raiders have seized the last remaining population of [From.GetName]. Their worlds stand empty. [Root.GkDisplayPopsTaken] pops were taken over the course of this campaign."
@@ -120,6 +131,8 @@ GK_RAIDING_DEPOPULATED_ACK:0 "They all belong to us now"
 
  # Shared
 GK_RAIDING_OFFER_EXPIRED:0 "This offer has expired"
+GK_AUTO_RAID_VERB_RESETTLED:0 "forcefully resettled"
+GK_AUTO_RAID_VERB_RESCUED:0 "rescued"
 GK_ICON_ENERGY:0 "£energy£"
 GK_ICON_FOOD:0 "£food£"
 
@@ -143,6 +156,8 @@ concept_gk_pop_raiding_desc:0 "During §Y$war_goal_wg_plunder$§!, §Y$war_goal_
 
  MESSAGE_GK_POP_RAIDED_INVASION:0 "Our warriors seized §Y$POPS$§! pops from $PLANET|Y$.\n"
  MESSAGE_GK_OUR_POPS_RAIDED_INVASION:0 "$FROM|Y$ seized §Y$POPS$§! pops from $PLANET|Y$.\n"
+
+ MESSAGE_GK_POP_RAIDED_ALLY_INVASION:0 "$ALLY|Y$ seized §Y$POPS$§! pops from $PLANET|Y$ in our name.\n"
 
  MESSAGE_GK_POP_RAIDED_SURRENDER:0 "§Y$TARGET$§! surrendered, forfeiting §Y$POPS$§! pops.\n"
  MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER:0 "§Y$POPS$§! pops have been surrendered to $FROM|Y$.\n"

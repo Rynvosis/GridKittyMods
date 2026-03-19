@@ -28,6 +28,14 @@ on_planet_attackers_win = {
 	}
 }
 
+# Monthly auto-raid on occupied enemy planets
+# This = Country
+on_monthly_pulse_country = {
+	events = {
+		gk_raiding_pops.130
+	}
+}
+
 # Yearly pulse for all countries
 # This = Country
 on_yearly_pulse_country = {

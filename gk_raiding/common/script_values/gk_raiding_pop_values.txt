@@ -153,8 +153,63 @@ gk_bucket_rate_for_tier = {
 }
 
 ####################
+# Bucket Cap       #
+####################
+
+# Total tier quota: ceiling((pops + bucket_taken) * rate)
+# For unlimited (rate 1.0): returns pops + taken (= effective pool)
+# This = raidee country, event_target:gk_raid_tracker must exist
+gk_tier_quota = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = add
+	}
+	add = event_target:gk_raid_tracker.gk_bucket_pops_taken
+	mult = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
+	ceiling = yes
+}
+
+# Remaining bucket cap: quota - taken, min 0
+# This = raidee country, event_target:gk_raid_tracker must exist
+gk_bucket_remaining = {
+	base = 0
+	add = value:gk_tier_quota
+	subtract = event_target:gk_raid_tracker.gk_bucket_pops_taken
+	min = 0
+}
+
+####################
 # Abduction Values #
 ####################
+
+# Auto-raid monthly soft cap: (5 + offensive raiding armies) * 10
+# This = raider, event_target:gk_target_planet = planet being auto-raided
+gk_auto_raid_soft_cap = {
+	base = 5
+	complex_trigger_modifier = {
+		trigger = count_planet_army
+		trigger_scope = event_target:gk_target_planet
+		parameters = {
+			limit = {
+				is_defensive_army = no
+				owner = { gk_can_pop_raid_personally = yes }
+			}
+		}
+		mode = add
+	}
+	mult = 10
+}
+
+# Abduction rate: remaining_cap / eligible_pops, clamped [0, 1]
+# This = any scope with access to event_target:gk_raidee
+gk_pop_abduct_rate = {
+	base = 0
+	add = event_target:gk_raidee.gk_remaining_cap
+	divide = event_target:gk_raidee.gk_eligible_pops
+	min = 0
+	max = 1
+}
 
 # Proportional pops to take from a single pop group
 # This = pop_group scope
@@ -163,8 +218,8 @@ gk_bucket_rate_for_tier = {
 gk_pops_to_abduct = {
 	base = 0
 	add = trigger:pop_group_size
-	mult = event_target:gk_raidee.gk_abduct_rate
-	round = yes
+	mult = value:gk_pop_abduct_rate
+	ceiling = yes
 	min = 0
 	# Clamp to remaining cap if it's less than pop_group size
 	max = event_target:gk_raidee.gk_remaining_cap
@@ -254,11 +309,77 @@ gk_display_eligible_remaining_value = {
 }
 
 ####################
+# Display: Own     #
+####################
+
+# Our contribution to the current war's raid total
+# event_target:gk_own_contributor must be set in .500 immediate
+gk_display_own_contribution_value = {
+	base = 0
+	modifier = {
+		exists = event_target:gk_own_contributor
+		add = event_target:gk_own_contributor.gk_contributor_pops_taken
+	}
+	floor = yes
+	min = 0
+}
+
+####################
+# Display: Occupied#
+####################
+
+# Eligible pops on raidee planets controlled by the raider
+# This = raider, From = raidee (event scope)
+gk_occupied_eligible_pops_value = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		trigger_scope = from
+		parameters = {
+			limit = {
+				planet = { is_controlled_by = root }
+				is_sapient = yes
+				gk_can_abduct_pop_group_war_goal_check = yes
+				gk_can_abduct_pop_group_robot_check = yes
+			}
+		}
+		mode = add
+	}
+	floor = yes
+	min = 0
+}
+
+####################
+# Tribute Base     #
+####################
+
+# Tribute base amount: max(primary_income, alloys_income*4) * 12 * years
+# Uses abs trick: max(a,b) = (|a-b| + a + b) / 2
+# This = raider, event_target:gk_raidee = target, event_target:gk_raid_tracker = tracker
+# $PRIMARY$ = energy or food (caller resolves bio-ship)
+gk_tribute_base_value = {
+	base = 0
+	# a - b
+	add = event_target:gk_raidee.value:income_mult|RESOURCE|$PRIMARY$|MULT|1|
+	subtract = event_target:gk_raidee.value:income_mult|RESOURCE|alloys|MULT|4|
+	abs = yes
+	# + a + b
+	add = event_target:gk_raidee.value:income_mult|RESOURCE|$PRIMARY$|MULT|1|
+	add = event_target:gk_raidee.value:income_mult|RESOURCE|alloys|MULT|4|
+	divide = 2
+	# Scale by production years
+	multiply = 12
+	multiply = value:gk_tribute_production_years
+	# Floor (50/month * 12 = 600 min) and round
+	min = 600
+	round_to = 100
+}
+
+####################
 # Display: Tribute #
 ####################
 
-# Primary resource amount (energy or food) = base
-# This = country with access to event_target:gk_raid_tracker
+# Primary resource display (reads from tracker)
 gk_display_tribute_primary_value = {
 	base = 0
 	modifier = {
@@ -269,7 +390,7 @@ gk_display_tribute_primary_value = {
 	min = 0
 }
 
-# Alloy amount = base * 0.25
+# Alloy display = base * 0.25
 gk_display_tribute_alloys_value = {
 	base = 0
 	modifier = {
@@ -282,7 +403,6 @@ gk_display_tribute_alloys_value = {
 }
 
 # Alloy amount for add_resource mult (used in event options)
-# event_target:gk_raid_tracker must exist
 gk_tribute_alloy_amount = {
 	base = 0
 	modifier = {
