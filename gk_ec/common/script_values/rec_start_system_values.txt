@@ -1,7 +1,8 @@
 
-num_hundred_pops_twinned_system = {
+# 20% of pops in batches of 100 pop units, rounded up
+gk_ec_lunar_pop_batches = {
 	add = trigger:pop_amount
+	multiply = 0.2
 	divide = 100
-	divide = 4
-	round = yes
+	ceiling = yes
 }

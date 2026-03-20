@@ -406,7 +406,7 @@ gk_ec_collectivist = {
 
 		trigger = {
 			owner = {
-				has_policy_flag = nutritional_plenitude
+				has_edict = nutritional_plenitude
 			}
 		}
 	}

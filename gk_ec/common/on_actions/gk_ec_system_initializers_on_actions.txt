@@ -1,5 +1,7 @@
 on_game_start_country = {
 	events = {
+		gk_ec_system_initializer.3 # lunar colony setup
+		gk_ec_system_initializer.5 # gk start system incompatible origin
 		gk_ec_system_initializer.100 # ruined habitat start system tech
 	}
 }

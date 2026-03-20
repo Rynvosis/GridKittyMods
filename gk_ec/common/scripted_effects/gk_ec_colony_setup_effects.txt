@@ -1,0 +1,61 @@
+# Lunar colony setup helpers
+# All effects run in planet scope (the moon)
+
+# Add 1 housing district by empire type
+gk_ec_add_housing_district = {
+	if = {
+		limit = { owner = { is_regular_empire = yes } }
+		add_district = district_city
+	}
+	else_if = {
+		limit = { owner = { is_hive_empire = yes } }
+		add_district = district_hive
+	}
+	else_if = {
+		limit = { owner = { is_machine_empire = yes } }
+		add_district = district_nexus
+	}
+}
+
+# Add 1 mining or farming district based on capital's original type
+# Requires gk_ec_capital_had_mining flag set on capital before district removal
+gk_ec_add_resource_district = {
+	if = {
+		limit = { owner = { capital_scope = { has_planet_flag = gk_ec_capital_had_mining } } }
+		add_district = district_mining
+	}
+	else = {
+		add_district = district_farming
+	}
+}
+
+# Add zone specialization by empire type
+# $ZONE$ = zone key (e.g. zone_industrial, zone_trade, zone_research_unity)
+gk_ec_add_zone = {
+	if = {
+		limit = { owner = { is_regular_empire = yes } }
+		add_zone = { district = district_city zone = $ZONE$ zone_slot = 1 }
+	}
+	else_if = {
+		limit = { owner = { is_hive_empire = yes } }
+		add_zone = { district = district_hive zone = $ZONE$ zone_slot = 1 }
+	}
+	else_if = {
+		limit = { owner = { is_machine_empire = yes } }
+		add_zone = { district = district_nexus zone = $ZONE$ zone_slot = 1 }
+	}
+}
+
+# Fire penal overlay event if empire has penal colony civic
+# Runs in country scope
+gk_ec_fire_penal_overlay = {
+	if = {
+		limit = {
+			OR = {
+				has_valid_civic = civic_gk_ec_penal_colony
+				has_valid_civic = civic_gk_ec_penal_colony_megacorp
+			}
+		}
+		country_event = { id = gk_ec_system_initializer.4 }
+	}
+}

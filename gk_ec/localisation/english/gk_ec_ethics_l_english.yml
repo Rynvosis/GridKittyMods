@@ -19,6 +19,10 @@
   empire_not_fanatic_collectivist:0 "Empire is not §YFanatic Collectivist§!"
   empire_is_fanatic_collectivist:0 "Empire is §YFanatic Collectivist§!"
 
+  # Modifier localization
+  mod_pop_ethic_individualist_attraction_mult:0 "Individualist Ethics Attraction"
+  mod_pop_ethic_collectivist_attraction_mult:0 "Collectivist Ethics Attraction"
+
   # Pop attraction descriptions
   POP_ATTRACTION_INDIVIDUALIST_ETHIC_POS:0 "§GIndividualist§! empire"
   POP_ATTRACTION_COLLECTIVIST_ETHIC_POS:0 "§GCollectivist§! empire"

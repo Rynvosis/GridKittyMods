@@ -86,8 +86,8 @@ Available to: Standard empires & Megacorps.
 - Megacorp: +1 Entertainer Trade Value output
 
 **Councilor** (Minister of Leisure / Chief Experience Officer):
-- Standard: +10% Immigration Pull
-- Megacorp: +5% Trade Value
+- Standard: +2.5% Amenities
+- Megacorp: +2.5% Amenities
 
 ### Raiding Civics
 

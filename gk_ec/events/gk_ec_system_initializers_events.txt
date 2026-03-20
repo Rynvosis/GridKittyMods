@@ -39,6 +39,344 @@ planet_event = {
 	}
 }
 
+# Lunar Colony - colonize moon, move pops, remove districts from capital, popup specialization choice
+country_event = {
+	id = gk_ec_system_initializer.3
+	title = gk_ec_lunar_colony.3.title
+	desc = gk_ec_lunar_colony.3.desc
+	picture = GFX_evt_alien_nature
+	is_triggered_only = yes
+
+	trigger = {
+		exists = capital_scope
+		capital_scope.solar_system = {
+			has_star_flag = gk_ec_lunar_colony_system
+		}
+		# incompatible origins destroy both colonies instead
+		NOT = { has_origin = origin_doomsday }
+		NOT = { has_origin = origin_life_seeded }
+	}
+
+	immediate = {
+		capital_scope = {
+			# find and colonize the moon
+			every_moon = {
+				limit = { has_planet_flag = gk_ec_lunar_colony_moon }
+				save_event_target_as = lunar_moon
+				create_colony = {
+					owner = root
+				}
+				reroll_deposits = yes
+			}
+
+			# origin-specific setup on moon
+			event_target:lunar_moon = {
+				# clone army: prevent clone decay
+				if = {
+					limit = { owner = { has_origin = origin_clone_army } }
+					add_building = building_clone_army_clone_vat
+				}
+				# lithoid meteorite: add buried lithoids
+				if = {
+					limit = { owner = { has_origin = origin_lithoid } }
+					add_deposit = d_buried_lithoids
+					add_deposit = d_buried_lithoids
+					add_modifier = { modifier = lithoid_crater }
+				}
+			}
+
+			# batch pop movement: 20% in groups of 100, skip elites
+			while = {
+				count = value:gk_ec_lunar_pop_batches
+				random_owned_pop_group = {
+					limit = {
+						NOT = { is_pop_category = ruler }
+						NOT = { is_pop_category = specialist }
+					}
+					resettle_pop_group = {
+						POP_GROUP = this
+						PLANET = event_target:lunar_moon
+						AMOUNT = 100
+					}
+				}
+			}
+
+			# save resource type before removing (options need to know what to add)
+			if = {
+				limit = { has_district = district_mining }
+				set_planet_flag = gk_ec_capital_had_mining
+			}
+
+			# remove districts from capital
+			if = {
+				limit = { has_district = district_city }
+				remove_district = district_city
+			}
+			else_if = {
+				limit = { has_district = district_hive }
+				remove_district = district_hive
+			}
+			else_if = {
+				limit = { has_district = district_nexus }
+				remove_district = district_nexus
+			}
+
+			if = {
+				limit = { has_planet_flag = gk_ec_capital_had_mining }
+				remove_district = district_mining
+			}
+			else_if = {
+				limit = { has_district = district_farming }
+				remove_district = district_farming
+			}
+
+			if = {
+				limit = { has_district = district_generator }
+				remove_district = district_generator
+			}
+		}
+	}
+
+	# --- Option 1: Mining Colony ---
+	option = {
+		name = gk_ec_lunar_colony.3.mining
+		icon = {
+			icon = GFX_colony_type_mine
+			text = gk_ec_lunar_colony.3.mining.icon
+		}
+		event_target:lunar_moon = {
+			# 0 extra housing (innate 1 is enough), 2 mining/farming, 1 generator
+			gk_ec_add_resource_district = yes
+			gk_ec_add_resource_district = yes
+			add_district = district_generator
+		}
+		gk_ec_fire_penal_overlay = yes
+	}
+
+	# --- Option 2: Industrial Colony ---
+	option = {
+		name = gk_ec_lunar_colony.3.industrial
+		icon = {
+			icon = GFX_colony_type_industrial
+			text = gk_ec_lunar_colony.3.industrial.icon
+		}
+		event_target:lunar_moon = {
+			gk_ec_add_housing_district = yes
+			gk_ec_add_resource_district = yes
+			add_district = district_generator
+			gk_ec_add_zone = { ZONE = zone_industrial }
+		}
+		gk_ec_fire_penal_overlay = yes
+	}
+
+	# --- Option 3: Trade Hub ---
+	option = {
+		name = gk_ec_lunar_colony.3.trade
+		icon = {
+			icon = GFX_colony_type_urban
+			text = gk_ec_lunar_colony.3.trade.icon
+		}
+		event_target:lunar_moon = {
+			gk_ec_add_housing_district = yes
+			gk_ec_add_resource_district = yes
+			add_district = district_generator
+			gk_ec_add_zone = { ZONE = zone_trade }
+		}
+		gk_ec_fire_penal_overlay = yes
+	}
+
+	# --- Option: Fortress World (militarist) ---
+	option = {
+		name = gk_ec_lunar_colony.3.fortress
+		trigger = {
+			OR = {
+				has_ethic = ethic_militarist
+				has_ethic = ethic_fanatic_militarist
+			}
+		}
+		icon = {
+			icon = GFX_colony_type_fortress
+			text = gk_ec_lunar_colony.3.fortress.icon
+		}
+		event_target:lunar_moon = {
+			gk_ec_add_housing_district = yes
+			gk_ec_add_resource_district = yes
+			add_district = district_generator
+			gk_ec_add_zone = { ZONE = zone_fortress }
+		}
+		gk_ec_fire_penal_overlay = yes
+	}
+
+	# --- Option 4a: Archive World (no twisted experimenters) ---
+	option = {
+		name = gk_ec_lunar_colony.3.archive
+		trigger = {
+			NOT = {
+				OR = {
+					has_valid_civic = civic_twisted_experimenters
+					has_valid_civic = civic_twisted_experimenters_hive_mind
+					has_valid_civic = civic_twisted_experimenters_corporate
+				}
+			}
+		}
+		icon = {
+			icon = GFX_colony_type_research
+			text = gk_ec_lunar_colony.3.archive.icon
+		}
+		event_target:lunar_moon = {
+			gk_ec_add_housing_district = yes
+			gk_ec_add_resource_district = yes
+			add_district = district_generator
+			gk_ec_add_zone = { ZONE = zone_research_unity }
+		}
+		gk_ec_fire_penal_overlay = yes
+	}
+
+	# --- Option 4b: Science World (twisted experimenters) ---
+	option = {
+		name = gk_ec_lunar_colony.3.science
+		trigger = {
+			OR = {
+				has_valid_civic = civic_twisted_experimenters
+				has_valid_civic = civic_twisted_experimenters_hive_mind
+				has_valid_civic = civic_twisted_experimenters_corporate
+			}
+		}
+		icon = {
+			icon = GFX_colony_type_research
+			text = gk_ec_lunar_colony.3.science.icon
+		}
+		event_target:lunar_moon = {
+			# no generator (building compensates)
+			gk_ec_add_housing_district = yes
+			gk_ec_add_resource_district = yes
+			gk_ec_add_zone = { ZONE = zone_research }
+		}
+		# move experiment building from capital to moon
+		capital_scope = {
+			remove_building = building_experimentation_chambers_1
+		}
+		event_target:lunar_moon = {
+			add_building = {
+				building = building_experimentation_chambers_1
+				zone = zone_research
+			}
+		}
+		gk_ec_fire_penal_overlay = yes
+	}
+
+	# --- Option 5: Resort World ---
+	option = {
+		name = gk_ec_lunar_colony.3.resort
+		trigger = {
+			OR = {
+				has_valid_civic = civic_gk_ec_resort_worlds
+				has_valid_civic = civic_gk_ec_resort_worlds_megacorp
+			}
+		}
+		icon = {
+			icon = GFX_colony_type_resort
+			text = gk_ec_lunar_colony.3.resort.icon
+		}
+		event_target:lunar_moon = {
+			gk_ec_add_housing_district = yes
+			gk_ec_add_resource_district = yes
+			add_district = district_generator
+			add_modifier = { modifier = resort_colony days = -1 }
+			remove_building = building_colony_shelter
+			add_building = building_resort_capital
+		}
+		# no penal overlay (mutually exclusive civics)
+	}
+}
+
+# Lunar Colony - penal colony overlay
+country_event = {
+	id = gk_ec_system_initializer.4
+	title = gk_ec_lunar_colony.4.title
+	desc = {
+		trigger = {
+			OR = {
+				has_valid_civic = civic_twisted_experimenters
+				has_valid_civic = civic_twisted_experimenters_hive_mind
+				has_valid_civic = civic_twisted_experimenters_corporate
+			}
+		}
+		text = gk_ec_lunar_colony.4.desc.experimenters
+	}
+	desc = {
+		text = gk_ec_lunar_colony.4.desc
+	}
+	picture = GFX_evt_alien_nature
+	is_triggered_only = yes
+
+	option = {
+		name = gk_ec_lunar_colony.4.yes
+		icon = {
+			icon = GFX_colony_type_penal
+			text = gk_ec_lunar_colony.4.yes.icon
+		}
+		event_target:lunar_moon = {
+			add_modifier = { modifier = penal_colony days = -1 }
+		}
+		# if also twisted experimenters, add experimental sentencing
+		if = {
+			limit = {
+				OR = {
+					has_valid_civic = civic_twisted_experimenters
+					has_valid_civic = civic_twisted_experimenters_hive_mind
+					has_valid_civic = civic_twisted_experimenters_corporate
+				}
+			}
+			add_modifier = { modifier = penal_experimental_sentencing days = -1 }
+		}
+	}
+
+	option = {
+		name = gk_ec_lunar_colony.4.no
+	}
+}
+
+# GK start systems - incompatible origin, destroy colony
+country_event = {
+	id = gk_ec_system_initializer.5
+	title = gk_ec_system_initializer.5.title
+	desc = gk_ec_system_initializer.5.desc
+	picture = GFX_evt_exploding_planet
+	is_triggered_only = yes
+
+	trigger = {
+		exists = capital_scope
+		capital_scope.solar_system = {
+			OR = {
+				has_star_flag = gk_ec_lunar_colony_system
+				has_star_flag = gk_ec_titanic_system
+				has_star_flag = gk_ec_ruined_habitat_system
+			}
+		}
+		OR = {
+			has_origin = origin_doomsday
+			has_origin = origin_life_seeded
+		}
+	}
+
+	immediate = {
+		capital_scope = {
+			destroy_colony = yes
+			change_pc = pc_shattered
+			every_moon = {
+				limit = { is_colony = yes }
+				destroy_colony = yes
+				change_pc = pc_shattered
+			}
+		}
+	}
+
+	option = {
+		name = gk_ec_system_initializer.5.ok
+	}
+}
+
 # 100 - 199
 # ruined habitat
 country_event = {
