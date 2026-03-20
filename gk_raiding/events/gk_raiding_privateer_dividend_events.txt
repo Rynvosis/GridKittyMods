@@ -30,7 +30,7 @@ country_event = {
 						modifier = {
 							factor = 0
 							event_target:gk_privateer_enclave_country = {
-								NOT = { has_modifier = gk_privateer_upgrade_1 }
+								NOT = { has_modifier = mercenary_fleet_size_upgrade_1 }
 							}
 						}
 						country_event = { id = gk_raiding_privateers.530 }
@@ -72,7 +72,7 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				NOT = { has_modifier = gk_privateer_upgrade_2 }
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_2 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -94,8 +94,8 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_2
-				NOT = { has_modifier = gk_privateer_upgrade_4 }
+				has_modifier = mercenary_fleet_size_upgrade_2
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_4 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -117,7 +117,7 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_4
+				has_modifier = mercenary_fleet_size_upgrade_4
 			}
 		}
 		add_monthly_resource_mult = {
@@ -157,7 +157,7 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				NOT = { has_modifier = gk_privateer_upgrade_2 }
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_2 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -179,8 +179,8 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_2
-				NOT = { has_modifier = gk_privateer_upgrade_4 }
+				has_modifier = mercenary_fleet_size_upgrade_2
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_4 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -202,7 +202,7 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_4
+				has_modifier = mercenary_fleet_size_upgrade_4
 			}
 		}
 		add_monthly_resource_mult = {
@@ -251,7 +251,7 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				NOT = { has_modifier = gk_privateer_upgrade_2 }
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_2 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -298,8 +298,8 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_2
-				NOT = { has_modifier = gk_privateer_upgrade_4 }
+				has_modifier = mercenary_fleet_size_upgrade_2
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_4 }
 			}
 		}
 		add_monthly_resource_mult = {
@@ -346,7 +346,7 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_4
+				has_modifier = mercenary_fleet_size_upgrade_4
 			}
 		}
 		add_monthly_resource_mult = {
@@ -443,7 +443,7 @@ country_event = {
 				if = {
 					limit = {
 						event_target:gk_privateer_enclave_country = {
-							has_modifier = gk_privateer_upgrade_2
+							has_modifier = mercenary_fleet_size_upgrade_2
 						}
 					}
 					while = {
@@ -475,7 +475,7 @@ country_event = {
 				if = {
 					limit = {
 						event_target:gk_privateer_enclave_country = {
-							has_modifier = gk_privateer_upgrade_4
+							has_modifier = mercenary_fleet_size_upgrade_4
 						}
 					}
 					while = {
@@ -526,7 +526,7 @@ country_event = {
 		if = {
 			limit = {
 				event_target:gk_privateer_enclave_country = {
-					NOT = { has_modifier = gk_privateer_upgrade_2 }
+					NOT = { has_modifier = mercenary_fleet_size_upgrade_2 }
 				}
 			}
 			add_resource = { alloys = 500 }
@@ -534,8 +534,8 @@ country_event = {
 		else_if = {
 			limit = {
 				event_target:gk_privateer_enclave_country = {
-					has_modifier = gk_privateer_upgrade_2
-					NOT = { has_modifier = gk_privateer_upgrade_4 }
+					has_modifier = mercenary_fleet_size_upgrade_2
+					NOT = { has_modifier = mercenary_fleet_size_upgrade_4 }
 				}
 			}
 			add_resource = { alloys = 1000 }
@@ -615,7 +615,7 @@ country_event = {
 		if = {
 			limit = {
 				event_target:gk_privateer_enclave_country = {
-					NOT = { has_modifier = gk_privateer_upgrade_2 }
+					NOT = { has_modifier = mercenary_fleet_size_upgrade_2 }
 				}
 			}
 			add_resource = { minor_artifacts = 15 }
@@ -623,8 +623,8 @@ country_event = {
 		else_if = {
 			limit = {
 				event_target:gk_privateer_enclave_country = {
-					has_modifier = gk_privateer_upgrade_2
-					NOT = { has_modifier = gk_privateer_upgrade_4 }
+					has_modifier = mercenary_fleet_size_upgrade_2
+					NOT = { has_modifier = mercenary_fleet_size_upgrade_4 }
 				}
 			}
 			add_resource = { minor_artifacts = 25 }

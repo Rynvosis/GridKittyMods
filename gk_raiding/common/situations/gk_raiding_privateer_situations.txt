@@ -44,27 +44,27 @@ gk_privateer_dividends = {
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_privateer_upgrade_1 }
+			owner = { has_modifier = mercenary_fleet_size_upgrade_1 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_privateer_upgrade_2 }
+			owner = { has_modifier = mercenary_fleet_size_upgrade_2 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_privateer_upgrade_3 }
+			owner = { has_modifier = mercenary_fleet_size_upgrade_3 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_privateer_upgrade_4 }
+			owner = { has_modifier = mercenary_fleet_size_upgrade_4 }
 		}
 		modifier = {
 			add = @dividend_rank_rate
 			desc = enclave_rank
-			owner = { has_modifier = gk_privateer_upgrade_5 }
+			owner = { has_modifier = mercenary_fleet_size_upgrade_5 }
 		}
 
 		# GalCom resolutions

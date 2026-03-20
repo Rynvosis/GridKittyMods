@@ -82,46 +82,46 @@ country_event = {
 				25 = {
 					modifier = {
 						add = 5
-						has_modifier = gk_privateer_upgrade_1
+						has_modifier = mercenary_fleet_size_upgrade_1
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_privateer_upgrade_2
+						has_modifier = mercenary_fleet_size_upgrade_2
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_privateer_upgrade_3
+						has_modifier = mercenary_fleet_size_upgrade_3
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_privateer_upgrade_4
+						has_modifier = mercenary_fleet_size_upgrade_4
 					}
 					modifier = {
 						add = 5
-						has_modifier = gk_privateer_upgrade_5
+						has_modifier = mercenary_fleet_size_upgrade_5
 					}
 					country_event = { id = gk_raiding_privateers.211 }
 				}
 				75 = {
 					modifier = {
 						add = -5
-						has_modifier = gk_privateer_upgrade_1
+						has_modifier = mercenary_fleet_size_upgrade_1
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_privateer_upgrade_2
+						has_modifier = mercenary_fleet_size_upgrade_2
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_privateer_upgrade_3
+						has_modifier = mercenary_fleet_size_upgrade_3
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_privateer_upgrade_4
+						has_modifier = mercenary_fleet_size_upgrade_4
 					}
 					modifier = {
 						add = -5
-						has_modifier = gk_privateer_upgrade_5
+						has_modifier = mercenary_fleet_size_upgrade_5
 					}
 				}
 			}
@@ -524,10 +524,11 @@ country_event = {
 			remove_country_flag = gk_commissioned_raid_target
 		}
 
-		# Find the locked fleet
+		# Find and lock an eligible fleet
 		random_owned_fleet = {
-			limit = { has_fleet_flag = gk_fleet_locked }
+			limit = { gk_is_eligible_raid_fleet = yes }
 			save_event_target_as = gk_raid_fleet
+			set_fleet_flag = gk_fleet_locked
 		}
 
 		if = {
@@ -536,20 +537,19 @@ country_event = {
 				exists = event_target:gk_raid_fleet
 			}
 			set_country_flag = gk_auto_raid_ongoing
+			# Track who commissioned this raid (for cancel raid feature)
+			set_country_flag = gk_raid_commissioned
+			if = {
+				limit = { exists = from }
+				set_country_flag = gk_raid_commissioned_by_@from
+			}
 			country_event = { id = gk_raiding_privateers.212 }
 		}
 		else = {
-			# Fallback: clean up stale locks and refund the commissioning player
-			# from = commissioning player (root of event 340)
+			# Fallback: clean up stale locks (target or fleet vanished between events)
 			every_owned_fleet = {
 				limit = { has_fleet_flag = gk_fleet_locked }
 				remove_fleet_flag = gk_fleet_locked
-			}
-			if = {
-				limit = { exists = from }
-				from = {
-					add_resource = { energy = @commission_raid_cost }
-				}
 			}
 		}
 	}
@@ -913,9 +913,12 @@ country_event = {
 						is_ship_size = gk_privateer_station
 					}
 				}
-				NOT = {
-					solar_system = {
-						is_same_value = event_target:gk_privateer_enclave_system
+				OR = {
+					NOT = { exists = event_target:gk_privateer_enclave_system }
+					NOT = {
+						solar_system = {
+							is_same_value = event_target:gk_privateer_enclave_system
+						}
 					}
 				}
 			}

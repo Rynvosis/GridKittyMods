@@ -1,38 +1,7 @@
 # GK Raiding — Privateer Enclave Static Modifiers
-
-# ──────────────────────────────────────────────────────────────────
-# Fleet Upgrade Modifiers (applied to enclave country, cumulative)
-# ──────────────────────────────────────────────────────────────────
-
-gk_privateer_upgrade_1 = {
-	country_naval_cap_add = 10
-	command_limit_add = 10
-	country_produces_mult = 0.02
-}
-
-gk_privateer_upgrade_2 = {
-	country_naval_cap_add = 15
-	command_limit_add = 15
-	country_produces_mult = 0.02
-}
-
-gk_privateer_upgrade_3 = {
-	country_naval_cap_add = 20
-	command_limit_add = 20
-	country_produces_mult = 0.02
-}
-
-gk_privateer_upgrade_4 = {
-	country_naval_cap_add = 25
-	command_limit_add = 25
-	country_produces_mult = 0.02
-}
-
-gk_privateer_upgrade_5 = {
-	country_naval_cap_add = 30
-	command_limit_add = 30
-	country_produces_mult = 0.02
-}
+#
+# Fleet upgrade modifiers use vanilla mercenary_fleet_size_upgrade_1 through _5
+# (shared with merc enclaves so ranks carry over on conversion).
 
 # ──────────────────────────────────────────────────────────────────
 # Perk Modifiers (applied to patron country)

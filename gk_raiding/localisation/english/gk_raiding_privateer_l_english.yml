@@ -12,11 +12,48 @@
  # Ship design
  NAME_GK_Privateer_Enclave_Station: "Privateer Outpost"
 
+ # Trade window scripted loc keys
+ GK_PRIVATEER_LOC:0 "Privateer"
+ GK_ENCLAVE_OFFER_ACTION_HIRE:0 "to hire a £military_ship£§RMercenary Fleet (£military_power£"
+ GK_ENCLAVE_OFFER_ACTION_MINDWARDEN:0 "to hire a £military_ship£§RMindwarden Fleet (£military_power£"
+ GK_ENCLAVE_OFFER_ACTION_COMMISSION:0 "to commission a £military_ship£§RPrivateer Fleet (£military_power£"
+ GK_ENCLAVE_OFFER_SUFFIX_HIRE:0 " "
+ GK_ENCLAVE_OFFER_SUFFIX_COMMISSION:0 " to raid §Y[event_target:gk_commission_raid_target.GetName]§!"
+ GK_ENCLAVE_OFFER_DURATION_HIRE:0 "for"
+ GK_ENCLAVE_OFFER_DURATION_RAID:0 "for"
+
  # Enclave founding (enclave.2 overwrite)
  GK_RAIDING_ENCLAVE_2_DESC:0 "Our scouts have identified a viable location for a permanent base of operations in the void between stars. The site offers natural concealment and defensible approaches, ideal for establishing a presence beyond the reach of conventional patrols.\n\nOur §Ydespoliation expertise§! opens an additional possibility. Rather than a standard mercenary enclave, we could establish a §Yprivateer haven§!, a privateer outpost that would launch raids on our behalf, sowing chaos among our rivals.\n\nThe choice is yours, Commander."
  GK_RAIDING_ENCLAVE_2_MERCENARY:0 "Establish Mercenary Enclave"
  GK_RAIDING_ENCLAVE_2_PRIVATEER:0 "Establish Privateer Haven"
  GK_RAIDING_ENCLAVE_2_PRIVATEER_TOOLTIP:0 "A Privateer Haven is founded."
+
+ # Conversion (enclave.205 overwrite + privateers.205)
+ GK_RAIDING_ENCLAVE_205_CONVERT_PRIVATEER:0 "Convert to Privateer Haven"
+ gk_privateer_tt_convert_to_privateer:0 "Convert this mercenary enclave into a §YPrivateer Haven§!. Costs §Y100§! influence. Upgrade ranks are preserved."
+ gk_privateer_tt_convert_fleet_leased:0 "Cannot convert while the enclave has a fleet on loan."
+ GK_RAIDING_PRIVATEERS_205_CONVERT_MERC:0 "Convert to Mercenary Company"
+ gk_privateer_tt_convert_to_merc:0 "Convert this privateer haven back into a §YMercenary Enclave§!. Costs §Y100§! influence. Upgrade ranks are preserved.\n\n§LRequires the Despoliation tradition finisher.§!"
+ gk_privateer_tt_convert_raid_ongoing:0 "Cannot convert while the enclave is conducting a raid."
+
+ # Events — Conversion notifications (114, 115)
+ gk_raiding_privateers.114.name:0 "Enclave Converted"
+ gk_raiding_privateers.114.desc.stoic:0 "The [event_target:gk_privateer_enclave_country.GetName] has completed its transformation. What was once a mercenary company is now a privateer outpost. The crew accepted the change without comment, already adjusting their operations to the new mandate.\n\n§Y\"Refit complete. We are ready for new orders, patron.\"§!"
+ gk_raiding_privateers.114.desc.screamer:0 "The [event_target:gk_privateer_enclave_country.GetName] is REBORN! The crew has enthusiastically torn down the old mercenary signage and replaced it with... something louder. Much louder.\n\n§Y\"HYEEEIIIEEE!!!! No more rental! Now we SMASH for ourselves! Patron says smash, WE SMASH! HYEEEIIIEEE!!!!\"§!"
+ gk_raiding_privateers.114.desc.cultist:0 "The [event_target:gk_privateer_enclave_country.GetName] has been reconsecrated. The crew performed rites of transformation, marking the station's walls with new sigils. Their leader's voice trembled with fervor.\n\n§Y\"She of the Void has ordained this change. We are Her instruments now, patron. Point us toward the offerings.\"§!"
+ gk_raiding_privateers.114.desc.calculating:0 "The [event_target:gk_privateer_enclave_country.GetName] has been restructured. The crew immediately began repurposing rental infrastructure for autonomous operations. Efficiency projections are favorable.\n\n§Y\"Reconfiguration complete. Operational paradigm shift: mercenary rental to directed raiding. All systems nominal, patron.\"§!"
+ gk_raiding_privateers.114.desc.merchant:0 "The [event_target:gk_privateer_enclave_country.GetName] is under new management! Well, same management, new business model. The crew seems genuinely excited about the pivot.\n\n§Y\"Out with the old, in with the bold! No more fleet rentals, friend. From now on, we bring the goods directly to your doorstep!\"§!"
+ gk_raiding_privateers.114.desc.automaton:0 "The [event_target:gk_privateer_enclave_country.GetName] has been reconfigured. All subsystems repurposed for autonomous raiding operations in 0.007 cycles.\n\n§Y\"OPERATIONAL MODE UPDATED. Mercenary rental protocols archived. Raiding subroutines loaded. Awaiting target designations from command authority.\"§!"
+ gk_raiding_privateers.115.name:0 "Enclave Reverted"
+ gk_raiding_privateers.115.desc:0 "The [From.GetName] has completed its transition back to a standard mercenary company. The pirate aesthetics have been stripped away and replaced with professional insignia. Fleet rental services are now available."
+
+ # Cancel Raid
+ gk_raiding_privateers.205.cancel_raid:0 "Cancel Raid"
+ gk_privateer_tt_cancel_raid:0 "Recall the raiding fleet. No fee. The fleet returns empty-handed."
+ gk_raiding_privateers.346.name:0 "Raid Cancelled"
+ gk_raiding_privateers.346.desc:0 "The commissioned raid against [event_target:gk_raid_target.GetName] has been called off. The [event_target:gk_privateer_enclave_country.GetName]'s fleet is returning to base."
+ gk_raiding_privateers.347.name:0 "Raiders Withdraw"
+ gk_raiding_privateers.347.desc:0 "The [event_target:gk_privateer_enclave_country.GetName]'s raiding fleet has been recalled. Their ships are pulling back from our territory."
 
  # Events — Haven Established (102)
  gk_raiding_privateers.102.name:0 "A Haven Among the Stars"
@@ -138,11 +175,11 @@
  # ──────────────────────────────────────────────────────────────────
 
  # Upgrade modifiers
- gk_privateer_upgrade_1:0 "Privateer Haven Rank 1"
- gk_privateer_upgrade_2:0 "Privateer Haven Rank 2"
- gk_privateer_upgrade_3:0 "Privateer Haven Rank 3"
- gk_privateer_upgrade_4:0 "Privateer Haven Rank 4"
- gk_privateer_upgrade_5:0 "Privateer Haven Rank 5"
+ mercenary_fleet_size_upgrade_1:0 "Privateer Haven Rank 1"
+ mercenary_fleet_size_upgrade_2:0 "Privateer Haven Rank 2"
+ mercenary_fleet_size_upgrade_3:0 "Privateer Haven Rank 3"
+ mercenary_fleet_size_upgrade_4:0 "Privateer Haven Rank 4"
+ mercenary_fleet_size_upgrade_5:0 "Privateer Haven Rank 5"
 
  # Perk modifiers
  gk_privateer_raider_intel:0 "Raider Intelligence"
@@ -260,20 +297,29 @@
  gk_privateer_tt_commission_no_fleet:0 "The enclave has no available raid fleet."
  gk_privateer_tt_commission_raid_ongoing:0 "The enclave is already conducting a raid."
 
+ # .339 — Commission Raid: Payment
+ gk_raiding_privateers.339.name:0 "Commission Raid"
+ gk_raiding_privateers.339.desc.stoic:0 "The haven's commander reviews the fleet's readiness with a practiced eye.\n\n§Y\"You want a specific empire hit. We can arrange that. Our fleet is ready. Agree to our terms and we will prepare target options.\"§!"
+ gk_raiding_privateers.339.desc.screamer:0 "The haven's commander is practically vibrating with excitement at the prospect of a paid job.\n\n§Y\"HYEEEIIIEEE!!!! You want us SMASH someone?! PAY US AND WE SMASH! WE SMASH SO GOOD! HYEEEIIIEEE!!!!\"§!"
+ gk_raiding_privateers.339.desc.cultist:0 "The haven's commander inclines their head reverently, sensing an opportunity to carry out divine will.\n\n§Y\"She of the Void approves. Our fleet stands ready to carry Her judgment. Accept our terms, and we shall present the faithless for your choosing.\"§!"
+ gk_raiding_privateers.339.desc.calculating:0 "The haven's commander brings up a fleet readiness assessment.\n\n§Y\"Fleet status: combat ready. Commission fee calculated based on fleet deployment value. Accept terms to proceed to target selection.\"§!"
+ gk_raiding_privateers.339.desc.merchant:0 "The haven's commander rubs their hands together with a broker's enthusiasm.\n\n§Y\"A commissioned raid! Excellent business. Our fleet is ready to ship out. Accept our very reasonable fee and we will show you the menu of targets.\"§!"
+ gk_raiding_privateers.339.desc.automaton:0 "Fleet deployment cost analysis populates the display.\n\n§Y\"Commission raid protocol initiated. Fleet readiness: nominal. Deployment fee calculated. Confirm payment to proceed to target selection.\"§!"
+
  # .340 — Target Selection
- gk_raiding_privateers.340.name:0 "Commission Raid"
- gk_raiding_privateers.340.desc.stoic:0 "The haven's commander studies a holographic display of the local star cluster, marking potential targets with methodical precision.\n\n§Y\"You want a specific empire hit. We can do that. Our scouts have been watching your rivals. Here are the viable targets. Pick one, pay the fee, and our fleet launches immediately. No waiting.\"§!"
- gk_raiding_privateers.340.desc.screamer:0 "The haven's commander is practically vibrating with excitement, pulling up star charts and stabbing at them with enthusiasm.\n\n§Y\"HYEEEIIIEEE!!!! You want us SMASH someone specific?! YES YES YES! We know your enemies! We watch them! Pick a dwamak and we GO SMASH RIGHT NOW! HYEEEIIIEEE!!!!\"§!"
- gk_raiding_privateers.340.desc.cultist:0 "The haven's commander closes their eyes, hands hovering over a star chart as if divining the will of unseen forces.\n\n§Y\"She of the Void has shown us the movements of your enemies. Their worlds lie bare before Her sight. Name the faithless you wish brought low, and our fleet shall carry Her judgment to their doorstep.\"§!"
- gk_raiding_privateers.340.desc.calculating:0 "The haven's commander displays a tactical overlay with threat assessments for each potential target.\n\n§Y\"Commissioned raid parameters confirmed. Target analysis complete. We have identified viable objectives among your declared rivals. Each has been assessed for fleet response time, orbital defenses, and projected extraction yield. Select your target.\"§!"
- gk_raiding_privateers.340.desc.merchant:0 "The haven's commander leans forward with the gleam of a broker closing a deal.\n\n§Y\"A commissioned raid! Now we're talking serious business. We've done our homework on your rivals. Pick a target from the list, pay the fee, and our crew ships out before the ink is dry. Premium service, guaranteed satisfaction!\"§!"
- gk_raiding_privateers.340.desc.automaton:0 "A target selection interface populates the display, overlaid with rival empire telemetry.\n\n§Y\"Commissioned raid protocol engaged. Rival empire scan complete. Viable targets listed below with projected engagement parameters. Select target. Fleet will deploy upon confirmation and payment receipt.\"§!"
+ gk_raiding_privateers.340.name:0 "Select Target"
+ gk_raiding_privateers.340.desc.stoic:0 "The haven's commander studies a holographic display of the local star cluster, marking potential targets with methodical precision.\n\n§Y\"Our scouts have been watching your rivals. Here are the viable targets. Pick one and our fleet launches immediately.\"§!"
+ gk_raiding_privateers.340.desc.screamer:0 "The haven's commander pulls up star charts, stabbing at them with wild enthusiasm.\n\n§Y\"HYEEEIIIEEE!!!! We know your enemies! We watch them! Pick a dwamak and we GO SMASH RIGHT NOW! HYEEEIIIEEE!!!!\"§!"
+ gk_raiding_privateers.340.desc.cultist:0 "The haven's commander closes their eyes, hands hovering over a star chart as if divining the will of unseen forces.\n\n§Y\"She of the Void has shown us the movements of your enemies. Their worlds lie bare before Her sight. Name the faithless you wish brought low.\"§!"
+ gk_raiding_privateers.340.desc.calculating:0 "The haven's commander displays a tactical overlay with threat assessments for each potential target.\n\n§Y\"Target analysis complete. Viable objectives identified among your declared rivals. Each assessed for fleet response time, orbital defenses, and projected extraction yield. Select your target.\"§!"
+ gk_raiding_privateers.340.desc.merchant:0 "The haven's commander presents a selection of targets with a showman's flair.\n\n§Y\"Here is the menu! Our scouts have done their homework on your rivals. Pick a target and our crew ships out before the ink is dry.\"§!"
+ gk_raiding_privateers.340.desc.automaton:0 "A target selection interface populates the display, overlaid with rival empire telemetry.\n\n§Y\"Rival empire scan complete. Viable targets listed below with projected engagement parameters. Select target for fleet deployment.\"§!"
 
  # .340 options
- gk_raiding_privateers.340.a:0 "Raid the [event_target:gk_commission_target_1.GetName]. §Y(£energy£ 750)§!"
- gk_raiding_privateers.340.b:0 "Raid the [event_target:gk_commission_target_2.GetName]. §Y(£energy£ 750)§!"
- gk_raiding_privateers.340.c:0 "Raid the [event_target:gk_commission_target_3.GetName]. §Y(£energy£ 750)§!"
- gk_raiding_privateers.340.patron:0 "Raid the [event_target:gk_privateer_patron.GetName]. §Y(£energy£ 750)§!"
+ gk_raiding_privateers.340.a:0 "Raid the [event_target:gk_commission_target_1.GetName]."
+ gk_raiding_privateers.340.b:0 "Raid the [event_target:gk_commission_target_2.GetName]."
+ gk_raiding_privateers.340.c:0 "Raid the [event_target:gk_commission_target_3.GetName]."
+ gk_raiding_privateers.340.patron:0 "Raid the [event_target:gk_privateer_patron.GetName]."
  gk_raiding_privateers.340.no_fleet:0 "Commission a Raid"
  gk_raiding_privateers.340.no_targets:0 "Commission a Raid"
 

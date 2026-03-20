@@ -513,6 +513,7 @@ gk_end_privateer_raid = {
 
 	# Cleanup flags
 	remove_country_flag = gk_auto_raid_ongoing
+	remove_country_flag = gk_raid_commissioned
 
 	# Set cooldown
 	set_timed_country_flag = {
@@ -577,6 +578,7 @@ gk_cleanup_privateer_raid = {
 	# Clear raid flags on enclave
 	remove_country_flag = gk_auto_raid_ongoing
 	remove_country_flag = gk_has_active_privateer_raider
+	remove_country_flag = gk_raid_commissioned
 
 	# Unlock any lingering locked fleets
 	every_owned_fleet = {
@@ -616,6 +618,94 @@ gk_accumulate_display_total = {
 		change_variable = {
 			which = gk_total_$RESOURCE$
 			value = event_target:gk_loot_receipt.gk_loot_$RESOURCE$
+		}
+	}
+}
+
+# Cancel an active privateer raid: no loot cashout, fleet returns, notify relevant parties
+# This = enclave country
+# event_target:gk_cancel_raid_initiator = the country that cancelled (patron or commissioner)
+gk_cancel_privateer_raid = {
+	save_event_target_as = gk_privateer_enclave_country
+	gk_get_privateer_station_context = yes
+
+	# Find the raider country
+	random_country = {
+		limit = {
+			is_country_type = gk_privateer_raiders
+			has_country_flag = gk_privateer_raider_of_@prev
+		}
+		save_event_target_as = gk_privateer_raider
+	}
+
+	# Find raid target from raider flags
+	if = {
+		limit = { exists = event_target:gk_privateer_raider }
+		random_country = {
+			limit = {
+				is_country_type = default
+				event_target:gk_privateer_raider = {
+					has_country_flag = gk_privateer_targeting_@prev
+				}
+			}
+			save_event_target_as = gk_raid_target
+		}
+	}
+
+	# Clean up using existing effect (destroys receipts, debris, raider country)
+	if = {
+		limit = { exists = event_target:gk_privateer_raider }
+		# Transfer fleet back before cleanup destroys raider
+		event_target:gk_privateer_raider = {
+			every_owned_fleet = {
+				set_owner = event_target:gk_privateer_enclave_country
+				remove_fleet_flag = gk_fleet_locked
+				remove_auto_move_target = yes
+				if = {
+					limit = { exists = event_target:gk_enclave_star }
+					queue_actions = {
+						move_to = event_target:gk_enclave_star
+					}
+				}
+			}
+		}
+		gk_cleanup_privateer_raid = yes
+	}
+	else = {
+		# No raider found, just clear flags
+		remove_country_flag = gk_auto_raid_ongoing
+		remove_country_flag = gk_has_active_privateer_raider
+		remove_country_flag = gk_raid_commissioned
+		every_owned_fleet = {
+			limit = { has_fleet_flag = gk_fleet_locked }
+			remove_fleet_flag = gk_fleet_locked
+		}
+	}
+
+	# Set cooldown
+	set_timed_country_flag = {
+		flag = gk_auto_raid_cooldown
+		days = 360
+	}
+
+	# Notify patron if this was a commissioned raid cancelled by someone other than the patron
+	if = {
+		limit = {
+			has_country_flag = gk_raid_commissioned
+			exists = event_target:gk_privateer_patron
+			exists = event_target:gk_cancel_raid_initiator
+			NOT = { event_target:gk_cancel_raid_initiator = { is_same_value = event_target:gk_privateer_patron } }
+		}
+		event_target:gk_privateer_patron = {
+			country_event = { id = gk_raiding_privateers.346 }
+		}
+	}
+
+	# Notify target
+	if = {
+		limit = { exists = event_target:gk_raid_target }
+		event_target:gk_raid_target = {
+			country_event = { id = gk_raiding_privateers.347 }
 		}
 	}
 }

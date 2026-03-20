@@ -47,6 +47,214 @@ country_event = {
 }
 
 # ──────────────────────────────────────────────────────────────────
+# Conversion (110–119)
+# ──────────────────────────────────────────────────────────────────
+
+# Merc -> Privateer: execute conversion — hidden
+# This = enclave country (was enclave_mercenary, becomes gk_privateer_enclave)
+# Fired from overwritten enclave.205
+country_event = {
+	id = gk_raiding_privateers.112
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gk_privateer_enclave_country
+
+		# Find patron before conversion (while station is still merc type)
+		random_owned_fleet = {
+			limit = { is_ship_size = enclave_mercenary_station }
+			solar_system = {
+				if = {
+					limit = { exists = space_owner }
+					space_owner = {
+						save_event_target_as = gk_privateer_patron
+					}
+				}
+				save_event_target_as = gk_privateer_enclave_system
+			}
+			# Remember station location
+			random_owned_ship = {
+				save_event_target_as = gk_old_station_ship
+			}
+		}
+
+		# Change country type and civic
+		set_country_type = gk_privateer_enclave
+		force_remove_civic = civic_mercenary_enclave
+		force_add_civic = civic_gk_privateer_enclave
+		set_graphical_culture = pirate_01
+		set_country_flag = gk_privateer_enclave_country
+		remove_country_flag = mercenary_enclave_country
+
+		# Assign personality
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			event_target:gk_privateer_patron = {
+				save_event_target_as = gk_privateer_enclave_creator
+			}
+		}
+		gk_assign_privateer_personality = yes
+
+		# Replace station: destroy merc station, create privateer station at same location
+		random_owned_fleet = {
+			limit = { is_ship_size = enclave_mercenary_station }
+			solar_system = {
+				save_event_target_as = gk_station_system
+			}
+			delete_fleet = this
+		}
+		create_fleet = {
+			settings = { spawn_debris = no }
+			effect = {
+				set_owner = prev
+				create_ship = {
+					name = random
+					design = "NAME_GK_Privateer_Enclave_Station"
+					graphical_culture = prev
+				}
+				set_location = {
+					target = event_target:gk_privateer_enclave_system
+					distance = 90
+				}
+			}
+		}
+
+		# End merc dividends, start privateer dividends
+		random_situation = {
+			limit = { is_situation_type = mercenary_dividends }
+			destroy_situation = this
+		}
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			start_situation = {
+				type = gk_privateer_dividends
+				target = event_target:gk_privateer_patron
+			}
+		}
+
+		# Notify patron
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			event_target:gk_privateer_patron = {
+				country_event = { id = gk_raiding_privateers.114 }
+			}
+		}
+	}
+}
+
+# Privateer -> Merc: execute conversion — hidden
+# This = enclave country (was gk_privateer_enclave, becomes enclave_mercenary)
+# Fired from gk_raiding_privateers.205
+country_event = {
+	id = gk_raiding_privateers.113
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# Find patron before conversion
+		gk_get_privateer_station_context = yes
+
+		# Change country type and civic
+		set_country_type = enclave_mercenary
+		force_remove_civic = civic_gk_privateer_enclave
+		force_add_civic = civic_mercenary_enclave
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			set_graphical_culture = event_target:gk_privateer_patron
+		}
+		remove_country_flag = gk_privateer_enclave_country
+		set_country_flag = mercenary_enclave_country
+
+		# Clear personality flags
+		remove_country_flag = gk_privateer_stoic
+		remove_country_flag = gk_privateer_screamer
+		remove_country_flag = gk_privateer_cultist
+		remove_country_flag = gk_privateer_calculating
+		remove_country_flag = gk_privateer_merchant
+		remove_country_flag = gk_privateer_automaton
+
+		# Replace station: destroy privateer station, create merc station at same location
+		random_owned_fleet = {
+			limit = {
+				any_owned_ship = { is_ship_size = gk_privateer_station }
+			}
+			delete_fleet = this
+		}
+		create_fleet = {
+			settings = { spawn_debris = no }
+			effect = {
+				set_owner = prev
+				create_ship = {
+					name = random
+					design = "NAME_Mercenary_Enclave_Station"
+					graphical_culture = prev
+				}
+				set_location = {
+					target = event_target:gk_privateer_enclave_system
+					distance = 90
+				}
+			}
+		}
+
+		# End privateer dividends, start merc dividends
+		random_situation = {
+			limit = { is_situation_type = gk_privateer_dividends }
+			destroy_situation = this
+		}
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			start_situation = {
+				type = mercenary_dividends
+				target = event_target:gk_privateer_patron
+			}
+		}
+
+		# Notify patron
+		if = {
+			limit = { exists = event_target:gk_privateer_patron }
+			event_target:gk_privateer_patron = {
+				country_event = { id = gk_raiding_privateers.115 }
+			}
+		}
+	}
+}
+
+# Conversion notification: now a Privateer Haven
+# This = patron country
+country_event = {
+	id = gk_raiding_privateers.114
+	title = gk_raiding_privateers.114.name
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.114.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# Conversion notification: reverted to Mercenary Company
+# This = patron country
+country_event = {
+	id = gk_raiding_privateers.115
+	title = gk_raiding_privateers.115.name
+	desc = gk_raiding_privateers.115.desc
+	picture = GFX_evt_mercenary_enclave
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
 # Diplomacy Window — Gatekeeper + Greeting (200–299)
 # ──────────────────────────────────────────────────────────────────
 
@@ -180,6 +388,7 @@ country_event = {
 	location = event_target:gk_privateer_enclave_system
 
 	immediate = {
+		set_country_flag = gk_privateer_diplomacy
 		event_target:gk_privateer_enclave_country = {
 			gk_get_privateer_station_context = yes
 			species = {
@@ -270,7 +479,6 @@ country_event = {
 	# ── Commission Raid ──
 	option = {
 		name = gk_raiding_privateers.205.f
-		custom_tooltip = gk_privateer_tt_commission
 		trigger = {
 			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
 		}
@@ -293,15 +501,94 @@ country_event = {
 					NOT = { has_country_flag = gk_auto_raid_ongoing }
 				}
 			}
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_no_valid_targets
+				any_rival_country = {
+					is_country_type = default
+					any_owned_planet = {
+						is_colony = yes
+						count_owned_pop_amount = { count >= 1 }
+					}
+					NOT = { has_country_flag = gk_raided_by_@event_target:gk_privateer_enclave_country }
+				}
+			}
 		}
+		custom_tooltip = gk_privateer_tt_commission
 		hidden_effect = {
 			country_event = { id = gk_raiding_privateers.340 }
+		}
+	}
+
+	# ── Cancel Raid ──
+	option = {
+		name = gk_raiding_privateers.205.cancel_raid
+		custom_tooltip = gk_privateer_tt_cancel_raid
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_country = {
+				has_country_flag = gk_auto_raid_ongoing
+			}
+			# Patron can cancel autonomous raids
+			# Commissioner can cancel commissioned raids
+			OR = {
+				# Autonomous raid: patron can cancel
+				AND = {
+					event_target:gk_privateer_enclave_system = {
+						exists = space_owner
+						space_owner = { is_same_value = root }
+					}
+					event_target:gk_privateer_enclave_country = {
+						NOT = { has_country_flag = gk_raid_commissioned }
+					}
+				}
+				# Commissioned raid: commissioner can cancel
+				event_target:gk_privateer_enclave_country = {
+					has_country_flag = gk_raid_commissioned_by_@root
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:gk_privateer_enclave_country = {
+				country_event = { id = gk_raiding_privateers.345 }
+			}
+		}
+	}
+
+	# Convert to Mercenary Enclave
+	option = {
+		name = GK_RAIDING_PRIVATEERS_205_CONVERT_MERC
+		custom_tooltip = gk_privateer_tt_convert_to_merc
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			event_target:gk_privateer_enclave_system = {
+				exists = space_owner
+				space_owner = { is_same_value = root }
+			}
+			has_tradition = tr_gk_raiding_despoliation_finish
+		}
+		allow = {
+			resource_stockpile_compare = { resource = influence value >= 100 }
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_convert_raid_ongoing
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_country_flag = gk_auto_raid_ongoing }
+				}
+			}
+		}
+		hidden_effect = {
+			add_resource = { influence = -100 }
+			event_target:gk_privateer_enclave_country = {
+				country_event = { id = gk_raiding_privateers.113 }
+			}
 		}
 	}
 
 	option = {
 		name = CLOSE
 		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = gk_privateer_diplomacy
+		}
 	}
 }
 
@@ -320,7 +607,7 @@ country_event = {
 	desc = {
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				NOT = { has_modifier = gk_privateer_upgrade_1 }
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_1 }
 			}
 		}
 		text = gk_raiding_privateers.300.1.desc
@@ -328,8 +615,8 @@ country_event = {
 	desc = {
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_1
-				NOT = { has_modifier = gk_privateer_upgrade_2 }
+				has_modifier = mercenary_fleet_size_upgrade_1
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_2 }
 			}
 		}
 		text = gk_raiding_privateers.300.2.desc
@@ -337,8 +624,8 @@ country_event = {
 	desc = {
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_2
-				NOT = { has_modifier = gk_privateer_upgrade_3 }
+				has_modifier = mercenary_fleet_size_upgrade_2
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_3 }
 			}
 		}
 		text = gk_raiding_privateers.300.3.desc
@@ -346,8 +633,8 @@ country_event = {
 	desc = {
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_3
-				NOT = { has_modifier = gk_privateer_upgrade_4 }
+				has_modifier = mercenary_fleet_size_upgrade_3
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_4 }
 			}
 		}
 		text = gk_raiding_privateers.300.4.desc
@@ -355,8 +642,8 @@ country_event = {
 	desc = {
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_4
-				NOT = { has_modifier = gk_privateer_upgrade_5 }
+				has_modifier = mercenary_fleet_size_upgrade_4
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_5 }
 			}
 		}
 		text = gk_raiding_privateers.300.5.desc
@@ -376,7 +663,7 @@ country_event = {
 		name = DEAL
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				NOT = { has_modifier = gk_privateer_upgrade_1 }
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_1 }
 			}
 		}
 		allow = {
@@ -405,7 +692,7 @@ country_event = {
 					amount = 20
 				}
 				add_modifier = {
-					modifier = gk_privateer_upgrade_1
+					modifier = mercenary_fleet_size_upgrade_1
 					days = -1
 				}
 			}
@@ -418,8 +705,8 @@ country_event = {
 		name = DEAL
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_1
-				NOT = { has_modifier = gk_privateer_upgrade_2 }
+				has_modifier = mercenary_fleet_size_upgrade_1
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_2 }
 			}
 		}
 		allow = {
@@ -448,7 +735,7 @@ country_event = {
 					amount = 20
 				}
 				add_modifier = {
-					modifier = gk_privateer_upgrade_2
+					modifier = mercenary_fleet_size_upgrade_2
 					days = -1
 				}
 			}
@@ -461,8 +748,8 @@ country_event = {
 		name = DEAL
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_2
-				NOT = { has_modifier = gk_privateer_upgrade_3 }
+				has_modifier = mercenary_fleet_size_upgrade_2
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_3 }
 			}
 		}
 		allow = {
@@ -491,7 +778,7 @@ country_event = {
 					amount = 20
 				}
 				add_modifier = {
-					modifier = gk_privateer_upgrade_3
+					modifier = mercenary_fleet_size_upgrade_3
 					days = -1
 				}
 			}
@@ -504,8 +791,8 @@ country_event = {
 		name = DEAL
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_3
-				NOT = { has_modifier = gk_privateer_upgrade_4 }
+				has_modifier = mercenary_fleet_size_upgrade_3
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_4 }
 			}
 		}
 		allow = {
@@ -534,7 +821,7 @@ country_event = {
 					amount = 20
 				}
 				add_modifier = {
-					modifier = gk_privateer_upgrade_4
+					modifier = mercenary_fleet_size_upgrade_4
 					days = -1
 				}
 			}
@@ -547,8 +834,8 @@ country_event = {
 		name = DEAL
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				has_modifier = gk_privateer_upgrade_4
-				NOT = { has_modifier = gk_privateer_upgrade_5 }
+				has_modifier = mercenary_fleet_size_upgrade_4
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_5 }
 			}
 		}
 		allow = {
@@ -577,7 +864,7 @@ country_event = {
 					amount = 20
 				}
 				add_modifier = {
-					modifier = gk_privateer_upgrade_5
+					modifier = mercenary_fleet_size_upgrade_5
 					days = -1
 				}
 			}
@@ -882,7 +1169,7 @@ country_event = {
 		name = gk_raiding_privateers.335.upgrade
 		trigger = {
 			event_target:gk_privateer_enclave_country = {
-				NOT = { has_modifier = gk_privateer_upgrade_5 }
+				NOT = { has_modifier = mercenary_fleet_size_upgrade_5 }
 			}
 		}
 		hidden_effect = {
@@ -907,6 +1194,99 @@ country_event = {
 	}
 }
 
+# Commission Raid — payment step (after target selection, uses merc fleet hire pricing)
+# This = player country; event_target:gk_privateer_enclave_country = enclave country
+# Target already flagged with gk_commissioned_raid_target from event 340
+country_event = {
+	id = gk_raiding_privateers.339
+	base = gk_raiding_privateers.205
+	desc_clear = yes
+	option_clear = yes
+
+	inline_script = {
+		script = gk_raiding/privateer_personality_desc
+		KEY = gk_raiding_privateers.339.desc
+		SCOPE = event_target:gk_privateer_enclave_country
+	}
+
+	immediate = {
+		run_in_ai_mode = yes
+	}
+
+	# Pay for the commission (same pricing as merc fleet hire)
+	option = {
+		name = DEAL
+		ai_trade_facility = {
+			offer_hire_mercenary_fleet = yes
+			info_gathering = {
+				get_trade_data = { target = event_target:gk_privateer_enclave_country }
+			}
+			option_selection = {
+				if = {
+					limit = {
+						is_offer_terms_actual = { target = event_target:gk_privateer_enclave_country }
+					}
+					make_special_trade = { target = event_target:gk_privateer_enclave_country }
+					custom_tooltip = opinion10
+					hidden_effect = {
+						event_target:gk_privateer_enclave_country = {
+							add_trust = {
+								who = root
+								amount = 10
+							}
+						}
+					}
+				}
+			}
+			allow = {
+				can_afford_special_offer = { target = event_target:gk_privateer_enclave_country }
+			}
+		}
+		hidden_effect = {
+			# Cancel auto-lease if the trade system created one
+			if = {
+				limit = {
+					any_controlled_fleet = {
+						is_ship_class = shipclass_military
+						is_leased = yes
+						owner = { is_same_value = event_target:gk_privateer_enclave_country }
+					}
+				}
+				random_controlled_fleet = {
+					limit = {
+						is_ship_class = shipclass_military
+						is_leased = yes
+						owner = { is_same_value = event_target:gk_privateer_enclave_country }
+					}
+					end_fleet_contract = {
+						initiator = root
+						reason = cancelled
+					}
+				}
+			}
+			# Dispatch raid
+			event_target:gk_privateer_enclave_country = {
+				country_event = { id = gk_raiding_privateers.341 }
+			}
+			country_event = { id = gk_raiding_privateers.342 }
+		}
+	}
+
+	# Back out — clear target flag, return to menu
+	option = {
+		name = gk_raiding_privateers.300.return
+		default_hide_option = yes
+		hidden_effect = {
+			every_country = {
+				limit = { has_country_flag = gk_commissioned_raid_target }
+				remove_country_flag = gk_commissioned_raid_target
+			}
+			clear_global_event_target = gk_commission_raid_target
+			country_event = { id = gk_raiding_privateers.205 }
+		}
+	}
+}
+
 # Commission Raid — target selection
 # This = player country; event_target:gk_privateer_enclave_country = enclave country
 country_event = {
@@ -922,15 +1302,6 @@ country_event = {
 	}
 
 	immediate = {
-		# Lock a fleet for the raid
-		event_target:gk_privateer_enclave_country = {
-			random_owned_fleet = {
-				limit = { gk_is_eligible_raid_fleet = yes }
-				save_event_target_as = gk_raid_fleet
-				set_fleet_flag = gk_fleet_locked
-			}
-		}
-
 		# Pre-roll up to 3 rival targets (vanilla marauder.31 pattern)
 		random_rival_country = {
 			limit = {
@@ -979,7 +1350,6 @@ country_event = {
 	option = {
 		name = gk_raiding_privateers.340.a
 		trigger = {
-			exists = event_target:gk_raid_fleet
 			exists = event_target:gk_commission_target_1
 			OR = {
 				NOT = { exists = event_target:gk_privateer_patron }
@@ -990,23 +1360,12 @@ country_event = {
 				}
 			}
 		}
-		allow = {
-			resource_stockpile_compare = { resource = energy value >= 750 }
-		}
-		add_resource = { energy = -750 }
-		custom_tooltip = opinion10
 		hidden_effect = {
 			event_target:gk_commission_target_1 = {
 				set_country_flag = gk_commissioned_raid_target
+				save_global_event_target_as = gk_commission_raid_target
 			}
-			event_target:gk_privateer_enclave_country = {
-				add_trust = {
-					who = root
-					amount = 10
-				}
-				country_event = { id = gk_raiding_privateers.341 }
-			}
-			country_event = { id = gk_raiding_privateers.342 }
+			country_event = { id = gk_raiding_privateers.339 }
 		}
 	}
 
@@ -1014,7 +1373,6 @@ country_event = {
 	option = {
 		name = gk_raiding_privateers.340.b
 		trigger = {
-			exists = event_target:gk_raid_fleet
 			exists = event_target:gk_commission_target_2
 			OR = {
 				NOT = { exists = event_target:gk_privateer_patron }
@@ -1025,23 +1383,12 @@ country_event = {
 				}
 			}
 		}
-		allow = {
-			resource_stockpile_compare = { resource = energy value >= 750 }
-		}
-		add_resource = { energy = -750 }
-		custom_tooltip = opinion10
 		hidden_effect = {
 			event_target:gk_commission_target_2 = {
 				set_country_flag = gk_commissioned_raid_target
+				save_global_event_target_as = gk_commission_raid_target
 			}
-			event_target:gk_privateer_enclave_country = {
-				add_trust = {
-					who = root
-					amount = 10
-				}
-				country_event = { id = gk_raiding_privateers.341 }
-			}
-			country_event = { id = gk_raiding_privateers.342 }
+			country_event = { id = gk_raiding_privateers.339 }
 		}
 	}
 
@@ -1049,7 +1396,6 @@ country_event = {
 	option = {
 		name = gk_raiding_privateers.340.c
 		trigger = {
-			exists = event_target:gk_raid_fleet
 			exists = event_target:gk_commission_target_3
 			OR = {
 				NOT = { exists = event_target:gk_privateer_patron }
@@ -1060,23 +1406,12 @@ country_event = {
 				}
 			}
 		}
-		allow = {
-			resource_stockpile_compare = { resource = energy value >= 750 }
-		}
-		add_resource = { energy = -750 }
-		custom_tooltip = opinion10
 		hidden_effect = {
 			event_target:gk_commission_target_3 = {
 				set_country_flag = gk_commissioned_raid_target
+				save_global_event_target_as = gk_commission_raid_target
 			}
-			event_target:gk_privateer_enclave_country = {
-				add_trust = {
-					who = root
-					amount = 10
-				}
-				country_event = { id = gk_raiding_privateers.341 }
-			}
-			country_event = { id = gk_raiding_privateers.342 }
+			country_event = { id = gk_raiding_privateers.339 }
 		}
 	}
 
@@ -1084,7 +1419,6 @@ country_event = {
 	option = {
 		name = gk_raiding_privateers.340.patron
 		trigger = {
-			exists = event_target:gk_raid_fleet
 			exists = event_target:gk_privateer_patron
 			OR = {
 				AND = {
@@ -1109,48 +1443,11 @@ country_event = {
 		}
 	}
 
-	# No fleet available (race condition)
-	option = {
-		name = gk_raiding_privateers.340.no_fleet
-		trigger = {
-			NOT = { exists = event_target:gk_raid_fleet }
-		}
-		allow = {
-			custom_tooltip = {
-				fail_text = gk_privateer_tt_commission_no_fleet_340
-				always = no
-			}
-		}
-	}
-
-	# No valid targets
-	option = {
-		name = gk_raiding_privateers.340.no_targets
-		trigger = {
-			exists = event_target:gk_raid_fleet
-			NOT = { exists = event_target:gk_commission_target_1 }
-			NOT = { exists = event_target:gk_commission_target_2 }
-			NOT = { exists = event_target:gk_commission_target_3 }
-		}
-		allow = {
-			custom_tooltip = {
-				fail_text = gk_privateer_tt_no_valid_targets
-				always = no
-			}
-		}
-	}
-
-	# Discuss Another Matter — unlock fleet
+	# Discuss Another Matter
 	option = {
 		name = gk_raiding_privateers.300.return
 		default_hide_option = yes
 		hidden_effect = {
-			if = {
-				limit = { exists = event_target:gk_raid_fleet }
-				event_target:gk_raid_fleet = {
-					remove_fleet_flag = gk_fleet_locked
-				}
-			}
 			country_event = { id = gk_raiding_privateers.205 }
 		}
 	}
@@ -1167,6 +1464,56 @@ country_event = {
 		script = gk_raiding/privateer_personality_desc
 		KEY = gk_raiding_privateers.342.desc
 		SCOPE = event_target:gk_privateer_enclave_country
+	}
+}
+
+# ──────────────────────────────────────────────────────────────────
+# Cancel Raid (345–349)
+# ──────────────────────────────────────────────────────────────────
+
+# 345 — Hidden: execute raid cancellation
+# This = enclave country
+# From = cancelling player (patron or commissioner)
+country_event = {
+	id = gk_raiding_privateers.345
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			save_event_target_as = gk_cancel_raid_initiator
+		}
+		gk_cancel_privateer_raid = yes
+	}
+}
+
+# 346 — Notification to patron: commissioned raid was cancelled
+# This = patron country
+country_event = {
+	id = gk_raiding_privateers.346
+	title = gk_raiding_privateers.346.name
+	desc = gk_raiding_privateers.346.desc
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = INTERESTING
+	}
+}
+
+# 347 — Notification to raid target: raiders called off
+# This = target country
+country_event = {
+	id = gk_raiding_privateers.347
+	title = gk_raiding_privateers.347.name
+	desc = gk_raiding_privateers.347.desc
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+
+	option = {
+		name = INTERESTING
 	}
 }
 

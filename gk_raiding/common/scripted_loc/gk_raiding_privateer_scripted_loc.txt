@@ -1,0 +1,51 @@
+# Overwrite vanilla GetMercenaryLoc to add privateer branch
+defined_text = {
+	name = GetMercenaryLoc
+	random = no
+	text = {
+		trigger = { has_country_flag = mindwarden_diplomacy }
+		localization_key = MINDWARDEN
+	}
+	text = {
+		trigger = { has_country_flag = gk_privateer_diplomacy }
+		localization_key = GK_PRIVATEER_LOC
+	}
+	default = MERCENARY
+}
+
+# Conditional verb for ENCLAVE_OFFER_HIRE_FLEET
+defined_text = {
+	name = GetEnclaveOfferAction
+	random = no
+	text = {
+		trigger = { has_country_flag = gk_privateer_diplomacy }
+		localization_key = GK_ENCLAVE_OFFER_ACTION_COMMISSION
+	}
+	text = {
+		trigger = { has_country_flag = mindwarden_diplomacy }
+		localization_key = GK_ENCLAVE_OFFER_ACTION_MINDWARDEN
+	}
+	default = GK_ENCLAVE_OFFER_ACTION_HIRE
+}
+
+# Conditional suffix after power value (closes §R color, adds raid target for privateers)
+defined_text = {
+	name = GetEnclaveOfferSuffix
+	random = no
+	text = {
+		trigger = { has_country_flag = gk_privateer_diplomacy }
+		localization_key = GK_ENCLAVE_OFFER_SUFFIX_COMMISSION
+	}
+	default = GK_ENCLAVE_OFFER_SUFFIX_HIRE
+}
+
+# Conditional duration label for ENCLAVE_OFFER_HIRE_FLEET
+defined_text = {
+	name = GetEnclaveOfferDurationLabel
+	random = no
+	text = {
+		trigger = { has_country_flag = gk_privateer_diplomacy }
+		localization_key = GK_ENCLAVE_OFFER_DURATION_RAID
+	}
+	default = GK_ENCLAVE_OFFER_DURATION_HIRE
+}
