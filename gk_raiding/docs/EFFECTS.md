@@ -126,6 +126,22 @@ Resource pillaging is available to empires with **Barbaric Despoilers**, **Harve
 - The **Pillage** war goal doubles to triples resources from raiding and grants surrender tribute
 - Invaded colonies receive a 5-year workforce penalty (-5% to -50%) based on how much was extracted
 
+**Pillage Yield** stacks from multiple sources:
+
+| Source | Yield |
+|--------|-------|
+| Base | 2 |
+| Pillage war goal | +3 |
+| Despoliation tradition | +1 |
+
+Higher yield means more resources per devastation tick and harsher workforce penalties on invaded worlds.
+
+## Invasion and Occupation
+
+Occupied enemy planets are automatically raided each month during war. Transfer rate: 50 base + 10 per offensive army on the planet.
+
+Multi-raider invasions distribute captured pops proportionally among each army's owner. Allies without pop-raiding capability redirect their share to the war leader.
+
 ## Tradition Tree — Despoliation
 
 Available to any default empire. Uses the Unyielding 3+2 layout.
@@ -154,8 +170,12 @@ Founded by completing the **Despoliation** tradition finisher. Uses a mercenary 
 Six personality types assigned at founding (Automaton, Stoic, Screamer, Cultist, Calculating, Merchant), some gated by patron ethics.
 
 - Raids autonomously each month (25% base chance, scaling with upgrades to 50%) and pays dividends on a recurring cycle
-- Patron can commission raids against rivals and purchase services (intelligence, Smuggler's Port, mercenary armies) through the diplomacy menu
+- Patron can fund raids against rivals and purchase services (intelligence, Smuggler's Port, mercenary armies) through the diplomacy menu
 - Five upgrade tiers increase fleet size, raid frequency, and dividend payouts
 - Enclave fleets: +15% speed, +10% weapon damage, +5%/day hull regen, +5%/day armor regen
 - **Smuggler's Port**: Purchasable starbase building. +20% Trade from Jobs in-system, produces 4 Trade Value per Trade Hub on the starbase, +5 Crime empire-wide.
 - **Debris Scavenging**: Battles during raids generate debris. The enclave auto-salvages debris at raid end, with a 30% base chance to recover ships per debris field.
+- **Conversion**: Patrons can convert between mercenary and privateer enclaves via the diplomacy menu for 100 Influence. Upgrade ranks are preserved.
+- **Cancel Raid**: The raid initiator can recall an active raid at no cost through the diplomacy menu.
+- **Raid Pricing**: Funded raids use fleet-value-based pricing, matching mercenary fleet hire costs.
+- AI empires found privateer enclaves based on ethics (militarist and xenophobe weighted, never pacifist).

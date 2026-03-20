@@ -16,7 +16,7 @@
  GK_PRIVATEER_LOC:0 "Privateer"
  GK_ENCLAVE_OFFER_ACTION_HIRE:0 "to hire a £military_ship£§RMercenary Fleet (£military_power£"
  GK_ENCLAVE_OFFER_ACTION_MINDWARDEN:0 "to hire a £military_ship£§RMindwarden Fleet (£military_power£"
- GK_ENCLAVE_OFFER_ACTION_COMMISSION:0 "to commission a £military_ship£§RPrivateer Fleet (£military_power£"
+ GK_ENCLAVE_OFFER_ACTION_COMMISSION:0 "to fund a £military_ship£§RPrivateer Fleet (£military_power£"
  GK_ENCLAVE_OFFER_SUFFIX_HIRE:0 " "
  GK_ENCLAVE_OFFER_SUFFIX_COMMISSION:0 " to raid §Y[event_target:gk_commission_raid_target.GetName]§!"
  GK_ENCLAVE_OFFER_DURATION_HIRE:0 "for"
@@ -51,7 +51,7 @@
  gk_raiding_privateers.205.cancel_raid:0 "Cancel Raid"
  gk_privateer_tt_cancel_raid:0 "Recall the raiding fleet. No fee. The fleet returns empty-handed."
  gk_raiding_privateers.346.name:0 "Raid Cancelled"
- gk_raiding_privateers.346.desc:0 "The commissioned raid against [event_target:gk_raid_target.GetName] has been called off. The [event_target:gk_privateer_enclave_country.GetName]'s fleet is returning to base."
+ gk_raiding_privateers.346.desc:0 "The funded raid against [event_target:gk_raid_target.GetName] has been called off. The [event_target:gk_privateer_enclave_country.GetName]'s fleet is returning to base."
  gk_raiding_privateers.347.name:0 "Raiders Withdraw"
  gk_raiding_privateers.347.desc:0 "The [event_target:gk_privateer_enclave_country.GetName]'s raiding fleet has been recalled. Their ships are pulling back from our territory."
 
@@ -288,23 +288,23 @@
  gk_raiding_privateers.402.desc:0 "The heavy losses inflicted upon the [From.GetSpeciesName] raiding fleet have been enough to discourage further attacks. Their remaining ships have withdrawn from our space, though the devastation left in their wake will take time to repair."
 
  # ──────────────────────────────────────────────────────────────────
- # Commission Raid (340–342)
+ # Fund Raid (340–342)
  # ──────────────────────────────────────────────────────────────────
 
- # .205.f — Commission Raid option + tooltips
- gk_raiding_privateers.205.f:0 "We wish to §Ycommission a raid§!."
+ # .205.f — Fund Raid option + tooltips
+ gk_raiding_privateers.205.f:0 "We wish to §Yfund a raid§!."
  gk_privateer_tt_commission:0 "Pay the enclave to §Yraid a rival§! immediately."
  gk_privateer_tt_commission_no_fleet:0 "The enclave has no available raid fleet."
  gk_privateer_tt_commission_raid_ongoing:0 "The enclave is already conducting a raid."
 
- # .339 — Commission Raid: Payment
- gk_raiding_privateers.339.name:0 "Commission Raid"
+ # .339 — Fund Raid: Payment
+ gk_raiding_privateers.339.name:0 "Fund Raid"
  gk_raiding_privateers.339.desc.stoic:0 "The haven's commander reviews the fleet's readiness with a practiced eye.\n\n§Y\"You want a specific empire hit. We can arrange that. Our fleet is ready. Agree to our terms and we will prepare target options.\"§!"
  gk_raiding_privateers.339.desc.screamer:0 "The haven's commander is practically vibrating with excitement at the prospect of a paid job.\n\n§Y\"HYEEEIIIEEE!!!! You want us SMASH someone?! PAY US AND WE SMASH! WE SMASH SO GOOD! HYEEEIIIEEE!!!!\"§!"
  gk_raiding_privateers.339.desc.cultist:0 "The haven's commander inclines their head reverently, sensing an opportunity to carry out divine will.\n\n§Y\"She of the Void approves. Our fleet stands ready to carry Her judgment. Accept our terms, and we shall present the faithless for your choosing.\"§!"
- gk_raiding_privateers.339.desc.calculating:0 "The haven's commander brings up a fleet readiness assessment.\n\n§Y\"Fleet status: combat ready. Commission fee calculated based on fleet deployment value. Accept terms to proceed to target selection.\"§!"
- gk_raiding_privateers.339.desc.merchant:0 "The haven's commander rubs their hands together with a broker's enthusiasm.\n\n§Y\"A commissioned raid! Excellent business. Our fleet is ready to ship out. Accept our very reasonable fee and we will show you the menu of targets.\"§!"
- gk_raiding_privateers.339.desc.automaton:0 "Fleet deployment cost analysis populates the display.\n\n§Y\"Commission raid protocol initiated. Fleet readiness: nominal. Deployment fee calculated. Confirm payment to proceed to target selection.\"§!"
+ gk_raiding_privateers.339.desc.calculating:0 "The haven's commander brings up a fleet readiness assessment.\n\n§Y\"Fleet status: combat ready. Deployment fee calculated based on fleet deployment value. Accept terms to proceed to target selection.\"§!"
+ gk_raiding_privateers.339.desc.merchant:0 "The haven's commander rubs their hands together with a broker's enthusiasm.\n\n§Y\"A funded raid! Excellent business. Our fleet is ready to ship out. Accept our very reasonable fee and we will show you the menu of targets.\"§!"
+ gk_raiding_privateers.339.desc.automaton:0 "Fleet deployment cost analysis populates the display.\n\n§Y\"Funded raid protocol initiated. Fleet readiness: nominal. Deployment fee calculated. Confirm payment to proceed to target selection.\"§!"
 
  # .340 — Target Selection
  gk_raiding_privateers.340.name:0 "Select Target"
@@ -320,8 +320,8 @@
  gk_raiding_privateers.340.b:0 "Raid the [event_target:gk_commission_target_2.GetName]."
  gk_raiding_privateers.340.c:0 "Raid the [event_target:gk_commission_target_3.GetName]."
  gk_raiding_privateers.340.patron:0 "Raid the [event_target:gk_privateer_patron.GetName]."
- gk_raiding_privateers.340.no_fleet:0 "Commission a Raid"
- gk_raiding_privateers.340.no_targets:0 "Commission a Raid"
+ gk_raiding_privateers.340.no_fleet:0 "Fund a Raid"
+ gk_raiding_privateers.340.no_targets:0 "Fund a Raid"
 
  # .340 tooltips
  gk_privateer_tt_commission_patron:0 "The enclave will not raid its patron."
@@ -329,7 +329,7 @@
  gk_privateer_tt_no_valid_targets:0 "No valid rival targets found."
 
  # .342 — Confirmation
- gk_raiding_privateers.342.name:0 "Raid Commissioned"
+ gk_raiding_privateers.342.name:0 "Raid Funded"
  gk_raiding_privateers.342.desc.stoic:0 "A sharp nod from the haven's commander as the order is confirmed.\n\n§Y\"Target locked. Fleet is away. They will arrive in hostile space shortly and begin operations. We will notify you when the raid concludes. Was there anything else?\"§!"
  gk_raiding_privateers.342.desc.screamer:0 "The haven erupts in a frenzy of activity as crews scramble to their ships.\n\n§Y\"HYEEEIIIEEE!!!! FLEET AWAY! FLEET AWAY! They go SMASH the dwamaks SO HARD! You wait, boss! We bring back SO MUCH STUFF! HYEEEIIIEEE!!!! You want anything else while we wait?!\"§!"
  gk_raiding_privateers.342.desc.cultist:0 "The haven's commander intones a blessing as the fleet departs in solemn formation.\n\n§Y\"It is done. She of the Void guides their course. The faithless will know Her wrath before long. We shall send word when the harvest is complete. Is there anything else you require, patron?\"§!"

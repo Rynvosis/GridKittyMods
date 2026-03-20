@@ -71,7 +71,6 @@
 @tribute_tier_2 = 1000
 @tribute_tier_3 = 2000
 @tribute_tier_4 = 3000
-@commission_raid_cost = 750
 
 ############################
 # Privateer — Dividends    #

@@ -397,6 +397,49 @@ country_event = {
 		}
 	}
 
+	# ── Fund Raid ──
+	option = {
+		name = gk_raiding_privateers.205.f
+		trigger = {
+			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+		}
+		allow = {
+			event_target:gk_privateer_enclave_country = {
+				trust = {
+					who = root
+					value >= 30
+				}
+			}
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_commission_no_fleet
+				event_target:gk_privateer_enclave_country = {
+					gk_has_available_raid_fleet = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_commission_raid_ongoing
+				event_target:gk_privateer_enclave_country = {
+					NOT = { has_country_flag = gk_auto_raid_ongoing }
+				}
+			}
+			custom_tooltip = {
+				fail_text = gk_privateer_tt_no_valid_targets
+				any_rival_country = {
+					is_country_type = default
+					any_owned_planet = {
+						is_colony = yes
+						count_owned_pop_amount = { count >= 1 }
+					}
+					NOT = { has_country_flag = gk_raided_by_@event_target:gk_privateer_enclave_country }
+				}
+			}
+		}
+		custom_tooltip = gk_privateer_tt_commission
+		hidden_effect = {
+			country_event = { id = gk_raiding_privateers.340 }
+		}
+	}
+
 	# ── Raider Intelligence ──
 	option = {
 		name = gk_raiding_privateers.205.b
@@ -473,49 +516,6 @@ country_event = {
 		}
 		hidden_effect = {
 			country_event = { id = gk_raiding_privateers.335 }
-		}
-	}
-
-	# ── Commission Raid ──
-	option = {
-		name = gk_raiding_privateers.205.f
-		trigger = {
-			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
-		}
-		allow = {
-			event_target:gk_privateer_enclave_country = {
-				trust = {
-					who = root
-					value >= 30
-				}
-			}
-			custom_tooltip = {
-				fail_text = gk_privateer_tt_commission_no_fleet
-				event_target:gk_privateer_enclave_country = {
-					gk_has_available_raid_fleet = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = gk_privateer_tt_commission_raid_ongoing
-				event_target:gk_privateer_enclave_country = {
-					NOT = { has_country_flag = gk_auto_raid_ongoing }
-				}
-			}
-			custom_tooltip = {
-				fail_text = gk_privateer_tt_no_valid_targets
-				any_rival_country = {
-					is_country_type = default
-					any_owned_planet = {
-						is_colony = yes
-						count_owned_pop_amount = { count >= 1 }
-					}
-					NOT = { has_country_flag = gk_raided_by_@event_target:gk_privateer_enclave_country }
-				}
-			}
-		}
-		custom_tooltip = gk_privateer_tt_commission
-		hidden_effect = {
-			country_event = { id = gk_raiding_privateers.340 }
 		}
 	}
 
