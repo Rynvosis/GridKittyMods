@@ -60,7 +60,6 @@ gk_can_use_raiding_bombardment = {
 # This = country scope
 # Can use standard raiding CB (from civics, ascension perks, etc.)
 gk_can_use_raiding_cb = {
-	NOT = { has_policy_flag = gk_focus_no_pop_raiding }
 	OR = {
 		has_valid_civic = civic_barbaric_despoilers
 		has_ascension_perk = ap_nihilistic_acquisition

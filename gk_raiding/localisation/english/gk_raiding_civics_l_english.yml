@@ -1,6 +1,6 @@
 ﻿l_english:
  # Civics
-allow_gk_emancipation:0 "$allow_raiding_base$\nUnlocks the §Y$war_goal_wg_gk_emancipation$§! war goal; can only abduct enslaved pops"
+allow_gk_emancipation:0 "$allow_raiding_base$\nWith §YSlavery§! banned, unlocks the §Y$war_goal_wg_gk_emancipation$§! war goal"
 
 civic_gk_emancipators:0 "Emancipators"
 civic_gk_emancipators_desc:0 "This society wages war to free the enslaved and carry them out of bondage."

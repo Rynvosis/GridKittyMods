@@ -668,7 +668,7 @@ gk_track_raided_pops = {
 				}
 			}
 		}
-		# Emancipation - track separately
+		# Emancipation - track as emancipated
 		if = {
 			limit = {
 				NOT = { is_variable_set = gk_raidee_emancipated }

@@ -21,13 +21,6 @@ gk_raiding_focus = {
 	option = {
 		name = "gk_raiding_focus_plunder"
 
-		valid = {
-			NOR = {
-				has_valid_civic = civic_gk_emancipators
-				has_valid_civic = civic_gk_emancipators_megacorp
-			}
-		}
-
 		policy_flags = {
 			gk_focus_plunder
 		}
@@ -38,37 +31,12 @@ gk_raiding_focus = {
 	}
 
 	option = {
-		name = "gk_raiding_focus_no_raiding"
-
-		valid = {
-			NOR = {
-				has_valid_civic = civic_gk_emancipators
-				has_valid_civic = civic_gk_emancipators_megacorp
-			}
-		}
-
-		policy_flags = {
-			gk_focus_no_pop_raiding
-		}
-
-		AI_weight = {
-			factor = 1
-			modifier = {
-				factor = 2
-				has_ethic = ethic_fanatic_militarist
-			}
-		}
-	}
-
-	option = {
 		name = "gk_raiding_focus_emancipation"
 
 		valid = {
 			OR = {
-				has_valid_civic = civic_gk_emancipators
-				has_valid_civic = civic_gk_emancipators_megacorp
-				has_ethic = ethic_egalitarian
-				has_ethic = ethic_fanatic_egalitarian
+				has_policy_flag = slavery_not_allowed
+				has_valid_civic = civic_machine_servitor
 			}
 		}
 
@@ -85,6 +53,10 @@ gk_raiding_focus = {
 			modifier = {
 				factor = 2
 				has_valid_civic = civic_gk_emancipators
+			}
+			modifier = {
+				factor = 3
+				has_valid_civic = civic_machine_servitor
 			}
 		}
 	}
@@ -172,6 +144,7 @@ gk_robot_raiding = {
 		name = "gk_robot_raiding_only"
 
 		valid = {
+			NOT = { has_policy_flag = gk_focus_emancipation }
 			OR = {
 				has_country_flag = synthetic_empire
 				has_ethic = ethic_materialist

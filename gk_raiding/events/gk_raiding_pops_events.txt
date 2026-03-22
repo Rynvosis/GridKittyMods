@@ -91,7 +91,6 @@ country_event = {
 				# No pending offers
 				NOT = { has_country_flag = gk_tribute_offer_pending_from_@root }
 				NOT = { has_country_flag = gk_reforms_offer_pending_from_@root }
-				NOT = { has_country_flag = gk_autonomy_offer_pending_from_@root }
 			}
 			save_event_target_as = gk_raidee
 			root = {
@@ -1125,13 +1124,12 @@ country_event = {
 		}
 	}
 
-	# Option E: Demand Reforms (emancipation, not robots-only)
+	# Option E: Demand Reforms (emancipation only)
 	option = {
 		name = GK_RAIDING_ESCALATION_REFORMS
 		custom_tooltip = GK_RAIDING_ESCALATION_REFORMS_TOOLTIP
 		trigger = {
 			gk_is_emancipation_war_with_from = yes
-			NOT = { has_policy_flag = gk_robots_only_raiding }
 		}
 		allow = {
 			resource_stockpile_compare = {
@@ -1172,59 +1170,6 @@ country_event = {
 				OR = {
 					has_ethic = ethic_authoritarian
 					has_ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-	}
-
-	# Option F: Demand Autonomy (emancipation + robots-only)
-	option = {
-		name = GK_RAIDING_ESCALATION_AUTONOMY
-		custom_tooltip = GK_RAIDING_ESCALATION_AUTONOMY_TOOLTIP
-		trigger = {
-			gk_is_emancipation_war_with_from = yes
-			has_policy_flag = gk_robots_only_raiding
-			has_policy_flag = ai_full_rights
-		}
-		allow = {
-			resource_stockpile_compare = {
-				resource = influence
-				value >= value:gk_escalation_influence_cost
-			}
-		}
-		add_resource = {
-			influence = -1
-			mult = value:gk_escalation_influence_cost
-		}
-		hidden_effect = {
-			from = {
-				set_country_flag = gk_autonomy_offer_pending_from_@root
-				country_event = {
-					id = gk_raiding_pops.530
-					scopes = { from = root }
-				}
-				country_event = {
-					id = gk_raiding_pops.533
-					days = @gk_tribute_offer_timeout_days
-					scopes = { from = root }
-				}
-			}
-		}
-		ai_chance = {
-			factor = 40
-			modifier = {
-				factor = 3
-				has_ethic = ethic_fanatic_materialist
-			}
-			modifier = {
-				factor = 2
-				has_ethic = ethic_materialist
-			}
-			modifier = {
-				factor = 0.3
-				OR = {
-					has_ethic = ethic_spiritualist
-					has_ethic = ethic_fanatic_spiritualist
 				}
 			}
 		}

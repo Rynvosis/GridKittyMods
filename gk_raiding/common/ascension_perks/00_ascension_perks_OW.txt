@@ -1,0 +1,38 @@
+# Version last updated: v4.2.3
+# Overwrite: ap_nihilistic_acquisition (remove ethics restriction)
+
+ap_nihilistic_acquisition = {
+	potential = {
+		host_has_dlc = "Apocalypse"
+		NOT = {
+			has_ascension_perk = ap_nihilistic_acquisition
+		}
+		NOR = {
+			has_valid_civic = civic_barbaric_despoilers
+			has_origin = origin_slavers
+			has_origin = origin_khan_successor
+			has_origin = origin_wilderness
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "allow_raiding"
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = { has_ai_personality_behaviour = slaver }
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_inwards_perfection
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+}

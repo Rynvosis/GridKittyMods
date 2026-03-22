@@ -5,17 +5,14 @@
 
  gk_focus_plunder_name:0 "Plunder"
  gk_focus_emancipation_name:0 "Emancipation"
- gk_focus_no_pop_raiding_name:0 "No Pop-Raiding"
 
  gk_raiding_focus_plunder:0 "Plunder"
  gk_raiding_focus_plunder_desc:0 "Raiders capture any eligible pops."
 
  gk_raiding_focus_emancipation:0 "Emancipation"
- gk_raiding_focus_emancipation_desc:0 "Raiders target enslaved populations. Unlocks the §YEmancipation§! war goal. Only enslaved pops may be taken."
+ gk_raiding_focus_emancipation_desc:0 "Raiders target enslaved populations. Unlocks the §YEmancipation§! war goal. Only enslaved pops may be taken.\n\n§ERequires §YSlavery§! to be banned.§!"
 
 
- gk_raiding_focus_no_raiding:0 "No Pop-Raiding"
- gk_raiding_focus_no_raiding_desc:0 "Our forces will not conduct pop-raiding wars.\n\n§RDisables all pop-raiding war goals.§!"
 
  gk_focus_reaping_name:0 "Reaping"
  gk_raiding_focus_reaping:0 "Reaping"
@@ -130,6 +127,7 @@ GK_RAIDING_DEPOPULATED_DESC:0 "Our raiders have seized the last remaining popula
 GK_RAIDING_DEPOPULATED_ACK:0 "They all belong to us now"
 
  # Planet Modifiers
+ gk_planet_auto_raid:0 "Population Seizure"
  mod_gk_planet_auto_raid:0 "Population Seizure"
  gk_planet_auto_raid.tooltip:0 "Eligible pops are being seized monthly. The more armies stationed on the planet, the faster the population is taken."
 
@@ -142,7 +140,7 @@ GK_ICON_FOOD:0 "£food£"
 
  # Pop Concepts
 concept_gk_pop_raiding:0 "Pop Raiding"
-concept_gk_pop_raiding_desc:0 "During §Y$war_goal_wg_plunder$§!, §Y$war_goal_wg_gk_emancipation$§!, and §Y$war_goal_wg_gk_reaping$§! wars, our forces capture enemy pops through §Ybombardment§! and §Yinvasion§!.\n\nSmall raids are cheap. Stripping a civilization of its people takes considerable £influence£ §YInfluence§!. §YReaping§! removes all restraint and denies the enemy any chance to surrender.\n\nThe §YRobots Only§! policy lets emancipation wars target synthetic rights instead."
+concept_gk_pop_raiding_desc:0 "During §Y$war_goal_wg_plunder$§!, §Y$war_goal_wg_gk_emancipation$§!, and §Y$war_goal_wg_gk_reaping$§! wars, our forces capture enemy pops through §Ybombardment§! and §Yinvasion§!.\n\nSmall raids are cheap. Stripping a civilization of its people takes considerable £influence£ §YInfluence§!. §YReaping§! removes all restraint and denies the enemy any chance to surrender."
 
  concept_gk_pop_raiding_limit:0 "Pop Raiding"
  concept_gk_pop_raiding_limit_desc:0 "$concept_gk_pop_raiding_desc$"
@@ -151,7 +149,7 @@ concept_gk_pop_raiding_desc:0 "During §Y$war_goal_wg_plunder$§!, §Y$war_goal_
  concept_gk_raiding_policies:0 "Raiding Policies"
  concept_gk_raiding_policy:0 "Raiding Policy"
  concept_gk_raiding_focus:0 "Raiding Focus"
- concept_gk_raiding_focus_desc:0 "This policy selects which pop-raiding war goals are available.\n\n§YPlunder§! enables standard pop raiding. §YEmancipation§! targets enslaved pops only. §YReaping§! removes all limits and prevents surrender. §YNo Pop-Raiding§! disables pop-raiding war goals."
+ concept_gk_raiding_focus_desc:0 "This policy selects which pop-raiding war goals are available.\n\n§YPlunder§! enables standard pop raiding. §YEmancipation§! targets enslaved pops only (requires slavery to be banned). §YReaping§! removes all limits and prevents surrender."
  # Pop Notifications
  MESSAGE_TYPE_GK_POP_RAIDED_TITLE:0 "Captives Taken"
 

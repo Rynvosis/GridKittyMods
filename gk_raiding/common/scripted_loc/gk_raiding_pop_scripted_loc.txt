@@ -95,12 +95,16 @@ defined_text = {
 defined_text = {
 	name = GkAutoRaidVerb
 	text = {
-		trigger = { gk_is_emancipation_war_with_from = yes }
+		trigger = {
+			gk_is_emancipation_war_with_from = yes
+		}
 		localization_key = GK_AUTO_RAID_VERB_RESCUED
 	}
 	text = {
 		trigger = {
-			NOT = { gk_is_emancipation_war_with_from = yes }
+			NOT = {
+				gk_is_emancipation_war_with_from = yes
+			}
 		}
 		localization_key = GK_AUTO_RAID_VERB_RESETTLED
 	}
