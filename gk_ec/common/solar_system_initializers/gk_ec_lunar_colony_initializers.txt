@@ -2,8 +2,8 @@
 
 # Lunar Colony System
 #  Trade -2 guarantees with a start of game colony.
-#  Capital size 22-24
-#  Moon size 9-11
+#  Capital base 14, +4 per guarantee
+#  Moon base 6, +2 per guarantee
 
 @distance = 50
 @jumps = 3
@@ -15,7 +15,7 @@
 
 
 # Lunar Colony
-# size 22-24 capital, size 9-11 colony 
+# base 14 capital + 4/guarantee, base 6 moon + 2/guarantee
 gk_ec_lunar_colony_system_init = {
 	class = "rl_starting_stars"
 	asteroid_belt = {
@@ -55,7 +55,7 @@ gk_ec_lunar_colony_system_init = {
 		class = ideal_planet_class
 		orbit_distance = 0
 		orbit_angle = { min = 90 max = 270 }
-		size = { min = 22 max = 24 }
+		size = 14
 		deposit_blockers = none
 		modifiers = none
 
@@ -78,7 +78,7 @@ gk_ec_lunar_colony_system_init = {
 			class = ideal_planet_class
 			orbit_distance = 5
 			orbit_angle = { min = 90 max = 270 }
-			size = { min = 9 max = 11 }
+			size = 6
 			deposit_blockers = none
 			modifiers = none
 
