@@ -1,0 +1,141 @@
+title: PILLAGING & PRIVATEERS
+subtitle: TAKE THEIR RESOURCES BY FORCE
+
+theme:
+  group:
+    gap: 12
+
+root:
+  direction: horizontal
+  align: stretch
+  items:
+    - type: group
+      decorator: default
+      direction: vertical
+      flex: 1
+      padding: 10
+      items:
+        - type: label
+          text: PILLAGING
+          style: heading
+        - type: label
+          text: "BOMBARD AND INVADE TO LOOT\nENEMY PLANETS"
+          style: flavour
+        - type: group
+          flex: 1
+          direction: vertical
+          align: stretch
+          justify: space-between
+          gap: 0
+          items:
+            - type: image
+              src: assets/screenshots/wg_pillage.png
+            - type: image
+              src: assets/screenshots/pillage_sacked.png
+            - type: group
+              direction: vertical
+              gap: 4
+              items:
+                - type: label
+                  text: "AVAILABLE TO:"
+                  style: label
+                - type: group
+                  direction: horizontal
+                  height: 48
+                  gap: 8
+                  justify: start
+                  items:
+                    - type: image
+                      src: assets/icons/tradition_icon_gk_raiding_despoliation.dds
+                      border: false
+                    - type: image
+                      src: assets/icons/barbaric.png
+                      border: false
+                    - type: image
+                      src: assets/icons/letters_of_marque.dds
+                      border: false
+
+    - type: group
+      decorator: default
+      direction: vertical
+      flex: 1
+      padding: 10
+      items:
+        - type: label
+          text: PRIVATEER ENCLAVE
+          style: heading
+        - type: label
+          text: YOUR OWN MARAUDER ENCLAVE
+          style: flavour
+        - type: group
+          flex: 1
+          direction: vertical
+          align: stretch
+          items:
+            - type: image
+              src: assets/screenshots/privateer_enclave.png
+            - type: image
+              src: assets/screenshots/privateer_raid_request.png
+            - type: image
+              src: assets/screenshots/privateer_spoils.png
+
+    - type: group
+      decorator: default
+      direction: vertical
+      flex: 1
+      padding: 10
+      items:
+        - type: label
+          text: NEW TRADITIONS
+          style: heading
+        - type: label
+          text: SPECIALISE INTO PILLAGING
+          style: flavour
+        - type: group
+          flex: 1
+          direction: vertical
+          align: stretch
+          justify: space-between
+          gap: 0
+          items:
+            # tradition header
+            - type: group
+              direction: vertical
+              gap: 0
+              justify: start
+              items:
+                - type: image
+                  src: assets/screenshots/tree_title.png
+                - type: group
+                  direction: horizontal
+                  justify: space-between
+                  align: stretch
+                  gap: 0
+                  items:
+                    - type: image
+                      src: assets/icons/tr_gk_raiding_despoliation_1.dds
+                      border: false
+                      flex: 1
+                    - type: image
+                      src: assets/icons/tr_gk_raiding_despoliation_2.dds
+                      border: false
+                      flex: 1
+                    - type: image
+                      src: assets/icons/tr_gk_raiding_despoliation_3.dds
+                      border: false
+                      flex: 1
+                    - type: image
+                      src: assets/icons/tr_gk_raiding_despoliation_4.dds
+                      border: false
+                      flex: 1
+                    - type: image
+                      src: assets/icons/tr_gk_raiding_despoliation_5.dds
+                      border: false
+                      flex: 1
+           
+            - type: image
+              src: assets/screenshots/adoption.png
+            - type: image
+              src: assets/screenshots/perk_cables.png
+            - type: image
+              src: assets/screenshots/finisher.png

@@ -1,0 +1,143 @@
+title: NEW POP RAIDING ARCHETYPES
+
+theme:
+  group:
+    gap: 12
+
+root:
+  direction: horizontal
+  align: stretch
+  items:
+    # Emancipation column
+    - type: group
+      decorator: default
+      direction: vertical
+      flex: 1
+      padding: 10
+      items:
+        - type: label
+          text: EMANCIPATION
+          style: heading
+        - type: group
+          flex: 1
+          direction: vertical
+          align: stretch
+          justify: space-between
+          gap: 0
+          items:
+            - type: image
+              src: assets/screenshots/civic_emanc.png
+            - type: image
+              src: assets/screenshots/wg_emanc.png
+            - type: group
+              direction: vertical
+              gap: 4
+              items:
+                - type: label
+                  text: "AVAILABLE TO:"
+                  style: label
+                - type: group
+                  direction: horizontal
+                  height: 48
+                  gap: 8
+                  justify: start
+                  items:
+                    - type: image
+                      src: assets/icons/emanc.png
+                      border: false
+                    - type: image
+                      src: assets/icons/emanc_mega.png
+                      border: false
+                    - type: image
+                      src: assets/icons/nihil_slave_banned.png
+                      border: false
+
+    # Reaping column
+    - type: group
+      decorator: default
+      direction: vertical
+      flex: 2
+      padding: 10
+      items:
+        - type: group
+          direction: horizontal
+          height: 48
+          gap: 8
+          justify: start
+          align: center
+          items:
+            - type: label
+              text: REAPING
+              style: heading
+            - type: label
+              text: "TIRED OF ENEMIES SURRENDERING EARLY?"
+              style: flavour
+            - type: image
+              src: assets/icons/steamsad.png
+              border: false
+        - type: group
+          direction: horizontal
+          height: 48
+          gap: 8
+          justify: start
+          align: center
+          items:
+            - type: label
+              text: "JUST SAY NO!"
+              style: flavour
+            - type: image
+              src: assets/icons/steammocking.png
+              border: false
+        - type: group
+          flex: 1
+          direction: vertical
+          align: stretch
+          justify: space-between
+          gap: 0
+          items:
+            - type: group
+              direction: horizontal
+              align: start
+              items:
+                - type: image
+                  src: assets/screenshots/civic_harvest_proto.png
+                  flex: 1
+                - type: image
+                  src: assets/screenshots/civic_harvest_inc.png
+                  flex: 1
+            - type: group
+              direction: horizontal
+              align: end
+              items:
+                - type: image
+                  src: assets/screenshots/wg_reaping.png
+                  flex: 1
+                - type: group
+                  flex: 1
+                  direction: vertical
+                  gap: 4
+                  items:
+                    - type: label
+                      text: "AVAILABLE TO:"
+                      style: label
+                    - type: group
+                      direction: horizontal
+                      height: 48
+                      gap: 8
+                      justify: start
+                      items:
+                        - type: image
+                          src: assets/icons/bd_mega.png
+                          border: false
+                        - type: image
+                          src: assets/icons/bd_machine.png
+                          border: false
+                        - type: image
+                          src: assets/icons/barbaric_xenophobe.png
+                          border: false
+                        - type: image
+                          src: assets/icons/bodysnatcher.png
+                          border: false
+                        - type: image
+                          src: assets/icons/nihil_xenophobe.png
+                          border: false

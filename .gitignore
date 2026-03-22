@@ -1,0 +1,30 @@
+# Claude Code
+.claude/
+
+# Internal planning & tooling
+planning/
+scripts/
+CLAUDE.md
+AGENTS.md
+gk_mod.code-workspace
+OverlayAndBorder.png
+
+# Stellaris console history
+**/console_history.txt
+
+# VS Code / CWTools
+.vscode/
+vscode-userdata:/
+.cwtools/
+
+# Python
+.venv/
+venv/
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Paradox Launcher
+.metadata/

@@ -1,0 +1,148 @@
+title: POP RAIDING REWORK
+subtitle: NEW WAYS TO SEIZE ENEMY POPS
+
+root:
+  direction: horizontal
+  gap: 14
+  padding: 0
+  items:
+    # Column 1: Invasion
+    - type: group
+      flex: 1
+      decorator: default
+      direction: vertical
+      padding: 10
+      items:
+        - type: label
+          text: INVASION
+          style: heading
+        - type: label
+          text: ARMIES DRAIN PLANETS DRY
+          style: flavour
+        - type: group
+          flex: 1
+          direction: vertical
+          justify: space-between
+          items:
+            - type: image
+              src: assets/screenshots/captives_taken.png
+            - type: image
+              src: assets/screenshots/population_seizure.png
+              crop: { gravity: South, percent: 80 }
+            - type: image
+              src: assets/screenshots/planet_cleared.png
+              crop: { top: 20 }
+
+    # Column 2: War Goals
+    - type: group
+      flex: 1
+      decorator: default
+      direction: vertical
+      padding: 10
+      items:
+        - type: label
+          text: WAR GOALS
+          style: heading
+        - type: label
+          text: DEMAND POPS ON SURRENDER
+          style: flavour
+        - type: group
+          flex: 1
+          direction: vertical
+          justify: space-between
+          items:
+            - type: group
+              direction: vertical
+              gap: 0
+              decorator: clip
+              items:
+                - type: image
+                  src: assets/screenshots/wg_raiding_new.png
+                  border: false
+                - type: image
+                  src: assets/screenshots/wg_reaping_new.png
+                  border: false
+                - type: image
+                  src: assets/screenshots/wg_emanc_new.png
+                  border: false
+            - type: image
+              src: assets/screenshots/surrender_tooltip.png
+            - type: image
+              src: assets/screenshots/surrender_notif.png
+
+    # Column 3: Customization
+    - type: group
+      flex: 1
+      decorator: default
+      direction: vertical
+      padding: 10
+      items:
+        - type: label
+          text: CUSTOMIZATION
+          style: heading
+        - type: label
+          text: POLICIES AND CIVICS
+          style: flavour
+        - type: group
+          flex: 1
+          direction: vertical
+          justify: space-between
+          items:
+            - type: image
+              src: assets/screenshots/policies_new.png
+            - type: group
+              direction: vertical
+              gap: 4
+              items:
+                - type: label
+                  text: NEW AND REWORKED CIVICS
+                  style: label
+                - type: group
+                  direction: horizontal
+                  height: 48
+                  gap: 8
+                  justify: start
+                  items:
+                    - type: image
+                      src: assets/icons/emanc.png
+                      border: false
+                    - type: image
+                      src: assets/icons/emanc_mega.png
+                      border: false
+                    - type: image
+                      src: assets/icons/bd_machine.png
+                      border: false
+                    - type: image
+                      src: assets/icons/bd_mega.png
+                      border: false
+                - type: group
+                  direction: horizontal
+                  height: 48
+                  gap: 8
+                  justify: start
+                  items:
+                    - type: image
+                      src: assets/icons/barbaric.png
+                      border: false
+                    - type: image
+                      src: assets/icons/bodysnatcher.png
+                      border: false
+            - type: group
+              direction: vertical
+              gap: 4
+              items:
+                - type: label
+                  text: NIHILISTIC ACQUISITION FOR ALL!
+                  style: label
+                - type: group
+                  direction: horizontal
+                  height: 48
+                  gap: 8
+                  justify: start
+                  items:
+                    - type: image
+                      src: assets/icons/nihil.png
+                      border: false
+                    - type: image
+                      src: assets/icons/steamhappy.png
+                      border: false
