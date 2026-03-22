@@ -85,9 +85,10 @@ When a tier is filled, the war leader chooses:
 
 - **Hold position** — Pause raiding, reassess in one year
 - **Authorize deeper raids** — Spend Influence to unlock the next tier
-- **Switch to pillaging** (Plunder only) — Stop pop raids, activate resource pillaging with +1 loot month bonus
-- **Demand tribute** (Plunder only) — Send a resource demand. If accepted, Influence refunded. If refused, raiding continues.
-- **Demand abolition** (Emancipation) — Demand slavery be outlawed
+- **Switch to pillaging** (Plunder only) — Stop pop raids, switch war goal to Pillage. Yield is reduced by 2 loot-months (nets +1 over base) and surrender ransacked tiers are one step lighter.
+- **Authorize total depopulation** (Plunder only, tier 5) — Switch war goal to Reaping. No surrender, no limits.
+- **Demand tribute** (Plunder only) — Send a resource demand. If accepted, Influence refunded and war goal switches to Humiliation. If refused, raiding continues.
+- **Demand abolition** (Emancipation) — Demand slavery be outlawed. If accepted, war goal switches to Humiliation.
 
 Influence costs scale with how significant the raid is relative to the raider's empire size. Small raids against minor empires are cheap. Major raids against large empires cost substantially more.
 
