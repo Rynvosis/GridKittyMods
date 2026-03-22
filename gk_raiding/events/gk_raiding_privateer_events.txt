@@ -1869,3 +1869,38 @@ country_event = {
 		name = INTERESTING
 	}
 }
+
+# ──────────────────────────────────────────────────────────────────
+# Ship Capture (710–719)
+# ──────────────────────────────────────────────────────────────────
+
+# 710 — Privateer raider captures a ship on kill (30% chance)
+# Fired from on_ship_destroyed_perp
+# This = killer's owner country
+# From = destroyed ship's owner country
+# FromFrom = killer ship
+# FromFromFrom = destroyed ship
+country_event = {
+	id = gk_raiding_privateers.710
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = gk_privateer_raiders
+		exists = fromfromfrom
+	}
+
+	immediate = {
+		random_list = {
+			30 = {
+				fromfrom.fleet = {
+					create_ship = {
+						name = random
+						design = fromfromfrom.design
+					}
+				}
+			}
+			70 = { }
+		}
+	}
+}

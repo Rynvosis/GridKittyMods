@@ -165,7 +165,7 @@ Available to any default empire. Uses the Unyielding 3+2 layout.
 1. **Raider's Fervor** — While at war: Happiness +10%, Unity +25%
 2. **Predatory Bombardment** — Orbital Bombardment Damage +20%, Army Collateral Damage +50%
 3. **Triumph in Ruin** — Gain 1 month of unity output per 10 devastation inflicted, prorated
-4. **Boarding Cables** — Unlocks Research & Scavenge Debris policy option. Ship Alloys Upkeep -5%, Building Refund +10%, Megastructure Dismantle Refund +10%. Salvage Chance +10% with Scavenger civics. Grants the **Boarding Cables** technology with Grand Archive DLC.
+4. **Boarding Cables** — Salvage Chance +10%. Grants the **Boarding Cables** technology with Grand Archive DLC.
 5. **Acquisitive Officers** — Grants or upgrades Corsair and Shipbreaker traits on admiral-commanders. Ship-kill resource rewards +50% (stacks to 2.25x with Hell's Heart).
 
 **Finish:** Ascension Perks +1. With **Overlord** DLC: +1 Enclave Capacity and unlocks **Privateer Enclaves**. Without Overlord: Ship Fire Rate +5%, Army Damage +10%. Mindwardens get +2 Enclave Capacity instead. Fanatic Purifiers always get the combat bonuses.
@@ -183,7 +183,7 @@ Six personality types assigned at founding (Automaton, Stoic, Screamer, Cultist,
 - Five upgrade tiers increase fleet size, raid frequency, and dividend payouts
 - Enclave fleets: +15% speed, +10% weapon damage, +5%/day hull regen, +5%/day armor regen
 - **Smuggler's Port**: Purchasable starbase building. +20% Trade from Jobs in-system, produces 4 Trade Value per Trade Hub on the starbase, +5 Crime empire-wide.
-- **Debris Scavenging**: Battles during raids generate debris. The enclave auto-salvages debris at raid end, with a 30% base chance to recover ships per debris field.
+- **Ship Capture**: Privateer raiders have a 30% chance to capture enemy ships they destroy during raids, adding them to the raider fleet.
 - **Conversion**: Patrons can convert between mercenary and privateer enclaves via the diplomacy menu for 100 Influence. Upgrade ranks are preserved.
 - **Cancel Raid**: The raid initiator can recall an active raid at no cost through the diplomacy menu.
 - **Raid Pricing**: Funded raids use fleet-value-based pricing, matching mercenary fleet hire costs.

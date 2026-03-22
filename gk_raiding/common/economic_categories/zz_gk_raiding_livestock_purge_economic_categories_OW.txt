@@ -11,9 +11,11 @@ planet_livestock_farmers = {
 	parent = planet_farmers
 	generate_add_modifiers = {
 		produces
+		upkeep
 	}
 	generate_mult_modifiers = {
 		produces
+		upkeep
 	}
 	modifier_category = pop_job
 }
@@ -22,9 +24,11 @@ planet_livestock_miners = {
 	parent = planet_miners
 	generate_add_modifiers = {
 		produces
+		upkeep
 	}
 	generate_mult_modifiers = {
 		produces
+		upkeep
 	}
 	modifier_category = pop_job
 }
@@ -33,9 +37,11 @@ planet_livestock_metallurgists = {
 	parent = planet_jobs_worker
 	generate_add_modifiers = {
 		produces
+		upkeep
 	}
 	generate_mult_modifiers = {
 		produces
+		upkeep
 	}
 	modifier_category = pop_job
 }
@@ -44,9 +50,11 @@ pop_category_purge = {
 	parent = planet_pops
 	generate_add_modifiers = {
 		produces
+		upkeep
 	}
 	generate_mult_modifiers = {
 		produces
+		upkeep
 	}
 	modifier_category = pop_group
 }

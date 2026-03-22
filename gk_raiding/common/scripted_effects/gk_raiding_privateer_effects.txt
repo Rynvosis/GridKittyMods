@@ -521,16 +521,6 @@ gk_end_privateer_raid = {
 		days = 540
 	}
 
-	# Salvage any remaining debris from raider battles
-	if = {
-		limit = {
-			exists = event_target:gk_privateer_raider
-		}
-		event_target:gk_privateer_raider = {
-			gk_sweep_raider_debris = yes
-		}
-	}
-
 	# Destroy temp raider country
 	if = {
 		limit = {
@@ -562,11 +552,6 @@ gk_cleanup_privateer_raid = {
 		}
 	}
 
-	# Salvage any remaining debris from raider battles
-	event_target:gk_privateer_raider = {
-		gk_sweep_raider_debris = yes
-	}
-
 	# Destroy the temp raider country
 	event_target:gk_privateer_raider = {
 		every_owned_fleet = {
@@ -584,24 +569,6 @@ gk_cleanup_privateer_raid = {
 	every_owned_fleet = {
 		limit = { has_fleet_flag = gk_fleet_locked }
 		remove_fleet_flag = gk_fleet_locked
-	}
-}
-
-# ──────────────────────────────────────────────────────────────────
-# Debris Scavenging Effects
-# ──────────────────────────────────────────────────────────────────
-
-# Sweep all available debris on the raider and salvage for the parent enclave
-# This = raider country (gk_privateer_raiders)
-# Expects event_target:gk_privateer_enclave_country to be set
-gk_sweep_raider_debris = {
-	every_available_debris = {
-		pass_debris_ownership = {
-			owner = event_target:gk_privateer_enclave_country
-		}
-		event_target:gk_privateer_enclave_country = {
-			country_event = { id = gk_raiding_privateers.701 }
-		}
 	}
 }
 
