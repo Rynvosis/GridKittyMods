@@ -144,8 +144,19 @@ defined_text = {
 			event_target:gk_raid_tracker = {
 				check_variable = { which = gk_escalation_tier value >= 4 }
 			}
+			gk_is_plunder_war_with_from = yes
 		}
 		localization_key = GK_RAIDING_ESCALATION_PRESS_FINAL_TOOLTIP
+	}
+	text = {
+		trigger = {
+			exists = event_target:gk_raid_tracker
+			event_target:gk_raid_tracker = {
+				check_variable = { which = gk_escalation_tier value >= 4 }
+			}
+			gk_is_emancipation_war_with_from = yes
+		}
+		localization_key = GK_RAIDING_ESCALATION_PRESS_FINAL_EMANCIPATION_TOOLTIP
 	}
 	text = {
 		trigger = {

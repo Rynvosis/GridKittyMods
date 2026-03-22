@@ -28,10 +28,10 @@ gk_effective_pillage_yield = {
 		}
 		add = @gk_pillage_war_bonus_loot_months
 	}
-	# +1 if pivoted to pillaging against this target
+	# -2 if pivoted from pop raiding (offsets war goal +3, nets +1)
 	modifier = {
 		has_country_flag = gk_pivoted_to_pillaging_against_@$TARGET$
-		add = 1
+		add = -2
 	}
 }
 

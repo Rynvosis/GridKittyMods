@@ -655,26 +655,50 @@ gk_apply_planet_ransacked_invasion = {
 }
 
 # Apply Ransacked modifier after surrender based on current devastation
+# Lighter tiers when raider pivoted from pop raiding (already got value from the war)
 # This = Planet
 gk_apply_planet_ransacked_surrender = {
 	if = {
-		limit = { planet_devastation < 1 }
-		add_modifier = {
-			modifier = gk_planet_ransacked_3
-			days = @gk_surrender_aftermath_days
+		limit = {
+			event_target:gk_raider = { has_country_flag = gk_pivoted_to_pillaging_against_@prev.owner }
 		}
-	}
-	else_if = {
-		limit = { planet_devastation >= 50 }
-		add_modifier = {
-			modifier = gk_planet_ransacked_1
-			days = @gk_surrender_aftermath_days
+		# Pivoted: one tier lighter (no mod if >50, -10% if >0, -20% if 0)
+		if = {
+			limit = { planet_devastation < 1 }
+			add_modifier = {
+				modifier = gk_planet_ransacked_2
+				days = @gk_surrender_aftermath_days
+			}
+		}
+		else_if = {
+			limit = { planet_devastation < 50 }
+			add_modifier = {
+				modifier = gk_planet_ransacked_1
+				days = @gk_surrender_aftermath_days
+			}
 		}
 	}
 	else = {
-		add_modifier = {
-			modifier = gk_planet_ransacked_2
-			days = @gk_surrender_aftermath_days
+		# Standard surrender tiers
+		if = {
+			limit = { planet_devastation < 1 }
+			add_modifier = {
+				modifier = gk_planet_ransacked_3
+				days = @gk_surrender_aftermath_days
+			}
+		}
+		else_if = {
+			limit = { planet_devastation >= 50 }
+			add_modifier = {
+				modifier = gk_planet_ransacked_1
+				days = @gk_surrender_aftermath_days
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = gk_planet_ransacked_2
+				days = @gk_surrender_aftermath_days
+			}
 		}
 	}
 }
