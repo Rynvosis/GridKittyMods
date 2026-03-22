@@ -12,9 +12,8 @@ civic_gk_emancipators = {
 	description = civic_gk_emancipators_effects
 
 	potential = {
-		authority = {
-			NOT = { value = auth_corporate }
-		}
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
 	}
 
 	possible = {
