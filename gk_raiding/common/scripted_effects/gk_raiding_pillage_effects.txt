@@ -10,7 +10,7 @@
 #   3. Invasion and surrender cash out the remaining devastation headroom at the current planet rate
 #      without applying additional devastation.
 #   4. Surrender only cashes out the first 50 devastation worth on each surviving colony and applies
-#      a local tribute modifier based on how much of that band remained.
+#      a Ransacked modifier based on current devastation level.
 
 ######################
 # Entry Points       #
@@ -36,7 +36,7 @@ gk_pillage_on_surrender = {
 		every_owned_planet = {
 			limit = {
 				is_colony = yes
-				NOT = { has_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_raider }
+				NOT = { gk_planet_is_ransacked = yes }
 			}
 			gk_add_surrender_planet_pillage_to_storage = yes
 		}
@@ -102,14 +102,9 @@ gk_pillage_on_invasion = {
 				}
 			}
 		}
-		event_target:gk_raider = {
-			gk_save_resource_surrender_raider_against_target = yes
-		}
-
 		event_target:gk_target_planet = {
 			set_variable = { which = gk_remaining_pillage_damage_budget value = value:gk_remaining_pillage_budget|MAX|@gk_max_planet_devastation| }
-			gk_apply_planet_invasion_tribute = yes
-			gk_mark_planet_invasion_pillage_cashed_out = yes
+			gk_apply_planet_ransacked_invasion = yes
 			if = {
 				limit = {
 					check_variable = { which = gk_remaining_pillage_damage_budget value > 0 }
@@ -207,38 +202,6 @@ gk_pillage_on_devastation = {
 # Setup Helpers      #
 ######################
 
-# Resolve the war-goal side leader whose surrender payout should be reduced by an invasion cashout.
-# This = acting raider country
-# event_target:gk_raidee = defender country
-# Sets: event_target:gk_surrender_raider when a qualifying wg_plunder_raid exists
-gk_save_resource_surrender_raider_against_target = {
-	every_war = {
-		limit = {
-			OR = {
-				AND = {
-					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = event_target:gk_raidee side = defenders }
-					using_war_goal = { type = wg_plunder_raid owner = attacker }
-				}
-				AND = {
-					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = event_target:gk_raidee side = attackers }
-					using_war_goal = { type = wg_plunder_raid owner = defender }
-				}
-			}
-		}
-		if = {
-			limit = {
-				using_war_goal = { type = wg_plunder_raid owner = attacker }
-			}
-			attacker = { save_event_target_as = gk_surrender_raider }
-		}
-		else = {
-			defender = { save_event_target_as = gk_surrender_raider }
-		}
-	}
-}
-
 # Add one planet's remaining surrender payout to the country storage receipt
 # This = Planet
 # event_target:gk_raider = Winner country
@@ -284,7 +247,7 @@ gk_add_surrender_planet_pillage_to_storage = {
 		}
 	}
 
-	gk_apply_planet_surrender_tribute = yes
+	gk_apply_planet_ransacked_surrender = yes
 
 	# Convert the remaining devastation budget into current-rate loot for the surrender receipt
 	if = {
@@ -663,255 +626,56 @@ gk_send_pillage_notifications = {
 	}
 }
 
-# Apply the local tribute aftermath modifier based on remaining surrender budget
+# Apply Ransacked modifier after invasion based on current devastation
 # This = Planet
-gk_apply_planet_surrender_tribute = {
-	owner = { save_event_target_as = gk_raidee }
-	# effective_remaining = (100 - planet_devastation) / 2, range 0-50
-	# Integer division truncates, so this always rounds down
-	export_trigger_value_to_variable = {
-		trigger = planet_devastation
-		variable = gk_effective_remaining_temp
-	}
-	subtract_variable = {
-		which = gk_effective_remaining_temp
-		value = 100
-	}
-	multiply_variable = {
-		which = gk_effective_remaining_temp
-		value = -1
-	}
-	divide_variable = {
-		which = gk_effective_remaining_temp
-		value = 2
-	}
-	gk_apply_planet_tribute_from_effective_remaining = yes
-}
-
-# Apply the local tribute aftermath modifier based on an invasion cashout
-# This = Planet
-gk_apply_planet_invasion_tribute = {
-	owner = { save_event_target_as = gk_raidee }
-	# Same formula: effective_remaining = (100 - planet_devastation) / 2
-	export_trigger_value_to_variable = {
-		trigger = planet_devastation
-		variable = gk_effective_remaining_temp
-	}
-	subtract_variable = {
-		which = gk_effective_remaining_temp
-		value = 100
-	}
-	multiply_variable = {
-		which = gk_effective_remaining_temp
-		value = -1
-	}
-	divide_variable = {
-		which = gk_effective_remaining_temp
-		value = 2
-	}
-	# Halve tribute when not in a dedicated pillaging war
+gk_apply_planet_ransacked_invasion = {
 	if = {
-		limit = {
-			event_target:gk_raider = {
-				NOT = {
-					any_war = {
-						OR = {
-							AND = {
-								is_war_participant = { who = prev side = attackers }
-								is_war_participant = { who = prevprev.owner side = defenders }
-								using_war_goal = { type = wg_plunder_raid owner = attacker }
-							}
-							AND = {
-								is_war_participant = { who = prev side = defenders }
-								is_war_participant = { who = prevprev.owner side = attackers }
-								using_war_goal = { type = wg_plunder_raid owner = defender }
-							}
-						}
-					}
-				}
-			}
-		}
-		divide_variable = {
-			which = gk_effective_remaining_temp
-			value = 2
-		}
-	}
-	gk_apply_planet_tribute_from_effective_remaining = yes
-}
-
-# Apply a local tribute modifier from gk_effective_remaining_temp (0-50 integer)
-# Checks from highest tier down; never downgrades an existing higher-tier modifier
-# This = Planet
-gk_apply_planet_tribute_from_effective_remaining = {
-	# Convert effective_remaining (0-50) to tier (0-5) by dividing by 10
-	set_variable = { which = gk_tribute_tier_temp value = gk_effective_remaining_temp }
-	divide_variable = { which = gk_tribute_tier_temp value = 10 }
-	floor_variable = gk_tribute_tier_temp
-	# Cap at raider's effective pillage yield
-	set_variable = {
-		which = gk_yield_cap_temp
-		value = event_target:gk_raider.value:gk_effective_pillage_yield|TARGET|event_target:gk_raidee|
-	}
-	if = {
-		limit = { check_variable = { which = gk_tribute_tier_temp value > gk_yield_cap_temp } }
-		set_variable = { which = gk_tribute_tier_temp value = gk_yield_cap_temp }
-	}
-	# Cap at max tier 5
-	if = {
-		limit = { check_variable = { which = gk_tribute_tier_temp value > 5 } }
-		set_variable = { which = gk_tribute_tier_temp value = 5 }
-	}
-	clear_variable = gk_yield_cap_temp
-	clear_variable = gk_effective_remaining_temp
-
-	if = {
-		limit = {
-			check_variable = { which = gk_tribute_tier_temp value >= 5 }
-		}
-		# Tier 5 (50%) — don't downgrade from existing tier 5
-		if = {
-			limit = { NOT = { has_modifier = gk_planet_tribute_5 } }
-			remove_modifier = gk_planet_tribute_0
-			remove_modifier = gk_planet_tribute_1
-			remove_modifier = gk_planet_tribute_2
-			remove_modifier = gk_planet_tribute_3
-			remove_modifier = gk_planet_tribute_4
-			add_modifier = {
-				modifier = gk_planet_tribute_5
-				days = @gk_surrender_aftermath_days
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			check_variable = { which = gk_tribute_tier_temp value >= 4 }
-		}
-		# Tier 4 — skip if planet already has tier 4 or 5
-		if = {
-			limit = {
-				NOT = { has_modifier = gk_planet_tribute_5 }
-				NOT = { has_modifier = gk_planet_tribute_4 }
-			}
-			remove_modifier = gk_planet_tribute_0
-			remove_modifier = gk_planet_tribute_1
-			remove_modifier = gk_planet_tribute_2
-			remove_modifier = gk_planet_tribute_3
-			add_modifier = {
-				modifier = gk_planet_tribute_4
-				days = @gk_surrender_aftermath_days
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			check_variable = { which = gk_tribute_tier_temp value >= 3 }
-		}
-		# Tier 3 — skip if planet already has tier 3, 4, or 5
-		if = {
-			limit = {
-				NOT = { has_modifier = gk_planet_tribute_5 }
-				NOT = { has_modifier = gk_planet_tribute_4 }
-				NOT = { has_modifier = gk_planet_tribute_3 }
-			}
-			remove_modifier = gk_planet_tribute_0
-			remove_modifier = gk_planet_tribute_1
-			remove_modifier = gk_planet_tribute_2
-			add_modifier = {
-				modifier = gk_planet_tribute_3
-				days = @gk_surrender_aftermath_days
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			check_variable = { which = gk_tribute_tier_temp value >= 2 }
-		}
-		# Tier 2 — skip if planet already has tier 2+
-		if = {
-			limit = {
-				NOT = { has_modifier = gk_planet_tribute_5 }
-				NOT = { has_modifier = gk_planet_tribute_4 }
-				NOT = { has_modifier = gk_planet_tribute_3 }
-				NOT = { has_modifier = gk_planet_tribute_2 }
-			}
-			remove_modifier = gk_planet_tribute_0
-			remove_modifier = gk_planet_tribute_1
-			add_modifier = {
-				modifier = gk_planet_tribute_2
-				days = @gk_surrender_aftermath_days
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			check_variable = { which = gk_tribute_tier_temp value >= 1 }
-		}
-		# Tier 1 — skip if planet already has tier 1+
-		if = {
-			limit = {
-				NOT = { has_modifier = gk_planet_tribute_5 }
-				NOT = { has_modifier = gk_planet_tribute_4 }
-				NOT = { has_modifier = gk_planet_tribute_3 }
-				NOT = { has_modifier = gk_planet_tribute_2 }
-				NOT = { has_modifier = gk_planet_tribute_1 }
-			}
-			remove_modifier = gk_planet_tribute_0
-			add_modifier = {
-				modifier = gk_planet_tribute_1
-				days = @gk_surrender_aftermath_days
-			}
+		limit = { planet_devastation >= 50 }
+		add_modifier = {
+			modifier = gk_planet_ransacked_1
+			days = @gk_surrender_aftermath_days
 		}
 	}
 	else = {
-		# Tier 0 (5%) — fallback, skip if any existing tribute modifier
-		if = {
-			limit = {
-				NOT = { has_modifier = gk_planet_tribute_5 }
-				NOT = { has_modifier = gk_planet_tribute_4 }
-				NOT = { has_modifier = gk_planet_tribute_3 }
-				NOT = { has_modifier = gk_planet_tribute_2 }
-				NOT = { has_modifier = gk_planet_tribute_1 }
-				NOT = { has_modifier = gk_planet_tribute_0 }
-			}
-			add_modifier = {
-				modifier = gk_planet_tribute_0
-				days = @gk_surrender_aftermath_days
-			}
+		add_modifier = {
+			modifier = gk_planet_ransacked_2
+			days = @gk_surrender_aftermath_days
 		}
+		# Set devastation to 50
+		export_trigger_value_to_variable = {
+			trigger = planet_devastation
+			variable = gk_dev_delta_temp
+		}
+		set_variable = { which = gk_dev_target_temp value = 50 }
+		subtract_variable = { which = gk_dev_target_temp value = gk_dev_delta_temp }
+		add_planet_devastation = gk_dev_target_temp
+		clear_variable = gk_dev_delta_temp
+		clear_variable = gk_dev_target_temp
 	}
-
-	clear_variable = gk_tribute_tier_temp
 }
 
-# Mark a planet as already fully cashed out by invasion for this raider
+# Apply Ransacked modifier after surrender based on current devastation
 # This = Planet
-gk_mark_planet_invasion_pillage_cashed_out = {
+gk_apply_planet_ransacked_surrender = {
 	if = {
-		limit = {
-			exists = event_target:gk_surrender_raider
-		}
-		set_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_surrender_raider
-		owner = {
-			set_country_flag = gk_has_pillage_invasion_cashed_out_by_@event_target:gk_surrender_raider
+		limit = { planet_devastation < 1 }
+		add_modifier = {
+			modifier = gk_planet_ransacked_3
+			days = @gk_surrender_aftermath_days
 		}
 	}
-}
-
-# Clear invasion cashout markers for a specific raider from this defender
-# This = Country
-# event_target:gk_raider = attacker whose markers should be removed
-gk_clear_invasion_pillage_cashed_out_flags = {
-	if = {
-		limit = {
-			has_country_flag = gk_has_pillage_invasion_cashed_out_by_@event_target:gk_raider
+	else_if = {
+		limit = { planet_devastation >= 50 }
+		add_modifier = {
+			modifier = gk_planet_ransacked_1
+			days = @gk_surrender_aftermath_days
 		}
-		every_owned_planet = {
-			limit = {
-				has_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_raider
-			}
-			remove_planet_flag = gk_pillage_invasion_cashed_out_by_@event_target:gk_raider
+	}
+	else = {
+		add_modifier = {
+			modifier = gk_planet_ransacked_2
+			days = @gk_surrender_aftermath_days
 		}
-		remove_country_flag = gk_has_pillage_invasion_cashed_out_by_@event_target:gk_raider
 	}
 }
 

@@ -19,10 +19,20 @@ gk_can_pillage = {
 }
 
 # This = planet scope
+gk_planet_is_ransacked = {
+	OR = {
+		has_modifier = gk_planet_ransacked_1
+		has_modifier = gk_planet_ransacked_2
+		has_modifier = gk_planet_ransacked_3
+	}
+}
+
+# This = planet scope
 # From = raider country
 gk_can_be_pillaged = {
 	is_colony = yes
 	exists = owner
+	NOT = { gk_planet_is_ransacked = yes }
 	from = {
 		gk_can_pillage = yes
 		is_at_war_with = prevprev.owner

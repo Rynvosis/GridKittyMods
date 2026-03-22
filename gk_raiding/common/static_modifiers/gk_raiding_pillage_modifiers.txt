@@ -6,44 +6,23 @@ gk_planet_auto_raid = {
 	custom_tooltip = gk_planet_auto_raid.tooltip
 }
 
-gk_planet_tribute_0 = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
-	pop_bonus_workforce_mult = -0.05
-	show_only_custom_tooltip = no
-	custom_tooltip = gk_planet_tribute_0.tooltip
-}
-
-gk_planet_tribute_1 = {
+gk_planet_ransacked_1 = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
 	pop_bonus_workforce_mult = -0.1
 	show_only_custom_tooltip = no
-	custom_tooltip = gk_planet_tribute_1.tooltip
+	custom_tooltip = gk_planet_ransacked.tooltip
 }
 
-gk_planet_tribute_2 = {
+gk_planet_ransacked_2 = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
 	pop_bonus_workforce_mult = -0.2
 	show_only_custom_tooltip = no
-	custom_tooltip = gk_planet_tribute_2.tooltip
+	custom_tooltip = gk_planet_ransacked.tooltip
 }
 
-gk_planet_tribute_3 = {
+gk_planet_ransacked_3 = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
 	pop_bonus_workforce_mult = -0.3
 	show_only_custom_tooltip = no
-	custom_tooltip = gk_planet_tribute_3.tooltip
-}
-
-gk_planet_tribute_4 = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
-	pop_bonus_workforce_mult = -0.4
-	show_only_custom_tooltip = no
-	custom_tooltip = gk_planet_tribute_4.tooltip
-}
-
-gk_planet_tribute_5 = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
-	pop_bonus_workforce_mult = -0.5
-	show_only_custom_tooltip = no
-	custom_tooltip = gk_planet_tribute_5.tooltip
+	custom_tooltip = gk_planet_ransacked.tooltip
 }

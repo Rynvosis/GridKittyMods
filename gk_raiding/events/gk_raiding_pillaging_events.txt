@@ -62,27 +62,6 @@ country_event = {
 	}
 
 	immediate = {
-		if = {
-			limit = {
-				has_country_flag = gk_has_pillage_invasion_cashed_out_by_@from
-			}
-			from = {
-				save_event_target_as = gk_raider
-			}
-			gk_clear_invasion_pillage_cashed_out_flags = yes
-		}
-		from = {
-			if = {
-				limit = {
-					has_country_flag = gk_has_pillage_invasion_cashed_out_by_@root
-				}
-				root = {
-					save_event_target_as = gk_raider
-				}
-				gk_clear_invasion_pillage_cashed_out_flags = yes
-			}
-		}
-
 		# Clear stale forced surrender markers on loser's planets (winner was the bombarder)
 		every_owned_planet = {
 			limit = { has_planet_flag = gk_pillage_forced_surrender_resolved_by_@from }
@@ -115,6 +94,7 @@ country_event = {
 		fromfrom = {
 			is_colony = yes
 			NOT = { has_planet_flag = gk_pillage_forced_surrender_resolved_by_@root }
+			NOT = { gk_planet_is_ransacked = yes }
 		}
 		gk_can_pillage = yes
 		from = {
