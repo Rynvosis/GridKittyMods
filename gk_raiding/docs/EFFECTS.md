@@ -11,7 +11,7 @@ Available to: Standard and Megacorp
 **Requirements:** Egalitarian + Militarist
 **Modifiers:** Army Morale +50%
 **Councilor:** Liberation Commander (Commander) — Ship Fire Rate +2%/level
-**Effects:** Unlocks the Emancipation policy option and war goal. With the Robots Only raiding policy, emancipation wars can target synthetic citizen rights instead.
+**Effects:** Unlocks pop raiding access and the raiding bombardment stance. With Slavery banned, can select the Emancipation raiding focus.
 
 ### Harvest Incorporated
 
@@ -46,7 +46,6 @@ Nihilistic Acquisition works with any raiding policy combination:
 - **Rogue Servitor** with Emancipation + Organics Only: specifically target enslaved organics
 - **Materialist** with Plunder + Robots Only: steal robots from other empires
 - **Egalitarian** with Emancipation: liberate enslaved pops through force
-- **Egalitarian** with Emancipation + Robots Only: demand synthetic citizen rights from the target
 
 Reaping is reserved for Barbaric Despoiler civics and Hive Bodysnatcher. These empires don't need Influence to take everything, but the galaxy will hate them for it.
 
@@ -57,8 +56,7 @@ Reaping is reserved for Barbaric Despoiler civics and Hive Bodysnatcher. These e
 Cannot be changed while at war. Governs pop-raiding war goals only; does not disable pillaging.
 
 - **Plunder**: Standard pop-raiding. Bucket-based escalation with Influence costs.
-- **No Pop-Raiding**: Disables pop-raiding war goals entirely.
-- **Emancipation**: Targets enslaved pops only. Can demand abolition of slavery or synthetic rights (with Robots Only policy).
+- **Emancipation**: Targets enslaved pops only. Can demand abolition of slavery. Requires Slavery to be banned (or Rogue Servitor).
 - **Reaping**: Removes all pop capture limits and prevents surrender. Available to Barbaric Despoiler civics and Hive Bodysnatcher only.
 
 ### Robot Raiding
@@ -67,7 +65,7 @@ Cannot be changed while at war. Only available to empires with pop-raiding acces
 
 - **Capture Robots**: Organics and robots
 - **Organics Only**: Skip robotic pops
-- **Robots Only**: Only robotic pops (requires Materialist, Synthetic empire, Cybernetic ascension, or Machine Intelligence)
+- **Robots Only**: Only robotic pops (requires Materialist, Synthetic empire, Cybernetic ascension, or Machine Intelligence). Incompatible with Emancipation focus.
 
 ## Pop Raiding Escalation
 
@@ -89,7 +87,6 @@ When a tier is filled, the war leader chooses:
 - **Switch to pillaging** (Plunder only) — Stop pop raids, activate resource pillaging with +1 loot month bonus
 - **Demand tribute** (Plunder only) — Send a resource demand. If accepted, Influence refunded. If refused, raiding continues.
 - **Demand abolition** (Emancipation) — Demand slavery be outlawed
-- **Demand synthetic rights** (Emancipation + Robots Only) — Demand full AI citizen rights
 
 Influence costs scale with how significant the raid is relative to the raider's empire size. Small raids against minor empires are cheap. Major raids against large empires cost substantially more.
 
@@ -124,7 +121,15 @@ Resource pillaging is available to empires with **Barbaric Despoilers**, **Harve
 - Loot scales with what the planet actually produces. Doubling trade and converting Research/Unity to CGs
 - Bombardment and ground combat both generate loot, Invasions cash out whatever a planet had left to give
 - The **Pillage** war goal doubles to triples resources from raiding and grants surrender tribute
-- Invaded colonies receive a 5-year workforce penalty (-5% to -50%) based on how much was extracted
+- Invaded and surrendered colonies receive a 5-year **Ransacked** modifier that blocks further pillaging:
+
+| Trigger | Modifier | Effect |
+|---------|----------|--------|
+| Invasion, devastation ≥50% | Ransacked (-10% workforce) | No devastation change |
+| Invasion, devastation <50% | Ransacked (-20% workforce) | Devastation set to 50% |
+| Surrender, no devastation | Ransacked (-30% workforce) | No devastation change |
+| Surrender, devastation 1-49% | Ransacked (-20% workforce) | No devastation change |
+| Surrender, devastation ≥50% | Ransacked (-10% workforce) | No devastation change |
 
 **Pillage Yield** stacks from multiple sources:
 
@@ -134,7 +139,7 @@ Resource pillaging is available to empires with **Barbaric Despoilers**, **Harve
 | Pillage war goal | +3 |
 | Despoliation tradition | +1 |
 
-Higher yield means more resources per devastation tick and harsher workforce penalties on invaded worlds.
+Higher yield means more resources per devastation tick.
 
 ## Invasion and Occupation
 

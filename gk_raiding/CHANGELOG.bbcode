@@ -2,78 +2,39 @@
 
 [h2]Unreleased[/h2]
 
-[h3]Pop Raiding Escalation[/h3]
+[h3]Pop Raiding[/h3]
 [list]
-[*]Pop raiding now uses a tiered system. Initial raids capture a small portion of the target population. Spending Influence authorizes deeper raids, with each tier taking progressively more.
-[*]When a tier is filled, the war leader chooses how to proceed:
-  [list]
-  [*][b]Plunder wars:[/b] Hold position, authorize deeper raids, switch to resource pillaging, or demand tribute
-  [*][b]Emancipation wars:[/b] Hold position, authorize deeper raids, or demand the abolition of slavery
-  [*][b]Emancipation with Robots Only policy:[/b] Demand full synthetic citizen rights instead
-  [/list]
-[*]Reaping bypasses all limits and prevents surrender.
-[*]Pops are now taken proportionally across all eligible species rather than draining one group at a time.
-[*]A notification popup appears when raiding seizes the last population of an empire.
+[*]Pop raiding now uses a tiered escalation system. Initial raids are small; spending Influence authorizes deeper captures, with each tier taking progressively more.
+[*]Pops are taken proportionally across all eligible species rather than draining one group at a time.
+[*]Occupied enemy planets are automatically raided each month. Multi-raider invasions split captures by army count.
+[*]Reaping is now a policy option exclusive to Barbaric Despoiler civics and Hive Bodysnatcher.
+[*]Hive Bodysnatcher now grants pop raiding access, the raiding bombardment stance, and Reaping.
 [/list]
 
-[h3]Tribute[/h3]
+[h3]Escalation[/h3]
 [list]
-[*]During plunder wars, raiders can demand a resource payment from the defender in exchange for ceasing raids.
-[*]The defender chooses how to pay: Energy Credits, Alloys, or a split of both. Bio-ship empires demand Food instead of Energy.
-[*]If accepted, the raider's Influence is refunded. If refused or ignored after 3 months, raiding continues.
-[*]Paying tribute ends pop raids against that raider but does not end the war.
+[*]When a capture tier is filled, the war leader chooses: authorize deeper raids, hold position, switch to pillaging, demand tribute, or demand policy reforms.
+[*]Influence costs scale with raid significance relative to empire size. With sufficient intel, the escalation report shows eligible pops remaining.
+[*]Galaxy-wide opinion penalties for raided pops and escalation. Egalitarian and xenophile empires react more harshly.
 [/list]
 
-[h3]Influence Costs[/h3]
+[h3]Civics and Policies[/h3]
 [list]
-[*]The cost to authorize deeper raids now scales with how significant the raid is relative to the raider's empire. Raiding a small neighbor stays cheap. Depopulating a major rival costs substantially more Influence.
-[*]With sufficient intel on the target, the escalation report shows how many eligible pops remain.
-[/list]
-
-[h3]Civics and War Goals[/h3]
-[list]
-[*]Removed Robo-Liberators, Synthetic Liberation Corp, and Freedom Directive civics. Existing saves keep a deprecated placeholder until the player reforms their government.
-[*]Removed the Robo-Liberation war goal. Robot liberation is now handled through Emancipation with the Robots Only raiding policy.
-[*]Emancipation now has its own casus belli, separate from Despoliation.
-[/list]
-
-[h3]Reaping[/h3]
-[list]
-[*]Reaping is now a raiding focus policy option rather than always being available.
-[*]Only Barbaric Despoiler civics and Hive Bodysnatcher can select Reaping. Nihilistic Acquisition empires use the escalation system to reach full depopulation instead.
-[*]Declaring a Reaping war now carries a much heavier galaxy-wide opinion penalty.
-[/list]
-
-[h3]Hive Mind Support[/h3]
-[list]
-[*]The Hive Bodysnatcher civic now grants access to pop raiding, the raiding bombardment stance, and the Reaping war goal.
-[/list]
-
-[h3]Opinion[/h3]
-[list]
-[*]Galaxy-wide opinion penalty for raided pops, applied consistently across all raiding war types.
-[*]Authorizing deeper raids carries an additional galaxy-wide opinion cost.
-[*]The target empire always suffers an extra opinion hit on top of the galaxy-wide penalty.
-[*]Egalitarian and xenophile empires react more harshly. Empires that practice purging themselves are less bothered.
+[*]Removed Robo-Liberators, Synthetic Liberation Corp, and Freedom Directive civics.
+[*]Robots Only raiding policy is available to all vaguely robot related empire types.
+[*]Emancipation has its own casus belli and requires Slavery to be banned (or Rogue Servitor).
+[*]Nihilistic Acquisition no longer requires specific ethics.
 [/list]
 
 [h3]Pillaging[/h3]
 [list]
-[*]Pillage yields reworked to a flat modifier system. Base yield 2, war goal +3, tradition +1.
-[/list]
-
-[h3]Invasion and Occupation[/h3]
-[list]
-[*]Occupied enemy planets are now automatically raided each month during war.
-[*]Multi-raider invasions distribute captured pops proportionally among each army's owner.
-[*]Allies without raiding capability redirect captured pops to the war leader.
+[*]Pillage yields reworked: base 2 loot-months, +3 from Pillage war goal, +1 from Despoliation tradition.
+[*]Invaded and surrendered colonies receive a 5-year Ransacked modifier that blocks further pillaging.
 [/list]
 
 [h3]Privateer Enclaves[/h3]
 [list]
-[*]Privateer enclaves now use the same upgrade rank system as mercenary enclaves.
-[*]Patrons can convert between mercenary and privateer enclaves via the diplomacy menu for 100 Influence. Upgrade ranks are preserved.
-[*]Funded raids now use fleet-value-based pricing, matching mercenary fleet hire costs.
-[*]The raid initiator can cancel an active raid at no cost.
-[*]AI empires now found privateer enclaves when appropriate.
+[*]Privateers now use the same upgrade rank system as mercenary enclaves.
+[*]Patrons can convert between mercenary and privateer enclaves. Funded raids use fleet-value pricing.
+[*]The raid initiator can cancel an active raid at no cost. AI empires now found privateer enclaves.
 [/list]
