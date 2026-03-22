@@ -84,15 +84,20 @@ gk_can_use_emancipation_cb = {
 }
 
 # This = country scope
-# Can use Reaping war goal (despoiler/predator civics only, NOT Nihilistic Acquisition)
+# Can use Reaping war goal
 gk_can_use_reaping_cb = {
 	OR = {
-		# Normal/corp despoilers require xenophobe
+		# Despoilers require xenophobe
 		AND = {
 			OR = {
 				has_valid_civic = civic_barbaric_despoilers
 				has_valid_civic = civic_gk_barbaric_despoilers_megacorp
 			}
+			is_xenophobe = yes
+		}
+		# Nihilistic Acquisition requires xenophobe
+		AND = {
+			has_ascension_perk = ap_nihilistic_acquisition
 			is_xenophobe = yes
 		}
 		# Gestalt despoilers always qualify

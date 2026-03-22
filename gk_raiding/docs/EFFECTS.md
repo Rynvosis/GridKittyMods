@@ -37,7 +37,7 @@ Available to: Hive Mind only
 
 ## Nihilistic Acquisition
 
-The ascension perk grants pop raiding access and the raiding bombardment stance, same as Barbaric Despoilers. However, Nihilistic Acquisition does **not** grant Reaping. To fully depopulate an empire, spend Influence to authorize deeper raids through the escalation system.
+The ascension perk grants pop raiding access and the raiding bombardment stance, same as Barbaric Despoilers. Xenophobe empires with Nihilistic Acquisition can also select the Reaping focus.
 
 Nihilistic Acquisition works with any raiding policy combination:
 
@@ -46,8 +46,9 @@ Nihilistic Acquisition works with any raiding policy combination:
 - **Rogue Servitor** with Emancipation + Organics Only: specifically target enslaved organics
 - **Materialist** with Plunder + Robots Only: steal robots from other empires
 - **Egalitarian** with Emancipation: liberate enslaved pops through force
+- **Xenophobe** with Reaping: no limits, no surrender
 
-Reaping is reserved for Barbaric Despoiler civics and Hive Bodysnatcher. These empires don't need Influence to take everything, but the galaxy will hate them for it.
+Reaping is available to Xenophobe empires with Barbaric Despoiler civics or Nihilistic Acquisition, plus Machine Harvester and Hive Bodysnatcher unconditionally. These empires don't need Influence to take everything, but the galaxy will hate them for it.
 
 ## Policies
 
@@ -152,12 +153,14 @@ Multi-raider invasions distribute captured pops proportionally among each army's
 Available to any default empire. Uses the Unyielding 3+2 layout.
 
 **Adoption**
+
 - Enables resource pillaging, even without a native pillage civic
 - Unlocks the **Pillaging** casus belli and **Pillage** war goal
 - Unlocks the **Recovery Fleets** council agenda (active: Salvage +10%, Ship Alloys Upkeep -5%; finish: Salvage +30%, Ship Alloys Upkeep -10%)
 - If the empire already has native pillaging, adoption instead adds +2 effective loot-months in all wars
 
 **Traditions**
+
 1. **Raider's Fervor** — While at war: Happiness +10%, Unity +25%
 2. **Predatory Bombardment** — Orbital Bombardment Damage +20%, Army Collateral Damage +50%
 3. **Triumph in Ruin** — Gain 1 month of unity output per 10 devastation inflicted, prorated
