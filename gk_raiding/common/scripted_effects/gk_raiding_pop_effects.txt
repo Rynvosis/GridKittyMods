@@ -585,27 +585,18 @@ gk_find_destination_planet = {
 			}
 			weights = {
 				base = 1
-				# Prefer planets with more free housing
+				# Slave concentration: if pop would be enslaved, prefer existing slave planets
 				modifier = {
-					add = trigger:free_housing
+					prevprev = { has_citizenship_type = { type = citizenship_slavery country = event_target:gk_raider } }
+					add = value:gk_destination_slave_weight
 				}
+				# Housing as multiplier (0 = excluded by limit, 1-1000 = 1x, 1000+ = 2x)
 				modifier = {
-					add = trigger:free_jobs
+					factor = value:gk_destination_housing_factor
 				}
-				# Prefer higher habitability for the pop
+				# Habitability as quartic curve (1.0->1.0, 0.8->0.41, 0.6->0.13, 0.4->0.03)
 				modifier = {
-					factor = 2
-					habitability = {
-						who = prevprev
-						value >= 0.7
-					}
-				}
-				modifier = {
-					factor = 1.5
-					habitability = {
-						who = prevprev
-						value >= 0.5
-					}
+					factor = value:gk_destination_habitability_factor
 				}
 			}
 			save_event_target_as = gk_destination_planet

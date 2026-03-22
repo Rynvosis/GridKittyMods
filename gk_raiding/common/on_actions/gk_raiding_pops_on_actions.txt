@@ -18,6 +18,15 @@ on_pop_bombed_to_death = {
 	}
 }
 
+# Pop group abducted by raiding bombardment stance (engine-side)
+# This = Pop Group (already merged onto raider's planet)
+# From = Planet abducted from
+on_pop_group_abducted = {
+	events = {
+		gk_raiding_pops.105  # Redirect to preferred destination
+	}
+}
+
 # Attackers win ground combat (before controller switches)
 # This = Attacking Country
 # From = Defending Country

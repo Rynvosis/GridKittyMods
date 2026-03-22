@@ -1,5 +1,56 @@
 # GK Raiding Pop Script Values
 
+############################
+# Destination Weights      #
+############################
+
+# Housing factor for destination selection
+# This = planet scope
+gk_destination_housing_factor = {
+	base = 0
+	modifier = {
+		add = 1
+		free_housing > 0
+	}
+	modifier = {
+		add = 1
+		free_housing > 1000
+	}
+}
+
+# Slave population on a planet for destination weighting
+# This = planet scope
+gk_destination_slave_weight = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		parameters = {
+			limit = { is_enslaved = yes }
+		}
+		mode = add
+	}
+	divide = 100
+}
+
+# Habitability of the pop_group (prevprev) on this planet, squared twice (^4)
+# This = planet scope (inside random_owned_planet)
+# prevprev = pop_group being resettled
+gk_destination_habitability_factor = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = habitability
+		trigger_scope = this
+		parameters = {
+			who = prevprev
+		}
+		mode = add
+	}
+	# habitability is 0.0-1.0, square twice for aggressive curve
+	# 1.0 -> 1.0, 0.8 -> 0.41, 0.6 -> 0.13, 0.4 -> 0.026
+	square = yes
+	square = yes
+}
+
 ####################
 # Pop Cap Values   #
 ####################
@@ -246,10 +297,8 @@ gk_pops_to_abduct = {
 	mult = value:gk_pop_abduct_rate
 	ceiling = yes
 	min = 0
-	# Clamp to remaining cap if it's less than pop_group size
+	# Clamp to remaining cap
 	max = event_target:gk_raidee.gk_remaining_cap
-	# No more than 100 at a time
-	max = @gk_max_pops_per_abduction
 }
 
 ####################

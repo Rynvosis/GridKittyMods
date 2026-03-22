@@ -26,12 +26,72 @@ planet_event = {
 		owner = {
 			save_event_target_as = gk_raidee
 		}
+		# Accumulate abduction amount for the redirect event
+		from = {
+			change_variable = { which = gk_pending_abduction_amount value = root.local_kill_pop_amount }
+		}
 		# Resolve side leader for bucket tracking
 		from = {
 			gk_save_pop_raid_side_leader_against_target = yes
 		}
 		owner = {
 			gk_track_raided_pops = { AMOUNT = root.local_kill_pop_amount }
+		}
+	}
+}
+
+# Redirect engine-abducted pops to a preferred destination
+# This = Pop Group (already merged onto engine's random pick)
+# From = Planet abducted from
+pop_group_event = {
+	id = gk_raiding_pops.105
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		owner = {
+			is_variable_set = gk_pending_abduction_amount
+			check_variable = { which = gk_pending_abduction_amount value > 0 }
+		}
+	}
+
+	immediate = {
+		owner = {
+			save_event_target_as = gk_raider
+		}
+		save_event_target_as = gk_source_pop_group
+
+		# Find preferred destination
+		gk_find_destination_planet = yes
+
+		# Skip if the engine already picked our preferred planet
+		if = {
+			limit = {
+				exists = event_target:gk_destination_planet
+				planet = {
+					NOT = { is_same_value = event_target:gk_destination_planet }
+				}
+			}
+			# Transfer only the abducted amount to the preferred planet
+			event_target:gk_destination_planet = {
+				create_pop_group = {
+					pop_group = event_target:gk_source_pop_group
+					size = 0
+					effect = {
+						transfer_pop_amount = {
+							source = event_target:gk_source_pop_group
+							target = this
+							amount = event_target:gk_raider.gk_pending_abduction_amount
+						}
+					}
+				}
+			}
+		}
+
+		# Clear pending amount
+		owner = {
+			clear_variable = gk_pending_abduction_amount
 		}
 	}
 }
@@ -984,6 +1044,33 @@ country_event = {
 			from = {
 				remove_country_flag = gk_raid_cap_reached_by_@root
 			}
+			# At tier 5, switch war goal to reaping to prevent surrender
+			if = {
+				limit = {
+					event_target:gk_raid_tracker = {
+						check_variable = { which = gk_escalation_tier value >= 5 }
+					}
+				}
+				every_war = {
+					limit = {
+						OR = {
+							AND = {
+								is_war_participant = { who = root side = attackers }
+								is_war_participant = { who = from side = defenders }
+								using_war_goal = { type = wg_plunder owner = attacker }
+							}
+							AND = {
+								is_war_participant = { who = root side = defenders }
+								is_war_participant = { who = from side = attackers }
+								using_war_goal = { type = wg_plunder owner = defender }
+							}
+						}
+					}
+					root = {
+						set_war_goal = { type = wg_gk_reaping target = from enemy = from }
+					}
+				}
+			}
 			# Opinion: escalation penalty (plunder only, not reaping)
 			if = {
 				limit = { gk_is_plunder_war_with_from = yes }
@@ -1048,6 +1135,26 @@ country_event = {
 				remove_country_flag = gk_raid_cap_reached_by_@root
 			}
 			set_country_flag = gk_pivoted_to_pillaging_against_@from
+			# Switch war goal to pillage raid
+			every_war = {
+				limit = {
+					OR = {
+						AND = {
+							is_war_participant = { who = root side = attackers }
+							is_war_participant = { who = from side = defenders }
+							using_war_goal = { type = wg_plunder owner = attacker }
+						}
+						AND = {
+							is_war_participant = { who = root side = defenders }
+							is_war_participant = { who = from side = attackers }
+							using_war_goal = { type = wg_plunder owner = defender }
+						}
+					}
+				}
+				root = {
+					set_war_goal = { type = wg_plunder_raid target = from enemy = from }
+				}
+			}
 		}
 		ai_chance = {
 			factor = 30
@@ -1413,6 +1520,26 @@ country_event = {
 				clear_variable = gk_dep_alloys
 				clear_variable = gk_tribute_base
 			}
+			# Switch war goal to humiliation
+			every_war = {
+				limit = {
+					OR = {
+						AND = {
+							is_war_participant = { who = root side = attackers }
+							is_war_participant = { who = from side = defenders }
+							using_war_goal = { type = wg_plunder owner = attacker }
+						}
+						AND = {
+							is_war_participant = { who = root side = defenders }
+							is_war_participant = { who = from side = attackers }
+							using_war_goal = { type = wg_plunder owner = defender }
+						}
+					}
+				}
+				root = {
+					set_war_goal = { type = wg_humiliation target = from enemy = from }
+				}
+			}
 		}
 	}
 }
@@ -1564,6 +1691,34 @@ country_event = {
 
 	option = {
 		name = EXCELLENT
+		hidden_effect = {
+			# Switch war goal to humiliation
+			every_war = {
+				limit = {
+					OR = {
+						AND = {
+							is_war_participant = { who = root side = attackers }
+							is_war_participant = { who = from side = defenders }
+							OR = {
+								using_war_goal = { type = wg_plunder owner = attacker }
+								using_war_goal = { type = wg_gk_emancipation owner = attacker }
+							}
+						}
+						AND = {
+							is_war_participant = { who = root side = defenders }
+							is_war_participant = { who = from side = attackers }
+							OR = {
+								using_war_goal = { type = wg_plunder owner = defender }
+								using_war_goal = { type = wg_gk_emancipation owner = defender }
+							}
+						}
+					}
+				}
+				root = {
+					set_war_goal = { type = wg_humiliation target = from enemy = from }
+				}
+			}
+		}
 	}
 }
 
