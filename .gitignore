@@ -17,6 +17,9 @@ OverlayAndBorder.png
 vscode-userdata:/
 .cwtools/
 
+# Personal
+ryn/
+
 # Python
 .venv/
 venv/
