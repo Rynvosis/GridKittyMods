@@ -1,0 +1,33 @@
+councilor_gk_ec_pathfinders = {
+	leader_class = { scientist commander }
+	is_leader_possible = {
+		OR = {
+			leader_class = scientist
+			leader_class = commander
+		}
+	}
+	civic = civic_gk_ec_pathfinders
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		ship_anomaly_generation_chance_mult = 0.02
+	}
+}
+
+councilor_gk_ec_pathfinders_megacorp = {
+	leader_class = { official scientist }
+	is_leader_possible = {
+		OR = {
+			leader_class = official
+			leader_class = scientist
+		}
+	}
+	civic = civic_gk_ec_pathfinders_megacorp
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		ship_anomaly_generation_chance_mult = 0.02
+	}
+}

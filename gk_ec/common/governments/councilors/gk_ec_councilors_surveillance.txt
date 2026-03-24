@@ -1,0 +1,27 @@
+councilor_gk_ec_surveillance = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_surveillance
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		ship_cloaking_strength_add = 0.2
+	}
+}
+
+councilor_gk_ec_surveillance_megacorp = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_surveillance_megacorp
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		ship_cloaking_strength_add = 0.2
+	}
+}

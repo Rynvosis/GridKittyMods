@@ -1,0 +1,31 @@
+# Constitutional Monarchy — monarch as diplomatic figurehead
+
+trait_gk_ec_constitutional_monarch = {
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_imperial_heir"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+
+	custom_tooltip_with_modifiers = trait_gk_ec_constitutional_monarch_tooltip
+
+	galcom_modifier = {
+		diplo_weight_mult = 0.25
+	}
+
+	federation_modifier = {
+		federation_experience_add = 0.50
+		federation_join_malus_mult = -0.10
+		cohesion_ethics_penalty_mult = -0.25
+	}
+
+	leader_class = { official }
+	background_icon = GFX_leader_background_destiny_1
+	initial = no
+	randomized = no
+}

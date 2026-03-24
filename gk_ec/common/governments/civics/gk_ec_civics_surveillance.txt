@@ -1,0 +1,85 @@
+# Surveillance State — Domestic surveillance and external espionage
+# 3 variants: standard, megacorp, hive. No machine (vanilla Spyware Directives covers it)
+
+civic_gk_ec_surveillance = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = ruthless_capitalists
+			}
+		}
+	}
+
+	description = "civic_gk_ec_surveillance_effects"
+
+	modifier = {
+		intel_decryption_add = 1
+		spy_network_daily_value_mult = 0.25
+		planet_stability_add = 5
+		country_trust_cap_add = -25
+	}
+
+	alternate_civic_version = civic_gk_ec_surveillance_megacorp
+
+	modification = yes
+}
+
+civic_gk_ec_surveillance_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_corporate }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+
+	description = "civic_gk_ec_surveillance_effects_megacorp"
+
+	modifier = {
+		intel_decryption_add = 1
+		spy_network_daily_value_mult = 0.25
+		envoys_add = 1
+		country_trust_cap_add = -25
+	}
+
+	alternate_civic_version = civic_gk_ec_surveillance
+
+	modification = yes
+}
+
+civic_gk_ec_surveillance_hive = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+
+	description = "civic_gk_ec_surveillance_effects"
+
+	modifier = {
+		intel_decryption_add = 1
+		spy_network_daily_value_mult = 0.25
+		planet_stability_add = 5
+		country_trust_cap_add = -25
+		councilor_gestalt_regulatory_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}

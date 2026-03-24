@@ -1,0 +1,13 @@
+councilor_gk_ec_constitutional_monarchy = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_constitutional_monarchy
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		country_base_influence_produces_add = 0.20
+	}
+}

@@ -1,0 +1,76 @@
+# Ascetic — Live cheaply, produce slightly less
+# Standard/megacorp: new civics. Hive: overwrites vanilla civic_hive_ascetic
+
+civic_gk_ec_ascetic = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+
+	description = "civic_gk_ec_ascetic_effects"
+
+	modifier = {
+		pop_amenities_usage_mult = -0.15
+		planet_pops_consumer_goods_upkeep_mult = -0.10
+		planet_jobs_produces_mult = -0.05
+	}
+
+	alternate_civic_version = civic_gk_ec_ascetic_megacorp
+
+	modification = yes
+}
+
+civic_gk_ec_ascetic_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_corporate }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+
+	description = "civic_gk_ec_ascetic_effects"
+
+	modifier = {
+		pop_amenities_usage_mult = -0.15
+		planet_pops_consumer_goods_upkeep_mult = -0.10
+		planet_jobs_produces_mult = -0.05
+	}
+
+	alternate_civic_version = civic_gk_ec_ascetic
+
+	modification = yes
+}
+
+# Machine variant — new civic, not overwriting vanilla
+civic_gk_ec_ascetic_machine = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+
+	description = "civic_gk_ec_ascetic_effects_machine"
+
+	modifier = {
+		pop_amenities_usage_no_happiness_mult = -0.15
+		planet_pops_robotics_upkeep_mult = -0.10
+		planet_jobs_produces_mult = -0.05
+		councilor_gestalt_growth_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}

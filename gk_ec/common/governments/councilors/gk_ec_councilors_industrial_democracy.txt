@@ -1,0 +1,13 @@
+councilor_gk_ec_industrial_democracy = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_industrial_democracy
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		living_standard_trade_value_workers_add = 0.10
+	}
+}

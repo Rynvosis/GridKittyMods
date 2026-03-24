@@ -1,0 +1,27 @@
+councilor_gk_ec_ascetic = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_ascetic
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		planet_structures_upkeep_mult = -0.02
+	}
+}
+
+councilor_gk_ec_ascetic_megacorp = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_ascetic_megacorp
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		planet_structures_upkeep_mult = -0.02
+	}
+}

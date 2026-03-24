@@ -1,0 +1,36 @@
+# Parliamentary Monarchy — Imperial authority with democratic-style faction influence
+# The inverse of Constitutional Monarchy
+
+civic_gk_ec_parliamentary_monarchy = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+
+	possible = {
+		authority = {
+			OR = {
+				value = auth_imperial
+				value = auth_dictatorial
+			}
+		}
+	}
+
+	random_weight = { base = @civic_uncommon_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+
+	description = "civic_gk_ec_parliamentary_monarchy_effects"
+
+	modifier = {
+		pop_factions_produces_mult = 0.25
+		pop_cat_specialist_political_power = 0.50
+		country_unity_produces_mult = 0.05
+	}
+
+	modification = yes
+}

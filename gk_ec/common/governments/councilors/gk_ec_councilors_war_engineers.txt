@@ -1,0 +1,36 @@
+councilor_gk_ec_war_engineers = {
+	leader_class = { commander }
+	is_leader_possible = {
+		leader_class = commander
+	}
+	civic = civic_gk_ec_war_engineers
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		planet_soldiers_physics_research_produces_add = 0.05
+		planet_soldiers_society_research_produces_add = 0.05
+		planet_soldiers_engineering_research_produces_add = 0.05
+		planet_soldiers_alloys_upkeep_add = 0.075
+	}
+}
+
+councilor_gk_ec_war_engineers_megacorp = {
+	leader_class = { official commander }
+	is_leader_possible = {
+		OR = {
+			leader_class = official
+			leader_class = commander
+		}
+	}
+	civic = civic_gk_ec_war_engineers_megacorp
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		planet_soldiers_physics_research_produces_add = 0.05
+		planet_soldiers_society_research_produces_add = 0.05
+		planet_soldiers_engineering_research_produces_add = 0.05
+		planet_soldiers_alloys_upkeep_add = 0.075
+	}
+}

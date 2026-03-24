@@ -1,5 +1,13 @@
 on_game_start_country = {
 	events = {
 		gk_ec_civic_specialized_worlds.1 # penal/resort world civics
+		gk_ec_civic.100 # force social welfare for paternalism/industrial democracy/social democracy
+		gk_ec_civic.200 # constitutional monarchy: spawn monarch
+	}
+}
+
+on_leader_death = {
+	events = {
+		gk_ec_civic.201 # constitutional monarchy: coronation of successor
 	}
 }

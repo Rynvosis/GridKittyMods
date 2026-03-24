@@ -1,0 +1,153 @@
+namespace = gk_ec_civic
+
+# Event ID scheme:
+# 100-199: Welfare civics (Paternalism, Industrial Democracy, Social Democracy)
+# 200-299: Constitutional Monarchy
+
+############################
+# SOCIAL WELFARE FORCING   #
+############################
+
+# Force Social Welfare living standard for welfare civics on game start
+country_event = {
+	id = gk_ec_civic.100
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_valid_civic = civic_gk_ec_paternalism
+			has_valid_civic = civic_gk_ec_industrial_democracy
+			has_valid_civic = civic_gk_ec_social_democracy
+		}
+	}
+
+	immediate = {
+		every_owned_species = {
+			limit = { is_sapient = yes }
+			set_living_standard = {
+				type = living_standard_normal
+				country = prev
+			}
+		}
+	}
+}
+
+############################
+# CONSTITUTIONAL MONARCHY  #
+############################
+
+# Spawn Constitutional Monarch on game start
+country_event = {
+	id = gk_ec_civic.200
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gk_ec_constitutional_monarchy
+	}
+
+	immediate = {
+		create_leader = {
+			name = random
+			species = root.species
+			class = official
+			skill = 4
+			event_leader = yes
+			can_assign_to_council = no
+			leader_age_min = 30
+			leader_age_max = 50
+			use_regnal_name = yes
+			custom_description = GK_EC_MONARCH_DESC
+			skip_background_generation = no
+			background_planet = root.capital_scope
+			background_job = noble
+			effect = {
+				set_leader_flag = renowned_leader
+				set_leader_flag = gk_ec_constitutional_monarch@root
+				add_trait = { trait = trait_gk_ec_constitutional_monarch }
+				if = {
+					limit = { has_paragon_dlc = yes }
+					add_trait = { trait = subclass_official_delegate }
+				}
+			}
+		}
+	}
+}
+
+# Coronation — spawn new monarch on old monarch's death
+# This = Country, From = Leader who died
+country_event = {
+	id = gk_ec_civic.201
+
+	title = "gk_ec_civic.201.name"
+	desc = {
+		trigger = { event_target:new_monarch = { gender = male } }
+		text = "gk_ec_civic.201.m.desc"
+	}
+	desc = {
+		trigger = { event_target:new_monarch = { gender = female } }
+		text = "gk_ec_civic.201.f.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:new_monarch = {
+				NOR = {
+					gender = male
+					gender = female
+				}
+			}
+		}
+		text = "gk_ec_civic.201.n.desc"
+	}
+	picture = GFX_evt_coronation
+	show_sound = event_default
+	event_window_type = leader_story
+
+	picture_event_data = {
+		portrait = event_target:new_monarch
+		room = root.owner
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gk_ec_constitutional_monarchy
+		from = { has_leader_flag = gk_ec_constitutional_monarch@root }
+	}
+
+	immediate = {
+		from = { save_event_target_as = dead_monarch }
+
+		create_leader = {
+			name = random
+			species = event_target:dead_monarch
+			class = official
+			skill = 2
+			event_leader = yes
+			can_assign_to_council = no
+			leader_age_min = 20
+			leader_age_max = 35
+			use_regnal_name = yes
+			custom_description = GK_EC_MONARCH_DESC
+			skip_background_generation = no
+			background_job = noble
+			effect = {
+				set_leader_flag = renowned_leader
+				set_leader_flag = gk_ec_constitutional_monarch@root
+				add_trait = { trait = trait_gk_ec_constitutional_monarch }
+				if = {
+					limit = { has_paragon_dlc = yes }
+					add_trait = { trait = subclass_official_delegate }
+				}
+				save_event_target_as = new_monarch
+			}
+		}
+	}
+
+	option = {
+		name = "gk_ec_civic.201.a"
+	}
+}

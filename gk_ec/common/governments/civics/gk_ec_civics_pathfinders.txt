@@ -1,0 +1,106 @@
+# Pathfinders — Exploration-first empire
+# Anomalies, survey, and expansion across all 4 authority types
+
+civic_gk_ec_pathfinders = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = migrating_flock
+			}
+		}
+	}
+
+	description = "civic_gk_ec_pathfinders_effects"
+
+	modifier = {
+		science_ship_survey_speed = 0.25
+		ship_anomaly_generation_chance_mult = 0.20
+		ship_anomaly_research_speed_mult = 0.25
+		country_starbase_influence_cost_mult = -0.15
+	}
+
+	alternate_civic_version = civic_gk_ec_pathfinders_megacorp
+
+	modification = yes
+}
+
+civic_gk_ec_pathfinders_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_corporate }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+
+	description = "civic_gk_ec_pathfinders_effects"
+
+	modifier = {
+		science_ship_survey_speed = 0.25
+		ship_anomaly_generation_chance_mult = 0.20
+		ship_anomaly_research_speed_mult = 0.25
+		country_starbase_influence_cost_mult = -0.15
+	}
+
+	alternate_civic_version = civic_gk_ec_pathfinders
+
+	modification = yes
+}
+
+civic_gk_ec_pathfinders_hive = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+
+	description = "civic_gk_ec_pathfinders_effects"
+
+	modifier = {
+		science_ship_survey_speed = 0.25
+		ship_anomaly_generation_chance_mult = 0.20
+		ship_anomaly_research_speed_mult = 0.25
+		country_starbase_influence_cost_mult = -0.15
+		councilor_gestalt_cognitive_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}
+
+civic_gk_ec_pathfinders_machine = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+
+	description = "civic_gk_ec_pathfinders_effects"
+
+	modifier = {
+		science_ship_survey_speed = 0.25
+		ship_anomaly_generation_chance_mult = 0.20
+		ship_anomaly_research_speed_mult = 0.25
+		country_starbase_influence_cost_mult = -0.15
+		councilor_gestalt_cognitive_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}

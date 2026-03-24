@@ -89,6 +89,114 @@ Available to: Standard empires & Megacorps.
 - Standard: +2.5% Amenities
 - Megacorp: +2.5% Amenities
 
+### Pathfinders / Prospecting Venture / Questing Tendrils / Exploration Matrix
+
+Available to: All authority types.
+
+**Effects**:
+- +25% Survey Speed
+- +20% Anomaly Chance
+- +25% Anomaly Research Speed
+- -15% Starbase Influence Cost
+
+**Councilor** (Chief Surveyor / Prospecting Director):
+- +2% Anomaly Chance per level
+
+### Surveillance State / Data Brokerage / Omniscient Network
+
+Available to: Standard empires, Megacorps & Hive Minds (no machine variant).
+
+**Effects**:
+- +1 Intel Decryption, +25% Spy Network Growth, -25 Trust Cap
+- Standard/Hive: +5 Stability
+- Megacorp: +1 Envoy
+
+**Councilor** (Intelligence Director / Data Analytics Officer):
+- +0.2 Ship Cloaking Strength per level
+
+### Paternalism / Nurturing Overmind / Caretaker Protocol
+
+Available to: Standard empires (Authoritarian required), Hive Minds, Machine Intelligences.
+
+**Effects**:
+- +10 Stability, -10% Leader XP Gain
+- Standard: +5% Happiness, -25% Ethics Shift Speed. Forces Social Welfare living standard.
+- Hive/Machine: -10% Deviancy
+
+**Councilor** (Minister of Social Harmony):
+- +2% Governing Ethics Attraction per level
+
+### Industrial Democracy
+
+Available to: Megacorps only.
+
+**Effects**:
+- +50% Worker Political Power, +5% Worker Happiness, +5 Stability, -15% Ethics Shift Speed
+- Forces Social Welfare living standard
+
+**Councilor** (Labor Relations Director):
+- +0.10 Trade Value from Workers per level
+
+### Social Democracy
+
+Available to: Standard empires (Democratic authority required).
+
+**Effects**:
+- -10% Housing Usage, +5% Pop Growth, +5 Stability, -15% Ethics Shift Speed
+- Forces Social Welfare living standard
+
+**Councilor** (Minister of Public Welfare):
+- -1% Housing Usage per level
+
+### War Engineers / Arms Conglomerate / Evolved Armaments / Weapons Research Node
+
+Available to: All authority types. Requires Militarist (standard/megacorp).
+
+**Effects**:
+- +10% Ship Hull, +5% Weapon Damage, +25% Military Theory Research, +10% Ship Upkeep
+
+**Councilor** (Master Armorer / Arms Director):
+- Soldiers produce +0.05 Physics, +0.05 Society, +0.05 Engineering per level
+- Soldiers cost +0.075 Alloys upkeep per level
+
+### Austere Society / Lean Enterprise / Hive Ascetic (OW) / Low-Power Mode
+
+Available to: All authority types. Hive variant overwrites vanilla Hive Ascetic.
+
+**Effects**:
+- -15% Amenities Usage, -5% All Job Output
+- Standard/Megacorp: -10% Consumer Goods Upkeep
+- Hive: +5% Habitability (replaces vanilla Hive Ascetic)
+- Machine: -10% Robotics Upkeep
+
+**Councilor** (Minister of Austerity / Efficiency Auditor):
+- -2% Building Upkeep per level
+
+### Constitutional Monarchy
+
+Available to: Standard empires (Democratic authority required). Cannot be removed.
+
+**Effects**:
+- +1 Official Cap, +1 Envoy
+- Spawns a **Constitutional Monarch** leader (official, cannot sit on council) on game start
+- Monarch trait (diplomatic figurehead):
+  - Galactic Community: +25% Diplomatic Weight
+  - Federation: +0.50 Federation XP, -10% Join Malus, -25% Cohesion Ethics Penalty
+- On monarch death, a new monarch is crowned (coronation event)
+
+**Councilor** (Royal Chancellor):
+- +0.2 Influence per level
+
+### Parliamentary Monarchy
+
+Available to: Standard empires (Imperial or Dictatorial authority required).
+
+**Effects**:
+- +25% Faction Output, +50% Specialist Political Power, +5% Unity
+
+**Councilor** (Speaker of Parliament):
+- +2% Faction Output per level
+
 ### Raiding Civics
 
 See `gk_raiding/docs/EFFECTS.md` — implemented in the GK Raiding mod.

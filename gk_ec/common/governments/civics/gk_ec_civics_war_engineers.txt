@@ -1,0 +1,126 @@
+# War Engineers — Research-military hybrid
+# Engineering and science in service of war
+
+civic_gk_ec_war_engineers = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = honorbound_warriors
+			}
+		}
+	}
+
+	description = "civic_gk_ec_war_engineers_effects"
+
+	modifier = {
+		ship_hull_mult = 0.10
+		ship_weapon_damage = 0.05
+		category_military_theory_research_speed_mult = 0.25
+		ships_upkeep_mult = 0.10
+	}
+
+	alternate_civic_version = civic_gk_ec_war_engineers_megacorp
+
+	modification = yes
+}
+
+civic_gk_ec_war_engineers_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_corporate }
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+
+	description = "civic_gk_ec_war_engineers_effects"
+
+	modifier = {
+		ship_hull_mult = 0.10
+		ship_weapon_damage = 0.05
+		category_military_theory_research_speed_mult = 0.25
+		ships_upkeep_mult = 0.10
+	}
+
+	alternate_civic_version = civic_gk_ec_war_engineers
+
+	modification = yes
+}
+
+civic_gk_ec_war_engineers_hive = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+
+	description = "civic_gk_ec_war_engineers_effects"
+
+	modifier = {
+		ship_hull_mult = 0.10
+		ship_weapon_damage = 0.05
+		category_military_theory_research_speed_mult = 0.25
+		ships_upkeep_mult = 0.10
+		councilor_gestalt_legion_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}
+
+civic_gk_ec_war_engineers_machine = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+
+	description = "civic_gk_ec_war_engineers_effects"
+
+	modifier = {
+		ship_hull_mult = 0.10
+		ship_weapon_damage = 0.05
+		category_military_theory_research_speed_mult = 0.25
+		ships_upkeep_mult = 0.10
+		councilor_gestalt_legion_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}

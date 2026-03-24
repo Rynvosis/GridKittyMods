@@ -1,0 +1,13 @@
+councilor_gk_ec_parliamentary_monarchy = {
+	leader_class = { official }
+	is_leader_possible = {
+		leader_class = official
+	}
+	civic = civic_gk_ec_parliamentary_monarchy
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		pop_factions_produces_mult = 0.02
+	}
+}
