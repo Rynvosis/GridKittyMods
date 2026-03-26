@@ -1,0 +1,16 @@
+# GK Core Mod Injection Loop (chain-following)
+# Usage: inline_script = { script = gk_core/mod_loop N = @[gk_chain_head] BIT = 1 DIR = jobs SUFFIX = civilian }
+
+# Check if mod at slot N has this BIT set in manifest
+inline_script = {
+	script = gk_core/toggled_code
+	code = "inline_script = { script = gk_core/mod_$N$ DIR = $DIR$ SUFFIX = $SUFFIX$ }"
+	toggle = @[(gk_mod_$N$_manifest / $BIT$ - (gk_mod_$N$_manifest / $BIT$) % 1) % 2]
+}
+
+# Follow chain to next active slot (0 = end)
+inline_script = {
+	script = gk_core/toggled_code
+	code = "inline_script = { script = gk_core/mod_loop N = @[gk_next_after_$N$] BIT = $BIT$ DIR = $DIR$ SUFFIX = $SUFFIX$ }"
+	toggle = @[gk_next_after_$N$]
+}

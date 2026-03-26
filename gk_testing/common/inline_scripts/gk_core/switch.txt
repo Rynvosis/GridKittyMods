@@ -1,0 +1,4 @@
+inline_script = {
+	script = $file$$value$
+	$params$
+}

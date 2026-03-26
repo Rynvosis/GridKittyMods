@@ -1,0 +1,1 @@
+inline_script = { script = $DIR$/gamma_$SUFFIX$ }

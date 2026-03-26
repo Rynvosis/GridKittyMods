@@ -1,11 +1,11 @@
 # Claude Code
+.claude
 .claude/
 
 # Internal planning & tooling
 planning/
 scripts/
 CLAUDE.md
-AGENTS.md
 gk_mod.code-workspace
 OverlayAndBorder.png
 

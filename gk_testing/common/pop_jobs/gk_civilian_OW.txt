@@ -1,0 +1,1 @@
+civilian = { inline_script = { script = gk_core/mod_loop N = @[gk_chain_head] BIT = 1 DIR = jobs SUFFIX = civilian } }
