@@ -9,14 +9,24 @@ country_event = {
 
 	immediate = {
 		if = {
-			limit = { has_valid_civic = civic_gk_ec_penal_colony }
+			limit = {
+				OR = {
+					has_valid_civic = civic_gk_ec_penal_colony
+					has_valid_civic = civic_gk_ec_penal_colony_megacorp
+				}
+			}
 			give_technology = {
 				tech = tech_penal_colonies
 			}
 		}
 
-		if =  {
-			limit = { has_valid_civic = civic_gk_ec_resort_worlds }
+		if = {
+			limit = {
+				OR = {
+					has_valid_civic = civic_gk_ec_resort_worlds
+					has_valid_civic = civic_gk_ec_resort_worlds_megacorp
+				}
+			}
 			give_technology = {
 				tech = tech_resort_colonies
 			}

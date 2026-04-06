@@ -75,7 +75,7 @@ gk_ec_lunar_colony_system_init = {
 
 		moon = {
 			count = 1
-			class = ideal_planet_class
+			class = ideal_design_class
 			orbit_distance = 5
 			orbit_angle = { min = 90 max = 270 }
 			size = 6
