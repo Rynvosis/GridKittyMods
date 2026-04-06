@@ -3,11 +3,20 @@ on_game_start_country = {
 		gk_ec_civic_specialized_worlds.1 # penal/resort world civics
 		gk_ec_civic.100 # force social welfare for paternalism/industrial democracy/social democracy
 		gk_ec_civic.200 # constitutional monarchy: spawn monarch
+		gk_ec_civic.300 # stratocracy: replace factory with foundry on capital
+		gk_ec_civic.400 # algocracy: spawn AI ruler
 	}
 }
 
 on_leader_death = {
 	events = {
 		gk_ec_civic.201 # constitutional monarchy: coronation of successor
+		gk_ec_civic.401 # algocracy: respawn AI ruler
+	}
+}
+
+on_post_government_changed = {
+	events = {
+		gk_ec_civic.402 # algocracy: check civic add/remove
 	}
 }

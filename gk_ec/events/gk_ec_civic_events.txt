@@ -3,6 +3,8 @@ namespace = gk_ec_civic
 # Event ID scheme:
 # 100-199: Welfare civics (Paternalism, Industrial Democracy, Social Democracy)
 # 200-299: Constitutional Monarchy
+# 300-399: Stratocracy
+# 400-499: Algocracy
 
 ############################
 # SOCIAL WELFARE FORCING   #
@@ -27,7 +29,7 @@ country_event = {
 		every_owned_species = {
 			limit = { is_sapient = yes }
 			set_living_standard = {
-				type = living_standard_normal
+				type = living_standard_good
 				country = prev
 			}
 		}
@@ -149,5 +151,155 @@ country_event = {
 
 	option = {
 		name = "gk_ec_civic.201.a"
+	}
+}
+
+############################
+# STRATOCRACY              #
+############################
+
+# Replace consumer goods building with foundry on capital at game start
+country_event = {
+	id = gk_ec_civic.300
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gk_ec_stratocracy
+		capital_scope = { NOT = { has_building = building_foundry_1 } }
+	}
+
+	immediate = {
+		capital_scope = {
+			if = {
+				limit = { has_building = building_factory_1 }
+				remove_building = building_factory_1
+			}
+			if = {
+				limit = { has_zone = { zone = zone_industrial } }
+				add_building = { building = building_foundry_1 zone = zone_industrial }
+			}
+			else = { add_building = building_foundry_1 }
+		}
+	}
+}
+
+############################
+# ALGOCRACY               #
+############################
+
+# Create AI Ruler on game start
+country_event = {
+	id = gk_ec_civic.400
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { has_valid_civic = civic_gk_ec_algocracy }
+
+	immediate = {
+		create_species = {
+			name = AI
+			class = MACHINE
+			portrait = random
+			effect = { set_species_flag = holographic_appearance }
+		}
+
+		create_leader = {
+			class = official
+			species = last_created_species
+			name = "Central AI"
+			skill = 1
+			gender = indeterminable
+			event_leader = yes
+			skip_background_generation = yes
+			background_ethic = ethic_gestalt_consciousness
+			custom_description = GK_EC_AI_LEADER_DESC
+			custom_catch_phrase = GK_EC_AI_LEADER_CATCHPHRASE
+			immortal = yes
+			hide_age = yes
+			randomize_traits = no
+			can_manually_change_location = no
+			traits = { trait = trait_gk_ec_ai_leader }
+
+			effect = {
+				set_leader_flag = renowned_leader
+				set_leader_flag = immune_to_negative_traits
+				set_leader_flag = leader_death_events_blocked
+				set_leader_flag = gk_ec_ai_ruler@root
+
+				save_event_target_as = new_ai_leader
+			}
+		}
+
+		ruler = { save_event_target_as = old_ruler }
+
+		set_leader = event_target:new_ai_leader
+
+		event_target:old_ruler = { kill_leader = { show_notification = no fire = yes } }
+	}
+}
+
+# Respawn AI ruler on death
+# This = Country, From = Leader who died
+country_event = {
+	id = gk_ec_civic.401
+	title = "gk_ec_civic.401.name"
+	desc = "gk_ec_civic.401.desc"
+	picture = GFX_evt_synth_sabotage
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_valid_civic = civic_gk_ec_algocracy
+		from = { has_leader_flag = gk_ec_ai_ruler@root }
+	}
+
+	immediate = { country_event = { id = gk_ec_civic.400 } }
+
+	option = { name = OK }
+}
+
+# Check civic status on government change
+country_event = {
+	id = gk_ec_civic.402
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_valid_civic = civic_gk_ec_algocracy
+			ruler = { has_leader_flag = gk_ec_ai_ruler@root }
+		}
+	}
+
+	immediate = {
+		if = { # Added civic
+			limit = {
+				has_valid_civic = civic_gk_ec_algocracy
+				NOT = { ruler = { has_leader_flag = gk_ec_ai_ruler@root } }
+			}
+			country_event = { id = gk_ec_civic.400 }
+			create_message = {
+				type = RULER_ELECTED_UNTIL_DEATH
+				localization = GK_EC_AI_LEADER_RECRUITED
+				days = 40
+			}
+		}
+		else_if = { # Removed civic
+			limit = {
+				NOT = { has_valid_civic = civic_gk_ec_algocracy }
+				ruler = { has_leader_flag = gk_ec_ai_ruler@root }
+			}
+			ruler = { kill_leader = { show_notification = no fire = yes } }
+			create_message = {
+				type = LEADER_RETIRED
+				localization = GK_EC_AI_LEADER_DISABLED
+				days = 40
+			}
+		}
 	}
 }

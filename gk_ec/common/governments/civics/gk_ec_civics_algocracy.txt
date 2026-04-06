@@ -1,0 +1,47 @@
+# Algocracy — AI-governed dictatorship
+# Replaces ruler with an immortal AI leader
+
+civic_gk_ec_algocracy = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+		species_archetype = { NOT = { value = MACHINE } }
+	}
+
+	possible = {
+		authority = { value = auth_dictatorial }
+
+		origin = {
+			NOR = {
+				value = origin_messiah_cult
+				value = origin_legendary_leader
+				value = origin_legendary_leader_dictatorial
+				value = origin_legendary_leader_imperial
+			}
+		}
+
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_entropy_drinkers
+				value = civic_entropy_drinkers
+				value = civic_entropy_drinkers_corporate
+			}
+		}
+	}
+
+	random_weight = { base = @civic_uncommon_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+
+	modification = no
+
+	description = "civic_gk_ec_algocracy_effects"
+
+	modifier = {
+		job_politician_automated_workforce_mult = 1.0
+	}
+}

@@ -1,0 +1,36 @@
+# Stratocracy politician swap triggers
+
+politician_is_stratocrat = {
+	exists = owner
+	owner = { has_valid_civic = civic_gk_ec_stratocracy }
+}
+
+# Combo: Stratocrat + Noble = Warlord
+politician_is_warlord = {
+	politician_is_stratocrat = yes
+	politician_is_noble = yes
+}
+
+# Combo: Stratocrat + High Priest = Templar
+politician_is_templar = {
+	politician_is_stratocrat = yes
+	politician_is_high_priest = yes
+}
+
+# Combo: Stratocrat + Science Director = War Scientist
+politician_is_war_scientist = {
+	politician_is_stratocrat = yes
+	politician_is_science_director = yes
+}
+
+# Combo: Stratocrat + Merchant = Quartermaster
+politician_is_quartermaster = {
+	politician_is_stratocrat = yes
+	politician_is_merchant = yes
+}
+
+# Combo: Stratocrat + Fire Oracle = Flame Marshal
+politician_is_flame_marshal = {
+	politician_is_stratocrat = yes
+	politician_is_fire_oracle = yes
+}

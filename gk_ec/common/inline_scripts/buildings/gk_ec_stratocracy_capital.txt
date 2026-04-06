@@ -1,0 +1,14 @@
+# Stratocracy: Commander governors don't penalize specialists
+# Cancels the -0.02/level from skill_commander_planet_governor
+triggered_planet_modifier = {
+	potential = {
+		exists = leader
+		exists = owner
+		leader = { leader_class = commander }
+		owner = {
+			has_civic = civic_gk_ec_stratocracy
+		}
+	}
+	specialist_and_complex_drone_cat_bonus_workforce_mult = 0.02
+	mult = leader.trigger:has_total_skill
+}

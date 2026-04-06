@@ -1,0 +1,105 @@
+# Version last updated: 4.3.0
+# Overwrites: output/soldier_triggered_modifiers
+# Reason: Add optional CONDITION parameter for Stratocracy politician reuse
+#         Add Stratocracy councilor amenities per soldier/stratocrat
+# Usage: inline_script = "output/soldier_triggered_modifiers"
+# Usage: inline_script = { script = output/soldier_triggered_modifiers CONDITION = "politician_is_stratocrat = yes" }
+
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		owner = { has_technology = "tech_ground_defense_planning" }
+	}
+	country_naval_cap_add = 1
+}
+
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		owner = {
+			any_owned_leader = {
+				is_councilor = yes
+				has_trait = leader_trait_bellicose
+			}
+		}
+	}
+
+	country_naval_cap_add = 0.5
+	mult = value:bellicose_naval_cap
+}
+
+planet_modifier = {
+	planet_defense_armies_add = 1
+	planet_stability_add = 0.15
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		owner = {
+			any_owned_leader = {
+				is_councilor = yes
+				has_trait = leader_trait_bellicose
+			}
+		}
+	}
+	planet_defense_armies_add = 0.5
+	mult = value:bellicose_naval_cap
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+	}
+	modifier = {
+		planet_stability_add = 1
+	}
+	mult = planet.modifier:job_soldier_stability_add
+}
+
+triggered_planet_modifier = {
+	potential = {
+		planet = {
+			exists = owner
+			$CONDITION$
+			owner = { has_tradition = "tr_modularity_3" }
+		}
+	}
+	planet_stability_add = 5
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		has_councilor = { COUNCILOR = "councilor_private_military_companies" }
+	}
+
+	planet_stability_add = @councilor_private_military_companies_stability
+	mult = value:councilor_level|TYPE|councilor_private_military_companies|
+}
+
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		planet = {
+			has_deposit = d_abandoned_black_needle_base
+		}
+	}
+	country_naval_cap_add = @abandoned_black_needle_base_naval_cap_from_soldier_job
+}
+
+# GK EC Stratocracy councilor: amenities per soldier/stratocrat
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		has_councilor = { COUNCILOR = "councilor_gk_ec_stratocracy" }
+	}
+	planet_amenities_add = 25
+	mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_amenities_mult|TYPE|councilor_gk_ec_stratocracy|
+}

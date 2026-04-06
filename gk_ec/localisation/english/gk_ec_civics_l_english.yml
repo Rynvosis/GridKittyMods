@@ -70,7 +70,6 @@
   # Pathfinders
   ###
 
-  civic_gk_ec_pathfinders_effects: "$MOD_SCIENCE_SHIP_SURVEY_SPEED$ §G+25%§!\n$MOD_SHIP_ANOMALY_GENERATION_CHANCE_MULT$ §G+20%§!\n$MOD_SHIP_ANOMALY_RESEARCH_SPEED_MULT$ §G+25%§!\n$MOD_COUNTRY_STARBASE_INFLUENCE_COST_MULT$ §G-15%§!"
   civic_gk_ec_pathfinders: "Pathfinders"
   civic_gk_ec_pathfinders_desc: "This civilization has always looked outward. Their scientists, scouts, and settlers push relentlessly into the unknown, driven by the conviction that the next system holds something worth finding."
   civic_gk_ec_pathfinders_megacorp: "Prospecting Venture"
@@ -91,8 +90,6 @@
   # Surveillance State
   ###
 
-  civic_gk_ec_surveillance_effects: "$MOD_INTEL_DECRYPTION_ADD$ §G+1§!\n$MOD_SPY_NETWORK_DAILY_VALUE_MULT$ §G+25%§!\n$MOD_PLANET_STABILITY_ADD$ §G+5§!\n$MOD_COUNTRY_TRUST_CAP_ADD$ §R-25§!"
-  civic_gk_ec_surveillance_effects_megacorp: "$MOD_INTEL_DECRYPTION_ADD$ §G+1§!\n$MOD_SPY_NETWORK_DAILY_VALUE_MULT$ §G+25%§!\n$MOD_ENVOYS_ADD$ §G+1§!\n$MOD_COUNTRY_TRUST_CAP_ADD$ §R-25§!"
   civic_gk_ec_surveillance: "Surveillance State"
   civic_gk_ec_surveillance_desc: "Every communication is monitored. Every transaction is logged. This society has traded the illusion of privacy for the certainty of information, and the rest of the galaxy has learned to watch what they say."
   civic_gk_ec_surveillance_megacorp: "Data Brokerage"
@@ -111,8 +108,7 @@
   # Paternalism
   ###
 
-  civic_gk_ec_paternalism_effects: "$MOD_PLANET_STABILITY_ADD$ §G+10§!\n$MOD_POP_HAPPINESS$ §G+5%§!\n$MOD_SPECIES_LEADER_EXP_GAIN$ §R-10%§!\n$MOD_POP_ETHICS_SHIFT_SPEED_MULT$ §R-25%§!\nForces §YSocial Welfare§! living standard."
-  civic_gk_ec_paternalism_effects_gestalt: "$MOD_PLANET_STABILITY_ADD$ §G+10§!\n$MOD_SPECIES_LEADER_EXP_GAIN$ §R-10%§!\n$MOD_PLANET_CRIME_MULT$ §G-10%§!"
+  civic_gk_ec_paternalism_effects: "Forces §YSocial Welfare§! living standard."
   civic_gk_ec_paternalism: "Paternalism"
   civic_gk_ec_paternalism_desc: "The state knows best. Citizens are provided for, protected from hardship, and gently guided away from dangerous ideas. It is a comfortable existence, if an unambitious one."
   civic_gk_ec_paternalism_hive: "Nurturing Overmind"
@@ -127,7 +123,7 @@
   # Industrial Democracy
   ###
 
-  civic_gk_ec_industrial_democracy_effects: "$MOD_POP_CAT_WORKER_POLITICAL_POWER$ §G+50%§!\n$MOD_POP_CAT_WORKER_HAPPINESS$ §G+5%§!\n$MOD_PLANET_STABILITY_ADD$ §G+5§!\n$MOD_POP_ETHICS_SHIFT_SPEED_MULT$ §R-15%§!\nForces §YSocial Welfare§! living standard."
+  civic_gk_ec_industrial_democracy_effects: "Forces §YSocial Welfare§! living standard."
   civic_gk_ec_industrial_democracy: "Industrial Democracy"
   civic_gk_ec_industrial_democracy_desc: "Workers in this corporation are not mere employees but stakeholders. Board decisions require labor approval, wages are tied to profits, and the factory floor has a seat at every table."
 
@@ -139,7 +135,7 @@
   # Social Democracy
   ###
 
-  civic_gk_ec_social_democracy_effects: "$MOD_POP_HOUSING_USAGE_MULT$ §G-10%§!\n$MOD_LOGISTIC_GROWTH_MULT$ §G+5%§!\n$MOD_PLANET_STABILITY_ADD$ §G+5§!\n$MOD_POP_ETHICS_SHIFT_SPEED_MULT$ §R-15%§!\nForces §YSocial Welfare§! living standard."
+  civic_gk_ec_social_democracy_effects: "Forces §YSocial Welfare§! living standard."
   civic_gk_ec_social_democracy: "Social Democracy"
   civic_gk_ec_social_democracy_desc: "A robust welfare state underpins this democracy. Public housing, universal services, and generous safety nets ensure that no citizen is left behind, even if progress sometimes moves at the speed of consensus."
 
@@ -151,7 +147,6 @@
   # War Engineers
   ###
 
-  civic_gk_ec_war_engineers_effects: "$MOD_SHIP_HULL_MULT$ §G+10%§!\n$MOD_SHIP_WEAPON_DAMAGE$ §G+5%§!\n$MOD_CATEGORY_MILITARY_THEORY_RESEARCH_SPEED_MULT$ §G+25%§!\n$MOD_SHIPS_UPKEEP_MULT$ §R+10%§!"
   civic_gk_ec_war_engineers: "War Engineers"
   civic_gk_ec_war_engineers_desc: "This society channels its brightest minds into the science of destruction. Research labs and weapons foundries share campuses, and military breakthroughs are the measure of national prestige."
   civic_gk_ec_war_engineers_megacorp: "Arms Conglomerate"
@@ -172,8 +167,6 @@
   # Ascetic
   ###
 
-  civic_gk_ec_ascetic_effects: "$MOD_POP_AMENITIES_USAGE_MULT$ §G-15%§!\n$MOD_PLANET_POPS_CONSUMER_GOODS_UPKEEP_MULT$ §G-10%§!\n$MOD_PLANET_JOBS_PRODUCES_MULT$ §R-5%§!"
-  civic_gk_ec_ascetic_effects_machine: "$MOD_POP_AMENITIES_USAGE_NO_HAPPINESS_MULT$ §G-15%§!\n$MOD_PLANET_POPS_ROBOTICS_UPKEEP_MULT$ §G-10%§!\n$MOD_PLANET_JOBS_PRODUCES_MULT$ §R-5%§!"
   civic_gk_ec_ascetic: "Austere Society"
   civic_gk_ec_ascetic_desc: "This civilization has embraced simplicity as a virtue. Its people consume little, maintain what they have, and find contentment in sufficiency rather than abundance."
   civic_gk_ec_ascetic_megacorp: "Lean Enterprise"
@@ -192,7 +185,7 @@
   # Constitutional Monarchy
   ###
 
-  civic_gk_ec_constitutional_monarchy_effects: "$MOD_COUNTRY_OFFICIAL_CAP_ADD$ §G+1§!\n$MOD_ENVOYS_ADD$ §G+1§!\nSpawns a §YConstitutional Monarch§! on game start.\nThe monarch serves as a diplomatic figurehead, boosting galactic community and federation standing."
+  civic_gk_ec_constitutional_monarchy_effects: "Spawns a §YConstitutional Monarch§! on game start.\nThe monarch serves as a diplomatic figurehead, boosting galactic community and federation standing."
   civic_gk_ec_constitutional_monarchy: "Constitutional Monarchy"
   civic_gk_ec_constitutional_monarchy_desc: "A hereditary sovereign reigns alongside elected institutions. The crown provides continuity and legitimacy while parliament handles the business of governance. Elections still occur, but the monarch endures."
 
@@ -216,10 +209,77 @@
   # Parliamentary Monarchy
   ###
 
-  civic_gk_ec_parliamentary_monarchy_effects: "$MOD_POP_FACTIONS_PRODUCES_MULT$ §G+25%§!\n$MOD_POP_CAT_SPECIALIST_POLITICAL_POWER$ §G+50%§!\n$MOD_COUNTRY_UNITY_PRODUCES_MULT$ §G+5%§!"
   civic_gk_ec_parliamentary_monarchy: "Parliamentary Monarchy"
   civic_gk_ec_parliamentary_monarchy_desc: "The crown rules, but parliament governs. Factions hold real power, their debates shape policy, and the educated classes have a voice that cannot be ignored. The result is an empire that benefits from both stability and representation."
 
   councilor_gk_ec_parliamentary_monarchy: "Speaker of Parliament"
   councilor_gk_ec_parliamentary_monarchy_female: "$councilor_gk_ec_parliamentary_monarchy$"
   councilor_gk_ec_parliamentary_monarchy_desc: "The $TITLE$ chairs parliamentary sessions, ensuring that faction interests are heard and translated into productive governance."
+
+  ###
+  # Stratocracy
+  ###
+
+  civic_gk_ec_stratocracy: "Stratocracy"
+  civic_gk_ec_stratocracy_desc: "Military officers govern directly, replacing civilian administrators with commanders whose authority derives from rank and service."
+  civic_gk_ec_stratocracy_effects: "- §YCommander§! governors no longer penalize §YSpecialist§! output\n- §YPolitician§! jobs are replaced by §YStratocrats§! that upkeep §YAlloys§! instead of §YConsumer Goods§! and inherit §YSoldier§! production modifiers"
+
+  councilor_gk_ec_stratocracy: "Supreme Commandant"
+  councilor_gk_ec_stratocracy_female: "$councilor_gk_ec_stratocracy$"
+  councilor_gk_ec_stratocracy_desc: "The $TITLE$ oversees military governance across the empire, ensuring that soldiers serve as the backbone of civic order."
+
+  ## Stratocracy Jobs
+  job_stratocrat: "Stratocrat"
+  job_stratocrat_plural: "Stratocrats"
+  job_stratocrat_desc: "Military officers serving as civic administrators, maintaining order through rank and discipline."
+  job_warlord: "Noble Commander"
+  job_warlord_plural: "Noble Commanders"
+  job_warlord_desc: "Aristocratic officers who govern through both birthright and martial authority."
+  job_templar: "High Templar"
+  job_templar_plural: "High Templars"
+  job_templar_desc: "Holy warriors who enforce divine law through military authority."
+  job_war_scientist: "Military Technocrat"
+  job_war_scientist_plural: "Military Technocrats"
+  job_war_scientist_desc: "Officers who direct both military governance and scientific research."
+  job_quartermaster: "Logistics Commander"
+  job_quartermaster_plural: "Logistics Commanders"
+  job_quartermaster_desc: "Military logistics officers who manage trade and supply alongside civic governance."
+  job_flame_marshal: "Flame Marshal"
+  job_flame_marshal_plural: "Flame Marshals"
+  job_flame_marshal_desc: "Sacred warriors who wield both martial and pyromantic authority."
+
+  ## Stratocracy Modifier Keys
+  mod_civic_gk_ec_stratocracy: "Stratocracy"
+  t:0 "    "
+  tt:0 "        "
+  ttt:0 "            "
+  tttt:0 "                "
+  councilor_gk_ec_stratocracy_effects: "$t$- £amenities£ Produced per 100 $soldier_type_plural_with_icon$: §G+25§!"
+
+  ###
+  # Algocracy
+  ###
+
+  civic_gk_ec_algocracy: "Algocracy"
+  civic_gk_ec_algocracy_desc: "The supreme authority of this empire is a highly sophisticated artificial intelligence who oversees all matters of state, freed from the corruption and inefficiency of organic governments."
+  civic_gk_ec_algocracy_effects: "Replaces your ruler with a powerful §Yrobotic§! leader with the §Y$trait_gk_ec_ai_leader$§! trait:$NEW_LINE$- §G+5%§! $job_politician_plural_with_icon$ output per leader level$NEW_LINE$- §R+10§! £energy£ $energy$ upkeep per leader level"
+
+  councilor_gk_ec_algocracy: "System Administrator"
+  councilor_gk_ec_algocracy_female: "$councilor_gk_ec_algocracy$"
+  councilor_gk_ec_algocracy_desc: "The $TITLE$ is one of the few individuals allowed to change the programming of the central AI."
+
+  GK_EC_NAME_AI_LEADERSHIP: "Central AI"
+  GK_EC_AI_LEADER_DESC: "An artificial intelligence built to oversee the government of the [root.owner.GetName]."
+  GK_EC_AI_LEADER_CATCHPHRASE: "Beep Boop"
+
+  trait_gk_ec_ai_leader: "$GK_EC_NAME_AI_LEADERSHIP$"
+  trait_gk_ec_ai_leader_desc: "An advanced artificial intelligence capable of running the government of an entire nation."
+  trait_gk_ec_ai_leader_tooltip: "The §Ybonus§! and §Yupkeep§! of this trait will grow with the leader's level."
+
+  GK_EC_AI_LEADER_RECRUITED: "AI Ruler currently online and fully operative"
+  GK_EC_AI_LEADER_DISABLED: "AI Ruler permanently shut down"
+
+  mod_job_politician_automated_workforce_mult: "$job_politician_plural_with_icon$ $MOD_PLANET_AUTOMATED_WORKFORCE$"
+
+  gk_ec_civic.401.name: "System Reboot"
+  gk_ec_civic.401.desc: "The central AI has been destroyed, but its backup systems have engaged. A new instance is being initialized."

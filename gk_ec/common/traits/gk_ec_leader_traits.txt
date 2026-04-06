@@ -29,3 +29,47 @@ trait_gk_ec_constitutional_monarch = {
 	initial = no
 	randomized = no
 }
+
+# Algocracy — AI ruler trait
+
+trait_gk_ec_ai_leader = {
+	leader_trait_type = destiny
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_machine_intelligence"
+		RARITY = paragon
+		COUNCIL = yes
+		TIER = none
+	}
+
+	custom_tooltip_with_modifiers = trait_gk_ec_ai_leader_tooltip
+
+	triggered_councilor_modifier = {
+		potential = { always = yes }
+		planet_politicians_produces_mult = 0.05
+		mult = trigger:has_base_skill
+	}
+
+	triggered_self_modifier = {
+		potential = { leader_class = commander }
+		leader_commanders_energy_upkeep_add = 10
+		mult = trigger:has_base_skill
+	}
+	triggered_self_modifier = {
+		potential = { leader_class = official }
+		leader_officials_energy_upkeep_add = 10
+		mult = trigger:has_base_skill
+	}
+	triggered_self_modifier = {
+		potential = { leader_class = scientist }
+		leader_scientists_energy_upkeep_add = 10
+		mult = trigger:has_base_skill
+	}
+
+	leader_class = { official commander scientist }
+	background_icon = GFX_leader_background_destiny_1
+	initial = no
+	randomized = no
+}

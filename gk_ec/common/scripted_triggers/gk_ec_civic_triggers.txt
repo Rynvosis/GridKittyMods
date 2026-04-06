@@ -1,0 +1,9 @@
+# Welfare civic check — used by living standard restrictions
+# Country scope
+is_gk_ec_welfare_empire = {
+	OR = {
+		has_valid_civic = civic_gk_ec_paternalism
+		has_valid_civic = civic_gk_ec_industrial_democracy
+		has_valid_civic = civic_gk_ec_social_democracy
+	}
+}

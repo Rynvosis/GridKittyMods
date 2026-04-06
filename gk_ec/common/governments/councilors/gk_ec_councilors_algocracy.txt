@@ -1,0 +1,13 @@
+councilor_gk_ec_algocracy = {
+	leader_class = { scientist }
+	is_leader_possible = {
+		leader_class = scientist
+	}
+	civic = civic_gk_ec_algocracy
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+	modifier = {
+		planet_automated_jobs_upkeep_mult = -0.015
+	}
+}

@@ -1,0 +1,17 @@
+# GK EC — late load overwrites
+
+gk_ec_prefers_commander_governors = {
+	has_civic = civic_gk_ec_stratocracy
+}
+
+# Overwrites: prefers_commander_governors
+# Delegates to per-mod triggers so both gk_ec and gk_raiding can inject
+prefers_commander_governors = {
+	OR = {
+		# Vanilla
+		has_valid_civic = civic_barbaric_despoilers
+		# GK Suite
+		gk_ec_prefers_commander_governors = yes
+		gk_raiding_prefers_commander_governors = yes
+	}
+}

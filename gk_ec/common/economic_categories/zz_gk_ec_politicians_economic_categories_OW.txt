@@ -1,0 +1,37 @@
+# Version last updated: 4.3.0
+# Overwrites: planet_politicians
+# Reason: Inherit soldier produces/upkeep modifiers for Stratocracy civic
+
+planet_politicians = {
+	parent = planet_jobs_ruler
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	triggered_produces_modifier = {
+		key = planet_soldiers
+		modifier_types = {
+			add
+			mult
+		}
+		trigger = {
+			politician_is_stratocrat = yes
+		}
+		use_parent_icon = yes
+	}
+	triggered_upkeep_modifier = {
+		key = planet_soldiers
+		modifier_types = {
+			add
+			mult
+		}
+		trigger = {
+			politician_is_stratocrat = yes
+		}
+		use_parent_icon = yes
+	}
+}

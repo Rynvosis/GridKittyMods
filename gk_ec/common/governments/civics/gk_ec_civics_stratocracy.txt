@@ -1,0 +1,42 @@
+# Stratocracy — Military governance civic
+# Commanders become viable governors, soldiers contribute to stability and unity
+
+civic_gk_ec_stratocracy = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = honorbound_warriors
+			}
+		}
+	}
+
+	description = civic_gk_ec_stratocracy_effects
+
+	modifier = {
+		country_commander_cap_add = 2
+		country_official_cap_add = -1
+	}
+
+	modification = yes
+}

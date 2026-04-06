@@ -2,3 +2,4 @@
 # Each feature gets its own inline script for modularity.
 
 inline_script = buildings/gk_ec_centralized_state_capital
+inline_script = buildings/gk_ec_stratocracy_capital
