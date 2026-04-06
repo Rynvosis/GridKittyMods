@@ -197,6 +197,19 @@ Available to: Standard empires (Imperial or Dictatorial authority required).
 **Councilor** (Speaker of Parliament):
 - +2% Faction Output per level
 
+### Algocracy
+
+Available to: Standard empires (Dictatorial authority required). Cannot be removed. Non-machine species only.
+
+**Effects**:
+- Replaces ruler with an immortal AI leader with the **Central AI** destiny trait
+- +5% Politician output per leader level (trait)
+- +10 Energy upkeep per leader level (trait)
+- +100% Politician Automated Workforce
+
+**Councilor** (System Administrator):
+- -1.5% Automated Jobs Upkeep per level
+
 ### Raiding Civics
 
 See `gk_raiding/docs/EFFECTS.md` — implemented in the GK Raiding mod.

@@ -8,3 +8,4 @@ Added Austere Society / Lean Enterprise / Low-Power Mode civics (standard, megac
 Overhauled Hive Ascetic (vanilla overwrite): now reduces job output by 5% alongside existing amenities and habitability bonuses
 Added Constitutional Monarchy civic (democratic): spawns a diplomatic figurehead monarch with galactic community and federation bonuses. Coronation event on death.
 Added Parliamentary Monarchy civic (imperial/dictatorial): faction output, specialist political power, and unity bonuses for imperial empires
+Added Algocracy civic (dictatorial): replaces ruler with an immortal AI leader that boosts politician output per level at the cost of energy upkeep
