@@ -87,18 +87,24 @@ gk_can_use_emancipation_cb = {
 # Can use Reaping war goal
 gk_can_use_reaping_cb = {
 	OR = {
-		# Despoilers require xenophobe
+		# Despoilers require xenophobe or gestalt
 		AND = {
 			OR = {
 				has_valid_civic = civic_barbaric_despoilers
 				has_valid_civic = civic_gk_barbaric_despoilers_megacorp
 			}
-			is_xenophobe = yes
+			OR = {
+				is_xenophobe = yes
+				is_gestalt = yes
+			}
 		}
-		# Nihilistic Acquisition requires xenophobe
+		# Nihilistic Acquisition requires xenophobe or gestalt
 		AND = {
 			has_ascension_perk = ap_nihilistic_acquisition
-			is_xenophobe = yes
+			OR = {
+				is_xenophobe = yes
+				is_gestalt = yes
+			}
 		}
 		# Gestalt despoilers always qualify
 		has_valid_civic = civic_gk_barbaric_despoilers_machine
