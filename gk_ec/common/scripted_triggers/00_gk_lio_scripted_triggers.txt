@@ -1,0 +1,5 @@
+# GK Suite LIO stubs — early load defaults
+# These are overwritten by zz_ files when the corresponding mod is present
+
+gk_ec_prefers_commander_governors = { always = no }
+gk_raiding_prefers_commander_governors = { always = no }
