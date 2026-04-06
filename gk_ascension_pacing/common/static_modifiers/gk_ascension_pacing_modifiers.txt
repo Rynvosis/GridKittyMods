@@ -1,0 +1,6 @@
+gk_asc_patience = {
+	icon = "gfx/interface/icons/modifiers/mod_country_unity_produces_mult.dds"
+	planet_jobs_produces_mult = 0.10
+	founder_species_growth_mult = 0.20
+	planet_pop_assembly_mult = 0.20
+}

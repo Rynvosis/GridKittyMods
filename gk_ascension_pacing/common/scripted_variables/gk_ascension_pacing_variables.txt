@@ -1,0 +1,9 @@
+# System 1: Situation speed multiplier — m(t) = t²/5000 + 0.5, capped at 2.5
+@gk_asc_pacing_divisor = 5000		# quadratic divisor — solve: target_cap_year² / k + 0.5 = cap
+@gk_asc_pacing_floor = 0.5			# mult at game start (year 2200)
+@gk_asc_pacing_cap = 2.5			# mult ceiling (reached at years_passed = 100)
+
+# System 2: Patience bonus
+@gk_asc_patience_start = 40		# years_passed when patience bonus begins (year 2240)
+@gk_asc_patience_pow = 0.5			# curve exponent — sqrt
+@gk_asc_patience_scale = 0.25		# post-pow scale factor

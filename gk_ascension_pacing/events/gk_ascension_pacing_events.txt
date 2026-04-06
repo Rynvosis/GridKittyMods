@@ -1,0 +1,94 @@
+namespace = gk_asc_pacing
+
+# Monthly patience modifier management
+country_event = {
+	id = gk_asc_pacing.1
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		is_country_type = default
+		NOT = { has_country_flag = gk_asc_patience_locked }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_ascension_path = yes
+				years_passed >= @gk_asc_patience_start
+			}
+			remove_modifier = gk_asc_patience
+			add_modifier = {
+				modifier = gk_asc_patience
+				multiplier = value:gk_asc_patience_mult|LOCK_SCALE|0.5|
+				days = -1
+			}
+			set_country_flag = gk_asc_patience_locked
+		}
+		else_if = {
+			limit = {
+				has_ascension_path = yes
+			}
+			# Ascended before patience started — lock out without adding modifier
+			set_country_flag = gk_asc_patience_locked
+		}
+		else_if = {
+			limit = {
+				years_passed >= @gk_asc_patience_start
+			}
+			remove_modifier = gk_asc_patience
+			add_modifier = {
+				modifier = gk_asc_patience
+				multiplier = value:gk_asc_patience_mult|LOCK_SCALE|1|
+				days = -1
+			}
+		}
+	}
+}
+
+# Init event for mid-game mod installs / game start
+country_event = {
+	id = gk_asc_pacing.2
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		is_country_type = default
+		NOT = { has_country_flag = gk_asc_patience_locked }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_ascension_path = yes
+				years_passed >= @gk_asc_patience_start
+			}
+			remove_modifier = gk_asc_patience
+			add_modifier = {
+				modifier = gk_asc_patience
+				multiplier = value:gk_asc_patience_mult|LOCK_SCALE|0.5|
+				days = -1
+			}
+			set_country_flag = gk_asc_patience_locked
+		}
+		else_if = {
+			limit = {
+				has_ascension_path = yes
+			}
+			set_country_flag = gk_asc_patience_locked
+		}
+		else_if = {
+			limit = {
+				years_passed >= @gk_asc_patience_start
+			}
+			remove_modifier = gk_asc_patience
+			add_modifier = {
+				modifier = gk_asc_patience
+				multiplier = value:gk_asc_patience_mult|LOCK_SCALE|1|
+				days = -1
+			}
+		}
+	}
+}

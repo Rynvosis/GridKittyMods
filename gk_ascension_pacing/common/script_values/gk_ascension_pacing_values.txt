@@ -1,0 +1,28 @@
+# System 1: Dynamic base rate for ascension situations
+# m(t) = (t²/5000 + 0.5) * vanilla_base, capped at 2.5x
+# Using set instead of mult so approach % bonuses scale off the reduced base
+# Usage: set = value:gk_asc_pacing_dynamic_base|BASE_RATE|5|
+gk_asc_pacing_dynamic_base = {
+	base = 0
+	add = trigger:years_passed
+	square = yes
+	divide = @gk_asc_pacing_divisor
+	add = @gk_asc_pacing_floor
+	min = @gk_asc_pacing_floor
+	max = @gk_asc_pacing_cap
+	mult = $BASE_RATE$
+	round_to = 0.1
+}
+
+# System 2: Patience bonus mult
+# (x - 2240)^0.5 * 0.25, starts at 0 and ramps from nothing
+# Parameterized with $LOCK_SCALE$ — pass 1 for active, 0.5 for lock-in
+gk_asc_patience_mult = {
+	base = 0
+	add = trigger:years_passed
+	subtract = @gk_asc_patience_start
+	min = 0
+	pow = @gk_asc_patience_pow
+	mult = @gk_asc_patience_scale
+	mult = $LOCK_SCALE$
+}
