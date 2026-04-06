@@ -22,8 +22,6 @@ civic_gk_ec_surveillance = {
 		}
 	}
 
-	description = "civic_gk_ec_surveillance_effects"
-
 	modifier = {
 		intel_decryption_add = 1
 		spy_network_daily_value_mult = 0.25
@@ -49,8 +47,6 @@ civic_gk_ec_surveillance_megacorp = {
 		base = @ai_civic_default_base_weight
 	}
 
-	description = "civic_gk_ec_surveillance_effects_megacorp"
-
 	modifier = {
 		intel_decryption_add = 1
 		spy_network_daily_value_mult = 0.25
@@ -72,8 +68,6 @@ civic_gk_ec_surveillance_hive = {
 	}
 
 	random_weight = { base = @civic_default_random_weight }
-
-	description = "civic_gk_ec_surveillance_effects"
 
 	modifier = {
 		intel_decryption_add = 1

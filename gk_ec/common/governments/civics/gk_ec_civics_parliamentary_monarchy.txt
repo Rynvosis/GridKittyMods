@@ -24,8 +24,6 @@ civic_gk_ec_parliamentary_monarchy = {
 		base = @ai_civic_default_base_weight
 	}
 
-	description = "civic_gk_ec_parliamentary_monarchy_effects"
-
 	modifier = {
 		pop_factions_produces_mult = 0.25
 		pop_cat_specialist_political_power = 0.50

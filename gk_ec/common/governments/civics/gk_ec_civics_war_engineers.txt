@@ -32,8 +32,6 @@ civic_gk_ec_war_engineers = {
 		}
 	}
 
-	description = "civic_gk_ec_war_engineers_effects"
-
 	modifier = {
 		ship_hull_mult = 0.10
 		ship_weapon_damage = 0.05
@@ -69,8 +67,6 @@ civic_gk_ec_war_engineers_megacorp = {
 		base = @ai_civic_default_base_weight
 	}
 
-	description = "civic_gk_ec_war_engineers_effects"
-
 	modifier = {
 		ship_hull_mult = 0.10
 		ship_weapon_damage = 0.05
@@ -93,8 +89,6 @@ civic_gk_ec_war_engineers_hive = {
 
 	random_weight = { base = @civic_default_random_weight }
 
-	description = "civic_gk_ec_war_engineers_effects"
-
 	modifier = {
 		ship_hull_mult = 0.10
 		ship_weapon_damage = 0.05
@@ -113,8 +107,6 @@ civic_gk_ec_war_engineers_machine = {
 	}
 
 	random_weight = { base = @civic_default_random_weight }
-
-	description = "civic_gk_ec_war_engineers_effects"
 
 	modifier = {
 		ship_hull_mult = 0.10

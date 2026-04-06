@@ -15,8 +15,6 @@ civic_gk_ec_ascetic = {
 		base = @ai_civic_default_base_weight
 	}
 
-	description = "civic_gk_ec_ascetic_effects"
-
 	modifier = {
 		pop_amenities_usage_mult = -0.15
 		planet_pops_consumer_goods_upkeep_mult = -0.10
@@ -41,8 +39,6 @@ civic_gk_ec_ascetic_megacorp = {
 		base = @ai_civic_default_base_weight
 	}
 
-	description = "civic_gk_ec_ascetic_effects"
-
 	modifier = {
 		pop_amenities_usage_mult = -0.15
 		planet_pops_consumer_goods_upkeep_mult = -0.10
@@ -64,8 +60,6 @@ civic_gk_ec_ascetic_machine = {
 	}
 
 	random_weight = { base = @civic_default_random_weight }
-
-	description = "civic_gk_ec_ascetic_effects_machine"
 
 	modifier = {
 		pop_amenities_usage_no_happiness_mult = -0.15

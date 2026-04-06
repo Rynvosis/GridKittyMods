@@ -22,8 +22,6 @@ civic_gk_ec_pathfinders = {
 		}
 	}
 
-	description = "civic_gk_ec_pathfinders_effects"
-
 	modifier = {
 		science_ship_survey_speed = 0.25
 		ship_anomaly_generation_chance_mult = 0.20
@@ -49,8 +47,6 @@ civic_gk_ec_pathfinders_megacorp = {
 		base = @ai_civic_default_base_weight
 	}
 
-	description = "civic_gk_ec_pathfinders_effects"
-
 	modifier = {
 		science_ship_survey_speed = 0.25
 		ship_anomaly_generation_chance_mult = 0.20
@@ -73,8 +69,6 @@ civic_gk_ec_pathfinders_hive = {
 
 	random_weight = { base = @civic_default_random_weight }
 
-	description = "civic_gk_ec_pathfinders_effects"
-
 	modifier = {
 		science_ship_survey_speed = 0.25
 		ship_anomaly_generation_chance_mult = 0.20
@@ -93,8 +87,6 @@ civic_gk_ec_pathfinders_machine = {
 	}
 
 	random_weight = { base = @civic_default_random_weight }
-
-	description = "civic_gk_ec_pathfinders_effects"
 
 	modifier = {
 		science_ship_survey_speed = 0.25

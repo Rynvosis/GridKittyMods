@@ -56,8 +56,6 @@ civic_gk_ec_paternalism_hive = {
 
 	random_weight = { base = @civic_default_random_weight }
 
-	description = "civic_gk_ec_paternalism_effects_gestalt"
-
 	modifier = {
 		planet_stability_add = 10
 		species_leader_exp_gain = -0.10
@@ -75,8 +73,6 @@ civic_gk_ec_paternalism_machine = {
 	}
 
 	random_weight = { base = @civic_default_random_weight }
-
-	description = "civic_gk_ec_paternalism_effects_gestalt"
 
 	modifier = {
 		planet_stability_add = 10
