@@ -209,14 +209,24 @@ gk_is_emancipation_war_with_from = {
 	}
 }
 
+##############################
+# Opportunistic Raiding      #
+##############################
+
+# This = raidee country, Root = raider country
+gk_has_opportunistic_raiding_with = {
+	has_country_flag = gk_opportunistic_raid_authorized_by_@root
+	root = { is_at_war_with = prev }
+}
+
 ####################
 # Pop Group Checks #
 ####################
 # Root = hostile country (attacker/raider)
 # This = pop_group
 gk_can_abduct_pop_group_war_goal_check = {
-	# Only allow pop abduction in explicit raiding contexts.
-	# Non-raiding wars (conquest, subjugation, etc.) do NOT grant pop capture.
+	# Only allow pop abduction in raiding contexts:
+	# explicit raiding wars, total war, or authorized opportunistic raiding.
 	OR = {
 		# No formal war with owner (primitives, first contact, etc.) - allow
 		planet = {
@@ -268,6 +278,17 @@ gk_can_abduct_pop_group_war_goal_check = {
 		# Emancipation war with this defender - enslaved only
 		AND = {
 			planet = { owner = { gk_has_emancipation_war_with = yes } }
+			is_enslaved = yes
+		}
+		# Opportunistic raiding - any pop (plunder/reaping focus)
+		AND = {
+			planet = { owner = { gk_has_opportunistic_raiding_with = yes } }
+			root = { NOT = { has_policy_flag = gk_focus_emancipation } }
+		}
+		# Opportunistic raiding - enslaved only (emancipation focus)
+		AND = {
+			planet = { owner = { gk_has_opportunistic_raiding_with = yes } }
+			root = { has_policy_flag = gk_focus_emancipation }
 			is_enslaved = yes
 		}
 	}
@@ -365,6 +386,13 @@ gk_can_abduct_pop_group_cap_check = {
 						}
 					}
 				}
+			}
+		}
+		# Opportunistic raiding - cap not reached
+		planet = {
+			owner = {
+				gk_has_opportunistic_raiding_with = yes
+				NOT = { has_country_flag = gk_raid_cap_reached_by_@root }
 			}
 		}
 	}

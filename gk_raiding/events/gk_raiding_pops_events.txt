@@ -144,6 +144,7 @@ country_event = {
 					gk_has_standard_raiding_war_with = yes
 					gk_has_emancipation_war_with = yes
 					gk_has_reaping_war_with = yes
+					gk_has_opportunistic_raiding_with = yes
 				}
 				# Cap not reached and not terminated
 				NOT = { has_country_flag = gk_raid_cap_reached_by_@root }
@@ -324,6 +325,7 @@ country_event = {
 			OR = {
 				has_country_flag = gk_raid_cap_reached_by_@root
 				has_country_flag = gk_pop_raiding_terminated_by_@root
+				has_country_flag = gk_opportunistic_raid_authorized_by_@root
 				root = { has_country_flag = gk_pivoted_to_pillaging_against_@prev }
 			}
 		}
@@ -338,6 +340,7 @@ country_event = {
 					has_country_flag = gk_tribute_offer_pending_from_@root
 					has_country_flag = gk_reforms_offer_pending_from_@root
 					has_country_flag = gk_autonomy_offer_pending_from_@root
+					has_country_flag = gk_opportunistic_raid_authorized_by_@root
 					root = { has_country_flag = gk_pivoted_to_pillaging_against_@prev }
 				}
 			}
@@ -358,7 +361,11 @@ country_event = {
 				remove_country_flag = gk_tribute_offer_pending_from_@root
 				remove_country_flag = gk_reforms_offer_pending_from_@root
 				remove_country_flag = gk_autonomy_offer_pending_from_@root
-				root = { remove_country_flag = gk_pivoted_to_pillaging_against_@prev }
+				remove_country_flag = gk_opportunistic_raid_authorized_by_@root
+				root = {
+					remove_country_flag = gk_pivoted_to_pillaging_against_@prev
+					remove_country_flag = gk_opportunistic_prompted_@prev
+				}
 			}
 		}
 		save_event_target_as = gk_raider
@@ -413,6 +420,7 @@ country_event = {
 				gk_has_standard_raiding_war_with = yes
 				gk_has_emancipation_war_with = yes
 				gk_has_reaping_war_with = yes
+				gk_has_opportunistic_raiding_with = yes
 			}
 		}
 	}
@@ -957,6 +965,15 @@ country_event = {
 			}
 			set_country_flag = gk_escalation_has_intel
 		}
+		# Detect opportunistic raiding context (no explicit raiding war goal)
+		if = {
+			limit = {
+				from = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+				NOT = { gk_is_plunder_war_with_from = yes }
+				NOT = { gk_is_emancipation_war_with_from = yes }
+			}
+			set_country_flag = gk_is_opportunistic_escalation
+		}
 		# Pre-compute tribute base for display (plunder only)
 		if = {
 			limit = { gk_is_plunder_war_with_from = yes }
@@ -1044,9 +1061,10 @@ country_event = {
 			from = {
 				remove_country_flag = gk_raid_cap_reached_by_@root
 			}
-			# At tier 5, switch war goal to reaping to prevent surrender
+			# At tier 5, switch war goal to reaping to prevent surrender (not in opportunistic context)
 			if = {
 				limit = {
+					NOT = { has_country_flag = gk_is_opportunistic_escalation }
 					event_target:gk_raid_tracker = {
 						check_variable = { which = gk_escalation_tier value >= 5 }
 					}
@@ -1119,11 +1137,12 @@ country_event = {
 		}
 	}
 
-	# Option C: Pivot to Pillaging (plunder only, hidden at tier >= 4)
+	# Option C: Pivot to Pillaging (plunder only, hidden at tier >= 4, not opportunistic)
 	option = {
 		name = GK_RAIDING_ESCALATION_PIVOT
 		custom_tooltip = GK_RAIDING_ESCALATION_PIVOT_TOOLTIP
 		trigger = {
+			NOT = { has_country_flag = gk_is_opportunistic_escalation }
 			gk_is_plunder_war_with_from = yes
 			event_target:gk_raid_tracker = {
 				check_variable = { which = gk_escalation_tier value < 4 }
@@ -1179,11 +1198,12 @@ country_event = {
 		}
 	}
 
-	# Option D: Demand Tribute (plunder only)
+	# Option D: Demand Tribute (plunder only, not opportunistic)
 	option = {
 		name = GK_RAIDING_ESCALATION_TRIBUTE
 		custom_tooltip = GK_RAIDING_ESCALATION_TRIBUTE_TOOLTIP
 		trigger = {
+			NOT = { has_country_flag = gk_is_opportunistic_escalation }
 			gk_is_plunder_war_with_from = yes
 		}
 		allow = {
@@ -1231,11 +1251,12 @@ country_event = {
 		}
 	}
 
-	# Option E: Demand Reforms (emancipation only)
+	# Option E: Demand Reforms (emancipation only, not opportunistic)
 	option = {
 		name = GK_RAIDING_ESCALATION_REFORMS
 		custom_tooltip = GK_RAIDING_ESCALATION_REFORMS_TOOLTIP
 		trigger = {
+			NOT = { has_country_flag = gk_is_opportunistic_escalation }
 			gk_is_emancipation_war_with_from = yes
 		}
 		allow = {
@@ -1286,6 +1307,300 @@ country_event = {
 		hidden_effect = {
 			remove_country_flag = gk_escalation_has_intel
 			remove_country_flag = gk_raid_is_significant
+			remove_country_flag = gk_is_opportunistic_escalation
+		}
+	}
+}
+
+######################################
+# Opportunistic Raiding Authorization #
+######################################
+
+# Hidden dispatcher — on war declaration
+# Root = Country, From = War
+country_event = {
+	id = gk_raiding_pops.605
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		gk_can_pop_raid_personally = yes
+		# Not a raiding war
+		from = {
+			NOT = { using_war_goal = { type = wg_plunder owner = attacker } }
+			NOT = { using_war_goal = { type = wg_plunder owner = defender } }
+			NOT = { using_war_goal = { type = wg_gk_emancipation owner = attacker } }
+			NOT = { using_war_goal = { type = wg_gk_emancipation owner = defender } }
+			NOT = { using_war_goal = { type = wg_gk_reaping owner = attacker } }
+			NOT = { using_war_goal = { type = wg_gk_reaping owner = defender } }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { from = { is_war_participant = { who = root side = attackers } } }
+			from = {
+				every_defender = {
+					limit = {
+						is_country_type = default
+						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+					}
+					root = {
+						country_event = {
+							id = gk_raiding_pops.600
+							days = 1
+							scopes = { from = prev }
+						}
+					}
+				}
+			}
+		}
+		else = {
+			from = {
+				every_attacker = {
+					limit = {
+						is_country_type = default
+						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+					}
+					root = {
+						country_event = {
+							id = gk_raiding_pops.600
+							days = 1
+							scopes = { from = prev }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Bombardment dispatch — prompt opportunistic raiding on first bombardment per target
+# This = Planet, From = Bombarder country, FromFrom = Fleet
+planet_event = {
+	id = gk_raiding_pops.615
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		from = {
+			gk_can_pop_raid_personally = yes
+			NOT = { has_country_flag = gk_opportunistic_prompted_@prev.owner }
+		}
+		owner = {
+			is_country_type = default
+			NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@from }
+		}
+		# Not a raiding war (handle bombarder on either side)
+		from = {
+			any_war = {
+				OR = {
+					AND = {
+						is_war_participant = { who = prev side = attackers }
+						is_war_participant = { who = prevprev.owner side = defenders }
+					}
+					AND = {
+						is_war_participant = { who = prev side = defenders }
+						is_war_participant = { who = prevprev.owner side = attackers }
+					}
+				}
+				NOR = {
+					using_war_goal = { type = wg_plunder owner = attacker }
+					using_war_goal = { type = wg_plunder owner = defender }
+					using_war_goal = { type = wg_gk_emancipation owner = attacker }
+					using_war_goal = { type = wg_gk_emancipation owner = defender }
+					using_war_goal = { type = wg_gk_reaping owner = attacker }
+					using_war_goal = { type = wg_gk_reaping owner = defender }
+				}
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			# Set prompted flag immediately so subsequent bombardment ticks
+			# short-circuit before reaching the expensive any_war evaluation
+			set_timed_country_flag = {
+				flag = gk_opportunistic_prompted_@prev.owner
+				years = 5
+			}
+			country_event = {
+				id = gk_raiding_pops.600
+				scopes = { from = prevprev.owner }
+			}
+		}
+	}
+}
+
+# Monthly fallback — catches mid-war raiding access and save compatibility
+# This = Country
+country_event = {
+	id = gk_raiding_pops.610
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		gk_can_pop_raid_personally = yes
+		is_at_war = yes
+	}
+
+	immediate = {
+		every_war = {
+			limit = {
+				NOT = {
+					OR = {
+						using_war_goal = { type = wg_plunder owner = attacker }
+						using_war_goal = { type = wg_plunder owner = defender }
+						using_war_goal = { type = wg_gk_emancipation owner = attacker }
+						using_war_goal = { type = wg_gk_emancipation owner = defender }
+						using_war_goal = { type = wg_gk_reaping owner = attacker }
+						using_war_goal = { type = wg_gk_reaping owner = defender }
+					}
+				}
+			}
+			if = {
+				limit = { is_war_participant = { who = root side = attackers } }
+				every_defender = {
+					limit = {
+						is_country_type = default
+						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+						root = { NOT = { has_country_flag = gk_opportunistic_prompted_@prev } }
+					}
+					root = {
+						country_event = {
+							id = gk_raiding_pops.600
+							scopes = { from = prev }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { is_war_participant = { who = root side = defenders } }
+				every_attacker = {
+					limit = {
+						is_country_type = default
+						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+						root = { NOT = { has_country_flag = gk_opportunistic_prompted_@prev } }
+					}
+					root = {
+						country_event = {
+							id = gk_raiding_pops.600
+							scopes = { from = prev }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Authorization prompt — player/AI decides whether to enable opportunistic raiding
+# This = raider country, From = raidee country
+country_event = {
+	id = gk_raiding_pops.600
+	title = GK_OPPORTUNISTIC_RAIDING_TITLE
+	desc = GK_OPPORTUNISTIC_RAIDING_DESC
+	picture = GFX_evt_ground_combat
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	trigger = {
+		gk_can_pop_raid_personally = yes
+		is_at_war_with = from
+		from = {
+			NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+		}
+		NOT = { has_country_flag = gk_opportunistic_prompted_@from }
+	}
+
+	# Option A: Authorize opportunistic raiding
+	option = {
+		name = GK_OPPORTUNISTIC_AUTHORIZE
+		allow = {
+			resource_stockpile_compare = {
+				resource = influence
+				value >= @gk_opportunistic_authorization_cost
+			}
+		}
+		add_resource = { influence = -@gk_opportunistic_authorization_cost }
+		hidden_effect = {
+			from = {
+				set_country_flag = gk_opportunistic_raid_authorized_by_@root
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 3
+				OR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_authoritarian
+				}
+			}
+			modifier = {
+				factor = 0.1
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+			modifier = {
+				factor = 0.3
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+			modifier = {
+				factor = 0.5
+				resource_stockpile_compare = {
+					resource = influence
+					value < 100
+				}
+			}
+		}
+	}
+
+	# Option B: Decline
+	option = {
+		name = GK_OPPORTUNISTIC_DECLINE
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = gk_opportunistic_prompted_@from
+				years = 5
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 3
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
 		}
 	}
 }

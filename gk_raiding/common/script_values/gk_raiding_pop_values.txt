@@ -546,4 +546,11 @@ gk_escalation_influence_cost = {
 	min = 0
 	# Add base cost
 	add = @gk_escalation_base_cost
+	# Double cost for opportunistic raiding (no explicit raiding war goal)
+	modifier = {
+		from = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+		NOT = { gk_is_plunder_war_with_from = yes }
+		NOT = { gk_is_emancipation_war_with_from = yes }
+		mult = @gk_opportunistic_cost_multiplier
+	}
 }

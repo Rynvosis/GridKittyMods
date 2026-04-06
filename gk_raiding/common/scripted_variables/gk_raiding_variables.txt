@@ -18,6 +18,13 @@
 
 @gk_reaping_cap_rate = 100
 
+######################################
+# Pop Raiding — Opportunistic Raiding #
+######################################
+
+@gk_opportunistic_authorization_cost = 50
+@gk_opportunistic_cost_multiplier = 2
+
 ############################
 # Pop Raiding — Auto-Raid  #
 ############################

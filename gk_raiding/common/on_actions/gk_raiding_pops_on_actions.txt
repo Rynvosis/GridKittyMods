@@ -9,6 +9,14 @@ on_war_beginning = {
 	}
 }
 
+# Bombardment tick — prompt opportunistic raiding on first bombardment per target
+# This = Planet, From = Bombarder country, FromFrom = Fleet
+on_planet_bombarded = {
+	events = {
+		gk_raiding_pops.615  # Opportunistic raiding — bombardment trigger
+	}
+}
+
 # Pop killed by bombardment (raiding stance internally kills+recreates)
 # This = Planet, From = Bombarder country, FromFrom = Fleet
 # local_kill_pop_amount = exact transfer amount
@@ -42,6 +50,7 @@ on_planet_attackers_win = {
 on_monthly_pulse_country = {
 	events = {
 		gk_raiding_pops.130
+		gk_raiding_pops.610  # Opportunistic raiding fallback check
 	}
 }
 

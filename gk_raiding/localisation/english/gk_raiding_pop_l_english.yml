@@ -114,6 +114,12 @@ GK_RAIDING_AUTONOMY_ACCEPTED_DESC:0 "[From.GetName] has granted full rights to t
 GK_RAIDING_AUTONOMY_REJECTED_TITLE:0 "Autonomy Refused"
 GK_RAIDING_AUTONOMY_REJECTED_DESC:0 "[From.GetName] has refused to grant synthetic rights. Our raiders will continue their operations."
 
+ # Opportunistic Raiding
+GK_OPPORTUNISTIC_RAIDING_TITLE:0 "Authorize Opportunistic Raids"
+GK_OPPORTUNISTIC_RAIDING_DESC:0 "Our forces are engaged in war against [From.GetName], but our war goals do not include population seizure. Our raiders could conduct opportunistic raids during the conflict, though the logistical overhead of operating outside a dedicated raiding campaign will increase escalation costs.\n\n§YCosts §G50§! £influence£ Influence. Escalation costs are doubled.§!"
+GK_OPPORTUNISTIC_AUTHORIZE:0 "Authorize raids"
+GK_OPPORTUNISTIC_DECLINE:0 "Our war goals are sufficient"
+
  # Planet Cleared (auto-raid)
 GK_RAIDING_PLANET_CLEARED_TITLE:0 "Planet Cleared"
 GK_RAIDING_PLANET_CLEARED_DESC:0 "All eligible pops on [From.GetName] have been transferred to our empire. The planet stands empty."

@@ -249,6 +249,16 @@ gk_save_pop_raid_side_leader_against_target = {
 			defender = { save_event_target_as = gk_cap_raider }
 		}
 	}
+	# Fallback: opportunistic raiding (raider is its own side leader)
+	if = {
+		limit = {
+			NOT = { exists = event_target:gk_cap_raider }
+			event_target:gk_raidee = {
+				has_country_flag = gk_opportunistic_raid_authorized_by_@prev
+			}
+		}
+		save_event_target_as = gk_cap_raider
+	}
 }
 
 ######################
