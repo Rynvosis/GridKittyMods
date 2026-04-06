@@ -1,9 +1,15 @@
-### Privateer Enclaves
-- Privateer raiders now capture enemy ships directly (30% chance per kill) instead of scavenging debris fields.
-- Boarding Cables tradition simplified to +10% Salvage Chance for all empires. Grants Boarding Cables technology with Grand Archive DLC.
+### Opportunistic Raiding
+- New system: authorize pop raiding during non-raiding wars for 50 Influence. Escalation costs are doubled in this context.
+- Opportunistic raiding prompts appear on first orbital bombardment of each target, not at war start — no more popup spam against multiple enemies.
+- Escalation options restricted in opportunistic context: no war goal switching, tribute demands, or pillage pivots.
 
-### Compatibility
-- Renamed overwrite files for better load order priority against Ethics and Civics Classic and Bug Branch.
-- Removed debris policy and debris spawning overwrites.
-- Removed unused machine age trigger overwrite.
-- Fixed Emancipators civic appearing in machine and hive empire civic lists.
+### Raiding & Escalation
+- Pops abducted by the raiding bombardment stance are now redirected to planets with free housing, jobs, and good habitability instead of the engine's random destination. Species that would be enslaved are preferentially sent to planets that already have a slave population.
+- Escalation choices now switch the war goal to match the new objective: total depopulation switches to Reaping, pivoting to pillaging switches to Pillage, and accepted tribute or reform demands switch to Humiliation.
+- Pivoting to pillaging now uses the Pillage war goal with a reduced yield (nets +1 over base) and lighter surrender ransacked modifiers.
+- Removed the per-pop-group transfer cap, fixing rare cases where a straggler pop could survive surrender at maximum escalation.
+
+### Balance & Bug Fixes
+- Reaping Raiding Focus is now accessible to Gestalt empires (Determined Exterminators, Devouring Swarms, etc.) with Nihilistic Acquisition or despoiler civics.
+- Nihilistic Acquisition ascension perk is now hidden for empires that already have a raiding civic.
+- Fixed a script error with mercenary enclave events when the enclave event target was unavailable.

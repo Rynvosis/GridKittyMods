@@ -1,15 +1,21 @@
-[h3]Privateer Enclaves[/h3]
+[h3]Opportunistic Raiding[/h3]
 [list]
-[*]Privateer raiders now capture enemy ships directly (30% chance per kill) instead of scavenging debris fields.
-[*]Boarding Cables tradition simplified to +10% Salvage Chance for all empires. Grants Boarding Cables technology with Grand Archive DLC.
+[*]New system: authorize pop raiding during non-raiding wars for 50 Influence. Escalation costs are doubled in this context.
+[*]Opportunistic raiding prompts appear on first orbital bombardment of each target, not at war start — no more popup spam against multiple enemies.
+[*]Escalation options restricted in opportunistic context: no war goal switching, tribute demands, or pillage pivots.
 [/list]
 
-[h3]Compatibility[/h3]
+[h3]Raiding & Escalation[/h3]
 [list]
-[*]Renamed overwrite files for better load order priority against Ethics and Civics Classic and Bug Branch.
-[*]Removed debris policy and debris spawning overwrites.
-[*]Removed unused machine age trigger overwrite.
-[*]Merged game rule overwrites into a single file.
-[*]Added upkeep modifiers to livestock economic category overwrites for broader compatibility.
-[*]Fixed Emancipators civic appearing in machine and hive empire civic lists.
+[*]Pops abducted by the raiding bombardment stance are now redirected to planets with free housing, jobs, and good habitability instead of the engine's random destination. Species that would be enslaved are preferentially sent to planets that already have a slave population.
+[*]Escalation choices now switch the war goal to match the new objective: total depopulation switches to Reaping, pivoting to pillaging switches to Pillage, and accepted tribute or reform demands switch to Humiliation.
+[*]Pivoting to pillaging now uses the Pillage war goal with a reduced yield (nets +1 over base) and lighter surrender ransacked modifiers.
+[*]Removed the per-pop-group transfer cap, fixing rare cases where a straggler pop could survive surrender at maximum escalation.
+[/list]
+
+[h3]Balance & Bug Fixes[/h3]
+[list]
+[*]Reaping Raiding Focus is now accessible to Gestalt empires (Determined Exterminators, Devouring Swarms, etc.) with Nihilistic Acquisition or despoiler civics.
+[*]Nihilistic Acquisition ascension perk is now hidden for empires that already have a raiding civic.
+[*]Fixed a script error with mercenary enclave events when the enclave event target was unavailable.
 [/list]
