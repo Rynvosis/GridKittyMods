@@ -1,15 +1,19 @@
-### Reaping
-- Reaping war surrender now transfers all eligible pops instead of being limited by the escalation tier bucket.
-- Auto-raiding on occupied planets in reaping wars bypasses the bucket cap — pops are taken based on army strength without tier limits.
+### Escalation Tiers
+Pop-raiding now has **four tiers** with clean round caps instead of six:
+- Tier 0 — up to 10%
+- Tier 1 — up to 25%
+- Tier 2 — up to 50%
+- Tier 3 — take everything
+
+The escalation popup's press button now shows the exact pop count you'll take at the next tier, including the final "take everything" option. Old saves reset their in-progress raid counters so the new caps apply cleanly.
 
 ### Opportunistic Raiding
-- Total wars (End Threat, etc.) no longer prompt for opportunistic raiding — raiding is inherently allowed.
+A raiding war goal only covers the empire you actually declared on. Their allies and co-defenders are secondary targets now — same as anyone in a non-raiding war, they need you to *authorize* raiding.
 
-### Machine Despoilers
-- Reworked starting pop setup to handle vanilla species identity swap caused by certain origins. Battery species is now found by trait instead of relying on founder species identity.
+You'll get asked the first time you actually try to raid a secondary target:
+- Bombarding them in raiding stance
+- Winning a ground invasion
+- Monthly auto-raid kicking in on a planet you occupy
 
 ### Bug Fixes
-- Fixed opportunistic raiding influence cost not displaying in tooltip.
-- Fixed a script error with mercenary enclave events when the enclave event target was unavailable.
-- Fixed missing modifier localisation for livestock and processing trade value.
-- Fixed missing tradition tooltip for Boarding Cables.
+- Renamed an economic-categories file for better compatibility with other mods — Harvesting Protocol's unity and energy bonuses no longer silently do nothing in some load orders.

@@ -70,16 +70,14 @@ Cannot be changed while at war. Only available to empires with pop-raiding acces
 
 ## Pop Raiding Escalation
 
-Pop raiding uses a tiered bucket system. Each tier captures a portion of the target population:
+Pop raiding uses a tiered bucket system. Each tier is a cumulative cap on how much of the target population you can have captured so far:
 
-| Tier | Capture Rate | Cumulative |
-|------|-------------|-----------|
-| 0 | 10% | 10% |
-| 1 | 12.5% | 21% |
-| 2 | 16.7% | 34% |
-| 3 | 25% | 50% |
-| 4 | 50% | 75% |
-| 5 | 100% | 100% |
+| Tier | Cumulative Cap |
+|------|----------------|
+| 0 | 10% |
+| 1 | 25% |
+| 2 | 50% |
+| 3 | 100% |
 
 When a tier is filled, the war leader chooses:
 
@@ -95,6 +93,17 @@ Influence costs scale with how significant the raid is relative to the raider's 
 With sufficient intel on the target, the escalation popup shows estimated eligible pops remaining.
 
 **Reaping** bypasses all tiers. No limits, no surrender, significant galaxy-wide opinion penalty.
+
+## Opportunistic Raiding
+
+A raiding war goal auto-authorizes raiding only against the **enemy-side war leader** — the empire actually named by the casus belli. Every other target (co-belligerent defenders of a raiding war, or any enemy in a non-raiding war) requires opportunistic authorization.
+
+The first time a raid vector fires against an unauthorized target (bombardment tick in raiding stance, ground-invasion win, or monthly auto-raid on an occupied planet), a prompt appears:
+
+- **Authorize** — Spend 50 Influence. That target becomes raidable for the rest of the war. Escalation tier costs against this target are 2× normal.
+- **Decline** — No raiding against this target for the next 5 years. The flag also clears when the war ends, so a future war prompts you again.
+
+Invasion bursts against an unauthorized target do not capture pops on the winning tick; once authorized, the following monthly auto-raid picks up the occupied planet. Escalation popups for opportunistic targets omit Pivot to Pillaging, Demand Tribute, and Demand Reforms — those options only apply to primary raiding-war targets.
 
 ## War Goals
 

@@ -1,9 +1,7 @@
 namespace = gk_raiding_pops
-
 ############################
 # Pop Tracking             #
 ############################
-
 # Pop abducted by raiding bombardment stance
 # This = Planet where pop was "killed" (source)
 # From = Bombarder country
@@ -13,12 +11,10 @@ planet_event = {
 	id = gk_raiding_pops.100
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		has_orbital_bombardment = yes
 		has_orbital_bombardment_stance = raiding
 	}
-
 	immediate = {
 		from = {
 			save_event_target_as = gk_raider
@@ -28,14 +24,19 @@ planet_event = {
 		}
 		# Accumulate abduction amount for the redirect event
 		from = {
-			change_variable = { which = gk_pending_abduction_amount value = root.local_kill_pop_amount }
+			change_variable = {
+				which = gk_pending_abduction_amount
+				value = root.local_kill_pop_amount
+			}
 		}
 		# Resolve side leader for bucket tracking
 		from = {
 			gk_save_pop_raid_side_leader_against_target = yes
 		}
 		owner = {
-			gk_track_raided_pops = { AMOUNT = root.local_kill_pop_amount }
+			gk_track_raided_pops = {
+				AMOUNT = root.local_kill_pop_amount
+			}
 		}
 	}
 }
@@ -47,30 +48,31 @@ pop_group_event = {
 	id = gk_raiding_pops.105
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		exists = owner
 		owner = {
 			is_variable_set = gk_pending_abduction_amount
-			check_variable = { which = gk_pending_abduction_amount value > 0 }
+			check_variable = {
+				which = gk_pending_abduction_amount
+				value > 0
+			}
 		}
 	}
-
 	immediate = {
 		owner = {
 			save_event_target_as = gk_raider
 		}
 		save_event_target_as = gk_source_pop_group
-
 		# Find preferred destination
 		gk_find_destination_planet = yes
-
 		# Skip if the engine already picked our preferred planet
 		if = {
 			limit = {
 				exists = event_target:gk_destination_planet
 				planet = {
-					NOT = { is_same_value = event_target:gk_destination_planet }
+					NOT = {
+						is_same_value = event_target:gk_destination_planet
+					}
 				}
 			}
 			# Transfer only the abducted amount to the preferred planet
@@ -88,7 +90,6 @@ pop_group_event = {
 				}
 			}
 		}
-
 		# Clear pending amount
 		owner = {
 			clear_variable = gk_pending_abduction_amount
@@ -102,24 +103,25 @@ country_event = {
 	id = gk_raiding_pops.110
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		OR = {
 			is_variable_set = gk_raidee_plundered
 			is_variable_set = gk_raidee_emancipated
 		}
 	}
-
 	immediate = {
-		gk_decay_raid_counter = { COUNTER = gk_raidee_plundered }
-		gk_decay_raid_counter = { COUNTER = gk_raidee_emancipated }
+		gk_decay_raid_counter = {
+			COUNTER = gk_raidee_plundered
+		}
+		gk_decay_raid_counter = {
+			COUNTER = gk_raidee_emancipated
+		}
 	}
 }
 
 ############################
 # Auto-Raid Occupied       #
 ############################
-
 # Monthly auto-raid: forcefully resettle pops from occupied enemy planets
 # This = Country (from on_monthly_pulse_country)
 # Only the side leader processes this to avoid double-counting
@@ -127,95 +129,92 @@ country_event = {
 	id = gk_raiding_pops.130
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		is_at_war = yes
 		gk_can_pop_raid_personally = yes
 	}
-
 	immediate = {
 		save_event_target_as = gk_raider
-		# For each country we're pop-raiding
+		# For each enemy country; branch on raidable vs promptable
 		every_country = {
 			limit = {
 				is_at_war_with = root
-				# We have a pop-raiding war against them
-				OR = {
-					gk_has_standard_raiding_war_with = yes
-					gk_has_emancipation_war_with = yes
-					gk_has_reaping_war_with = yes
-					gk_has_opportunistic_raiding_with = yes
-				}
+				is_country_type = default
 				# Cap not reached and not terminated
-				NOT = { has_country_flag = gk_raid_cap_reached_by_@root }
-				NOT = { has_country_flag = gk_pop_raiding_terminated_by_@root }
+				NOT = {
+					has_country_flag = gk_raid_cap_reached_by_@root
+				}
+				NOT = {
+					has_country_flag = gk_pop_raiding_terminated_by_@root
+				}
 				# No pending offers
-				NOT = { has_country_flag = gk_tribute_offer_pending_from_@root }
-				NOT = { has_country_flag = gk_reforms_offer_pending_from_@root }
+				NOT = {
+					has_country_flag = gk_tribute_offer_pending_from_@root
+				}
+				NOT = {
+					has_country_flag = gk_reforms_offer_pending_from_@root
+				}
 			}
 			save_event_target_as = gk_raidee
-			root = {
-				save_event_target_as = gk_cap_raider
-				gk_save_pop_raid_side_leader_against_target = yes
-			}
-			# Only process if we ARE the side leader (avoid allies double-processing)
 			if = {
 				limit = {
-					event_target:gk_cap_raider = { is_same_value = root }
+					gk_target_is_raidable_by_root = yes
 				}
-				# Process each occupied planet
-				every_owned_planet = {
+				root = {
+					save_event_target_as = gk_cap_raider
+					gk_save_pop_raid_side_leader_against_target = yes
+				}
+				# Only process if we ARE the side leader (avoid allies double-processing)
+				if = {
 					limit = {
-						is_controlled_by = root
-						any_owned_pop_group = {
-							pop_group_size > 0
-							is_sapient = yes
-							gk_can_abduct_pop_group_war_goal_check = yes
-							gk_can_abduct_pop_group_robot_check = yes
+						event_target:gk_cap_raider = {
+							is_same_value = root
 						}
 					}
-					save_event_target_as = gk_target_planet
-					save_event_target_as = gk_raiding_target
-					add_modifier = { modifier = gk_planet_auto_raid days = 35 }
-					root = {
-						# Per-army-owner auto-raid with monthly cap
-						gk_raid_per_army_owner = { MONTHS = 1 }
-
-						# Notify if pops were taken (throttled to once per 6 months per planet)
-						if = {
-							limit = {
-								check_variable = { which = gk_forfeited_pops value > 0 }
+					# Process each occupied planet
+					every_owned_planet = {
+						limit = {
+							is_controlled_by = root
+							any_owned_pop_group = {
+								pop_group_size > 0
+								is_sapient = yes
+								gk_can_abduct_pop_group_war_goal_check = yes
+								gk_can_abduct_pop_group_robot_check = yes
+							}
+						}
+						save_event_target_as = gk_target_planet
+						save_event_target_as = gk_raiding_target
+						add_modifier = {
+							modifier = gk_planet_auto_raid
+							days = 35
+						}
+						root = {
+							# Per-army-owner auto-raid with monthly cap
+							gk_raid_per_army_owner = {
+								MONTHS = 1
+							}
+							# Notify if pops were taken (throttled to once per 6 months per planet)
+							if = {
+								limit = {
+									check_variable = {
+										which = gk_forfeited_pops
+										value > 0
+									}
+									event_target:gk_target_planet = {
+										NOT = {
+											has_planet_flag = gk_recently_auto_raided
+										}
+									}
+								}
 								event_target:gk_target_planet = {
-									NOT = { has_planet_flag = gk_recently_auto_raided }
+									set_timed_planet_flag = {
+										flag = gk_recently_auto_raided
+										months = 6
+									}
 								}
-							}
-							event_target:gk_target_planet = {
-								set_timed_planet_flag = {
-									flag = gk_recently_auto_raided
-									months = 6
-								}
-							}
-							create_message = {
-								type = MESSAGE_TYPE_GK_POP_RAIDED
-								localization = MESSAGE_GK_POP_RAIDED_OCCUPATION
-								days = 30
-								target = event_target:gk_target_planet
-								variable = {
-									type = name
-									localization = PLANET
-									scope = event_target:gk_target_planet
-								}
-								variable = {
-									type = variable
-									localization = POPS
-									varname = gk_forfeited_pops
-									scope = root
-								}
-							}
-							event_target:gk_raidee = {
 								create_message = {
-									type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
-									localization = MESSAGE_GK_OUR_POPS_RAIDED_OCCUPATION
+									type = MESSAGE_TYPE_GK_POP_RAIDED
+									localization = MESSAGE_GK_POP_RAIDED_OCCUPATION
 									days = 30
 									target = event_target:gk_target_planet
 									variable = {
@@ -224,58 +223,110 @@ country_event = {
 										scope = event_target:gk_target_planet
 									}
 									variable = {
-										type = name
-										localization = FROM
-										scope = root
-									}
-									variable = {
 										type = variable
 										localization = POPS
 										varname = gk_forfeited_pops
 										scope = root
 									}
 								}
-							}
-						}
-
-						# Check if planet depopulated
-						if = {
-							limit = {
-								event_target:gk_target_planet = {
-									count_owned_pop_amount = { count = 0 }
-								}
-							}
-							# Only show planet cleared if raidee still has pops elsewhere
-							if = {
-								limit = {
-									event_target:gk_raidee = {
-										count_owned_pop_amount = { count > 0 }
-									}
-								}
-								country_event = {
-									id = gk_raiding_pops.135
-									scopes = { from = event_target:gk_target_planet }
-								}
 								event_target:gk_raidee = {
-									country_event = {
-										id = gk_raiding_pops.136
-										scopes = { from = root }
+									create_message = {
+										type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+										localization = MESSAGE_GK_OUR_POPS_RAIDED_OCCUPATION
+										days = 30
+										target = event_target:gk_target_planet
+										variable = {
+											type = name
+											localization = PLANET
+											scope = event_target:gk_target_planet
+										}
+										variable = {
+											type = name
+											localization = FROM
+											scope = root
+										}
+										variable = {
+											type = variable
+											localization = POPS
+											varname = gk_forfeited_pops
+											scope = root
+										}
 									}
 								}
 							}
-							# Check empire-wide depopulation
+							# Check if planet depopulated
 							if = {
 								limit = {
-									event_target:gk_raidee = {
-										count_owned_pop_amount = { count = 0 }
+									event_target:gk_target_planet = {
+										count_owned_pop_amount = {
+											count = 0
+										}
 									}
 								}
-								country_event = {
-									id = gk_raiding_pops.215
-									scopes = { from = event_target:gk_raidee }
+								# Only show planet cleared if raidee still has pops elsewhere
+								if = {
+									limit = {
+										event_target:gk_raidee = {
+											count_owned_pop_amount = {
+												count > 0
+											}
+										}
+									}
+									country_event = {
+										id = gk_raiding_pops.135
+										scopes = {
+											from = event_target:gk_target_planet
+										}
+									}
+									event_target:gk_raidee = {
+										country_event = {
+											id = gk_raiding_pops.136
+											scopes = {
+												from = root
+											}
+										}
+									}
+								}
+								# Check empire-wide depopulation
+								if = {
+									limit = {
+										event_target:gk_raidee = {
+											count_owned_pop_amount = {
+												count = 0
+											}
+										}
+									}
+									country_event = {
+										id = gk_raiding_pops.215
+										scopes = {
+											from = event_target:gk_raidee
+										}
+									}
 								}
 							}
 						}
+					}
+				}
+			}
+			else = {
+				# Monthly pulse only prompts when the raider is actually occupying
+				# one of the target's colonies — matches the "raid vector" rule:
+				# no vector means no prompt.
+				if = {
+					limit = {
+						event_target:gk_raidee = {
+							any_owned_planet = {
+								is_controlled_by = root
+								any_owned_pop_group = {
+									pop_group_size > 0
+									is_sapient = yes
+									gk_can_abduct_pop_group_robot_check = yes
+								}
+							}
+						}
+					}
+					root = {
+						gk_prompt_opportunistic_if_eligible = yes
 					}
 				}
 			}
@@ -292,7 +343,6 @@ country_event = {
 	picture = GFX_evt_ground_combat
 	show_sound = event_celebration
 	is_triggered_only = yes
-
 	option = {
 		name = GK_RAIDING_PLANET_CLEARED_ACK
 	}
@@ -307,7 +357,6 @@ country_event = {
 	picture = GFX_evt_ground_combat
 	show_sound = event_default
 	is_triggered_only = yes
-
 	option = {
 		name = GK_RAIDING_PLANET_LOST_ACK
 	}
@@ -319,18 +368,21 @@ country_event = {
 	id = gk_raiding_pops.120
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		any_country = {
 			OR = {
 				has_country_flag = gk_raid_cap_reached_by_@root
 				has_country_flag = gk_pop_raiding_terminated_by_@root
 				has_country_flag = gk_opportunistic_raid_authorized_by_@root
-				root = { has_country_flag = gk_pivoted_to_pillaging_against_@prev }
+				root = {
+					OR = {
+						has_country_flag = gk_pivoted_to_pillaging_against_@prev
+						has_country_flag = gk_opportunistic_prompted_@prev
+					}
+				}
 			}
 		}
 	}
-
 	immediate = {
 		every_country = {
 			limit = {
@@ -341,7 +393,12 @@ country_event = {
 					has_country_flag = gk_reforms_offer_pending_from_@root
 					has_country_flag = gk_autonomy_offer_pending_from_@root
 					has_country_flag = gk_opportunistic_raid_authorized_by_@root
-					root = { has_country_flag = gk_pivoted_to_pillaging_against_@prev }
+					root = {
+						OR = {
+							has_country_flag = gk_pivoted_to_pillaging_against_@prev
+							has_country_flag = gk_opportunistic_prompted_@prev
+						}
+					}
 				}
 			}
 			if = {
@@ -377,7 +434,9 @@ country_event = {
 				}
 				if = {
 					limit = {
-						root = { is_at_war = no }
+						root = {
+							is_at_war = no
+						}
 					}
 					# Kill contributor trackers linked to this raid tracker
 					save_event_target_as = gk_dying_tracker
@@ -387,10 +446,14 @@ country_event = {
 								has_leader_flag = gk_contributor_tracker
 								has_leader_flag = gk_contributor_for_tracker_@event_target:gk_dying_tracker
 							}
-							kill_leader = { show_notification = no }
+							kill_leader = {
+								show_notification = no
+							}
 						}
 					}
-					kill_leader = { show_notification = no }
+					kill_leader = {
+						show_notification = no
+					}
 				}
 			}
 		}
@@ -400,7 +463,6 @@ country_event = {
 ############################
 # Pop Invasion             #
 ############################
-
 # On planet attackers win - instant pop raid
 # This = Attacking Country
 # From = Defending Country
@@ -409,22 +471,15 @@ country_event = {
 	id = gk_raiding_pops.210
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		fromfrom = {
 			is_colony = yes
 		}
 		gk_can_pop_raid_personally = yes
 		from = {
-			OR = {
-				gk_has_standard_raiding_war_with = yes
-				gk_has_emancipation_war_with = yes
-				gk_has_reaping_war_with = yes
-				gk_has_opportunistic_raiding_with = yes
-			}
+			is_country_type = default
 		}
 	}
-
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -434,123 +489,142 @@ country_event = {
 			save_event_target_as = gk_target_planet
 			save_event_target_as = gk_raiding_target
 		}
-
-		# Resolve side leader for bucket tracking
-		gk_save_pop_raid_side_leader_against_target = yes
-		if = {
-			limit = {
-				NOT = { exists = event_target:gk_cap_raider }
-			}
-			save_event_target_as = gk_cap_raider
-		}
-
-		# Per-army-owner invasion burst (accumulates gk_forfeited_pops on root)
-		gk_invasion_per_army_owner = { MONTHS = @gk_invasion_months }
-
-		if = {
-			limit = {
-				check_variable = { which = gk_forfeited_pops value > 0 }
-			}
-			# Notify attacker
-			create_message = {
-				type = MESSAGE_TYPE_GK_POP_RAIDED
-				localization = MESSAGE_GK_POP_RAIDED_INVASION
-				days = 30
-				target = event_target:gk_target_planet
-				variable = {
-					type = name
-					localization = PLANET
-					scope = event_target:gk_target_planet
-				}
-				variable = {
-					type = variable
-					localization = POPS
-					varname = gk_forfeited_pops
-					scope = root
-				}
-			}
-			# Notify defender
-			event_target:gk_raidee = {
-				create_message = {
-					type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
-					localization = MESSAGE_GK_OUR_POPS_RAIDED_INVASION
-					days = 30
-					target = event_target:gk_target_planet
-					variable = {
-						type = name
-						localization = PLANET
-						scope = event_target:gk_target_planet
-					}
-					variable = {
-						type = name
-						localization = FROM
-						scope = root
-					}
-					variable = {
-						type = variable
-						localization = POPS
-						varname = gk_forfeited_pops
-						scope = root
-					}
-				}
-			}
-		}
-
-		# Notify war leader when an ally captures pops on their behalf
-		if = {
-			limit = {
-				check_variable = { which = gk_forfeited_pops value > 0 }
-				exists = event_target:gk_cap_raider
-				event_target:gk_cap_raider = {
-					NOT = { is_same_value = root }
-				}
-			}
-			event_target:gk_cap_raider = {
-				create_message = {
-					type = MESSAGE_TYPE_GK_POP_RAIDED
-					localization = MESSAGE_GK_POP_RAIDED_ALLY_INVASION
-					days = 30
-					target = event_target:gk_target_planet
-					variable = {
-						type = name
-						localization = ALLY
-						scope = root
-					}
-					variable = {
-						type = name
-						localization = PLANET
-						scope = event_target:gk_target_planet
-					}
-					variable = {
-						type = variable
-						localization = POPS
-						varname = gk_forfeited_pops
-						scope = root
-					}
-				}
-			}
-		}
-
-		# Check if we just depopulated the raidee entirely
 		if = {
 			limit = {
 				event_target:gk_raidee = {
-					count_owned_pop_amount = { count = 0 }
+					gk_target_is_raidable_by_root = yes
 				}
 			}
-			country_event = {
-				id = gk_raiding_pops.215
-				scopes = { from = event_target:gk_raidee }
+			# Resolve side leader for bucket tracking
+			gk_save_pop_raid_side_leader_against_target = yes
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:gk_cap_raider
+					}
+				}
+				save_event_target_as = gk_cap_raider
+			}
+			# Per-army-owner invasion burst (accumulates gk_forfeited_pops on root)
+			gk_invasion_per_army_owner = {
+				MONTHS = @gk_invasion_months
+			}
+			if = {
+				limit = {
+					check_variable = {
+						which = gk_forfeited_pops
+						value > 0
+					}
+				}
+				# Notify attacker
+				create_message = {
+					type = MESSAGE_TYPE_GK_POP_RAIDED
+					localization = MESSAGE_GK_POP_RAIDED_INVASION
+					days = 30
+					target = event_target:gk_target_planet
+					variable = {
+						type = name
+						localization = PLANET
+						scope = event_target:gk_target_planet
+					}
+					variable = {
+						type = variable
+						localization = POPS
+						varname = gk_forfeited_pops
+						scope = root
+					}
+				}
+				# Notify defender
+				event_target:gk_raidee = {
+					create_message = {
+						type = MESSAGE_TYPE_GK_OUR_POPS_RAIDED
+						localization = MESSAGE_GK_OUR_POPS_RAIDED_INVASION
+						days = 30
+						target = event_target:gk_target_planet
+						variable = {
+							type = name
+							localization = PLANET
+							scope = event_target:gk_target_planet
+						}
+						variable = {
+							type = name
+							localization = FROM
+							scope = root
+						}
+						variable = {
+							type = variable
+							localization = POPS
+							varname = gk_forfeited_pops
+							scope = root
+						}
+					}
+				}
+			}
+			# Notify war leader when an ally captures pops on their behalf
+			if = {
+				limit = {
+					check_variable = {
+						which = gk_forfeited_pops
+						value > 0
+					}
+					exists = event_target:gk_cap_raider
+					event_target:gk_cap_raider = {
+						NOT = {
+							is_same_value = root
+						}
+					}
+				}
+				event_target:gk_cap_raider = {
+					create_message = {
+						type = MESSAGE_TYPE_GK_POP_RAIDED
+						localization = MESSAGE_GK_POP_RAIDED_ALLY_INVASION
+						days = 30
+						target = event_target:gk_target_planet
+						variable = {
+							type = name
+							localization = ALLY
+							scope = root
+						}
+						variable = {
+							type = name
+							localization = PLANET
+							scope = event_target:gk_target_planet
+						}
+						variable = {
+							type = variable
+							localization = POPS
+							varname = gk_forfeited_pops
+							scope = root
+						}
+					}
+				}
+			}
+			# Check if we just depopulated the raidee entirely
+			if = {
+				limit = {
+					event_target:gk_raidee = {
+						count_owned_pop_amount = {
+							count = 0
+						}
+					}
+				}
+				country_event = {
+					id = gk_raiding_pops.215
+					scopes = {
+						from = event_target:gk_raidee
+					}
+				}
 			}
 		}
-
+		else = {
+			gk_prompt_opportunistic_if_eligible = yes
+		}
 	}
 }
 
 ##############################
 # Total Depopulation Popup   #
 ##############################
-
 # Fired when raiding seizes the last pops of an empire
 # This = raider
 # From = raidee (may be about to die)
@@ -561,13 +635,13 @@ country_event = {
 	picture = GFX_evt_exploding_planet
 	show_sound = event_alien_nature
 	is_triggered_only = yes
-
 	immediate = {
-		from = { save_event_target_as = gk_raidee }
+		from = {
+			save_event_target_as = gk_raidee
+		}
 		save_event_target_as = gk_cap_raider
 		gk_get_or_create_raid_tracker = yes
 	}
-
 	option = {
 		name = GK_RAIDING_DEPOPULATED_ACK
 	}
@@ -576,12 +650,10 @@ country_event = {
 ############################
 # Pop Surrender            #
 ############################
-
 country_event = {
 	id = gk_raiding_pops.300
 	hide_window = yes
 	is_triggered_only = yes
-
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -593,10 +665,15 @@ country_event = {
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
-				check_variable = { which = gk_forfeited_pops value > 0 }
+				check_variable = {
+					which = gk_forfeited_pops
+					value > 0
+				}
 			}
 			event_target:gk_raidee = {
-				capital_scope = { save_event_target_as = gk_raidee_capital }
+				capital_scope = {
+					save_event_target_as = gk_raidee_capital
+				}
 			}
 			event_target:gk_raider = {
 				create_message = {
@@ -645,7 +722,6 @@ country_event = {
 	id = gk_raiding_pops.310
 	hide_window = yes
 	is_triggered_only = yes
-
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -657,10 +733,15 @@ country_event = {
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
-				check_variable = { which = gk_forfeited_pops value > 0 }
+				check_variable = {
+					which = gk_forfeited_pops
+					value > 0
+				}
 			}
 			event_target:gk_raidee = {
-				capital_scope = { save_event_target_as = gk_raidee_capital }
+				capital_scope = {
+					save_event_target_as = gk_raidee_capital
+				}
 			}
 			event_target:gk_raider = {
 				create_message = {
@@ -709,7 +790,6 @@ country_event = {
 	id = gk_raiding_pops.320
 	hide_window = yes
 	is_triggered_only = yes
-
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -721,10 +801,15 @@ country_event = {
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
-				check_variable = { which = gk_forfeited_pops value > 0 }
+				check_variable = {
+					which = gk_forfeited_pops
+					value > 0
+				}
 			}
 			event_target:gk_raidee = {
-				capital_scope = { save_event_target_as = gk_raidee_capital }
+				capital_scope = {
+					save_event_target_as = gk_raidee_capital
+				}
 			}
 			event_target:gk_raider = {
 				create_message = {
@@ -773,7 +858,6 @@ country_event = {
 	id = gk_raiding_pops.330
 	hide_window = yes
 	is_triggered_only = yes
-
 	immediate = {
 		save_event_target_as = gk_raider
 		from = {
@@ -785,15 +869,22 @@ country_event = {
 		gk_copy_pop_result_values_for_display = yes
 		if = {
 			limit = {
-				check_variable = { which = gk_forfeited_pops value > 0 }
+				check_variable = {
+					which = gk_forfeited_pops
+					value > 0
+				}
 			}
 			event_target:gk_raidee = {
-				capital_scope = { save_event_target_as = gk_raidee_capital }
+				capital_scope = {
+					save_event_target_as = gk_raidee_capital
+				}
 			}
 			every_country = {
 				limit = {
 					has_communications = root
-					NOT = { is_country = root }
+					NOT = {
+						is_country = root
+					}
 					OR = {
 						is_country_type = default
 						has_ai_personality = awakened_fallen_empire_xenophile
@@ -801,7 +892,10 @@ country_event = {
 				}
 				while = {
 					count = root.gk_forfeited_pops
-					add_opinion_modifier = { who = root modifier = opinion_gk_raided_pops }
+					add_opinion_modifier = {
+						who = root
+						modifier = opinion_gk_raided_pops
+					}
 				}
 			}
 			event_target:gk_raider = {
@@ -850,7 +944,6 @@ country_event = {
 ############################
 # Escalation Events        #
 ############################
-
 # Bucket completed — offer escalation to side leader
 # This = gk_cap_raider (side leader)
 # From = raidee country
@@ -860,27 +953,46 @@ country_event = {
 	desc = {
 		trigger = {
 			event_target:gk_raid_tracker = {
-				check_variable = { which = gk_escalation_tier value >= 4 }
+				check_variable = {
+					which = gk_escalation_tier
+					value >= @gk_final_tier_threshold
+				}
 			}
 		}
 		text = GK_RAIDING_ESCALATION_DESC_FINAL
 	}
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = gk_raid_is_significant }
+			NOT = {
+				has_country_flag = gk_raid_is_significant
+			}
 			has_country_flag = gk_escalation_has_intel
 			event_target:gk_raid_tracker = {
-				NOT = { check_variable = { which = gk_escalation_tier value >= 4 } }
+				NOT = {
+					check_variable = {
+						which = gk_escalation_tier
+						value >= @gk_final_tier_threshold
+					}
+				}
 			}
 		}
 		text = GK_RAIDING_ESCALATION_DESC_TRIVIAL_INTEL
 	}
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = gk_raid_is_significant }
-			NOT = { has_country_flag = gk_escalation_has_intel }
+			NOT = {
+				has_country_flag = gk_raid_is_significant
+			}
+			NOT = {
+				has_country_flag = gk_escalation_has_intel
+			}
 			event_target:gk_raid_tracker = {
-				NOT = { check_variable = { which = gk_escalation_tier value >= 4 } }
+				NOT = {
+					check_variable = {
+						which = gk_escalation_tier
+						value >= @gk_final_tier_threshold
+					}
+				}
 			}
 		}
 		text = GK_RAIDING_ESCALATION_DESC_TRIVIAL
@@ -889,7 +1001,12 @@ country_event = {
 		trigger = {
 			has_country_flag = gk_escalation_has_intel
 			event_target:gk_raid_tracker = {
-				NOT = { check_variable = { which = gk_escalation_tier value >= 4 } }
+				NOT = {
+					check_variable = {
+						which = gk_escalation_tier
+						value >= @gk_final_tier_threshold
+					}
+				}
 			}
 		}
 		text = GK_RAIDING_ESCALATION_DESC_INTEL
@@ -897,7 +1014,12 @@ country_event = {
 	desc = {
 		trigger = {
 			event_target:gk_raid_tracker = {
-				NOT = { check_variable = { which = gk_escalation_tier value >= 4 } }
+				NOT = {
+					check_variable = {
+						which = gk_escalation_tier
+						value >= @gk_final_tier_threshold
+					}
+				}
 			}
 		}
 		text = GK_RAIDING_ESCALATION_DESC
@@ -905,16 +1027,16 @@ country_event = {
 	picture = GFX_evt_ground_combat
 	show_sound = event_alien_nature
 	is_triggered_only = yes
-
 	trigger = {
 		# Only show if war still ongoing and cap still reached
 		is_at_war_with = from
 		from = {
 			has_country_flag = gk_raid_cap_reached_by_@root
-			NOT = { has_country_flag = gk_pop_raiding_terminated_by_@root }
+			NOT = {
+				has_country_flag = gk_pop_raiding_terminated_by_@root
+			}
 		}
 	}
-
 	immediate = {
 		save_event_target_as = gk_cap_raider
 		from = {
@@ -968,30 +1090,45 @@ country_event = {
 		# Detect opportunistic raiding context (no explicit raiding war goal)
 		if = {
 			limit = {
-				from = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
-				NOT = { gk_is_plunder_war_with_from = yes }
-				NOT = { gk_is_emancipation_war_with_from = yes }
+				from = {
+					has_country_flag = gk_opportunistic_raid_authorized_by_@root
+				}
+				NOT = {
+					gk_is_plunder_war_with_from = yes
+				}
+				NOT = {
+					gk_is_emancipation_war_with_from = yes
+				}
 			}
 			set_country_flag = gk_is_opportunistic_escalation
 		}
 		# Pre-compute tribute base for display (plunder only)
 		if = {
-			limit = { gk_is_plunder_war_with_from = yes }
+			limit = {
+				gk_is_plunder_war_with_from = yes
+			}
 			# Resolve primary resource (energy or food for bio-ships)
 			if = {
-				limit = { country_uses_bio_ships = yes }
+				limit = {
+					country_uses_bio_ships = yes
+				}
 				event_target:gk_raid_tracker = {
-					set_variable = { which = gk_tribute_base value = root.value:gk_tribute_base_value|PRIMARY|food| }
+					set_variable = {
+						which = gk_tribute_base
+						value = root.value:gk_tribute_base_value|PRIMARY|food|
+					}
 				}
 			}
 			else = {
 				event_target:gk_raid_tracker = {
-					set_variable = { which = gk_tribute_base value = root.value:gk_tribute_base_value|PRIMARY|energy| }
+					set_variable = {
+						which = gk_tribute_base
+						value = root.value:gk_tribute_base_value|PRIMARY|energy|
+					}
 				}
 			}
 		}
 	}
-
 	# Option A: Consolidate
 	option = {
 		name = GK_RAIDING_ESCALATION_CONSOLIDATE
@@ -1001,7 +1138,9 @@ country_event = {
 			country_event = {
 				id = gk_raiding_pops.500
 				days = 360
-				scopes = { from = event_target:gk_raidee }
+				scopes = {
+					from = event_target:gk_raidee
+				}
 			}
 		}
 		ai_chance = {
@@ -1028,13 +1167,15 @@ country_event = {
 			}
 		}
 	}
-
 	# Option B: Press the Raid
 	option = {
 		name = {
 			trigger = {
 				event_target:gk_raid_tracker = {
-					check_variable = { which = gk_escalation_tier value >= 4 }
+					check_variable = {
+						which = gk_escalation_tier
+						value >= @gk_final_tier_threshold
+					}
 				}
 			}
 			text = GK_RAIDING_ESCALATION_PRESS_FINAL
@@ -1052,51 +1193,86 @@ country_event = {
 			mult = value:gk_escalation_influence_cost
 		}
 		hidden_effect = {
-			# Advance bucket (rate is derived from tier via value:gk_bucket_rate_for_tier)
+			# Advance tier — bucket_pops_taken stays (cumulative cap model).
+			# Inline script updates gk_bucket_cap / gk_next_bucket_cap to match.
 			event_target:gk_raid_tracker = {
-				change_variable = { which = gk_escalation_tier value = 1 }
-				set_variable = { which = gk_bucket_pops_taken value = 0 }
+				change_variable = {
+					which = gk_escalation_tier
+					value = 1
+				}
+				inline_script = "gk_raiding/refresh_tracker_caps"
 			}
 			# Remove cap flag so raiding can continue
 			from = {
 				remove_country_flag = gk_raid_cap_reached_by_@root
 			}
-			# At tier 5, switch war goal to reaping to prevent surrender (not in opportunistic context)
+			# At max tier, switch war goal to reaping to prevent surrender (not in opportunistic context)
 			if = {
 				limit = {
-					NOT = { has_country_flag = gk_is_opportunistic_escalation }
+					NOT = {
+						has_country_flag = gk_is_opportunistic_escalation
+					}
 					event_target:gk_raid_tracker = {
-						check_variable = { which = gk_escalation_tier value >= 5 }
+						check_variable = {
+							which = gk_escalation_tier
+							value >= @gk_max_escalation_tier
+						}
 					}
 				}
 				every_war = {
 					limit = {
 						OR = {
 							AND = {
-								is_war_participant = { who = root side = attackers }
-								is_war_participant = { who = from side = defenders }
-								using_war_goal = { type = wg_plunder owner = attacker }
+								is_war_participant = {
+									who = root
+									side = attackers
+								}
+								is_war_participant = {
+									who = from
+									side = defenders
+								}
+								using_war_goal = {
+									type = wg_plunder
+									owner = attacker
+								}
 							}
 							AND = {
-								is_war_participant = { who = root side = defenders }
-								is_war_participant = { who = from side = attackers }
-								using_war_goal = { type = wg_plunder owner = defender }
+								is_war_participant = {
+									who = root
+									side = defenders
+								}
+								is_war_participant = {
+									who = from
+									side = attackers
+								}
+								using_war_goal = {
+									type = wg_plunder
+									owner = defender
+								}
 							}
 						}
 					}
 					root = {
-						set_war_goal = { type = wg_gk_reaping target = from enemy = from }
+						set_war_goal = {
+							type = wg_gk_reaping
+							target = from
+							enemy = from
+						}
 					}
 				}
 			}
 			# Opinion: escalation penalty (plunder only, not reaping)
 			if = {
-				limit = { gk_is_plunder_war_with_from = yes }
+				limit = {
+					gk_is_plunder_war_with_from = yes
+				}
 				every_country = {
 					limit = {
 						has_communications = root
 						is_country_type = default
-						NOT = { is_same_value = root }
+						NOT = {
+							is_same_value = root
+						}
 					}
 					add_opinion_modifier = {
 						who = root
@@ -1136,16 +1312,20 @@ country_event = {
 			}
 		}
 	}
-
 	# Option C: Pivot to Pillaging (plunder only, hidden at tier >= 4, not opportunistic)
 	option = {
 		name = GK_RAIDING_ESCALATION_PIVOT
 		custom_tooltip = GK_RAIDING_ESCALATION_PIVOT_TOOLTIP
 		trigger = {
-			NOT = { has_country_flag = gk_is_opportunistic_escalation }
+			NOT = {
+				has_country_flag = gk_is_opportunistic_escalation
+			}
 			gk_is_plunder_war_with_from = yes
 			event_target:gk_raid_tracker = {
-				check_variable = { which = gk_escalation_tier value < 4 }
+				check_variable = {
+					which = gk_escalation_tier
+					value < @gk_final_tier_threshold
+				}
 			}
 		}
 		hidden_effect = {
@@ -1159,19 +1339,41 @@ country_event = {
 				limit = {
 					OR = {
 						AND = {
-							is_war_participant = { who = root side = attackers }
-							is_war_participant = { who = from side = defenders }
-							using_war_goal = { type = wg_plunder owner = attacker }
+							is_war_participant = {
+								who = root
+								side = attackers
+							}
+							is_war_participant = {
+								who = from
+								side = defenders
+							}
+							using_war_goal = {
+								type = wg_plunder
+								owner = attacker
+							}
 						}
 						AND = {
-							is_war_participant = { who = root side = defenders }
-							is_war_participant = { who = from side = attackers }
-							using_war_goal = { type = wg_plunder owner = defender }
+							is_war_participant = {
+								who = root
+								side = defenders
+							}
+							is_war_participant = {
+								who = from
+								side = attackers
+							}
+							using_war_goal = {
+								type = wg_plunder
+								owner = defender
+							}
 						}
 					}
 				}
 				root = {
-					set_war_goal = { type = wg_plunder_raid target = from enemy = from }
+					set_war_goal = {
+						type = wg_plunder_raid
+						target = from
+						enemy = from
+					}
 				}
 			}
 		}
@@ -1197,13 +1399,14 @@ country_event = {
 			}
 		}
 	}
-
 	# Option D: Demand Tribute (plunder only, not opportunistic)
 	option = {
 		name = GK_RAIDING_ESCALATION_TRIBUTE
 		custom_tooltip = GK_RAIDING_ESCALATION_TRIBUTE_TOOLTIP
 		trigger = {
-			NOT = { has_country_flag = gk_is_opportunistic_escalation }
+			NOT = {
+				has_country_flag = gk_is_opportunistic_escalation
+			}
 			gk_is_plunder_war_with_from = yes
 		}
 		allow = {
@@ -1222,13 +1425,17 @@ country_event = {
 				# Send offer to defender
 				country_event = {
 					id = gk_raiding_pops.510
-					scopes = { from = root }
+					scopes = {
+						from = root
+					}
 				}
 				# Schedule 90-day timeout
 				country_event = {
 					id = gk_raiding_pops.513
 					days = @gk_tribute_offer_timeout_days
-					scopes = { from = root }
+					scopes = {
+						from = root
+					}
 				}
 			}
 		}
@@ -1250,13 +1457,14 @@ country_event = {
 			}
 		}
 	}
-
 	# Option E: Demand Reforms (emancipation only, not opportunistic)
 	option = {
 		name = GK_RAIDING_ESCALATION_REFORMS
 		custom_tooltip = GK_RAIDING_ESCALATION_REFORMS_TOOLTIP
 		trigger = {
-			NOT = { has_country_flag = gk_is_opportunistic_escalation }
+			NOT = {
+				has_country_flag = gk_is_opportunistic_escalation
+			}
 			gk_is_emancipation_war_with_from = yes
 		}
 		allow = {
@@ -1274,12 +1482,16 @@ country_event = {
 				set_country_flag = gk_reforms_offer_pending_from_@root
 				country_event = {
 					id = gk_raiding_pops.520
-					scopes = { from = root }
+					scopes = {
+						from = root
+					}
 				}
 				country_event = {
 					id = gk_raiding_pops.523
 					days = @gk_tribute_offer_timeout_days
-					scopes = { from = root }
+					scopes = {
+						from = root
+					}
 				}
 			}
 		}
@@ -1302,7 +1514,6 @@ country_event = {
 			}
 		}
 	}
-
 	after = {
 		hidden_effect = {
 			remove_country_flag = gk_escalation_has_intel
@@ -1315,184 +1526,50 @@ country_event = {
 ######################################
 # Opportunistic Raiding Authorization #
 ######################################
-
-# Hidden dispatcher — on war declaration
-# Root = Country, From = War
-country_event = {
-	id = gk_raiding_pops.605
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		gk_can_pop_raid_personally = yes
-		# Not a raiding war
-		from = {
-			NOT = { using_war_goal = { type = wg_plunder owner = attacker } }
-			NOT = { using_war_goal = { type = wg_plunder owner = defender } }
-			NOT = { using_war_goal = { type = wg_gk_emancipation owner = attacker } }
-			NOT = { using_war_goal = { type = wg_gk_emancipation owner = defender } }
-			NOT = { using_war_goal = { type = wg_gk_reaping owner = attacker } }
-			NOT = { using_war_goal = { type = wg_gk_reaping owner = defender } }
-		}
-	}
-
-	immediate = {
-		if = {
-			limit = { from = { is_war_participant = { who = root side = attackers } } }
-			from = {
-				every_defender = {
-					limit = {
-						is_country_type = default
-						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
-					}
-					root = {
-						country_event = {
-							id = gk_raiding_pops.600
-							days = 1
-							scopes = { from = prev }
-						}
-					}
-				}
-			}
-		}
-		else = {
-			from = {
-				every_attacker = {
-					limit = {
-						is_country_type = default
-						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
-					}
-					root = {
-						country_event = {
-							id = gk_raiding_pops.600
-							days = 1
-							scopes = { from = prev }
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-# Bombardment dispatch — prompt opportunistic raiding on first bombardment per target
+# Bombardment dispatch — switches scope into the bombarder so the shared
+# effect evaluates with root = raider.
 # This = Planet, From = Bombarder country, FromFrom = Fleet
 planet_event = {
 	id = gk_raiding_pops.615
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		exists = owner
-		from = {
-			gk_can_pop_raid_personally = yes
-			NOT = { has_country_flag = gk_opportunistic_prompted_@prev.owner }
-		}
+		has_orbital_bombardment_stance = raiding
 		owner = {
 			is_country_type = default
 			NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@from }
 		}
-		# Not a raiding war (handle bombarder on either side)
 		from = {
-			any_war = {
-				OR = {
-					AND = {
-						is_war_participant = { who = prev side = attackers }
-						is_war_participant = { who = prevprev.owner side = defenders }
-					}
-					AND = {
-						is_war_participant = { who = prev side = defenders }
-						is_war_participant = { who = prevprev.owner side = attackers }
-					}
-				}
-				NOR = {
-					is_total_war = yes
-					using_war_goal = { type = wg_plunder owner = attacker }
-					using_war_goal = { type = wg_plunder owner = defender }
-					using_war_goal = { type = wg_gk_emancipation owner = attacker }
-					using_war_goal = { type = wg_gk_emancipation owner = defender }
-					using_war_goal = { type = wg_gk_reaping owner = attacker }
-					using_war_goal = { type = wg_gk_reaping owner = defender }
-				}
-			}
+			gk_can_pop_raid_personally = yes
+			NOT = { has_country_flag = gk_opportunistic_prompted_@prev.owner }
 		}
 	}
-
 	immediate = {
+		owner = {
+			save_event_target_as = gk_raidee
+		}
 		from = {
-			# Set prompted flag immediately so subsequent bombardment ticks
-			# short-circuit before reaching the expensive any_war evaluation
-			set_timed_country_flag = {
-				flag = gk_opportunistic_prompted_@prev.owner
-				years = 5
-			}
 			country_event = {
-				id = gk_raiding_pops.600
-				scopes = { from = prevprev.owner }
+				id = gk_raiding_pops.616
+				days = 0
 			}
 		}
 	}
 }
 
-# Monthly fallback — catches mid-war raiding access and save compatibility
-# This = Country
+# Raider-scoped gate. Run as a country_event so root = raider and the
+# shared effect's inner triggers/flags resolve correctly.
+# This = Root = raider, event_target:gk_raidee = target
 country_event = {
-	id = gk_raiding_pops.610
+	id = gk_raiding_pops.616
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
-		gk_can_pop_raid_personally = yes
-		is_at_war = yes
+		exists = event_target:gk_raidee
 	}
-
 	immediate = {
-		every_war = {
-			limit = {
-				NOT = {
-					OR = {
-						using_war_goal = { type = wg_plunder owner = attacker }
-						using_war_goal = { type = wg_plunder owner = defender }
-						using_war_goal = { type = wg_gk_emancipation owner = attacker }
-						using_war_goal = { type = wg_gk_emancipation owner = defender }
-						using_war_goal = { type = wg_gk_reaping owner = attacker }
-						using_war_goal = { type = wg_gk_reaping owner = defender }
-					}
-				}
-			}
-			if = {
-				limit = { is_war_participant = { who = root side = attackers } }
-				every_defender = {
-					limit = {
-						is_country_type = default
-						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
-						root = { NOT = { has_country_flag = gk_opportunistic_prompted_@prev } }
-					}
-					root = {
-						country_event = {
-							id = gk_raiding_pops.600
-							scopes = { from = prev }
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = { is_war_participant = { who = root side = defenders } }
-				every_attacker = {
-					limit = {
-						is_country_type = default
-						NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
-						root = { NOT = { has_country_flag = gk_opportunistic_prompted_@prev } }
-					}
-					root = {
-						country_event = {
-							id = gk_raiding_pops.600
-							scopes = { from = prev }
-						}
-					}
-				}
-			}
-		}
+		gk_prompt_opportunistic_if_eligible = yes
 	}
 }
 
@@ -1505,16 +1582,11 @@ country_event = {
 	picture = GFX_evt_ground_combat
 	show_sound = event_alien_nature
 	is_triggered_only = yes
-
+	# Caller (gk_prompt_opportunistic_if_eligible) already gated eligibility and
+	# set gk_opportunistic_prompted_@from. Only re-check that the war is still live.
 	trigger = {
-		gk_can_pop_raid_personally = yes
 		is_at_war_with = from
-		from = {
-			NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
-		}
-		NOT = { has_country_flag = gk_opportunistic_prompted_@from }
 	}
-
 	# Option A: Authorize opportunistic raiding
 	option = {
 		name = GK_OPPORTUNISTIC_AUTHORIZE
@@ -1579,14 +1651,13 @@ country_event = {
 			}
 		}
 	}
-
 	# Option B: Decline
 	option = {
 		name = GK_OPPORTUNISTIC_DECLINE
 		hidden_effect = {
 			set_timed_country_flag = {
 				flag = gk_opportunistic_prompted_@from
-				years = 5
+				years = @gk_opportunistic_prompt_cooldown_years
 			}
 		}
 		ai_chance = {
@@ -1612,7 +1683,6 @@ country_event = {
 ##############################
 # Tribute Event Chain        #
 ##############################
-
 # Tribute offer arrives to defender
 # This = raidee (defender)
 # From = raider (cap_raider)
@@ -1623,26 +1693,27 @@ country_event = {
 	picture = GFX_evt_throne_room
 	show_sound = event_administrative_work
 	is_triggered_only = yes
-
 	trigger = {
 		has_country_flag = gk_tribute_offer_pending_from_@from
 		is_at_war_with = from
 	}
-
 	immediate = {
 		from = {
 			save_event_target_as = gk_cap_raider
 		}
 		save_event_target_as = gk_raidee
-		from = { gk_get_or_create_raid_tracker = yes }
+		from = {
+			gk_get_or_create_raid_tracker = yes
+		}
 	}
-
 	# Accept: Energy only (non-bio-ship raider)
 	option = {
 		name = GK_RAIDING_TRIBUTE_ENERGY
 		trigger = {
 			has_country_flag = gk_tribute_offer_pending_from_@from
-			from = { country_uses_bio_ships = no }
+			from = {
+				country_uses_bio_ships = no
+			}
 		}
 		add_resource = {
 			energy = -1
@@ -1650,21 +1721,33 @@ country_event = {
 		}
 		hidden_effect = {
 			event_target:gk_raid_tracker = {
-				set_variable = { which = gk_dep_energy value = gk_tribute_base }
-				set_variable = { which = gk_dep_food value = 0 }
-				set_variable = { which = gk_dep_alloys value = 0 }
+				set_variable = {
+					which = gk_dep_energy
+					value = gk_tribute_base
+				}
+				set_variable = {
+					which = gk_dep_food
+					value = 0
+				}
+				set_variable = {
+					which = gk_dep_alloys
+					value = 0
+				}
 			}
 			gk_tribute_accept_common = yes
 		}
-		ai_chance = { factor = 50 }
+		ai_chance = {
+			factor = 50
+		}
 	}
-
 	# Accept: Food only (bio-ship raider)
 	option = {
 		name = GK_RAIDING_TRIBUTE_FOOD
 		trigger = {
 			has_country_flag = gk_tribute_offer_pending_from_@from
-			from = { country_uses_bio_ships = yes }
+			from = {
+				country_uses_bio_ships = yes
+			}
 		}
 		add_resource = {
 			food = -1
@@ -1672,15 +1755,25 @@ country_event = {
 		}
 		hidden_effect = {
 			event_target:gk_raid_tracker = {
-				set_variable = { which = gk_dep_energy value = 0 }
-				set_variable = { which = gk_dep_food value = gk_tribute_base }
-				set_variable = { which = gk_dep_alloys value = 0 }
+				set_variable = {
+					which = gk_dep_energy
+					value = 0
+				}
+				set_variable = {
+					which = gk_dep_food
+					value = gk_tribute_base
+				}
+				set_variable = {
+					which = gk_dep_alloys
+					value = 0
+				}
 			}
 			gk_tribute_accept_common = yes
 		}
-		ai_chance = { factor = 50 }
+		ai_chance = {
+			factor = 50
+		}
 	}
-
 	# Accept: Alloys only
 	option = {
 		name = GK_RAIDING_TRIBUTE_ALLOYS
@@ -1693,22 +1786,37 @@ country_event = {
 		}
 		hidden_effect = {
 			event_target:gk_raid_tracker = {
-				set_variable = { which = gk_dep_energy value = 0 }
-				set_variable = { which = gk_dep_food value = 0 }
-				set_variable = { which = gk_dep_alloys value = gk_tribute_base }
-				multiply_variable = { which = gk_dep_alloys value = @gk_tribute_alloy_ratio }
+				set_variable = {
+					which = gk_dep_energy
+					value = 0
+				}
+				set_variable = {
+					which = gk_dep_food
+					value = 0
+				}
+				set_variable = {
+					which = gk_dep_alloys
+					value = gk_tribute_base
+				}
+				multiply_variable = {
+					which = gk_dep_alloys
+					value = @gk_tribute_alloy_ratio
+				}
 			}
 			gk_tribute_accept_common = yes
 		}
-		ai_chance = { factor = 30 }
+		ai_chance = {
+			factor = 30
+		}
 	}
-
 	# Accept: Split (energy + alloys, non-bio-ship raider)
 	option = {
 		name = GK_RAIDING_TRIBUTE_SPLIT
 		trigger = {
 			has_country_flag = gk_tribute_offer_pending_from_@from
-			from = { country_uses_bio_ships = no }
+			from = {
+				country_uses_bio_ships = no
+			}
 		}
 		add_resource = {
 			energy = -0.5
@@ -1720,24 +1828,45 @@ country_event = {
 		}
 		hidden_effect = {
 			event_target:gk_raid_tracker = {
-				set_variable = { which = gk_dep_energy value = gk_tribute_base }
-				divide_variable = { which = gk_dep_energy value = 2 }
-				set_variable = { which = gk_dep_food value = 0 }
-				set_variable = { which = gk_dep_alloys value = gk_tribute_base }
-				multiply_variable = { which = gk_dep_alloys value = @gk_tribute_alloy_ratio }
-				divide_variable = { which = gk_dep_alloys value = 2 }
+				set_variable = {
+					which = gk_dep_energy
+					value = gk_tribute_base
+				}
+				divide_variable = {
+					which = gk_dep_energy
+					value = 2
+				}
+				set_variable = {
+					which = gk_dep_food
+					value = 0
+				}
+				set_variable = {
+					which = gk_dep_alloys
+					value = gk_tribute_base
+				}
+				multiply_variable = {
+					which = gk_dep_alloys
+					value = @gk_tribute_alloy_ratio
+				}
+				divide_variable = {
+					which = gk_dep_alloys
+					value = 2
+				}
 			}
 			gk_tribute_accept_common = yes
 		}
-		ai_chance = { factor = 40 }
+		ai_chance = {
+			factor = 40
+		}
 	}
-
 	# Accept: Split (food + alloys, bio-ship raider)
 	option = {
 		name = GK_RAIDING_TRIBUTE_SPLIT_FOOD
 		trigger = {
 			has_country_flag = gk_tribute_offer_pending_from_@from
-			from = { country_uses_bio_ships = yes }
+			from = {
+				country_uses_bio_ships = yes
+			}
 		}
 		add_resource = {
 			food = -0.5
@@ -1749,18 +1878,37 @@ country_event = {
 		}
 		hidden_effect = {
 			event_target:gk_raid_tracker = {
-				set_variable = { which = gk_dep_energy value = 0 }
-				set_variable = { which = gk_dep_food value = gk_tribute_base }
-				divide_variable = { which = gk_dep_food value = 2 }
-				set_variable = { which = gk_dep_alloys value = gk_tribute_base }
-				multiply_variable = { which = gk_dep_alloys value = @gk_tribute_alloy_ratio }
-				divide_variable = { which = gk_dep_alloys value = 2 }
+				set_variable = {
+					which = gk_dep_energy
+					value = 0
+				}
+				set_variable = {
+					which = gk_dep_food
+					value = gk_tribute_base
+				}
+				divide_variable = {
+					which = gk_dep_food
+					value = 2
+				}
+				set_variable = {
+					which = gk_dep_alloys
+					value = gk_tribute_base
+				}
+				multiply_variable = {
+					which = gk_dep_alloys
+					value = @gk_tribute_alloy_ratio
+				}
+				divide_variable = {
+					which = gk_dep_alloys
+					value = 2
+				}
 			}
 			gk_tribute_accept_common = yes
 		}
-		ai_chance = { factor = 40 }
+		ai_chance = {
+			factor = 40
+		}
 	}
-
 	# Reject
 	option = {
 		name = GK_RAIDING_TRIBUTE_REJECT
@@ -1768,7 +1916,10 @@ country_event = {
 			has_country_flag = gk_tribute_offer_pending_from_@from
 		}
 		hidden_effect = {
-			gk_reject_offer = { PENDING_FLAG = gk_tribute_offer_pending REJECTION_EVENT = gk_raiding_pops.512 }
+			gk_reject_offer = {
+				PENDING_FLAG = gk_tribute_offer_pending
+				REJECTION_EVENT = gk_raiding_pops.512
+			}
 		}
 		ai_chance = {
 			factor = 30
@@ -1783,16 +1934,18 @@ country_event = {
 			}
 		}
 	}
-
 	# Expired (shown when timeout removes the flag)
 	option = {
 		name = GK_RAIDING_OFFER_EXPIRED
 		trigger = {
-			NOT = { has_country_flag = gk_tribute_offer_pending_from_@from }
+			NOT = {
+				has_country_flag = gk_tribute_offer_pending_from_@from
+			}
 		}
-		ai_chance = { factor = 100 }
+		ai_chance = {
+			factor = 100
+		}
 	}
-
 }
 
 # Tribute deposit waiting for raider to collect
@@ -1806,13 +1959,13 @@ country_event = {
 	picture = GFX_evt_treasure_pile
 	show_sound = event_celebration
 	is_triggered_only = yes
-
 	immediate = {
 		save_event_target_as = gk_cap_raider
-		from = { save_event_target_as = gk_raidee }
+		from = {
+			save_event_target_as = gk_raidee
+		}
 		gk_get_or_create_raid_tracker = yes
 	}
-
 	option = {
 		name = GK_RAIDING_TRIBUTE_COLLECT
 		add_resource = {
@@ -1844,19 +1997,41 @@ country_event = {
 				limit = {
 					OR = {
 						AND = {
-							is_war_participant = { who = root side = attackers }
-							is_war_participant = { who = from side = defenders }
-							using_war_goal = { type = wg_plunder owner = attacker }
+							is_war_participant = {
+								who = root
+								side = attackers
+							}
+							is_war_participant = {
+								who = from
+								side = defenders
+							}
+							using_war_goal = {
+								type = wg_plunder
+								owner = attacker
+							}
 						}
 						AND = {
-							is_war_participant = { who = root side = defenders }
-							is_war_participant = { who = from side = attackers }
-							using_war_goal = { type = wg_plunder owner = defender }
+							is_war_participant = {
+								who = root
+								side = defenders
+							}
+							is_war_participant = {
+								who = from
+								side = attackers
+							}
+							using_war_goal = {
+								type = wg_plunder
+								owner = defender
+							}
 						}
 					}
 				}
 				root = {
-					set_war_goal = { type = wg_humiliation target = from enemy = from }
+					set_war_goal = {
+						type = wg_humiliation
+						target = from
+						enemy = from
+					}
 				}
 			}
 		}
@@ -1873,7 +2048,6 @@ country_event = {
 	picture = GFX_evt_throne_room
 	show_sound = event_default
 	is_triggered_only = yes
-
 	option = {
 		name = OK
 	}
@@ -1886,20 +2060,20 @@ country_event = {
 	id = gk_raiding_pops.513
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		has_country_flag = gk_tribute_offer_pending_from_@from
 	}
-
 	immediate = {
-		gk_reject_offer = { PENDING_FLAG = gk_tribute_offer_pending REJECTION_EVENT = gk_raiding_pops.512 }
+		gk_reject_offer = {
+			PENDING_FLAG = gk_tribute_offer_pending
+			REJECTION_EVENT = gk_raiding_pops.512
+		}
 	}
 }
 
 ##############################
 # Reforms Event Chain        #
 ##############################
-
 # Reforms offer arrives to defender
 # This = raidee (defender)
 # From = raider
@@ -1910,18 +2084,19 @@ country_event = {
 	picture = GFX_evt_alien_propaganda
 	show_sound = event_administrative_work
 	is_triggered_only = yes
-
 	trigger = {
 		has_country_flag = gk_reforms_offer_pending_from_@from
 		is_at_war_with = from
 	}
-
 	immediate = {
-		from = { save_event_target_as = gk_cap_raider }
+		from = {
+			save_event_target_as = gk_cap_raider
+		}
 		save_event_target_as = gk_raidee
-		from = { gk_get_or_create_raid_tracker = yes }
+		from = {
+			gk_get_or_create_raid_tracker = yes
+		}
 	}
-
 	# Accept
 	option = {
 		name = GK_RAIDING_REFORMS_ACCEPT
@@ -1944,7 +2119,9 @@ country_event = {
 				}
 				country_event = {
 					id = gk_raiding_pops.521
-					scopes = { from = root }
+					scopes = {
+						from = root
+					}
 				}
 			}
 		}
@@ -1964,7 +2141,6 @@ country_event = {
 			}
 		}
 	}
-
 	# Reject
 	option = {
 		name = GK_RAIDING_REFORMS_REJECT
@@ -1972,7 +2148,10 @@ country_event = {
 			has_country_flag = gk_reforms_offer_pending_from_@from
 		}
 		hidden_effect = {
-			gk_reject_offer = { PENDING_FLAG = gk_reforms_offer_pending REJECTION_EVENT = gk_raiding_pops.522 }
+			gk_reject_offer = {
+				PENDING_FLAG = gk_reforms_offer_pending
+				REJECTION_EVENT = gk_raiding_pops.522
+			}
 		}
 		ai_chance = {
 			factor = 50
@@ -1986,14 +2165,17 @@ country_event = {
 			}
 		}
 	}
-
 	# Expired
 	option = {
 		name = GK_RAIDING_OFFER_EXPIRED
 		trigger = {
-			NOT = { has_country_flag = gk_reforms_offer_pending_from_@from }
+			NOT = {
+				has_country_flag = gk_reforms_offer_pending_from_@from
+			}
 		}
-		ai_chance = { factor = 100 }
+		ai_chance = {
+			factor = 100
+		}
 	}
 }
 
@@ -2007,7 +2189,6 @@ country_event = {
 	picture = GFX_evt_alien_propaganda
 	show_sound = event_celebration
 	is_triggered_only = yes
-
 	option = {
 		name = EXCELLENT
 		hidden_effect = {
@@ -2016,25 +2197,53 @@ country_event = {
 				limit = {
 					OR = {
 						AND = {
-							is_war_participant = { who = root side = attackers }
-							is_war_participant = { who = from side = defenders }
+							is_war_participant = {
+								who = root
+								side = attackers
+							}
+							is_war_participant = {
+								who = from
+								side = defenders
+							}
 							OR = {
-								using_war_goal = { type = wg_plunder owner = attacker }
-								using_war_goal = { type = wg_gk_emancipation owner = attacker }
+								using_war_goal = {
+									type = wg_plunder
+									owner = attacker
+								}
+								using_war_goal = {
+									type = wg_gk_emancipation
+									owner = attacker
+								}
 							}
 						}
 						AND = {
-							is_war_participant = { who = root side = defenders }
-							is_war_participant = { who = from side = attackers }
+							is_war_participant = {
+								who = root
+								side = defenders
+							}
+							is_war_participant = {
+								who = from
+								side = attackers
+							}
 							OR = {
-								using_war_goal = { type = wg_plunder owner = defender }
-								using_war_goal = { type = wg_gk_emancipation owner = defender }
+								using_war_goal = {
+									type = wg_plunder
+									owner = defender
+								}
+								using_war_goal = {
+									type = wg_gk_emancipation
+									owner = defender
+								}
 							}
 						}
 					}
 				}
 				root = {
-					set_war_goal = { type = wg_humiliation target = from enemy = from }
+					set_war_goal = {
+						type = wg_humiliation
+						target = from
+						enemy = from
+					}
 				}
 			}
 		}
@@ -2051,7 +2260,6 @@ country_event = {
 	picture = GFX_evt_alien_propaganda
 	show_sound = event_default
 	is_triggered_only = yes
-
 	option = {
 		name = OK
 	}
@@ -2064,20 +2272,20 @@ country_event = {
 	id = gk_raiding_pops.523
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		has_country_flag = gk_reforms_offer_pending_from_@from
 	}
-
 	immediate = {
-		gk_reject_offer = { PENDING_FLAG = gk_reforms_offer_pending REJECTION_EVENT = gk_raiding_pops.522 }
+		gk_reject_offer = {
+			PENDING_FLAG = gk_reforms_offer_pending
+			REJECTION_EVENT = gk_raiding_pops.522
+		}
 	}
 }
 
 ##############################
 # Autonomy Event Chain       #
 ##############################
-
 # Autonomy offer arrives to defender
 # This = raidee (defender)
 # From = raider
@@ -2088,18 +2296,19 @@ country_event = {
 	picture = GFX_evt_robot_assembly_plant
 	show_sound = event_administrative_work
 	is_triggered_only = yes
-
 	trigger = {
 		has_country_flag = gk_autonomy_offer_pending_from_@from
 		is_at_war_with = from
 	}
-
 	immediate = {
-		from = { save_event_target_as = gk_cap_raider }
+		from = {
+			save_event_target_as = gk_cap_raider
+		}
 		save_event_target_as = gk_raidee
-		from = { gk_get_or_create_raid_tracker = yes }
+		from = {
+			gk_get_or_create_raid_tracker = yes
+		}
 	}
-
 	# Accept
 	option = {
 		name = GK_RAIDING_AUTONOMY_ACCEPT
@@ -2122,7 +2331,9 @@ country_event = {
 				}
 				country_event = {
 					id = gk_raiding_pops.531
-					scopes = { from = root }
+					scopes = {
+						from = root
+					}
 				}
 			}
 		}
@@ -2142,7 +2353,6 @@ country_event = {
 			}
 		}
 	}
-
 	# Reject
 	option = {
 		name = GK_RAIDING_AUTONOMY_REJECT
@@ -2150,7 +2360,10 @@ country_event = {
 			has_country_flag = gk_autonomy_offer_pending_from_@from
 		}
 		hidden_effect = {
-			gk_reject_offer = { PENDING_FLAG = gk_autonomy_offer_pending REJECTION_EVENT = gk_raiding_pops.532 }
+			gk_reject_offer = {
+				PENDING_FLAG = gk_autonomy_offer_pending
+				REJECTION_EVENT = gk_raiding_pops.532
+			}
 		}
 		ai_chance = {
 			factor = 50
@@ -2164,14 +2377,17 @@ country_event = {
 			}
 		}
 	}
-
 	# Expired
 	option = {
 		name = GK_RAIDING_OFFER_EXPIRED
 		trigger = {
-			NOT = { has_country_flag = gk_autonomy_offer_pending_from_@from }
+			NOT = {
+				has_country_flag = gk_autonomy_offer_pending_from_@from
+			}
 		}
-		ai_chance = { factor = 100 }
+		ai_chance = {
+			factor = 100
+		}
 	}
 }
 
@@ -2185,7 +2401,6 @@ country_event = {
 	picture = GFX_evt_robot_assembly_plant
 	show_sound = event_celebration
 	is_triggered_only = yes
-
 	option = {
 		name = EXCELLENT
 	}
@@ -2201,7 +2416,6 @@ country_event = {
 	picture = GFX_evt_robot_assembly_plant
 	show_sound = event_default
 	is_triggered_only = yes
-
 	option = {
 		name = OK
 	}
@@ -2214,25 +2428,24 @@ country_event = {
 	id = gk_raiding_pops.533
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		has_country_flag = gk_autonomy_offer_pending_from_@from
 	}
-
 	immediate = {
-		gk_reject_offer = { PENDING_FLAG = gk_autonomy_offer_pending REJECTION_EVENT = gk_raiding_pops.532 }
+		gk_reject_offer = {
+			PENDING_FLAG = gk_autonomy_offer_pending
+			REJECTION_EVENT = gk_raiding_pops.532
+		}
 	}
 }
 
 ##############################
 # Reaping War Declaration    #
 ##############################
-
 country_event = {
 	id = gk_raiding_pops.400
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		from = {
 			using_war_goal = {
@@ -2245,18 +2458,22 @@ country_event = {
 			}
 		}
 	}
-
 	immediate = {
 		every_country = {
 			limit = {
 				has_communications = root
-				NOT = { is_country = root }
+				NOT = {
+					is_country = root
+				}
 				OR = {
 					is_country_type = default
 					has_ai_personality = awakened_fallen_empire_xenophile
 				}
 			}
-			add_opinion_modifier = { who = root modifier = opinion_gk_declared_reaping }
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_gk_declared_reaping
+			}
 		}
 	}
 }

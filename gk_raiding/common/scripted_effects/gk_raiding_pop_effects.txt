@@ -13,6 +13,10 @@
 # Raid Tracker CRUD  #
 ######################
 
+# Single source of truth for escalation tier → bucket cap mapping lives at:
+#   common/inline_scripts/gk_raiding/refresh_tracker_caps.txt
+# Expanded at parse time so it doesn't add to scripted-effect recursion depth.
+
 # Get or create a raid tracker for a specific raid-side-leader/defender pair
 # This = any scope
 # event_target:gk_cap_raider = side leader country whose quota is being spent
@@ -58,6 +62,7 @@ gk_get_or_create_raid_tracker = {
 				set_variable = { which = gk_pops_taken value = 0 }
 				set_variable = { which = gk_escalation_tier value = 0 }
 				set_variable = { which = gk_bucket_pops_taken value = 0 }
+				inline_script = "gk_raiding/refresh_tracker_caps"
 				save_event_target_as = gk_raid_tracker
 			}
 		}
@@ -217,21 +222,21 @@ gk_save_pop_raid_side_leader_against_target = {
 			OR = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = event_target:gk_raidee side = defenders }
 					OR = {
 						using_war_goal = { type = wg_plunder owner = attacker }
 						using_war_goal = { type = wg_gk_emancipation owner = attacker }
 						using_war_goal = { type = wg_gk_reaping owner = attacker }
 					}
+					defender = { is_same_value = event_target:gk_raidee }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = event_target:gk_raidee side = attackers }
 					OR = {
 						using_war_goal = { type = wg_plunder owner = defender }
 						using_war_goal = { type = wg_gk_emancipation owner = defender }
 						using_war_goal = { type = wg_gk_reaping owner = defender }
 					}
+					attacker = { is_same_value = event_target:gk_raidee }
 				}
 			}
 		}
@@ -258,6 +263,33 @@ gk_save_pop_raid_side_leader_against_target = {
 			}
 		}
 		save_event_target_as = gk_cap_raider
+	}
+}
+
+# Shared raid-or-prompt gate. Fires the opportunistic authorization prompt
+# only if the target isn't already raidable and hasn't already been prompted.
+# This = raider country
+# event_target:gk_raidee = candidate target country
+gk_prompt_opportunistic_if_eligible = {
+	if = {
+		limit = {
+			gk_can_pop_raid_personally = yes
+			is_at_war_with = event_target:gk_raidee
+			NOT = { has_country_flag = gk_opportunistic_prompted_@event_target:gk_raidee }
+			event_target:gk_raidee = {
+				is_country_type = default
+				NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+				NOT = { gk_target_is_raidable_by_root = yes }
+			}
+		}
+		set_timed_country_flag = {
+			flag = gk_opportunistic_prompted_@event_target:gk_raidee
+			years = @gk_opportunistic_prompt_cooldown_years
+		}
+		country_event = {
+			id = gk_raiding_pops.600
+			scopes = { from = event_target:gk_raidee }
+		}
 	}
 }
 

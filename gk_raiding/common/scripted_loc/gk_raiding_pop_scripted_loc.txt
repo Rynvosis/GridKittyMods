@@ -140,9 +140,10 @@ defined_text = {
 	name = GkPressTooltip
 	text = {
 		trigger = {
+			exists = from
 			exists = event_target:gk_raid_tracker
 			event_target:gk_raid_tracker = {
-				check_variable = { which = gk_escalation_tier value >= 4 }
+				check_variable = { which = gk_escalation_tier value >= @gk_final_tier_threshold }
 			}
 			gk_is_plunder_war_with_from = yes
 		}
@@ -150,23 +151,18 @@ defined_text = {
 	}
 	text = {
 		trigger = {
+			exists = from
 			exists = event_target:gk_raid_tracker
 			event_target:gk_raid_tracker = {
-				check_variable = { which = gk_escalation_tier value >= 4 }
+				check_variable = { which = gk_escalation_tier value >= @gk_final_tier_threshold }
 			}
 			gk_is_emancipation_war_with_from = yes
 		}
 		localization_key = GK_RAIDING_ESCALATION_PRESS_FINAL_EMANCIPATION_TOOLTIP
 	}
+	# Fallback: no tracker, not at final tier, or no from scope (tooltip rendered
+	# outside the .500 event's scope, e.g. in a detached UI redraw).
 	text = {
-		trigger = {
-			OR = {
-				NOT = { exists = event_target:gk_raid_tracker }
-				event_target:gk_raid_tracker = {
-					NOT = { check_variable = { which = gk_escalation_tier value >= 4 } }
-				}
-			}
-		}
 		localization_key = GK_RAIDING_ESCALATION_PRESS_NORMAL_TOOLTIP
 	}
 }

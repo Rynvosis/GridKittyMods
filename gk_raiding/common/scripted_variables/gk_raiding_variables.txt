@@ -5,12 +5,17 @@
 # Pop Raiding — Bucket Cap #
 ############################
 
-@gk_bucket_rate_0 = 0.10
-@gk_bucket_rate_1 = 0.125
-@gk_bucket_rate_2 = 0.167
-@gk_bucket_rate_3 = 0.25
-@gk_bucket_rate_4 = 0.50
-@gk_bucket_rate_5 = 1.00
+# Cumulative caps per escalation tier: tier N can have captured up to this
+# fraction of the target's original pop pool. Single source of truth — consumers
+# read tracker.gk_bucket_cap / tracker.gk_next_bucket_cap after refresh.
+@gk_bucket_cap_0 = 0.10
+@gk_bucket_cap_1 = 0.25
+@gk_bucket_cap_2 = 0.50
+@gk_bucket_cap_3 = 1.00
+
+@gk_max_escalation_tier = 3
+# "FINAL" state threshold: escalation UI switches to final messaging at/above this tier.
+@gk_final_tier_threshold = 2
 
 @gk_escalation_base_cost = 50
 @gk_escalation_cost_per_tier = 25
@@ -23,6 +28,7 @@
 
 @gk_opportunistic_authorization_cost = 50
 @gk_opportunistic_cost_multiplier = 2
+@gk_opportunistic_prompt_cooldown_years = 5
 
 ############################
 # Pop Raiding — Auto-Raid  #

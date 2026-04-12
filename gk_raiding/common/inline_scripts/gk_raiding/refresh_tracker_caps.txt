@@ -1,0 +1,23 @@
+# Single source of truth for the escalation tier → cumulative-cap mapping.
+# Expanded at parse time into callers (no scripted-effect depth cost).
+# Call from the raid tracker (leader) scope after any change to gk_escalation_tier.
+if = {
+	limit = { check_variable = { which = gk_escalation_tier value = 0 } }
+	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_0 }
+	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_1 }
+}
+else_if = {
+	limit = { check_variable = { which = gk_escalation_tier value = 1 } }
+	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_1 }
+	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_2 }
+}
+else_if = {
+	limit = { check_variable = { which = gk_escalation_tier value = 2 } }
+	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_2 }
+	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_3 }
+}
+else = {
+	# At or past max tier — take-all cap, no next.
+	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_3 }
+	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_3 }
+}

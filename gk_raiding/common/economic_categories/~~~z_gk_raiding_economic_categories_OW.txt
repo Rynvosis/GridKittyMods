@@ -1,7 +1,13 @@
 # Version last updated: 4.2.3
 # Overwrites: planet_organic_batteries from 01_job_categories.txt
 # Adds generate_add_modifiers and generate_mult_modifiers for produces and upkeep
-# so civics/modifiers can buff grid amalgamation (organic battery) output
+# so civics/modifiers can buff grid amalgamation (organic battery) output.
+#
+# Filename prefix `~~~z_` is load-order armor: some mods (e.g. Universal Modifier
+# Patch, workshop id 1688887083) ship `~~~modifiers_fix_categories.txt` which
+# sorts after any `zz_`-prefixed file and would otherwise strip these
+# generate_add/mult hooks, silently breaking Harvesting Protocol's unity/energy
+# buffs. `~~~z` > `~~~m` so ours wins.
 #
 # Mod compatibility: when overwriting economic categories, include the full range of vanilla
 # generate_add/mult options. Other mods loading before us won't lose their modifier hooks.

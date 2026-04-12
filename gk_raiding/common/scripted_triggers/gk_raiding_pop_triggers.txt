@@ -7,14 +7,14 @@
 # Checks if raiding should bypass all bucket caps
 # This = raidee country
 # event_target:gk_cap_raider = side leader
-# event_target:gk_raid_tracker = tracker (optional, checked for tier 5)
+# event_target:gk_raid_tracker = tracker (optional, checked at max tier)
 gk_has_unlimited_raiding = {
 	OR = {
-		# Tier 5: total depopulation authorized
+		# Max tier: total depopulation authorized
 		AND = {
 			exists = event_target:gk_raid_tracker
 			event_target:gk_raid_tracker = {
-				check_variable = { which = gk_escalation_tier value >= 5 }
+				check_variable = { which = gk_escalation_tier value >= @gk_max_escalation_tier }
 			}
 		}
 		# Reaping war goal
@@ -124,13 +124,13 @@ gk_has_standard_raiding_war_with = {
 			OR = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = prevprev side = defenders }
 					using_war_goal = { type = wg_plunder owner = attacker }
+					defender = { is_same_value = prevprev }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = prevprev side = attackers }
 					using_war_goal = { type = wg_plunder owner = defender }
+					attacker = { is_same_value = prevprev }
 				}
 			}
 		}
@@ -143,13 +143,13 @@ gk_has_emancipation_war_with = {
 			OR = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = prevprev side = defenders }
 					using_war_goal = { type = wg_gk_emancipation owner = attacker }
+					defender = { is_same_value = prevprev }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = prevprev side = attackers }
 					using_war_goal = { type = wg_gk_emancipation owner = defender }
+					attacker = { is_same_value = prevprev }
 				}
 			}
 		}
@@ -162,13 +162,13 @@ gk_has_reaping_war_with = {
 			OR = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
-					is_war_participant = { who = prevprev side = defenders }
 					using_war_goal = { type = wg_gk_reaping owner = attacker }
+					defender = { is_same_value = prevprev }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
-					is_war_participant = { who = prevprev side = attackers }
 					using_war_goal = { type = wg_gk_reaping owner = defender }
+					attacker = { is_same_value = prevprev }
 				}
 			}
 		}
@@ -185,13 +185,13 @@ gk_is_plunder_war_with_from = {
 		OR = {
 			AND = {
 				is_war_participant = { who = prev side = attackers }
-				is_war_participant = { who = from side = defenders }
 				using_war_goal = { type = wg_plunder owner = attacker }
+				defender = { is_same_value = from }
 			}
 			AND = {
 				is_war_participant = { who = prev side = defenders }
-				is_war_participant = { who = from side = attackers }
 				using_war_goal = { type = wg_plunder owner = defender }
+				attacker = { is_same_value = from }
 			}
 		}
 	}
@@ -203,13 +203,13 @@ gk_is_emancipation_war_with_from = {
 		OR = {
 			AND = {
 				is_war_participant = { who = prev side = attackers }
-				is_war_participant = { who = from side = defenders }
 				using_war_goal = { type = wg_gk_emancipation owner = attacker }
+				defender = { is_same_value = from }
 			}
 			AND = {
 				is_war_participant = { who = prev side = defenders }
-				is_war_participant = { who = from side = attackers }
 				using_war_goal = { type = wg_gk_emancipation owner = defender }
+				attacker = { is_same_value = from }
 			}
 		}
 	}
@@ -223,6 +223,19 @@ gk_is_emancipation_war_with_from = {
 gk_has_opportunistic_raiding_with = {
 	has_country_flag = gk_opportunistic_raid_authorized_by_@root
 	root = { is_at_war_with = prev }
+}
+
+# This = target country, Root = raider country
+# Single source of truth: is the target currently raidable (primary wg or opportunistic)?
+# Order: opportunistic flag check is cheapest; put it first so the OR short-circuits
+# before the three any_war scans.
+gk_target_is_raidable_by_root = {
+	OR = {
+		gk_has_opportunistic_raiding_with = yes
+		gk_has_standard_raiding_war_with = yes
+		gk_has_emancipation_war_with = yes
+		gk_has_reaping_war_with = yes
+	}
 }
 
 ####################
