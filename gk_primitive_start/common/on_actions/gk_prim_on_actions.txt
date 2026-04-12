@@ -1,0 +1,6 @@
+# GK Primitive Start — Game Start Setup
+on_game_start_country = {
+	events = {
+		gk_prim.1  # Setup: advanced AI skip, start situation, add deposits
+	}
+}

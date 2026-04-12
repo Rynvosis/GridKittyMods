@@ -318,7 +318,62 @@ gk_abduct_on_surrender = {
 	event_target:gk_raidee = {
 		save_event_target_as = gk_raiding_target
 	}
-	gk_raid_from_target = yes
+	if = {
+		limit = { has_policy_flag = gk_focus_reaping }
+		# Reaping: bypass bucket system, transfer all eligible pops
+		if = {
+			limit = { NOT = { exists = event_target:gk_raid_tracker } }
+			gk_get_or_create_raid_tracker = yes
+		}
+		gk_get_or_create_pop_result_tracker = yes
+		event_target:gk_pop_result_tracker = {
+			save_event_target_as = gk_storage_scope
+			set_variable = { which = gk_forfeited_pops value = 0 }
+		}
+		# Transfer every eligible pop group whole
+		event_target:gk_raiding_target = {
+			every_owned_pop_group = {
+				limit = {
+					pop_group_size > 0
+					is_sapient = yes
+					gk_can_abduct_pop_group_war_goal_check = yes
+					gk_can_abduct_pop_group_robot_check = yes
+				}
+				save_event_target_as = gk_source_pop_group
+				# Capture size before transfer drains the group
+				export_trigger_value_to_variable = {
+					trigger = pop_group_size
+					variable = gk_pre_transfer_size
+				}
+				gk_find_destination_planet = yes
+				event_target:gk_destination_planet = {
+					create_pop_group = {
+						pop_group = event_target:gk_source_pop_group
+						size = 0
+						effect = {
+							transfer_pop_amount = {
+								source = event_target:gk_source_pop_group
+								target = this
+								percentage = 1.0
+							}
+						}
+					}
+				}
+				event_target:gk_storage_scope = {
+					change_variable = {
+						which = gk_forfeited_pops
+						value = event_target:gk_source_pop_group.gk_pre_transfer_size
+					}
+				}
+			}
+		}
+		event_target:gk_raidee = {
+			gk_track_raided_pops = { AMOUNT = event_target:gk_storage_scope.gk_forfeited_pops }
+		}
+	}
+	else = {
+		gk_raid_from_target = yes
+	}
 }
 
 ##############################

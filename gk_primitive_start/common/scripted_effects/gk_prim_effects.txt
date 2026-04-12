@@ -1,0 +1,255 @@
+# GK Primitive Start — B-Track Escalation Effects + Year 10 Tech Pools
+# This = country scope
+
+gk_prim_advance_exploration = {
+	if = {
+		limit = { has_country_flag = gk_prim_exploration_2 }
+		# 3rd pick: tech at 50%
+		set_country_flag = gk_prim_exploration_3
+		if = {
+			limit = { NOT = { has_technology = tech_sensors_2 } }
+			add_tech_progress = {
+				tech = tech_sensors_2
+				progress = 0.50
+			}
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_exploration_1 }
+		# 2nd pick: upgrade to tier 2 modifier (replaces tier 1)
+		set_country_flag = gk_prim_exploration_2
+		hidden_effect = { remove_modifier = gk_prim_exploration_1 }
+		add_modifier = { modifier = gk_prim_exploration_2 }
+	}
+	else = {
+		# 1st pick: tier 1 modifier
+		set_country_flag = gk_prim_exploration_1
+		add_modifier = { modifier = gk_prim_exploration_1 }
+	}
+}
+
+gk_prim_advance_conquest = {
+	if = {
+		limit = { has_country_flag = gk_prim_conquest_2 }
+		# 3rd pick: tech at 50% (bio swap: mauler_growth_1 instead of destroyers)
+		set_country_flag = gk_prim_conquest_3
+		if = {
+			limit = { country_uses_bio_ships = yes }
+			if = {
+				limit = { NOT = { has_technology = tech_mauler_growth_1 } }
+				add_tech_progress = {
+					tech = tech_mauler_growth_1
+					progress = 0.50
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = { NOT = { has_technology = tech_destroyers } }
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.50
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_conquest_1 }
+		# 2nd pick: upgrade to tier 2 modifier (replaces tier 1)
+		set_country_flag = gk_prim_conquest_2
+		hidden_effect = { remove_modifier = gk_prim_conquest_1 }
+		add_modifier = { modifier = gk_prim_conquest_2 }
+	}
+	else = {
+		# 1st pick: tier 1 modifier
+		set_country_flag = gk_prim_conquest_1
+		add_modifier = { modifier = gk_prim_conquest_1 }
+	}
+}
+
+gk_prim_advance_development = {
+	if = {
+		limit = { has_country_flag = gk_prim_development_2 }
+		# 3rd pick: tech at 50%
+		set_country_flag = gk_prim_development_3
+		if = {
+			limit = { NOT = { has_technology = tech_starbase_3 } }
+			add_tech_progress = {
+				tech = tech_starbase_3
+				progress = 0.50
+			}
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_development_1 }
+		# 2nd pick: upgrade to tier 2 modifier (replaces tier 1)
+		set_country_flag = gk_prim_development_2
+		hidden_effect = { remove_modifier = gk_prim_development_1 }
+		add_modifier = { modifier = gk_prim_development_2 }
+	}
+	else = {
+		# 1st pick: tier 1 modifier
+		set_country_flag = gk_prim_development_1
+		add_modifier = { modifier = gk_prim_development_1 }
+	}
+}
+
+# Year 10 Tech Pool Effects
+# Each gives 25% progress in the first 2 unresearched techs from an ordered list.
+# Two passes: first sets a temp flag, second skips it.
+
+gk_prim_y10_exploration_tech = {
+	# IMPORTANT: Pass 1 and Pass 2 tech lists must stay in sync
+	# Pass 1: first unresearched
+	if = {
+		limit = { NOT = { has_technology = tech_automated_exploration } can_research_technology = tech_automated_exploration }
+		give_tech_option_or_progress_effect = { TECH = tech_automated_exploration }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_administrative_ai } can_research_technology = tech_administrative_ai }
+		give_tech_option_or_progress_effect = { TECH = tech_administrative_ai }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_space_science_1 } can_research_technology = tech_space_science_1 }
+		give_tech_option_or_progress_effect = { TECH = tech_space_science_1 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_space_science_2 } can_research_technology = tech_space_science_2 }
+		give_tech_option_or_progress_effect = { TECH = tech_space_science_2 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_basic_science_lab_2 } can_research_technology = tech_basic_science_lab_2 }
+		give_tech_option_or_progress_effect = { TECH = tech_basic_science_lab_2 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	# Pass 2: second unresearched (skip what pass 1 gave via has_tech_option)
+	if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_automated_exploration } can_research_technology = tech_automated_exploration NOT = { has_tech_option = tech_automated_exploration } }
+		give_tech_option_or_progress_effect = { TECH = tech_automated_exploration }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_administrative_ai } can_research_technology = tech_administrative_ai NOT = { has_tech_option = tech_administrative_ai } }
+		give_tech_option_or_progress_effect = { TECH = tech_administrative_ai }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_space_science_1 } can_research_technology = tech_space_science_1 NOT = { has_tech_option = tech_space_science_1 } }
+		give_tech_option_or_progress_effect = { TECH = tech_space_science_1 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_space_science_2 } can_research_technology = tech_space_science_2 NOT = { has_tech_option = tech_space_science_2 } }
+		give_tech_option_or_progress_effect = { TECH = tech_space_science_2 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_basic_science_lab_2 } can_research_technology = tech_basic_science_lab_2 NOT = { has_tech_option = tech_basic_science_lab_2 } }
+		give_tech_option_or_progress_effect = { TECH = tech_basic_science_lab_2 }
+	}
+	remove_country_flag = gk_prim_y10_gave_first
+}
+
+gk_prim_y10_conquest_tech = {
+	# IMPORTANT: Pass 1 and Pass 2 tech lists must stay in sync
+	# Pass 1
+	if = {
+		limit = { NOT = { has_technology = tech_afterburners_1 } can_research_technology = tech_afterburners_1 }
+		give_tech_option_or_progress_effect = { TECH = tech_afterburners_1 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_combat_computers_1 } can_research_technology = tech_combat_computers_1 }
+		give_tech_option_or_progress_effect = { TECH = tech_combat_computers_1 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_ship_armor_2 } can_research_technology = tech_ship_armor_2 }
+		give_tech_option_or_progress_effect = { TECH = tech_ship_armor_2 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_corvette_hull_1 } can_research_technology = tech_corvette_hull_1 }
+		give_tech_option_or_progress_effect = { TECH = tech_corvette_hull_1 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_auxiliary_fire_control } can_research_technology = tech_auxiliary_fire_control }
+		give_tech_option_or_progress_effect = { TECH = tech_auxiliary_fire_control }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	# Pass 2
+	if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_afterburners_1 } can_research_technology = tech_afterburners_1 NOT = { has_tech_option = tech_afterburners_1 } }
+		give_tech_option_or_progress_effect = { TECH = tech_afterburners_1 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_combat_computers_1 } can_research_technology = tech_combat_computers_1 NOT = { has_tech_option = tech_combat_computers_1 } }
+		give_tech_option_or_progress_effect = { TECH = tech_combat_computers_1 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_ship_armor_2 } can_research_technology = tech_ship_armor_2 NOT = { has_tech_option = tech_ship_armor_2 } }
+		give_tech_option_or_progress_effect = { TECH = tech_ship_armor_2 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_corvette_hull_1 } can_research_technology = tech_corvette_hull_1 NOT = { has_tech_option = tech_corvette_hull_1 } }
+		give_tech_option_or_progress_effect = { TECH = tech_corvette_hull_1 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_auxiliary_fire_control } can_research_technology = tech_auxiliary_fire_control NOT = { has_tech_option = tech_auxiliary_fire_control } }
+		give_tech_option_or_progress_effect = { TECH = tech_auxiliary_fire_control }
+	}
+	remove_country_flag = gk_prim_y10_gave_first
+}
+
+gk_prim_y10_development_tech = {
+	# IMPORTANT: Pass 1 and Pass 2 tech lists must stay in sync
+	# Pass 1
+	if = {
+		limit = { NOT = { has_technology = tech_planetary_unification } can_research_technology = tech_planetary_unification }
+		give_tech_option_or_progress_effect = { TECH = tech_planetary_unification }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_powered_exoskeletons } can_research_technology = tech_powered_exoskeletons }
+		give_tech_option_or_progress_effect = { TECH = tech_powered_exoskeletons }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_space_mining_1 } can_research_technology = tech_space_mining_1 }
+		give_tech_option_or_progress_effect = { TECH = tech_space_mining_1 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_space_mining_2 } can_research_technology = tech_space_mining_2 }
+		give_tech_option_or_progress_effect = { TECH = tech_space_mining_2 }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_assembly_pattern } can_research_technology = tech_assembly_pattern }
+		give_tech_option_or_progress_effect = { TECH = tech_assembly_pattern }
+		set_country_flag = gk_prim_y10_gave_first
+	}
+	# Pass 2
+	if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_planetary_unification } can_research_technology = tech_planetary_unification NOT = { has_tech_option = tech_planetary_unification } }
+		give_tech_option_or_progress_effect = { TECH = tech_planetary_unification }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_powered_exoskeletons } can_research_technology = tech_powered_exoskeletons NOT = { has_tech_option = tech_powered_exoskeletons } }
+		give_tech_option_or_progress_effect = { TECH = tech_powered_exoskeletons }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_space_mining_1 } can_research_technology = tech_space_mining_1 NOT = { has_tech_option = tech_space_mining_1 } }
+		give_tech_option_or_progress_effect = { TECH = tech_space_mining_1 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_space_mining_2 } can_research_technology = tech_space_mining_2 NOT = { has_tech_option = tech_space_mining_2 } }
+		give_tech_option_or_progress_effect = { TECH = tech_space_mining_2 }
+	}
+	else_if = {
+		limit = { has_country_flag = gk_prim_y10_gave_first NOT = { has_technology = tech_assembly_pattern } can_research_technology = tech_assembly_pattern NOT = { has_tech_option = tech_assembly_pattern } }
+		give_tech_option_or_progress_effect = { TECH = tech_assembly_pattern }
+	}
+	remove_country_flag = gk_prim_y10_gave_first
+}

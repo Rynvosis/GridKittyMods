@@ -50,7 +50,6 @@ on_planet_attackers_win = {
 on_monthly_pulse_country = {
 	events = {
 		gk_raiding_pops.130
-		gk_raiding_pops.610  # Opportunistic raiding fallback check
 	}
 }
 

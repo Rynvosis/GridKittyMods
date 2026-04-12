@@ -217,7 +217,28 @@ gk_tier_quota = {
 		mode = add
 	}
 	add = event_target:gk_raid_tracker.gk_bucket_pops_taken
-	mult = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
+	# Reaping war: take all — skip rate multiplier
+	modifier = {
+		NOT = {
+			event_target:gk_cap_raider = {
+				any_war = {
+					OR = {
+						AND = {
+							is_war_participant = { who = prev side = attackers }
+							is_war_participant = { who = prevprev side = defenders }
+							using_war_goal = { type = wg_gk_reaping owner = attacker }
+						}
+						AND = {
+							is_war_participant = { who = prev side = defenders }
+							is_war_participant = { who = prevprev side = attackers }
+							using_war_goal = { type = wg_gk_reaping owner = defender }
+						}
+					}
+				}
+			}
+		}
+		mult = value:gk_bucket_rate_for_tier|TRACKER|event_target:gk_raid_tracker|
+	}
 	ceiling = yes
 }
 

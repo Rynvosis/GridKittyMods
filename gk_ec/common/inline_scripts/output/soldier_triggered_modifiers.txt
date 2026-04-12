@@ -1,4 +1,4 @@
 inline_script = {
 	script = output/soldier_triggered_modifiers_OW
-	CONDITION = ""
+	CONDITION = "always = yes"
 }

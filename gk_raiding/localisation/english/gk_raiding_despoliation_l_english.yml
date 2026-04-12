@@ -33,6 +33,7 @@
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_ADOPT_NATIVE_EFFECT:0 "Increases ['concept_gk_pillaging'] effectiveness in all war types."
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_3_EFFECT:0 "Gain £unity£ §YUnity§! when we inflict devastation on enemy worlds."
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_1_EFFECT:0 "While at war: §G+10%§! £happiness£ §YHappiness§!, §G+25%§! £unity£ §YUnity§! production"
+ GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_EFFECT:0 ""
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_ARCHIVE_EFFECT:0 "Technology granted: ['technology:tech_boarding_cables', £engineering£$tech_boarding_cables$]"
  GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_5_EFFECT:0 "£commander£ §YCommanders§! get one of: ['concept_gk_material_liberator'] or ['concept_gk_shipbreaker']\n\nGain §G50%§! more resources from §H$leader_trait_corsair$§! and §H$leader_trait_shipbreaker$§!."
 

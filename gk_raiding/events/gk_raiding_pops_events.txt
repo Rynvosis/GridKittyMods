@@ -1406,6 +1406,7 @@ planet_event = {
 					}
 				}
 				NOR = {
+					is_total_war = yes
 					using_war_goal = { type = wg_plunder owner = attacker }
 					using_war_goal = { type = wg_plunder owner = defender }
 					using_war_goal = { type = wg_gk_emancipation owner = attacker }
@@ -1523,7 +1524,10 @@ country_event = {
 				value >= @gk_opportunistic_authorization_cost
 			}
 		}
-		add_resource = { influence = -@gk_opportunistic_authorization_cost }
+		add_resource = {
+			influence = -1
+			mult = @gk_opportunistic_authorization_cost
+		}
 		hidden_effect = {
 			from = {
 				set_country_flag = gk_opportunistic_raid_authorized_by_@root

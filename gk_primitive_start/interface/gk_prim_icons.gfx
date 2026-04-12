@@ -1,0 +1,14 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ship_part_prototype_drive"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_prototype_drive.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_prototype_drive_bio"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_prototype_drive_bio.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_prototype_drive_fauna"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_prototype_drive_fauna.dds"
+	}
+}

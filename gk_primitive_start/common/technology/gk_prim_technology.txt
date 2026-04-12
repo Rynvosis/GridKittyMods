@@ -1,0 +1,52 @@
+# Dummy marker techs — granting these triggers component auto-upgrade re-evaluation
+# No actual effects, zero cost, zero weight, not researchable
+
+tech_gk_prim_stage_1_marker = {
+	cost = 0
+	area = physics
+	tier = 0
+	category = { particles }
+	weight = 1
+	weight_modifier = {
+		modifier = { factor = 0 always = yes }
+	}
+	is_reverse_engineerable = no
+}
+
+tech_gk_prim_stage_2_marker = {
+	cost = 0
+	area = physics
+	tier = 0
+	category = { particles }
+	weight = 1
+	weight_modifier = {
+		modifier = { factor = 0 always = yes }
+	}
+	is_reverse_engineerable = no
+}
+
+tech_gk_prim_stage_3_marker = {
+	cost = 0
+	area = physics
+	tier = 0
+	category = { particles }
+	weight = 1
+	weight_modifier = {
+		modifier = { factor = 0 always = yes }
+	}
+	is_reverse_engineerable = no
+}
+
+# Gate tech for proper hyperdrive — granted at situation completion
+# Empires without gk_prim_ftl_locked flag get this at game start automatically
+tech_gk_prim_hyperdrive_unlock = {
+	cost = 0
+	area = physics
+	tier = 0
+	category = { particles }
+	weight = 1
+	weight_modifier = {
+		modifier = { factor = 0 always = yes }
+	}
+	is_reverse_engineerable = no
+}

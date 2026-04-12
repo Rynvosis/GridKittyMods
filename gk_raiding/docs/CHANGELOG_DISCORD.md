@@ -1,15 +1,15 @@
+### Reaping
+- Reaping war surrender now transfers all eligible pops instead of being limited by the escalation tier bucket.
+- Auto-raiding on occupied planets in reaping wars bypasses the bucket cap — pops are taken based on army strength without tier limits.
+
 ### Opportunistic Raiding
-- New system: authorize pop raiding during non-raiding wars for 50 Influence. Escalation costs are doubled in this context.
-- Opportunistic raiding prompts appear on first orbital bombardment of each target, not at war start — no more popup spam against multiple enemies.
-- Escalation options restricted in opportunistic context: no war goal switching, tribute demands, or pillage pivots.
+- Total wars (End Threat, etc.) no longer prompt for opportunistic raiding — raiding is inherently allowed.
 
-### Raiding & Escalation
-- Pops abducted by the raiding bombardment stance are now redirected to planets with free housing, jobs, and good habitability instead of the engine's random destination. Species that would be enslaved are preferentially sent to planets that already have a slave population.
-- Escalation choices now switch the war goal to match the new objective: total depopulation switches to Reaping, pivoting to pillaging switches to Pillage, and accepted tribute or reform demands switch to Humiliation.
-- Pivoting to pillaging now uses the Pillage war goal with a reduced yield (nets +1 over base) and lighter surrender ransacked modifiers.
-- Removed the per-pop-group transfer cap, fixing rare cases where a straggler pop could survive surrender at maximum escalation.
+### Machine Despoilers
+- Reworked starting pop setup to handle vanilla species identity swap caused by certain origins. Battery species is now found by trait instead of relying on founder species identity.
 
-### Balance & Bug Fixes
-- Reaping Raiding Focus is now accessible to Gestalt empires (Determined Exterminators, Devouring Swarms, etc.) with Nihilistic Acquisition or despoiler civics.
-- Nihilistic Acquisition ascension perk is now hidden for empires that already have a raiding civic.
+### Bug Fixes
+- Fixed opportunistic raiding influence cost not displaying in tooltip.
 - Fixed a script error with mercenary enclave events when the enclave event target was unavailable.
+- Fixed missing modifier localisation for livestock and processing trade value.
+- Fixed missing tradition tooltip for Boarding Cables.

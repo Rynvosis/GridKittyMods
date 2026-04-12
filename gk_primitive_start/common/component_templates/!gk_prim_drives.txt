@@ -1,0 +1,167 @@
+# GK Primitive Start — Prototype Drive + Hyperdrive Gate
+# Prototype: +2000% slower windup. Available per-class via country flags.
+# Hyperdrive: gated behind tech_gk_prim_hyperdrive_unlock (granted at situation completion).
+
+@gk_prim_windup_mult = 20.0
+@power0 = -5
+@power1 = -10
+@cost1 = 5
+
+# Standard Prototype Drive (non-bio ships)
+utility_component_template = {
+	key = "PROTOTYPE_DRIVE"
+	size = small
+	icon = "GFX_ship_part_prototype_drive"
+	icon_frame = 1
+	power = @power0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+
+	ftl = yes
+
+	ship_modifier = {
+		ship_windup_mult = @gk_prim_windup_mult
+	}
+
+	potential = {
+		from = {
+			country_uses_bio_ships = no
+		}
+		OR = {
+			is_ship_class = shipclass_science_ship
+			AND = {
+				is_ship_class = shipclass_military
+				from = { has_country_flag = gk_prim_proto_military }
+			}
+			AND = {
+				is_ship_class = shipclass_constructor
+				from = { has_country_flag = gk_prim_proto_constructor }
+			}
+			AND = {
+				is_ship_class = shipclass_transport
+				from = { has_country_flag = gk_prim_proto_military }
+			}
+			AND = {
+				is_ship_class = shipclass_colonizer
+				from = { has_country_flag = gk_prim_proto_colonizer }
+			}
+		}
+	}
+
+	prerequisites = { "tech_hyper_drive_1" }
+	component_set = "ftl_components"
+	upgrades_to = "HYPER_DRIVE_1"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+# Bio Prototype Drive (bio ships)
+utility_component_template = {
+	key = "PROTOTYPE_DRIVE_BIO"
+	size = small
+	icon = "GFX_ship_part_prototype_drive_bio"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			food = @cost1
+		}
+	}
+
+	ftl = yes
+
+	ship_modifier = {
+		ship_windup_mult = @gk_prim_windup_mult
+	}
+
+	potential = {
+		from = {
+			country_uses_bio_ships = yes
+		}
+		OR = {
+			is_ship_class = shipclass_science_ship
+			AND = {
+				is_ship_class = shipclass_military
+				from = { has_country_flag = gk_prim_proto_military }
+			}
+			AND = {
+				is_ship_class = shipclass_constructor
+				from = { has_country_flag = gk_prim_proto_constructor }
+			}
+			AND = {
+				is_ship_class = shipclass_transport
+				from = { has_country_flag = gk_prim_proto_military }
+			}
+			AND = {
+				is_ship_class = shipclass_colonizer
+				from = { has_country_flag = gk_prim_proto_colonizer }
+			}
+		}
+	}
+
+	prerequisites = { "tech_hyper_drive_1" }
+	component_set = "ftl_components" # Needs to match other bioship path
+	upgrades_to = "BIO_HYPER_DRIVE_1"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+# Fauna Prototype Drive (space fauna)
+utility_component_template = {
+	key = "PROTOTYPE_DRIVE_FAUNA"
+	size = small
+	icon = "GFX_ship_part_prototype_drive_fauna"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			food = @cost1
+		}
+	}
+
+	ftl = yes
+
+	ship_modifier = {
+		ship_windup_mult = @gk_prim_windup_mult
+	}
+
+	potential = {
+		OR = {
+			is_ship_class = shipclass_science_ship
+			AND = {
+				is_ship_class = shipclass_military
+				from = { has_country_flag = gk_prim_proto_military }
+			}
+			AND = {
+				is_ship_class = shipclass_constructor
+				from = { has_country_flag = gk_prim_proto_constructor }
+			}
+			AND = {
+				is_ship_class = shipclass_transport
+				from = { has_country_flag = gk_prim_proto_military }
+			}
+			AND = {
+				is_ship_class = shipclass_colonizer
+				from = { has_country_flag = gk_prim_proto_colonizer }
+			}
+		}
+	}
+
+	prerequisites = { "tech_hyper_drive_1" }
+	component_set = "ftl_components_bio" # Needs to match other fauna path
+	upgrades_to = "BIO_DRIVE"
+
+	ai_weight = {
+		weight = 2
+	}
+}

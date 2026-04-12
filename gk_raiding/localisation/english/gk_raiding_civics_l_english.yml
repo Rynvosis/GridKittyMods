@@ -162,6 +162,8 @@ civic_gk_barbaric_despoilers_megacorp_effects:0 "Has the '§Y$casus_belli_cb_des
  mod_planet_organic_batteries_feral_insight_upkeep_mult:0 "$feral_insight_upkeep_for$ $job_organic_battery_plural_with_icon$"
 
  # Static Modifier Localisation
+ gk_livestock_trade_produces_add:0 "Livestock Trade Value"
+ gk_purge_trade_produces_add:0 "Processing Trade Value"
  mod_gk_livestock_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ £job_livestock£ $job_livestock_plural$"
  mod_gk_purge_trade_produces_add:0 "$trade_produced_per_pop_group_unit$ $pop_cat_purge_plural$"
  gk_livestock_trade_produces_add_tt:0 "$t$- £trade_value£ §YTrade Value§! from ['concept_planet_livestock']: $VARIABLE|+=0$"

@@ -31,10 +31,7 @@ planet_event = {
 			count = trigger:num_guaranteed_colonies
 			# increase planet size
 			change_planet_size = @lunar_planet_size_per_guarantee
-			# increase moon size
-			every_moon = {
-				change_planet_size = @lunar_moon_size_per_guarantee
-			}
+			# moon size is scaled in the initializer's own init_effect
 		}
 	}
 }

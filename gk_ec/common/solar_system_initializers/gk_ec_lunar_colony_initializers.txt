@@ -85,6 +85,10 @@ gk_ec_lunar_colony_system_init = {
 			init_effect = {
 				prevent_anomaly = yes
 				set_planet_flag = gk_ec_lunar_colony_moon
+				while = {
+					count = trigger:num_guaranteed_colonies
+					change_planet_size = @lunar_moon_size_per_guarantee
+				}
 			}
 		}
 	}

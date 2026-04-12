@@ -17,12 +17,26 @@ country_event = {
 	}
 
 	immediate = {
+		# 1. Find species by type (vanilla sometimes swaps founder identity)
 		every_owned_species = {
-			limit = {
-				is_robotic = no
-				NOT = { is_same_species = root.owner_species }
-			}
+			limit = { is_robotic = yes }
+			save_event_target_as = gk_machine_species
+		}
+		every_owned_species = {
+			limit = { is_robotic = no }
 			save_event_target_as = gk_battery_species
+		}
+
+		# 2. Store total starting pop count
+		capital_scope = {
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = gk_starting_pops
+			}
+		}
+
+		# 3. Set slavery on battery species
+		event_target:gk_battery_species = {
 			set_citizenship_type = {
 				country = root
 				type = citizenship_slavery
@@ -35,38 +49,47 @@ country_event = {
 			}
 		}
 
+		# 4. Convert all pops to machines (clean slate, fixes vanilla founder swap)
+		change_dominant_species = {
+			species = event_target:gk_machine_species
+			change_all = yes
+		}
+
+		# 5. Kill 400 machines and replace with battery pops
 		capital_scope = {
 			random_owned_pop_group = {
-				limit = {
-					is_same_species = root.owner_species
-				}
+				limit = { is_same_species = event_target:gk_machine_species }
 				kill_pop_group = {
 					pop_group = this
 					amount = 400
 				}
 			}
-
 			create_pop_group = {
 				species = event_target:gk_battery_species
 				size = 400
 			}
+		}
 
+		# 5. Enforce machine species as dominant
+		change_dominant_species = {
+			species = event_target:gk_machine_species
+			change_all = no
+		}
+
+		# 6. Ensure a farming district for organic upkeep
+		capital_scope = {
 			if = {
-				limit = {
-					NOT = {
-						has_district = district_farming
-					}
-				}
+				limit = { NOT = { has_district = district_farming } }
 				add_district = district_farming
 			}
-
 			if = {
-				limit = {
-					has_district = district_generator
-				}
+				limit = { has_district = district_generator }
 				remove_district = district_generator
 			}
 		}
+
+		# 7. Cleanup
+		clear_variable = gk_starting_pops
 	}
 }
 

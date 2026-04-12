@@ -121,6 +121,7 @@ tr_gk_raiding_despoliation_3 = {
 }
 
 tr_gk_raiding_despoliation_4 = {
+	custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_EFFECT
 	modifier = {
 		salvage_chance_add = 0.10
 	}
@@ -133,6 +134,7 @@ tr_gk_raiding_despoliation_4 = {
 		trigger = {
 			has_grand_archive_dlc = yes
 		}
+		custom_tooltip_with_modifiers = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_4_ARCHIVE_EFFECT
 		on_enabled = {
 			give_technology = { tech = tech_boarding_cables message = no }
 		}

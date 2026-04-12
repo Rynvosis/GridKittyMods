@@ -16,7 +16,6 @@
 @gk_escalation_cost_per_tier = 25
 @gk_significant_raid_baseline = 0.05
 
-@gk_reaping_cap_rate = 100
 
 ######################################
 # Pop Raiding — Opportunistic Raiding #

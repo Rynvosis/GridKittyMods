@@ -1,0 +1,77 @@
+﻿l_english:
+
+ # Component loc
+ PROTOTYPE_DRIVE:0 "Prototype Drive"
+ PROTOTYPE_DRIVE_BIO:0 "Prototype Bio-Drive"
+ PROTOTYPE_DRIVE_FAUNA:0 "Prototype Fauna Drive"
+ PROTOTYPE_DRIVE_DESC:0 "A crude FTL system with significantly slower windup than a proper hyperdrive."
+ PROTOTYPE_DRIVE_BIO_DESC:0 "A crude organic FTL system with significantly slower windup than a proper hyperdrive."
+ PROTOTYPE_DRIVE_FAUNA_DESC:0 "A crude organic FTL system with significantly slower windup than a proper hyperdrive."
+
+ # Situation
+ gk_prim_pioneering_situation:0 "Pre-FTL Pioneering"
+ gk_prim_pioneering_situation_type:0 "Pre-FTL Pioneering"
+ gk_prim_pioneering_situation_monthly_change_tooltip:0 "Monthly Progress"
+ gk_prim_stage_dawn:0 "First Light"
+ gk_prim_stage_expansion:0 "Prototype Expansion"
+ gk_prim_stage_breakthrough:0 "FTL Breakthrough"
+ gk_prim_pioneering_situation_desc:0 "Our civilization stands on the threshold of interstellar travel. While crude prototype drives allow limited exploration, true faster-than-light capability remains beyond our reach. For now."
+ gk_prim_situation_complete_tooltip:0 "Unlocks §YHyperdrive Technology§! for all ship classes."
+ gk_prim_situation_paused:0 "Awaiting strategic decision"
+
+ # Stages
+ gk_prim_stage_dawn_tooltip:0 "The first tentative steps beyond our home system."
+ gk_prim_stage_expansion_tooltip:0 "Prototype drives are now available for all ship classes."
+ gk_prim_stage_breakthrough_tooltip:0 "A breakthrough in FTL physics is within reach. Colony ships receive §YPrototype Drives§!."
+
+ # Modifiers
+ gk_prim_exploration_1:0 "Exploration I"
+ gk_prim_exploration_2:0 "Exploration II"
+ gk_prim_conquest_1:0 "Conquest I"
+ gk_prim_conquest_2:0 "Conquest II"
+ gk_prim_development_1:0 "Development I"
+ gk_prim_development_2:0 "Development II"
+
+ # Marker techs (hidden)
+ tech_gk_prim_stage_1_marker:0 "Pioneering Phase I"
+ tech_gk_prim_stage_1_marker_desc:0 ""
+ tech_gk_prim_stage_2_marker:0 "Pioneering Phase II"
+ tech_gk_prim_stage_2_marker_desc:0 ""
+ tech_gk_prim_stage_3_marker:0 "Pioneering Phase III"
+ tech_gk_prim_stage_3_marker_desc:0 ""
+ tech_gk_prim_hyperdrive_unlock:0 "Hyperdrive Breakthrough"
+ tech_gk_prim_hyperdrive_unlock_desc:0 "Full hyperdrive capability unlocked."
+
+ # Month 1 Event
+ gk_prim.10.title:0 "The Stars Await"
+ gk_prim.10.desc:0 "Our prototype drive has proven that faster-than-light travel is possible, even if painfully slow. Scientists urge expansion of the program, military leaders demand combat applications, and engineers see opportunities closer to home.\n\nHow shall we direct our first efforts?"
+ gk_prim.10.exploration:0 "Commission a new survey expedition"
+ gk_prim.10.exploration.tooltip:0 "Gain a §YScience Ship§! with an assigned §YScientist§!."
+ gk_prim.10.conquest:0 "Advance our weapons research"
+ gk_prim.10.conquest.tooltip:0 "Gain research progress toward random military technologies."
+ gk_prim.10.development:0 "Invest in our home system's resources"
+ gk_prim.10.development.tooltip:0 "Add §YResource Deposits§! to planets in the capital system."
+
+ # Year 5 Event
+ gk_prim.20.title:0 "Prototype Drives for All"
+ gk_prim.20.desc:0 "Five years of refinement have made prototype drives reliable enough for mass deployment. Military, construction, and science vessels can all be fitted with FTL capability. Colony ships remain too large and complex for the current drive design and will require further breakthroughs.\n\nOur progress has also produced experienced specialists. How shall we capitalize on this momentum?"
+ gk_prim.20.shared_tooltip:0 "§YPrototype Drives§! are now available for all ship classes except §YColony Ships§!."
+ gk_prim.20.exploration:0 "Invest in our scientific leadership"
+ gk_prim.20.conquest:0 "Invest in our military leadership"
+ gk_prim.20.development:0 "Invest in our administrative leadership"
+ gk_prim.20.leader_trait_tooltip:0 "Gains a random trait."
+
+ # Year 10 Event
+ gk_prim.30.title:0 "FTL Breakthrough"
+ gk_prim.30.desc:0 "A decade of research has produced a critical breakthrough in FTL physics. True hyperdrives are now available for all ship classes, and prototype drives can finally be fitted to colony ships.\n\nOur accumulated expertise has produced specialists in several fields. How shall we capitalize on this momentum?"
+ gk_prim.30.exploration:0 "Apply our findings to scientific research"
+ gk_prim.30.exploration.tooltip:0 "Gain research progress toward §YScientific Technologies§!."
+ gk_prim.30.conquest:0 "Apply our findings to military technology"
+ gk_prim.30.conquest.tooltip:0 "Gain research progress toward §YMilitary Technologies§!."
+ gk_prim.30.development:0 "Apply our findings to industrial development"
+ gk_prim.30.development.tooltip:0 "Gain research progress toward §YInfrastructure Technologies§!."
+
+ # Completion Event
+ gk_prim.100.title:0 "The Stars Are Ours"
+ gk_prim.100.desc:0 "The age of prototype drives is over. Every ship in our fleet now carries a true hyperdrive, and the galaxy lies open before us. Our early investments in pioneering have shaped us into something unique.\n\nThe expansion phase begins in earnest."
+ gk_prim.100.ok:0 "The galaxy awaits."

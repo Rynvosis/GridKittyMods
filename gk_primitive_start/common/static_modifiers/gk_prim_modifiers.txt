@@ -1,0 +1,32 @@
+# GK Primitive Start — B-Track Path Modifiers
+# T2 includes T1 effects (T1 is removed when T2 is applied)
+
+# Exploration
+gk_prim_exploration_1 = {
+	ship_anomaly_generation_chance_mult = 0.20
+}
+
+gk_prim_exploration_2 = {
+	ship_anomaly_generation_chance_mult = 0.20
+	all_technology_research_speed = 0.05
+}
+
+# Conquest
+gk_prim_conquest_1 = {
+	starbase_shipyard_build_speed_mult = 0.20
+}
+
+gk_prim_conquest_2 = {
+	starbase_shipyard_build_speed_mult = 0.20
+	country_naval_cap_add = 30
+}
+
+# Development
+gk_prim_development_1 = {
+	stations_produces_mult = 0.20
+}
+
+gk_prim_development_2 = {
+	stations_produces_mult = 0.20
+	country_starbase_capacity_add = 2
+}

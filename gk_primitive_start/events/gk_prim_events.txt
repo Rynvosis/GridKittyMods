@@ -1,0 +1,369 @@
+namespace = gk_prim
+
+############################
+# Game Start Setup         #
+############################
+
+# Setup: lock default empires into FTL progression, unlock everyone else
+country_event = {
+	id = gk_prim.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_country_type = default
+				NOT = { has_country_flag = is_advanced_start_AI }
+			}
+			# Normal default empire: lock FTL, start situation
+			set_country_flag = gk_prim_ftl_locked
+			start_situation = {
+				type = gk_prim_pioneering_situation
+				target = capital_scope
+			}
+		}
+		else = {
+			# Everyone else (advanced AI, FEs, marauders, etc.): grant unlock tech
+			give_technology = { tech = tech_gk_prim_hyperdrive_unlock message = no }
+		}
+	}
+}
+
+############################
+# Month 1 — First Choice  #
+############################
+
+country_event = {
+	id = gk_prim.10
+	title = gk_prim.10.title
+	desc = gk_prim.10.desc
+	picture = GFX_evt_space_station
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	immediate = {
+		random_situation = {
+			limit = { is_situation_type = gk_prim_pioneering_situation }
+			set_situation_flag = gk_prim_paused
+		}
+	}
+
+	# Exploration: science ship + scientist + automated exploration tech
+	option = {
+		name = gk_prim.10.exploration
+		custom_tooltip = gk_prim.10.exploration.tooltip
+		give_technology = { tech = tech_automated_exploration message = no }
+		hidden_effect = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = random
+				skill = 1
+			}
+			capital_scope.solar_system = {
+				create_fleet = {
+					effect = {
+						set_owner = root
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+						set_fleet_stance = evasive
+						set_location = root.capital_scope.star
+						assign_leader = last_created_leader
+					}
+				}
+			}
+		}
+		gk_prim_advance_exploration = yes
+	}
+
+	# Conquest: random military tech progress
+	option = {
+		name = gk_prim.10.conquest
+		custom_tooltip = gk_prim.10.conquest.tooltip
+		hidden_effect = {
+			# Random defensive tech at 25%
+			random_list = {
+				1 = {
+					modifier = { factor = 0 has_technology = tech_shields_2 }
+					give_tech_option_or_progress_effect = { TECH = tech_shields_2 }
+				}
+				1 = {
+					modifier = { factor = 0 has_technology = tech_ship_armor_2 }
+					give_tech_option_or_progress_effect = { TECH = tech_ship_armor_2 }
+				}
+			}
+			# Random offensive tech at 25%
+			random_list = {
+				1 = {
+					modifier = { factor = 0 has_technology = tech_lasers_2 }
+					give_tech_option_or_progress_effect = { TECH = tech_lasers_2 }
+				}
+				1 = {
+					modifier = { factor = 0 has_technology = tech_mass_drivers_2 }
+					give_tech_option_or_progress_effect = { TECH = tech_mass_drivers_2 }
+				}
+				1 = {
+					modifier = {
+						factor = 0
+						OR = {
+							has_technology = tech_missiles_2
+							country_uses_bio_ships = yes
+						}
+					}
+					give_tech_option_or_progress_effect = { TECH = tech_missiles_2 }
+				}
+			}
+		}
+		gk_prim_advance_conquest = yes
+	}
+
+	# Development: capital system resource deposits
+	option = {
+		name = gk_prim.10.development
+		custom_tooltip = gk_prim.10.development.tooltip
+		hidden_effect = {
+			capital_scope.solar_system = {
+				# Energy deposits x2 (prefer empty planet, fallback to mining-suitable)
+				if = {
+					limit = { any_system_planet = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } }
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } add_deposit = d_energy_2 }
+				}
+				else = {
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no has_deposit_for = shipclass_mining_station } add_deposit = d_energy_2 }
+				}
+				if = {
+					limit = { any_system_planet = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } }
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } add_deposit = d_energy_2 }
+				}
+				else = {
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no has_deposit_for = shipclass_mining_station } add_deposit = d_energy_2 }
+				}
+				# Mineral deposits x2
+				if = {
+					limit = { any_system_planet = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } }
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } add_deposit = d_minerals_2 }
+				}
+				else = {
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no has_deposit_for = shipclass_mining_station } add_deposit = d_minerals_2 }
+				}
+				if = {
+					limit = { any_system_planet = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } }
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } add_deposit = d_minerals_2 }
+				}
+				else = {
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no has_deposit_for = shipclass_mining_station } add_deposit = d_minerals_2 }
+				}
+				# Research deposits (fallback to research-suitable)
+				if = {
+					limit = { any_system_planet = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } }
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } add_deposit = d_physics_2 }
+				}
+				else = {
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no has_deposit_for = shipclass_research_station } add_deposit = d_physics_2 }
+				}
+				if = {
+					limit = { any_system_planet = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } }
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no num_deposits = 0 } add_deposit = d_society_2 }
+				}
+				else = {
+					random_system_planet = { limit = { is_star = no is_capital = no is_colonizable = no has_deposit_for = shipclass_research_station } add_deposit = d_society_2 }
+				}
+			}
+		}
+		gk_prim_advance_development = yes
+	}
+
+	after = {
+		hidden_effect = {
+			give_technology = { tech = tech_gk_prim_stage_1_marker message = no }
+		}
+		random_situation = {
+			limit = { is_situation_type = gk_prim_pioneering_situation }
+			remove_situation_flag = gk_prim_paused
+		}
+	}
+}
+
+############################
+# Year 5 — Second Choice  #
+############################
+
+country_event = {
+	id = gk_prim.20
+	title = gk_prim.20.title
+	desc = gk_prim.20.desc
+	picture = GFX_evt_star_chart
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	immediate = {
+		random_situation = {
+			limit = { is_situation_type = gk_prim_pioneering_situation }
+			set_situation_flag = gk_prim_paused
+		}
+		# Preselect leaders for tooltip display
+		random_owned_leader = {
+			limit = { leader_class = scientist }
+			save_event_target_as = gk_prim_scientist
+		}
+		random_owned_leader = {
+			limit = { leader_class = commander }
+			save_event_target_as = gk_prim_commander
+		}
+		random_owned_leader = {
+			limit = { leader_class = official }
+			save_event_target_as = gk_prim_official
+		}
+	}
+
+	# Exploration: scientist bonus
+	option = {
+		name = gk_prim.20.exploration
+		custom_tooltip = gk_prim.20.shared_tooltip
+		if = {
+			limit = { exists = event_target:gk_prim_scientist }
+			event_target:gk_prim_scientist = {
+				add_experience = 1000
+				custom_tooltip = gk_prim.20.leader_trait_tooltip
+				hidden_effect = { add_trait = random_common }
+			}
+		}
+		gk_prim_advance_exploration = yes
+	}
+
+	# Conquest: commander bonus
+	option = {
+		name = gk_prim.20.conquest
+		custom_tooltip = gk_prim.20.shared_tooltip
+		if = {
+			limit = { exists = event_target:gk_prim_commander }
+			event_target:gk_prim_commander = {
+				add_experience = 1000
+				custom_tooltip = gk_prim.20.leader_trait_tooltip
+				hidden_effect = { add_trait = random_common }
+			}
+		}
+		gk_prim_advance_conquest = yes
+	}
+
+	# Development: official bonus
+	option = {
+		name = gk_prim.20.development
+		custom_tooltip = gk_prim.20.shared_tooltip
+		if = {
+			limit = { exists = event_target:gk_prim_official }
+			event_target:gk_prim_official = {
+				add_experience = 1000
+				custom_tooltip = gk_prim.20.leader_trait_tooltip
+				hidden_effect = { add_trait = random_common }
+			}
+		}
+		gk_prim_advance_development = yes
+	}
+
+	after = {
+		random_situation = {
+			limit = { is_situation_type = gk_prim_pioneering_situation }
+			remove_situation_flag = gk_prim_paused
+		}
+	}
+}
+
+############################
+# Year 10 — Third Choice  #
+############################
+
+country_event = {
+	id = gk_prim.30
+	title = gk_prim.30.title
+	desc = gk_prim.30.desc
+	picture = GFX_evt_star_chart
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	immediate = {
+		random_situation = {
+			limit = { is_situation_type = gk_prim_pioneering_situation }
+			set_situation_flag = gk_prim_paused
+		}
+	}
+
+	# Exploration: tech pool + B-track
+	option = {
+		name = gk_prim.30.exploration
+		custom_tooltip = gk_prim.30.exploration.tooltip
+		hidden_effect = {
+			gk_prim_y10_exploration_tech = yes
+		}
+		gk_prim_advance_exploration = yes
+	}
+
+	# Conquest: tech pool + B-track
+	option = {
+		name = gk_prim.30.conquest
+		custom_tooltip = gk_prim.30.conquest.tooltip
+		hidden_effect = {
+			gk_prim_y10_conquest_tech = yes
+		}
+		gk_prim_advance_conquest = yes
+	}
+
+	# Development: tech pool + B-track
+	option = {
+		name = gk_prim.30.development
+		custom_tooltip = gk_prim.30.development.tooltip
+		hidden_effect = {
+			gk_prim_y10_development_tech = yes
+		}
+		gk_prim_advance_development = yes
+	}
+
+	after = {
+		hidden_effect = {
+			give_technology = { tech = tech_gk_prim_stage_3_marker message = no }
+		}
+		random_situation = {
+			limit = { is_situation_type = gk_prim_pioneering_situation }
+			remove_situation_flag = gk_prim_paused
+		}
+	}
+}
+
+############################
+# Year 15 — Completion    #
+############################
+
+# Situation completion handler — destroys situation, grants tech, fires notification
+situation_event = {
+	id = gk_prim.99
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			give_technology = { tech = tech_gk_prim_hyperdrive_unlock message = no }
+			remove_country_flag = gk_prim_ftl_locked
+			country_event = { id = gk_prim.100 }
+		}
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}
+
+country_event = {
+	id = gk_prim.100
+	title = gk_prim.100.title
+	desc = gk_prim.100.desc
+	picture = GFX_evt_star_chart
+	show_sound = event_celebration
+	is_triggered_only = yes
+
+	option = {
+		name = gk_prim.100.ok
+	}
+}

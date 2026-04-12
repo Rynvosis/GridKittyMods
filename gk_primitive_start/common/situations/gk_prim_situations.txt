@@ -1,0 +1,65 @@
+# GK Primitive Start — Pre-FTL Pioneering Situation
+
+gk_prim_pioneering_situation = {
+	picture = GFX_evt_space_station
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	category = positive
+	initial_progress = 0
+
+	on_progress_complete = {
+		custom_tooltip = gk_prim_situation_complete_tooltip
+		hidden_effect = {
+			situation_event = { id = gk_prim.99 }
+		}
+	}
+
+	stages = {
+		gk_prim_stage_dawn = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 60
+			on_first_enter = {
+				owner = { country_event = { id = gk_prim.10 days = 5 } }
+			}
+			custom_tooltip = "gk_prim_stage_dawn_tooltip"
+		}
+		gk_prim_stage_expansion = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 120
+			on_first_enter = {
+				# Year 5: unlock prototype for all, fire choice event
+				owner = {
+					set_country_flag = gk_prim_proto_military
+					set_country_flag = gk_prim_proto_constructor
+					give_technology = { tech = tech_gk_prim_stage_2_marker message = no }
+					country_event = { id = gk_prim.20 }
+				}
+			}
+			custom_tooltip = "gk_prim_stage_expansion_tooltip"
+		}
+		gk_prim_stage_breakthrough = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 180
+			on_first_enter = {
+				# Year 10: colonizers get prototype, fire choice event
+				owner = {
+					set_country_flag = gk_prim_proto_colonizer
+					country_event = { id = gk_prim.30 }
+				}
+			}
+			custom_tooltip = "gk_prim_stage_breakthrough_tooltip"
+		}
+	}
+
+	monthly_progress = {
+		base = 1
+		modifier = {
+			mult = 0
+			desc = "gk_prim_situation_paused"
+			has_situation_flag = gk_prim_paused
+		}
+	}
+}

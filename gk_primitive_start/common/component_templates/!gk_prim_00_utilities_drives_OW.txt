@@ -1,0 +1,179 @@
+# Overwrite: EMPTY_DRIVE upgrades to PROTOTYPE, HYPER_DRIVE_1 gated behind flag
+
+@power1 = -10
+@cost1 = 5
+
+utility_component_template = {
+	key = "EMPTY_DRIVE"
+	size = small
+	icon = "GFX_ship_part_empty_ftl_drive"
+	icon_frame = 1
+	power = 0
+
+	potential = {
+		from = {
+			country_uses_bio_ships = no
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = no
+	}
+	component_set = "ftl_components"
+	upgrades_to = "PROTOTYPE_DRIVE"
+
+	ai_weight = {
+		base = 0
+	}
+}
+
+utility_component_template = {
+	key = "HYPER_DRIVE_1"
+	size = small
+	icon = "GFX_ship_part_hyper_drive_1"
+	icon_frame = 1
+	power = @power1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	ftl = yes
+
+	ship_modifier = {
+		ship_disengage_opportunities_add = 1
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+
+	potential = {
+		is_eager_explorer_ship = no
+		from = {
+			country_uses_bio_ships = no
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = no
+	}
+	prerequisites = { "tech_hyper_drive_1" "tech_gk_prim_hyperdrive_unlock" }
+	component_set = "ftl_components"
+	upgrades_to = "HYPER_DRIVE_2"
+}
+####################BIO_SHIPS#######################################
+utility_component_template = {
+	key = "BIO_EMPTY_DRIVE"
+	size = small
+	icon = "GFX_ship_part_empty_ftl_drive"
+	icon_frame = 1
+	power = 0
+
+	potential = {
+		is_eager_explorer_ship = no
+		from = {
+			country_uses_bio_ships = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = yes
+	}
+
+	component_set = "ftl_components"
+	upgrades_to = "PROTOTYPE_DRIVE_BIO"
+
+	ai_weight = {
+		base = 0
+	}
+}
+
+### HYPER DRIVES
+utility_component_template = {
+	key = "BIO_HYPER_DRIVE_1"
+	size = small
+	icon = "GFX_ship_part_bioship_hyper_drive_1"
+	icon_frame = 1
+	power = @power1
+	resources = {
+		category = ship_components
+		cost = {
+			food = @cost1
+			mult = @alloy_to_food_cost_ratio
+		}
+	}
+	ftl = yes
+
+	ship_modifier = {
+		ship_disengage_opportunities_add = 1
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+
+	potential = {
+		is_eager_explorer_ship = no
+		from = {
+			country_uses_bio_ships = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = yes
+	}
+	prerequisites = { "tech_hyper_drive_1" "tech_gk_prim_hyperdrive_unlock" }
+	component_set = "ftl_components"
+	upgrades_to = "BIO_HYPER_DRIVE_2"
+}
+
+###################################################################
+utility_component_template = {
+	key = "FAUNA_EMPTY_DRIVE"
+	size = small
+	icon = "GFX_ship_part_empty_ftl_drive"
+	icon_frame = 1
+	power = 0
+
+	potential = {
+		is_eager_explorer_ship = no
+	}
+
+	component_set = "ftl_components_bio"
+	upgrades_to = "PROTOTYPE_DRIVE_FAUNA"
+
+	ai_weight = {
+		base = 0
+	}
+}
+
+utility_component_template = {
+	key = "BIO_DRIVE"
+	size = small
+	icon = "GFX_ship_part_bio_warp_drive_1"
+	icon_frame = 1
+	power = 0
+	ftl = yes
+
+	resources = {
+		category = ship_components
+		inline_script = {
+			script = "grand_archive/mutations/component_dynamic_cost"
+			COST = @cost_fauna_1
+		}
+	}
+
+	ship_modifier = {
+		ship_disengage_opportunities_add = 1
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+
+	prerequisites = { "tech_gk_prim_hyperdrive_unlock" }
+	component_set = "ftl_components_bio"
+	upgrades_to = "BIO_DRIVE_2"
+}

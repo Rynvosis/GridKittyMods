@@ -20,4 +20,15 @@ spriteTypes = {
 		texturefile = "gfx/interface/icons/ethics/ethic_fanatic_collectivist.dds"
 	}
 
+	# Faction icons (reuse ethic icons)
+	spriteType = {
+		name = "GFX_faction_icon_gk_ec_individualist"
+		texturefile = "gfx/interface/icons/ethics/ethic_individualist.dds"
+	}
+
+	spriteType = {
+		name = "GFX_faction_icon_gk_ec_collectivist"
+		texturefile = "gfx/interface/icons/ethics/ethic_collectivist.dds"
+	}
+
 }
