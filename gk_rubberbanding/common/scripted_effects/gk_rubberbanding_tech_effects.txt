@@ -4,26 +4,30 @@
 
 # Clear all tech rubberbanding modifiers
 gkrb_clear_tech_rubberbanding_modifiers = {
-	remove_modifier = gkrb_tech_physics_research_mod
-	remove_modifier = gkrb_tech_society_research_mod
-	remove_modifier = gkrb_tech_engineering_research_mod
+	remove_modifier = gkrb_tech_physics_research_upkeep_mod
+	remove_modifier = gkrb_tech_society_research_upkeep_mod
+	remove_modifier = gkrb_tech_engineering_research_upkeep_mod
+	remove_modifier = gkrb_tech_physics_research_produces_mod
+	remove_modifier = gkrb_tech_society_research_produces_mod
+	remove_modifier = gkrb_tech_engineering_research_produces_mod
 	remove_modifier = gkrb_tech_mod
 	remove_modifier = gkrb_tech_behind_mod
+	remove_modifier = gkrb_tech_neutral_mod
 }
 
-# Apply tech rubberbanding when ahead (per-resource upkeep penalties)
+# Apply when ahead: per-resource upkeep penalties scaled by mult × revenue
 gkrb_apply_ahead_tech_rubberbanding_modifiers = {
 	# Stage 1: Calculate adjustments for all research types
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = physics_research TYPE = tech }
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = society_research TYPE = tech }
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = engineering_research TYPE = tech }
-	
-	# Stage 2: Apply base multiplier and modifiers (no concentration for tech)
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = physics_research TYPE = tech }
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = society_research TYPE = tech }
-	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = engineering_research TYPE = tech }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = physics_research TYPE = tech DIRECTION = upkeep }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = society_research TYPE = tech DIRECTION = upkeep }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = engineering_research TYPE = tech DIRECTION = upkeep }
 
-	# Apply marker modifier (tooltip)
+	# Stage 2: Apply multipliers and upkeep modifiers
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = physics_research TYPE = tech DIRECTION = upkeep }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = society_research TYPE = tech DIRECTION = upkeep }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = engineering_research TYPE = tech DIRECTION = upkeep }
+
+	# Marker modifier (tooltip)
 	add_modifier = {
 		modifier = gkrb_tech_mod
 		days = -1
@@ -31,9 +35,19 @@ gkrb_apply_ahead_tech_rubberbanding_modifiers = {
 	}
 }
 
-# Apply tech rubberbanding when behind (catch-up bonuses only, no per-resource modifiers)
+# Apply when behind: alternatives catch-up + per-resource produces bonuses scaled by mult × revenue
 gkrb_apply_behind_tech_rubberbanding_modifiers = {
-	# Apply behind modifier with catch-up bonuses
+	# Stage 1: Calculate adjustments for all research types (produces direction)
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = physics_research TYPE = tech DIRECTION = produces }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = society_research TYPE = tech DIRECTION = produces }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = engineering_research TYPE = tech DIRECTION = produces }
+
+	# Stage 2: Apply multipliers and produces modifiers
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = physics_research TYPE = tech DIRECTION = produces }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = society_research TYPE = tech DIRECTION = produces }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = engineering_research TYPE = tech DIRECTION = produces }
+
+	# Alternatives catch-up bonus scaled by mult
 	add_modifier = {
 		modifier = gkrb_tech_behind_mod
 		days = -1

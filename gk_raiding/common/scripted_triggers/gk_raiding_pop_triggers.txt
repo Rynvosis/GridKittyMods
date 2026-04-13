@@ -238,6 +238,16 @@ gk_target_is_raidable_by_root = {
 	}
 }
 
+# This = raider country
+# Whitelist of raid flavors the galaxy reacts to. New raid focuses default to
+# "no malus" unless explicitly listed here.
+gk_raid_generates_opinion_malus = {
+	OR = {
+		has_policy_flag = gk_focus_plunder
+		has_policy_flag = gk_focus_reaping
+	}
+}
+
 ####################
 # Pop Group Checks #
 ####################

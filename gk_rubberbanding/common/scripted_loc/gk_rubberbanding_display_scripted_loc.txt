@@ -2,8 +2,9 @@
 # Tech Rubberbanding Display Rows  #
 ####################################
 
+# ----- Ahead (upkeep) rows -----
 defined_text = {
-	name = GKRBTechPhysicsResearchRow
+	name = GKRBTechPhysicsResearchUpkeepRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -25,7 +26,7 @@ defined_text = {
 }
 
 defined_text = {
-	name = GKRBTechSocietyResearchRow
+	name = GKRBTechSocietyResearchUpkeepRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -47,7 +48,7 @@ defined_text = {
 }
 
 defined_text = {
-	name = GKRBTechEngineeringResearchRow
+	name = GKRBTechEngineeringResearchUpkeepRow
 	text = {
 		trigger = {
 			check_variable = {
@@ -56,6 +57,73 @@ defined_text = {
 			}
 		}
 		localization_key = "GKRB_ROW_TECH_ENGINEERING_RESEARCH_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_engineering_research_adjust
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+# ----- Behind (produces) rows -----
+defined_text = {
+	name = GKRBTechPhysicsResearchProducesRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TECH_PHYSICS_RESEARCH_PRODUCES"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_physics_research_adjust
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBTechSocietyResearchProducesRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_society_research_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TECH_SOCIETY_RESEARCH_PRODUCES"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_society_research_adjust
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+defined_text = {
+	name = GKRBTechEngineeringResearchProducesRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_tech_engineering_research_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TECH_ENGINEERING_RESEARCH_PRODUCES"
 	}
 	text = {
 		trigger = {

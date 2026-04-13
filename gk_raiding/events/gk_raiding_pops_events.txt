@@ -879,22 +879,27 @@ country_event = {
 					save_event_target_as = gk_raidee_capital
 				}
 			}
-			every_country = {
-				limit = {
-					has_communications = root
-					NOT = {
-						is_country = root
+			# Galaxy-wide surrender opinion — skipped for raid focuses the galaxy
+			# doesn't react to (emancipation).
+			if = {
+				limit = { gk_raid_generates_opinion_malus = yes }
+				every_country = {
+					limit = {
+						has_communications = root
+						NOT = {
+							is_country = root
+						}
+						OR = {
+							is_country_type = default
+							has_ai_personality = awakened_fallen_empire_xenophile
+						}
 					}
-					OR = {
-						is_country_type = default
-						has_ai_personality = awakened_fallen_empire_xenophile
-					}
-				}
-				while = {
-					count = root.gk_forfeited_pops
-					add_opinion_modifier = {
-						who = root
-						modifier = opinion_gk_raided_pops
+					while = {
+						count = root.gk_forfeited_pops
+						add_opinion_modifier = {
+							who = root
+							modifier = opinion_gk_raided_pops
+						}
 					}
 				}
 			}

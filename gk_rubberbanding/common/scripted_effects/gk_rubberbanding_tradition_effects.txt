@@ -1,0 +1,38 @@
+####################################
+# Tradition rubberbanding effects  #
+####################################
+
+# Clear all tradition rubberbanding modifiers
+gkrb_clear_trad_rubberbanding_modifiers = {
+	remove_modifier = gkrb_trad_unity_upkeep_mod
+	remove_modifier = gkrb_trad_unity_produces_mod
+	remove_modifier = gkrb_trad_mod
+	remove_modifier = gkrb_trad_behind_mod
+	remove_modifier = gkrb_trad_neutral_mod
+}
+
+# Apply when ahead: unity upkeep penalty scaled by mult × revenue
+gkrb_apply_ahead_trad_rubberbanding_modifiers = {
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = unity TYPE = trad DIRECTION = upkeep }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = unity TYPE = trad DIRECTION = upkeep }
+
+	# Marker modifier (tooltip)
+	add_modifier = {
+		modifier = gkrb_trad_mod
+		days = -1
+		multiplier = gkrb_trad_mult
+	}
+}
+
+# Apply when behind: unity produces bonus scaled by mult × revenue
+gkrb_apply_behind_trad_rubberbanding_modifiers = {
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_calculate RESOURCE = unity TYPE = trad DIRECTION = produces }
+	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = unity TYPE = trad DIRECTION = produces }
+
+	# Marker modifier (tooltip)
+	add_modifier = {
+		modifier = gkrb_trad_behind_mod
+		days = -1
+		multiplier = gkrb_trad_mult
+	}
+}

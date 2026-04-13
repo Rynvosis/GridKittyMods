@@ -1,11 +1,41 @@
 ####################################
-# Generic rubberbanding values    #
+# Generic rubberbanding values     #
 ####################################
+#
+# Building blocks shared by every rubberbanding system (tech, trad, and any future ones).
+# See inline_scripts/gk_rubberbanding/pipeline.txt for the protocol a system must satisfy
+# to plug into the shared monthly pipeline.
 
-# Generic relative score calculation
-# Parameters: SCORE_VAR, GLOBAL_AVG_VAR
+# Relative score: how this empire compares to the galactic average for the given system.
+# Parameters: SCORE_VAR (country variable name), GLOBAL_AVG_VAR (global_event_country variable name)
 gkrb_relative_score = {
 	base = 0
 	add = $SCORE_VAR$
 	divide = event_target:global_event_country.$GLOBAL_AVG_VAR$
+}
+
+# Offset from 1.0 (galactic average). Positive when behind, negative when ahead.
+# Parameters: SCORE_VAR, GLOBAL_AVG_VAR
+gkrb_offset_relative = {
+	base = 1
+	subtract = value:gkrb_relative_score|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
+}
+
+# (1 - relative)^2 clamped to [0, 1]. Scales rubberband effect strength symmetrically.
+# Parameters: SCORE_VAR, GLOBAL_AVG_VAR
+gkrb_mult = {
+	base = 0
+	add = value:gkrb_offset_relative|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
+	mult = value:gkrb_offset_relative|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
+	max = 1.0
+	min = 0
+}
+
+# Display helper: read any country variable, × 100, round. Used for %-of-avg tooltips.
+# Parameters: VAR (country variable name)
+gkrb_var_percent = {
+	base = 0
+	add = $VAR$
+	mult = 100
+	round = yes
 }

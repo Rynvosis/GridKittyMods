@@ -1,0 +1,32 @@
+# Ahead: unity upkeep penalty marker (applied via inline_script with DIRECTION=upkeep, scaled by gkrb_trad_mult × revenue)
+gkrb_trad_unity_upkeep_mod = {
+	country_rubberbanding_unity_upkeep_add = 1
+	hide_from_country_list = yes
+}
+
+# Behind: unity produces bonus marker (applied via inline_script with DIRECTION=produces, scaled by gkrb_trad_mult × revenue)
+gkrb_trad_unity_produces_mod = {
+	country_rubberbanding_unity_produces_add = 1
+	hide_from_country_list = yes
+}
+
+# Ahead tooltip umbrella
+gkrb_trad_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_unity_upkeep_add.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = gkrb_trad_mod.tooltip
+}
+
+# Behind tooltip umbrella (marker-only — actual bonus is the produces_mod)
+gkrb_trad_behind_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_unity_produces_add.dds"
+	custom_tooltip = gkrb_trad_behind_mod.tooltip
+	show_only_custom_tooltip = yes
+}
+
+# Neutral: display-only
+gkrb_trad_neutral_mod = {
+	icon = "gfx/interface/icons/modifiers/mod_unity_produces_mult.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = gkrb_trad_relative
+}

@@ -1,15 +1,23 @@
 ####################################
-# Tech Rubberbanding On-Actions
+# Rubberbanding On-Actions
 ####################################
 
 on_game_start = {
 	events = {
 		gkrb_tech.1
+		gkrb_trad.1
 	}
 }
 
 on_monthly_pulse = {
 	events = {
 		gkrb_tech.10
+		gkrb_trad.10
+	}
+}
+
+on_tradition_picked = {
+	events = {
+		gkrb_trad.100
 	}
 }

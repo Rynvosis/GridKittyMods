@@ -1,158 +1,21 @@
 # Tech Rubberbanding Events
-# Self-contained monthly tech rubberbanding pipeline
+# Thin wrapper — actual logic lives in inline_scripts/gk_rubberbanding/pipeline.txt.
 namespace = gkrb_tech
 
-####################################
-# Game Start: Init globals
-####################################
 event = {
 	id = gkrb_tech.1
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		event_target:global_event_country = {
-			if = {
-				limit = {
-					NOT = { has_country_flag = gkrb_tech_has_global_variables }
-				}
-				set_variable = {
-					which = gkrb_tech_global_sum
-					value = 0
-				}
-				set_variable = {
-					which = gkrb_tech_global_country_count
-					value = 0
-				}
-				set_variable = {
-					which = gkrb_tech_global_avg
-					value = 0
-				}
-				set_country_flag = gkrb_tech_has_global_variables
-			}
-		}
+		inline_script = { script = gk_rubberbanding/init_globals TYPE = tech }
 	}
 }
 
-####################################
-# Monthly Pipeline
-####################################
-# Orchestrates all stages: score → aggregate → relative → mult → apply
 event = {
 	id = gkrb_tech.10
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		####################################
-		# STAGE 1: Reset globals and calculate per-country scores
-		####################################
-		event_target:global_event_country = {
-			set_variable = {
-				which = gkrb_tech_global_country_count
-				value = 0
-			}
-			set_variable = {
-				which = gkrb_tech_global_sum
-				value = 0
-			}
-		}
-		every_playable_country = {
-			# Calculate tech score
-			set_variable = {
-				which = gkrb_tech_score
-				value = value:gkrb_tech_score
-			}
-			# Contribute to global sum
-			event_target:global_event_country = {
-				change_variable = {
-					which = gkrb_tech_global_sum
-					value = prev.gkrb_tech_score
-				}
-				change_variable = {
-					which = gkrb_tech_global_country_count
-					value = 1
-				}
-			}
-		}
-
-		####################################
-		# STAGE 2: Calculate global average
-		####################################
-		event_target:global_event_country = {
-			if = {
-				limit = {
-					check_variable = {
-						which = gkrb_tech_global_country_count
-						value > 0
-					}
-				}
-				set_variable = {
-					which = gkrb_tech_global_avg
-					value = gkrb_tech_global_sum
-				}
-				divide_variable = {
-					which = gkrb_tech_global_avg
-					value = gkrb_tech_global_country_count
-				}
-				if = {
-					limit = {
-						check_variable = {
-							which = gkrb_tech_global_avg
-							value < 1
-						}
-					}
-					set_variable = {
-						which = gkrb_tech_global_avg
-						value = 1
-					}
-				}
-			}
-		}
-
-		####################################
-		# STAGE 3: Calculate relative scores, multipliers, and apply
-		####################################
-		every_playable_country = {
-			# Relative score
-			set_variable = {
-				which = gkrb_tech_relative
-				value = value:gkrb_relative_score|SCORE_VAR|gkrb_tech_score|GLOBAL_AVG_VAR|gkrb_tech_global_avg|
-			}
-			# Multiplier
-			set_variable = {
-				which = gkrb_tech_mult
-				value = value:gkrb_tech_mult
-			}
-			round_variable_to_closest = {
-				which = gkrb_tech_mult
-				value = 0.0001
-			}
-			# Apply modifiers
-			gkrb_clear_tech_rubberbanding_modifiers = yes
-
-			if = {
-				limit = {
-					check_variable = {
-						which = gkrb_tech_relative
-						value < 0.95
-					}
-				}
-				gkrb_apply_behind_tech_rubberbanding_modifiers = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = {
-						which = gkrb_tech_relative
-						value > 1.05
-					}
-				}
-				gkrb_apply_ahead_tech_rubberbanding_modifiers = yes
-			}
-			else = {
-				add_modifier = {
-					modifier = gkrb_tech_neutral_mod
-					days = -1
-				}
-			}
-		}
+		inline_script = { script = gk_rubberbanding/pipeline TYPE = tech }
 	}
 }

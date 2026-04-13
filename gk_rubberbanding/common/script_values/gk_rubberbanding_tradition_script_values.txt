@@ -1,0 +1,102 @@
+####################################
+# Tradition/unity rubberbanding     #
+####################################
+
+# Empire size factor: 1 + EMPIRE_SIZE_TRADITION_COST_PENALTY * max(empire_size - EMPIRE_SIZE_BASE, 0)
+# Penalty only applies to size above the base threshold (100), not raw empire_size.
+gkrb_trad_empire_size_factor = {
+	base = 0
+	add = trigger:empire_size
+	subtract = @gkrb_trad_empire_size_base
+	min = 0
+	mult = @gkrb_trad_empire_size_penalty
+	add = 1
+}
+
+# Base empire-specific cost factor (no tradition-index scaling yet).
+# Multiplied by the host-set gkrb_trad_cost_scale variable on global_event_country.
+gkrb_trad_cost_base = {
+	base = @gkrb_trad_base_cost
+	mult = value:gkrb_trad_empire_size_factor
+	mult = event_target:global_event_country.gkrb_trad_cost_scale
+}
+
+# Pre-bound wrapper for cost of the immediately-next tradition (OFFSET = 0).
+# Call from console debugging where pipe parameters get stripped.
+gkrb_trad_cost_of_next = {
+	base = 0
+	add = value:gkrb_trad_cost_at_offset|OFFSET|0|
+}
+
+# Cost of the (unlocked_count + OFFSET)-th tradition.
+# Additive formula, as documented in the vanilla defines/00_defines.txt comment:
+#   cost = (base_cost + (cost_tradition * N)^exp) * empire_size_factor * scale
+# This fits observed game costs cleanly across multiple empire samples; an earlier attempt
+# to use a multiplicative form was based on flawed cross-empire extrapolation.
+# N includes finishers (Stellaris counts them in the formula).
+# OFFSET is a parse-time literal parameter (cannot accept variables).
+gkrb_trad_cost_at_offset = {
+	base = 0
+	add = gkrb_trad_unlocked_count
+	add = $OFFSET$
+	mult = @gkrb_trad_cost_per_trad
+	pow = @gkrb_trad_cost_exp
+	add = @gkrb_trad_base_cost
+	mult = value:gkrb_trad_empire_size_factor
+	mult = event_target:global_event_country.gkrb_trad_cost_scale
+}
+
+# k0 = stockpile / c(n) — affordable-count approximation.
+# Using k0 directly (floored) rather than a geom-mean-of-bounds because:
+#   - Exact at the "can afford exactly 1" boundary (stockpile ≥ cost_of_next → 1)
+#   - Overestimates hoarders, but they're already in the (1-rel)² clamped zone, so harmless
+gkrb_trad_k0_pure = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = resource_stockpile_compare
+		parameters = { resource = unity }
+		mode = add
+	}
+	divide = value:gkrb_trad_cost_at_offset|OFFSET|0|
+	min = 0
+}
+
+# Raw pending-affordable count.
+# UNSAFE on its own — if gkrb_trad_cost_scale isn't set on global_event_country,
+# cost_base collapses to 0 and k0 divides by zero. Callers must gate.
+gkrb_trad_pending_raw = {
+	base = 0
+	add = value:gkrb_trad_k0_pure
+	floor = yes
+}
+
+# Safe gated pending count. Returns 0 if host hasn't set the scale var, else the raw calc.
+# Single gate point — used by gkrb_trad_score AND the scripted_loc display, so div-by-zero
+# never escapes regardless of which caller triggers evaluation.
+gkrb_trad_pending_count = {
+	base = 0
+	modifier = {
+		event_target:global_event_country = { is_variable_set = gkrb_trad_cost_scale }
+		add = value:gkrb_trad_pending_raw
+	}
+	min = 0
+}
+
+# Composite score: raw unlocked picks + pending affordable, floored at @gkrb_trad_score_floor.
+# Finishers count here (same as Stellaris's cost formula). Empires that complete trees get a
+# small +1 score bump from the finisher — fair, since completing a tree also grants the finisher's
+# gameplay effects (ascension perk slot etc), which is a real advantage.
+# Floor keeps the rubberband quiet early-game when most empires have 0-2 traditions.
+gkrb_trad_score = {
+	base = 0
+	add = gkrb_trad_unlocked_count
+	add = value:gkrb_trad_pending_count
+	min = @gkrb_trad_score_floor
+}
+
+# Display wrapper for tooltip — raw picks, matching what shows up in the game's tradition UI.
+gkrb_trad_unlocked_display = {
+	base = 0
+	add = gkrb_trad_unlocked_count
+}
+

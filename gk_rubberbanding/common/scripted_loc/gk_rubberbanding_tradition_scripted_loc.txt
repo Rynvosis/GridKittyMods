@@ -1,0 +1,71 @@
+####################################
+# Tradition rubberbanding displays  #
+####################################
+
+defined_text = {
+	name = GKRBTradPercentage
+	value = value:gkrb_var_percent|VAR|gkrb_trad_relative|
+}
+
+defined_text = {
+	name = GKRBTradEffectiveMult
+	value = value:gkrb_var_percent|VAR|gkrb_trad_mult|
+}
+
+# Live num_unlocked_traditions display (no loc accessor for this trigger).
+defined_text = {
+	name = GKRBTradUnlocked
+	value = value:gkrb_trad_unlocked_display
+}
+
+# Pending-affordable tradition count (live from script_value, no country variable).
+defined_text = {
+	name = GKRBTradPending
+	value = value:gkrb_trad_pending_count
+}
+
+# Unity upkeep row — shown in ahead modifier tooltip
+defined_text = {
+	name = GKRBTradUnityUpkeepRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_trad_unity_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TRAD_UNITY_UPKEEP"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_trad_unity_adjust
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}
+
+# Unity produces row — shown in behind modifier tooltip
+defined_text = {
+	name = GKRBTradUnityProducesRow
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_trad_unity_adjust
+				value >= 0.1
+			}
+		}
+		localization_key = "GKRB_ROW_TRAD_UNITY_PRODUCES"
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = gkrb_trad_unity_adjust
+				value < 0.1
+			}
+		}
+		localization_key = "GKRB_EMPTY"
+	}
+}

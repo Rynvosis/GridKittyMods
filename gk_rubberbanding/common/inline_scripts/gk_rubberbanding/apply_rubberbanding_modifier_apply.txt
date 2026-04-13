@@ -1,10 +1,10 @@
 # Inline script: Apply revenue adjustment (multiply and add modifier)
 # Parameters:
-#   $RESOURCE$ - Resource name (e.g., energy)
-#   $TYPE$     - System type (e.g., tech)
+#   $RESOURCE$  - Resource name (e.g., energy, unity, physics_research)
+#   $TYPE$      - System type (e.g., tech, trad)
+#   $DIRECTION$ - upkeep or produces (resolves which modifier to apply)
 #
-# Expects variable gkrb_$TYPE$_$RESOURCE$_adjust to be set and configured
-# This script multiplies by the appropriate penalty and applies the modifier
+# Expects variable gkrb_$TYPE$_$RESOURCE$_adjust to be set by the calculate pass.
 
 # Multiply by rubberbanding multiplier
 multiply_variable = {
@@ -18,9 +18,9 @@ round_variable_to_closest = {
 	value = 0.01
 }
 
-# Apply modifier (upkeep scales with how far ahead you are)
+# Apply modifier — scales with how far from galactic average we are
 add_modifier = {
-	modifier = gkrb_$TYPE$_$RESOURCE$_mod
+	modifier = gkrb_$TYPE$_$RESOURCE$_$DIRECTION$_mod
 	days = -1
 	multiplier = gkrb_$TYPE$_$RESOURCE$_adjust
 }

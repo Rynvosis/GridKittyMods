@@ -839,22 +839,28 @@ gk_track_raided_pops = {
 		}
 	}
 
-	# Per-pop opinion: apply to all communicating empires (once per pop taken)
-	every_country = {
+	# Per-pop opinion: apply to all communicating empires (once per pop taken).
+	# Skipped for raid focuses the galaxy doesn't react to (emancipation).
+	if = {
 		limit = {
-			has_communications = event_target:gk_acting_raider
-			is_country_type = default
-			NOT = { is_same_value = event_target:gk_acting_raider }
+			event_target:gk_acting_raider = { gk_raid_generates_opinion_malus = yes }
 		}
-		while = {
-			count = event_target:gk_track_raidee_temp.gk_track_amount_temp
-			add_opinion_modifier = {
-				who = event_target:gk_acting_raider
-				modifier = opinion_gk_raided_pops
+		every_country = {
+			limit = {
+				has_communications = event_target:gk_acting_raider
+				is_country_type = default
+				NOT = { is_same_value = event_target:gk_acting_raider }
+			}
+			while = {
+				count = event_target:gk_track_raidee_temp.gk_track_amount_temp
+				add_opinion_modifier = {
+					who = event_target:gk_acting_raider
+					modifier = opinion_gk_raided_pops
+				}
 			}
 		}
 	}
-	# Target always gets an extra hit
+	# Target always gets an extra hit, regardless of raid flavor
 	add_opinion_modifier = {
 		who = event_target:gk_acting_raider
 		modifier = opinion_gk_raided_target

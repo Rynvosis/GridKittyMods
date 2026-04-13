@@ -1,24 +1,32 @@
 ﻿l_english:
  country_rubberbanding: "Rubberbanding"
 
-# research resource upkeep adjustments
- mod_country_rubberbanding_physics_research_upkeep_add: "$r_physics$ Upkeep"
- mod_country_rubberbanding_society_research_upkeep_add: "$r_society$ Upkeep"
- mod_country_rubberbanding_engineering_research_upkeep_add: "$r_engineering$ Upkeep"
+# resource adjustments — labels for the generated upkeep/produces modifiers (sign in display row conveys direction)
+ mod_country_rubberbanding_physics_research_upkeep_add: "$r_physics$"
+ mod_country_rubberbanding_society_research_upkeep_add: "$r_society$"
+ mod_country_rubberbanding_engineering_research_upkeep_add: "$r_engineering$"
+ mod_country_rubberbanding_unity_upkeep_add: "£unity£ §YUnity§!"
+ mod_country_rubberbanding_physics_research_produces_add: "$r_physics$"
+ mod_country_rubberbanding_society_research_produces_add: "$r_society$"
+ mod_country_rubberbanding_engineering_research_produces_add: "$r_engineering$"
+ mod_country_rubberbanding_unity_produces_add: "£unity£ §YUnity§!"
 
 # tech rubberbanding modifier names
- gkrb_tech_physics_research_mod: "Physics Rubberbanding"
- gkrb_tech_society_research_mod: "Society Rubberbanding"
- gkrb_tech_engineering_research_mod: "Engineering Rubberbanding"
+ gkrb_tech_physics_research_upkeep_mod: "Physics Rubberbanding"
+ gkrb_tech_society_research_upkeep_mod: "Society Rubberbanding"
+ gkrb_tech_engineering_research_upkeep_mod: "Engineering Rubberbanding"
+ gkrb_tech_physics_research_produces_mod: "Physics Rubberbanding"
+ gkrb_tech_society_research_produces_mod: "Society Rubberbanding"
+ gkrb_tech_engineering_research_produces_mod: "Engineering Rubberbanding"
 
 # tech rubberbanding loc
  gkrb_tech_relative: "Relative Technology: §Y[this.GKRBTechPercentage]§!% of galactic average"
 
  gkrb_tech_mod: "Technological Burnout"
- gkrb_tech_mod.tooltip: "$gkrb_tech_relative$\n\nEffects:[this.GKRBTechPhysicsResearchRow][this.GKRBTechSocietyResearchRow][this.GKRBTechEngineeringResearchRow]"
+ gkrb_tech_mod.tooltip: "$gkrb_tech_relative$\n\nEffects:[this.GKRBTechPhysicsResearchUpkeepRow][this.GKRBTechSocietyResearchUpkeepRow][this.GKRBTechEngineeringResearchUpkeepRow]"
 
  gkrb_tech_behind_mod: "Technological Resurgence"
- gkrb_tech_behind_mod.tooltip: "$gkrb_tech_relative$\n\n"
+ gkrb_tech_behind_mod.tooltip: "$gkrb_tech_relative$\n\nEffects:[this.GKRBTechPhysicsResearchProducesRow][this.GKRBTechSocietyResearchProducesRow][this.GKRBTechEngineeringResearchProducesRow]"
 
  gkrb_tech_neutral_mod: "Tech Rubberbanding Status"
 
@@ -27,3 +35,24 @@
  GKRB_ROW_TECH_PHYSICS_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_physics_research_upkeep_add$: §R-[This.gkrb_tech_physics_research_adjust]§!"
  GKRB_ROW_TECH_SOCIETY_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_society_research_upkeep_add$: §R-[This.gkrb_tech_society_research_adjust]§!"
  GKRB_ROW_TECH_ENGINEERING_RESEARCH_UPKEEP: "\n$mod_country_rubberbanding_engineering_research_upkeep_add$: §R-[This.gkrb_tech_engineering_research_adjust]§!"
+ GKRB_ROW_TECH_PHYSICS_RESEARCH_PRODUCES: "\n$mod_country_rubberbanding_physics_research_produces_add$: §G+[This.gkrb_tech_physics_research_adjust]§!"
+ GKRB_ROW_TECH_SOCIETY_RESEARCH_PRODUCES: "\n$mod_country_rubberbanding_society_research_produces_add$: §G+[This.gkrb_tech_society_research_adjust]§!"
+ GKRB_ROW_TECH_ENGINEERING_RESEARCH_PRODUCES: "\n$mod_country_rubberbanding_engineering_research_produces_add$: §G+[This.gkrb_tech_engineering_research_adjust]§!"
+
+# tradition rubberbanding modifier names
+ gkrb_trad_unity_upkeep_mod: "Unity Rubberbanding"
+ gkrb_trad_unity_produces_mod: "Unity Rubberbanding"
+
+# tradition rubberbanding loc
+ gkrb_trad_relative: "Relative Traditions: §Y[this.GKRBTradPercentage]§!% of galactic average (§Y[This.GKRBTradUnlocked]§! unlocked + §Y[This.GKRBTradPending]§! pending)"
+
+ gkrb_trad_mod: "Cultural Stagnation"
+ gkrb_trad_mod.tooltip: "$gkrb_trad_relative$\n\nEffects:[This.GKRBTradUnityUpkeepRow]"
+
+ gkrb_trad_behind_mod: "Cultural Renaissance"
+ gkrb_trad_behind_mod.tooltip: "$gkrb_trad_relative$\n\nEffects:[This.GKRBTradUnityProducesRow]"
+
+ gkrb_trad_neutral_mod: "Cultural Rubberbanding Status"
+
+ GKRB_ROW_TRAD_UNITY_UPKEEP: "\n$mod_country_rubberbanding_unity_upkeep_add$: §R-[This.gkrb_trad_unity_adjust]§!"
+ GKRB_ROW_TRAD_UNITY_PRODUCES: "\n$mod_country_rubberbanding_unity_produces_add$: §G+[This.gkrb_trad_unity_adjust]§!"

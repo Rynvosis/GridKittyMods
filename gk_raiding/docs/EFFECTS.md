@@ -119,9 +119,9 @@ Invasion bursts against an unauthorized target do not capture pops on the winnin
 | Modifier | Base | Decay | Notes |
 |----------|------|-------|-------|
 | Declared Reaping War | -100 | 0.5/month | Galaxy-wide on declaration |
-| Raided Pops | -0.025/pop | 1/month | Galaxy-wide, accumulative |
+| Raided Pops | -0.025/pop | 1/month | Galaxy-wide, accumulative. Plunder/Reaping focus only — Emancipation raids generate no galaxy-wide opinion. |
 | Escalated Raids | -12/press | 1/month | Galaxy-wide, plunder only |
-| Raided Our Population | -25/application | 0.5/month | Target only |
+| Raided Our Population | -25/application | 0.5/month | Target only, applies regardless of raid focus |
 
 All modifiers exclude fallen empires and homicidal empires. Ethics bonuses (egalitarian, xenophile) add extra penalties.
 

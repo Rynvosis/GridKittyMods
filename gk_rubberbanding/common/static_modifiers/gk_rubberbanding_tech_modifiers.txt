@@ -1,27 +1,43 @@
-# Physics
-gkrb_tech_physics_research_mod = {
+# Ahead: per-resource upkeep penalties (scaled via add_modifier multiplier)
+gkrb_tech_physics_research_upkeep_mod = {
 	country_rubberbanding_physics_research_upkeep_add = 1
 	hide_from_country_list = yes
 }
 
-# Society
-gkrb_tech_society_research_mod = {
+gkrb_tech_society_research_upkeep_mod = {
 	country_rubberbanding_society_research_upkeep_add = 1
 	hide_from_country_list = yes
 }
 
-# Engineering
-gkrb_tech_engineering_research_mod = {
+gkrb_tech_engineering_research_upkeep_mod = {
 	country_rubberbanding_engineering_research_upkeep_add = 1
 	hide_from_country_list = yes
 }
 
+# Behind: per-resource produces bonuses (scaled via add_modifier multiplier)
+gkrb_tech_physics_research_produces_mod = {
+	country_rubberbanding_physics_research_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_tech_society_research_produces_mod = {
+	country_rubberbanding_society_research_produces_add = 1
+	hide_from_country_list = yes
+}
+
+gkrb_tech_engineering_research_produces_mod = {
+	country_rubberbanding_engineering_research_produces_add = 1
+	hide_from_country_list = yes
+}
+
+# Ahead tooltip marker
 gkrb_tech_mod = {
 	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_negative.dds"
 	show_only_custom_tooltip = yes
 	custom_tooltip = gkrb_tech_mod.tooltip
 }
 
+# Behind: catch-up bonus (alternatives) + tooltip
 gkrb_tech_behind_mod = {
 	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_positive.dds"
 	num_tech_alternatives_add = 3.33 #roughly +1 alterntiave for each 30$ you are behind

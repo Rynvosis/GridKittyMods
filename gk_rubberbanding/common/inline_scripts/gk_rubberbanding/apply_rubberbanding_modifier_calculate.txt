@@ -1,18 +1,46 @@
 # Inline script: Calculate revenue adjustment variable
 # Parameters:
-#   $RESOURCE$ - Resource name (e.g., energy)
-#   $TYPE$     - System type (e.g., tech)
+#   $RESOURCE$  - Resource name (e.g., energy, unity, physics_research)
+#   $TYPE$      - System type (e.g., tech, trad)
+#   $DIRECTION$ - upkeep or produces (determines which modifier gets cleared)
 #
 # Exports resource revenue to variable: gkrb_$TYPE$_$RESOURCE$_adjust
 # This variable will be modified by multipliers in the apply stage
 
-remove_modifier = gkrb_$TYPE$_$RESOURCE$_mod
+# First-run safety: make sure the adjust variable exists before we read it.
+# (Empires that haven't previously hit this code path won't have it set.)
+if = {
+	limit = { NOT = { is_variable_set = gkrb_$TYPE$_$RESOURCE$_adjust } }
+	set_variable = { which = gkrb_$TYPE$_$RESOURCE$_adjust value = 0 }
+}
 
-# Get current revenue directly
+# Snapshot last month's adjust (signed by direction) so we can back it out below.
+# Stellaris does not recalc income synchronously after remove_modifier, so the
+# export below reads a stale net that still reflects last month's mod. We correct.
+#   upkeep  (sign +1): last month reduced income by adjust → add adjust back
+#   produces (sign -1): last month inflated income by adjust → subtract adjust
+set_variable = {
+	which = gkrb_$TYPE$_$RESOURCE$_old_adjust_signed
+	value = gkrb_$TYPE$_$RESOURCE$_adjust
+}
+multiply_variable = {
+	which = gkrb_$TYPE$_$RESOURCE$_old_adjust_signed
+	value = @gkrb_sign_$DIRECTION$
+}
+
+remove_modifier = gkrb_$TYPE$_$RESOURCE$_$DIRECTION$_mod
+
+# Export NET income (profit minus loss) — at mult=1.0 this zeroes an ahead empire cleanly.
 export_trigger_value_to_variable = {
-	trigger = resource_revenue_compare
+	trigger = resource_income_compare
 	parameters = {
 		resource = $RESOURCE$
 	}
 	variable = gkrb_$TYPE$_$RESOURCE$_adjust
+}
+
+# Back out last month's modifier contribution from the (possibly stale) reading.
+change_variable = {
+	which = gkrb_$TYPE$_$RESOURCE$_adjust
+	value = gkrb_$TYPE$_$RESOURCE$_old_adjust_signed
 }

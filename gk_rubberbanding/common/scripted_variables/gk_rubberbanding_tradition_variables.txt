@@ -1,0 +1,13 @@
+# Tradition rubberbanding constants
+# Mirrors vanilla tradition cost defines (common/defines/00_defines.txt)
+# Values pinned at Stellaris 4.0.x — update if vanilla defines change.
+#
+# cost(N) = base * (1 + (N/per_trad)^exp) * (1 + empire_size_penalty * empire_size) * gkrb_trad_cost_scale
+# where gkrb_trad_cost_scale is a host-set variable on global_event_country (gates pending count).
+
+@gkrb_trad_base_cost = 300              # TRADITION_COST_AMOUNTS
+@gkrb_trad_cost_per_trad = 8            # TRADITION_COST_TRADITION
+@gkrb_trad_cost_exp = 1.8               # TRADITION_COST_TRADITION_EXP
+@gkrb_trad_empire_size_penalty = 0.002  # EMPIRE_SIZE_TRADITION_COST_PENALTY
+@gkrb_trad_empire_size_base = 100        # EMPIRE_SIZE_BASE — penalty applies only above this
+@gkrb_trad_score_floor = 5               # minimum effective score — keeps early game from being rubberband-swingy

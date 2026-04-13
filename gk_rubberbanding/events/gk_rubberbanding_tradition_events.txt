@@ -1,0 +1,39 @@
+# Tradition Rubberbanding Events
+# Thin wrappers — monthly pipeline lives in inline_scripts/gk_rubberbanding/pipeline.txt.
+#
+# Host must set gkrb_trad_cost_scale on global_event_country at session start for the
+# pending-count half of the score to activate. Without it, score = raw unlocked_count only.
+#
+# Console setup:
+#   effect event_target:global_event_country = { set_variable = { which = gkrb_trad_cost_scale value = 1 } }
+namespace = gkrb_trad
+
+event = {
+	id = gkrb_trad.1
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		inline_script = { script = gk_rubberbanding/init_globals TYPE = trad }
+	}
+}
+
+event = {
+	id = gkrb_trad.10
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		inline_script = { script = gk_rubberbanding/pipeline TYPE = trad }
+	}
+}
+
+# Tradition-specific counter — tech doesn't need this because Stellaris exposes
+# num_researched_techs_of_tier as a value-returning trigger. For traditions,
+# num_unlocked_traditions is boolean-only, so we hand-track via on_tradition_picked.
+event = {
+	id = gkrb_trad.100
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		change_variable = { which = gkrb_trad_unlocked_count value = 1 }
+	}
+}

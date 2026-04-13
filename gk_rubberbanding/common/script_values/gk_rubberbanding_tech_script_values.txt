@@ -1,18 +1,4 @@
 
-gkrb_tech_score_percent = {
-	add = gkrb_tech_relative
-	mult = 100
-	round = yes
-}
-
-gkrb_tech_mult_percent = {
-	add = gkrb_tech_mult
-	mult = 100
-	round = yes
-}
-
-
-
 ###########################
 # tech score calculations #
 ###########################
@@ -65,28 +51,3 @@ gkrb_tech_score_repeatable = {
 # tech mult calculations #
 ##########################
 
-gkrb_tech_old_mult = {
-	base = 0.25
-	mult = gkrb_tech_relative
-	mult = gkrb_tech_relative
-	subtract = 0.25
-	max = 1.0
-}
-
-# (1-x)^2 formula: always positive, used as upkeep multiplier when ahead
-# When behind, the behind_mod is applied instead
-gkrb_tech_mult = {
-	base = 0
-	add = value:gkrb_tech_offset_relative
-	mult = value:gkrb_tech_offset_relative
-	
-	max = 1.0
-	min = 0
-}
-
-
-gkrb_tech_offset_relative = {
-	# originally 1 = middle, instead this is making it so 0 is middle
-	base = 1
-	subtract = value:gkrb_relative_score|SCORE_VAR|gkrb_tech_score|GLOBAL_AVG_VAR|gkrb_tech_global_avg|
-}

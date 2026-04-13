@@ -3,6 +3,7 @@ tags={
 	"Balance"
 	"Technologies"
 }
-name="GK Tech Rubberbanding"
+name="GridKitty's Tech Rubberbanding"
 picture="thumbnail.png"
-supported_version="v4.3.0"
+supported_version="v4.3.*"
+remote_file_id="3706146594"

@@ -1,0 +1,26 @@
+# One-time initialization of the galactic aggregate variables for a rubberband system.
+# Parameters:
+#   $TYPE$ — system identifier (tech, trad, etc.)
+#
+# Gated by a country flag so re-initialization is a no-op on subsequent game starts.
+
+event_target:global_event_country = {
+	if = {
+		limit = {
+			NOT = { has_country_flag = gkrb_$TYPE$_has_global_variables }
+		}
+		set_variable = {
+			which = gkrb_$TYPE$_global_sum
+			value = 0
+		}
+		set_variable = {
+			which = gkrb_$TYPE$_global_country_count
+			value = 0
+		}
+		set_variable = {
+			which = gkrb_$TYPE$_global_avg
+			value = 0
+		}
+		set_country_flag = gkrb_$TYPE$_has_global_variables
+	}
+}

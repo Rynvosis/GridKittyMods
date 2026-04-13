@@ -1,3 +1,8 @@
+# Direction signs for back-out of stale income readings after remove_modifier.
+# Income trigger may still reflect last month's modifier; we add signed(old_adjust) to correct.
+@gkrb_sign_upkeep = 1     # upkeep reduced income last month → add old_adjust back
+@gkrb_sign_produces = -1  # produces inflated income last month → subtract old_adjust
+
 @gkrb_tech_tier0score = 1
 @gkrb_tech_tier1score = 1
 @gkrb_tech_tier2score = 2

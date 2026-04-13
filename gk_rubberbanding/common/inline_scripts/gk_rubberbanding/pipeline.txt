@@ -1,0 +1,122 @@
+# Monthly rubberbanding pipeline — shared stages 1-3.
+# Parameters:
+#   $TYPE$ — identifies the rubberbanding system (tech, trad, etc.)
+#
+# A system "registers" by providing:
+#   - script_value:  gkrb_$TYPE$_score         (per-country composite score)
+#   - scripted_effect: gkrb_clear_$TYPE$_rubberbanding_modifiers
+#   - scripted_effect: gkrb_apply_ahead_$TYPE$_rubberbanding_modifiers
+#   - scripted_effect: gkrb_apply_behind_$TYPE$_rubberbanding_modifiers
+#   - static_modifier: gkrb_$TYPE$_neutral_mod
+#
+# This pipeline writes these country variables on every_playable_country:
+#   - gkrb_$TYPE$_score
+#   - gkrb_$TYPE$_relative
+#   - gkrb_$TYPE$_mult
+# And three globals on global_event_country:
+#   - gkrb_$TYPE$_global_sum
+#   - gkrb_$TYPE$_global_country_count
+#   - gkrb_$TYPE$_global_avg
+
+# Stage 1: reset globals, compute per-country scores, contribute to galactic sum.
+event_target:global_event_country = {
+	set_variable = {
+		which = gkrb_$TYPE$_global_country_count
+		value = 0
+	}
+	set_variable = {
+		which = gkrb_$TYPE$_global_sum
+		value = 0
+	}
+}
+every_playable_country = {
+	set_variable = {
+		which = gkrb_$TYPE$_score
+		value = value:gkrb_$TYPE$_score
+	}
+	event_target:global_event_country = {
+		change_variable = {
+			which = gkrb_$TYPE$_global_sum
+			value = prev.gkrb_$TYPE$_score
+		}
+		change_variable = {
+			which = gkrb_$TYPE$_global_country_count
+			value = 1
+		}
+	}
+}
+
+# Stage 2: compute galactic average (floored at 1 to avoid div-by-zero downstream).
+event_target:global_event_country = {
+	if = {
+		limit = {
+			check_variable = {
+				which = gkrb_$TYPE$_global_country_count
+				value > 0
+			}
+		}
+		set_variable = {
+			which = gkrb_$TYPE$_global_avg
+			value = gkrb_$TYPE$_global_sum
+		}
+		divide_variable = {
+			which = gkrb_$TYPE$_global_avg
+			value = gkrb_$TYPE$_global_country_count
+		}
+		if = {
+			limit = {
+				check_variable = {
+					which = gkrb_$TYPE$_global_avg
+					value < 1
+				}
+			}
+			set_variable = {
+				which = gkrb_$TYPE$_global_avg
+				value = 1
+			}
+		}
+	}
+}
+
+# Stage 3: per-country relative + mult, then dispatch to apply effects.
+every_playable_country = {
+	set_variable = {
+		which = gkrb_$TYPE$_relative
+		value = value:gkrb_relative_score|SCORE_VAR|gkrb_$TYPE$_score|GLOBAL_AVG_VAR|gkrb_$TYPE$_global_avg|
+	}
+	set_variable = {
+		which = gkrb_$TYPE$_mult
+		value = value:gkrb_mult|SCORE_VAR|gkrb_$TYPE$_score|GLOBAL_AVG_VAR|gkrb_$TYPE$_global_avg|
+	}
+	round_variable_to_closest = {
+		which = gkrb_$TYPE$_mult
+		value = 0.0001
+	}
+
+	gkrb_clear_$TYPE$_rubberbanding_modifiers = yes
+
+	if = {
+		limit = {
+			check_variable = {
+				which = gkrb_$TYPE$_relative
+				value < 0.95
+			}
+		}
+		gkrb_apply_behind_$TYPE$_rubberbanding_modifiers = yes
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = gkrb_$TYPE$_relative
+				value > 1.05
+			}
+		}
+		gkrb_apply_ahead_$TYPE$_rubberbanding_modifiers = yes
+	}
+	else = {
+		add_modifier = {
+			modifier = gkrb_$TYPE$_neutral_mod
+			days = -1
+		}
+	}
+}
