@@ -1,0 +1,52 @@
+# Overwrite vanilla lm_imbued_army (Mimetic Strike Force) to widen the non-infernal pop bypass.
+# Adds trait_mechanical so synth-ascended (and individualist-machine) galvanic empires can recruit.
+lm_imbued_army = {
+	damage = 2.0
+	morale_damage = 2.0
+	collateral_damage = 1.25
+	war_exhaustion = 0.25
+	health = 2.5
+	has_morale = no
+	time = 180
+	icon = GFX_army_type_robot
+	has_species = yes
+
+	resources = {
+		category = armies
+		cost = { sr_living_metal = 150 }
+		upkeep = {
+			energy = 2
+			minerals = 1
+		}
+	}
+
+	potential_country = { is_galvanic_empire = yes }
+	potential = {
+		OR = {
+			from = { has_trait = "trait_infernal" }
+			from = { has_trait = "trait_mechanical" }
+			owner = { has_valid_civic = civic_machine_galvanic_symbiosis }
+		}
+	}
+
+	ai_weight = {
+		base = 10
+		modifier = {
+			factor = 5
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = sr_living_metal
+					value > 30
+				}
+			}
+		}
+		modifier = {
+			factor = 5
+			is_genocidal_infernal = yes
+		}
+	}
+}

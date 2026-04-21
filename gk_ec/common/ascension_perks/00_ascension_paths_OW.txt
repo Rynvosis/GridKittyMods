@@ -1,0 +1,116 @@
+# Overwrite vanilla ap_synthetic_evolution to remove the is_galvanic_empire block.
+# With civic_galvanic_symbiosis (and corp/hive variants) no longer requiring species_class = INF,
+# the original cascade reason for this restriction is gone.
+ap_synthetic_evolution = {
+	on_enabled = {
+		custom_tooltip = "synthetic_evolution_tooltip"
+		if = {
+			limit = {
+				has_origin = origin_necrophage
+				has_trait = trait_necrophage
+			}
+			custom_tooltip = disables_necrophage_features
+		}
+		if = {
+			limit = {
+				has_origin = origin_clone_army
+				OR = {
+					has_trait = trait_clone_soldier_infertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile
+				}
+			}
+			custom_tooltip = disables_clone_army_origin_features
+		}
+		if = {
+			limit = {
+				has_origin = origin_overtuned
+			}
+			custom_tooltip = disables_overtuned_features
+		}
+		if = {
+			limit = {
+				OR = {
+					has_valid_civic = civic_idyllic_bloom
+					has_valid_civic = civic_hive_idyllic_bloom
+				}
+			}
+			custom_tooltip = disables_idyllic_bloom
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "synthetic_empire_synthetic_ascension"
+			NOT = { has_trait = trait_mechanical }
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_ap_engineered_evolution"
+			NOT = { has_ascension_perk = ap_engineered_evolution }
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_ap_the_flesh_is_weak"
+			NOT = { has_ascension_perk = ap_the_flesh_is_weak }
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_ap_mind_over_matter"
+			has_psionic_ascension = no
+		}
+		custom_tooltip = {
+			fail_text = "requires_free_tradition_tree"
+			num_tradition_categories < @max_tradition_trees
+		}
+	}
+
+	potential = {
+		OR = {
+			has_utopia = yes
+			has_machine_age_dlc = yes
+		}
+		NOR = {
+			has_ascension_perk = ap_synthetic_evolution
+			is_machine_empire = yes
+			has_origin = origin_shroudwalker_apprentice
+			has_origin = origin_cybernetic_creed
+			has_origin = origin_synthetic_fertility
+			has_origin = origin_evolutionary_predators
+			has_origin = origin_endbringers
+			has_tradition = tr_cybernetics_adopt
+		}
+		is_gestalt = no
+		is_mechanical_empire = no
+		is_natural_design_empire = no
+		NOT = { has_valid_civic = civic_augmentation_bazaars }
+		is_individual_machine = no
+		owner_species = {
+			NOT = { has_trait = trait_unplugged_decyberized }
+		}
+		is_chosen_empire = no
+		is_entropy_drinkers_empire = no
+	}
+
+	ai_weight = {
+		factor = @ascension_path_base_weight
+		modifier = {
+			factor = @ascension_path_synergy_weight
+			has_synthetic_evolution_synergy = yes
+		}
+		modifier = {
+			factor = @ascension_path_anti_synergy_weight
+			has_synthetic_evolution_anti_synergy = yes
+		}
+		modifier = {
+			factor = @ascension_path_mindwardens_present
+			any_country = {
+				has_origin = origin_mindwardens
+			}
+		}
+		modifier = {
+			factor = 0
+			blocks_ai_synthetic_evolution = yes
+		}
+	}
+}

@@ -1,0 +1,42 @@
+# Overwrite vanilla Corporate Galvanic Symbiosis to drop the INF species_class restriction
+civic_corporate_galvanic_symbiosis = {
+	modification = {
+		add = {
+			hidden_trigger = { has_civic = civic_galvanic_symbiosis }
+		}
+		remove = { always = no }
+	}
+	alternate_civic_version = civic_galvanic_symbiosis
+	playable = { has_infernals = yes }
+	ai_playable = { has_infernals = yes }
+	description = "civic_corporate_galvanic_symbiosis_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		OR = {
+			authority = { value = auth_corporate }
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		origin = {
+			NOT = {
+				value = origin_synthetic_fertility
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_corporate_beastmasters
+			}
+		}
+	}
+	modifier = {
+		planet_building_refund_mult = 0.75
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Infernals Species Pack" }
+		}
+	}
+}

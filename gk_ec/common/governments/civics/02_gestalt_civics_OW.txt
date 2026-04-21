@@ -17,3 +17,36 @@ civic_hive_ascetic = {
 		trigger = { is_wilderness_empire = yes }
 	}
 }
+
+# Overwrite vanilla Hive Galvanic Symbiosis to drop the INF species_class restriction
+civic_hive_galvanic_symbiosis = {
+	modification = no
+	playable = { has_infernals = yes }
+	ai_playable = { has_infernals = yes }
+	description = "civic_hive_galvanic_symbiosis_effects"
+	potential = { authority = { value = auth_hive_mind } }
+	possible = {
+		origin = {
+			NOR = {
+				value = origin_wilderness
+				value = origin_synthetic_fertility
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_hive_beastmasters
+			}
+		}
+	}
+	modifier = {
+		planet_building_refund_mult = 0.75
+		councilor_gestalt_growth_exp_gain = @gestalt_civic_node_xp_rate
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Infernals Species Pack" }
+		}
+	}
+}
