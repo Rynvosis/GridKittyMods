@@ -1,20 +1,29 @@
 # "Truly ascended" check for Patience of the Unascended.
-# Matches vanilla has_ascension_path EXCEPT empires whose only psionic access
-# is civic_chosen / civic_corporate_chosen — those still need the AP to ascend,
-# so they shouldn't lose the patience bonus. origin_shroudwalker_apprentice
-# (Teachers of the Shroud) keeps being treated as ascended since it grants
-# ascension access without requiring the AP.
+# Uses ascension tradition tree adoption rather than AP/origin enumeration.
+# The vanilla adopt nodes already gate on (AP) OR (early-access origin with
+# prereq tech), so this naturally:
+#   - excludes civic_chosen / civic_corporate_chosen / civic_augmentation_bazaars
+#     (they need the AP to unlock the tree)
+#   - includes Teachers of the Shroud, Cybernetic Creed, Hard Reset (Unplugged),
+#     Synthetic Fertility, Endbringers, Shroud Forged (post-liberation), etc.
+#   - auto-includes any new early-access origins future DLC adds to these trees
 gk_asc_has_ascension_path = {
 	OR = {
-		has_cybernetic_ascension = yes
-		has_genetic_ascension = yes
-		has_synthetic_ascension = yes
-		has_ascension_perk = ap_mind_over_matter
-		has_origin = origin_shroudwalker_apprentice
-		has_origin = origin_endbringers
-		AND = {
-			has_origin = origin_shroud_forged
-			has_country_flag = finish_shroud_forged_liberation_flag
-		}
+		# Cybernetic
+		has_tradition = tr_cybernetics_adopt
+		has_tradition = tr_cybernetics_assimilator_adopt
+		# Genetic / Biogenesis
+		has_tradition = tr_genetics_adopt
+		has_tradition = tr_cloning_adopt
+		has_tradition = tr_mutation_adopt
+		# Psionic
+		has_tradition = tr_psionics_adopt
+		has_tradition = tr_psionics_shroud_adopt
+		# Synthetic / Machine Age
+		has_tradition = tr_synthetics_adopt
+		has_tradition = tr_nanotech_adopt
+		has_tradition = tr_modularity_adopt
+		has_tradition = tr_virtuality_adopt
+		has_tradition = tr_purity_adopt
 	}
 }
