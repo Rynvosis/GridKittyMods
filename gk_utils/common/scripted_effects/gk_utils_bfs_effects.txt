@@ -1,0 +1,77 @@
+####################################
+# BFS over hyperlanes              #
+####################################
+#
+# gk_utils_bfs_apply — iterative flood-fill across hyperlane-connected systems.
+# Scope: system (the seed)
+# Parse-time params:
+#   $FLAG$       — star flag set on every visited system (persistent after effect returns)
+#   $EFFECT$     — scripted_effect name called on each visited system, in its scope
+#   $MAX_DEPTH$  — integer hop budget; the BFS terminates after this many waves
+#
+# Recursion safety: the only scripted_effect call inside the loop is $EFFECT$, one
+# level below gk_utils_bfs_apply itself. Stellaris caps scripted_effect depth at 5,
+# so a caller's $EFFECT$ may safely nest ~3 more scripted_effects before hitting the wall.
+#
+# Uses two internal frontier flags (gk_utils_bfs_frontier_a/b). These are cleaned
+# up at both start (defensive, against stale state from a prior failed run) and end.
+
+gk_utils_bfs_apply = {
+	# Pre-clean internal frontier flags in case a prior run was interrupted.
+	every_system = {
+		limit = {
+			OR = {
+				has_star_flag = gk_utils_bfs_frontier_a
+				has_star_flag = gk_utils_bfs_frontier_b
+			}
+		}
+		remove_star_flag = gk_utils_bfs_frontier_a
+		remove_star_flag = gk_utils_bfs_frontier_b
+	}
+
+	# Seed: mark self visited, put self on current frontier, apply effect.
+	set_star_flag = $FLAG$
+	set_star_flag = gk_utils_bfs_frontier_a
+	$EFFECT$ = yes
+
+	while = {
+		count = $MAX_DEPTH$
+
+		# Expand current frontier (a) into next frontier (b).
+		# Neighbors already bearing $FLAG$ are skipped — that's the visited check.
+		every_system = {
+			limit = { has_star_flag = gk_utils_bfs_frontier_a }
+			every_neighbor_system = {
+				limit = { NOT = { has_star_flag = $FLAG$ } }
+				set_star_flag = $FLAG$
+				set_star_flag = gk_utils_bfs_frontier_b
+				$EFFECT$ = yes
+			}
+		}
+
+		# Retire current frontier.
+		every_system = {
+			limit = { has_star_flag = gk_utils_bfs_frontier_a }
+			remove_star_flag = gk_utils_bfs_frontier_a
+		}
+
+		# Promote next frontier to current.
+		every_system = {
+			limit = { has_star_flag = gk_utils_bfs_frontier_b }
+			remove_star_flag = gk_utils_bfs_frontier_b
+			set_star_flag = gk_utils_bfs_frontier_a
+		}
+	}
+
+	# Cleanup: the last wave left frontier_a set on leaf systems; clear it.
+	every_system = {
+		limit = {
+			OR = {
+				has_star_flag = gk_utils_bfs_frontier_a
+				has_star_flag = gk_utils_bfs_frontier_b
+			}
+		}
+		remove_star_flag = gk_utils_bfs_frontier_a
+		remove_star_flag = gk_utils_bfs_frontier_b
+	}
+}

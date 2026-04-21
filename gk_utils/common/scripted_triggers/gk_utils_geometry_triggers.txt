@@ -1,0 +1,89 @@
+# =============================================================================
+# gk_utils :: geometry scripted_triggers
+# -----------------------------------------------------------------------------
+# Predicates over 2D geometry. Currently the only inhabitant is the hyperlane
+# intersection check; extend here as more geometric predicates emerge.
+#
+# Public identifiers in this file:
+#   - gk_utils_hyperlanes_intersect
+#       Do two line segments A-B and C-D intersect, given the six pairwise
+#       distances? Incomplete: depends on three cross-product script_values
+#       that are NOT YET DEFINED. Call sites will fail at runtime with "unknown
+#       script_value" errors. See the TODO below before using.
+# =============================================================================
+
+
+# Do segments A-B and C-D cross, given the six pairwise distances between the
+# four endpoints?
+# Params: AB, AC, AD, BC, BD, CD (side lengths)
+#
+# Algorithm: two line segments intersect iff (1) C and D are on opposite sides
+# of line AB AND (2) A and B are on opposite sides of line CD. Both conditions
+# are checked via cross products in the local frame where A=(0,0), B=(AB,0).
+#
+# TODO: the three script_values this trigger calls below are not yet defined:
+#   - gk_utils_d_opposite_side_check
+#   - gk_utils_cross_a_opposite_side
+#   - gk_utils_cross_b_opposite_side
+# Completing them is a non-trivial exercise in nested-value:-call composition
+# because triggers cannot invoke helper effects to stage intermediate vars.
+# Until completed, this trigger will log script_value errors if called.
+gk_utils_hyperlanes_intersect = {
+	# Two line segments intersect iff:
+	# 1. C and D are on opposite sides of line AB,
+	#    AND
+	# 2. A and B are on opposite sides of line CD
+
+	# Check 1: C and D are on opposite sides of line AB
+	# This is true if D needs to be on the opposite side from C
+	# (i.e., if calculated CD distance when both positive > actual CD distance)
+	check_variable = {
+		which = value:gk_utils_d_opposite_side_check|AB|$AB$|AC|$AC$|AD|$AD$|BC|$BC$|BD|$BD$|CD|$CD$|
+		value > 0
+	}
+
+	# Check 2: A and B are on opposite sides of line CD
+	# We use cross products to determine this
+	# Since we already know D is on opposite side from C (from check 1),
+	# we use the opposite_side cross products
+	OR = {
+		# Cross products have different signs
+		AND = {
+			check_variable = {
+				which = value:gk_utils_cross_a_opposite_side|AB|$AB$|AC|$AC$|AD|$AD$|BC|$BC$|BD|$BD$|CD|$CD$|
+				value > 0
+			}
+			check_variable = {
+				which = value:gk_utils_cross_b_opposite_side|AB|$AB$|AC|$AC$|AD|$AD$|BC|$BC$|BD|$BD$|CD|$CD$|
+				value < 0
+			}
+		}
+		AND = {
+			check_variable = {
+				which = value:gk_utils_cross_a_opposite_side|AB|$AB$|AC|$AC$|AD|$AD$|BC|$BC$|BD|$BD$|CD|$CD$|
+				value < 0
+			}
+			check_variable = {
+				which = value:gk_utils_cross_b_opposite_side|AB|$AB$|AC|$AC$|AD|$AD$|BC|$BC$|BD|$BD$|CD|$CD$|
+				value > 0
+			}
+		}
+	}
+}
+
+# Derivation reference for the open problem:
+#
+# if A and B are on different sides of C and D
+# and vice versa, the hyperlanes **must** intersect.
+#
+# however, we only have distances between each system, no positions
+# nor can we perform trigonemtry to calculate angles.
+#
+# if we imagine a graph with system A at 0,0 and B at (AB,0)
+# we can compute the positions of C and D without ANY trig, instead using the law of cosines
+# the X coord is the length AC multiples by the cosign of its angle from A
+#  we can get the cosign of the angle though  (a^2 + b^2 - c^2)/2ab,
+#  since we know the side lengths already, we can just plug this in directly
+#  then multiply it by the lenght AC without actually needing to directly use the cos function
+# once we know x we can just use pythag to get y
+# repeat for D

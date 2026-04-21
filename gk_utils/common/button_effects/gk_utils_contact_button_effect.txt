@@ -1,0 +1,31 @@
+# Share Contact — button_effect for the diplomacy view
+# Scope: this/root = target country, from = player country
+
+gk_utils_share_contact_button = {
+	potential = {
+		is_country_type = default
+		from = { is_country_type = default }
+		has_communications = from
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = gk_utils_tt_no_shareable_contacts
+			any_country = {
+				is_country_type = default
+				has_communications = from
+				NOT = { has_communications = root }
+				NOT = { is_same_value = root }
+				NOT = { is_same_value = from }
+			}
+		}
+	}
+	effect = {
+		hidden_effect = {
+			from = {
+				set_country_flag = gk_sharing_contacts_with@root
+				set_variable = { which = gk_contact_page value = 0 }
+				country_event = { id = gk_utils_contact.1 }
+			}
+		}
+	}
+}

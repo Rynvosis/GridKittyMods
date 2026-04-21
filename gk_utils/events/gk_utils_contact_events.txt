@@ -1,0 +1,214 @@
+namespace = gk_utils_contact
+
+# ──────────────────────────────────────────────────────────────────
+# 1 — Contact picker (paginated)
+# this/root = sharer
+# event_target:gk_contact_target = recipient (re-established from flag)
+# ──────────────────────────────────────────────────────────────────
+country_event = {
+	id = gk_utils_contact.1
+	title = gk_utils_contact.1.name
+	diplomatic_title = gk_utils_contact.1.name
+	desc = gk_utils_contact.1.desc
+	diplomatic = yes
+	force_open = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = event_target:gk_contact_target.ruler
+		room = event_target:gk_contact_target
+		planet_background = event_target:gk_contact_target
+	}
+	show_sound = event_ship_bridge
+
+	immediate = {
+		# Re-establish target from flag
+		random_country = {
+			limit = {
+				root = { has_country_flag = gk_sharing_contacts_with@prev }
+			}
+			save_event_target_as = gk_contact_target
+		}
+		gk_utils_contact_build_page = yes
+	}
+
+	# ── Cancel (default option — top of list) ──
+
+	option = {
+		name = gk_utils_contact.1.cancel
+		hidden_effect = {
+			gk_utils_contact_cleanup = yes
+		}
+	}
+
+	# ── Contact slots 0–8 ──
+
+	option = {
+		name = gk_utils_contact.1.pick_0
+		trigger = { check_variable = { which = gk_contact_page_count value > 0 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_0
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_1
+		trigger = { check_variable = { which = gk_contact_page_count value > 1 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_1
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_2
+		trigger = { check_variable = { which = gk_contact_page_count value > 2 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_2
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_3
+		trigger = { check_variable = { which = gk_contact_page_count value > 3 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_3
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_4
+		trigger = { check_variable = { which = gk_contact_page_count value > 4 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_4
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_5
+		trigger = { check_variable = { which = gk_contact_page_count value > 5 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_5
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_6
+		trigger = { check_variable = { which = gk_contact_page_count value > 6 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_6
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_7
+		trigger = { check_variable = { which = gk_contact_page_count value > 7 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_7
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+	option = {
+		name = gk_utils_contact.1.pick_8
+		trigger = { check_variable = { which = gk_contact_page_count value > 8 } }
+		hidden_effect = {
+			set_country_flag = gk_contact_selected@event_target:gk_contact_8
+			country_event = { id = gk_utils_contact.2 }
+		}
+	}
+
+	# ── Pagination ──
+
+	# Next Page (more pages remain)
+	option = {
+		name = gk_utils_contact.1.next
+		trigger = {
+			check_variable = { which = gk_contact_total value > 9 }
+			check_variable = { which = gk_contact_next_start value < gk_contact_total }
+		}
+		hidden_effect = {
+			change_variable = { which = gk_contact_page value = 1 }
+			country_event = { id = gk_utils_contact.1 }
+		}
+	}
+
+	# First Page (on last page, wrap around)
+	option = {
+		name = gk_utils_contact.1.first
+		trigger = {
+			check_variable = { which = gk_contact_total value > 9 }
+			check_variable = { which = gk_contact_next_start value >= gk_contact_total }
+		}
+		hidden_effect = {
+			set_variable = { which = gk_contact_page value = 0 }
+			country_event = { id = gk_utils_contact.1 }
+		}
+	}
+
+}
+
+# ──────────────────────────────────────────────────────────────────
+# 2 — Confirmation (shows selected empire's portrait)
+# this/root = sharer
+# event_target:gk_contact_target = recipient
+# event_target:gk_contact_selected = empire whose contact is being shared
+# ──────────────────────────────────────────────────────────────────
+country_event = {
+	id = gk_utils_contact.2
+	title = gk_utils_contact.2.name
+	diplomatic_title = gk_utils_contact.2.name
+	desc = gk_utils_contact.2.desc
+	diplomatic = yes
+	force_open = yes
+	is_triggered_only = yes
+	picture_event_data = {
+		portrait = event_target:gk_contact_selected.ruler
+		room = event_target:gk_contact_selected
+		planet_background = event_target:gk_contact_selected
+	}
+	show_sound = event_ship_bridge
+
+	immediate = {
+		# Re-establish both targets from flags
+		random_country = {
+			limit = {
+				root = { has_country_flag = gk_sharing_contacts_with@prev }
+			}
+			save_event_target_as = gk_contact_target
+		}
+		random_country = {
+			limit = {
+				root = { has_country_flag = gk_contact_selected@prev }
+			}
+			save_event_target_as = gk_contact_selected
+		}
+	}
+
+	# Cancel (default option — top of list)
+	option = {
+		name = gk_utils_contact.2.cancel
+		hidden_effect = {
+			remove_country_flag = gk_contact_selected@event_target:gk_contact_selected
+			gk_utils_contact_cleanup = yes
+		}
+	}
+
+	# Confirm — grant communications
+	option = {
+		name = gk_utils_contact.2.confirm
+		hidden_effect = {
+			event_target:gk_contact_target = {
+				establish_communications_no_message = event_target:gk_contact_selected
+			}
+			remove_country_flag = gk_contact_selected@event_target:gk_contact_selected
+			gk_utils_contact_cleanup = yes
+		}
+	}
+
+	# Back to list
+	option = {
+		name = gk_utils_contact.2.back
+		hidden_effect = {
+			remove_country_flag = gk_contact_selected@event_target:gk_contact_selected
+			country_event = { id = gk_utils_contact.1 }
+		}
+	}
+}

@@ -1,0 +1,27 @@
+﻿l_english:
+ # Button
+ gk_utils_share_contact_button_label:0 "Share Contact"
+ gk_utils_tt_no_shareable_contacts:0 "You have no contacts unknown to this empire."
+
+ # Contact Picker
+ gk_utils_contact.1.name:0 "Share Contact"
+ gk_utils_contact.1.desc:0 "Select an empire whose contact you wish to share with [gk_contact_target.GetName]."
+ gk_utils_contact.1.pick_0:0 "[gk_contact_0.GetName]"
+ gk_utils_contact.1.pick_1:0 "[gk_contact_1.GetName]"
+ gk_utils_contact.1.pick_2:0 "[gk_contact_2.GetName]"
+ gk_utils_contact.1.pick_3:0 "[gk_contact_3.GetName]"
+ gk_utils_contact.1.pick_4:0 "[gk_contact_4.GetName]"
+ gk_utils_contact.1.pick_5:0 "[gk_contact_5.GetName]"
+ gk_utils_contact.1.pick_6:0 "[gk_contact_6.GetName]"
+ gk_utils_contact.1.pick_7:0 "[gk_contact_7.GetName]"
+ gk_utils_contact.1.pick_8:0 "[gk_contact_8.GetName]"
+ gk_utils_contact.1.next:0 "Next Page"
+ gk_utils_contact.1.first:0 "First Page"
+ gk_utils_contact.1.cancel:0 "Cancel"
+
+ # Confirmation
+ gk_utils_contact.2.name:0 "Confirm Contact Sharing"
+ gk_utils_contact.2.desc:0 "You are about to share the contact information of [gk_contact_selected.GetName] with [gk_contact_target.GetName].\n\n[gk_contact_target.GetName] will gain the ability to communicate with [gk_contact_selected.GetName] directly."
+ gk_utils_contact.2.confirm:0 "Share Contact"
+ gk_utils_contact.2.back:0 "Back"
+ gk_utils_contact.2.cancel:0 "Cancel"

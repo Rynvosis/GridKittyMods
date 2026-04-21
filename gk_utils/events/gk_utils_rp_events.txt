@@ -1,0 +1,32 @@
+namespace = gk_utils_rp
+
+# Multiplayer detection — fired on game start
+event = {
+	id = gk_utils_rp.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_multiplayer = yes
+	}
+
+	immediate = {
+		set_global_flag = gk_utils_rp_mp_game
+	}
+}
+
+# Enable Galactic Community — fire via console: event gk_utils_rp.2
+event = {
+	id = gk_utils_rp.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = gk_utils_rp_galcom_allowed
+		# Kick off vanilla GC formation
+		random_country = {
+			limit = { is_country_type = global_event }
+			country_event = { id = galcom.1 }
+		}
+	}
+}

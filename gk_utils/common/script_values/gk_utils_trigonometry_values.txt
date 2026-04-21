@@ -1,0 +1,70 @@
+# =============================================================================
+# gk_utils :: trigonometry script_values
+# -----------------------------------------------------------------------------
+# Closed-form trigonometric primitives built on the script_value math ops
+# (square, square_root, divide). Stellaris has no native cos/sin/tan, but for
+# our use cases we can work with cos(theta) as a scalar (recoverable from law
+# of cosines given triangle side lengths) and derive sin / tan / sec from it.
+#
+# These are the building blocks the polar-navigation layer uses to translate
+# angular geometry into literal move_system distances.
+#
+# Public identifiers in this file:
+#   - gk_utils_cos_opposite_from_sides
+#       cos of the angle opposite side C in a triangle with sides A, B, C.
+#   - gk_utils_sin_from_cos
+#       sqrt(1 - cos^2). Only valid for cos in [-1, 1].
+#   - gk_utils_tan_from_sin_cos
+#       sin / cos. Caller is responsible for guarding against cos = 0.
+#   - gk_utils_sec_minus_one
+#       (1 / cos) - 1. Used for the radial-correction step after a tangent
+#       polar move: if you moved tangentially by r * tan(theta), your r
+#       increased by r * (sec(theta) - 1) due to the straight-line tangent
+#       leaving the circle of radius r.
+# =============================================================================
+
+
+# Law of cosines: given triangle sides A, B, and C (where C is the side
+# opposite the angle we want), returns cos of that angle.
+# cos(angle opposite C) = (A^2 + B^2 - C^2) / (2 * A * B)
+# Params: A, B, C
+gk_utils_cos_opposite_from_sides = {
+	add = value:gk_utils_squared|VALUE|$A$|
+	add = value:gk_utils_squared|VALUE|$B$|
+	subtract = value:gk_utils_squared|VALUE|$C$|
+	divide = 2
+	divide = $A$
+	divide = $B$
+}
+
+
+# sin(theta) = sqrt(1 - cos^2(theta)). Always returns the positive root, so
+# this gives |sin|; if you need signed sin, track the angular direction
+# separately (e.g. via the left/right move_system direction param).
+# Params: COS (a scalar in [-1, 1])
+gk_utils_sin_from_cos = {
+	add = 1
+	subtract = value:gk_utils_squared|VALUE|$COS$|
+	square_root = yes
+}
+
+
+# tan(theta) = sin(theta) / cos(theta). Undefined at cos = 0; caller must
+# guard (e.g. via a separate check that the angle isn't near pi/2).
+# Params: SIN, COS
+gk_utils_tan_from_sin_cos = {
+	add = $SIN$
+	divide = $COS$
+}
+
+
+# sec(theta) - 1 = (1 / cos(theta)) - 1. Used in the polar-navigation layer
+# to compute the radial-correction distance after a tangential move: when
+# moving linearly along the local tangent by r * tan(theta), the new radius
+# becomes r * sec(theta), so we correct by r * (sec(theta) - 1) coreward.
+# Params: COS
+gk_utils_sec_minus_one = {
+	add = 1
+	divide = $COS$
+	subtract = 1
+}

@@ -1,0 +1,118 @@
+# =============================================================================
+# gk_utils :: hyperlane scripted_effects
+# -----------------------------------------------------------------------------
+# Idempotent wrappers around vanilla add_hyperlane / remove_hyperlane that
+# guard against common mistakes (same system, already connected, target not
+# set), plus a batched rewiring helper used by the system swap effect.
+#
+# All effects here operate on galactic_object scope and consult
+# event_target:gk_target for the partner system.
+#
+# Public identifiers in this file:
+#   - gk_utils_add_hyperlane_to_target
+#       Add a hyperlane from scope to event_target:gk_target, guarded.
+#   - gk_utils_remove_hyperlane_to_target
+#       Remove an existing hyperlane from scope to event_target:gk_target.
+#   - gk_utils_rewire_neighbors_to
+#       For every system bearing $FROM_FLAG$, remove its hyperlane to
+#       event_target:$FROM_SYSTEM$ and add one to event_target:$TO_SYSTEM$.
+#       Clears the flag on its way out. Used by the swap effect.
+#   - gk_utils_add_hyperlanes_in_range
+#       Add a hyperlane from scope to every other system within euclidean
+#       distance $MAX_DISTANCE$ (default 40). Skips existing connections.
+# =============================================================================
+
+
+# Add a hyperlane from the scoped system to event_target:gk_target.
+# No-ops if gk_target is not set, is the same system, or the hyperlane
+# already exists. Callers should set event_target:gk_target before calling.
+gk_utils_add_hyperlane_to_target = {
+	if = {
+		limit = {
+			exists = event_target:gk_target
+			NOT = { is_same_value = event_target:gk_target }
+			NOT = { has_hyperlane_to = event_target:gk_target }
+		}
+		add_hyperlane = {
+			from = this
+			to = event_target:gk_target
+		}
+	}
+}
+
+
+# Remove the hyperlane from the scoped system to event_target:gk_target.
+# No-ops if no such hyperlane exists.
+gk_utils_remove_hyperlane_to_target = {
+	if = {
+		limit = {
+			exists = event_target:gk_target
+			NOT = { is_same_value = event_target:gk_target }
+			has_hyperlane_to = event_target:gk_target
+		}
+		remove_hyperlane = {
+			from = this
+			to = event_target:gk_target
+		}
+	}
+}
+
+
+# Rewire every system flagged with $FROM_FLAG$ so its hyperlane to
+# event_target:$FROM_SYSTEM$ becomes a hyperlane to event_target:$TO_SYSTEM$.
+# Skips entries where the target is the same as the source or the link
+# already exists, and clears the flag after processing.
+# Params:
+#   FROM_FLAG    - star flag identifying systems to rewire
+#   FROM_SYSTEM  - event target name of the old endpoint
+#   TO_SYSTEM    - event target name of the new endpoint
+gk_utils_rewire_neighbors_to = {
+	every_system = {
+		limit = { has_star_flag = $FROM_FLAG$ }
+		if = {
+			limit = { has_hyperlane_to = event_target:$FROM_SYSTEM$ }
+			remove_hyperlane = {
+				from = this
+				to = event_target:$FROM_SYSTEM$
+			}
+		}
+		if = {
+			limit = {
+				NOT = { is_same_value = event_target:$TO_SYSTEM$ }
+				NOT = { has_hyperlane_to = event_target:$TO_SYSTEM$ }
+			}
+			add_hyperlane = {
+				from = this
+				to = event_target:$TO_SYSTEM$
+			}
+		}
+		remove_star_flag = $FROM_FLAG$
+	}
+}
+
+
+# Add a hyperlane from the scoped galactic_object to every other system
+# within euclidean distance $MAX_DISTANCE$ (default 40 ly). Skips systems
+# already connected and the scope itself. Uses a private event target so
+# callers don't need to stage gk_target.
+# Params:
+#   MAX_DISTANCE - euclidean ly cutoff (optional, default 40)
+gk_utils_add_hyperlanes_in_range = {
+	save_event_target_as = gk_utils_hyperlane_source
+	every_system = {
+		limit = {
+			NOT = { is_same_value = event_target:gk_utils_hyperlane_source }
+			NOT = { has_hyperlane_to = event_target:gk_utils_hyperlane_source }
+			distance = {
+				source = event_target:gk_utils_hyperlane_source
+				max_distance <= $MAX_DISTANCE|40$
+				type = euclidean
+			}
+		}
+		add_hyperlane = {
+			from = this
+			to = event_target:gk_utils_hyperlane_source
+		}
+	}
+	clear_event_target = gk_utils_hyperlane_source
+}

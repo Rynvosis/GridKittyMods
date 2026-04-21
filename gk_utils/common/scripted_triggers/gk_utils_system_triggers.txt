@@ -1,0 +1,20 @@
+# =============================================================================
+# gk_utils :: system scripted_triggers
+# -----------------------------------------------------------------------------
+# Predicates over pairs of systems referenced via event_target:gk_target.
+# Thin wrappers around vanilla triggers that fail gracefully when gk_target
+# isn't set (returning no instead of raising an unknown-scope warning).
+#
+# Public identifiers in this file:
+#   - gk_utils_has_hyperlane_to_target
+#       Yes if scope has a hyperlane directly to event_target:gk_target.
+# =============================================================================
+
+
+# Does the scoped galactic_object have a hyperlane to event_target:gk_target?
+# Returns no if gk_target is not set or is the same system as scope.
+gk_utils_has_hyperlane_to_target = {
+	exists = event_target:gk_target
+	NOT = { is_same_value = event_target:gk_target }
+	has_hyperlane_to = event_target:gk_target
+}

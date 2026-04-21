@@ -1,0 +1,27 @@
+namespace = gk_utils_seal
+
+# Fleet enters a sealed system — MIA it back home.
+# Filters:
+#   FROM has gk_utils_sealed_system — only sealed systems activate the bounce.
+#   can_go_mia = yes                — excludes fleets that vanilla won't MIA (e.g. mid-jump).
+#   owner is_country_type = default — excludes crisis, guardians, enclaves, swarm, etc.
+#   not a starbase/station          — those don't move anyway.
+fleet_event = {
+	id = gk_utils_seal.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = { has_star_flag = gk_utils_sealed_system }
+		can_go_mia = yes
+		owner = { is_country_type = default }
+		NOR = {
+			is_ship_class = shipclass_starbase
+			is_ship_class = shipclass_military_station
+		}
+	}
+
+	immediate = {
+		set_mia = mia_return_home
+	}
+}

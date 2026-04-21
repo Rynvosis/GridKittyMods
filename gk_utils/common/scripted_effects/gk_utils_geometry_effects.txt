@@ -1,0 +1,169 @@
+# =============================================================================
+# gk_utils :: geometry scripted_effects
+# -----------------------------------------------------------------------------
+# Effects that construct local 2D frames for triangle/intersection math and
+# perform brute-force galactic-geometry scans. Consumers are typically other
+# effects that need to answer "do these two hyperlanes cross?" or "which
+# hyperlanes can I add without creating crossings?".
+#
+# Public identifiers in this file:
+#   - gk_utils_calculate_PQ_relative_abs_RS_distance
+#       Sets xR, yR, xS, yS on the current scope given pairwise distances
+#       between P, Q, R, S, then writes the |R-S| distance (assuming both y
+#       positive) into a caller-supplied variable name.
+#   - gk_utils_add_every_non_intersecting_hyperlane
+#       Brute-force hyperlane scan from scope system. Walks neighbors up to
+#       radius ~200 and sets up distance variables for intersection checks.
+#       NOTE: the intersection check call is currently commented out pending
+#       completion of the three missing cross-product script_values that
+#       gk_utils_hyperlanes_intersect depends on.
+# =============================================================================
+
+
+# Given 4 points P, Q, R, S and all 6 pairwise distances (dPQ, dPR, dQR, dPS,
+# dQS, dRS), set R and S's (x, y) coordinates in the frame where P is at the
+# origin and Q is at (dPQ, 0), assuming both R and S have positive Y.
+# Writes the resulting same-side |R-S| distance into the caller-named variable
+# so the caller can compare it to the true dRS: if dRS > this, R and S are
+# actually on opposite sides of line PQ.
+# Side-effects on scope: temporarily writes gk_utils_xR/yR/xS/yS; clears them
+# before returning. Writes the caller-supplied $distance$ variable.
+gk_utils_calculate_PQ_relative_abs_RS_distance = {
+	# do systems R and S fall on opposite sides of P-Q?
+	set_variable = {
+		which = gk_utils_xR
+		value = value:gk_utils_x_from_lengths|AB|$dPQ$|AC|$dPR$|BC|$dQR$|
+	}
+	set_variable = {
+		which = gk_utils_yR
+		value = value:gk_utils_abs_y_from_x|HYPOTENUSE|$dPR$|X|gk_utils_xR|
+	}
+
+	set_variable = {
+		which = gk_utils_xS
+		value = value:gk_utils_x_from_lengths|AB|$dPQ$|AC|$dPS$|BC|$dQS$|
+	}
+	set_variable = {
+		which = gk_utils_yS
+		value = value:gk_utils_abs_y_from_x|HYPOTENUSE|$dPS$|X|gk_utils_xS|
+	}
+
+	# if distance is close enough when both are positive, its likely they both lie on same side
+	set_variable = {
+		which = $distance$
+		value = value:gk_utils_distance|X1|gk_utils_xR|Y1|gk_utils_yR|X2|gk_utils_xS|Y2|gk_utils_yS|
+	}
+
+	clear_variable = gk_utils_xR
+	clear_variable = gk_utils_yR
+	clear_variable = gk_utils_xS
+	clear_variable = gk_utils_yS
+}
+
+
+# Brute-force scan: for each neighbor B of scope A (within Euclidean radius
+# ~200), record dAB, then walk each B's neighbors C and their neighbors D to
+# stage the six distances needed by gk_utils_hyperlanes_intersect. The actual
+# intersection check is currently commented out pending the three missing
+# cross-product script_values (see gk_utils_geometry_triggers.txt TODO).
+#
+# we cannot know the x and y positions of systems.
+# we CAN know their distance to eachother.
+#
+# this is brute force AS FUCK
+#  basically given the target system it will look for systems within a 200 radius
+#  then check every hyperlane in that same radius against the intersect hyperlane trigger.
+gk_utils_add_every_non_intersecting_hyperlane = {
+	save_event_target_as = gk_utils_system_a
+	every_neighbor_system_euclidean = {
+		limit = {
+			NOT = { has_hyperlane_to = event_target:gk_utils_system_a }
+		}
+
+		save_event_target_as = gk_utils_system_b
+		create_variable_if_not_exists = {
+			VARIABLE = gk_utils_dAB
+			VALUE_IF_CREATED = 0
+		}
+		set_variable = {
+			which = gk_utils_dAB
+			value = value:gk_utils_distance_between|FROM|gk_utils_system_a|TO|gk_utils_system_b|
+		}
+
+		# now we need to check system C
+		every_neighbor_system_euclidean = {
+			limit = {
+				NOR = {
+					is_same_value = event_target:gk_utils_system_a
+					is_same_value = event_target:gk_utils_system_b
+				}
+			}
+
+			save_event_target_as = gk_utils_system_c
+			create_variable_if_not_exists = {
+				VARIABLE = gk_utils_dAC
+				VALUE_IF_CREATED = 0
+			}
+			export_trigger_value_to_variable = {
+				trigger = distance
+				variable = gk_utils_dAC
+				parameters = { source = event_target:gk_utils_system_a type = euclidean }
+			}
+			create_variable_if_not_exists = {
+				VARIABLE = gk_utils_dBC
+				VALUE_IF_CREATED = 0
+			}
+			export_trigger_value_to_variable = {
+				trigger = distance
+				variable = gk_utils_dBC
+				parameters = { source = event_target:gk_utils_system_b type = euclidean }
+			}
+
+			# check every hyperlane from C to get D
+			every_neighbor_system = {
+				limit = {
+					NOR = {
+						has_hyperlane_to = event_target:gk_utils_system_a
+						is_same_value = event_target:gk_utils_system_a
+						has_hyperlane_to = event_target:gk_utils_system_b
+						is_same_value = event_target:gk_utils_system_b
+					}
+				}
+
+				save_event_target_as = gk_utils_system_d
+
+				create_variable_if_not_exists = {
+					VARIABLE = gk_utils_dAD
+					VALUE_IF_CREATED = 0
+				}
+				export_trigger_value_to_variable = {
+					trigger = distance
+					variable = gk_utils_dAD
+					parameters = { source = event_target:gk_utils_system_a type = euclidean }
+				}
+				create_variable_if_not_exists = {
+					VARIABLE = gk_utils_dBD
+					VALUE_IF_CREATED = 0
+				}
+				export_trigger_value_to_variable = {
+					trigger = distance
+					variable = gk_utils_dBD
+					parameters = { source = event_target:gk_utils_system_b type = euclidean }
+				}
+				create_variable_if_not_exists = {
+					VARIABLE = gk_utils_dCD
+					VALUE_IF_CREATED = 0
+				}
+				export_trigger_value_to_variable = {
+					trigger = distance
+					variable = gk_utils_dCD
+					parameters = { source = event_target:gk_utils_system_c type = euclidean }
+				}
+
+				# TODO: wire this up to gk_utils_hyperlanes_intersect once the
+				# three missing cross-product script_values are implemented.
+				# See gk_utils_geometry_triggers.txt for the open question.
+			}
+		}
+	}
+}

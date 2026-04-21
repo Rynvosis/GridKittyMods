@@ -1,0 +1,33 @@
+####################################
+# Sealed system                    #
+####################################
+#
+# gk_utils_seal_system — mark a system sealed and dismantle in-system bypasses
+# (gateways and L-gates). Wormholes cannot be removed by script (no vanilla
+# primitive exists); the fleet-entry hook in gk_utils_seal_events.txt MIAs any
+# arriving fleet regardless of entry vector, which neutralizes the wormhole as
+# a travel route while leaving its visual intact.
+#
+# Scope: system.
+# Designed to compose with gk_utils_bfs_apply for sealing an entire cluster:
+#   effect gk_utils_bfs_apply = {
+#       FLAG = gk_utils_sealed_cluster
+#       EFFECT = gk_utils_seal_system
+#       MAX_DEPTH = 10
+#   }
+
+gk_utils_seal_system = {
+	set_star_flag = gk_utils_sealed_system
+
+	every_system_megastructure = {
+		limit = {
+			OR = {
+				is_megastructure_type = gateway_0
+				is_megastructure_type = gateway_ruined
+				is_megastructure_type = gateway_restored
+				is_megastructure_type = lgate_base
+			}
+		}
+		remove_megastructure = this
+	}
+}

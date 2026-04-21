@@ -1,0 +1,97 @@
+####################################
+# Contact Sharing                  #
+####################################
+#
+# gk_utils_contact_build_page — populate event targets for the current page of shareable contacts.
+# Scope: country (the empire sharing contacts)
+# Requires:
+#   event_target:gk_contact_target — the empire receiving the shared contact
+#   gk_contact_page variable — current page (0-indexed)
+# Sets:
+#   event_target:gk_contact_0 through gk_contact_8 — empires on the current page
+#   gk_contact_total — total number of shareable contacts across all pages
+#   gk_contact_page_count — number of contacts on this page (0–9)
+#   gk_contact_next_start — first index of the next page (for pagination checks)
+
+gk_utils_contact_build_page = {
+	# Calculate how many entries to skip for this page
+	set_variable = { which = gk_contact_skip value = gk_contact_page }
+	multiply_variable = { which = gk_contact_skip value = 9 }
+
+	set_variable = { which = gk_contact_page_count value = 0 }
+	set_variable = { which = gk_contact_total value = 0 }
+
+	every_country = {
+		limit = {
+			is_country_type = default
+			has_communications = root
+			NOT = { has_communications = event_target:gk_contact_target }
+			NOT = { is_same_value = root }
+			NOT = { is_same_value = event_target:gk_contact_target }
+		}
+		root = {
+			change_variable = { which = gk_contact_total value = 1 }
+			if = {
+				limit = {
+					check_variable = { which = gk_contact_skip value > 0 }
+				}
+				subtract_variable = { which = gk_contact_skip value = 1 }
+			}
+			else_if = {
+				limit = {
+					check_variable = { which = gk_contact_page_count value < 9 }
+				}
+				# Index cascade — save iterated country (prev) at the current slot
+				if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 0 } }
+					prev = { save_event_target_as = gk_contact_0 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 1 } }
+					prev = { save_event_target_as = gk_contact_1 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 2 } }
+					prev = { save_event_target_as = gk_contact_2 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 3 } }
+					prev = { save_event_target_as = gk_contact_3 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 4 } }
+					prev = { save_event_target_as = gk_contact_4 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 5 } }
+					prev = { save_event_target_as = gk_contact_5 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 6 } }
+					prev = { save_event_target_as = gk_contact_6 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 7 } }
+					prev = { save_event_target_as = gk_contact_7 }
+				}
+				else_if = {
+					limit = { check_variable = { which = gk_contact_page_count value = 8 } }
+					prev = { save_event_target_as = gk_contact_8 }
+				}
+				change_variable = { which = gk_contact_page_count value = 1 }
+			}
+		}
+	}
+
+	# Next page start index — used by pagination triggers
+	set_variable = { which = gk_contact_next_start value = gk_contact_page }
+	change_variable = { which = gk_contact_next_start value = 1 }
+	multiply_variable = { which = gk_contact_next_start value = 9 }
+}
+
+# gk_utils_contact_cleanup — remove all tracking state.
+# Scope: country
+# Requires: event_target:gk_contact_target
+gk_utils_contact_cleanup = {
+	remove_country_flag = gk_sharing_contacts_with@event_target:gk_contact_target
+}
