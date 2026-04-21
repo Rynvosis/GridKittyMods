@@ -76,8 +76,10 @@ resources = {
 		sr_dark_matter = $DARK_MATTER$
 	}
 	upkeep = {
-		food = @s_t$TIER$_upkeep_energy
 		alloys = @s_t$TIER$_upkeep_alloys
+	}
+	upkeep = {
+		food = @s_t$TIER$_upkeep_energy
 		trigger = {
 			from = {
 				country_uses_bio_ships = yes
@@ -89,7 +91,6 @@ resources = {
 	}
 	upkeep = {
 		minerals = @s_t$TIER$_upkeep_energy
-		alloys = @s_t$TIER$_upkeep_alloys
 		mult = 0.8
 		trigger = {
 			from = {

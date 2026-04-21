@@ -14,8 +14,10 @@ resources = {
 		sr_living_metal = @armor_$SIZE$_t$TIER$_cost
 	}
 	upkeep = {
-		food = @$SIZE$_t$TIER$_upkeep_energy
 		alloys = @$SIZE$_t$TIER$_upkeep_alloys
+	}
+	upkeep = {
+		food = @$SIZE$_t$TIER$_upkeep_energy
 		trigger = {
 			from = {
 				country_uses_bio_ships = yes
@@ -27,7 +29,6 @@ resources = {
 	}
 	upkeep = {
 		minerals = @$SIZE$_t$TIER$_upkeep_energy
-		alloys = @$SIZE$_t$TIER$_upkeep_alloys
 		mult = 0.8
 		trigger = {
 			from = {
