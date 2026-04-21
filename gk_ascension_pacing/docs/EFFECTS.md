@@ -30,12 +30,12 @@ Uses `set` on the base rate — approach percentage bonuses (+20% overdrive etc.
 
 Empires without an ascension path gain scaling bonuses from year 2240, ramping from zero.
 
-**Base (at multiplier 1.0):** +10% job output, +20% founder species growth, +20% assembly
+**Base (at multiplier 1.0):** +10% pop workforce, +20% founder species growth
 
 **Scaling:** `sqrt(years_since_2240) * 0.25`
 
-| Year | Job Output | Growth/Assembly |
-|------|-----------|-----------------|
+| Year | Workforce | Founder Growth |
+|------|-----------|----------------|
 | 2240 | 0% | 0% |
 | 2250 | +7.9% | +15.8% |
 | 2260 | +11.2% | +22.4% |
@@ -43,3 +43,5 @@ Empires without an ascension path gain scaling bonuses from year 2240, ramping f
 | 2300 | +19.4% | +38.8% |
 
 **On ascension:** Multiplier is halved and locked in permanently. Ascending before 2240 gives no patience bonus.
+
+**Ascension check:** Uses a custom trigger matching vanilla `has_ascension_path` with one carve-out — `civic_chosen` / `civic_corporate_chosen` don't count, since those civics still require the Mind Over Matter AP to ascend. Teachers of the Shroud (`origin_shroudwalker_apprentice`) and other early-access psionic origins still count as ascended.

@@ -1,0 +1,20 @@
+# "Truly ascended" check for Patience of the Unascended.
+# Matches vanilla has_ascension_path EXCEPT empires whose only psionic access
+# is civic_chosen / civic_corporate_chosen — those still need the AP to ascend,
+# so they shouldn't lose the patience bonus. origin_shroudwalker_apprentice
+# (Teachers of the Shroud) keeps being treated as ascended since it grants
+# ascension access without requiring the AP.
+gk_asc_has_ascension_path = {
+	OR = {
+		has_cybernetic_ascension = yes
+		has_genetic_ascension = yes
+		has_synthetic_ascension = yes
+		has_ascension_perk = ap_mind_over_matter
+		has_origin = origin_shroudwalker_apprentice
+		has_origin = origin_endbringers
+		AND = {
+			has_origin = origin_shroud_forged
+			has_country_flag = finish_shroud_forged_liberation_flag
+		}
+	}
+}

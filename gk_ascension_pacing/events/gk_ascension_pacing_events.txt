@@ -15,7 +15,7 @@ country_event = {
 	immediate = {
 		if = {
 			limit = {
-				has_ascension_path = yes
+				gk_asc_has_ascension_path = yes
 				years_passed >= @gk_asc_patience_start
 			}
 			remove_modifier = gk_asc_patience
@@ -28,7 +28,7 @@ country_event = {
 		}
 		else_if = {
 			limit = {
-				has_ascension_path = yes
+				gk_asc_has_ascension_path = yes
 			}
 			# Ascended before patience started — lock out without adding modifier
 			set_country_flag = gk_asc_patience_locked
@@ -62,7 +62,7 @@ country_event = {
 	immediate = {
 		if = {
 			limit = {
-				has_ascension_path = yes
+				gk_asc_has_ascension_path = yes
 				years_passed >= @gk_asc_patience_start
 			}
 			remove_modifier = gk_asc_patience
@@ -75,7 +75,7 @@ country_event = {
 		}
 		else_if = {
 			limit = {
-				has_ascension_path = yes
+				gk_asc_has_ascension_path = yes
 			}
 			set_country_flag = gk_asc_patience_locked
 		}
