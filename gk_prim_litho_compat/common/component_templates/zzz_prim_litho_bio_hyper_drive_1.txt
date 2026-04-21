@@ -1,0 +1,44 @@
+# Compat merge for BIO_HYPER_DRIVE_1.
+# - gk_primitive_start adds tech_gk_prim_hyperdrive_unlock as a prereq (gating)
+# - gk_lithogenesis rewrites the cost via its bio_ship_generic_resource inline_script
+# Both files override this key; lithogenesis wins on alphabetical load order, dropping
+# the primitive_start prereq. This file loads after both (zzz_ prefix) and merges them.
+@power1 = -10
+@cost1 = 5
+
+utility_component_template = {
+	key = "BIO_HYPER_DRIVE_1"
+	size = small
+	icon = "GFX_ship_part_bioship_hyper_drive_1"
+	icon_frame = 1
+	power = @power1
+	inline_script = {
+		script = ship_components/bio_ship_generic_resource
+		EXTRA_COST = " "
+		COST = @cost1
+	}
+	ftl = yes
+
+	ship_modifier = {
+		ship_disengage_opportunities_add = 1
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+
+	potential = {
+		is_eager_explorer_ship = no
+		from = {
+			country_uses_bio_ships = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = yes
+	}
+
+	prerequisites = { "tech_hyper_drive_1" "tech_gk_prim_hyperdrive_unlock" }
+	component_set = "ftl_components"
+	upgrades_to = "BIO_HYPER_DRIVE_2"
+}
