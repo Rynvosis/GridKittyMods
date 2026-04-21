@@ -34,9 +34,11 @@ Defaults:
 - `gk_lithogenesis/common/inline_scripts/ship_components/bio_*.txt` — one
   file per vanilla source, same filename. Each begins with a `# GENERATED`
   header comment.
-- `gk_lithogenesis/common/component_templates/zz_flgsis_generated_components.txt`
-  — aggregate of all rebased component_template blocks, ordered by vanilla
-  source file. `zz_` prefix ensures later load order than hand-authored files.
+- `gk_lithogenesis/common/component_templates/!flgsis_<vanilla_name>.txt`
+  — one file per vanilla source that yields matches, preserving the source's
+  top-level `@var` macros. `!` prefix loads *before* vanilla `00_*.txt`
+  because `common/component_templates/` uses FIOS (First-In-Override-Subsequent)
+  semantics — the first definition wins, so our override must load first.
 
 ## What it never touches
 

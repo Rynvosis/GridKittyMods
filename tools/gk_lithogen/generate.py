@@ -36,7 +36,7 @@ GENERATED_HEADER = (
     "# Do not hand-edit — re-run the script after vanilla updates.\n"
 )
 
-AGGREGATE_COMPONENTS_FILENAME = "zz_flgsis_generated_components.txt"
+COMPONENT_OUTPUT_PREFIX = "!flgsis_"
 
 
 def process_inline_scripts(vanilla: Path, mod: Path, dry_run: bool) -> int:
@@ -69,54 +69,71 @@ def process_inline_scripts(vanilla: Path, mod: Path, dry_run: bool) -> int:
 
 
 def process_component_templates(vanilla: Path, mod: Path, dry_run: bool) -> int:
-    """Scan component_templates for bio-relevant blocks, rebase, aggregate output.
+    """Scan component_templates for bio-relevant blocks, rebase, write per-file output.
 
-    Returns count of blocks rebased.
+    One output file per vanilla source file that yields matching blocks. Each
+    output preserves the source file's top-level @var assignments (file-scoped
+    macros that the rebased templates may reference). Output filename is the
+    vanilla filename with a zz_flgsis_ prefix so it loads after hand-authored
+    overwrites and after vanilla.
+
+    Returns total count of blocks rebased across all files.
     """
     src_glob = vanilla / "common/component_templates/*.txt"
-    aggregate_root = p.Block([])
+    out_dir = mod / "common/component_templates"
     total_blocks = 0
     scanned_files = 0
+    files_written = 0
     for src_path in sorted(glob.glob(str(src_glob))):
+        fname = Path(src_path).name
         try:
             ast = p.parse_file(src_path)
         except Exception as e:
-            print(f"[skip] parse error in {Path(src_path).name}: {e}", file=sys.stderr)
+            print(f"[skip] parse error in {fname}: {e}", file=sys.stderr)
             continue
         scanned_files += 1
+        # Files named 00_biogenesis_*.txt are 100% bio-ship content by Paradox
+        # convention. Components in them (growth/booster/etc.) sometimes gate on
+        # is_ship_size rather than country_uses_bio_ships, so the per-block
+        # structural check misses them. Treat every template in those files as
+        # bio-qualifying, filter on food presence alone.
+        file_is_bio = fname.startswith("00_biogenesis_")
         matching_blocks = []
+        # Top-level @var assignments are file-scoped; templates may reference them.
+        at_vars = []
         for child in ast.children:
-            if isinstance(child, p.Assign) and child.key in (
-                "utility_component_template",
-                "weapon_component_template",
-                "strike_craft_component_template",
-            ):
-                if t.is_bio_ship_block(child) and t.has_food_resource(child):
-                    # transform in-place
-                    t.rebase_food_to_minerals(child.value)
-                    matching_blocks.append(child)
-        if matching_blocks:
-            rel = Path(src_path).relative_to(vanilla)
-            header_comment = p.Comment(
-                f"# -------- from {rel} ({len(matching_blocks)} block(s)) --------"
-            )
-            aggregate_root.children.append(header_comment)
-            aggregate_root.children.extend(matching_blocks)
-            total_blocks += len(matching_blocks)
-
+            if isinstance(child, p.Assign):
+                if child.key.startswith("@"):
+                    at_vars.append(child)
+                elif child.key in (
+                    "utility_component_template",
+                    "weapon_component_template",
+                    "strike_craft_component_template",
+                ):
+                    is_bio = file_is_bio or t.is_bio_ship_block(child)
+                    if is_bio and t.has_food_resource(child):
+                        t.rebase_food_to_minerals(child.value)
+                        matching_blocks.append(child)
+        if not matching_blocks:
+            continue
+        out_root = p.Block([])
+        # Carry over all @ variables (we include the whole set; pruning unused ones
+        # is a premature optimization and risks breaking cross-reference chains).
+        out_root.children.extend(at_vars)
+        out_root.children.extend(matching_blocks)
+        header = GENERATED_HEADER.format(source=f"common/component_templates/{fname}")
+        out_text = header + p.write(out_root)
+        out_path = out_dir / (COMPONENT_OUTPUT_PREFIX + fname)
+        if dry_run:
+            print(f"[dry] {out_path} ({len(matching_blocks)} block(s), {len(at_vars)} @var(s))")
+        else:
+            out_dir.mkdir(parents=True, exist_ok=True)
+            out_path.write_text(out_text, encoding="utf-8")
+            print(f"[wrote] {out_path} ({len(matching_blocks)} block(s), {len(at_vars)} @var(s))")
+        total_blocks += len(matching_blocks)
+        files_written += 1
     if total_blocks == 0:
         print(f"[info] no matching component_template blocks (scanned {scanned_files} files)")
-        return 0
-
-    header = GENERATED_HEADER.format(source="common/component_templates/*.txt")
-    out = header + p.write(aggregate_root)
-    out_path = mod / "common/component_templates" / AGGREGATE_COMPONENTS_FILENAME
-    if dry_run:
-        print(f"[dry] {out_path} ({total_blocks} blocks, {scanned_files} files scanned)")
-    else:
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text(out, encoding="utf-8")
-        print(f"[wrote] {out_path} ({total_blocks} blocks, {scanned_files} files scanned)")
     return total_blocks
 
 
