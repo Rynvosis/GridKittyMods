@@ -1,0 +1,59 @@
+# Base AI economic plans
+
+basic_economy_plan = {
+	subplan = {
+		set_name = "base lithoid bioship minerals"
+		potential = {
+			country_uses_bio_ships = yes
+			graphical_culture = lithogenesis_01
+		}
+		income = {
+			minerals = @economic_plan_bio_ships_empire_food_target
+		}
+	}
+
+	subplan = {
+		scaling = yes
+		set_name = "lithoid bioship extra mineral scaling"
+		potential = {
+			country_uses_bio_ships = yes
+			graphical_culture = lithogenesis_01
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_mineral_target }
+			OR = {
+				has_monthly_income = { resource = minerals value <= 200 }
+				resource_stockpile_compare = {
+					resource = minerals
+					value < 10000
+				}
+			}
+		}
+		income = {
+			minerals = 10
+		}
+	}
+	subplan = {
+		scaling = yes
+		set_name = "Lithoid Militarist BioShip minerals & food"
+		potential = {
+			country_uses_bio_ships = yes
+			graphical_culture = lithogenesis_01
+			OR = {
+				is_militarist = yes
+				is_homicidal = yes
+			}
+
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_mineral_target }
+		}
+
+		income = {
+			alloys = 10
+			minerals = 20
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}

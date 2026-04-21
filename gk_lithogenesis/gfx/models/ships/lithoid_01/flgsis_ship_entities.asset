@@ -1,0 +1,2210 @@
+
+######## Harbinger ship stages ###########
+
+	entity = {
+		name = "lithogenesis_01_harbinger_stage_1_entity"
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_harbinger_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_harbinger_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_harbinger_stage_1_ship_entity"
+		pdxmesh = "lithoid_01_harbinger_ship_stage_1_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+
+	entity = {
+		name = "lithogenesis_01_harbinger_stage_2_entity"
+		scale = 1.3
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_harbinger_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_harbinger_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_harbinger_stage_2_ship_entity"
+		pdxmesh = "lithoid_01_harbinger_ship_stage_2_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+
+	entity = {
+		name = "lithogenesis_01_harbinger_stage_3_entity"
+		scale = 1.69 # Nice ( Really it's just 1.3^2 )
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_harbinger_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_harbinger_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_harbinger_stage_3_ship_entity"
+		pdxmesh = "lithoid_01_harbinger_ship_stage_3_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+
+######## mauler ship stages ###########
+	entity = {
+		name = "lithogenesis_01_mauler_stage_1_entity"
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_mauler_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_mauler_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_mauler_stage_1_ship_entity"
+		pdxmesh = "lithoid_01_mauler_ship_stage_1_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+	entity = {
+		name = "lithogenesis_01_mauler_stage_2_entity"
+		scale = 1.3
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_mauler_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_mauler_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_mauler_stage_2_ship_entity"
+		pdxmesh = "lithoid_01_mauler_ship_stage_2_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+
+	entity = {
+		name = "lithogenesis_01_mauler_stage_3_entity"
+		scale = 1.69 # Nice ( Really it's just 1.3^2 )
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_mauler_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_mauler_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_mauler_stage_3_ship_entity"
+		pdxmesh = "lithoid_01_mauler_ship_stage_3_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+
+######## Weaver ship stages ###########
+	entity = {
+		name = "lithogenesis_01_weaver_stage_1_entity"
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_weaver_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_weaver_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_weaver_stage_1_ship_entity"
+		pdxmesh = "lithoid_01_weaver_ship_stage_1_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+			event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+		}
+			# Forgotten Root locator le sigh
+		locator = { name = "root" 	position = { 0 0 0 } }
+	}
+	entity = {
+		name = "lithogenesis_01_weaver_stage_2_entity"
+		scale = 1.3
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_weaver_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_weaver_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_weaver_stage_2_ship_entity"
+		pdxmesh = "lithoid_01_weaver_ship_stage_2_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+			# Forgotten Root locator le sigh
+		locator = { name = "root" 	position = { 0 0 0 } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_weaver_stage_3_entity"
+		scale = 1.69 # Nice ( Really it's just 1.3^2 )
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_weaver_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_weaver_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_weaver_stage_3_ship_entity"
+		pdxmesh = "lithoid_01_weaver_ship_stage_3_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+			# Forgotten Root locator le sigh
+		locator = { name = "root" 	position = { 0 0 0 } }
+	}
+	
+######## Stinger ship stages ###########
+	entity = {
+		name = "lithogenesis_01_stinger_stage_1_entity"
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_stinger_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_stinger_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_stinger_stage_1_ship_entity"
+		pdxmesh = "lithoid_01_stinger_ship_stage_1_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+	entity = {
+		name = "lithogenesis_01_stinger_stage_2_entity"
+		scale = 1.3
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_stinger_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_stinger_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+	entity = {
+		name = "lithogenesis_01_stinger_stage_2_ship_entity"
+		pdxmesh = "lithoid_01_stinger_ship_stage_2_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+
+	entity = {
+		name = "lithogenesis_01_stinger_stage_3_entity"
+		scale = 1.69 # Nice ( Really it's just 1.3^2 )
+		pdxmesh = "molluscoid_01_corvette_frame_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 start_event = { trigger_once = yes sound = { soundeffect = pro_ship_stinger_idle } } }
+		state = { name = "moving"	animation = "idle" animation_blend_time = 0.25 event = { trigger_once = yes sound = { soundeffect = pro_ship_stinger_move } } }
+		state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no event = { time = 6.56  particle = "medium_lithoid_ship_explosion_effect" sound = { soundeffect = ship_destroyed } } }
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_stinger_stage_3_ship_entity"
+		pdxmesh = "lithoid_01_stinger_ship_stage_3_mesh"
+		default_state = "idle"
+		state = { name = "idle"	 state_time= 2
+		}
+		state = { name = "moving"	state_time= 2
+		}
+
+		state = { name = "death" state_time= 6 looping = no
+				event = { time = 0.5 node = "explosion_locator_01" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1.2 node = "explosion_locator_02" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.3 node = "explosion_locator_03" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.4 node = "explosion_locator_04" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.7 node = "explosion_locator_05" particle = "lithoid_ship_explosion_s_effect" keep_particle = yes trigger_once = yes }
+			}
+
+	}
+###### KAIJU EGG ######
+
+	entity = {
+		name = "lithogenesis_01_kaiju_01_egg_entity"
+		pdxmesh = "lithoid_01_kaiju_egg_mesh"
+		scale = 1.2
+
+		default_state = "idle"
+		state = { name = "idle"	animation_blend_time = 1 
+		start_event = { trigger_once = yes sound = { soundeffect = kaiju_egg_ambience_loop } }
+	}
+
+		game_data = {
+			emissive_recolor_crunch = 2.0
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_kaiju_01_big_egg_entity"
+		scale = 4.5
+		pdxmesh = "lithoid_01_kaiju_egg_mesh"
+
+
+		default_state = "idle"
+		state = { name = "idle" animation_blend_time = 1 
+		start_event = { trigger_once = yes sound = { soundeffect = kaiju_egg_ambience_loop } }
+	}
+		game_data = {
+			emissive_recolor_crunch = 2.0
+		}
+	}
+# Dyson Swarm Stuff
+	entity = {
+		name = "lithogenesis_01_satellite_entity"
+		pdxmesh = "lithogenesis_01_satellite_mesh"
+		scale = 1
+
+		default_state = "idle"
+		state = { name = "idle"	}
+
+		game_data = {
+			emissive_recolor_crunch = 1.75 # ought to help make it shinier
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_dyson_swarm_phase_1_entity"
+		pdxmesh = "lithogenesis_01_dyson_swarm_p1_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			animation = "idle" 
+			looping = yes 
+			animation_speed = 0.2
+			start_event = { sound = { soundeffect = cyb_arc_furnace_phase_01_idle } }
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			disk_1.000 = "lithogenesis_01_satellite_entity"
+			disk_1.001 = "lithogenesis_01_satellite_entity"
+			disk_1.002 = "lithogenesis_01_satellite_entity"
+			disk_1.003 = "lithogenesis_01_satellite_entity"
+			disk_1.004 = "lithogenesis_01_satellite_entity"
+			disk_1.005 = "lithogenesis_01_satellite_entity"
+
+			disk_2.000 = "lithogenesis_01_satellite_entity"
+			disk_2.001 = "lithogenesis_01_satellite_entity"
+			disk_2.002 = "lithogenesis_01_satellite_entity"
+			disk_2.003 = "lithogenesis_01_satellite_entity"
+			disk_2.004 = "lithogenesis_01_satellite_entity"
+			disk_2.005 = "lithogenesis_01_satellite_entity"
+
+			disk_3.000 = "lithogenesis_01_satellite_entity"
+			disk_3.001 = "lithogenesis_01_satellite_entity"
+			disk_3.002 = "lithogenesis_01_satellite_entity"
+			disk_3.003 = "lithogenesis_01_satellite_entity"
+			disk_3.004 = "lithogenesis_01_satellite_entity"
+			disk_3.005 = "lithogenesis_01_satellite_entity"
+
+			disk_4.000 = "lithogenesis_01_satellite_entity"
+			disk_4.001 = "lithogenesis_01_satellite_entity"
+			disk_4.002 = "lithogenesis_01_satellite_entity"
+			disk_4.003 = "lithogenesis_01_satellite_entity"
+			disk_4.004 = "lithogenesis_01_satellite_entity"
+			disk_4.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_5.000 = "lithogenesis_01_satellite_entity"
+			disk_5.001 = "lithogenesis_01_satellite_entity"
+			disk_5.002 = "lithogenesis_01_satellite_entity"
+			disk_5.003 = "lithogenesis_01_satellite_entity"
+			disk_5.004 = "lithogenesis_01_satellite_entity"
+			disk_5.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_6.000 = "lithogenesis_01_satellite_entity"
+			disk_6.001 = "lithogenesis_01_satellite_entity"
+			disk_6.002 = "lithogenesis_01_satellite_entity"
+			disk_6.003 = "lithogenesis_01_satellite_entity"
+			disk_6.004 = "lithogenesis_01_satellite_entity"
+			disk_6.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_7.000 = "lithogenesis_01_satellite_entity"
+			disk_7.001 = "lithogenesis_01_satellite_entity"
+			disk_7.002 = "lithogenesis_01_satellite_entity"
+			disk_7.003 = "lithogenesis_01_satellite_entity"
+			disk_7.004 = "lithogenesis_01_satellite_entity"
+			disk_7.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_8.000 = "lithogenesis_01_satellite_entity"
+			disk_8.001 = "lithogenesis_01_satellite_entity"
+			disk_8.002 = "lithogenesis_01_satellite_entity"
+			disk_8.003 = "lithogenesis_01_satellite_entity"
+			disk_8.004 = "lithogenesis_01_satellite_entity"
+			disk_8.005 = "lithogenesis_01_satellite_entity"
+
+			disk_9.000 = "lithogenesis_01_satellite_entity"
+			disk_9.001 = "lithogenesis_01_satellite_entity"
+			disk_9.002 = "lithogenesis_01_satellite_entity"
+			disk_9.003 = "lithogenesis_01_satellite_entity"
+			disk_9.004 = "lithogenesis_01_satellite_entity"
+			disk_9.005 = "lithogenesis_01_satellite_entity"
+		}
+		scale = 1
+	}
+
+	entity = {
+		name = "lithogenesis_01_dyson_swarm_phase_2_entity"
+		pdxmesh = "lithogenesis_01_dyson_swarm_p2_frame_mesh"
+		locator = { name = "lightning_locator" rotation = { 90 0 0  }  parent_joint = "Dumbbell2_joint" }
+		locator = { name = "lightning_locator_2" rotation = { 0 -90 -17.8  }  parent_joint = "Dumbbell3_joint" }
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" looping = yes animation_speed = 0.2
+		start_event = { sound = { soundeffect = cyb_arc_furnace_phase_02_idle } }
+		}
+
+		attach = { "Dumbbell1_joint" = "lithogenesis_01_dyson_swarm_lightning_entity" }
+		attach = { "lightning_locator" = "lithogenesis_01_dyson_swarm_lightning_entity" }
+		attach = { "lightning_locator_2" = "lithogenesis_01_dyson_swarm_lightning_entity" }
+
+
+
+		attach = { # Made from good ol fashioned bone parented locators
+			disk_4.000 = "lithogenesis_01_satellite_entity"
+			disk_4.001 = "lithogenesis_01_satellite_entity"
+			disk_4.002 = "lithogenesis_01_satellite_entity"
+			disk_4.003 = "lithogenesis_01_satellite_entity"
+			disk_4.004 = "lithogenesis_01_satellite_entity"
+			disk_4.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_5.000 = "lithogenesis_01_satellite_entity"
+			disk_5.001 = "lithogenesis_01_satellite_entity"
+			disk_5.002 = "lithogenesis_01_satellite_entity"
+			disk_5.003 = "lithogenesis_01_satellite_entity"
+			disk_5.004 = "lithogenesis_01_satellite_entity"
+			disk_5.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_6.000 = "lithogenesis_01_satellite_entity"
+			disk_6.001 = "lithogenesis_01_satellite_entity"
+			disk_6.002 = "lithogenesis_01_satellite_entity"
+			disk_6.003 = "lithogenesis_01_satellite_entity"
+			disk_6.004 = "lithogenesis_01_satellite_entity"
+			disk_6.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_7.000 = "lithogenesis_01_satellite_entity"
+			disk_7.001 = "lithogenesis_01_satellite_entity"
+			disk_7.002 = "lithogenesis_01_satellite_entity"
+			disk_7.003 = "lithogenesis_01_satellite_entity"
+			disk_7.004 = "lithogenesis_01_satellite_entity"
+			disk_7.005 = "lithogenesis_01_satellite_entity"
+			
+			disk_8.000 = "lithogenesis_01_satellite_entity"
+			disk_8.001 = "lithogenesis_01_satellite_entity"
+			disk_8.002 = "lithogenesis_01_satellite_entity"
+			disk_8.003 = "lithogenesis_01_satellite_entity"
+			disk_8.004 = "lithogenesis_01_satellite_entity"
+			disk_8.005 = "lithogenesis_01_satellite_entity"
+
+			disk_9.000 = "lithogenesis_01_satellite_entity"
+			disk_9.001 = "lithogenesis_01_satellite_entity"
+			disk_9.002 = "lithogenesis_01_satellite_entity"
+			disk_9.003 = "lithogenesis_01_satellite_entity"
+			disk_9.004 = "lithogenesis_01_satellite_entity"
+			disk_9.005 = "lithogenesis_01_satellite_entity"
+
+			dumbell_1.000 = "lithogenesis_01_satellite_entity"
+			dumbell_1.001 = "lithogenesis_01_satellite_entity"
+			dumbell_1.002 = "lithogenesis_01_satellite_entity"
+			dumbell_1.003 = "lithogenesis_01_satellite_entity"
+			dumbell_1.004 = "lithogenesis_01_satellite_entity"
+			dumbell_1.005 = "lithogenesis_01_satellite_entity"
+			dumbell_1.006 = "lithogenesis_01_satellite_entity"
+			dumbell_1.007 = "lithogenesis_01_satellite_entity"
+			dumbell_1.008 = "lithogenesis_01_satellite_entity"
+			dumbell_1.009 = "lithogenesis_01_satellite_entity"
+
+			dumbell_2.000 = "lithogenesis_01_satellite_entity"
+			dumbell_2.001 = "lithogenesis_01_satellite_entity"
+			dumbell_2.002 = "lithogenesis_01_satellite_entity"
+			dumbell_2.003 = "lithogenesis_01_satellite_entity"
+			dumbell_2.004 = "lithogenesis_01_satellite_entity"
+			dumbell_2.005 = "lithogenesis_01_satellite_entity"
+			dumbell_2.006 = "lithogenesis_01_satellite_entity"
+			dumbell_2.007 = "lithogenesis_01_satellite_entity"
+			dumbell_2.008 = "lithogenesis_01_satellite_entity"
+			dumbell_2.009 = "lithogenesis_01_satellite_entity"
+
+			dumbell_3.000 = "lithogenesis_01_satellite_entity"
+			dumbell_3.001 = "lithogenesis_01_satellite_entity"
+			dumbell_3.002 = "lithogenesis_01_satellite_entity"
+			dumbell_3.003 = "lithogenesis_01_satellite_entity"
+			dumbell_3.004 = "lithogenesis_01_satellite_entity"
+			dumbell_3.005 = "lithogenesis_01_satellite_entity"
+			dumbell_3.006 = "lithogenesis_01_satellite_entity"
+			dumbell_3.007 = "lithogenesis_01_satellite_entity"
+			dumbell_3.008 = "lithogenesis_01_satellite_entity"
+			dumbell_3.009 = "lithogenesis_01_satellite_entity"
+		}
+		scale = 1
+	}
+
+	entity = {
+		name = "lithogenesis_01_dyson_swarm_lightning_entity"
+		pdxmesh = "lithoid_dyson_swarm_effect_mesh"
+		scale = 1
+			game_data = {
+			bloom_factor			= 2
+			uv_animation_speed 		= 1
+			uv_animation_direction 	= { 0 1.0 }
+			}
+	}
+
+	entity = {
+		name = "lithogenesis_01_dyson_swarm_lightning_3_entity"
+		pdxmesh = "lithoid_dyson_swarm_effect_stage_3_mesh"
+		scale = 1
+			game_data = {
+			bloom_factor			= 2
+			uv_animation_speed 		= 1
+			uv_animation_direction 	= { 0 1.0 }
+			}
+	}
+
+	entity = {
+		name = "lithogenesis_01_dyson_swarm_phase_3_entity"
+		pdxmesh = "lithogenesis_01_dyson_swarm_p3_frame_mesh"
+
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" looping = yes animation_speed = 0.2
+		start_event =  {sound = { soundeffect = cyb_arc_furnace_phase_03_idle } }
+		}
+		attach = { "root" = "lithogenesis_01_dyson_swarm_lightning_3_entity" }
+
+		attach = {
+			Empty.001 = "lithogenesis_01_satellite_entity"
+			Empty.002 = "lithogenesis_01_satellite_entity"
+			Empty.003 = "lithogenesis_01_satellite_entity"
+			Empty.004 = "lithogenesis_01_satellite_entity"
+			Empty.005 = "lithogenesis_01_satellite_entity"
+			Empty.006 = "lithogenesis_01_satellite_entity"
+			Empty.007 = "lithogenesis_01_satellite_entity"
+			Empty.008 = "lithogenesis_01_satellite_entity"
+			Empty.009 = "lithogenesis_01_satellite_entity"
+			Empty.010 = "lithogenesis_01_satellite_entity"
+			Empty.011 = "lithogenesis_01_satellite_entity"
+			Empty.012 = "lithogenesis_01_satellite_entity"
+			Empty.013 = "lithogenesis_01_satellite_entity"
+			Empty.014 = "lithogenesis_01_satellite_entity"
+			Empty.015 = "lithogenesis_01_satellite_entity"
+			Empty.016 = "lithogenesis_01_satellite_entity"
+			Empty.017 = "lithogenesis_01_satellite_entity"
+			Empty.018 = "lithogenesis_01_satellite_entity"
+			Empty.019 = "lithogenesis_01_satellite_entity"
+			Empty.020 = "lithogenesis_01_satellite_entity"
+			Empty.021 = "lithogenesis_01_satellite_entity"
+			Empty.022 = "lithogenesis_01_satellite_entity"
+			Empty.023 = "lithogenesis_01_satellite_entity"
+			Empty.024 = "lithogenesis_01_satellite_entity"
+			Empty.025 = "lithogenesis_01_satellite_entity"
+			Empty.026 = "lithogenesis_01_satellite_entity"
+			Empty.027 = "lithogenesis_01_satellite_entity"
+			Empty.028 = "lithogenesis_01_satellite_entity"
+			Empty.029 = "lithogenesis_01_satellite_entity"
+			Empty.030 = "lithogenesis_01_satellite_entity"
+			Empty.031 = "lithogenesis_01_satellite_entity"
+			Empty.032 = "lithogenesis_01_satellite_entity"
+			Empty.033 = "lithogenesis_01_satellite_entity"
+			Empty.034 = "lithogenesis_01_satellite_entity"
+			Empty.035 = "lithogenesis_01_satellite_entity"
+			Empty.036 = "lithogenesis_01_satellite_entity"
+			Empty.037 = "lithogenesis_01_satellite_entity"
+			Empty.038 = "lithogenesis_01_satellite_entity"
+			Empty.039 = "lithogenesis_01_satellite_entity"
+			Empty.040 = "lithogenesis_01_satellite_entity"
+			Empty.041 = "lithogenesis_01_satellite_entity"
+			Empty.042 = "lithogenesis_01_satellite_entity"
+			Empty.043 = "lithogenesis_01_satellite_entity"
+			Empty.044 = "lithogenesis_01_satellite_entity"
+			Empty.045 = "lithogenesis_01_satellite_entity"
+			Empty.046 = "lithogenesis_01_satellite_entity"
+			Empty.047 = "lithogenesis_01_satellite_entity"
+			Empty.048 = "lithogenesis_01_satellite_entity"
+			Empty.049 = "lithogenesis_01_satellite_entity"
+			Empty.050 = "lithogenesis_01_satellite_entity"
+			Empty.051 = "lithogenesis_01_satellite_entity"
+			Empty.052 = "lithogenesis_01_satellite_entity"
+			Empty.053 = "lithogenesis_01_satellite_entity"
+			Empty.054 = "lithogenesis_01_satellite_entity"
+			Empty.055 = "lithogenesis_01_satellite_entity"
+			Empty.056 = "lithogenesis_01_satellite_entity"
+			Empty.057 = "lithogenesis_01_satellite_entity"
+			Empty.058 = "lithogenesis_01_satellite_entity"
+			Empty.059 = "lithogenesis_01_satellite_entity"
+			Empty.060 = "lithogenesis_01_satellite_entity"
+		}
+
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_sphere_cap_entity"
+		pdxmesh = "lithogenesis_01_dyson_frame_caps_mesh"
+		scale = 1
+
+		default_state = "idle"
+		state = { name = "idle"	}
+
+		game_data = {
+			emissive_recolor_crunch = 1.75 # ought to help make it shinier
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_sphere_shields_entity"
+		pdxmesh = "lithogenesis_01_dyson_frame_shields_mesh"
+		scale = 1
+
+		default_state = "idle"
+		state = { name = "idle"	}
+
+		game_data = {
+			emissive_recolor_crunch = 1.75 # ought to help make it shinier
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_sphere_shield_expanded_entity"
+		pdxmesh = "lithogenesis_01_dyson_frame_shield_expanded_mesh"
+		scale = 1
+
+		default_state = "idle"
+		state = { name = "idle"	}
+
+		game_data = {
+			emissive_recolor_crunch = 1.75 # ought to help make it shinier
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_sphere_finisher_entity"
+		pdxmesh = "lithogenesis_01_dyson_frame_final_mesh"
+		scale = 1
+
+		default_state = "idle"
+		state = { name = "idle"	}
+
+		game_data = {
+			emissive_recolor_crunch = 1.33 # ought to help make it shinier
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_sphere_shield_epander_entity"
+		locator = {
+			name = turn_1
+			rotation = {
+				0 0 72
+			}
+		}
+		locator = {
+			name = turn_2
+			rotation = {
+				0 0 144
+			}
+		}
+		locator = {
+			name = turn_3
+			rotation = {
+				0 0 216
+			}
+		}
+		locator = {
+			name = turn_4
+			rotation = {
+				0 0 288
+			}
+		}
+		locator = {
+			name = turn_5
+			rotation = {
+				0 0 360
+			}
+		}
+		attach = {
+			turn_1 = "lithogenesis_01_sphere_shield_expanded_entity"
+			turn_2 = "lithogenesis_01_sphere_shield_expanded_entity"
+			turn_3 = "lithogenesis_01_sphere_shield_expanded_entity"
+			turn_4 = "lithogenesis_01_sphere_shield_expanded_entity"
+			turn_5 = "lithogenesis_01_sphere_shield_expanded_entity"
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_sphere_final_part_entity"
+		locator = {
+			name = turn_1
+			rotation = {
+				0 0 72
+			}
+		}
+		locator = {
+			name = turn_2
+			rotation = {
+				0 0 144
+			}
+		}
+		locator = {
+			name = turn_3
+			rotation = {
+				0 0 216
+			}
+		}
+		locator = {
+			name = turn_4
+			rotation = {
+				0 0 288
+			}
+		}
+		locator = {
+			name = turn_5
+			rotation = {
+				0 0 360
+			}
+		}
+		attach = {
+			turn_1 = "lithogenesis_01_sphere_finisher_entity"
+			turn_2 = "lithogenesis_01_sphere_finisher_entity"
+			turn_3 = "lithogenesis_01_sphere_finisher_entity"
+			turn_4 = "lithogenesis_01_sphere_finisher_entity"
+			turn_5 = "lithogenesis_01_sphere_finisher_entity"
+		}
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_phase_02_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.001 = "lithogenesis_01_sphere_shields_entity"
+			penta.001 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.002 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.003 = "lithogenesis_01_sphere_shields_entity"
+			penta.003 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.004 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.005 = "lithogenesis_01_sphere_shields_entity"
+			penta.005 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.006 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.007 = "lithogenesis_01_sphere_shields_entity"
+			penta.007 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.008 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.009 = "lithogenesis_01_sphere_shields_entity"
+			penta.009 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.010 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.011 = "lithogenesis_01_sphere_shields_entity"
+			penta.011 = "lithogenesis_01_sphere_cap_entity"
+
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_phase_03_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_shields_entity"
+			penta.000 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.001 = "lithogenesis_01_sphere_shields_entity"
+			penta.001 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.002 = "lithogenesis_01_sphere_shields_entity"
+			penta.002 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.003 = "lithogenesis_01_sphere_shields_entity"
+			penta.003 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.004 = "lithogenesis_01_sphere_shields_entity"
+			penta.004 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.005 = "lithogenesis_01_sphere_shields_entity"
+			penta.005 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.006 = "lithogenesis_01_sphere_shields_entity"
+			penta.006 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.007 = "lithogenesis_01_sphere_shields_entity"
+			penta.007 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.008 = "lithogenesis_01_sphere_shields_entity"
+			penta.008 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.009 = "lithogenesis_01_sphere_shields_entity"
+			penta.009 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.010 = "lithogenesis_01_sphere_shields_entity"
+			penta.010 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.011 = "lithogenesis_01_sphere_shields_entity"
+			penta.011 = "lithogenesis_01_sphere_cap_entity"
+
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_phase_04_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_shields_entity"
+			penta.000 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.000 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.001 = "lithogenesis_01_sphere_shields_entity"
+			penta.001 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.001 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.002 = "lithogenesis_01_sphere_shields_entity"
+			penta.002 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.002 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.003 = "lithogenesis_01_sphere_shields_entity"
+			penta.003 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.003 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.004 = "lithogenesis_01_sphere_shields_entity"
+			penta.004 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.004 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.005 = "lithogenesis_01_sphere_shields_entity"
+			penta.005 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.005 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.006 = "lithogenesis_01_sphere_shields_entity"
+			penta.006 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.006 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.007 = "lithogenesis_01_sphere_shields_entity"
+			penta.007 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.007 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.008 = "lithogenesis_01_sphere_shields_entity"
+			penta.008 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.008 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.009 = "lithogenesis_01_sphere_shields_entity"
+			penta.009 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.009 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.010 = "lithogenesis_01_sphere_shields_entity"
+			penta.010 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.010 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.011 = "lithogenesis_01_sphere_shields_entity"
+			penta.011 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.011 = "lithogenesis_01_sphere_cap_entity"
+
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_phase_05_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_shields_entity"
+			penta.000 = "lithogenesis_01_sphere_final_part_entity"
+			penta.000 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.000 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.001 = "lithogenesis_01_sphere_shields_entity"
+			penta.001 = "lithogenesis_01_sphere_final_part_entity"
+			penta.001 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.001 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.002 = "lithogenesis_01_sphere_shields_entity"
+			penta.002 = "lithogenesis_01_sphere_final_part_entity"
+			penta.002 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.002 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.003 = "lithogenesis_01_sphere_shields_entity"
+			penta.003 = "lithogenesis_01_sphere_final_part_entity"
+			penta.003 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.003 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.004 = "lithogenesis_01_sphere_shields_entity"
+			penta.004 = "lithogenesis_01_sphere_final_part_entity"
+			penta.004 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.004 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.005 = "lithogenesis_01_sphere_shields_entity"
+			penta.005 = "lithogenesis_01_sphere_final_part_entity"
+			penta.005 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.005 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.006 = "lithogenesis_01_sphere_shields_entity"
+			penta.006 = "lithogenesis_01_sphere_final_part_entity"
+			penta.006 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.006 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.007 = "lithogenesis_01_sphere_shields_entity"
+			penta.007 = "lithogenesis_01_sphere_final_part_entity"
+			penta.007 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.007 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.008 = "lithogenesis_01_sphere_shields_entity"
+			penta.008 = "lithogenesis_01_sphere_final_part_entity"
+			penta.008 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.008 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.009 = "lithogenesis_01_sphere_shields_entity"
+			penta.009 = "lithogenesis_01_sphere_final_part_entity"
+			penta.009 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.009 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.010 = "lithogenesis_01_sphere_shields_entity"
+			penta.010 = "lithogenesis_01_sphere_final_part_entity"
+			penta.010 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.010 = "lithogenesis_01_sphere_cap_entity"
+
+			penta.011 = "lithogenesis_01_sphere_shields_entity"
+			penta.011 = "lithogenesis_01_sphere_final_part_entity"
+			penta.011 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.011 = "lithogenesis_01_sphere_cap_entity"
+
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_phase_01_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_cap_entity"
+			penta.001 = "lithogenesis_01_sphere_cap_entity"
+			penta.002 = "lithogenesis_01_sphere_cap_entity"
+			penta.003 = "lithogenesis_01_sphere_cap_entity"
+			penta.004 = "lithogenesis_01_sphere_cap_entity"
+			penta.005 = "lithogenesis_01_sphere_cap_entity"
+			penta.006 = "lithogenesis_01_sphere_cap_entity"
+			penta.007 = "lithogenesis_01_sphere_cap_entity"
+			penta.008 = "lithogenesis_01_sphere_cap_entity"
+			penta.009 = "lithogenesis_01_sphere_cap_entity"
+			penta.010 = "lithogenesis_01_sphere_cap_entity"
+			penta.011 = "lithogenesis_01_sphere_cap_entity"
+		}
+		scale = 1
+	}
+
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_frame_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_cap_entity"
+			penta.001 = "lithogenesis_01_sphere_cap_entity"
+			penta.002 = "lithogenesis_01_sphere_cap_entity"
+			penta.003 = "lithogenesis_01_sphere_cap_entity"
+			penta.004 = "lithogenesis_01_sphere_cap_entity"
+			penta.005 = "lithogenesis_01_sphere_cap_entity"
+			penta.006 = "lithogenesis_01_sphere_cap_entity"
+			penta.007 = "lithogenesis_01_sphere_cap_entity"
+			penta.008 = "lithogenesis_01_sphere_cap_entity"
+			penta.009 = "lithogenesis_01_sphere_cap_entity"
+			penta.010 = "lithogenesis_01_sphere_cap_entity"
+			penta.011 = "lithogenesis_01_sphere_cap_entity"
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_part_1_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = {
+			penta.001 = "lithogenesis_01_sphere_shields_entity"
+			penta.003 = "lithogenesis_01_sphere_shields_entity"
+			penta.005 = "lithogenesis_01_sphere_shields_entity"
+			penta.007 = "lithogenesis_01_sphere_shields_entity"
+			penta.009 = "lithogenesis_01_sphere_shields_entity"
+			penta.011 = "lithogenesis_01_sphere_shields_entity"
+
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_part_2_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = {
+			penta.000 = "lithogenesis_01_sphere_shields_entity"
+			penta.002 = "lithogenesis_01_sphere_shields_entity"
+			penta.004 = "lithogenesis_01_sphere_shields_entity"
+			penta.006 = "lithogenesis_01_sphere_shields_entity"
+			penta.008 = "lithogenesis_01_sphere_shields_entity"
+			penta.010 = "lithogenesis_01_sphere_shields_entity"
+
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_part_3_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.001 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.002 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.003 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.004 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.005 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.006 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.007 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.008 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.009 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.010 = "lithogenesis_01_sphere_shield_epander_entity"
+			penta.011 = "lithogenesis_01_sphere_shield_epander_entity"
+
+		}
+		scale = 1
+	}
+	entity = {
+		name = "lithogenesis_01_dyson_sphere_part_4_entity"
+		pdxmesh = "lithogenesis_01_dyson_sphere_frame_mesh"
+
+		default_state = "idle"
+		state = { 
+			name = "idle" 
+			# animation = "idle" 
+			# looping = yes 
+			# animation_speed = 0.2
+		}
+
+		attach = { # Spicy Spicy Attach, easier on the game than trying to run the whole mesh as individuals... and faster to load a not 90 Mb mesh or
+			penta.000 = "lithogenesis_01_sphere_final_part_entity"
+			penta.001 = "lithogenesis_01_sphere_final_part_entity"
+			penta.002 = "lithogenesis_01_sphere_final_part_entity"
+			penta.003 = "lithogenesis_01_sphere_final_part_entity"
+			penta.004 = "lithogenesis_01_sphere_final_part_entity"
+			penta.005 = "lithogenesis_01_sphere_final_part_entity"
+			penta.006 = "lithogenesis_01_sphere_final_part_entity"
+			penta.007 = "lithogenesis_01_sphere_final_part_entity"
+			penta.008 = "lithogenesis_01_sphere_final_part_entity"
+			penta.009 = "lithogenesis_01_sphere_final_part_entity"
+			penta.010 = "lithogenesis_01_sphere_final_part_entity"
+			penta.011 = "lithogenesis_01_sphere_final_part_entity"
+
+		}
+		scale = 1
+	}
+# Gateway
+	entity = {
+		name = "lithogenesis_01_gateway_entity"
+		pdxmesh = "lithoid_99_gateway_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle"
+			start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_hum" stop_on_state_change = yes } }
+			start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_portal_hum" stop_on_state_change = yes } }
+		
+			event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_05" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_06" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		}
+		state = { name = "death" animation = "death" looping = no
+			event = { time = 7.63 node = "root" particle = "dreadnought_explosion_particle" keep_particle = yes }
+			event = { time = 2.1 node = "root" particle = "gateway_portal_death_residue_effect" keep_particle = yes }
+			
+			event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_death" stop_on_state_change = yes } }
+		}
+		attach = { portal_joint = "gateway_portal_entity" }
+			
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+# Relay
+	entity = {
+		name = "lithogenesis_01_hyper_relay_entity"
+		pdxmesh = "lithoid_99_hyper_relay_01_mesh"
+
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" 
+				event = { time = 0 node = "root" particle = "hyper_relay_portal_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "part1" particle = "hyper_relay_orb_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "part2" particle = "hyper_relay_orb_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "part3" particle = "hyper_relay_orb_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "part4" particle = "hyper_relay_orb_effect" keep_particle = yes trigger_once = yes }
+
+				event = { time = 0 node = "effect_1" particle = "hyper_relay_connector_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "effect_2" particle = "hyper_relay_connector_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "effect_3" particle = "hyper_relay_connector_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "effect_4" particle = "hyper_relay_connector_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "effect_5" particle = "hyper_relay_connector_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0 node = "effect_6" particle = "hyper_relay_connector_effect" keep_particle = yes trigger_once = yes }
+
+				event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_hyper_relay_01_idle" } }
+
+		}
+		state = { name = "death" animation = "death" looping = no}
+		
+		attach = { "root" 			= "hyper_relay_01_portal_entity" }
+		attach = { "root" 			= "hyper_relay_01_portal_spin_entity" }
+		attach = { "part1" 			= "hyper_relay_01_orb_entity" }
+		attach = { "part2" 			= "hyper_relay_01_orb_entity" }
+		attach = { "part3" 			= "hyper_relay_01_orb_entity" }
+		attach = { "part4" 			= "hyper_relay_01_orb_entity" }	
+		
+	}
+# Interstellar Assembly
+	entity = {
+		name = "lithogenesis_01_interstellar_assembly_stage_1_entity"
+		pdxmesh = "lithoid_99_interstellar_assembly_01_stage_1_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.2  
+	#		start_event = { node = "effect_1" particle = "interstellar_assembly_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_hum" } }
+		}
+
+		
+		attach = { ring_1 = "hologram_effect_entity" }
+		attach = { ring_1 = "interstellar_assembly_effect_2_entity" }
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_interstellar_assembly_stage_2_entity"
+		pdxmesh = "lithoid_99_interstellar_assembly_01_stage_2_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.2 
+	#		start_event = { node = "effect_1" particle = "interstellar_assembly_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_pulse" } }
+		}
+		
+		attach = { ring_1 = "hologram_effect_entity" }
+		attach = { ring_1 = "interstellar_assembly_effect_2_entity" }
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_interstellar_assembly_stage_3_entity"
+		pdxmesh = "lithoid_99_interstellar_assembly_01_stage_3_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.2 
+	#		start_event = { node = "effect_1" particle = "interstellar_assembly_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_pulse" } }
+		}
+
+			
+		attach = { ring_1 = "hologram_effect_entity" }
+		attach = { ring_1 = "interstellar_assembly_effect_2_entity" }
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_interstellar_assembly_stage_4_entity"
+		pdxmesh = "lithoid_99_interstellar_assembly_01_stage_4_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.2 
+	#		start_event = { node = "effect_1" particle = "interstellar_assembly_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_pulse" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_beats" } }
+		}
+
+		attach = { ring_1 = "hologram_effect_entity" }
+		attach = { ring_1 = "interstellar_assembly_effect_2_entity" }
+		attach = { ring_3 = "interstellar_light_shaft_entity" }
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+# Decompressor
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_1_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_1_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle"
+			start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+			
+			start_event = { node = "core" particle = "matde_black_hole_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "inner_beam_1" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_2" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_3" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum_treble" } }
+		}
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_2_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_2_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" 
+			start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+			
+			start_event = { node = "core" particle = "matde_black_hole_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "inner_beam_1" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_2" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_3" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum_treble" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_distortion" } }
+		}
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_3_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_3_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" 
+			start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+			
+			start_event = { node = "core" particle = "matde_black_hole_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "inner_beam_1" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_2" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_3" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_05" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_06" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum_treble" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_distortion" } }
+		}
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_4_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_4_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" 
+			start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "platform_1" particle = "matde_platform_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "platform_2" particle = "matde_platform_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "platform_3" particle = "matde_platform_beam_effect" keep_particle = yes trigger_once = yes }
+			
+			start_event = { node = "core" particle = "matde_black_hole_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "inner_beam_1" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_2" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "inner_beam_3" particle = "matde_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "platform_beam_1" particle = "matde_platform_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "platform_beam_2" particle = "matde_platform_small_beam_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "platform_beam_3" particle = "matde_platform_small_beam_effect" keep_particle = yes trigger_once = yes }
+		
+			start_event = { node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_05" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "light_locator_06" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_hum_treble" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_distortion" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_pulse" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_matter_decompressor_conveyor" } }
+		}
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+
+	# CONSTRUCTION ENTITIES
+
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_1_construction_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_1_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_2_construction_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_2_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_3_construction_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_3_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_matter_decompressor_stage_4_construction_entity"
+		pdxmesh = "lithoid_99_matter_decompressor_01_stage_4_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" }
+	}
+#######################
+### ART INSTITUTION ###
+#######################
+	entity = {
+		name = "lithogenesis_01_mega_art_institution_stage_1_entity"
+		pdxmesh = "lithoid_99_mega_art_institution_01_stage_1_mesh"
+		
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.7 
+			start_event = { node = "part1" particle = "mega_art_core_2_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_mega_art_installation_hum" } }
+		}
+		
+		attach = { part1_upper = "mega_art_fountain_splash_entity" }
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_mega_art_institution_stage_2_entity"
+		pdxmesh = "lithoid_99_mega_art_institution_01_stage_2_mesh"
+
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.7 
+			start_event = { node = "part1" particle = "mega_art_core_2_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_mega_art_installation_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_mega_art_installation_energy" } }
+		}
+		
+		attach = { part1_upper = "mega_art_fountain_splash_entity" }
+			
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_mega_art_institution_stage_3_entity"
+		pdxmesh = "lithoid_99_mega_art_institution_01_stage_3_mesh"
+		
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.7 
+			start_event = { node = "part1" particle = "mega_art_core_2_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "part2" particle = "mega_art_core_2_effect" keep_particle = yes trigger_once = yes }
+			start_event = { node = "part3" particle = "mega_art_core_2_effect" keep_particle = yes trigger_once = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_mega_art_installation_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_mega_art_installation_energy" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_mega_art_installation_glitches" } }
+		}
+		
+		attach = { part1_upper = "mega_art_fountain_splash_entity" }
+		attach = { part2_upper = "mega_art_fountain_splash_entity" }
+		attach = { part3_upper = "mega_art_fountain_splash_entity" }
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+#####################
+### MEGA SHIPYARD ###
+#####################
+	entity = {
+		name = "lithogenesis_01_mega_shipyard_01_stage_1_entity"
+		locator = { name = "part1" }
+		
+		default_state = "idle"
+		state = { name = "idle" state_time = 6.5 }
+		state = { name = "death" state_time = 6.6 looping = no 
+			event = { time = 6.5 node = "part1" particle = "juggernaut_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		}
+		
+		attach = { part1 = "lithogenesis_01_mega_shipyard_01_stage_1_section_entity" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_mega_shipyard_01_stage_1_section_entity"
+		pdxmesh = "lithoid_99_mega_shipyard_01_stage_1_mesh"
+		locator = { name = "core" }
+		
+		meshsettings = {
+			name = "Mega_Shipyard021Shape"
+			index = 0
+			texture_diffuse = "lithoid_01_mega_shipyard_diffuse.dds"
+			texture_normal = "lithoid_01_mega_shipyard_normal.dds"
+			texture_specular = "lithoid_01_mega_shipyard_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.7
+			event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+
+			event = { time = 0 node = "station_main" particle = "mega_shipyard_core_effect" keep_particle = yes trigger_once = yes }
+
+			event = { time = 2.0 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 6.05 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 10.3 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 14.5 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+
+			# event = { time = 0 node = "exhaust_1" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+
+			event = { trigger_once = yes sound = { soundeffect = "mega_shipyard_idle" } }
+		}
+		state = { name = "death" animation = "death" animation_blend_time = 1 looping = no
+			event = { time = 2.1 node = "explosion_locator_01" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 2.6 node = "explosion_locator_02" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 3.1 node = "explosion_locator_03" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 3.4 node = "explosion_locator_04" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 4.2 node = "explosion_locator_05" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 4.6 node = "explosion_locator_06" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		}
+		
+		attach = { gimbal_machine_mid = "mega_shipyard_01_core_effect_entity" }
+		attach = { gimbal_machine_innerY = "mega_shipyard_01_core_effect_light_entity" }
+		attach = { gimbal_machine_mid = "mega_shipyard_01_core_effect_light_2_entity" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_mega_shipyard_01_stage_2_entity"
+		locator = { name = "part1" }
+		
+		default_state = "idle"
+		state = { name = "idle" state_time = 6.5 }
+		state = { name = "death" state_time = 6.6 looping = no 
+			event = { time = 6.5 node = "part1" particle = "juggernaut_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		}
+		
+		attach = { part1 = "lithogenesis_01_mega_shipyard_01_stage_2_section_entity" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_mega_shipyard_01_stage_2_section_entity"
+		pdxmesh = "lithoid_99_mega_shipyard_01_stage_2_mesh"
+		locator = { name = "core" }
+		
+		meshsettings = {
+			name = "Mega_Shipyard_ncl1_1Shape"
+			index = 0
+			texture_diffuse = "lithoid_01_mega_shipyard_diffuse.dds"
+			texture_normal = "lithoid_01_mega_shipyard_normal.dds"
+			texture_specular = "lithoid_01_mega_shipyard_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.7
+			event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+
+			event = { time = 0 node = "station_main" particle = "mega_shipyard_core_effect" keep_particle = yes trigger_once = yes }
+
+			event = { time = 2.0 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 6.05 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 10.3 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 14.5 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+
+			# event = { time = 0 node = "exhaust_1" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_2" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_3" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			
+			event = { trigger_once = yes sound = { soundeffect = "mega_shipyard_idle" } }
+			event = { sound = { soundeffect = "mega_shipyard_metal_amb" } }
+		}
+		state = { name = "death" animation = "death" looping = no
+			event = { time = 2.1 node = "explosion_locator_01" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 2.6 node = "explosion_locator_02" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 3.1 node = "explosion_locator_03" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 3.4 node = "explosion_locator_04" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 4.2 node = "explosion_locator_05" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 4.6 node = "explosion_locator_06" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+
+		}
+
+		attach = { gimbal_machine_mid = "mega_shipyard_01_core_effect_entity" }
+		attach = { gimbal_machine_innerY = "mega_shipyard_01_core_effect_light_entity" }
+		attach = { gimbal_machine_mid = "mega_shipyard_01_core_effect_light_2_entity" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_mega_shipyard_01_stage_3_entity"
+		locator = { name = "part1" }
+		
+		default_state = "idle"
+		state = { name = "idle" state_time = 6.5 }
+		state = { name = "death" state_time = 6.6 looping = no 
+			event = { time = 6.5 node = "part1" particle = "juggernaut_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		}
+		
+		attach = { part1 = "lithogenesis_01_mega_shipyard_01_stage_3_section_entity" }
+	}
+
+	entity = {
+		name = "lithogenesis_01_mega_shipyard_01_stage_3_section_entity"
+		pdxmesh = "lithoid_99_mega_shipyard_01_stage_3_mesh"
+		locator = { name = "core" }
+		
+		meshsettings = {
+			name = "Mega_Shipyard010Shape"
+			index = 0
+			texture_diffuse = "lithoid_01_mega_shipyard_diffuse.dds"
+			texture_normal = "lithoid_01_mega_shipyard_normal.dds"
+			texture_specular = "lithoid_01_mega_shipyard_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" animation_speed = 0.7
+			event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+
+			event = { time = 0 node = "station_main" particle = "mega_shipyard_core_effect" keep_particle = yes trigger_once = yes }
+
+			event = { time = 2.0 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 6.05 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 10.3 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+			event = { time = 14.5 node = "station_main" particle = "mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+
+			# event = { time = 0 node = "exhaust_1" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_2" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_3" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_4" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_5" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_6" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+			# event = { time = 0 node = "exhaust_7" particle = "mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+
+			event = { time = 7.0 node = "core" entity = "mega_shipyard_01_light_front_1_1_entity" trigger_once = no life = 0.8	}
+			event = { time = 7.2 node = "core" entity = "mega_shipyard_01_light_front_1_2_entity" trigger_once = no life = 0.7	}
+			event = { time = 7.4 node = "core" entity = "mega_shipyard_01_light_front_1_3_entity" trigger_once = no life = 0.6	}
+			event = { time = 7.6 node = "core" entity = "mega_shipyard_01_light_front_1_4_entity" trigger_once = no life = 0.5	}
+			event = { time = 7.8 node = "core" entity = "mega_shipyard_01_light_front_1_5_entity" trigger_once = no life = 0.4	}
+
+			event = { time = 8.2 node = "core" entity = "mega_shipyard_01_light_front_2_1_entity" trigger_once = no life = 0.8	}
+			event = { time = 8.4 node = "core" entity = "mega_shipyard_01_light_front_2_2_entity" trigger_once = no life = 0.7	}
+			event = { time = 8.6 node = "core" entity = "mega_shipyard_01_light_front_2_3_entity" trigger_once = no life = 0.6	}
+			event = { time = 8.8 node = "core" entity = "mega_shipyard_01_light_front_2_4_entity" trigger_once = no life = 0.5	}
+			event = { time = 9.0 node = "core" entity = "mega_shipyard_01_light_front_2_5_entity" trigger_once = no life = 0.4	}
+
+			event = { time = 9.4 node = "core" entity = "mega_shipyard_01_light_front_3_1_entity" trigger_once = no 	life = 0.8	}
+			event = { time = 9.6 node = "core" entity = "mega_shipyard_01_light_front_3_2_entity" trigger_once = no 	life = 0.7	}
+			event = { time = 9.8 node = "core" entity = "mega_shipyard_01_light_front_3_3_entity" trigger_once = no 	life = 0.6	}
+			event = { time = 10.0 node = "core" entity = "mega_shipyard_01_light_front_3_4_entity" trigger_once = no 	life = 0.5	}
+			event = { time = 10.2 node = "core" entity = "mega_shipyard_01_light_front_3_5_entity" trigger_once = no 	life = 0.4	}
+
+			#event = { time = 10.5 node = "lightning_charge_1" particle = "mega_shipyard_lightning_charge_2_effect" keep_particle = yes trigger_once = no }
+
+			#event = { time = 10.60 node = "lightning_charge_s_1" particle = "mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+			#event = { time = 10.60 node = "lightning_charge_s_2" particle = "mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+			#event = { time = 11.10 node = "lightning_charge_s_3" particle = "mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+			#event = { time = 11.10 node = "lightning_charge_s_4" particle = "mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+
+			#event = { time = 10.55 node = "core" entity = "mega_shipyard_01_light_circle_1_entity" trigger_once = no life = 1}
+			#event = { time = 10.65 node = "core" entity = "mega_shipyard_01_light_circle_2_entity" trigger_once = no life = 1}
+			#event = { time = 11.15 node = "core" entity = "mega_shipyard_01_light_circle_3_entity" trigger_once = no life = 1}
+
+			event = { trigger_once = yes sound = { soundeffect = "mega_shipyard_idle" } }
+			event = { sound = { soundeffect = "mega_shipyard_metal_amb" } }
+		}
+		state = { name = "death" animation = "death" looping = no
+			event = { time = 2.1 node = "explosion_locator_01" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 2.6 node = "explosion_locator_02" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 3.1 node = "explosion_locator_03" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 3.4 node = "explosion_locator_04" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 4.2 node = "explosion_locator_05" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+			event = { time = 4.6 node = "explosion_locator_06" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		}	
+
+	#	attach = { core = "mega_shipyard_01_light_front_entity" }
+		attach = { gimbal_machine_mid = "mega_shipyard_01_core_effect_entity" }
+		attach = { gimbal_machine_innerY = "mega_shipyard_01_core_effect_light_entity" }
+		attach = { gimbal_machine_mid = "mega_shipyard_01_core_effect_light_2_entity" }	
+	}
+#############
+# THINKTANK #
+#############
+	animation = {
+		name = "lithoid_99_thinktank_part1_idle"
+		file = "lithoid_99_thinktank_part1_idle.anim"
+	}
+
+	entity = {
+		name = "lithogenesis_01_thinktank_part1_entity"
+		pdxmesh = "lithoid_99_thinktank_part1_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle"
+			start_event = { trigger_once = yes sound = { soundeffect = "think_tank_core_amb" } }
+			event = { time = 0 node = "center" particle = "think_tank_core_effect" keep_particle = yes trigger_once = yes }
+		}
+		
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_thinktank_part2_entity"
+		pdxmesh = "lithoid_99_thinktank_part2_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" state_time = 10
+			start_event = { trigger_once = yes sound = { soundeffect = "think_tank_structure_amb_01" stop_on_state_change = yes } }
+			event = { time = 0 node = "light_locator_1" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_2" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_3" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_4" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+		}
+
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_thinktank_part3_entity"
+		pdxmesh = "lithoid_99_thinktank_part3_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" state_time = 10
+			start_event = { trigger_once = yes sound = { soundeffect = "think_tank_structure_amb_02" stop_on_state_change = yes } }
+			event = { time = 0 node = "light_locator_5" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_6" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_7" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_8" particle = "think_tank_light_blue_effect" keep_particle = yes trigger_once = yes }
+		}
+
+	}
+
+	entity = {
+		name = "lithogenesis_01_thinktank_phase_01_entity"
+		locator = { name = "root"	position = { 0 0 0 } }	
+		
+		attach = { "root" = "lithogenesis_01_thinktank_part1_entity" }
+
+		state = { name = "construction"
+			start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+		}
+
+		cull_radius = 500
+	}
+
+	entity = {
+		name = "lithogenesis_01_thinktank_phase_02_entity"
+		locator = { name = "root"	position = { 0 0 0 } }	
+		
+		attach = { "root" = "lithogenesis_01_thinktank_part1_entity" }
+		attach = { "root" = "lithogenesis_01_thinktank_part2_entity" }
+
+		state = { name = "construction"
+			start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+		}
+
+		cull_radius = 500
+	}
+
+	entity = {
+		name = "lithogenesis_01_thinktank_phase_03_entity"
+		locator = { name = "root"	position = { 0 0 0 } }	
+		
+		attach = { "root" = "lithogenesis_01_thinktank_part1_entity" }
+		attach = { "root" = "lithogenesis_01_thinktank_part2_entity" }
+		attach = { "root" = "lithogenesis_01_thinktank_part3_entity" }
+
+		state = { name = "construction"
+			start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+		}
+
+		cull_radius = 500
+	}
+#####################################
+### STRATEGIC COORDINATION CENTRE ###
+#####################################
+	entity = {
+		name = "lithogenesis_01_strategic_coordination_center_stage_1_entity"
+		pdxmesh = "lithoid_99_strategic_coordination_center_01_stage_1_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" state_time = 5 
+			event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_strategic_coordination_center_hum" } }
+		}
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_strategic_coordination_center_stage_2_entity"
+		pdxmesh = "lithoid_99_strategic_coordination_center_01_stage_2_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle"
+			event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_strategic_coordination_center_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_strategic_coordination_center_beeps" } }
+		}
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+	}
+
+	entity = {
+		name = "lithogenesis_01_strategic_coordination_center_stage_3_entity"
+		pdxmesh = "lithoid_99_strategic_coordination_center_01_stage_3_mesh"
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle"
+			event = { time = 0 node = "light_locator_01"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_02"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_03"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_04"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_05"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_06"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_07"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_08"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_09"  particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_010" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_011" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+			event = { time = 0 node = "light_locator_012" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_strategic_coordination_center_hum" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_strategic_coordination_center_beeps" } }
+			start_event = { trigger_once = yes sound = { soundeffect = "sfx_strategic_coordination_center_pulse" } }
+		}
+		
+			game_data = {
+				emissive_recolor_crunch = 2.0
+			}	
+			
+	}
+###############
+### SPY ORB ###
+###############
+## ATTENTION - Spy orb destroyed entity has it's own scale ##
+	@spyorb_scale = 4 
+	@spyorb_height_pos = 0
+	@spyorb_side_pos = 0
+
+	entity = {
+		name = "lithogenesis_01_spyorb_part_1_entity"
+		pdxmesh = "lithoid_99_spyorb_part_1_mesh"
+		scale = @spyorb_scale
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" 
+			event = { time = 0 node = "light_locator_1" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { trigger_once = yes sound = { soundeffect = "spy_orb_hum_dome" } }
+		}
+		
+		meshsettings = {
+			name = "spyorb_part_1Shape"
+			index = 0
+			texture_diffuse = "lithoid_01_spy_orb_diffuse.dds"
+			texture_normal = "lithoid_01_spy_orb_normal.dds"
+			texture_specular = "lithoid_01_spy_orb_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		game_data = {
+			emissive_recolor_crunch = 2.0
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_part_2_entity"
+		pdxmesh = "lithoid_99_spyorb_part_2_mesh"
+		scale = @spyorb_scale
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" 
+			event = { time = 0 node = "light_locator_1" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { trigger_once = yes sound = { soundeffect = "spy_orb_hum_spire" } }
+		}
+		
+		meshsettings = {
+			name = "spyorb_part_2Shape"
+			index = 0
+			texture_diffuse = "lithoid_01_spy_orb_diffuse.dds"
+			texture_normal = "lithoid_01_spy_orb_normal.dds"
+			texture_specular = "lithoid_01_spy_orb_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_part_3_entity"
+		pdxmesh = "lithoid_99_spyorb_part_3_mesh"
+		scale = @spyorb_scale
+		
+		default_state = "idle"
+		state = { name = "idle" animation = "idle" 
+			event = { time = 0 node = "light_locator_1" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 1 node = "light_locator_2" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0 node = "light_locator_3" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 1 node = "light_locator_4" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			start_event = { trigger_once = yes sound = { soundeffect = "spy_orb_hum_antennas" } }
+		}
+		meshsettings = {
+			name = "spyorb_part_3Shape"
+			index = 0
+			texture_diffuse = "lithoid_01_spy_orb_diffuse.dds"
+			texture_normal = "lithoid_01_spy_orb_normal.dds"
+			texture_specular = "lithoid_01_spy_orb_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_part_4_entity"
+		pdxmesh = "lithoid_99_spyorb_part_4_mesh"
+		scale = @spyorb_scale
+		
+		default_state = "idle"
+		state = { name = "idle"
+			start_event = { trigger_once = yes sound = { soundeffect = "spy_orb_hum_ring" } }
+		}
+		
+		meshsettings = {
+			name = "spyorb_part_4Shape"
+			index = 0
+			texture_diffuse = "lithoid_01_spy_orb_diffuse.dds"
+			texture_normal = "lithoid_01_spy_orb_normal.dds"
+			texture_specular = "lithoid_01_spy_orb_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+
+
+
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_01_construction_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }
+		
+		default_state = "idle"
+		state = { name = "idle"
+			start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+		}
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_1_entity" }
+
+		cull_radius = 500
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_02_construction_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }
+		
+		default_state = "idle"
+		state = { name = "idle"
+			start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+		}
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_2_entity" }
+
+		cull_radius = 500
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_03_construction_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }
+		
+		default_state = "idle"
+		state = { name = "idle"
+			start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+		}
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_3_entity" }
+
+		cull_radius = 500
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_04_construction_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }
+		
+		default_state = "idle"
+		state = { name = "idle"
+			start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+		}
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_4_entity" }
+
+		cull_radius = 500
+	}
+
+
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_01_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }	
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_1_entity" }
+
+		cull_radius = 500
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_02_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }	
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_1_entity" }
+		attach = { "root" = "lithogenesis_01_spyorb_part_2_entity" }
+
+		cull_radius = 500
+	}
+		
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_03_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }	
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_1_entity" }
+		attach = { "root" = "lithogenesis_01_spyorb_part_2_entity" }
+		attach = { "root" = "lithogenesis_01_spyorb_part_3_entity" }
+
+		cull_radius = 500
+	}
+
+	entity = {
+		name = "lithogenesis_01_spyorb_phase_04_entity"
+		locator = { name = "root"	position = { @spyorb_side_pos 	@spyorb_height_pos  0 } }	
+		
+		attach = { "root" = "lithogenesis_01_spyorb_part_1_entity" }
+		attach = { "root" = "lithogenesis_01_spyorb_part_2_entity" }
+		attach = { "root" = "lithogenesis_01_spyorb_part_3_entity" }
+		attach = { "root" = "lithogenesis_01_spyorb_part_4_entity" }
+
+		cull_radius = 500
+	}
+########################
+### Quantum Catapult ###
+########################
+	# animation = {
+	# 	name = "lithogenesis_qc_idle"
+	# 	file = "lithoid_99_quantum_part3_idle.anim"
+	# }
+
+	entity = {
+		name = "lithogenesis_01_quantum_catapult_stage_1_entity"
+		pdxmesh = "lithoid_99_quantum_catapult_stage_1_mesh"
+		
+		locator = { name = "root"	position = { 0 0 0 } }
+		
+		attach = { root = "quantum_catapult_stage_1_lightning_entity" }	
+		
+			meshsettings = {
+				name = "g_bodyShape"
+				index = 0
+				texture_diffuse = "lithoid_01_quantum_catapult_diffuse.dds"
+				texture_normal = "lithoid_01_quantum_catapult_normal.dds"
+				texture_specular = "lithoid_01_quantum_catapult_specular.dds"
+				shader = "PdxMeshShip"
+		
+			}
+		}
+	entity = {
+		name = "lithogenesis_01_quantum_catapult_stage_2_entity"
+		pdxmesh = "lithoid_99_quantum_catapult_stage_2_mesh"
+		
+		
+		locator = { name = "root"	position = { 0 0 0 } }
+		
+		attach = { root = "quantum_catapult_stage_2_lightning_entity" }	
+
+			meshsettings = {
+				name = "g_bodyShape"
+				index = 0
+				texture_diffuse = "lithoid_01_quantum_catapult_diffuse.dds"
+				texture_normal = "lithoid_01_quantum_catapult_normal.dds"
+				texture_specular = "lithoid_01_quantum_catapult_specular.dds"
+				shader = "PdxMeshShip"
+		
+			}
+		}
+	entity = {
+		name = "lithogenesis_01_quantum_catapult_stage_3_entity"
+		pdxmesh = "lithoid_99_quantum_catapult_stage_3_mesh"
+		
+		locator = { name = "root"	position = { 0 0 0 } }
+		
+		attach = { root = "quantum_catapult_stage_3_lightning_entity" }	
+		
+			meshsettings = {
+				name = "g_bodyShape"
+				index = 0
+				texture_diffuse = "lithoid_01_quantum_catapult_diffuse.dds"
+				texture_normal = "lithoid_01_quantum_catapult_normal.dds"
+				texture_specular = "lithoid_01_quantum_catapult_specular.dds"
+				shader = "PdxMeshShip"
+
+		}
+		default_state = "idle"
+		state = { name = "idle" }
+	}
+# End of File

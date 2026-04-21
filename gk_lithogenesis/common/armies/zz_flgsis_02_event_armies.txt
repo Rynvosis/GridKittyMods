@@ -1,0 +1,232 @@
+titanic_assault_army = {
+	damage = 3.0
+	health = 5.0
+	morale = 3.0
+	morale_damage = 2.0
+	collateral_damage = 3.0
+	war_exhaustion = 2.0
+	time = 90
+	icon = GFX_army_type_xenomorph
+	has_species = no
+
+	resources = {
+		cost = {
+			trigger = {
+				from = {
+					OR = {
+						country_uses_bio_ships = no
+						graphical_culture = lithogenesis_01
+					}
+				}
+			}
+			minerals = 300
+		}
+		cost = {
+			trigger = {
+				from = {
+					NOT = { graphical_culture = lithogenesis_01 }
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 300
+			mult = @mineral_to_food_cost_ratio
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	potential_country = {
+		has_country_flag = titanic_life_soldiers
+	}
+	potential = {
+		custom_tooltip = {
+			text = titanic_troop_limit_tooltip
+			planet = { has_planet_flag = titanic_life_can_build }
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			text = titanic_troop_limit_tooltip
+			planet = { has_planet_flag = titanic_life_can_build }
+			owner = {
+				has_country_flag = titanic_life_soldiers
+				NOT = {
+					check_variable = {
+						which = "titanic_life_soldier_count"
+						value = 3
+					}
+				}
+			}
+		}
+	}
+
+	on_queued = {
+		owner = {
+			change_variable = {
+				which = "titanic_life_soldier_count"
+				value = 1
+			}
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "titanic_life_soldier_count"
+				value = -1
+			}
+		}
+	}
+}
+
+# Azizian Army: Based on titanic life assault army
+titanic_azizian_assault_army = {
+	damage = 3.0
+	health = 5.0
+	morale = 2.0
+	morale_damage = 2.0
+	time = 90
+	icon = GFX_army_type_xenomorph
+	has_species = no
+
+	resources = {
+		category = armies
+		cost = {
+			energy = 50
+		}
+		cost = {
+			trigger = {
+				from = {
+					OR = {
+						country_uses_bio_ships = no
+						graphical_culture = lithogenesis_01
+					}
+				}
+			}
+			minerals = 250
+		}
+		cost = {
+			trigger = {
+				from = {
+					NOT = { graphical_culture = lithogenesis_01 }
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 250
+			mult = @mineral_to_food_cost_ratio
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	potential_country = {
+		has_country_flag = titanic_azizian_soldiers
+	}
+	potential = {
+		custom_tooltip = {
+			text = azizian_troop_limit_tooltip
+			planet = { has_planet_flag = titanic_azizian_can_build }
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			text = azizian_troop_limit_tooltip
+			planet = { has_planet_flag = titanic_azizian_can_build }
+			owner = {
+				has_country_flag = titanic_azizian_soldiers
+				NOT = {
+					 check_variable = {
+						which = "titanic_azizian_soldier_count"
+						value = 3
+					}
+				}
+			}
+		}
+	}
+
+	on_queued = {
+		owner = {
+			change_variable = {
+				which = "titanic_azizian_soldier_count"
+				value = 1
+			}
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "titanic_azizian_soldier_count"
+				value = -1
+			}
+		}
+	}
+}
+
+
+# Imperial Legions
+
+imperial_legion = {
+	damage = 2.5
+	health = 3.0
+	morale = 3.0
+	morale_damage = 1.0
+	collateral_damage = 0.75
+	war_exhaustion = 3.0
+	time = 150
+	icon = GFX_army_type_imperial
+	has_species = no
+
+	resources = {
+		category = armies
+		cost = {
+			trigger = {
+				from = {
+					OR = {
+						country_uses_bio_ships = no
+						graphical_culture = lithogenesis_01
+					}
+				}
+			}
+			minerals = 300
+		}
+		cost = {
+			trigger = {
+				from = {
+					NOT = { graphical_culture = lithogenesis_01 }
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 300
+			mult = @mineral_to_food_cost_ratio
+		}
+
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	potential_country = {
+		is_galactic_emperor = yes
+		is_active_resolution = "resolution_emperor_imperial_legions"
+	}
+
+	allow = {
+	}
+
+	on_queued = {
+	}
+
+	on_unqueued = {
+	}
+
+	ai_weight = {
+		base = 500
+	}
+}

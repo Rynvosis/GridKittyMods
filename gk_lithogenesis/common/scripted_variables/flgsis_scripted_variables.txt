@@ -1,0 +1,33 @@
+# Scratch that, its helpful for other things too I guess, like doing math
+@shield_S_t4_exotic_gases_cost = 0.250
+@shield_M_t4_exotic_gases_cost = 0.500
+@shield_L_t4_exotic_gases_cost = 1.000
+
+@shield_S_t5_exotic_gases_cost = 0.330
+@shield_M_t5_exotic_gases_cost = 0.660
+@shield_L_t5_exotic_gases_cost = 1.330
+
+@shield_S_t6_sr_dark_matter_cost = 0.250
+@shield_M_t6_sr_dark_matter_cost = 0.500
+@shield_L_t6_sr_dark_matter_cost = 1.000
+
+@shield_S_t7_sr_zro_cost = 0.111
+@shield_M_t7_sr_zro_cost = 0.222
+@shield_L_t7_sr_zro_cost = 0.333
+
+# Reactor stuff
+@flgsis_corvette_reactor_mult = 1
+@flgsis_destroyer_reactor_mult = 2
+@flgsis_platform_reactor_mult = 2
+@flgsis_cruiser_reactor_mult = 4
+@flgsis_battleship_reactor_mult = 8
+@flgsis_titan_reactor_mult 	= 16
+@flgsis_juggernaut_reactor_mult = 56
+
+@flgsis_tier_1_energy_reactor_math = 0.1
+@flgsis_tier_2_energy_reactor_math = 0.13
+@flgsis_tier_3_energy_reactor_math = 0.17
+@flgsis_tier_4_energy_reactor_math = 0.22
+@flgsis_tier_5_energy_reactor_math = 0.28
+@flgsis_tier_6_energy_reactor_math = 0.37
+

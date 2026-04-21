@@ -1,0 +1,1335 @@
+@hit2 = 5
+@hit3 = 10
+@hit4 = 15
+
+@cost1 = 2
+@cost2 = 4
+@cost3 = 6
+@cost4 = 8
+
+@cost_fauna_1 = 8
+@cost_fauna_2 = 16
+@cost_fauna_3 = 24
+@cost_fauna_4 = 32
+
+@power1 = -5
+@power2 = -10
+@power3 = -15
+@power4 = -20
+
+@sensor1 = 1
+@sensor2 = 2
+@sensor3 = 3
+@sensor4 = 4
+
+@hyperlane1 = 2
+@hyperlane2 = 3
+@hyperlane3 = 4
+@hyperlane4 = 5
+
+##############################
+# Biological Ship Components #
+##############################
+
+utility_component_template = {
+	key = "BIOSHIP_SENSOR_1"
+	size = medium
+	icon = "GFX_ship_part_bioship_sensor_1"
+	icon_frame = 1
+	power = @power1
+	resources = {
+		category = ship_components
+		inline_script = {
+			script = ship_components/bio_ship_cost_direct
+			COST = @cost1
+			MULT = @alloy_to_food_cost_ratio
+		}
+	}
+	sensor_range = @sensor1
+	hyperlane_range = @hyperlane1
+
+	component_set = "sensor_components"
+	upgrades_to = "BIOSHIP_SENSOR_2"
+
+	potential = {
+		from = {
+			country_uses_bio_ships = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = yes
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "BIOSHIP_SENSOR_2"
+	size = medium
+	icon = "GFX_ship_part_bioship_sensor_2"
+	icon_frame = 1
+	power = @power2
+	resources = {
+		category = ship_components
+		inline_script = {
+			script = ship_components/bio_ship_cost_direct
+			COST = @cost2
+			MULT = @alloy_to_food_cost_ratio
+		}
+	}
+	sensor_range = @sensor2
+	hyperlane_range = @hyperlane2
+
+	prerequisites = { "tech_sensors_2" }
+	component_set = "sensor_components"
+	upgrades_to = "BIOSHIP_SENSOR_3"
+
+	ship_modifier = {
+		ship_tracking_add = @hit2
+	}
+
+	potential = {
+		from = {
+			country_uses_bio_ships = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = yes
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+utility_component_template = {
+	key = "BIOSHIP_SENSOR_3"
+	size = medium
+	icon = "GFX_ship_part_bioship_sensor_3"
+	icon_frame = 1
+	power = @power3
+	resources = {
+		category = ship_components
+		inline_script = {
+			script = ship_components/bio_ship_cost_direct
+			COST = @cost3
+			MULT = @alloy_to_food_cost_ratio
+		}
+	}
+	sensor_range = @sensor3
+	hyperlane_range = @hyperlane3
+
+	prerequisites = { "tech_sensors_3" }
+	component_set = "sensor_components"
+	upgrades_to = "BIOSHIP_SENSOR_4"
+
+	ship_modifier = {
+		ship_tracking_add = @hit3
+	}
+
+	potential = {
+		from = {
+			country_uses_bio_ships = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = yes
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+utility_component_template = {
+	key = "BIOSHIP_SENSOR_4"
+	size = medium
+	icon = "GFX_ship_part_bioship_sensor_4"
+	icon_frame = 1
+	power = @power4
+	resources = {
+		category = ship_components
+		inline_script = {
+			script = ship_components/bio_ship_cost_direct
+			COST = @cost4
+			MULT = @alloy_to_food_cost_ratio
+		}
+	}
+	sensor_range = @sensor4
+	hyperlane_range = @hyperlane4
+
+	ship_modifier = {
+		ship_tracking_add = @hit4
+	}
+
+	potential = {
+		from = {
+			country_uses_bio_ships = yes
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = yes
+	}
+
+	prerequisites = { "tech_sensors_4" }
+	component_set = "sensor_components"
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+############
+# Cloaking #
+############
+
+########################
+# Corvettes & Frigates #
+########################
+
+# Basic Cloaking Device
+utility_component_template = {
+	key = "CORVETTE_CLOAKING_1"
+	size = aux
+	icon = "GFX_ship_part_cloak_1"
+	icon_frame = 1
+	power = @power_S2
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t1_cost_alloys
+			exotic_gases = @cloak_s_t1_cost_strategic_resources
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t1_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t1_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t1_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_very_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_1_TOOLTIP"
+
+	ship_limit = 1
+
+	blocked_by = {
+		CORVETTE_CLOAKING_2
+		CORVETTE_CLOAKING_3
+		CORVETTE_CLOAKING_DARK_MATTER
+		CORVETTE_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_corvette_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_1" }
+	component_set = "CLOAKING_1"
+	upgrades_to = "CORVETTE_CLOAKING_2"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+
+	ai_weight = {
+		weight = @basic_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+# Advanced Cloaking Device
+utility_component_template = {
+	key = "CORVETTE_CLOAKING_2"
+	size = aux
+	icon = "GFX_ship_part_cloak_2"
+	icon_frame = 1
+	power = @power_S3
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t2_cost_alloys
+			exotic_gases = @cloak_s_t2_cost_strategic_resources
+			rare_crystals = @cloak_s_t2_cost_strategic_resources
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t2_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t2_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t2_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_2_TOOLTIP"
+
+	ship_limit = 1
+
+	blocked_by = {
+		CORVETTE_CLOAKING_1
+		CORVETTE_CLOAKING_3
+		CORVETTE_CLOAKING_DARK_MATTER
+		CORVETTE_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_corvette_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_2" }
+	component_set = "CLOAKING_2"
+	upgrades_to = "CORVETTE_CLOAKING_3"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @advanced_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+# Elite Cloaking Device
+utility_component_template = {
+	key = "CORVETTE_CLOAKING_3"
+	size = aux
+	icon = "GFX_ship_part_cloak_3"
+	icon_frame = 1
+	power = @power_S4
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t3_cost_alloys
+			exotic_gases = @cloak_s_t3_cost_strategic_resources
+			rare_crystals = @cloak_s_t3_cost_strategic_resources
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t3_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t3_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t3_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_medium_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_3_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		CORVETTE_CLOAKING_1
+		CORVETTE_CLOAKING_2
+		CORVETTE_CLOAKING_DARK_MATTER
+		CORVETTE_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_corvette_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_3" }
+	component_set = "CLOAKING_3"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @elite_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+# Dark Matter Cloaking Device
+utility_component_template = {
+	key = "CORVETTE_CLOAKING_DARK_MATTER"
+	size = aux
+	icon = "GFX_ship_part_cloak_dark_matter"
+	icon_frame = 1
+	power = @power_S5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t4_cost_alloys
+			exotic_gases = @cloak_s_t4_cost_strategic_resources
+			sr_dark_matter = @cloak_s_cost_sr_dark_matter
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t4_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t4_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t4_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_high_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 0.5
+		}
+	}
+	custom_tooltip = "CLOAKING_DARK_MATTER_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		CORVETTE_CLOAKING_1
+		CORVETTE_CLOAKING_2
+		CORVETTE_CLOAKING_3
+		CORVETTE_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_corvette_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_dark_matter" }
+	component_set = "CLOAKING_DARK_MATTER"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @dark_matter_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_dark_matter }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+# Psionic Cloaking Device
+utility_component_template = {
+	key = "CORVETTE_CLOAKING_PSI"
+	size = aux
+	icon = "GFX_ship_part_cloak_psi"
+	icon_frame = 1
+	power = @power_S5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t5_cost_alloys
+			rare_crystals = @cloak_s_t5_cost_strategic_resources
+			sr_zro = @cloak_s_cost_sr_zro
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t5_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t5_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t5_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_very_high_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+			has_non_psionic_shields = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_PSI_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		CORVETTE_CLOAKING_1
+		CORVETTE_CLOAKING_2
+		CORVETTE_CLOAKING_3
+		CORVETTE_CLOAKING_DARK_MATTER
+	}
+	potential = {
+		ship_uses_corvette_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_psi" }
+	component_set = "CLOAKING_PSI"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @psi_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_zro }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+##############
+# Destroyers #
+##############
+
+utility_component_template = {
+	key = "DESTROYER_CLOAKING_2"
+	size = aux
+	icon = "GFX_ship_part_cloak_2"
+	icon_frame = 1
+	power = @power_S3
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t2_cost_alloys
+			exotic_gases = @cloak_s_t2_cost_strategic_resources
+			rare_crystals = @cloak_s_t2_cost_strategic_resources
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t2_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t2_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t2_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_very_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_2_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		DESTROYER_CLOAKING_3
+		DESTROYER_CLOAKING_DARK_MATTER
+		DESTROYER_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_destroyer_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_2" }
+	component_set = "CLOAKING_2"
+	upgrades_to = "DESTROYER_CLOAKING_3"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @advanced_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_CLOAKING_3"
+	size = aux
+	icon = "GFX_ship_part_cloak_3"
+	icon_frame = 1
+	power = @power_S4
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t3_cost_alloys
+			exotic_gases = @cloak_s_t3_cost_strategic_resources
+			rare_crystals = @cloak_s_t3_cost_strategic_resources
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t3_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t3_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t3_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_3_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		DESTROYER_CLOAKING_2
+		DESTROYER_CLOAKING_DARK_MATTER
+		DESTROYER_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_destroyer_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_3" }
+	component_set = "CLOAKING_3"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @elite_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_CLOAKING_DARK_MATTER"
+	size = aux
+	icon = "GFX_ship_part_cloak_dark_matter"
+	icon_frame = 1
+	power = @power_S5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t4_cost_alloys
+			exotic_gases = @cloak_s_t4_cost_strategic_resources
+			sr_dark_matter = @cloak_s_cost_sr_dark_matter
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t4_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t4_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t4_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_medium_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 0.5
+		}
+	}
+	custom_tooltip = "CLOAKING_DARK_MATTER_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		DESTROYER_CLOAKING_2
+		DESTROYER_CLOAKING_3
+		DESTROYER_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_destroyer_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_dark_matter" }
+	component_set = "CLOAKING_DARK_MATTER"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @dark_matter_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_dark_matter }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_CLOAKING_PSI"
+	size = aux
+	icon = "GFX_ship_part_cloak_psi"
+	icon_frame = 1
+	power = @power_S5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_s_t5_cost_alloys
+			rare_crystals = @cloak_s_t5_cost_strategic_resources
+			sr_zro = @cloak_s_cost_sr_zro
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_s_t5_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_s_t5_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_s_t5_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_high_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+			has_non_psionic_shields = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+
+	custom_tooltip = "CLOAKING_PSI_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		DESTROYER_CLOAKING_2
+		DESTROYER_CLOAKING_3
+		DESTROYER_CLOAKING_DARK_MATTER
+	}
+	potential = {
+		ship_uses_destroyer_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_psi" }
+	component_set = "CLOAKING_PSI"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @psi_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_zro }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+############
+# Cruisers #
+############
+
+utility_component_template = {
+	key = "CRUISER_CLOAKING_3"
+	size = aux
+	icon = "GFX_ship_part_cloak_3"
+	icon_frame = 1
+	power = @power_M4
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_m_t3_cost_alloys
+			exotic_gases = @cloak_m_t3_cost_strategic_resources
+			rare_crystals = @cloak_m_t3_cost_strategic_resources
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_m_t3_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_m_t3_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_m_t3_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_very_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_3_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		CRUISER_CLOAKING_DARK_MATTER
+		CRUISER_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_cruiser_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_3" }
+	component_set = "CLOAKING_3"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @elite_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+utility_component_template = {
+	key = "CRUISER_CLOAKING_DARK_MATTER"
+	size = aux
+	icon = "GFX_ship_part_cloak_dark_matter"
+	icon_frame = 1
+	power = @power_M5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_m_t4_cost_alloys
+			exotic_gases = @cloak_m_t4_cost_strategic_resources
+			sr_dark_matter = @cloak_m_cost_sr_dark_matter
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_m_t4_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_m_t4_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_m_t4_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 0.5
+		}
+	}
+	custom_tooltip = "CLOAKING_DARK_MATTER_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		CRUISER_CLOAKING_3
+		CRUISER_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_cruiser_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_dark_matter" }
+	component_set = "CLOAKING_DARK_MATTER"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @dark_matter_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_dark_matter }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+utility_component_template = {
+	key = "CRUISER_CLOAKING_PSI"
+	size = aux
+	icon = "GFX_ship_part_cloak_psi"
+	icon_frame = 1
+	power = @power_M5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_m_t5_cost_alloys
+			rare_crystals = @cloak_m_t5_cost_strategic_resources
+			sr_zro = @cloak_m_cost_sr_zro
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_m_t5_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_m_t5_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_m_t5_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_medium_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+			has_non_psionic_shields = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_PSI_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		CRUISER_CLOAKING_3
+		CRUISER_CLOAKING_DARK_MATTER
+	}
+	potential = {
+		ship_uses_cruiser_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_psi" }
+	component_set = "CLOAKING_PSI"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @psi_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_zro }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+###############
+# Battleships #
+###############
+
+utility_component_template = {
+	key = "BATTLESHIP_CLOAKING_DARK_MATTER"
+	size = aux
+	icon = "GFX_ship_part_cloak_dark_matter"
+	icon_frame = 1
+	power = @power_L5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_l_t4_cost_alloys
+			exotic_gases = @cloak_l_t4_cost_strategic_resources
+			sr_dark_matter = @cloak_l_cost_sr_dark_matter
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_l_t4_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_l_t4_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_l_t4_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_very_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			ship_shield_reduction = 0.5
+		}
+	}
+	custom_tooltip = "CLOAKING_DARK_MATTER_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		BATTLESHIP_CLOAKING_PSI
+	}
+	potential = {
+		ship_uses_battleship_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_dark_matter" }
+	component_set = "CLOAKING_DARK_MATTER"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @dark_matter_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = exotic_gases }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_dark_matter }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+utility_component_template = {
+	key = "BATTLESHIP_CLOAKING_PSI"
+	size = aux
+	icon = "GFX_ship_part_cloak_psi"
+	icon_frame = 1
+	power = @power_L5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cloak_l_t5_cost_alloys
+			rare_crystals = @cloak_l_t5_cost_strategic_resources
+			sr_zro = @cloak_l_cost_sr_zro
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @cloak_l_t5_upkeep_energy
+		}
+		inline_script = {
+			script = ship_components/bio_ship_upkeep_direct
+			UPKEEP = @cloak_l_t5_upkeep_energy
+		}
+		upkeep = {
+			alloys = @cloak_l_t5_upkeep_alloys
+		}
+	}
+
+	modifier = {
+		ship_cloaking_strength_add = @cloaking_low_strength
+	}
+
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+			has_non_psionic_shields = yes
+		}
+		modifier = {
+			ship_shield_reduction = 1
+		}
+	}
+	custom_tooltip = "CLOAKING_PSI_TOOLTIP"
+
+	ship_limit = 1
+	blocked_by = {
+		BATTLESHIP_CLOAKING_DARK_MATTER
+	}
+	potential = {
+		ship_uses_battleship_cloaks = yes
+	}
+	prerequisites = { "tech_cloaking_psi" }
+	component_set = "CLOAKING_PSI"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+		buffer_role_stealth
+		debuffer_role_stealth
+	}
+	ai_weight = {
+		weight = @psi_cloaking_weight
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = sr_zro }
+		}
+		modifier = {
+			factor = 0
+			no_resource_for_component = { RESOURCE = rare_crystals }
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}

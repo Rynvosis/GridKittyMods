@@ -1,0 +1,27 @@
+	resources = {
+		category = ship_components
+		cost = {
+			$EXTRA_COST$
+		}
+		cost = {
+			food = $COST$
+			mult = @alloy_to_food_cost_ratio
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+					NOT = { graphical_culture = lithogenesis_01 }
+				}
+			}
+		}
+		cost = {
+			minerals = $COST$
+			mult = @alloy_to_food_cost_ratio
+			mult = 0.8
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+					graphical_culture = lithogenesis_01
+				}
+			}
+		}
+	}

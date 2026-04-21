@@ -1,0 +1,17 @@
+    cost = {
+        food = $COST$
+        trigger = {
+			country_uses_bio_ships = yes
+			NOT = { graphical_culture = lithogenesis_01 }
+        }
+        mult = $MULT$
+    }
+    cost = {
+        minerals = $COST$
+        mult = 0.8
+        mult = $MULT$
+        trigger = {
+			country_uses_bio_ships = yes
+			graphical_culture = lithogenesis_01 
+        }
+    }

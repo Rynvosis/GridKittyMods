@@ -1,0 +1,356 @@
+objectTypes = {
+	# Harbinger stages
+		pdxmesh = {
+			name = "lithoid_01_harbinger_ship_stage_1_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_harbinger_stage_1.mesh"
+			# animation? that's not in the budget... yet ;)
+		}
+		pdxmesh = {
+			name = "lithoid_01_harbinger_ship_stage_2_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_harbinger_stage_2.mesh"
+			# They're so still... so quiet
+		}
+		pdxmesh = {
+			name = "lithoid_01_harbinger_ship_stage_3_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_harbinger_stage_3.mesh"
+			# I'll think about it... maybe
+		}
+
+	# Mauler Stages
+		pdxmesh = {
+			name = "lithoid_01_mauler_ship_stage_1_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_mauler_stage_1.mesh"
+			# animation? that's not in the budget... yet ;)
+		}
+		pdxmesh = {
+			name = "lithoid_01_mauler_ship_stage_2_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_mauler_stage_2.mesh"
+			# They're so still... so quiet
+		}
+		pdxmesh = {
+			name = "lithoid_01_mauler_ship_stage_3_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_mauler_stage_3.mesh"
+			# I'll think about it... maybe
+		}
+
+	# Weaver Stages
+		pdxmesh = {
+			name = "lithoid_01_weaver_ship_stage_1_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_weaver_stage_1.mesh"
+			# animation? that's not in the budget... yet ;)
+		}
+		pdxmesh = {
+			name = "lithoid_01_weaver_ship_stage_2_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_weaver_stage_2.mesh"
+			# They're so still... so quiet
+		}
+		pdxmesh = {
+			name = "lithoid_01_weaver_ship_stage_3_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_weaver_stage_3.mesh"
+			# I'll think about it... maybe
+		}
+
+	# Stinger Stages
+		pdxmesh = {
+			name = "lithoid_01_stinger_ship_stage_1_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_stinger_stage_1.mesh"
+			# animation? that's not in the budget... yet ;)
+		}
+		pdxmesh = {
+			name = "lithoid_01_stinger_ship_stage_2_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_stinger_stage_2.mesh"
+			# They're so still... so quiet
+		}
+		pdxmesh = {
+			name = "lithoid_01_stinger_ship_stage_3_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_stinger_stage_3.mesh"
+			# I'll think about it... maybe
+		}
+	# Kaiju Egg
+		pdxmesh = {
+			name = "lithoid_01_kaiju_egg_mesh"
+			file = "gfx/models/ships/lithoid_01/lithoid_01_egg_stage_1.mesh"
+			# I'll think about it... maybe
+		}
+	# Dyson Swarm Frame This one is actually an absolute doozy of a project
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_swarm_p1_frame_mesh"
+			file = "gfx/models/ships/lithoid_01/satellite_frame_swarm_01.mesh"
+
+			animation = { id = "idle"			type = "dyson_swarm_phase_1_idle_animation" }
+			# One of my meshes having an animation?!? Unheard of!
+		}
+		pdxmesh = {
+			name = "lithogenesis_01_satellite_mesh"
+			file = "gfx/models/ships/lithoid_01/lithogenesis_01_satellite.mesh"
+		}
+
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_swarm_p2_frame_mesh"
+			file = "gfx/models/ships/lithoid_01/satellite_frame_swarm_02.mesh"
+
+			animation = { id = "idle"			type = "dyson_swarm_phase_2_idle_animation" }
+		}
+
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_swarm_p3_frame_mesh"
+			file = "gfx/models/ships/lithoid_01/satellite_frame_swarm_03.mesh"
+
+			animation = { id = "idle"			type = "dyson_swarm_phase_3_idle_animation" }
+		}
+		pdxmesh = {
+			name = "lithoid_dyson_swarm_effect_mesh"
+			file = "gfx/models/ships/superstructures/dyson_swarm/dyson_swarm_lightning.mesh"
+
+			meshsettings = {
+				index = 0
+				texture_diffuse = "swarm_lightning_effect_lithoid.dds"
+				texture_specular = "toxoid_01_gas_specular.dds"
+				texture_normal = "toxoid_01_gas_flowmap.dds"
+				shader = "PdxMeshColorAlphaAdditiveAnimateUV"
+			}
+		}
+		pdxmesh = {
+			name = "lithoid_dyson_swarm_effect_stage_3_mesh"
+			file = "gfx/models/ships/superstructures/dyson_swarm/dyson_swarm_effect_stage_3.mesh"
+
+			meshsettings = {
+				index = 0
+				texture_diffuse = "swarm_lightning_effect_lithoid.dds"
+				texture_specular = "toxoid_01_gas_specular.dds"
+				texture_normal = "toxoid_01_gas_flowmap.dds"
+				shader = "PdxMeshColorAlphaAdditiveAnimateUV"
+			}
+		}
+	# Dyson sphere Frame
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_sphere_frame_mesh"
+			file = "gfx/models/ships/lithoid_01/lithogenesis_01_frame_p1.mesh"
+		}
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_frame_caps_mesh"
+			file = "gfx/models/ships/lithoid_01/lithogenesis_01_cap_p1.mesh"
+		}
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_frame_shields_mesh"
+			file = "gfx/models/ships/lithoid_01/lithogenesis_01_cap_p2.mesh"
+		}
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_frame_shield_expanded_mesh"
+			file = "gfx/models/ships/lithoid_01/lithogenesis_01_cap_p3.mesh"
+		}
+		pdxmesh = {
+			name = "lithogenesis_01_dyson_frame_final_mesh"
+			file = "gfx/models/ships/lithoid_01/lithogenesis_01_cap_p4.mesh"
+		}
+	# Gateway
+		pdxmesh = {
+			name = "lithoid_99_gateway_mesh"
+			file = "gfx/models/ships/megastructures/gateway/lithoid_99_gateway.mesh"
+			
+			animation = { id = "idle"		type = "gateway_idle_animation" }
+			animation = { id = "death"		type = "gateway_death_animation" }
+		
+		}
+	# Relay
+		pdxmesh = {
+			name = "lithoid_99_hyper_relay_01_mesh"
+			file = "gfx/models/ships/megastructures/hyper_relay/lithoid_99_hyper_relay_01.mesh"
+			animation = { id = "idle"			type = "hyper_relay_01_idle_animation" }
+			animation = { id = "death"			type = "hyper_relay_01_death_animation" }
+
+		}
+	# Interstellar Assembly
+		pdxmesh = {
+			name = "lithoid_99_interstellar_assembly_01_stage_1_mesh"
+			file = "gfx/models/ships/megastructures/interstellar_assembly/lithoid_99_interstellar_assembly_01_stage_1.mesh"
+		
+			animation = { id = "idle"						type = "interstellar_assembly_01_stage_4_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_interstellar_assembly_01_stage_2_mesh"
+			file = "gfx/models/ships/megastructures/interstellar_assembly/lithoid_99_interstellar_assembly_01_stage_2.mesh"
+		
+			animation = { id = "idle"						type = "interstellar_assembly_01_stage_4_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_interstellar_assembly_01_stage_3_mesh"
+			file = "gfx/models/ships/megastructures/interstellar_assembly/lithoid_99_interstellar_assembly_01_stage_3.mesh"
+		
+			animation = { id = "idle"						type = "interstellar_assembly_01_stage_4_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_interstellar_assembly_01_stage_4_mesh"
+			file = "gfx/models/ships/megastructures/interstellar_assembly/lithoid_99_interstellar_assembly_01_stage_4.mesh"
+		
+			animation = { id = "idle"						type = "interstellar_assembly_01_stage_4_idle_animation" }
+		}
+	# Thinktank ( Science Nexus for the uninitiated )
+		pdxmesh = {
+			name = "lithoid_99_thinktank_part1_mesh"
+			file = "gfx/models/ships/megastructures/think_tank/lithoid_99_thinktank_part1.mesh"
+			scale = 1.0
+			
+			animation = { id = "idle"					type = "lithoid_99_thinktank_part1_idle" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_thinktank_part2_mesh"
+			file = "gfx/models/ships/megastructures/think_tank/lithoid_99_thinktank_part2.mesh"
+			scale = 1.0
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_thinktank_part3_mesh"
+			file = "gfx/models/ships/megastructures/think_tank/lithoid_99_thinktank_part3.mesh"
+			scale = 1.0
+
+		}
+	# Decompressor
+		pdxmesh = {
+			name = "lithoid_99_matter_decompressor_01_stage_1_mesh"
+			file = "gfx/models/ships/megastructures/matter_decompressor/lithoid_99_matter_decompressor_01_stage_1.mesh"
+			
+			animation = { id = "idle"						type = "matter_decompressor_01_stage_4_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_matter_decompressor_01_stage_2_mesh"
+			file = "gfx/models/ships/megastructures/matter_decompressor/lithoid_99_matter_decompressor_01_stage_2.mesh"
+			
+			animation = { id = "idle"						type = "matter_decompressor_01_stage_4_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_matter_decompressor_01_stage_3_mesh"
+			file = "gfx/models/ships/megastructures/matter_decompressor/lithoid_99_matter_decompressor_01_stage_3.mesh"
+			
+			animation = { id = "idle"						type = "matter_decompressor_01_stage_4_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_matter_decompressor_01_stage_4_mesh"
+			file = "gfx/models/ships/megastructures/matter_decompressor/lithoid_99_matter_decompressor_01_stage_4.mesh"
+			
+			animation = { id = "idle"						type = "matter_decompressor_01_stage_4_idle_animation" }
+		}
+	# Art installation
+		pdxmesh = {
+			name = "lithoid_99_mega_art_institution_01_stage_1_mesh"
+			file = "gfx/models/ships/megastructures/mega_art_institution/lithoid_99_mega_art_institution_01_stage_1.mesh"
+			
+			animation = { id = "idle"						type = "mega_art_institution_01_stage_1_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_mega_art_institution_01_stage_2_mesh"
+			file = "gfx/models/ships/megastructures/mega_art_institution/lithoid_99_mega_art_institution_01_stage_2.mesh"
+			
+			animation = { id = "idle"						type = "mega_art_institution_01_stage_2_idle_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_mega_art_institution_01_stage_3_mesh"
+			file = "gfx/models/ships/megastructures/mega_art_institution/lithoid_99_mega_art_institution_01_stage_3.mesh"
+			
+			animation = { id = "idle"						type = "mega_art_institution_01_stage_3_idle_animation" }
+		}
+	# Shipyard
+		pdxmesh = {
+			name = "lithoid_99_mega_shipyard_01_stage_1_mesh"
+			file = "gfx/models/ships/megastructures/mega_shipyard/lithoid_99_mega_shipyard_01_stage_1.mesh"
+			animation = { id = "idle" 			type = "mega_shipyard_01_stage_3_idle_animation" }
+			animation = { id = "death" 			type = "mega_shipyard_01_stage_3_death_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_mega_shipyard_01_stage_2_mesh"
+			file = "gfx/models/ships/megastructures/mega_shipyard/lithoid_99_mega_shipyard_01_stage_2.mesh"
+			animation = { id = "idle" 			type = "mega_shipyard_01_stage_3_idle_animation" }
+			animation = { id = "death" 			type = "mega_shipyard_01_stage_3_death_animation" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_mega_shipyard_01_stage_3_mesh"
+			file = "gfx/models/ships/megastructures/mega_shipyard/lithoid_99_mega_shipyard_01_stage_3.mesh"
+			animation = { id = "idle" 			type = "mega_shipyard_01_stage_3_idle_animation" }
+			animation = { id = "death" 			type = "mega_shipyard_01_stage_3_death_animation" }
+		}
+	# Quantum Catapult
+		pdxmesh = {
+			name = "lithoid_99_quantum_catapult_stage_1_mesh"
+			file = "gfx/models/ships/megastructures/quantum_catapult/lithoid_99_quantum_catapult_stage_1.mesh"
+		}
+
+		pdxmesh = {
+			name = "lithoid_99_quantum_catapult_stage_2_mesh"
+			file = "gfx/models/ships/megastructures/quantum_catapult/lithoid_99_quantum_catapult_stage_2.mesh"
+
+		}
+
+		pdxmesh = {
+			name = "lithoid_99_quantum_catapult_stage_3_mesh"
+			file = "gfx/models/ships/megastructures/quantum_catapult/lithoid_99_quantum_catapult_stage_3.mesh"
+			# animation = { id = "idle" type = "lithogenesis_qc_idle" } #Yeet spin time baby!
+		}
+	# Spy Orb
+		pdxmesh = {
+			name = "lithoid_99_spyorb_part_1_mesh"
+			file = "gfx/models/ships/megastructures/spy_orb/lithoid_99_spyorb_part_1.mesh"
+			scale = 1.0
+			
+			animation = { id = "idle"			type = "spyorb_part_1_idle" }
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_spyorb_part_2_mesh"
+			file = "gfx/models/ships/megastructures/spy_orb/lithoid_99_spyorb_part_2.mesh"
+			scale = 1.0
+			
+			animation = { id = "idle"			type = "spyorb_part_2_idle" }
+
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_spyorb_part_3_mesh"
+			file = "gfx/models/ships/megastructures/spy_orb/lithoid_99_spyorb_part_3.mesh"
+			scale = 1.0
+			
+			animation = { id = "idle"			type = "spyorb_part_3_idle" }
+
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_spyorb_part_4_mesh"
+			file = "gfx/models/ships/megastructures/spy_orb/lithoid_99_spyorb_part_4.mesh"
+			scale = 1.0
+
+		}
+	# Coordination Center
+		pdxmesh = {
+			name = "lithoid_99_strategic_coordination_center_01_stage_1_mesh"
+			file = "gfx/models/ships/megastructures/strategic_coordination_center/lithoid_99_strategic_coordination_center_01_stage_1.mesh"
+
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_strategic_coordination_center_01_stage_2_mesh"
+			file = "gfx/models/ships/megastructures/strategic_coordination_center/lithoid_99_strategic_coordination_center_01_stage_2.mesh"
+
+			animation = { id = "idle"						type = "strategic_coordination_center_01_idle_animation" }
+			
+		}
+		
+		pdxmesh = {
+			name = "lithoid_99_strategic_coordination_center_01_stage_3_mesh"
+			file = "gfx/models/ships/megastructures/strategic_coordination_center/lithoid_99_strategic_coordination_center_01_stage_3.mesh"
+			
+			animation = { id = "idle"						type = "strategic_coordination_center_01_idle_animation" }
+
+		}
+}
+
+# End of File
