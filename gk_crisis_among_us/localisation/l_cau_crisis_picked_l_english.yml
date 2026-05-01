@@ -1,0 +1,23 @@
+﻿l_english:
+ d_cau_crisis_among_us: "Crisis Among Us"
+ d_cau_crisis_among_us.desc: "Weird energy fluctuations were felt by every being in the galaxy. Something terrible has started."
+ d_cau_crisis_among_us.a: "Disturbing."
+ d_cau_crisis_among_us.b: "£menace£ §GAn ally has awakened.§!"
+ 
+ d_cau_crisis_picked.desc: "Energy fluctuations will soon be felt by every being in the galaxy. The whole galaxy will be aware of our awakening. Although they will not know who is it exactly. Yet."
+ d_cau_crisis_picked.a: "They suspect."
+ 
+ operation_determine_crisis: "Determine Crisis"
+ operation_determine_crisis_on_success: "$IF_SUCCESSFUL|E$\nLearn if [root.target.GetName] is a Crisis Empire."
+ cau_determine_crisis_desc: "Order your spies to determine if [root.target.GetName] is a Crisis Empire."
+ cau_operations.1.title: "Investigated empire is a CRISIS!"
+ cau_operations.1.desc: "Our spies have found evidence of an investigated empire being a Crisis!"
+ cau_operations.2.title: "No evidence was found of an investigated empire being a crisis."
+ cau_operations.2.desc: "Our spies have not found any evidence of an investigated empire being a Crisis."
+ cau_operations.1000.title: "Deep Cover Infiltration"
+ cau_operations.1000.desc: "Our spies are attempting to infiltrate fields crucial to our investigation."
+ cau_operations.1001.title: "Looking for anything suspicious"
+ cau_operations.1001.desc: "We have agents in diffirent fields actively searching for any crisis-related tech."
+ 
+ edict_cau_drop_the_facade: "£menace£ §RDrop the Facade§! £menace£"
+ edict_cau_drop_the_facade_desc: "Unlock our crisis-unique tools, revealing us to the galaxy.\n\n§RWhen we do this, the Genie cannot be put back in the bottle. . .§!"

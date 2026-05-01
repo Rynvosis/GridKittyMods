@@ -1,0 +1,23 @@
+cau_drop_the_facade = {
+	length = 0
+	resources = {
+		category = edicts
+		cost = {
+			influence = 0
+		}
+	}
+	potential = {
+		NOT = { has_country_flag = dropped_the_facade }
+		has_ascension_perk = ap_become_the_crisis
+	}
+	effect = {
+		set_country_flag = dropped_the_facade
+		hidden_effect = {
+			set_ai_personality = became_the_crisis
+		}
+		if = {
+			limit = { has_federation = yes }
+			leave_alliance = { override_requirements = yes }
+		}
+	}
+}

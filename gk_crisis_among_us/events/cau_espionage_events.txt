@@ -1,0 +1,120 @@
+namespace = cau_operations
+# Crisis found
+country_event = {
+	id = cau_operations.1
+	title =  cau_operations.1.title
+	desc = cau_operations.1.desc
+	picture = GFX_evt_zro_3
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	option = {
+		name = ACKNOWLEDGED
+		trigger = {
+			NOT = { has_ascension_perk = ap_become_the_crisis }
+		}
+	}
+	option = {
+		name = GOOD
+		trigger = {
+			has_ascension_perk = ap_become_the_crisis 
+		}
+		default_hide_option = yes
+	}
+}
+# Crisis not found
+country_event = {
+	id = cau_operations.2
+	title = cau_operations.2.title
+	desc = cau_operations.2.desc
+	picture = GFX_evt_spymaster
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	option = {
+		name = GOOD
+		trigger = {
+			NOT = { has_ascension_perk = ap_become_the_crisis }
+		}
+	}
+	option = {
+		name = ACKNOWLEDGED
+		trigger = {
+			has_ascension_perk = ap_become_the_crisis 
+		}
+		default_hide_option = yes
+	}
+}
+espionage_operation_event = {
+	id = cau_operations.1000
+	title = cau_operations.1000.title
+	desc = cau_operations.1000.desc
+	espionage_operation = yes
+	picture = {
+		trigger = {
+			target = { is_gestalt = no }
+		}
+		picture = GFX_evt_acquire_asset
+	}
+	picture = {
+		trigger = {
+			target = { is_gestalt = yes }
+		}
+		picture = GFX_evt_hive_mind
+	}
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = { }
+
+	option = { name = GOOD }
+}
+espionage_operation_event = {
+	id = cau_operations.1001
+	title = cau_operations.1001.title
+	desc = cau_operations.1001.desc
+	espionage_operation = yes
+	picture = GFX_espionage_chapter_icon_security
+	show_sound = event_default
+	is_triggered_only = yes
+	
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+
+	option = {
+		name = LAUNCH_OPERATION
+		trigger = { 
+			target = { 
+				has_ascension_perk = ap_become_the_crisis 
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = cau_operations.1 days = 1 }
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = LAUNCH_OPERATION
+		trigger = { 
+			target = { 
+				NOT = { 
+					has_ascension_perk = ap_become_the_crisis
+				} 
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = cau_operations.2 days = 1 }
+			}
+		}
+		default_hide_option = yes
+	}
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}

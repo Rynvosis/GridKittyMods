@@ -1,0 +1,43 @@
+namespace = cau_crisis_among_us
+
+# Event given to the crisis picker
+country_event = {
+	id = cau_crisis_among_us.2
+	title = d_cau_crisis_among_us
+	desc = d_cau_crisis_picked.desc
+	picture = GFX_evt_zro_2
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+
+	option = {
+		name = d_cau_crisis_picked.a
+		trigger = {
+			has_ascension_perk = ap_become_the_crisis 
+		}
+	}
+}
+# Event given to everyone else
+country_event = {
+	id = cau_crisis_among_us.3
+	title = d_cau_crisis_among_us
+	desc = d_cau_crisis_among_us.desc
+	picture = GFX_evt_zro_2
+	show_sound = event_death_cult
+
+	is_triggered_only = yes
+	
+	option = {
+		name = d_cau_crisis_among_us.a
+		trigger = {
+			NOT = { has_ascension_perk = ap_become_the_crisis }
+		}
+	}
+	option = {
+		name = d_cau_crisis_among_us.b
+		trigger = {
+			has_ascension_perk = ap_become_the_crisis 
+		}
+		default_hide_option = yes
+	}
+}	

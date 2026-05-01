@@ -1,0 +1,84 @@
+cb_imposed_inclusion = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		has_country_flag = dropped_the_facade # CAU
+		is_homicidal = no
+	}
+	is_valid = {
+		always = yes
+	}
+}
+
+cb_existential_expulsion = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		is_fallen_empire = no
+		OR = {
+			has_technology = tech_existential_campaigns
+			AND = {
+				has_ascension_perk = ap_become_the_crisis
+				has_country_flag = dropped_the_facade # CAU
+			}
+		}
+	}
+	is_valid = {
+		always = yes
+	}
+	proxy_war_resources = {
+		category = proxy_war
+		cost = {
+			influence = 200
+		}
+	}
+	on_proxy_war_start = {
+		pay_proxy_war_additional_resources = { VALUE = -50 }
+	}
+}
+
+cb_subjugation = {
+	show_in_diplomacy = no
+	show_notification = no
+	potential = {
+		OR = {
+			is_country_type = default
+			is_country_type = awakened_fallen_empire
+		}
+		NOT = { is_in_federation_with = from }
+		is_subject = no
+	}
+	is_valid = {
+		NOR = {
+			is_overlord_to = FROM
+			has_country_flag = dropped_the_facade # CAU: hidden crisis can still subjugate
+		}
+		from = { is_subject = no }
+		OR = {
+			is_country_type = awakened_fallen_empire
+			relative_power = {
+				who = FROM
+				category = all
+				value > equivalent
+			}
+		}
+	}
+	destroy_if = {
+		NOT = { is_country_type = awakened_fallen_empire }
+		has_country_flag = dropped_the_facade # CAU
+		relative_power = {
+			who = FROM
+			category = all
+			value < superior
+		}
+	}
+	proxy_war_resources = {
+		category = proxy_war
+		cost = {
+			influence = 200
+		}
+	}
+	on_proxy_war_start = {
+		pay_proxy_war_additional_resources = { VALUE = -50 }
+	}
+}

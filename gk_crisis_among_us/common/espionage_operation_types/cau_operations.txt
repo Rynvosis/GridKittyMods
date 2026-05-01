@@ -1,0 +1,43 @@
+@diff_t6 = 10
+
+#Determine Crisis CAU
+operation_determine_crisis = {
+	target = none
+	categories = { op_cat_subterfuge }
+	picture = GFX_evt_board_meeting
+	desc = cau_determine_crisis_desc
+	stages = 2
+	spy_power_cost = 70
+
+	resources = {
+		category = operations
+		cost = {
+			energy = 3000
+		}
+		upkeep = {
+			energy = 30
+		}
+	}
+
+	potential = {
+	}
+	allow = {
+		custom_tooltip = {
+			is_running_espionage_operation = no
+			fail_text = operation_one_at_a_time
+		}
+	}
+	stage = {
+		difficulty = @diff_t6
+		icon = GFX_espionage_chapter_icon_target
+		event = cau_operations.1000
+	}
+	stage = {
+		difficulty = @diff_t6
+		icon = GFX_espionage_chapter_icon_surveillance
+		event = cau_operations.1001
+	}
+	on_roll_failed = {
+		standard_espionage_operation_on_roll_failed = { RANDOM_EVENTS = operation_random_events_deepcover }
+	}
+}
