@@ -53,13 +53,17 @@ utility_component_template = {
 		is_eager_explorer_ship = no
 		from = {
 			country_uses_bio_ships = no
+			OR = {
+				NOT = { has_country_flag = gk_prim_ftl_locked }
+				has_technology = tech_gk_prim_hyperdrive_unlock
+			}
 		}
 	}
 
 	show_tech_unlock_if = {
 		country_uses_bio_ships = no
 	}
-	prerequisites = { "tech_hyper_drive_1" "tech_gk_prim_hyperdrive_unlock" }
+	prerequisites = { "tech_hyper_drive_1" }
 	component_set = "ftl_components"
 	upgrades_to = "HYPER_DRIVE_2"
 }
@@ -118,13 +122,17 @@ utility_component_template = {
 		is_eager_explorer_ship = no
 		from = {
 			country_uses_bio_ships = yes
+			OR = {
+				NOT = { has_country_flag = gk_prim_ftl_locked }
+				has_technology = tech_gk_prim_hyperdrive_unlock
+			}
 		}
 	}
 
 	show_tech_unlock_if = {
 		country_uses_bio_ships = yes
 	}
-	prerequisites = { "tech_hyper_drive_1" "tech_gk_prim_hyperdrive_unlock" }
+	prerequisites = { "tech_hyper_drive_1" }
 	component_set = "ftl_components"
 	upgrades_to = "BIO_HYPER_DRIVE_2"
 }
@@ -173,7 +181,15 @@ utility_component_template = {
 		weight = 1
 	}
 
-	prerequisites = { "tech_gk_prim_hyperdrive_unlock" }
+	potential = {
+		from = {
+			OR = {
+				NOT = { has_country_flag = gk_prim_ftl_locked }
+				has_technology = tech_gk_prim_hyperdrive_unlock
+			}
+		}
+	}
+
 	component_set = "ftl_components_bio"
 	upgrades_to = "BIO_DRIVE_2"
 }

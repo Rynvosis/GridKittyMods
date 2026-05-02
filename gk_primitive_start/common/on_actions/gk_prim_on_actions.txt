@@ -4,3 +4,17 @@ on_game_start_country = {
 		gk_prim.1  # Setup: advanced AI skip, start situation, add deposits
 	}
 }
+
+# Migration: grant FTL unlock tech to countries that should have it (e.g. merc enclaves created mid-game)
+on_single_player_save_game_load = {
+	events = {
+		gk_prim.900
+	}
+}
+
+# MP fallback
+on_monthly_pulse_country = {
+	events = {
+		gk_prim.901
+	}
+}

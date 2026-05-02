@@ -367,3 +367,51 @@ country_event = {
 		name = gk_prim.100.ok
 	}
 }
+
+############################
+# Migration                #
+############################
+
+# SP: grant FTL unlock tech to countries missing it (merc enclaves, late-spawned countries)
+country_event = {
+	id = gk_prim.900
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = gk_prim_migration_ftl_done }
+	}
+
+	immediate = {
+		set_global_flag = gk_prim_migration_ftl_done
+		every_country = {
+			limit = {
+				NOT = { has_country_flag = gk_prim_ftl_locked }
+				NOT = { has_technology = tech_gk_prim_hyperdrive_unlock }
+			}
+			give_technology = { tech = tech_gk_prim_hyperdrive_unlock message = no }
+		}
+	}
+}
+
+# MP fallback: same logic, per-country scope
+country_event = {
+	id = gk_prim.901
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = gk_prim_migration_ftl_done }
+	}
+
+	immediate = {
+		set_global_flag = gk_prim_migration_ftl_done
+		every_country = {
+			limit = {
+				NOT = { has_country_flag = gk_prim_ftl_locked }
+				NOT = { has_technology = tech_gk_prim_hyperdrive_unlock }
+			}
+			give_technology = { tech = tech_gk_prim_hyperdrive_unlock message = no }
+		}
+	}
+}
