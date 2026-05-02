@@ -1,0 +1,60 @@
+	resources = {
+		category = ship_components
+		cost = {
+			food = @$SIZE$_reactor_cost_$TIER$ 
+			mult = @alloy_to_food_cost_ratio 
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+					NOT = { graphical_culture = lithogenesis_01 }
+				}
+			}
+		}
+		cost = {
+			minerals = @$SIZE$_reactor_cost_$TIER$ 
+			mult = @alloy_to_food_cost_ratio 
+			mult = 0.8
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+					graphical_culture = lithogenesis_01 
+				}
+			}
+		}
+		cost = {
+			$EXTRA_COST$
+			mult = @flgsis_$SIZE$_reactor_mult
+		}
+		upkeep = {
+			energy = @flgsis_tier_$TIER$_energy_reactor_math
+			mult = @flgsis_$SIZE$_reactor_mult
+		}
+		upkeep = {
+			$EXTRA_UPKEEP$ 
+		}
+		upkeep = {
+			food = @flgsis_tier_$TIER$_energy_reactor_math
+			mult = 0.1 # A little dirty but inline math REALLY didn't want to work
+			mult = @alloy_to_food_cost_ratio
+			mult = @flgsis_$SIZE$_reactor_mult
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+					NOT = { graphical_culture = lithogenesis_01 }
+				}
+			}
+		}
+		upkeep = {
+			minerals = @flgsis_tier_$TIER$_energy_reactor_math
+			mult = 0.1
+			mult = @alloy_to_food_cost_ratio
+			mult = @flgsis_$SIZE$_reactor_mult
+			mult = 0.8
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+					graphical_culture = lithogenesis_01 
+				}
+			}
+		}
+	}

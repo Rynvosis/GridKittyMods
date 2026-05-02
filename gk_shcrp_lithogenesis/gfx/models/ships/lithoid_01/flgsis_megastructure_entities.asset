@@ -1,0 +1,24 @@
+entity = {
+	name = "lithogenesis_01_habitat_phase_01_entity"
+	clone = lithoid_01_habitat_phase_01_entity
+}
+
+entity = {
+	name = "lithogenesis_01_habitat_phase_02_entity"
+	clone = lithoid_01_habitat_phase_02_entity
+}
+
+entity = {
+	name = "lithogenesis_01_habitat_phase_02_section_entity"
+	clone = lithoid_01_habitat_phase_02_section_entity
+}
+
+entity = {
+	name = "lithogenesis_01_habitat_phase_03_entity"
+	clone = lithoid_01_habitat_phase_03_entity
+}
+
+entity = {
+	name = "lithogenesis_01_habitat_phase_03_section_entity"
+	clone = lithoid_01_habitat_phase_03_section_entity
+}

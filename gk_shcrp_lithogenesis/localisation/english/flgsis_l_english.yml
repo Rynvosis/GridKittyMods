@@ -1,0 +1,6 @@
+﻿l_english:
+# Graphical Culture Names
+ LITHOGENESIS_01: "$lithoid_01$"
+
+#Shipset Descriptions
+ lithogenesis_01_shipset_desc: "§HShipset Type: ['concept_biological_ship', Biological]§!\nGrown for stealth, these crystalline and stony ships might be mistaken at first glance for harmless asteroids. The difference is always displayed with deadly determination."

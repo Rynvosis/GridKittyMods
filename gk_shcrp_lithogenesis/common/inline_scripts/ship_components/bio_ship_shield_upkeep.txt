@@ -1,0 +1,22 @@
+upkeep = {
+	alloys = @shield_$SIZE$_t$TIER$_upkeep_alloys 
+}
+upkeep = {
+	food = @shield_$SIZE$_t$TIER$_upkeep_energy 
+	trigger = {
+		from = {
+			country_uses_bio_ships = yes
+			NOT = { graphical_culture = lithogenesis_01 }
+		}
+	}
+}
+upkeep = {
+	minerals = @shield_$SIZE$_t$TIER$_upkeep_energy 
+	mult = 0.8
+	trigger = {
+		from = {
+			country_uses_bio_ships = yes
+			graphical_culture = lithogenesis_01 
+		}
+	}
+}

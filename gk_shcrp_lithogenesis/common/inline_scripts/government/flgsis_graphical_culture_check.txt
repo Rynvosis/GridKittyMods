@@ -1,0 +1,10 @@
+# Scripted triggers never tend to work too well
+graphical_culture = {
+	NOR = {
+		text = graphical_culture_tooltip_not_biological
+		value = biogenesis_01
+		value = biogenesis_02
+		value = lithogenesis_01
+		value = biogenesis_fe
+	}
+}

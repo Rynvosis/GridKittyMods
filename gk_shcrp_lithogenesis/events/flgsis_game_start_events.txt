@@ -1,0 +1,37 @@
+namespace = flgsis
+
+# Fix lithogenesis starting economy
+# Removes hydroponics bay from starbases and adds mineral deposit to capital
+# Only for lithogenesis empires that don't actually need food
+event = {
+	id = flgsis.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		country_uses_bio_ships = yes
+		graphical_culture = lithogenesis_01
+		is_catalytic_empire = no
+		NOT = { has_country_flag = non_lithoid_subspecies }
+	}
+
+	immediate = {
+		# Swap hydroponics bay back to crew_quarters
+		every_owned_starbase = {
+			limit = { has_starbase_building = hydroponics_bay }
+			remove_starbase_building = {
+				slot = 1
+			}
+			set_starbase_building = {
+				slot = 1
+				building = crew_quarters
+			}
+		}
+
+		# Add decomposer deposit to capital
+		capital_scope = {
+			add_deposit = d_lithite_decomposers
+		}
+	}
+}

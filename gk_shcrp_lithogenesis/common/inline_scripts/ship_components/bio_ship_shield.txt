@@ -1,0 +1,17 @@
+modifier = {
+	ship_shield_add = @bio_ship_shield_$SIZE$$TIER$ 
+	ship_shield_regen_add_static = @bio_ship_regen_$SIZE$$TIER$ #Regeneration per day
+}
+
+resources = {
+	category = ship_components
+	cost = {
+		$EXTRA_COST$
+		alloys = @shield_$SIZELC$_t$TIER$_cost 
+	}
+	inline_script = {
+		script = ship_components/bio_ship_shield_upkeep
+		SIZE = $SIZELC$
+		TIER = $TIER$
+	}
+}

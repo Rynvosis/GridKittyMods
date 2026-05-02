@@ -1,0 +1,12 @@
+LITHOGENESIS_01 = {
+	# This species class should only be used for its ship set
+	playable = {
+		has_biogenesis_dlc = yes
+	}
+	randomized = {
+		always = no
+	}
+	graphical_culture = lithogenesis_01
+}
+
+# End of File

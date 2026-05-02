@@ -1,0 +1,21 @@
+d_lithite_decomposers = {
+	icon = d_veiny_cliffs
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = { always = no }
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			minerals = 12
+		}
+		upkeep = {
+			food = 15
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
