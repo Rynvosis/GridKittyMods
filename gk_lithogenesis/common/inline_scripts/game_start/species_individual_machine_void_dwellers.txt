@@ -1,0 +1,66 @@
+# PARTIAL OVERWRITE
+# Vanilla + infernal void dweller fix
+# species_infernals inline_script is missing from void_dweller_home_planet_setup in vanilla,
+# causing infernal/thermophile void dwellers to start with 3 farming districts instead of 0.
+# This file piggybacks the fix here since this is the only inline_script with a single
+# call site exclusively in the void dweller setup path.
+
+# Individualist Machine Species Void Dweller Initial Setup
+# Buildings Added:
+#	* Machine Assembly Plants
+# Rural Districts are set to:
+#	* 3× Generator Districts
+#	* 4× Mining Districts
+#	* 0× Agriculture Districts
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			is_individual_machine = yes
+		}
+	}
+
+	add_building = building_machine_assembly_plant
+
+	set_variable = {
+		which = energy_districts
+		value = 3
+	}
+	set_variable = {
+		which = mining_districts
+		value = 4
+	}
+	set_variable = {
+		which = farming_districts
+		value = 0
+	}
+}
+
+# Vanilla bug fix: species_infernals is missing from void_dweller_home_planet_setup
+# Infernal/Thermophile Species Void Dweller District Setup
+# Rural Districts are set to:
+#	* 2× Generator Districts
+#	* 4× Mining Districts
+#	* 0× Agriculture Districts (catalytic_processing adds farming back later in civics phase)
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			is_infernal_empire = yes
+		}
+	}
+	set_variable = {
+		which = energy_districts
+		value = 2
+	}
+	set_variable = {
+		which = mining_districts
+		value = 4
+	}
+	set_variable = {
+		which = farming_districts
+		value = 0
+	}
+}

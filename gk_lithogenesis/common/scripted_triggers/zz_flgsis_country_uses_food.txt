@@ -1,0 +1,34 @@
+# Overwrite vanilla country_uses_food to exclude lithogenesis bioships
+# Lithogenesis empires use minerals, not food — they should not be flagged as food economies
+
+country_uses_food = {
+	OR = {
+		if = {
+			limit = {
+				# Check if we have an uninitialized economy, then return true to be safe because we don't know
+				resource_expenses_compare = {
+					resource = food
+					value = 0
+				}
+				resource_expenses_compare = {
+					resource = minerals
+					value = 0
+				}
+				resource_expenses_compare = {
+					resource = energy
+					value = 0
+				}
+			}
+		}
+		else = {
+			resource_expenses_compare = {
+				resource = food
+				value > 0
+			}
+		}
+		AND = {
+			country_uses_bio_ships = yes
+			NOT = { graphical_culture = lithogenesis_01 }
+		}
+	}
+}

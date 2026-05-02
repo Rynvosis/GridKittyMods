@@ -1,0 +1,32 @@
+# Shipset Initial Setup
+# Rural Districts Added:
+#	+1 Agriculture Districts if shipset is Biological (non-lithogenesis)
+#	+1 Mining Districts if shipset is Lithogenesis
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			country_uses_bio_ships = yes
+			NOT = { graphical_culture = lithogenesis_01 }
+		}
+	}
+	change_variable = {
+		which = farming_districts
+		value = 1
+	}
+}
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			country_uses_bio_ships = yes
+			graphical_culture = lithogenesis_01
+		}
+	}
+	change_variable = {
+		which = mining_districts
+		value = 1
+	}
+}
