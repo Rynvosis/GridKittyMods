@@ -1,0 +1,228 @@
+# ============================================================================
+# Satrapy specialist subject perks — offensive military ally niche.
+# Tier perks scale subject's army/fleet capability + naval cap contribution
+# to overlord, while overlord gets war-fighting buffs in subject space.
+#
+# Five perks per tier (mirrors bulwark structure):
+#   _modifier            — main subject buff (army stats, fleet)
+#   _penalties           — subject economic cost + naval cap contribution to overlord
+#   _overlord_modifier   — overlord war buffs in subject space
+#   _insight             — free military tech grants
+#   tier-specific 5th    — neighbor bonuses (T1), leaders (T2), capstone (T3)
+# ============================================================================
+
+
+# ===== TIER 1 =====
+
+gk_satrapy_1_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		army_damage_mult = 0.25
+		army_health = 0.25
+		armies_cost_mult = -0.25
+		armies_upkeep_mult = -0.25
+	}
+
+	# Set the room background like vanilla bulwark does.
+	activate_effect = {
+		target = {
+			store_country_backup_data = {
+				flag = no
+				room = yes
+				name = no
+				ethics = no
+				government = no
+			}
+			room_name_override = ""
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			restore_country_backup_data = yes
+		}
+	}
+}
+
+gk_satrapy_1_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_consumer_goods_produces_mult = -0.10
+		country_unity_produces_mult = -0.10
+		country_naval_capacity_contribution_to_overlord_mult = 0.15
+	}
+}
+
+gk_satrapy_1_overlord_modifier = {
+	icon = "GFX_specialist_perk_bulwark_1_overlord_modifier"
+	overlord_modifier = {
+		army_morale_damage_mult = 0.20
+		ship_orbital_bombardment_mult = 0.30
+	}
+}
+
+gk_satrapy_1_insight = {
+	icon = "GFX_specialist_perk_bulwark_1_bulwark_insight"
+	activate_effect = {
+		target = {
+			if = {
+				limit = { NOT = { has_technology = tech_global_defense_grid } }
+				give_technology = {
+					tech = tech_global_defense_grid
+					message = yes
+				}
+			}
+			append_technology = { TECH = interstellar_fleet_traditions }
+			append_technology = { TECH = thrusters_3 }
+		}
+	}
+
+	desc = {
+		description = gk_satrapy_1_insight_desc
+	}
+}
+
+gk_satrapy_1_neighbor_bonuses = {
+	icon = "GFX_specialist_perk_bulwark_1_neighbor_bonuses"
+	overlord_relay_network_modifier = {
+		ship_weapon_damage = 0.05
+	}
+
+	desc = {
+		description = gk_satrapy_1_neighbor_bonuses_desc
+	}
+}
+
+
+# ===== TIER 2 =====
+
+gk_satrapy_2_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		army_damage_mult = 0.50
+		army_health = 0.50
+		armies_cost_mult = -0.50
+		armies_upkeep_mult = -0.50
+		ship_speed_mult = 0.20
+		shipclass_transport_hull_mult = 3
+	}
+}
+
+gk_satrapy_2_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_consumer_goods_produces_mult = -0.20
+		country_unity_produces_mult = -0.20
+		country_naval_capacity_contribution_to_overlord_mult = 0.30
+	}
+}
+
+gk_satrapy_2_overlord_modifier = {
+	icon = "GFX_specialist_perk_bulwark_1_overlord_modifier"
+	overlord_modifier = {
+		army_morale_damage_mult = 0.40
+		ship_orbital_bombardment_mult = 0.50
+		ship_weapon_damage_mult = 0.30
+	}
+}
+
+gk_satrapy_2_insight = {
+	icon = "GFX_specialist_perk_bulwark_2_bulwark_insight"
+	activate_effect = {
+		target = {
+			if = {
+				limit = { NOT = { has_technology = tech_centralized_command } }
+				give_technology = {
+					tech = tech_centralized_command
+					message = yes
+				}
+			}
+			append_technology = { TECH = refit_standards }
+			append_technology = { TECH = interstellar_campaigns }
+		}
+	}
+
+	desc = {
+		description = gk_satrapy_2_insight_desc
+	}
+}
+
+gk_satrapy_2_leaders = {
+	icon = "GFX_specialist_perk_bulwark_2_leaders"
+	subject_modifier = {
+		country_commander_cap_add = 1
+		commander_initial_skill = 1
+		commander_exp_gain = 0.50
+	}
+
+	desc = {
+		description = gk_satrapy_2_leaders_desc
+	}
+}
+
+
+# ===== TIER 3 =====
+
+gk_satrapy_3_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		army_damage_mult = 0.75
+		army_health = 0.75
+		armies_cost_mult = -0.75
+		armies_upkeep_mult = -0.75
+		ship_speed_mult = 0.20
+		shipclass_transport_hull_mult = 3
+	}
+}
+
+gk_satrapy_3_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_consumer_goods_produces_mult = -0.30
+		country_unity_produces_mult = -0.30
+		country_naval_capacity_contribution_to_overlord_mult = 0.45
+	}
+}
+
+gk_satrapy_3_overlord_modifier = {
+	icon = "GFX_specialist_perk_bulwark_1_overlord_modifier"
+	overlord_modifier = {
+		army_morale_damage_mult = 0.60
+		ship_orbital_bombardment_mult = 1.00
+		ship_weapon_damage_mult = 0.50
+		country_war_exhaustion_mult = -0.30
+	}
+}
+
+gk_satrapy_3_insight = {
+	icon = "GFX_specialist_perk_bulwark_3_bulwark_insight"
+	activate_effect = {
+		target = {
+			if = {
+				limit = { NOT = { has_technology = tech_combat_training } }
+				give_technology = {
+					tech = tech_combat_training
+					message = yes
+				}
+			}
+			append_technology = { TECH = command_matrix }
+			append_technology = { TECH = galactic_campaigns }
+		}
+	}
+
+	desc = {
+		description = gk_satrapy_3_insight_desc
+	}
+}
+
+gk_satrapy_3_capstone = {
+	icon = "GFX_specialist_perk_bulwark_3_battlewright"
+	subject_modifier = {
+		army_morale = 0.25
+		ship_fire_rate_mult = 0.10
+	}
+
+	desc = {
+		description = gk_satrapy_3_capstone_desc
+	}
+}

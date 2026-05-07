@@ -67,3 +67,11 @@ Console command. Sets global flag `gk_utils_rp_galcom_allowed` and kicks off van
 
 ### Global flag `gk_utils_rp_mp_game`
 Set automatically at game start if `is_multiplayer = yes`. Readable via `has_global_flag = gk_utils_rp_mp_game`.
+
+## Vanilla overwrites
+
+### `has_no_non_gate_megastructure` (scripted_trigger)
+Forced to `always = yes` so multiple megastructures can coexist in a single system. File: `common/scripted_triggers/scripted_trigger_OW.txt`.
+
+### `quantum_catapult` bypass
+Vanilla `prerequisites = { tech_quantum_catapult }` is removed; the tech check is moved into `country_can_use` and accepts the tech on either the user or the system owner. Allies can launch through a partner's catapult without researching it themselves. File: `common/bypass/00_bypasses_OW.txt`.
