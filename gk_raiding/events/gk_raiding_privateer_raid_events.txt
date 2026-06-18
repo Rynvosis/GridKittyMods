@@ -168,11 +168,8 @@ country_event = {
 		}
 		else = {
 			# Couldn't find fleet or target; unlock if we locked
-			if = {
-				limit = { exists = event_target:gk_raid_fleet }
-				event_target:gk_raid_fleet = {
-					remove_fleet_flag = gk_fleet_locked
-				}
+			event_target:gk_raid_fleet? = {
+				remove_fleet_flag = gk_fleet_locked
 			}
 		}
 	}
@@ -201,6 +198,8 @@ country_event = {
 				set_country_flag = gk_privateer_raider_of_@root
 				set_country_flag = gk_privateer_targeting_@event_target:gk_raid_target
 				establish_communications_no_message = event_target:gk_raid_target
+				# Native ship capture during raids (vanilla ship_capture_chance_add).
+				add_modifier = { modifier = gk_privateer_capture }
 			}
 		}
 
@@ -379,7 +378,7 @@ country_event = {
 	}
 }
 
-# 230 — Privateer bombardment pillage: accumulate loot on receipt
+# 230 — Privateer bombardment plunder: accumulate loot on receipt
 # This = Planet
 # From = Bombarder country (gk_privateer_raiders)
 planet_event = {
@@ -390,81 +389,23 @@ planet_event = {
 	trigger = {
 		exists = owner
 		is_colony = yes
-		exists = from
-		from = {
+		from? = {
 			is_country_type = gk_privateer_raiders
 		}
+		NOT = { has_planet_flag = gk_recently_privateer_plundered_by_@from }
 	}
 
 	immediate = {
-		from = {
-			save_event_target_as = gk_raider
-		}
-		save_event_target_as = gk_raiding_target
-
-		# Use a per-planet receipt for the temp raider
-		gk_get_or_create_loot_receipt = yes
-
-		# Track fresh devastation on the receipt
-		event_target:gk_loot_receipt = {
-			change_variable = {
-				which = gk_pillage_damage_bank
-				value = root.local_devastation
-			}
-		}
-
-		# Only resolve packets when we have crossed a full devastation threshold
-		if = {
-			limit = {
-				event_target:gk_loot_receipt = {
-					check_variable = {
-						which = gk_pillage_damage_bank
-						value >= @gk_pillage_devastation_per_packet
-					}
-				}
-			}
-			set_variable = {
-				which = gk_pillage_packet_count
-				value = event_target:gk_loot_receipt.gk_pillage_damage_bank
-			}
-			divide_variable = {
-				which = gk_pillage_packet_count
-				value = @gk_pillage_devastation_per_packet
-			}
-			floor_variable = gk_pillage_packet_count
-
-			set_variable = {
-				which = gk_pillage_damage_to_consume
-				value = gk_pillage_packet_count
-			}
-			multiply_variable = {
-				which = gk_pillage_damage_to_consume
-				value = @gk_pillage_devastation_per_packet
-			}
-			event_target:gk_loot_receipt = {
-				subtract_variable = {
-					which = gk_pillage_damage_bank
-					value = prev.gk_pillage_damage_to_consume
-				}
-			}
-
-			# Use planet as temp storage, calculate loot, then accumulate on receipt
-			save_event_target_as = gk_storage_scope
-			gk_init_loot_variables = yes
-			set_variable = {
-				which = gk_total_loot_packets
-				value = gk_pillage_packet_count
-			}
-			gk_calculate_base_loot = yes
-			gk_transform_loot = yes
-
-			# Move transformed loot from planet to receipt
-			gk_accumulate_loot_on_receipt = yes
-
-			# Clean up planet temp vars
-			gk_clear_loot_variables = yes
-			clear_variable = gk_pillage_packet_count
-			clear_variable = gk_pillage_damage_to_consume
+		# Steal a slice of the planet's output into the temp raider's stockpile (throttled per planet).
+		# The accumulated stockpile is cashed out to the patron when the raid ends (gk_end_privateer_raid).
+		set_timed_planet_flag = { flag = gk_recently_privateer_plundered_by_@from days = @gk_plunder_throttle_days }
+		steal_planet_output = {
+			planet = this
+			who = from
+			resource = all
+			percentage = @gk_privateer_steal_pct
+			mode = steal
+			notification_mode = none
 		}
 	}
 }
@@ -480,8 +421,7 @@ planet_event = {
 	trigger = {
 		exists = owner
 		is_colony = yes
-		exists = from
-		from = {
+		from? = {
 			is_country_type = gk_privateer_raiders
 			NOT = { has_country_flag = gk_privateer_raid_accomplished }
 		}
@@ -744,11 +684,8 @@ country_event = {
 			gk_get_privateer_station_context = yes
 
 			# Unlock fleet
-			if = {
-				limit = { exists = event_target:gk_raid_fleet }
-				event_target:gk_raid_fleet = {
-					remove_fleet_flag = gk_fleet_locked
-				}
+			event_target:gk_raid_fleet? = {
+				remove_fleet_flag = gk_fleet_locked
 			}
 
 			# Clear raid state
@@ -770,31 +707,28 @@ country_event = {
 		}
 
 		# Transfer tribute to patron
-		if = {
-			limit = { exists = event_target:gk_privateer_patron }
-			event_target:gk_privateer_patron = {
-				# Reimburse the energy that was paid as tribute
-				if = {
-					limit = {
-						root = { has_monthly_income = { resource = energy value < 100 } }
-					}
-					add_resource = { energy = 500 }
+		event_target:gk_privateer_patron? = {
+			# Reimburse the energy that was paid as tribute
+			if = {
+				limit = {
+					root = { has_monthly_income = { resource = energy value < 100 } }
 				}
-				else_if = {
-					limit = {
-						root = { has_monthly_income = { resource = energy value < 200 } }
-					}
-					add_resource = { energy = 1000 }
+				add_resource = { energy = 500 }
+			}
+			else_if = {
+				limit = {
+					root = { has_monthly_income = { resource = energy value < 200 } }
 				}
-				else_if = {
-					limit = {
-						root = { has_monthly_income = { resource = energy value < 400 } }
-					}
-					add_resource = { energy = 2000 }
+				add_resource = { energy = 1000 }
+			}
+			else_if = {
+				limit = {
+					root = { has_monthly_income = { resource = energy value < 400 } }
 				}
-				else = {
-					add_resource = { energy = 3000 }
-				}
+				add_resource = { energy = 2000 }
+			}
+			else = {
+				add_resource = { energy = 3000 }
 			}
 		}
 	}
@@ -862,11 +796,8 @@ country_event = {
 
 		# Notify patron that the raid failed
 		gk_get_privateer_station_context = yes
-		if = {
-			limit = { exists = event_target:gk_privateer_patron }
-			event_target:gk_privateer_patron = {
-				country_event = { id = gk_raiding_privateers.217 }
-			}
+		event_target:gk_privateer_patron? = {
+			country_event = { id = gk_raiding_privateers.217 }
 		}
 	}
 }
@@ -981,18 +912,7 @@ event = {
 			}
 			save_event_target_as = gk_privateer_raider
 
-			# Inline cleanup (can't use gk_cleanup_privateer_raid: scope is raider, not enclave)
-			# Clean up any lingering receipts
-			event_target:global_event_country = {
-				every_owned_leader = {
-					limit = {
-						has_leader_flag = gk_loot_receipt_to_@event_target:gk_privateer_raider
-					}
-					kill_leader = { show_notification = no }
-				}
-			}
-
-			# Delete fleets and destroy country
+			# Delete fleets and destroy country (any accumulated stockpile vanishes with the raider)
 			every_owned_fleet = {
 				delete_fleet = this
 			}

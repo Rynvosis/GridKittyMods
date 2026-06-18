@@ -17,26 +17,21 @@ country_event = {
 		root = {
 			save_event_target_as = gk_privateer_enclave_country
 		}
-		if = {
-			limit = {
-				exists = event_target:gk_privateer_patron
-			}
-			event_target:gk_privateer_patron = {
-				random_list = {
-					30 = { country_event = { id = gk_raiding_privateers.510 } }
-					30 = { country_event = { id = gk_raiding_privateers.515 } }
-					25 = { country_event = { id = gk_raiding_privateers.520 } }
-					5 = {
-						modifier = {
-							factor = 0
-							event_target:gk_privateer_enclave_country = {
-								NOT = { has_modifier = mercenary_fleet_size_upgrade_1 }
-							}
+		event_target:gk_privateer_patron? = {
+			random_list = {
+				30 = { country_event = { id = gk_raiding_privateers.510 } }
+				30 = { country_event = { id = gk_raiding_privateers.515 } }
+				25 = { country_event = { id = gk_raiding_privateers.520 } }
+				5 = {
+					modifier = {
+						factor = 0
+						event_target:gk_privateer_enclave_country = {
+							NOT = { has_modifier = mercenary_fleet_size_upgrade_1 }
 						}
-						country_event = { id = gk_raiding_privateers.530 }
 					}
-					10 = { country_event = { id = gk_raiding_privateers.525 } }
+					country_event = { id = gk_raiding_privateers.530 }
 				}
+				10 = { country_event = { id = gk_raiding_privateers.525 } }
 			}
 		}
 	}

@@ -1,9 +1,12 @@
 ﻿l_english:
- # GK Raiding — Privateer Enclave localisation
+ # GK Raiding - Privateer Enclave localisation
 
  # Civic
  civic_gk_privateer_enclave: "Privateer Enclave"
  civic_gk_privateer_enclave_desc: "This enclave operates as a privateer outpost, launching raids against nearby empires on behalf of its patron."
+
+ # Static modifier - applied to the temp raider country during a raid (hidden country; name only needed to silence the modifier-loc warning)
+ gk_privateer_capture: "Privateer Boarding Crews"
 
  # Ship size
  gk_privateer_station: "Privateer Station"
@@ -36,7 +39,7 @@
  gk_privateer_tt_convert_to_merc:0 "Convert this privateer haven back into a §YMercenary Enclave§!. Costs §Y100§! influence. Upgrade ranks are preserved.\n\n§LRequires the Despoliation tradition finisher.§!"
  gk_privateer_tt_convert_raid_ongoing:0 "Cannot convert while the enclave is conducting a raid."
 
- # Events — Conversion notifications (114, 115)
+ # Events - Conversion notifications (114, 115)
  gk_raiding_privateers.114.name:0 "Enclave Converted"
  gk_raiding_privateers.114.desc.stoic:0 "The [event_target:gk_privateer_enclave_country.GetName] has completed its transformation. What was once a mercenary company is now a privateer outpost. The crew accepted the change without comment, already adjusting their operations to the new mandate.\n\n§Y\"Refit complete. We are ready for new orders, patron.\"§!"
  gk_raiding_privateers.114.desc.screamer:0 "The [event_target:gk_privateer_enclave_country.GetName] is REBORN! The crew has enthusiastically torn down the old mercenary signage and replaced it with... something louder. Much louder.\n\n§Y\"HYEEEIIIEEE!!!! No more rental! Now we SMASH for ourselves! Patron says smash, WE SMASH! HYEEEIIIEEE!!!!\"§!"
@@ -55,7 +58,7 @@
  gk_raiding_privateers.347.name:0 "Raiders Withdraw"
  gk_raiding_privateers.347.desc:0 "The [event_target:gk_privateer_enclave_country.GetName]'s raiding fleet has been recalled. Their ships are pulling back from our territory."
 
- # Events — Haven Established (102)
+ # Events - Haven Established (102)
  gk_raiding_privateers.102.name:0 "A Haven Among the Stars"
  gk_raiding_privateers.102.desc.stoic:0 "The [event_target:gk_privateer_enclave_country.GetName] is operational. The crew settled in without ceremony, fortifying the station with quiet efficiency. Their leader transmitted a brief acknowledgment:\n\n§Y\"Station secured. Defenses nominal. We await your contracts, patron. Our blades are sharp and our holds are empty.\"§!"
  gk_raiding_privateers.102.desc.screamer:0 "The [event_target:gk_privateer_enclave_country.GetName] is... established, though the volume of celebratory transmissions nearly burned out the comms relay. The crew has already begun fortifying the station between bouts of what can only be described as competitive shrieking.\n\n§Y\"HYEEEIIIEEE!!!! New home! New home for smashing dwamaks! You send us dwamaks to smash, yes? HYEEEIIIEEE!!!!\"§!"
@@ -64,7 +67,7 @@
  gk_raiding_privateers.102.desc.merchant:0 "The [event_target:gk_privateer_enclave_country.GetName] is open for business! The crew wasted no time making the station feel welcoming, stringing up trophy displays and what appears to be a lounge area. Their leader's transmission was practically beaming:\n\n§Y\"Welcome, welcome to the grand opening! The [event_target:gk_privateer_enclave_country.GetName] is officially accepting clients. We look forward to a long and mutually profitable partnership, friend!\"§!"
  gk_raiding_privateers.102.desc.automaton:0 "The [event_target:gk_privateer_enclave_country.GetName] is online. Station initialization completed in 0.003 cycles. Defensive subsystems nominal. Sensor grid calibrated. A clipped synthetic voice sounds over the data link.\n\n§Y\"HAVEN PROTOCOL INITIALIZED. Station designation assigned. Defensive perimeter established. Awaiting directives from command authority. All combat subroutines are loaded and standing by.\"§!"
 
- # Diplomacy window — Greeting (205)
+ # Diplomacy window - Greeting (205)
  gk_raiding_privateers.205.name:0 "Privateer Haven"
  # Friendly greetings
  gk_raiding_privateers.205.desc.stoic:0 "The privateer haven's communication array crackles to life, revealing a scarred figure sitting upright in a command chair. They regard you with professional calm.\n\n§Y\"Speak, patron. Our blades are sharp and our holds are empty. If you have work, we are listening. If not, we have duties to attend to.\"§!"
@@ -93,13 +96,13 @@
  gk_raiding_privateers.205.desc.automaton.hostile:0 "The haven's communication array connects with mechanical precision. The display shows only a red tactical overlay with your fleet positions highlighted as hostile contacts.\n\n§R\"WARNING: Unauthorized access attempt. Transponder signature classified as hostile. All combat platforms have been allocated to intercept trajectory. Probability of your survival in this sector: declining. Terminate connection.\"§!"
 
  # ──────────────────────────────────────────────────────────────────
- # Diplomacy Services (300–399)
+ # Diplomacy Services (300-399)
  # ──────────────────────────────────────────────────────────────────
 
  # Shared
  gk_raiding_privateers.300.return:0 "Discuss Another Matter"
 
- # .300 — Upgrade Haven
+ # .300 - Upgrade Haven
  gk_raiding_privateers.300.name:0 "Upgrade Haven"
  gk_raiding_privateers.300.1.desc:0 "The haven is functional but austere, little more than a fortified waystation. With investment in alloys and trade goods, the privateers could expand their docking bays, improve their sensor arrays, and field a larger raiding fleet.\n\n§YUpgrade to Rank 1: §!£alloys£ §Y500§! + £energy£ §Y1,000§!"
  gk_raiding_privateers.300.2.desc:0 "The haven has grown beyond its initial foundations. Additional berths line the station's flanks, and the privateers have begun specializing their raiding crews. Further investment would allow them to expand their operational range significantly.\n\n§YUpgrade to Rank 2: §!£alloys£ §Y1,250§! + £energy£ §Y2,500§!"
@@ -107,7 +110,7 @@
  gk_raiding_privateers.300.4.desc:0 "The haven bristles with weaponry and hums with activity. Patrol craft launch around the clock, and the privateers' reputation precedes them across the sector. One final push would elevate this outpost to its maximum potential.\n\n§YUpgrade to Rank 4: §!£alloys£ §Y5,000§! + £energy£ §Y10,000§!"
  gk_raiding_privateers.300.5.desc:0 "The haven stands as one of the most formidable independent stations in the galaxy. This final investment would push the privateers to peak operational capacity, fielding a fleet rivaling that of minor empires.\n\n§YUpgrade to Rank 5: §!£alloys£ §Y6,500§! + £energy£ §Y13,000§!"
 
- # .305 — Thanks / Confirmation
+ # .305 - Thanks / Confirmation
  gk_raiding_privateers.305.name:0 "Transaction Complete"
  gk_raiding_privateers.305.desc.stoic:0 "A curt nod from the haven's commander.\n\n§Y\"Acknowledged. The resources will be put to use. You will see the results.\"§!"
  gk_raiding_privateers.305.desc.screamer:0 "Ecstatic shrieking erupts across the channel.\n\n§Y\"HYEEEIIIEEE!!!! YES YES YES! Good deal! VERY good deal! We do good things with this! You see! HYEEEIIIEEE!!!!\"§!"
@@ -117,7 +120,7 @@
  gk_raiding_privateers.305.desc.automaton:0 "A brief confirmation pulse over the data link.\n\n§Y\"Transaction complete. Resources received and allocated. Operational parameters updated. Standing by for further directives.\"§!"
 
 
- # .315 — Raider Intelligence
+ # .315 - Raider Intelligence
  gk_raiding_privateers.315.name:0 "Raider Intelligence"
  gk_raiding_privateers.315.desc.stoic:0 "The haven's commander studies the display before speaking.\n\n§Y\"Our raiders have gathered detailed intelligence on your rivals. Fleet compositions, patrol schedules, defensive blind spots. This data would give your forces a permanent tactical edge against any power you've designated as a rival. Our information network does require a certain... presence on your worlds.\"§!"
  gk_raiding_privateers.315.desc.screamer:0 "The haven's commander slams a data chip on the console.\n\n§Y\"HYEEEIIIEEE!!!! We spy on your enemies! We watch them! We know where they go, when they sleep, what they eat! You take this, you SMASH them extra good! We put some of our sneaky-types on your worlds to keep watching. Very sneaky! HYEEEIIIEEE!!!!\"§!"
@@ -126,7 +129,7 @@
  gk_raiding_privateers.315.desc.merchant:0 "The haven's commander taps a sealed data container.\n\n§Y\"I have something special for you today, friend. Premium intelligence on every rival you've marked. Fleet movements, defense gaps, the works. This isn't a rental, it's a permanent advantage. We just need to station a few of our people on your worlds to keep the information flowing. Small price, big returns!\"§!"
  gk_raiding_privateers.315.desc.automaton:0 "A compressed intelligence package appears on the display, tagged with rival designations.\n\n§Y\"Service available: persistent surveillance integration. Package contains fleet composition databases, patrol route predictions, and defensive vulnerability maps for all designated rival entities. Requires deployment of monitoring nodes on your worlds. Permanent tactical advantage confirmed.\"§!"
 
- # .320 — Raider Garrison
+ # .320 - Raider Garrison
  gk_raiding_privateers.320.name:0 "Raider Garrison"
  gk_raiding_privateers.320.desc.stoic:0 "The haven's commander straightens in their chair.\n\n§Y\"We can provide garrison crews for your starbases. Experienced fighters who know how to hold a chokepoint. Their presence improves the combat readiness of any fleet in the system. Our people operate outside conventional law, so expect some friction with local authorities.\"§!"
  gk_raiding_privateers.320.desc.screamer:0 "The haven's commander punches the air enthusiastically.\n\n§Y\"HYEEEIIIEEE!!!! You want TOUGH GUYS on your stations? We have TOUGHEST GUYS! They fight so good! Make all your ships nearby fight better too! Maybe they cause little trouble with your law-types but THEY SO TOUGH! HYEEEIIIEEE!!!!\"§!"
@@ -135,7 +138,7 @@
  gk_raiding_privateers.320.desc.merchant:0 "The haven's commander spreads their hands wide.\n\n§Y\"Here's a fantastic offer for you, friend! Our finest fighters, stationed right on your starbases. They'll make every ship in the system fight harder. The license covers installation at any starport or higher. Our people do tend to run a few side businesses, but nothing too disruptive!\"§!"
  gk_raiding_privateers.320.desc.automaton:0 "A starbase integration schematic fills the display.\n\n§Y\"Service available: garrison combat platform deployment. Units will integrate with starbase defensive systems and provide force multiplication to all friendly vessels in the operational area. Note: garrison units operate on autonomous combat protocols outside standard regulatory frameworks.\"§!"
 
- # .325 — Recruit Raiders
+ # .325 - Recruit Raiders
  gk_raiding_privateers.325.name:0 "Recruit Raiders"
  gk_raiding_privateers.325.desc.stoic:0 "The haven's commander gestures to a roster on the display.\n\n§Y\"We have fighters available for ground operations. Battle-hardened crews who can be organized into army transports and deployed to your capital within the day. Interested?\"§!"
  gk_raiding_privateers.325.desc.screamer:0 "The haven's commander bounces excitedly.\n\n§Y\"HYEEEIIIEEE!!!! You want GROUND SMASHERS? We have them! Big ones! Mean ones! They smash planets REAL GOOD! We put them on ships, send to your big world! How many you want? HYEEEIIIEEE!!!!\"§!"
@@ -148,7 +151,7 @@
  gk_raiding_privateers.325.a.tooltip:0 "§Y5§! mercenary armies will be deployed to our capital system."
  gk_raiding_privateers.325.b.tooltip:0 "§Y10§! mercenary armies will be deployed to our capital system."
 
- # .330 — Share Technology
+ # .330 - Share Technology
  gk_raiding_privateers.330.name:0 "Share Technology"
  gk_raiding_privateers.330.desc.stoic:0 "The haven's commander considers the proposal in silence before responding.\n\n§Y\"You wish to share your research data with us. This would be... valuable. We can offer compensation for the transfer. Our engineers will integrate what they can into our systems. It will take time before we are ready to receive another update.\"§!"
  gk_raiding_privateers.330.desc.screamer:0 "The haven's commander tilts their head with unusual focus.\n\n§Y\"You give us SMART STUFF? Like, how to make better guns? Better shields? HYEEEIIIEEE!!!! YES! We take! We give you credits! Then we need long time to figure out all the buttons! HYEEEIIIEEE!!!!\"§!"
@@ -158,7 +161,7 @@
  gk_raiding_privateers.330.desc.automaton:0 "A data transfer interface opens on the display.\n\n§Y\"Technology transfer protocol ready. Research data will be integrated into operational systems. Compensation: 1,000 energy credits authorized. Processing time for full integration: approximately 10 standard years. Subsequent transfers will be queued until current cycle completes.\"§!"
  gk_raiding_privateers.330.tooltip:0 "The enclave copies our technology. 10-year cooldown."
 
- # .335 — Patron Panel
+ # .335 - Patron Panel
  gk_raiding_privateers.335.name:0 "Patron Panel"
  gk_raiding_privateers.335.desc.stoic:0 "The haven's commander acknowledges your patron authority with a formal salute.\n\n§Y\"Patron. As system owner, you have access to our operational command functions. State your directives.\"§!"
  gk_raiding_privateers.335.desc.screamer:0 "The haven's commander practically vibrates with excitement at seeing their patron.\n\n§Y\"HYEEEIIIEEE!!!! Is the BIG BOSS! The one who OWNS the space! What the big boss want? We do anything for big boss! HYEEEIIIEEE!!!!\"§!"
@@ -203,10 +206,10 @@
  GK_RAIDING_DIVIDEND_SPECIMEN_TOOLTIP:0 "Gain a random §YSpecimen§! for the Grand Archive."
 
  # ──────────────────────────────────────────────────────────────────
- # Dividend Events (500–530)
+ # Dividend Events (500-530)
  # ──────────────────────────────────────────────────────────────────
 
- # .510 — Scrapped Goods
+ # .510 - Scrapped Goods
  gk_raiding_privateers.510.name:0 "Scrapped Goods"
  gk_raiding_privateers.510.desc.stoic:0 "A transmission from the [event_target:gk_privateer_enclave_country.GetName]. Brief and to the point, as always. Attached is a cargo manifest.\n\n§Y\"Patron. We have broken down several captured vessels and stripped a convoy. The salvage has been processed. Forwarding your share of the alloys and manufactured goods. Our holds grow heavy with purpose.\"§!"
  gk_raiding_privateers.510.desc.screamer:0 "An explosion of noise over the comms. The [event_target:gk_privateer_enclave_country.GetName] is celebrating again.\n\n§Y\"HYEEEIIIEEE!!!! We smash many ships! Rip apart! Take the shiny bits! Very good metal inside dwamak ships, you know? We melt down, make pretty for you! TAKE TAKE TAKE! HYEEEIIIEEE!!!!\"§!"
@@ -215,7 +218,7 @@
  gk_raiding_privateers.510.desc.merchant:0 "A cheerful hail from the [event_target:gk_privateer_enclave_country.GetName]. Their leader is practically beaming through the viewscreen.\n\n§Y\"Good news, friend! Business has been excellent this quarter. We've scrapped quite a haul, top quality alloys and manufactured goods, barely singed! Your cut is on its way. A pleasure doing business, as always!\"§!"
  gk_raiding_privateers.510.desc.automaton:0 "An automated report from the [event_target:gk_privateer_enclave_country.GetName]. No preamble, just structured data.\n\n§Y\"Salvage cycle complete. Captured vessel hulls have been disassembled and processed. Alloy and consumer goods yield extracted at optimal efficiency. Command authority share calculated and dispatched. End of report.\"§!"
 
- # .515 — Intercepted Cargo
+ # .515 - Intercepted Cargo
  gk_raiding_privateers.515.name:0 "Intercepted Cargo"
  gk_raiding_privateers.515.desc.stoic:0 "A secure transmission from the [event_target:gk_privateer_enclave_country.GetName]. A cargo manifest scrolls alongside the feed.\n\n§Y\"Patron. We intercepted a trade convoy transiting through neutral space. Cargo secured without incident. Forwarding your share: processed alloys and the liquid credits we extracted from their holds. Clean operation.\"§!"
  gk_raiding_privateers.515.desc.screamer:0 "Frenzied whooping erupts from the comms as the [event_target:gk_privateer_enclave_country.GetName] checks in.\n\n§Y\"HYEEEIIIEEE!!!! Dwamak traders try to sneak past! We say NO SNEAKING! Jump out, grab everything, zoom away! They cry and cry! So many shinies! So many credits! ALL FOR US! HYEEEIIIEEE!!!!\"§!"
@@ -224,7 +227,7 @@
  gk_raiding_privateers.515.desc.merchant:0 "A warm transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader raises a glass.\n\n§Y\"Wonderful news! We happened upon a rather fat trade convoy, and well, one thing led to another. Don't worry, no one was hurt! Much. Your share of the alloys and credits is en route. Let's call it a redistribution of wealth, shall we?\"§!"
  gk_raiding_privateers.515.desc.automaton:0 "A flagged interdiction log from the [event_target:gk_privateer_enclave_country.GetName].\n\n§Y\"Interdiction report: trade convoy intercepted along predicted transit corridor. Cargo transfer executed within mission parameters. Alloy components and liquid capital secured. Command authority allocation dispatched. End of report.\"§!"
 
- # .520 — Plundered Cargo
+ # .520 - Plundered Cargo
  gk_raiding_privateers.520.name:0 "Plundered Cargo"
  gk_raiding_privateers.520.desc.stoic:0 "A terse transmission from the [event_target:gk_privateer_enclave_country.GetName]. The cargo manifest contains unusual entries.\n\n§Y\"Patron. We hit a research transport carrying strategic materials. Rare goods, carefully handled. Your share includes processed alloys and a quantity of refined strategic resources. Use them well.\"§!"
  gk_raiding_privateers.520.desc.screamer:0 "Ecstatic shrieking fills the channel as the [event_target:gk_privateer_enclave_country.GetName] reports in.\n\n§Y\"HYEEEIIIEEE!!!! You never guess what we find! Special sparkly stuff! Very rare! Very shiny! We almost keep for ourselves but NO, good privateers share with boss! Shiny rocks AND metal bits! BEST DAY! HYEEEIIIEEE!!!!\"§!"
@@ -233,7 +236,7 @@
  gk_raiding_privateers.520.desc.merchant:0 "An excited transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader can barely contain themselves.\n\n§Y\"Jackpot, friend! Absolute jackpot! We intercepted a shipment of strategic materials along with the usual haul. Do you know what these go for on the open market? Well, you won't need to find out, because your share is already boxed and ready. What a score!\"§!"
  gk_raiding_privateers.520.desc.automaton:0 "A priority-flagged acquisition log from the [event_target:gk_privateer_enclave_country.GetName].\n\n§Y\"Priority acquisition report: shipment containing strategic-grade materials secured during routine interdiction operations. Resource classification: rare. Alloy and strategic resource allocation forwarded to command authority. End of report.\"§!"
 
- # .530 — Scavenged Fleet
+ # .530 - Scavenged Fleet
  gk_raiding_privateers.530.name:0 "Scavenged Fleet"
  gk_raiding_privateers.530.desc.stoic:0 "An unusual transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader appears on screen with something approaching satisfaction.\n\n§Y\"Patron. We captured several vessels intact during recent operations. They have been repaired, rearmed, and crewed. Rather than scrap them, we are transferring them to your command. Consider it a demonstration of our capabilities. They will serve you well.\"§!"
  gk_raiding_privateers.530.desc.screamer:0 "A deafening roar of celebration erupts from the [event_target:gk_privateer_enclave_country.GetName]. Their leader is practically dancing.\n\n§Y\"HYEEEIIIEEE!!!! BEST PRESENT! We catch whole ships! Not broken, not smashed, WHOLE SHIPS! We fix up, put our crew in, now they yours! You fly them, smash more dwamaks! EVERYBODY WINS! HYEEEIIIEEE!!!!\"§!"
@@ -244,7 +247,7 @@
  gk_raiding_privateers.530.a:0 "Accept the fleet."
  gk_raiding_privateers.530.b:0 "Have them scrapped for §Yalloys§! instead."
 
- # .525 — Exotic Specimens
+ # .525 - Exotic Specimens
  gk_raiding_privateers.525.name:0 "Exotic Specimens"
  gk_raiding_privateers.525.desc.stoic:0 "A transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their leader holds up a sealed container, its contents faintly luminous.\n\n§Y\"Patron. We intercepted a collector's shipment transiting through unpatrolled space. Rare specimens, alien curiosities, the sort of things that fetch a fortune on the right markets. We have set aside the most interesting pieces for your archives. Do with them as you see fit.\"§!"
  gk_raiding_privateers.525.desc.screamer:0 "Excited chittering floods the comms as the [event_target:gk_privateer_enclave_country.GetName] reports in.\n\n§Y\"HYEEEIIIEEE!!!! You see what we find?! Pretty pretty things! Shiny rocks! Weird alien doohickeys! One of them GLOWS! We want to keep but no, good privateers share the best stuff with boss! Take take take! Put in your fancy display case! HYEEEIIIEEE!!!!\"§!"
@@ -258,10 +261,10 @@
  GK_PRIVATEER_SPECIMEN_ORIGIN: "Privateer Plunder"
 
  # ──────────────────────────────────────────────────────────────────
- # Autonomous Raiding Events (210–230, 400–402)
+ # Autonomous Raiding Events (210-230, 400-402)
  # ──────────────────────────────────────────────────────────────────
 
- # .400 — Tribute Demand
+ # .400 - Tribute Demand
  gk_raiding_privateers.400.name:0 "Privateer Ultimatum"
  gk_raiding_privateers.400.desc.stoic:0 "An encrypted transmission cuts through standard comms. A scarred face regards us with cold appraisal.\n\n§Y\"[Root.GetSpeciesNamePlural]. Your worlds have caught our attention. We can do this the easy way or the hard way. Transfer a tribute payment and we move on. Refuse, and our fleet will extract what we are owed. The choice is yours.\"§!"
  gk_raiding_privateers.400.desc.screamer:0 "Our comms array nearly overloads with the volume of the incoming signal. A wild-eyed figure is shrieking into the pickup.\n\n§Y\"HYEEEIIIEEE!!!! Stupid [Root.GetSpeciesNamePlural]! We see your pretty worlds! So many shinies! You give us credits NOW or we come take EVERYTHING! We very good at taking! HYEEEIIIEEE!!!!\"§!"
@@ -274,7 +277,7 @@
  gk_raiding_privateers.400.a.response:0 "Your tribute has been noted. Our fleet will stand down. Consider this a lesson in pragmatism."
  gk_raiding_privateers.400.b.response:0 "Then we shall take by force what you should have offered in tribute. You have made a terrible mistake this day."
 
- # .221 — Raid Complete (patron popup)
+ # .221 - Raid Complete (patron popup)
  gk_raiding_privateers.221.name:0 "Privateer Raid Complete"
  gk_raiding_privateers.221.desc.stoic:0 "A transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their commander delivers the report with characteristic brevity.\n\n§Y\"Raid concluded. The fleet has returned with plunder. Your share has been processed and transferred. Details attached.\"§!"
  gk_raiding_privateers.221.desc.screamer:0 "Deafening celebration erupts from the [event_target:gk_privateer_enclave_country.GetName]. The commander can barely be heard over the revelry.\n\n§Y\"HYEEEIIIEEE!!!! WE BACK! WE BACK WITH SO MUCH STUFF! Dwamak worlds burn good! Your share, boss! TAKE TAKE TAKE! HYEEEIIIEEE!!!!\"§!"
@@ -283,21 +286,21 @@
  gk_raiding_privateers.221.desc.merchant:0 "A beaming transmission from the [event_target:gk_privateer_enclave_country.GetName]. Their commander raises a glass.\n\n§Y\"Excellent news, friend! The raid was a smashing success. Our crews are celebrating, and your cut is already boxed and ready. What a haul! Business is booming at the [event_target:gk_privateer_enclave_country.GetName]!\"§!"
  gk_raiding_privateers.221.desc.automaton:0 "An automated after-action report from the [event_target:gk_privateer_enclave_country.GetName].\n\n§Y\"Raid operation complete. Resource extraction within projected yield. Fleet returned to station. All combat platforms nominal. Command authority allocation dispatched. End of report.\"§!"
 
- # .402 — Raiders Withdrew
+ # .402 - Raiders Withdrew
  gk_raiding_privateers.402.name:0 "Raiders Withdraw"
  gk_raiding_privateers.402.desc:0 "The heavy losses inflicted upon the [From.GetSpeciesName] raiding fleet have been enough to discourage further attacks. Their remaining ships have withdrawn from our space, though the devastation left in their wake will take time to repair."
 
  # ──────────────────────────────────────────────────────────────────
- # Fund Raid (340–342)
+ # Fund Raid (340-342)
  # ──────────────────────────────────────────────────────────────────
 
- # .205.f — Fund Raid option + tooltips
+ # .205.f - Fund Raid option + tooltips
  gk_raiding_privateers.205.f:0 "We wish to §Yfund a raid§!."
  gk_privateer_tt_commission:0 "Pay the enclave to §Yraid a rival§! immediately."
  gk_privateer_tt_commission_no_fleet:0 "The enclave has no available raid fleet."
  gk_privateer_tt_commission_raid_ongoing:0 "The enclave is already conducting a raid."
 
- # .339 — Fund Raid: Payment
+ # .339 - Fund Raid: Payment
  gk_raiding_privateers.339.name:0 "Fund Raid"
  gk_raiding_privateers.339.desc.stoic:0 "The haven's commander reviews the fleet's readiness with a practiced eye.\n\n§Y\"You want a specific empire hit. We can arrange that. Our fleet is ready. Agree to our terms and we will prepare target options.\"§!"
  gk_raiding_privateers.339.desc.screamer:0 "The haven's commander is practically vibrating with excitement at the prospect of a paid job.\n\n§Y\"HYEEEIIIEEE!!!! You want us SMASH someone?! PAY US AND WE SMASH! WE SMASH SO GOOD! HYEEEIIIEEE!!!!\"§!"
@@ -306,7 +309,7 @@
  gk_raiding_privateers.339.desc.merchant:0 "The haven's commander rubs their hands together with a broker's enthusiasm.\n\n§Y\"A funded raid! Excellent business. Our fleet is ready to ship out. Accept our very reasonable fee and we will show you the menu of targets.\"§!"
  gk_raiding_privateers.339.desc.automaton:0 "Fleet deployment cost analysis populates the display.\n\n§Y\"Funded raid protocol initiated. Fleet readiness: nominal. Deployment fee calculated. Confirm payment to proceed to target selection.\"§!"
 
- # .340 — Target Selection
+ # .340 - Target Selection
  gk_raiding_privateers.340.name:0 "Select Target"
  gk_raiding_privateers.340.desc.stoic:0 "The haven's commander studies a holographic display of the local star cluster, marking potential targets with methodical precision.\n\n§Y\"Our scouts have been watching your rivals. Here are the viable targets. Pick one and our fleet launches immediately.\"§!"
  gk_raiding_privateers.340.desc.screamer:0 "The haven's commander pulls up star charts, stabbing at them with wild enthusiasm.\n\n§Y\"HYEEEIIIEEE!!!! We know your enemies! We watch them! Pick a dwamak and we GO SMASH RIGHT NOW! HYEEEIIIEEE!!!!\"§!"
@@ -328,7 +331,7 @@
  gk_privateer_tt_commission_no_fleet_340:0 "No raid fleet is currently available."
  gk_privateer_tt_no_valid_targets:0 "No valid rival targets found."
 
- # .342 — Confirmation
+ # .342 - Confirmation
  gk_raiding_privateers.342.name:0 "Raid Funded"
  gk_raiding_privateers.342.desc.stoic:0 "A sharp nod from the haven's commander as the order is confirmed.\n\n§Y\"Target locked. Fleet is away. They will arrive in hostile space shortly and begin operations. We will notify you when the raid concludes. Was there anything else?\"§!"
  gk_raiding_privateers.342.desc.screamer:0 "The haven erupts in a frenzy of activity as crews scramble to their ships.\n\n§Y\"HYEEEIIIEEE!!!! FLEET AWAY! FLEET AWAY! They go SMASH the dwamaks SO HARD! You wait, boss! We bring back SO MUCH STUFF! HYEEEIIIEEE!!!! You want anything else while we wait?!\"§!"
@@ -337,7 +340,7 @@
  gk_raiding_privateers.342.desc.merchant:0 "The haven's commander beams as cargo bay doors open and the raid fleet launches.\n\n§Y\"And they're off! Excellent decision, friend. Our best crew is on the job. You'll get a full report when they return with the goods. In the meantime, care to browse our other services?\"§!"
  gk_raiding_privateers.342.desc.automaton:0 "Fleet deployment status updates scroll across the display in real time.\n\n§Y\"Fleet deployed. Course locked. Target engagement imminent. Raid completion report will be transmitted upon fleet return. Query: additional directives pending?\"§!"
 
- # Events — Station Destroyed (600–603)
+ # Events - Station Destroyed (600-603)
  gk_raiding_privateers.601.name:0 "Privateer Haven Destroyed"
  gk_raiding_privateers.601.desc:0 "We have received word that the [event_target:gk_privateer_enclave_country.GetName], our privateer enclave in the [event_target:gk_privateer_enclave_system.GetName] system, has been destroyed. The station was overwhelmed and all hands are presumed lost.\n\nOur dividend arrangement with the enclave has been terminated. Any ongoing raids have been disrupted."
  gk_raiding_privateers.602.name:0 "Privateer Haven Destroyed"
@@ -345,13 +348,13 @@
  gk_raiding_privateers.603.name:0 "Privateer Haven Destroyed"
  gk_raiding_privateers.603.desc:0 "Reports indicate that the [event_target:gk_privateer_enclave_country.GetName], a privateer enclave based in the [event_target:gk_privateer_enclave_system.GetName] system, has been destroyed."
 
- # Events — Patron Change (610–612)
+ # Events - Patron Change (610-612)
  gk_raiding_privateers.611.name:0 "Privateer Patronage Lost"
  gk_raiding_privateers.611.desc:0 "The [event_target:gk_privateer_enclave_country.GetName] in the [event_target:gk_privateer_enclave_system.GetName] system is no longer under our patronage. Control of the system has changed hands, and the enclave now answers to whoever holds that space.\n\nOur dividend arrangement has ended."
  gk_raiding_privateers.612.name:0 "Privateer Enclave Acquired"
  gk_raiding_privateers.612.desc:0 "A privateer enclave, the [event_target:gk_privateer_enclave_country.GetName], operates in the [event_target:gk_privateer_enclave_system.GetName] system, which is now under our control. As the new patron of this enclave, we will receive periodic dividends from their raiding operations.\n\nThe enclave's diplomatic channel is now open to us."
 
- # Events — Raid Failed (217)
+ # Events - Raid Failed (217)
  gk_raiding_privateers.217.name:0 "Raid Fleet Lost"
  gk_raiding_privateers.217.desc:0 "The [event_target:gk_privateer_enclave_country.GetName] reports that their raid fleet has been destroyed in hostile space. The crew and cargo are lost. The enclave will need time to recover before launching further operations."
 
@@ -385,7 +388,7 @@
  gk_prv_Ravagers:0 "Ravagers"
  gk_prv_Wolves:0 "Wolves"
  gk_prv_Marauders:0 "Marauders"
- gk_prv_Pillagers:0 "Pillagers"
+ gk_prv_Plunderers:0 "Plunderers"
  gk_prv_Syndicate:0 "Syndicate"
  gk_prv_Compact:0 "Compact"
  gk_prv_Flotilla:0 "Flotilla"

@@ -31,8 +31,7 @@ gk_privateer_dividends = {
 				any_owned_fleet = {
 					is_ship_size = gk_privateer_station
 					solar_system = {
-						exists = space_owner
-						space_owner = {
+						space_owner? = {
 							is_at_war = yes
 						}
 					}
@@ -102,8 +101,7 @@ gk_privateer_dividends = {
 				any_owned_fleet = {
 					is_ship_size = gk_privateer_station
 					solar_system = {
-						exists = space_owner
-						space_owner = {
+						space_owner? = {
 							has_ascension_perk = ap_lord_of_war
 						}
 					}

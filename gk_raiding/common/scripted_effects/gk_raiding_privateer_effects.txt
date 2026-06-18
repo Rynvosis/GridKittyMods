@@ -234,41 +234,47 @@ gk_create_privateer_enclave_country = {
 # Autonomous Raiding Effects
 # ──────────────────────────────────────────────────────────────────
 
-# Accumulate post-transform loot onto the receipt (for deferred payout)
-# This = Planet (loot source)
-# event_target:gk_loot_receipt = receipt leader
-# event_target:gk_storage_scope = planet (temp storage with loot vars)
-gk_accumulate_loot_on_receipt = {
-	event_target:gk_loot_receipt = {
-		gk_accumulate_resource_on_receipt = { RESOURCE = trade }
-		gk_accumulate_resource_on_receipt = { RESOURCE = energy }
-		gk_accumulate_resource_on_receipt = { RESOURCE = minerals }
-		gk_accumulate_resource_on_receipt = { RESOURCE = food }
-		gk_accumulate_resource_on_receipt = { RESOURCE = consumer_goods }
-		gk_accumulate_resource_on_receipt = { RESOURCE = alloys }
-		gk_accumulate_resource_on_receipt = { RESOURCE = volatile_motes }
-		gk_accumulate_resource_on_receipt = { RESOURCE = exotic_gases }
-		gk_accumulate_resource_on_receipt = { RESOURCE = rare_crystals }
-		gk_accumulate_resource_on_receipt = { RESOURCE = sr_living_metal }
-		gk_accumulate_resource_on_receipt = { RESOURCE = sr_zro }
-		gk_accumulate_resource_on_receipt = { RESOURCE = sr_dark_matter }
-		gk_accumulate_resource_on_receipt = { RESOURCE = nanites }
-	}
+# Cash out the temp raider's accumulated stockpile to the patron and record display totals on the enclave.
+# This = enclave country. event_target:gk_privateer_raider = temp raider. event_target:gk_privateer_patron = patron.
+gk_cashout_privateer_raider_stockpile = {
+	gk_cashout_one_privateer_resource = { RESOURCE = energy }
+	gk_cashout_one_privateer_resource = { RESOURCE = minerals }
+	gk_cashout_one_privateer_resource = { RESOURCE = food }
+	gk_cashout_one_privateer_resource = { RESOURCE = consumer_goods }
+	gk_cashout_one_privateer_resource = { RESOURCE = alloys }
+	gk_cashout_one_privateer_resource = { RESOURCE = volatile_motes }
+	gk_cashout_one_privateer_resource = { RESOURCE = exotic_gases }
+	gk_cashout_one_privateer_resource = { RESOURCE = rare_crystals }
+	gk_cashout_one_privateer_resource = { RESOURCE = sr_living_metal }
+	gk_cashout_one_privateer_resource = { RESOURCE = sr_zro }
+	gk_cashout_one_privateer_resource = { RESOURCE = sr_dark_matter }
+	gk_cashout_one_privateer_resource = { RESOURCE = nanites }
 }
 
-gk_accumulate_resource_on_receipt = {
+# This = enclave country. Gives the raider's stockpile of $RESOURCE$ to the patron + records the enclave display total.
+gk_cashout_one_privateer_resource = {
+	event_target:gk_privateer_raider = {
+		export_resource_stockpile_to_variable = {
+			resource = $RESOURCE$
+			variable = gk_privateer_cashout
+		}
+	}
 	if = {
 		limit = {
-			event_target:gk_storage_scope = {
-				is_variable_set = gk_loot_$RESOURCE$
-				check_variable = { which = gk_loot_$RESOURCE$ value > 0 }
+			event_target:gk_privateer_raider = { check_variable = { which = gk_privateer_cashout value > 0 } }
+		}
+		event_target:gk_privateer_patron = {
+			add_resource = {
+				$RESOURCE$ = 1
+				mult = event_target:gk_privateer_raider.gk_privateer_cashout
 			}
 		}
 		change_variable = {
-			which = gk_loot_$RESOURCE$
-			value = event_target:gk_storage_scope.gk_loot_$RESOURCE$
+			which = gk_total_$RESOURCE$
+			value = event_target:gk_privateer_raider.gk_privateer_cashout
 		}
 	}
+	event_target:gk_privateer_raider = { clear_variable = gk_privateer_cashout }
 }
 
 # Find station context: system, star, and patron via enclave station fleet
@@ -286,11 +292,8 @@ gk_get_privateer_station_context = {
 			star = {
 				save_event_target_as = gk_enclave_star
 			}
-			if = {
-				limit = { exists = space_owner }
-				space_owner = {
-					save_event_target_as = gk_privateer_patron
-				}
+			space_owner? = {
+				save_event_target_as = gk_privateer_patron
 			}
 		}
 	}
@@ -390,41 +393,8 @@ gk_end_privateer_raid = {
 			exists = event_target:gk_privateer_raider
 			exists = event_target:gk_privateer_patron
 		}
-		event_target:gk_privateer_patron = {
-			save_event_target_as = gk_raider
-		}
-		event_target:global_event_country = {
-			every_owned_leader = {
-				limit = {
-					has_leader_flag = gk_loot_receipt_to_@event_target:gk_privateer_raider
-				}
-				save_event_target_as = gk_loot_receipt
-				save_event_target_as = gk_storage_scope
-
-				# Accumulate display totals before collection
-				event_target:gk_privateer_enclave_country = {
-					gk_accumulate_display_total = { RESOURCE = trade }
-					gk_accumulate_display_total = { RESOURCE = energy }
-					gk_accumulate_display_total = { RESOURCE = minerals }
-					gk_accumulate_display_total = { RESOURCE = food }
-					gk_accumulate_display_total = { RESOURCE = consumer_goods }
-					gk_accumulate_display_total = { RESOURCE = alloys }
-					gk_accumulate_display_total = { RESOURCE = volatile_motes }
-					gk_accumulate_display_total = { RESOURCE = exotic_gases }
-					gk_accumulate_display_total = { RESOURCE = rare_crystals }
-					gk_accumulate_display_total = { RESOURCE = sr_living_metal }
-					gk_accumulate_display_total = { RESOURCE = sr_zro }
-					gk_accumulate_display_total = { RESOURCE = sr_dark_matter }
-					gk_accumulate_display_total = { RESOURCE = nanites }
-				}
-
-				# Collect to patron
-				gk_collect_loot_from_storage = yes
-
-				# Destroy receipt
-				kill_leader = { show_notification = no }
-			}
-		}
+		# Cash out the temp raider's accumulated stockpile to the patron; display totals recorded on the enclave.
+		gk_cashout_privateer_raider_stockpile = yes
 
 		# Check if we got any loot
 		if = {
@@ -502,13 +472,8 @@ gk_end_privateer_raid = {
 	}
 
 	# Notify target that raiders withdrew
-	if = {
-		limit = {
-			exists = event_target:gk_raid_target
-		}
-		event_target:gk_raid_target = {
-			country_event = { id = gk_raiding_privateers.402 }
-		}
+	event_target:gk_raid_target? = {
+		country_event = { id = gk_raiding_privateers.402 }
 	}
 
 	# Cleanup flags
@@ -522,13 +487,8 @@ gk_end_privateer_raid = {
 	}
 
 	# Destroy temp raider country
-	if = {
-		limit = {
-			exists = event_target:gk_privateer_raider
-		}
-		event_target:gk_privateer_raider = {
-			destroy_country = yes
-		}
+	event_target:gk_privateer_raider? = {
+		destroy_country = yes
 	}
 
 	# Clear display vars
@@ -542,17 +502,7 @@ gk_end_privateer_raid = {
 gk_cleanup_privateer_raid = {
 	save_event_target_as = gk_privateer_enclave_country
 
-	# Destroy all loot receipts tagged to this raider
-	event_target:global_event_country = {
-		every_owned_leader = {
-			limit = {
-				has_leader_flag = gk_loot_receipt_to_@event_target:gk_privateer_raider
-			}
-			kill_leader = { show_notification = no }
-		}
-	}
-
-	# Destroy the temp raider country
+	# Destroy the temp raider country (its accumulated stockpile vanishes with it)
 	event_target:gk_privateer_raider = {
 		every_owned_fleet = {
 			delete_fleet = this
@@ -569,23 +519,6 @@ gk_cleanup_privateer_raid = {
 	every_owned_fleet = {
 		limit = { has_fleet_flag = gk_fleet_locked }
 		remove_fleet_flag = gk_fleet_locked
-	}
-}
-
-# Helper: accumulate one resource from receipt to display total on enclave
-# This = enclave country
-gk_accumulate_display_total = {
-	if = {
-		limit = {
-			event_target:gk_loot_receipt = {
-				is_variable_set = gk_loot_$RESOURCE$
-				check_variable = { which = gk_loot_$RESOURCE$ value > 0 }
-			}
-		}
-		change_variable = {
-			which = gk_total_$RESOURCE$
-			value = event_target:gk_loot_receipt.gk_loot_$RESOURCE$
-		}
 	}
 }
 
@@ -669,10 +602,7 @@ gk_cancel_privateer_raid = {
 	}
 
 	# Notify target
-	if = {
-		limit = { exists = event_target:gk_raid_target }
-		event_target:gk_raid_target = {
-			country_event = { id = gk_raiding_privateers.347 }
-		}
+	event_target:gk_raid_target? = {
+		country_event = { id = gk_raiding_privateers.347 }
 	}
 }

@@ -1,7 +1,7 @@
 ﻿l_english:
- # GK Raiding — Privateer Specimen Localisation
+ # GK Raiding - Privateer Specimen Localisation
 
- # xeno_geology — Looted Natural Specimens
+ # xeno_geology - Looted Natural Specimens
  gk_privateer_amber_fossil: "Xenoform Amber Inclusion"
  gk_privateer_amber_fossil_desc_short: "A chunk of alien amber containing a perfectly preserved organism."
  gk_privateer_amber_fossil_desc_details: "Seized from a collector's shipment, this fist-sized piece of hardened resin contains the intact remains of a winged organism from an uncharted world. The privateers who found it had been using it as a paperweight. Xenobiologists consider it invaluable."
@@ -14,7 +14,7 @@
  gk_privateer_fossilized_growth_desc_short: "A mineralized alien claw embedded in sedimentary rock."
  gk_privateer_fossilized_growth_desc_details: "This partially mineralized growth was recovered from a geological survey transport. The claw-like structure retains traces of bio-metallic composition, suggesting an organism that incorporated heavy metals into its skeletal structure. The surrounding rock matrix dates to several hundred million years."
 
- # aesthetic_wonder — Looted Alien Artifacts
+ # aesthetic_wonder - Looted Alien Artifacts
  gk_privateer_alien_headpiece: "Looted Ceremonial Headpiece"
  gk_privateer_alien_headpiece_desc_short: "An ornate alien headpiece taken from a diplomatic courier. Probably."
  gk_privateer_alien_headpiece_desc_details: "This ceremonial headpiece was recovered from an unescorted diplomatic vessel. Wrought from an unknown alloy and adorned with bioluminescent inlays, our xenoanthropologists are §H100%§! confident it was worn atop the head of a high-ranking official. Alternative interpretations of its purpose have been noted and dismissed."
@@ -27,7 +27,7 @@
  gk_privateer_alien_effigy_desc_short: "A strange statuette seized from a xeno merchant vessel."
  gk_privateer_alien_effigy_desc_details: "This unsettling figurine was found aboard a merchant vessel transiting through contested space. Carved from a single piece of petrified organic matter, it depicts an entity from an unknown species' mythology. Trade specialists believe similar artifacts command high prices on the galactic market."
 
- # historical_item — Seized Tech / Intercepted Data
+ # historical_item - Seized Tech / Intercepted Data
  gk_privateer_bio_vial: "Seized Biocontainment Vial"
  gk_privateer_bio_vial_desc_short: "A sealed vial of biological samples taken from a research transport."
  gk_privateer_bio_vial_desc_details: "This hermetically sealed container holds biological samples from an unidentified xeno species. Intercepted from a research transport, the vial's contents appear to be tissue cultures preserved in a stabilizing medium. Preliminary analysis suggests significant potential for xenobiological research."

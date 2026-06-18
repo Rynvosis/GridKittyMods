@@ -5,8 +5,7 @@ gk_privateer_garrison = {
 	construction_days = 360
 
 	potential = {
-		exists = owner
-		owner = {
+		owner? = {
 			is_homicidal = no
 			has_country_flag = gk_privateer_bought_garrison
 		}

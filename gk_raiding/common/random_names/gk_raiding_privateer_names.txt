@@ -37,7 +37,7 @@ empire_name_parts_list = {
 		gk_prv_Ravagers = 5
 		gk_prv_Wolves = 10
 		gk_prv_Marauders = 10
-		gk_prv_Pillagers = 5
+		gk_prv_Plunderers = 5
 	}
 }
 empire_name_parts_list = {

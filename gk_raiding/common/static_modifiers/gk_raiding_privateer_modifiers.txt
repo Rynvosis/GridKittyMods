@@ -12,3 +12,14 @@ gk_privateer_raider_intel = {
 	damage_vs_rival_mult = 0.15
 	planet_crime_add = 10
 }
+
+# ──────────────────────────────────────────────────────────────────
+# Raid Fleet (applied to the temp gk_privateer_raiders country at raid start)
+# ──────────────────────────────────────────────────────────────────
+
+# Ship steal — vanilla's boarding-cables modifier (ship_steal_defeated_ship_chance). The can_capture_ship
+# game rule gates stealable hulls; our OW of it adds the gk_privateer_raiders country type so raid fleets
+# qualify. Replaces the old custom create_ship event. (ship_capture_chance_add is the FAUNA modifier — wrong.)
+gk_privateer_capture = {
+	ship_steal_defeated_ship_chance = 0.30
+}

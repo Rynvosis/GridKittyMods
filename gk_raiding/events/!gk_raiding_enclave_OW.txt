@@ -1,16 +1,26 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.3
 # Overwrites: enclave.2, enclave.205
-# Source: overlord_enclaves_events.txt:76-200, 611-1000
-# Method: Alphabetical load-order override (! prefix loads before vanilla)
-# enclave.2: Adds "Establish Privateer Haven" option for empires with
-#   despoliation tradition finisher. DEAL renamed to GK_RAIDING_ENCLAVE_2_MERCENARY.
-#   Conditional desc/picture for privateer-capable empires.
-#   NODEAL and abort_trigger unchanged.
-# enclave.205: Adds "Convert to Privateer Haven" option for patron empires
-#   with despoliation finisher. All vanilla options preserved unchanged.
+# Re-derived from CURRENT vanilla 4.4.1 (overlord_enclaves_events.txt) with the
+#   mod's privateer deltas re-applied on top. Event bodies are copied VERBATIM
+#   from 4.4.1 vanilla (picking up 4.4 nomad integration: nomad_can_afford_enclave_cost
+#   gates, the mercenary_nomad_patron save_event_target_as, is_nomadic exclusions, etc.),
+#   then the privateer additions below are layered in.
+# Method: Alphabetical load-order override (! prefix loads this file before vanilla).
+#
+# enclave.2 deltas:
+#   - Conditional privateer desc/picture for empires with gk_can_found_privateer_enclave.
+#   - Vanilla DEAL (mercenary) option renamed to GK_RAIDING_ENCLAVE_2_MERCENARY (allow/cost
+#     incl. 4.4 nomad_can_afford_enclave_cost gate, hidden_effect, ai_chance unchanged).
+#   - New GK_RAIDING_ENCLAVE_2_PRIVATEER founding option (clone of mercenary allow/cost)
+#     gated on gk_can_found_privateer_enclave, firing gk_raiding_privateers.101.
+# enclave.205 deltas:
+#   - Adds GK_RAIDING_ENCLAVE_205_CONVERT_PRIVATEER ("Convert to Privateer Haven") for
+#     patron empires with the despoliation finisher, firing gk_raiding_privateers.112.
+#   - Everything else preserved from 4.4.1 vanilla verbatim.
 
 namespace = enclave
 
+# Spawn Mercenary enclave
 fleet_event = {
 	id = enclave.2
 	title = "enclave.2.name"
@@ -20,9 +30,7 @@ fleet_event = {
 		text = GK_RAIDING_ENCLAVE_2_DESC
 	}
 	# Everyone else sees vanilla
-	desc = {
-		text = "enclave.2.desc"
-	}
+	desc = "enclave.2.desc"
 
 	# Privateer-capable empire sees pirate base art
 	picture = {
@@ -30,9 +38,7 @@ fleet_event = {
 		picture = GFX_evt_pirate_base
 	}
 	# Everyone else sees vanilla mercenary art
-	picture = {
-		picture = GFX_evt_mercenary_enclave
-	}
+	picture = GFX_evt_mercenary_enclave
 	show_sound = event_cityscape
 	is_triggered_only = yes
 
@@ -44,11 +50,10 @@ fleet_event = {
 		set_event_locked = yes
 	}
 
-	# Vanilla mercenary option
+	# Vanilla mercenary founding option (DEAL -> GK_RAIDING_ENCLAVE_2_MERCENARY)
 	option = {
 		name = GK_RAIDING_ENCLAVE_2_MERCENARY
 		custom_tooltip = "enclave.2.a.tooltip"
-
 		allow = {
 			is_merc_enclave_founding_allowed = yes
 			owner = {
@@ -59,7 +64,8 @@ fleet_event = {
 					resource_stockpile_compare = { resource = food value >= 1500 }
 				}
 				else = {
-					resource_stockpile_compare = { resource = energy value >= 1500 }
+				resource_stockpile_compare = { resource = energy value >= 1500 }
+				nomad_can_afford_enclave_cost = { COST = 1500 }
 				}
 				resource_stockpile_compare = { resource = alloys value >= 2000 }
 				resource_stockpile_compare = { resource = influence value >= 100 }
@@ -75,8 +81,8 @@ fleet_event = {
 				}
 			}
 			else = {
-				add_resource = {
-					energy = -1500
+			add_resource = {
+				energy = -1500
 				}
 			}
 			add_resource = {
@@ -129,6 +135,7 @@ fleet_event = {
 	}
 
 	# GK Raiding: Privateer Haven option — only for empires with despoliation perk
+	# Clone of the vanilla mercenary option's allow{}/cost (incl. 4.4 nomad gate).
 	option = {
 		name = GK_RAIDING_ENCLAVE_2_PRIVATEER
 		custom_tooltip = GK_RAIDING_ENCLAVE_2_PRIVATEER_TOOLTIP
@@ -149,7 +156,8 @@ fleet_event = {
 					resource_stockpile_compare = { resource = food value >= 1500 }
 				}
 				else = {
-					resource_stockpile_compare = { resource = energy value >= 1500 }
+				resource_stockpile_compare = { resource = energy value >= 1500 }
+				nomad_can_afford_enclave_cost = { COST = 1500 }
 				}
 				resource_stockpile_compare = { resource = alloys value >= 2000 }
 				resource_stockpile_compare = { resource = influence value >= 100 }
@@ -165,8 +173,8 @@ fleet_event = {
 				}
 			}
 			else = {
-				add_resource = {
-					energy = -1500
+			add_resource = {
+				energy = -1500
 				}
 			}
 			add_resource = {
@@ -242,12 +250,8 @@ fleet_event = {
 	}
 }
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Mercenary Enclave: GREETINGS (Diplomacy Main Menu)
-# Source: overlord_enclaves_events.txt:611-1000
-# Change: Adds "Convert to Privateer Haven" option for patron with despoliation
-#   finisher. All vanilla options preserved unchanged.
-# ──────────────────────────────────────────────────────────────────────────────
+# Mercenary Enclave: GREETINGS
+# This = player country; event_target:mercenary_enclave_country = enclave country
 country_event = {
 	id = enclave.205
 	title = enclave.205.name
@@ -267,10 +271,6 @@ country_event = {
 	}
 
 	is_triggered_only = yes
-
-	trigger = {
-		exists = event_target:mercenary_enclave_country
-	}
 
 	diplomatic = yes
 	custom_gui = "enclave_mercenary_window"
@@ -300,6 +300,21 @@ country_event = {
 							save_event_target_as = mercenary_patron
 						}
 					}
+					if = {
+						limit = {
+							any_starbase_in_system = {
+								is_waystation_starbase = yes
+								owner = { is_nomadic = yes }
+							}
+						}
+						random_starbase_in_system = {
+							limit = {
+								is_waystation_starbase = yes
+								owner = { is_nomadic = yes }
+							}
+							owner = { save_event_target_as = mercenary_nomad_patron }
+						}
+					}
 				}
 			}
 			random_owned_fleet = {
@@ -321,12 +336,14 @@ country_event = {
 		name = enclave.205.i
 		trigger = {
 			is_hostile = event_target:mercenary_enclave_country
+			#NOT = { is_homicidal = yes }
 		}
 		allow = {
 			resource_stockpile_compare = {
 				resource = energy
 				value >= 2500
 			}
+			nomad_can_afford_enclave_cost = { COST = 2500 }
 		}
 		add_resource = {
 			energy = -2500
@@ -381,6 +398,7 @@ country_event = {
 		trigger = {
 			NOR = {
 				is_hostile = event_target:mercenary_enclave_country
+				#is_homicidal = yes
 			}
 			event_target:mercenary_enclave_country = {
 				NOT = { has_country_flag = fleet_commandeered }
@@ -443,6 +461,7 @@ country_event = {
 		trigger = {
 			NOR = {
 				is_hostile = event_target:mercenary_enclave_country
+				#is_homicidal = yes
 			}
 			any_controlled_fleet = {
 				is_ship_class = shipclass_military
@@ -466,6 +485,8 @@ country_event = {
 		trigger = {
 			NOR = {
 				is_hostile = event_target:mercenary_enclave_country
+				#is_homicidal = yes
+				is_nomadic = yes
 			}
 			NOT = { has_country_flag = mercenary_enclave_bought_mercenary_garrison }
 			event_target:mercenary_enclave_country = {
@@ -495,6 +516,7 @@ country_event = {
 		trigger = {
 			NOR = {
 				is_hostile = event_target:mercenary_enclave_country
+				#is_homicidal = yes
 			}
 			OR = {
 				any_country = {
@@ -550,6 +572,7 @@ country_event = {
 		trigger = {
 			NOR = {
 				is_hostile = event_target:mercenary_enclave_country
+				#is_homicidal = yes
 			}
 		}
 		allow = {
@@ -572,6 +595,7 @@ country_event = {
 		trigger = {
 			NOR = {
 				is_hostile = event_target:mercenary_enclave_country
+				#is_homicidal = yes
 			}
 			event_target:mercenary_enclave_country = {
 				trust = {
@@ -607,10 +631,21 @@ country_event = {
 		trigger = {
 			NOR = {
 				is_hostile = event_target:mercenary_enclave_country
+				#is_homicidal = yes
 			}
-			exists = event_target:mercenary_patron
-			event_target:mercenary_patron = {
-				is_same_empire = root
+			OR = {
+				AND = {
+					exists = event_target:mercenary_patron
+						event_target:mercenary_patron = {
+						is_same_empire = root
+					}
+				}
+				AND = {
+					exists = event_target:mercenary_nomad_patron
+						event_target:mercenary_nomad_patron = {
+						is_same_empire = root
+					}
+				}
 			}
 		}
 		hidden_effect = {
