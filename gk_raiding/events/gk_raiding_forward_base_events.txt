@@ -1,0 +1,80 @@
+namespace = gk_raiding_forward_base
+
+# GK Raiding — Forward Raiding Base periodic skim tick.
+#
+# Fired from on_monthly_pulse_country (common/on_actions/gk_raiding_forward_base_on_actions.txt).
+# THIS = country (the raider). Gated behind a ~29-day timed flag so the effective cadence matches the
+# vanilla waystation/pirate skim, regardless of monthly-pulse granularity.
+#
+# For each owned starbase that has building_gk_forward_raiding_base, every NON-ALLY colony within
+# @gk_forward_base_radius hyperlane jumps of that starbase is skimmed for
+# value:gk_forward_base_raid_percentage (a flat 3%) of its output via steal_planet_output in PLANET
+# scope. The skim runs TWICE per colony — the second is a hidden, unadvertised "playstyle" ×2 buff
+# (same as the Void Reaver waystation override) to make raiding feel rewarding. Radius is a compile-time
+# @-constant; the percentage is a script value — no temp variables.
+country_event = {
+	id = gk_raiding_forward_base.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = gk_forward_base_skim_cd }
+		has_tradition = tr_gk_raiding_despoliation_2
+		is_nomadic = no
+		any_owned_starbase = {
+			has_starbase_building = building_gk_forward_raiding_base
+		}
+	}
+
+	immediate = {
+		# ~29-day cadence flag (matches the vanilla waystation skim cycle).
+		set_timed_country_flag = { flag = gk_forward_base_skim_cd days = @gk_forward_base_skim_days }
+		save_event_target_as = gk_forward_base_raider
+
+		every_owned_starbase = {
+			limit = {
+				has_starbase_building = building_gk_forward_raiding_base
+			}
+			solar_system = { save_event_target_as = gk_forward_base_system }
+
+			# Every colony within @gk_forward_base_radius jumps of the raiding base's system.
+			every_system = {
+				limit = {
+					distance = {
+						source = event_target:gk_forward_base_system
+						min_jumps = 0
+						max_jumps = @gk_forward_base_radius
+					}
+				}
+				every_system_planet_colony = {
+					# Owner must be a non-ally (re-checked per colony, since a system can hold colonies
+					# of more than one empire).
+					limit = {
+						owner = { gk_forward_base_valid_target = yes }
+					}
+					# every_system_planet_colony yields a COLONY scope; steal_planet_output needs PLANET.
+					planet = {
+						steal_planet_output = {
+							planet = this
+							who = event_target:gk_forward_base_raider
+							resource = all
+							percentage = value:gk_forward_base_raid_percentage
+							mode = steal
+							notification_mode = both
+						}
+						# Secret playstyle ×2 — hidden, unadvertised duplicate steal (keeps the visible
+						# rate honest while ~doubling the raider's take).
+						steal_planet_output = {
+							planet = this
+							who = event_target:gk_forward_base_raider
+							resource = all
+							percentage = value:gk_forward_base_raid_percentage
+							mode = steal
+							notification_mode = both
+						}
+					}
+				}
+			}
+		}
+	}
+}

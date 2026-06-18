@@ -1,0 +1,13 @@
+# GK Raiding — Forward Raiding Base on_actions
+#
+# Drives the periodic raiding tick for the building_gk_forward_raiding_base starbase building
+# (Despoliation tradition tr_gk_raiding_despoliation_2). THIS = country.
+#
+# We hook the monthly country pulse and gate the actual raid behind a ~29-day timed country flag
+# inside the event, matching the vanilla waystation/pirate skim cadence (one skim per cycle).
+
+on_monthly_pulse_country = {
+	events = {
+		gk_raiding_forward_base.1
+	}
+}

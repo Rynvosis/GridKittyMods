@@ -1,0 +1,47 @@
+# GK Raiding — Forward Raiding Base starbase building
+#
+# Unlocked by the Despoliation tradition tr_gk_raiding_despoliation_2 ("Forward Raiding Bases").
+# The actual raiding tick lives in events/gk_raiding_forward_base_events.txt (gk_raiding_forward_base.1),
+# driven from on_monthly_pulse_country via common/on_actions/gk_raiding_forward_base_on_actions.txt.
+#
+# NOMAD empires do NOT get this building — they get the 3 pirate waystation MODULES instead (Void Reavers
+# via their swap; other nomads via the can_build_pirate_waystation_module override). So potential
+# excludes is_nomadic.
+#
+# Unique per starbase is automatic (vanilla greys out a building already present on the same starbase),
+# so no explicit empire_limit / self-check is needed.
+#
+# Cost/upkeep modelled on a mid-tier vanilla starbase building (e.g. recruitment_office / command_center):
+# moderate alloy cost + small energy upkeep.
+
+building_gk_forward_raiding_base = {
+	icon = "GFX_starbase_command_center"
+	construction_days = 720
+	category = sm_naval_support_cat
+
+	potential = {
+		OR = {
+			is_normal_starbase = yes
+			is_orbital_ring = yes
+		}
+		exists = owner
+		owner = {
+			has_tradition = tr_gk_raiding_despoliation_2
+			is_nomadic = no
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 150
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	ai_weight = {
+		weight = 100 # ai weighting is done in starbase_types.txt; flat weight here matches vanilla convention
+	}
+}
