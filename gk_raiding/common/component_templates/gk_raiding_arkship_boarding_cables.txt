@@ -1,0 +1,43 @@
+# GK Raiding — Arkship-equippable Boarding Cables aux component.
+#
+# Vanilla BOARDING_CABLES_MODULES (00_utilities_aux_grand_archive.txt) has
+# potential = { is_ship_class = shipclass_military }. Arkships are shipclass_starbase,
+# and a starbase_building's equipped_component still respects the component's own
+# potential, so the vanilla part silently fails to equip on an arkship.
+#
+# Vanilla solves the same problem for AFTERBURNER_1 / LARGE_ARMOR_1 by adding
+# `is_arkship_ship = yes` to the OR. This variant mirrors BOARDING_CABLES_MODULES
+# exactly (stats, cost, tooltip) but widens the potential the same way, and lives in
+# its own component_set so vanilla military-ship boarding cables are untouched.
+#
+# Equipped by the arkship_boarding_cables starbase building (common/starbase_buildings/).
+
+utility_component_template = {
+	key = "GK_ARKSHIP_BOARDING_CABLES"
+	size = aux
+	icon = "GFX_ship_part_boarding_cables"
+	icon_frame = 1
+	power = @power_S1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 15
+		}
+	}
+
+	ship_modifier = {
+		ship_steal_defeated_ship_chance = 0.05
+		fleet_capture_defeated_leader_chance = 0.005
+	}
+
+	custom_tooltip = "BOARDING_CABLES_TOOLTIP"
+
+	potential = {
+		OR = {
+			is_ship_class = shipclass_military
+			is_arkship_ship = yes
+		}
+	}
+	prerequisites = { tech_boarding_cables }
+	component_set = "GK_ARKSHIP_BOARDING_CABLES"
+}

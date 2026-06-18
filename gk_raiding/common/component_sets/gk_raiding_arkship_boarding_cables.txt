@@ -1,0 +1,10 @@
+# GK Raiding — component set for the arkship-equippable boarding cables variant.
+# Mirrors vanilla BOARDING_CABLES, kept separate so the arkship variant
+# (GK_ARKSHIP_BOARDING_CABLES) does not collide with vanilla military boarding cables.
+
+component_set = {
+	key = "GK_ARKSHIP_BOARDING_CABLES"
+
+	icon = "GFX_ship_part_boarding_cables"
+	icon_frame = 1
+}

@@ -1,0 +1,4 @@
+﻿l_english:
+ sm_arkship_boarding_cables:0 "$tech_boarding_cables$"
+ sm_arkship_boarding_cables_desc:0 "Hull-mounted grapple launchers let our raiders hook disabled enemy ships and haul them into our hold, and seize their commanders for ransom."
+ sm_arkship_boarding_cables_tt:0 "$ARKSHIP_COMPONENTS$\n$t$$ADDS_ARKSHIP_AUX_SLOTS$\n$t$These dedicated Auxiliary Slots will be equipped with §Y$BOARDING_CABLES$§! automatically upgraded to our latest technology."
