@@ -1,13 +1,12 @@
-# Version last updated: v4.2.3
-# Overwrite: wg_plunder_raid (expanded with gk_raiding guaranteed pillage peace behavior)
+# Version last updated: 4.4.3
+# Overwrite: wg_plunder_raid (expanded with gk_raiding guaranteed plunder peace behavior)
 
 #####################
-# PILLAGE WAR       #
+# PLUNDER WAR       #
 #####################
-# Resource-only pillaging with stronger plunder-war extraction and guaranteed surrender tribute
+# Resource-only plundering with stronger plunder-war extraction and guaranteed surrender tribute
 wg_plunder_raid = {
 	casus_belli = cb_pirate_raid
-	hide_if_no_cb = yes
 	total_war = no
 
 	galactic_empire_joins_defender = {
@@ -19,14 +18,12 @@ wg_plunder_raid = {
 
 	potential = {
 		has_total_war_cb = no
+		# Single source of truth: native-plunder civics (incl. Reavers / Corsair Protocol /
+		# Ravager Swarm / Void Reavers) + the Despoliation adopt tradition flow through gk_can_plunder.
 		OR = {
-			has_valid_civic = civic_crusader_spirit_corporate
+			gk_can_plunder = yes
 			has_country_flag = unlocked_pirate_raid_cb
-			has_tradition = tr_gk_raiding_despoliation_adopt
 			has_ascension_perk = ap_nihilistic_acquisition
-			has_valid_civic = civic_barbaric_despoilers
-			has_valid_civic = civic_gk_barbaric_despoilers_machine
-			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
 		}
 		NOT = { is_in_federation_with = from }
 		NAND = {
@@ -69,7 +66,7 @@ wg_plunder_raid = {
 		custom_tooltip = wg_plunder_raid_accept_tooltip
 		hidden_effect = {
 			country_event = {
-				id = gk_raiding_pillaging.300
+				id = gk_raiding_plundering.300
 				scopes = { from = from }
 			}
 		}

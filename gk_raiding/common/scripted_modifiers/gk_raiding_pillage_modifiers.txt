@@ -1,7 +1,0 @@
-# GK Raiding Pillage Scripted Modifiers
-
-gk_pillage_yield = {
-	icon = mod_country_trade_attractiveness
-	good = yes
-	category = country
-}

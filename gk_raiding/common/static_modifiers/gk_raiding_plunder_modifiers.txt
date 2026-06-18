@@ -1,0 +1,7 @@
+# GK Raiding - Plunder Static Modifiers
+
+gk_planet_auto_raid = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_expel_population.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = gk_planet_auto_raid.tooltip
+}

@@ -1,0 +1,30 @@
+# GK Raiding Plunder Notification Messages
+# (Bombardment/invasion/surrender loot now uses steal_planet_output's engine notification.
+#  Only the privateer raid dividend message remains.)
+
+message_type = {
+	key = MESSAGE_TYPE_GK_PRIVATEER_RAID_LOOT
+	message_setting_key = "MESSAGE_GK_PRIVATEER_RAID_LOOT_KEY"
+	icon = "GFX_gk_raiding_message_plunder_devastation"
+	icon_frame = 1
+
+	name = "MESSAGE_TYPE_GK_PRIVATEER_RAID_LOOT_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}
+
+# Surrender loot (Plunder + Steal Relic war goals) — the stockpile / relic steal is otherwise silent.
+message_type = {
+	key = MESSAGE_TYPE_GK_PLUNDER_SURRENDER
+	message_setting_key = "MESSAGE_GK_PLUNDER_SURRENDER_KEY"
+	icon = "GFX_gk_raiding_message_plunder_devastation"
+	icon_frame = 1
+
+	name = "MESSAGE_TYPE_GK_PLUNDER_SURRENDER_TITLE"
+	sound = "notification"
+	ping = "ping_notification_green"
+
+	category = planets
+}

@@ -1,0 +1,104 @@
+namespace = gk_raiding_plundering
+
+# NOTE: bombardment plunder is handled by the overwritten vanilla nomads.5005
+# (events/zz_gk_raiding_plunder_loot_OW.txt), fired by vanilla's own on_planet_bombarded hook while in
+# the (mod-opened) `plundering` stance. Only the conquest (.200) and surrender (.300/.301) vectors are mod events.
+
+############################
+# Plunder Invasion         #
+############################
+
+# Conquering a colony plunders ~a year of its output in one shot (uncapped composition x @gk_invasion_months).
+# This = Attacking country, From = Defending country, FromFrom = Planet
+country_event = {
+	id = gk_raiding_plundering.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = {
+			is_colony = yes
+		}
+		gk_can_plunder = yes
+		from = { is_at_war_with = root }
+	}
+
+	immediate = {
+		save_event_target_as = gk_raider
+		from = { save_event_target_as = gk_plunder_victim }
+		fromfrom = {
+			planet = {
+				steal_planet_output = {
+					planet = this
+					who = event_target:gk_raider
+					resource = all
+					percentage = value:gk_invasion_percentage
+					mode = steal
+					notification_mode = both
+				}
+			}
+		}
+	}
+}
+
+############################
+# Plunder Surrender        #
+############################
+
+# Plunder war surrender — steal half the loser's stockpiled (physical) resources + a share of their
+# specimens, and notify the raider.
+# This = Winner (raider)
+# From = Loser (raidee)
+country_event = {
+	id = gk_raiding_plundering.300
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gk_raider
+		from = { save_event_target_as = gk_raidee }
+
+		gk_steal_country_stockpile = yes
+		gk_steal_specimens = yes
+
+		# The stockpile transfer is otherwise silent (specimens self-notify via show_notification).
+		create_message = {
+			type = MESSAGE_TYPE_GK_PLUNDER_SURRENDER
+			localization = GK_PLUNDER_SURRENDER_MESSAGE
+			days = 30
+			target = root
+		}
+	}
+}
+
+############################
+# Steal Relic Surrender    #
+############################
+
+# Steal Relic war surrender — steal one random relic + a share of the loser's specimens.
+# This = Winner (raider)
+# From = Loser (raidee)
+country_event = {
+	id = gk_raiding_plundering.301
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = gk_raider
+		from = { save_event_target_as = gk_raidee }
+
+		# Built-in random-relic steal (respects can_be_stolen; no-op if the loser owns no relics).
+		steal_relic = {
+			target = event_target:gk_raidee
+			relic = random
+		}
+		gk_steal_specimens = yes
+
+		create_message = {
+			type = MESSAGE_TYPE_GK_PLUNDER_SURRENDER
+			localization = GK_STEAL_RELIC_MESSAGE
+			days = 30
+			target = root
+		}
+	}
+}

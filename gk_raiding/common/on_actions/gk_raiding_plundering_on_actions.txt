@@ -1,0 +1,15 @@
+# GK Raiding Plundering On Actions
+
+# Bombardment plunder is handled by the overwritten vanilla nomads.5005
+# (events/zz_gk_raiding_plunder_loot_OW.txt), fired by vanilla's own on_planet_bombarded hook while the
+# (mod-opened) `plundering` stance is active — no mod hook needed here.
+
+# Attackers win a ground invasion (before the controller switches) — one-shot conquest plunder.
+# This = Attacking Country
+# From = Defending Country
+# FromFrom = colony
+on_colony_attackers_win = {
+	events = {
+		gk_raiding_plundering.200  # Conquest plunder — a year's worth of output
+	}
+}

@@ -1,0 +1,5 @@
+# GK Raiding Plunder Effects
+# Plunder loot is fully engine-driven: bombardment via the overwritten nomads.5005
+# (events/zz_gk_raiding_plunder_loot_OW.txt), invasion via gk_raiding_plundering.200, and surrender via
+# gk_steal_country_stockpile. There is no post-war "Ransacked" colony aftermath — plundering tapers
+# naturally as devastation suppresses output, with no per-planet lockout.

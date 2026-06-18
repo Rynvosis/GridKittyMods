@@ -1,0 +1,33 @@
+﻿l_english:
+ # Version last updated: v4.2.3
+ # Plunder-facing overrides.
+
+ civic_crusader_spirit_corporate_desc:0 "To combat space piracy and safeguard its borders, this megacorporation utilizes notorious pirates as military advisors and commanders for their fleets."
+ civic_tooltip_crusader_spirit_corporate_effects:0 "$t$- §Y$commander_plural_with_icon$§! start with the §Y$leader_trait_corsair$§! trait$TABBED_NEW_LINE$- Has the '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires$TABBED_NEW_LINE$- $allow_gk_plundering$$TABBED_NEW_LINE$- The £building£ §Y$building_military_contractors$§! $megacorp_civic_branch_office_building_effect$$TABBED_NEW_LINE$- §Y(If a nomad empire)§! Can build the three §Ypirate waystation§! modules: §Y$sm_waystation_pirate_hideout$§!, §Y$sm_waystation_concealment_field$§! and §Y$sm_waystation_reaver_stronghold$§!"
+
+ # Void Reavers (vanilla Nomads civic) - the mod grants it the Plunder CB + war goal on top of vanilla's
+ # Plundering stance, so re-state vanilla's tooltip and append the mod's plundering unlock.
+ civic_tooltip_void_reavers_effects:0 "$t$- Unlocks the §YPlundering§! bombardment stance, which allows us to steal resources produced on a planet.$TABBED_NEW_LINE$- Additional Waystation Modules: §Y$sm_defense_cat$§! and §Y$sm_piracy_cat$§!.$TABBED_NEW_LINE$- Has the '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires$TABBED_NEW_LINE$- $allow_gk_plundering$"
+
+ allow_gk_plundering:0 "Unlocks ['concept_gk_plundering'] and the §Y$war_goal_wg_plunder_raid$§! war goal"
+
+ war_goal_wg_plunder_raid:0 "Plunder"
+ war_goal_wg_plunder_raid_desc:0 "War is waged to raid and plunder the enemy. Using this wargoal increases the resources gained from plundering and, on surrender, seizes half the loser's physical resource stockpiles and a share of their specimens."
+ wg_plunder_raid_accept_tooltip:0 "§Y[From.GetName]§! surrenders. §Y[Root.GetName]§! seizes half their physical stockpiles and a share of their specimens."
+
+ casus_belli_cb_pirate_raid:0 "Plundering"
+
+ # Bombardment stance - vanilla's desc still describes the old 70%-devastation/40% behaviour; the mod
+ # removed the cliff and drives the steal from output, so restate it.
+ bombardment_plundering_desc:0 "$bombardment_plundering$ Bombardment targets enemy infrastructure with specialized raiding craft that haul up their resources.\n- §EVery Light§! damage to §YArmies§!\n- §EModerate§! damage to §YPlanet§!\n- Periodically §Ysteals§! a share of the resources the planet produces. A §Y$war_goal_wg_plunder_raid$§! war goal increases the amount stolen. Each defending army reduces the chance to steal."
+
+ # Steal Relic war goal (shares the Plundering casus belli; available to all plundering nations)
+ war_goal_wg_gk_steal_relic:0 "Steal Relic"
+ war_goal_wg_gk_steal_relic_desc:0 "War is waged to plunder the enemy's relics. On surrender, one of the loser's relics is seized, along with a share of their specimens."
+ wg_gk_steal_relic_accept_tooltip:0 "§Y[From.GetName]§! surrenders. §Y[Root.GetName]§! seizes one of their relics."
+
+ # Surrender-seizure notifications (gk_raiding_plundering.300 / .301)
+ MESSAGE_TYPE_GK_PLUNDER_SURRENDER_TITLE:0 "War Spoils Seized"
+ MESSAGE_GK_PLUNDER_SURRENDER_KEY:0 "War Spoils Seized"
+ GK_PLUNDER_SURRENDER_MESSAGE:0 "§Y[From.GetName]§! surrenders. We strip half their stockpiled resources."
+ GK_STEAL_RELIC_MESSAGE:0 "§Y[From.GetName]§! surrenders. We seize one of their relics."

@@ -1,0 +1,10 @@
+# GK Raiding Plunder Game Concepts
+
+concept_gk_plundering = {
+	alias = { concept_gk_plunder concept_gk_resource_raiding }
+	databank = {
+		category = db_gk_raiding
+		icon = "GFX_text_databank_empire"
+		picture = "GFX_evt_mining_station"
+	}
+}

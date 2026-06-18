@@ -1,0 +1,67 @@
+# GK Raiding Plunder Scripted Triggers
+
+# This = country scope
+gk_has_native_plunder_access = {
+	OR = {
+		has_valid_civic = civic_barbaric_despoilers
+		has_valid_civic = civic_gk_barbaric_despoilers_machine
+		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+		has_valid_civic = civic_crusader_spirit_corporate
+		has_valid_civic = civic_void_reavers   # 4.4 Nomads pirate civic — full mod resource-raiding (Plundering stance, Plunder CB/WG, Privateer Enclaves)
+		has_valid_civic = civic_gk_reavers           # Standard resource-raider
+		has_valid_civic = civic_gk_corsair_protocol  # Machine resource-raider (ship-stealing)
+		has_valid_civic = civic_gk_ravager_swarm     # Hive combined pop+resource raider
+	}
+}
+
+# This = country scope
+gk_can_plunder = {
+	OR = {
+		gk_has_native_plunder_access = yes
+		has_tradition = tr_gk_raiding_despoliation_adopt
+	}
+}
+
+# This = country scope
+# Mod resource-raid civics that grant a commander trait (via gk_raiding_misc.114/.116):
+# Reavers → Plunderer, Corsair Protocol → Shipbreaker. Ravager Swarm grants no leader trait and is excluded.
+# Deliberately EXCLUDES vanilla Letters of Marque (grants Corsair / "Material Liberator") and Void
+# Reavers (its Reavers species already grants Plunderer) — no double-add.
+gk_civic_grants_commander_trait = {
+	OR = {
+		has_valid_civic = civic_gk_reavers
+		has_valid_civic = civic_gk_corsair_protocol
+	}
+}
+
+# This = planet scope
+# From = raider country
+gk_can_be_plundered = {
+	is_colony = yes
+	exists = owner
+	from = {
+		gk_can_plunder = yes
+		is_at_war_with = prevprev.owner
+	}
+}
+
+# This = the candidate victim COUNTRY (the system/colony owner being checked).
+# Requires event_target:gk_forward_base_raider (the raiding country).
+# Valid forward-base raid target = any NON-ALLY: not the raider itself, and not a federation member /
+# defensive-pact partner / overlord-subject of the raider. No rival/at-war requirement — forward bases
+# skim any nearby non-ally colony.
+gk_forward_base_valid_target = {
+	exists = event_target:gk_forward_base_raider
+	NOT = { is_same_value = event_target:gk_forward_base_raider }
+	NOT = { is_in_federation_with = event_target:gk_forward_base_raider }
+	NOT = { has_defensive_pact = event_target:gk_forward_base_raider }
+	NOT = { is_overlord_to = event_target:gk_forward_base_raider }
+	NOT = { has_overlord = event_target:gk_forward_base_raider }
+}
+
+# This = candidate target (loser) country. True when the target owns at least one STEALABLE relic — i.e.
+# steal_relic { relic = random } would actually take something. value:gk_stealable_relic_count is
+# num_owned_relics minus the 4 can_be_stolen=no relics.
+gk_target_has_stealable_relic = {
+	gk_stealable_relic_count > 0
+}

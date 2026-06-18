@@ -1,0 +1,32 @@
+﻿l_english:
+ # Plunder Concepts
+ concept_gk_plundering:0 "Resource Plundering"
+ concept_gk_plundering_desc:0 "Enemy planets can be plundered during war using the §YPlundering§! bombardment stance, which steals a share of the planet's §Yactual output§! as you bombard it (more while you hold the §Y$war_goal_wg_plunder_raid$§! war goal). §YInvasion§! plunders about a year of a colony's output at once, and a Plunder surrender seizes half the loser's stockpile."
+ concept_gk_plunder:0 "Resource Plundering"
+ concept_gk_resource_raiding:0 "Resource Plundering"
+
+
+
+ # Resource Loot Localization Strings
+ trade_label:0 "\n£trade£ §Y$trade$§!: "
+ energy_label:0 "\n£energy£ §Y$energy$§!: "
+ minerals_label:0 "\n£minerals£ §Y$minerals$§!: "
+ alloys_label:0 "\n£alloys£ §Y$alloys$§!: "
+ food_label:0 "\n£food£ §Y$food$§!: "
+ consumer_goods_label:0 "\n£consumer_goods£ §Y$consumer_goods$§!: "
+ unity_label:0 "\n£unity£ §Y$unity$§!: "
+ physics_research_label:0 "\n£physics£ §Y$physics_research$§!: "
+ society_research_label:0 "\n£society£ §Y$society_research$§!: "
+ engineering_research_label:0 "\n£engineering£ §Y$engineering_research$§!: "
+ volatile_motes_label:0 "\n£volatile_motes£ §Y$volatile_motes$§!: "
+ exotic_gases_label:0 "\n£exotic_gases£ §Y$exotic_gases$§!: "
+ rare_crystals_label:0 "\n£rare_crystals£ §Y$rare_crystals$§!: "
+ sr_living_metal_label:0 "\n£sr_living_metal£ §Y$sr_living_metal$§!: "
+ sr_dark_matter_label:0 "\n£sr_dark_matter£ §Y$sr_dark_matter$§!: "
+ sr_zro_label:0 "\n£sr_zro£ §Y$sr_zro$§!: "
+ nanites_label:0 "\n£nanites£ §Y$nanites$§!: "
+
+ # Privateer Raid Loot Notifications
+ MESSAGE_TYPE_GK_PRIVATEER_RAID_LOOT_TITLE:0 "Privateer Raid Plunder"
+ MESSAGE_GK_PRIVATEER_RAID_LOOT_KEY:0 "$MESSAGE_TYPE_GK_PRIVATEER_RAID_LOOT_TITLE$ received!"
+ MESSAGE_GK_PRIVATEER_RAID_COMPLETE:0 "Privateer raid by $ENCLAVE|Y$ yielded:$trade_label$$trade|G$$energy_label$$energy|G$$minerals_label$$minerals|G$$food_label$$food|G$$consumer_goods_label$$consumer_goods|G$$alloys_label$$alloys|G$$volatile_motes_label$$volatile_motes|G$$exotic_gases_label$$exotic_gases|G$$rare_crystals_label$$rare_crystals|G$$sr_living_metal_label$$sr_living_metal|G$$sr_zro_label$$sr_zro|G$$sr_dark_matter_label$$sr_dark_matter|G$$nanites_label$$nanites|G$\n"

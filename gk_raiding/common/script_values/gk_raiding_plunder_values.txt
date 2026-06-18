@@ -1,0 +1,53 @@
+# GK Raiding Plunder Script Values
+
+####################
+# 4.4 Plunder %    #
+####################
+
+# Fraction of a planet's CURRENT (devastation-suppressed) monthly output stolen per bombardment tick.
+# Evaluated in PLANET scope. Requires event_target:gk_raider (raider country) and
+# event_target:gk_plunder_victim (victim country) to be set. No hard cap — it self-limits to the sum of
+# whichever bonuses actually apply (base + war-or-pivot + native).
+gk_plunder_percentage = {
+	base = @gk_plunder_pct_base
+	# + Plunder war goal (wg_plunder_raid) against this victim, unless pivoted-to-plundering
+	modifier = {
+		event_target:gk_raider = {
+			any_war = {
+				OR = {
+					AND = {
+						is_war_participant = { who = prev side = attackers }
+						is_war_participant = { who = event_target:gk_plunder_victim side = defenders }
+						using_war_goal = { type = wg_plunder_raid owner = attacker }
+					}
+					AND = {
+						is_war_participant = { who = prev side = defenders }
+						is_war_participant = { who = event_target:gk_plunder_victim side = attackers }
+						using_war_goal = { type = wg_plunder_raid owner = defender }
+					}
+				}
+			}
+			NOT = { has_country_flag = gk_pivoted_to_plundering_against_@event_target:gk_plunder_victim }
+		}
+		add = @gk_plunder_pct_war
+	}
+	# + pivoted-to-plundering (granted instead of the full war bonus)
+	modifier = {
+		event_target:gk_raider = { has_country_flag = gk_pivoted_to_plundering_against_@event_target:gk_plunder_victim }
+		add = @gk_plunder_pct_pivot
+	}
+	# + native despoilator
+	modifier = {
+		event_target:gk_raider = { gk_has_native_plunder_access = yes }
+		add = @gk_plunder_pct_native
+	}
+	min = 0
+}
+
+# Invasion one-shot: same composition, scaled to a year of output. Uncapped — steal_planet_output draws
+# from the victim's country stockpile, so > 100% is valid.
+gk_invasion_percentage = {
+	base = 0
+	add = value:gk_plunder_percentage
+	multiply = @gk_plunder_invasion_months
+}
