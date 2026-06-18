@@ -1,4 +1,4 @@
-version="v4.4.1"
+version="v4.4.*"
 tags={
 	"Gameplay"
 	"Military"
