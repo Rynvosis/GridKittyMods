@@ -7,39 +7,24 @@ on_game_start_country = {
 	}
 }
 
-# Planet has taken damage from orbital bombardment - Damage is applied daily
-# This = Planet
-# From = Bombarder (country)
-on_planet_bombarded = {
-	events = {
-		gk_raiding_misc.100  # Despoliation devastation unity
-	}
-}
-
-# Planet has taken damage from ground combat - Damage is applied daily
-# This = Planet
-# From = Damaging country
-on_ground_combat_devastation = {
-	events = {
-		gk_raiding_misc.100  # Despoliation devastation unity
-	}
-}
-
 on_added_to_leader_pool = {
 	events = {
-		gk_raiding_misc.110
+		gk_raiding_misc.110  # Acquisitive Officers tradition → Plunderer + Corsair/Shipbreaker
+		gk_raiding_misc.114  # Resource-raid civics → Plunderer only
 	}
 }
 
 on_ship_destroyed_perp = {
 	events = {
-		gk_raiding_misc.111
-		gk_raiding_privateers.710  # Privateer ship capture
+		gk_raiding_misc.111   # Acquisitive Officers ship-kill trait top-up
+		# Privateer + Corsair ship STEALING now uses vanilla's boarding-cables modifier
+		# (ship_steal_defeated_ship_chance on the raider / civic) instead of custom on-kill events.
 	}
 }
 
 on_leader_hired = {
 	events = {
-		gk_raiding_misc.112
+		gk_raiding_misc.112  # Acquisitive Officers tradition → Plunderer + Corsair/Shipbreaker
+		gk_raiding_misc.116  # Resource-raid civics → Plunderer only
 	}
 }

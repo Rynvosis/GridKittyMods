@@ -97,28 +97,6 @@ country_event = {
 # Despoliation Traditions #
 ##########################
 
-# Fired by on_planet_bombarded and on_ground_combat_devastation
-# This = Planet
-# From = damaging country
-planet_event = {
-	id = gk_raiding_misc.100
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		exists = from
-		from = {
-			has_tradition = tr_gk_raiding_despoliation_3
-		}
-	}
-
-	immediate = {
-		from = {
-			gk_gain_despoliation_devastation_unity = yes
-		}
-	}
-}
-
 # Fired by on_added_to_leader_pool
 # Scope = country
 # From = leader added to the pool
@@ -138,6 +116,14 @@ country_event = {
 	}
 }
 
+# ADDITIVE TOP-UP of vanilla's ship-kill trait rewards (vanilla paragon_2.1005, on on_ship_destroyed_perp).
+# This is intentionally NOT an overwrite of paragon_2.1005 — we add an extra reward ON TOP so the mod stays
+# compatible across patches. Gated on the Acquisitive Officers tradition (tr_gk_raiding_despoliation_5) and
+# kills vs default/fallen empires, it grants an extra gk_despoliation_shipkill_trait_mult (+50%, x1.5 with
+# Hell's Heart) of each trait's base reward for Corsair (energy), Shipbreaker (alloys) and Plunderer (trade),
+# plus their _2 tiers. Do NOT "deduplicate" this against vanilla — the extra reward is by design.
+# (Plunderer note: vanilla's native Plunderer reward does not scale with Hell's Heart; our top-up does, for
+# uniformity with the Corsair/Shipbreaker top-ups.)
 # Fired by on_ship_destroyed_perp
 # This = owner of winning ship
 # From = owner of destroyed ship
@@ -157,63 +143,87 @@ country_event = {
 
 	immediate = {
 		FROMFROM = {
-			if = {
-				limit = {
-					exists = fleet.leader
-				}
-				fleet.leader = {
+			fleet.leader? = {
+				if = {
+					limit = {
+						OR = {
+							has_trait = leader_trait_corsair
+							has_trait = leader_trait_corsair_2
+						}
+					}
 					if = {
 						limit = {
-							OR = {
-								has_trait = leader_trait_corsair
-								has_trait = leader_trait_corsair_2
-							}
+							has_trait = leader_trait_corsair
 						}
-						if = {
-							limit = {
-								has_trait = leader_trait_corsair
-							}
-							ROOT = {
-								add_resource = {
-									energy = @trait_corsair_amt
-									mult = value:gk_despoliation_shipkill_trait_mult
-								}
-							}
-						}
-						else = {
-							ROOT = {
-								add_resource = {
-									energy = @trait_corsair_2_amt
-									mult = value:gk_despoliation_shipkill_trait_mult
-								}
+						ROOT = {
+							add_resource = {
+								energy = @trait_corsair_amt
+								mult = value:gk_despoliation_shipkill_trait_mult
 							}
 						}
 					}
+					else = {
+						ROOT = {
+							add_resource = {
+								energy = @trait_corsair_2_amt
+								mult = value:gk_despoliation_shipkill_trait_mult
+							}
+						}
+					}
+				}
 
+				if = {
+					limit = {
+						OR = {
+							has_trait = leader_trait_shipbreaker
+							has_trait = leader_trait_shipbreaker_2
+						}
+					}
 					if = {
 						limit = {
-							OR = {
-								has_trait = leader_trait_shipbreaker
-								has_trait = leader_trait_shipbreaker_2
+							has_trait = leader_trait_shipbreaker
+						}
+						ROOT = {
+							add_resource = {
+								alloys = @trait_shipbreaker_amt
+								mult = value:gk_despoliation_shipkill_trait_mult
 							}
 						}
-						if = {
-							limit = {
-								has_trait = leader_trait_shipbreaker
-							}
-							ROOT = {
-								add_resource = {
-									alloys = @trait_shipbreaker_amt
-									mult = value:gk_despoliation_shipkill_trait_mult
-								}
+					}
+					else = {
+						ROOT = {
+							add_resource = {
+								alloys = @trait_shipbreaker_2_amt
+								mult = value:gk_despoliation_shipkill_trait_mult
 							}
 						}
-						else = {
-							ROOT = {
-								add_resource = {
-									alloys = @trait_shipbreaker_2_amt
-									mult = value:gk_despoliation_shipkill_trait_mult
-								}
+					}
+				}
+
+				# Plunderer top-up (trade). Vanilla's native Plunderer reward isn't Hell's-Heart-scaled; ours is.
+				if = {
+					limit = {
+						OR = {
+							has_trait = leader_trait_plunderer
+							has_trait = leader_trait_plunderer_2
+						}
+					}
+					if = {
+						limit = {
+							has_trait = leader_trait_plunderer
+						}
+						ROOT = {
+							add_resource = {
+								trade = @trait_plunderer_amt
+								mult = value:gk_despoliation_shipkill_trait_mult
+							}
+						}
+					}
+					else = {
+						ROOT = {
+							add_resource = {
+								trade = @trait_plunderer_2_amt
+								mult = value:gk_despoliation_shipkill_trait_mult
 							}
 						}
 					}
@@ -231,13 +241,54 @@ leader_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		exists = owner
-		owner = {
+		owner? = {
 			has_tradition = tr_gk_raiding_despoliation_5
 		}
 	}
 
 	immediate = {
 		gk_raiding_grant_despoliation_commander_trait = yes
+	}
+}
+
+# Per-civic commander trait grant for the resource-raid civics (Reavers → Plunderer,
+# Corsair Protocol → Shipbreaker). Mirrors misc.110 but grants a single civic trait (no
+# Acquisitive Officers progression). Ravager Swarm grants no leader trait; Letters of Marque /
+# Void Reavers are excluded (they grant their own trait) — see gk_civic_grants_commander_trait.
+# Fired by on_added_to_leader_pool
+# Scope = country
+# From = leader added to the pool
+country_event = {
+	id = gk_raiding_misc.114
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		gk_civic_grants_commander_trait = yes
+	}
+
+	immediate = {
+		from = {
+			gk_raiding_grant_civic_commander_trait = yes
+		}
+	}
+}
+
+# Per-civic commander trait grant for the resource-raid civics, on hire (mirrors misc.112).
+# Fired by on_leader_hired
+# Scope = leader
+leader_event = {
+	id = gk_raiding_misc.116
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner? = {
+			gk_civic_grants_commander_trait = yes
+		}
+	}
+
+	immediate = {
+		gk_raiding_grant_civic_commander_trait = yes
 	}
 }

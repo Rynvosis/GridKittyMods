@@ -54,19 +54,38 @@
 @gk_decay_clear_threshold = 1
 
 ############################
-# Pillage Mechanics        #
+# Plunder Mechanics        #
 ############################
 
-@gk_pillage_devastation_per_packet = 10
-@gk_base_loot_months_per_packet = 2
-@gk_pillage_war_bonus_loot_months = 3
-@gk_flat_trade_spoils_per_loot_month = 100
-@gk_flat_mineral_spoils_per_loot_month = 100
-@gk_flat_alloy_spoils_per_loot_month_habitat = 25
-@gk_flat_alloy_spoils_per_loot_month_ecu = 100
-@gk_max_planet_devastation = 100
-@gk_surrender_planet_devastation = 50
-@gk_surrender_aftermath_days = 1825
+# steal_planet_output plunder model
+@gk_plunder_pct_base = 0.50            # base steal: fraction of a month's CURRENT output per bombardment tick
+@gk_plunder_pct_war = 0.40             # + while in a Plunder (wg_plunder_raid) war vs the target
+@gk_plunder_pct_pivot = 0.20           # + instead of the war bonus when pivoted-to-plundering
+@gk_plunder_pct_native = 0.20          # + for native despoilators
+@gk_plunder_throttle_days = 30         # one steal per planet per raider per N days (wired into the loot event)
+@gk_plunder_invasion_months = 12       # invasion one-shot steals (composition x this) months of output (distinct from pop-raid @gk_invasion_months)
+@gk_surrender_stockpile_pct = 0.5      # surrender steals this fraction of the loser's stockpile
+@gk_privateer_steal_pct = 0.40         # privateer raid steals this fraction of output into the raider's stockpile
+
+##################################
+# Despoliation Tradition Tree    #
+##################################
+
+# tr_1 Raider's Fervor — kill-unity (delivered by on_ship_destroyed / on_army_killed_in_combat events)
+@gk_despoliation_kill_unity = 50         # unity per kill base (calibrate vs trait_kill_naval_cap_scaling to ~50 unity / 5 destroyed naval capacity)
+
+# tr_2 Forward Raiding Bases — starbase output skim
+@gk_forward_base_raid_pct = 0.03         # starbase skim per tick (visible/flat rate; doubled behind the scenes via a duplicate steal)
+@gk_forward_base_radius = 3              # raid radius in hyperlane jumps (compile-time @-constant; range can't scale at runtime)
+@gk_forward_base_skim_days = 29          # skim cadence in days (matches the vanilla waystation cycle)
+
+# tr_2 Void Reavers swap — pirate-waystation piracy buff (overwrites vanilla nomads.5010)
+@gk_waystation_piracy_base = 0.015       # vanilla base piracy skim (becomes 0.03 with a reaver stronghold)
+@gk_void_reaver_piracy_mult = 1.5        # +50% piracy for Forward Raiding Bases (tr_2) Void Reavers
+
+# tr_3 Restless Raiders — war-window stability flags
+@gk_rr_recent_days = 3650                # gk_rr_recent_war / gk_rr_recent_victory duration (10 years)
+@gk_rr_window_days = 7300                # gk_rr_war_window duration (20 years)
 
 ############################
 # Privateer — Ship         #
