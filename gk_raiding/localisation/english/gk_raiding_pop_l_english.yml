@@ -1,13 +1,13 @@
 ﻿l_english:
  # Policies
  policy_gk_raiding_focus:0 "Raiding Focus"
- policy_gk_raiding_focus_desc:0 "Sets the target priority and war goals available to our raiders."
+ policy_gk_raiding_focus_desc:0 "Selects which pops our raiders capture and which pop-raiding war goals are available."
 
- gk_focus_plunder_name:0 "Plunder"
+ gk_focus_raiding_name:0 "Raiding"
  gk_focus_emancipation_name:0 "Emancipation"
 
- gk_raiding_focus_plunder:0 "Plunder"
- gk_raiding_focus_plunder_desc:0 "Raiders capture any eligible pops."
+ gk_raiding_focus_raiding:0 "Raiding"
+ gk_raiding_focus_raiding_desc:0 "Raiders capture any eligible pops."
 
  gk_raiding_focus_emancipation:0 "Emancipation"
  gk_raiding_focus_emancipation_desc:0 "Raiders target enslaved populations. Unlocks the §YEmancipation§! war goal. Only enslaved pops may be taken.\n\n§ERequires §YSlavery§! to be banned.§!"
@@ -44,16 +44,12 @@ war_goal_wg_gk_emancipation_desc:0 "War is waged to free enslaved populations. U
 wg_gk_emancipation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §G[Root.GkSurrenderPopEstimate]§! enslaved pops to §Y[Root.GetName]§!."
 wg_gk_emancipation_status_quo_tooltip:0 "No pops are transferred on status quo."
 
-war_goal_wg_gk_robo_liberation:0 "Robo-Liberation"
-war_goal_wg_gk_robo_liberation_desc:0 "War is waged to liberate robotic populations. Using this wargoal allows us to abduct robotic pops during war and claim additional captives on enemy surrender."
-wg_gk_robo_liberation_accept_tooltip:0 "§Y[From.GetName]§! forfeits up to §G[Root.GkSurrenderPopEstimate]§! robotic pops to §Y[Root.GetName]§!."
-wg_gk_robo_liberation_status_quo_tooltip:0 "No pops are transferred on status quo."
 
  # Escalation Events
 GK_RAIDING_ESCALATION_TITLE:0 "Raiding Report"
-GK_RAIDING_ESCALATION_DESC:0 "Our forces have captured all authorized targets from [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nOur commanders await orders on how to proceed."
+GK_RAIDING_ESCALATION_DESC:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nOur commanders await orders on how to proceed."
 GK_RAIDING_ESCALATION_DESC_FINAL:0 "Our forces have nearly exhausted the population of [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nOur commanders request authorization to take everything that remains."
-GK_RAIDING_ESCALATION_DESC_INTEL:0 "Our forces have captured all authorized targets from [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nIntelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain.\nOur commanders await orders on how to proceed."
+GK_RAIDING_ESCALATION_DESC_INTEL:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nIntelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain.\nOur commanders await orders on how to proceed."
 GK_RAIDING_ESCALATION_DESC_TRIVIAL:0 "[From.GetName] poses little challenge.\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nOur commanders see no reason to stop."
 GK_RAIDING_ESCALATION_DESC_TRIVIAL_INTEL:0 "[From.GetName] poses little challenge.\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nIntelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain."
 GK_OWN_CONTRIBUTION_LINE:0 "\n§G[Root.GkDisplayOwnContribution]§! by our own forces."
@@ -69,8 +65,8 @@ GK_OCCUPIED_POPS_LINE:0 "\n\n§G[Root.GkOccupiedEligiblePops]§! eligible pops o
 GK_EMPTY_STRING:0 ""
 GK_RAIDING_ESCALATION_CANNOT_AFFORD:0 "Insufficient Influence"
 
- # Escalation: Pivot to Pillaging
-GK_RAIDING_ESCALATION_PIVOT:0 "Switch to pillaging"
+ # Escalation: Pivot to Plundering
+GK_RAIDING_ESCALATION_PIVOT:0 "Switch to plundering"
 GK_RAIDING_ESCALATION_PIVOT_TOOLTIP:0 "Cease pop raiding against [From.GetName] and redirect our forces to strip their worlds of resources instead.\n\n§Y[Root.GetName] changes their war goal to $war_goal_wg_plunder_raid$.§!"
 
  # Escalation: Demand Tribute
@@ -156,7 +152,7 @@ concept_gk_pop_raiding_desc:0 "During §Y$war_goal_wg_plunder$§!, §Y$war_goal_
  concept_gk_raiding_policies:0 "Raiding Policies"
  concept_gk_raiding_policy:0 "Raiding Policy"
  concept_gk_raiding_focus:0 "Raiding Focus"
- concept_gk_raiding_focus_desc:0 "This policy selects which pop-raiding war goals are available.\n\n§YPlunder§! enables standard pop raiding. §YEmancipation§! targets enslaved pops only (requires slavery to be banned). §YReaping§! removes all limits and prevents surrender."
+ concept_gk_raiding_focus_desc:0 "This policy selects which pop-raiding war goals are available.\n\n§YRaiding§! enables standard pop raiding. §YEmancipation§! targets enslaved pops only (requires slavery to be banned). §YReaping§! removes all limits and prevents surrender."
  # Pop Notifications
  MESSAGE_TYPE_GK_POP_RAIDED_TITLE:0 "Captives Taken"
 

@@ -12,8 +12,7 @@ gk_has_unlimited_raiding = {
 	OR = {
 		# Max tier: total depopulation authorized
 		AND = {
-			exists = event_target:gk_raid_tracker
-			event_target:gk_raid_tracker = {
+			event_target:gk_raid_tracker? = {
 				check_variable = { which = gk_escalation_tier value >= @gk_max_escalation_tier }
 			}
 		}
@@ -47,7 +46,8 @@ gk_can_use_raiding_bombardment = {
 			has_valid_civic = civic_gk_emancipators_megacorp
 			has_valid_civic = civic_gk_barbaric_despoilers_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
-			has_valid_civic = civic_hive_bodysnatcher
+			has_valid_civic = civic_gk_ravager_swarm
+			has_valid_civic = civic_great_khans_vision   # 4.4 Heirs of the Khan (player- or AI-Khan)
 		}
 	}
 }
@@ -67,7 +67,8 @@ gk_can_use_raiding_cb = {
 		has_valid_civic = civic_gk_emancipators_megacorp
 		has_valid_civic = civic_gk_barbaric_despoilers_machine
 		has_valid_civic = civic_gk_barbaric_despoilers_megacorp
-		has_valid_civic = civic_hive_bodysnatcher
+		has_valid_civic = civic_gk_ravager_swarm
+		has_valid_civic = civic_great_khans_vision   # 4.4 Heirs of the Khan (player- or AI-Khan)
 	}
 }
 
@@ -108,7 +109,7 @@ gk_can_use_reaping_cb = {
 		}
 		# Gestalt despoilers always qualify
 		has_valid_civic = civic_gk_barbaric_despoilers_machine
-		has_valid_civic = civic_hive_bodysnatcher
+		has_valid_civic = civic_gk_ravager_swarm
 	}
 }
 
@@ -118,6 +119,7 @@ gk_can_use_reaping_cb = {
 # War-type specific "war with" triggers
 # This = country scope (defender/raidee)
 # Root = country scope (attacker/raider)
+# Requires event_target:gk_raidee = raidee/defender country
 gk_has_standard_raiding_war_with = {
 	root = {
 		any_war = {
@@ -125,12 +127,12 @@ gk_has_standard_raiding_war_with = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
 					using_war_goal = { type = wg_plunder owner = attacker }
-					defender = { is_same_value = prevprev }
+					defender = { is_same_value = event_target:gk_raidee }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
 					using_war_goal = { type = wg_plunder owner = defender }
-					attacker = { is_same_value = prevprev }
+					attacker = { is_same_value = event_target:gk_raidee }
 				}
 			}
 		}
@@ -144,12 +146,12 @@ gk_has_emancipation_war_with = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
 					using_war_goal = { type = wg_gk_emancipation owner = attacker }
-					defender = { is_same_value = prevprev }
+					defender = { is_same_value = event_target:gk_raidee }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
 					using_war_goal = { type = wg_gk_emancipation owner = defender }
-					attacker = { is_same_value = prevprev }
+					attacker = { is_same_value = event_target:gk_raidee }
 				}
 			}
 		}
@@ -163,12 +165,12 @@ gk_has_reaping_war_with = {
 				AND = {
 					is_war_participant = { who = prev side = attackers }
 					using_war_goal = { type = wg_gk_reaping owner = attacker }
-					defender = { is_same_value = prevprev }
+					defender = { is_same_value = event_target:gk_raidee }
 				}
 				AND = {
 					is_war_participant = { who = prev side = defenders }
 					using_war_goal = { type = wg_gk_reaping owner = defender }
-					attacker = { is_same_value = prevprev }
+					attacker = { is_same_value = event_target:gk_raidee }
 				}
 			}
 		}
@@ -243,7 +245,7 @@ gk_target_is_raidable_by_root = {
 # "no malus" unless explicitly listed here.
 gk_raid_generates_opinion_malus = {
 	OR = {
-		has_policy_flag = gk_focus_plunder
+		has_policy_flag = gk_focus_raiding
 		has_policy_flag = gk_focus_reaping
 	}
 }

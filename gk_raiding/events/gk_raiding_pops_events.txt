@@ -3,11 +3,11 @@ namespace = gk_raiding_pops
 # Pop Tracking             #
 ############################
 # Pop abducted by raiding bombardment stance
-# This = Planet where pop was "killed" (source)
+# This = Colony where pop was "killed" (source)
 # From = Bombarder country
 # FromFrom = Biggest fleet bombarding
 # local_kill_pop_amount = exact number of pops transferred
-planet_event = {
+carrier_event = {
 	id = gk_raiding_pops.100
 	hide_window = yes
 	is_triggered_only = yes
@@ -49,8 +49,7 @@ pop_group_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		exists = owner
-		owner = {
+		owner? = {
 			is_variable_set = gk_pending_abduction_amount
 			check_variable = {
 				which = gk_pending_abduction_amount
@@ -76,18 +75,10 @@ pop_group_event = {
 				}
 			}
 			# Transfer only the abducted amount to the preferred planet
-			event_target:gk_destination_planet = {
-				create_pop_group = {
-					pop_group = event_target:gk_source_pop_group
-					size = 0
-					effect = {
-						transfer_pop_amount = {
-							source = event_target:gk_source_pop_group
-							target = this
-							amount = event_target:gk_raider.gk_pending_abduction_amount
-						}
-					}
-				}
+			resettle_pop_group = {
+				POP_GROUP = event_target:gk_source_pop_group
+				PLANET = event_target:gk_destination_planet
+				AMOUNT = event_target:gk_raider.gk_pending_abduction_amount
 			}
 		}
 		# Clear pending amount
@@ -376,7 +367,7 @@ country_event = {
 				has_country_flag = gk_opportunistic_raid_authorized_by_@root
 				root = {
 					OR = {
-						has_country_flag = gk_pivoted_to_pillaging_against_@prev
+						has_country_flag = gk_pivoted_to_plundering_against_@prev
 						has_country_flag = gk_opportunistic_prompted_@prev
 					}
 				}
@@ -395,7 +386,7 @@ country_event = {
 					has_country_flag = gk_opportunistic_raid_authorized_by_@root
 					root = {
 						OR = {
-							has_country_flag = gk_pivoted_to_pillaging_against_@prev
+							has_country_flag = gk_pivoted_to_plundering_against_@prev
 							has_country_flag = gk_opportunistic_prompted_@prev
 						}
 					}
@@ -420,7 +411,7 @@ country_event = {
 				remove_country_flag = gk_autonomy_offer_pending_from_@root
 				remove_country_flag = gk_opportunistic_raid_authorized_by_@root
 				root = {
-					remove_country_flag = gk_pivoted_to_pillaging_against_@prev
+					remove_country_flag = gk_pivoted_to_plundering_against_@prev
 					remove_country_flag = gk_opportunistic_prompted_@prev
 				}
 			}
@@ -1317,7 +1308,7 @@ country_event = {
 			}
 		}
 	}
-	# Option C: Pivot to Pillaging (plunder only, hidden at tier >= 4, not opportunistic)
+	# Option C: Pivot to Plundering (plunder only, hidden at tier >= 4, not opportunistic)
 	option = {
 		name = GK_RAIDING_ESCALATION_PIVOT
 		custom_tooltip = GK_RAIDING_ESCALATION_PIVOT_TOOLTIP
@@ -1338,8 +1329,8 @@ country_event = {
 				set_country_flag = gk_pop_raiding_terminated_by_@root
 				remove_country_flag = gk_raid_cap_reached_by_@root
 			}
-			set_country_flag = gk_pivoted_to_pillaging_against_@from
-			# Switch war goal to pillage raid
+			set_country_flag = gk_pivoted_to_plundering_against_@from
+			# Switch war goal to plunder raid
 			every_war = {
 				limit = {
 					OR = {

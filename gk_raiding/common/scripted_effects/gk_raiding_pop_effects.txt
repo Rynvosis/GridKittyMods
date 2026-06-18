@@ -149,13 +149,8 @@ gk_retrieve_pop_result_tracker = {
 }
 
 gk_destroy_pop_result_tracker = {
-	if = {
-		limit = {
-			exists = event_target:gk_pop_result_tracker
-		}
-		event_target:gk_pop_result_tracker = {
-			kill_leader = { show_notification = no }
-		}
+	event_target:gk_pop_result_tracker? = {
+		kill_leader = { show_notification = no }
 	}
 }
 
@@ -378,18 +373,10 @@ gk_abduct_on_surrender = {
 					variable = gk_pre_transfer_size
 				}
 				gk_find_destination_planet = yes
-				event_target:gk_destination_planet = {
-					create_pop_group = {
-						pop_group = event_target:gk_source_pop_group
-						size = 0
-						effect = {
-							transfer_pop_amount = {
-								source = event_target:gk_source_pop_group
-								target = this
-								percentage = 1.0
-							}
-						}
-					}
+				resettle_pop_group = {
+					POP_GROUP = event_target:gk_source_pop_group
+					PLANET = event_target:gk_destination_planet
+					PERCENTAGE = 1
 				}
 				event_target:gk_storage_scope = {
 					change_variable = {
@@ -565,19 +552,10 @@ gk_abduct_pops_from_target = {
 			}
 
 			# Create pop group on destination and transfer
-			event_target:gk_destination_planet = {
-				create_pop_group = {
-					pop_group = event_target:gk_source_pop_group
-					size = 0
-					effect = {
-						save_event_target_as = gk_target_pop_group
-						transfer_pop_amount = {
-							source = event_target:gk_source_pop_group
-							target = this
-							amount = event_target:gk_raidee.gk_transfer_amount
-						}
-					}
-				}
+			resettle_pop_group = {
+				POP_GROUP = event_target:gk_source_pop_group
+				PLANET = event_target:gk_destination_planet
+				AMOUNT = event_target:gk_raidee.gk_transfer_amount
 			}
 
 			# Track for display on storage scope
@@ -628,19 +606,10 @@ gk_abduct_pops_from_target = {
 					check_variable = { which = gk_transfer_amount value >= 1 }
 				}
 			}
-			event_target:gk_destination_planet = {
-				create_pop_group = {
-					pop_group = event_target:gk_source_pop_group
-					size = 0
-					effect = {
-						save_event_target_as = gk_target_pop_group
-						transfer_pop_amount = {
-							source = event_target:gk_source_pop_group
-							target = this
-							amount = event_target:gk_raidee.gk_transfer_amount
-						}
-					}
-				}
+			resettle_pop_group = {
+				POP_GROUP = event_target:gk_source_pop_group
+				PLANET = event_target:gk_destination_planet
+				AMOUNT = event_target:gk_raidee.gk_transfer_amount
 			}
 			event_target:gk_storage_scope = {
 				change_variable = {

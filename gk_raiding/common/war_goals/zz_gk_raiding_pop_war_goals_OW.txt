@@ -1,4 +1,4 @@
-# Version last updated: v4.2.3
+# Version last updated: 4.4.3
 # Overwrite: wg_plunder (expanded with gk_raiding pop-only peace behavior)
 
 #####################
@@ -8,7 +8,6 @@
 # Bucket-based escalation cap
 wg_plunder = {
 	casus_belli = cb_despoliation
-	hide_if_no_cb = yes
 	total_war = no
 
 	galactic_empire_joins_defender = {
@@ -21,7 +20,7 @@ wg_plunder = {
 	potential = {
 		has_total_war_cb = no
 		gk_can_use_raiding_cb = yes
-		has_policy_flag = gk_focus_plunder
+		has_policy_flag = gk_focus_raiding
 		NOT = { is_in_federation_with = from }
 		NAND = {
 			is_galactic_emperor = yes

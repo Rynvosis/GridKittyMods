@@ -10,7 +10,7 @@ gk_raiding_focus = {
 			has_valid_civic = civic_gk_emancipators_megacorp
 			has_valid_civic = civic_gk_barbaric_despoilers_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
-			has_valid_civic = civic_hive_bodysnatcher
+			has_valid_civic = civic_gk_ravager_swarm
 		}
 	}
 
@@ -19,10 +19,10 @@ gk_raiding_focus = {
 	}
 
 	option = {
-		name = "gk_raiding_focus_plunder"
+		name = "gk_raiding_focus_raiding"
 
 		policy_flags = {
-			gk_focus_plunder
+			gk_focus_raiding
 		}
 
 		AI_weight = {
@@ -92,7 +92,7 @@ gk_robot_raiding = {
 			has_valid_civic = civic_gk_emancipators_megacorp
 			has_valid_civic = civic_gk_barbaric_despoilers_machine
 			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
-			has_valid_civic = civic_hive_bodysnatcher
+			has_valid_civic = civic_gk_ravager_swarm
 		}
 	}
 

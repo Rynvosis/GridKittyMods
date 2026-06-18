@@ -3,11 +3,10 @@
 #####################
 # REAPING WAR       #
 #####################
-# Unlimited pop capture, no resource pillaging
+# Unlimited pop capture, no resource plundering
 # Bombardment/invasion cap: unlimited, Surrender cap: all
 wg_gk_reaping = {
 	casus_belli = cb_despoliation
-	hide_if_no_cb = no
 	total_war = no
 
 	galactic_empire_joins_defender = {
@@ -79,6 +78,7 @@ wg_gk_reaping = {
 				has_valid_civic = civic_barbaric_despoilers
 				has_valid_civic = civic_gk_barbaric_despoilers_machine
 				has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+				has_valid_civic = civic_gk_ravager_swarm
 			}
 		}
 	}
@@ -87,11 +87,10 @@ wg_gk_reaping = {
 #####################
 # EMANCIPATION WAR  #
 #####################
-# Enslaved pops only, no resource pillaging
+# Enslaved pops only, no resource plundering
 # Bucket-based escalation cap
 wg_gk_emancipation = {
 	casus_belli = cb_gk_emancipation
-	hide_if_no_cb = no
 	total_war = no
 
 	galactic_empire_joins_defender = {

@@ -38,8 +38,9 @@ on_pop_group_abducted = {
 # Attackers win ground combat (before controller switches)
 # This = Attacking Country
 # From = Defending Country
-# FromFrom = Planet
-on_planet_attackers_win = {
+# FromFrom = colony
+# NOTE: 4.4 renamed on_planet_attackers_win -> on_colony_attackers_win (00_on_actions.txt).
+on_colony_attackers_win = {
 	events = {
 		gk_raiding_pops.210  # Instant pop raid on conquest
 	}
