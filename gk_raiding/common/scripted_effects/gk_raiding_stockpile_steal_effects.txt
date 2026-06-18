@@ -1,0 +1,76 @@
+# GK Raiding — Surrender stockpile steal (4.4)
+# Steals @gk_surrender_stockpile_pct of the loser country's stockpiled resources to the raider on a
+# Plunder-war surrender. Stockpiled resources only (trade/unity/research are flows, not stored).
+
+# This = Raider (winner). event_target:gk_raidee = Loser.
+gk_steal_country_stockpile = {
+	gk_steal_one_stockpile_resource = { RESOURCE = energy }
+	gk_steal_one_stockpile_resource = { RESOURCE = minerals }
+	gk_steal_one_stockpile_resource = { RESOURCE = food }
+	gk_steal_one_stockpile_resource = { RESOURCE = consumer_goods }
+	gk_steal_one_stockpile_resource = { RESOURCE = alloys }
+	gk_steal_one_stockpile_resource = { RESOURCE = volatile_motes }
+	gk_steal_one_stockpile_resource = { RESOURCE = exotic_gases }
+	gk_steal_one_stockpile_resource = { RESOURCE = rare_crystals }
+	gk_steal_one_stockpile_resource = { RESOURCE = sr_living_metal }
+	gk_steal_one_stockpile_resource = { RESOURCE = sr_zro }
+	gk_steal_one_stockpile_resource = { RESOURCE = sr_dark_matter }
+	gk_steal_one_stockpile_resource = { RESOURCE = nanites }
+}
+
+# Steal one resource. This = Raider (winner). event_target:gk_raidee = Loser. $RESOURCE$ = resource key.
+gk_steal_one_stockpile_resource = {
+	event_target:gk_raidee = {
+		export_resource_stockpile_to_variable = {
+			resource = $RESOURCE$
+			variable = gk_stockpile_read
+		}
+	}
+	set_variable = {
+		which = gk_stockpile_steal_amt
+		value = event_target:gk_raidee.gk_stockpile_read
+	}
+	multiply_variable = {
+		which = gk_stockpile_steal_amt
+		value = @gk_surrender_stockpile_pct
+	}
+	if = {
+		limit = {
+			check_variable = { which = gk_stockpile_steal_amt value > 0 }
+		}
+		# Give to the raider...
+		add_resource = {
+			$RESOURCE$ = 1
+			mult = gk_stockpile_steal_amt
+		}
+		# ...and take it from the loser.
+		event_target:gk_raidee = {
+			add_resource = {
+				$RESOURCE$ = -1
+				mult = prev.gk_stockpile_steal_amt
+			}
+		}
+	}
+	clear_variable = gk_stockpile_steal_amt
+	event_target:gk_raidee = {
+		clear_variable = gk_stockpile_read
+	}
+}
+
+# Steal floor(loser's ACQUIRED specimens / 9), min 1, from the loser to the raider on a surrender.
+# This = raider; event_target:gk_raidee = loser. Grand Archive only; no-op if the loser has none.
+# Shared by gk_raiding_plundering.300 (Plunder) and .301 (Steal Relic).
+gk_steal_specimens = {
+	if = {
+		limit = {
+			has_grand_archive_dlc = yes
+			event_target:gk_raidee = { acquired_specimen_count > 0 }
+		}
+		steal_specimens = {
+			who = event_target:gk_raidee
+			category = all
+			count = value:gk_specimen_steal_count
+			show_notification = yes
+		}
+	}
+}

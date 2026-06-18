@@ -1,0 +1,67 @@
+# GK Raiding — Steal Relic war goal
+# Shares cb_pirate_raid with wg_plunder_raid, so it's offered to ALL plundering nations as an
+# alternative war goal. On surrender it steals one random relic from the loser + a share of their
+# specimens (gk_raiding_plundering.301). No DLC gate — stealable relics span several DLCs; the goal only
+# appears when the target actually owns a relic.
+
+wg_gk_steal_relic = {
+	casus_belli = cb_pirate_raid
+	total_war = no
+
+	galactic_empire_joins_defender = {
+		from = { is_galactic_emperor = yes }
+		imperial_authority >= 100
+	}
+
+	surrender_acceptance = -50
+
+	potential = {
+		has_total_war_cb = no
+		# Same plunder gate as wg_plunder_raid (native-plunder civics + Despoliation adopt flow through
+		# gk_can_plunder).
+		OR = {
+			gk_can_plunder = yes
+			has_country_flag = unlocked_pirate_raid_cb
+			has_ascension_perk = ap_nihilistic_acquisition
+		}
+		NOT = { is_in_federation_with = from }
+		NAND = {
+			is_galactic_emperor = yes
+			from = { is_galactic_community_member = yes }
+		}
+		# Only meaningful when the target owns a STEALABLE relic (excludes a lone can_be_stolen=no relic).
+		from = { gk_target_has_stealable_relic = yes }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = cannot_use_against_emperor
+			OR = {
+				from = { is_galactic_emperor = no }
+				is_galactic_community_member = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = pax_galactica_active
+			NAND = {
+				is_active_resolution = resolution_emperor_pax_galactica
+				is_galactic_community_member = yes
+				from = { is_galactic_community_member = yes }
+			}
+		}
+	}
+
+	on_accept = {
+		custom_tooltip = wg_gk_steal_relic_accept_tooltip
+		hidden_effect = {
+			country_event = {
+				id = gk_raiding_plundering.301
+				scopes = { from = from }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 30
+	}
+}

@@ -1,0 +1,17 @@
+# Version last updated: 4.4.3
+# Overwrite of vanilla can_build_pirate_waystation_module (09_scripted_triggers_nomads.txt). Scope = starbase.
+# Changed: access widened beyond civic_void_reavers (see inline). Nomad-only in practice.
+can_build_pirate_waystation_module = {
+	owner = {
+		OR = {
+			has_valid_civic = civic_void_reavers # vanilla: the only allowed civic
+			has_valid_civic = civic_crusader_spirit_corporate # gk_raiding: Letters of Marque
+			has_valid_civic = civic_gk_ravager_swarm # gk_raiding: hive resource-plunder
+			has_valid_civic = civic_gk_corsair_protocol # gk_raiding: machine resource-plunder
+			AND = { # gk_raiding: nomad + Forward Raiding Bases tradition (fallback)
+				is_nomadic = yes
+				has_tradition = tr_gk_raiding_despoliation_2
+			}
+		}
+	}
+}

@@ -1,0 +1,41 @@
+# Version last updated: 4.4.3
+# Overwrite of vanilla `plundering` bombardment stance (00_bombardment_stances.txt).
+# Changed: trigger widened to all mod plunderers (stats kept). Loot in nomads.5005 OW. See inline.
+
+plundering = {
+	trigger = {
+		owner = { gk_can_plunder = yes } # was has_valid_civic = civic_void_reavers (now any mod plunderer)
+		NOT = {
+			any_owned_ship = {
+				has_ship_flag = behemoth_hatchling_ship
+			}
+		}
+	}
+
+	default = no
+
+	stop_when_armies_dead = no
+	stop_when_ground_combat = no
+
+	planet_damage = 1
+	army_damage = 0.25
+
+	kill_pop_chance = {
+		base = 0.1
+	}
+	min_pops_to_kill_pop = 200
+	kill_pop_amount = { min = 0 max = 200 }
+
+	# root = fleet
+	# from = planet
+	ai_weight = {
+		weight = 8
+		modifier = { # AI doesn't plunder backwater planets with no resources
+			factor = 0
+			exists = from
+			from = {
+				has_upgraded_capital = no
+			}
+		}
+	}
+}

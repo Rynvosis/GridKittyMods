@@ -1,0 +1,86 @@
+namespace = nomads
+
+# Version last updated: 4.4.3
+# Overwrite of vanilla nomads.5010 (events/nomads_events_1.txt) — GK Raiding void reaver piracy.
+# Changed: steal percentage, doubled skim. Before-values inline.
+# This = starbase (waystation); root.owner = the pirate patron.
+starbase_event = {
+	id = nomads.5010
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		# waystation still exists and still has module
+		exists = root
+		solar_system = {
+			any_fleet_in_system = {
+				is_waystation_ship = yes
+				starbase = {
+					has_starbase_module = waystation_pirate_hideout
+				}
+			}
+		}
+		NOR = {
+			has_starbase_flag = piracy_collected
+			solar_system = {
+				space_owner = { is_same_value = root.owner }
+			}
+		}
+	}
+
+	immediate = {
+		set_timed_starbase_flag = {
+			flag = piracy_collected
+			days = 29
+		}
+		if = {
+			limit = {
+				solar_system = {
+					any_system_planet = {
+						is_colony = yes
+					}
+				}
+			}
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						is_colony = yes
+					}
+					# Visible skim.
+					steal_planet_output = {
+						planet = this
+						who = root.owner
+						resource = all
+						percentage = value:gk_waystation_piracy_pct # was 0.015 (0.03 w/ stronghold)
+						mode = steal
+						notification_mode = none
+					}
+					# gk_raiding: hidden ×2 — re-run the skim (not 2× the %) so any referenced rate stays honest.
+					steal_planet_output = {
+						planet = this
+						who = root.owner
+						resource = all
+						percentage = value:gk_waystation_piracy_pct
+						mode = steal
+						notification_mode = none
+					}
+					if = {
+						limit = {
+							root.fleet = { is_cloaked = no }
+						}
+						owner = {
+							add_opinion_modifier = {
+								who = root.owner
+								modifier = opinion_waystation_piracy
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		starbase_event = { id = nomads.5010 days = 30 }
+	}
+}

@@ -1,0 +1,69 @@
+namespace = nomads
+
+# Version last updated: 4.4.3
+# Overwrite of vanilla nomads.5005 (events/nomads_events_1.txt) — GK Raiding plunder loot.
+# Changed: target gating, no-booty weight, devastation cliff, steal percentage. Before-values inline.
+# This = Planet, From = Bombarder country
+carrier_event = {
+	id = nomads.5005
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_carrier_flag = recently_plundered }
+		has_orbital_bombardment_stance = plundering
+		# gk_raiding: vanilla had only the two checks above; also require an enemy-owned colony
+		is_colony = yes
+		exists = owner
+		from = { is_at_war_with = prev.owner }
+	}
+
+	immediate = {
+		set_timed_carrier_flag = {
+			flag = recently_plundered
+			days = @gk_plunder_throttle_days
+		}
+		from = { save_event_target_as = gk_raider }
+		owner = { save_event_target_as = gk_plunder_victim }
+
+		random_list = {
+			5 = { # was 7.5 — No Booty, suppressed by planetary defenders
+				modifier = {
+					factor = trigger:num_armies
+				}
+			}
+			50 = { # Steal a slice of output (vanilla had a factor=0 devastation<=70 cliff here, removed)
+				modifier = {
+					factor = 1.1
+					any_fleet_in_orbit = {
+						controller = {
+							is_same_value = from
+						}
+						leader? = {
+							has_trait = leader_trait_plunderer
+						}
+					}
+				}
+				modifier = {
+					factor = 1.15
+					any_fleet_in_orbit = {
+						controller = {
+							is_same_value = from
+						}
+						leader? = {
+							has_trait = leader_trait_plunderer_2
+						}
+					}
+				}
+				steal_planet_output = {
+					planet = this
+					who = FROM
+					resource = all
+					percentage = value:gk_plunder_percentage # was 0.4
+					mode = steal
+					notification_mode = both
+				}
+			}
+		}
+	}
+}
