@@ -1,4 +1,4 @@
-# Version last updated: 4.2.3
+# Version last updated: 4.4.3
 # Overwrites: planet_livestock_farmers, planet_livestock_miners, planet_livestock_metallurgists from 01_job_categories.txt
 # Overwrites: pop_category_purge from 02_pop_categories_categories.txt
 # Adds generate_add_modifiers { produces } so civics/modifiers can add trade production to livestock and purge pops
@@ -17,7 +17,7 @@ planet_livestock_farmers = {
 		produces
 		upkeep
 	}
-	modifier_category = pop_job
+	modifier_category = colony
 }
 
 planet_livestock_miners = {
@@ -30,7 +30,7 @@ planet_livestock_miners = {
 		produces
 		upkeep
 	}
-	modifier_category = pop_job
+	modifier_category = colony
 }
 
 planet_livestock_metallurgists = {
@@ -43,7 +43,7 @@ planet_livestock_metallurgists = {
 		produces
 		upkeep
 	}
-	modifier_category = pop_job
+	modifier_category = colony
 }
 
 pop_category_purge = {

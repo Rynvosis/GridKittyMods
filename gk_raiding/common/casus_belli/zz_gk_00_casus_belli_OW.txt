@@ -1,6 +1,6 @@
-# Version last updated: v4.2.3
+# Version last updated: 4.4.3
 # Overwrite: cb_despoliation (plunder + reaping war goals)
-# Overwrite: cb_pirate_raid (resource pillaging)
+# Overwrite: cb_pirate_raid (resource plundering)
 
 # Pop raiding CB — plunder and reaping wars
 # Access gated by raiding focus policy
@@ -11,7 +11,7 @@ cb_despoliation = {
 	potential = {
 		is_country_type = default
 		OR = {
-			has_policy_flag = gk_focus_plunder
+			has_policy_flag = gk_focus_raiding
 			has_policy_flag = gk_focus_reaping
 		}
 	}
@@ -73,21 +73,19 @@ cb_gk_emancipation = {
 	}
 }
 
-# Resource pillaging CB — Letters of Marque, pirate flag, Despoliation, Nihilistic Acquisition, Barbaric Despoilers
+# Resource plundering CB — Letters of Marque, pirate flag, Despoliation, Nihilistic Acquisition, Barbaric Despoilers
 cb_pirate_raid = {
 	show_in_diplomacy = no
 	show_notification = no
 
 	potential = {
 		is_country_type = default
+		# Single source of truth: every native-plunder civic (incl. Reavers / Corsair Protocol /
+		# Ravager Swarm / Void Reavers) + the Despoliation adopt tradition flow through gk_can_plunder.
 		OR = {
-			has_valid_civic = civic_crusader_spirit_corporate
+			gk_can_plunder = yes
 			has_country_flag = unlocked_pirate_raid_cb
-			has_tradition = tr_gk_raiding_despoliation_adopt
 			has_ascension_perk = ap_nihilistic_acquisition
-			has_valid_civic = civic_barbaric_despoilers
-			has_valid_civic = civic_gk_barbaric_despoilers_machine
-			has_valid_civic = civic_gk_barbaric_despoilers_megacorp
 		}
 	}
 

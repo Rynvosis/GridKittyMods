@@ -1,4 +1,4 @@
-# Version last updated: v4.3.1
+# Version last updated: 4.4.3
 # Overwrite: can_orbital_bombard — adds gk_privateer_raiders country type
 # Overwrite: should_abduct_pop_group — adds gk_can_abduct_pop_group check
 
