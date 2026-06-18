@@ -1,0 +1,39 @@
+# GK Raiding — Corsair Protocol (Machine Intelligence resource-raider)
+# Gimmick: a +10% chance to STEAL enemy ships defeated in combat, via vanilla's boarding-cables modifier
+# ship_steal_defeated_ship_chance (Grand Archive; the engine gates stealable hulls through the can_capture_ship
+# game rule). Plus native plundering, the Shipbreaker trait, and machine corsair-drone efficiency. The steal %
+# is low on purpose — the civic earns its slot through the other bonuses. (NB: ship_capture_chance_add is the
+# FAUNA-capture modifier — wrong for stealing regular ships; ship_steal_defeated_ship_chance is correct.)
+
+civic_gk_corsair_protocol = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_corsair_protocol_effects
+
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_machine_servitor
+				value = civic_machine_assimilator
+				value = civic_machine_terminator
+			}
+		}
+	}
+
+	random_weight = {
+		base = 5
+	}
+
+	modifier = {
+		ships_upkeep_mult = -0.05
+		ship_weapon_damage = 0.05
+		ship_steal_defeated_ship_chance = 0.10
+	}
+
+	modification = yes
+}

@@ -1,6 +1,6 @@
 ﻿l_english:
  # Civics
-allow_gk_emancipation:0 "$allow_raiding_base$\nWith §YSlavery§! banned, unlocks the §Y$war_goal_wg_gk_emancipation$§! war goal"
+allow_gk_emancipation:0 "$t$- $allow_raiding_base$$TABBED_NEW_LINE$- With §YSlavery§! banned, unlocks the §Y$war_goal_wg_gk_emancipation$§! war goal"
 
 civic_gk_emancipators:0 "Emancipators"
 civic_gk_emancipators_desc:0 "This society wages war to free the enslaved and carry them out of bondage."
@@ -10,38 +10,35 @@ civic_gk_emancipators_megacorp:0 "Liberation Enterprise"
 civic_gk_emancipators_megacorp_desc:0 "This megacorporation profits from the forcible liberation of enslaved populations."
 civic_gk_emancipators_megacorp_effects:0 "$allow_gk_emancipation$"
 
- # Deprecated civic loc (kept for save compat)
-civic_gk_robo_liberators:0 "Robo-Liberators (Deprecated)"
-civic_gk_robo_liberators_desc:0 "This civic has been folded into Emancipators. It will be migrated on next game load."
-civic_gk_robo_liberators_effects:0 "§RDeprecated. Will be replaced by Emancipators on next load.§!"
-civic_gk_robo_liberators_megacorp:0 "Synthetic Liberation Corp (Deprecated)"
-civic_gk_robo_liberators_megacorp_desc:0 "This civic has been folded into Liberation Enterprise. It will be migrated on next game load."
-civic_gk_robo_liberators_megacorp_effects:0 "§RDeprecated. Will be replaced by Liberation Enterprise on next load.§!"
-civic_gk_robo_liberators_machine:0 "Freedom Directive (Deprecated)"
-civic_gk_robo_liberators_machine_desc:0 "This civic has been removed. It will be cleaned up on next game load."
-civic_gk_robo_liberators_machine_effects:0 "§RDeprecated. Will be removed on next load.§!"
-
- # Vanilla overwrite: bodysnatcher adds raiding access
-civic_hive_bodysnatcher_effects:0 "Start the game with §Y1000§! assimilated £pop£ Pops and the ability to §YAssimilate§! organics into the hive mind.\nHas access to the ['concept_operation_bodysnatcher_prepare_invasion'] Espionage Mission\nGains extra £pop£ Pops from the ['concept_operation_smuggle_pops'] Espionage Mission\n$allow_raiding_with_reaping$"
-
 civic_gk_barbaric_despoilers_machine:0 "Harvesting Protocol"
 civic_gk_barbaric_despoilers_machine_desc:0 "This machine intelligence harvests organic populations as a source of labor and power."
-civic_gk_barbaric_despoilers_machine_effects:0 "Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires\n$allow_raiding_with_reaping$\n$allow_gk_pillaging$\nStarts with 400 pops of an §YGrid Amalgamated§! population"
+civic_gk_barbaric_despoilers_machine_effects:0 "$t$- Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires$TABBED_NEW_LINE$- $allow_raiding_base$$TABBED_NEW_LINE$- Unlocks the §Y$war_goal_wg_gk_reaping$§! war goal$TABBED_NEW_LINE$- $allow_gk_plundering$$TABBED_NEW_LINE$- Starts with §Y400§! Grid Amalgamated pops"
 civic_gk_barbaric_despoilers_machine_secondary_species:0 "Battery Species"
 
 civic_gk_barbaric_despoilers_megacorp:0 "Harvest Incorporated"
 civic_gk_barbaric_despoilers_megacorp_desc:0 "This megacorporation treats conquered populations as assets to be seized and put to work."
-civic_gk_barbaric_despoilers_megacorp_effects:0 "Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires\n$allow_raiding_with_reaping$\n$allow_gk_pillaging$"
+civic_gk_barbaric_despoilers_megacorp_effects:0 "$t$- Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires$TABBED_NEW_LINE$- $allow_raiding_base$$TABBED_NEW_LINE$- Unlocks the §Y$war_goal_wg_gk_reaping$§! war goal$TABBED_NEW_LINE$- $allow_gk_plundering$"
+
+ # Reavers - Standard resource-raider (non-corporate counterpart to Letters of Marque)
+civic_gk_reavers:0 "Reavers"
+civic_gk_reavers_desc:0 "A society of raiders that plunders nearby worlds for resources instead of conquering them."
+civic_gk_reavers_effects:0 "$t$- §YEligible $commander_plural_with_icon$§! gain the §Y$leader_trait_plunderer$§! trait$TABBED_NEW_LINE$- Has the '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires$TABBED_NEW_LINE$- $allow_gk_plundering$"
+
+ # Corsair Protocol - Machine resource-raider (ship-stealing)
+civic_gk_corsair_protocol:0 "Corsair Protocol"
+civic_gk_corsair_protocol_desc:0 "A machine intelligence that raids enemy fleets, stealing and repurposing the ships it defeats."
+civic_gk_corsair_protocol_effects:0 "$t$- §Y$commander_plural_with_icon$§! gain the §Y$leader_trait_shipbreaker$§! trait$TABBED_NEW_LINE$- Has the '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires$TABBED_NEW_LINE$- $allow_gk_plundering$$TABBED_NEW_LINE$- §Y(If a nomad empire)§! Can build the three §Ypirate waystation§! modules: §Y$sm_waystation_pirate_hideout$§!, §Y$sm_waystation_concealment_field$§! and §Y$sm_waystation_reaver_stronghold$§!"
+
+ # Ravager Swarm - Hive combined pop + resource raider
+civic_gk_ravager_swarm:0 "Ravager Swarm"
+civic_gk_ravager_swarm_desc:0 "A hive mind that raids other empires for their populations and their resources."
+civic_gk_ravager_swarm_effects:0 "$t$- Has the '§Y$casus_belli_cb_despoliation$§!' and '§Y$casus_belli_cb_pirate_raid$§!' casus belli on all other empires$TABBED_NEW_LINE$- $allow_raiding_base$$TABBED_NEW_LINE$- Unlocks the §Y$war_goal_wg_gk_reaping$§! war goal$TABBED_NEW_LINE$- $allow_gk_plundering$$TABBED_NEW_LINE$- §Y(If a nomad empire)§! Can build the three §Ypirate waystation§! modules: §Y$sm_waystation_pirate_hideout$§!, §Y$sm_waystation_concealment_field$§! and §Y$sm_waystation_reaver_stronghold$§!"
 
  # Councilor Display Names
  councilor_gk_emancipators:0 "Liberation Commander"
  councilor_gk_emancipators_desc:0 "Leads emancipation operations."
  councilor_gk_emancipators_megacorp:0 "Liberation Commander"
  councilor_gk_emancipators_megacorp_desc:0 "Leads emancipation operations."
- councilor_gk_robo_liberators:0 "Synthetic Rights Advocate"
- councilor_gk_robo_liberators_desc:0 "Deprecated civic councilor."
- councilor_gk_robo_liberators_megacorp:0 "Synthetic Rights Advocate"
- councilor_gk_robo_liberators_megacorp_desc:0 "Deprecated civic councilor."
  councilor_gk_barbaric_despoilers_megacorp:0 "Renderings Director"
  councilor_gk_barbaric_despoilers_megacorp_desc:0 "Oversees population harvesting operations."
 

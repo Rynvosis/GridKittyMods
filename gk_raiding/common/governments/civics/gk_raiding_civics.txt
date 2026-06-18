@@ -202,6 +202,103 @@ civic_gk_barbaric_despoilers_megacorp = {
 	modification = yes
 }
 
-# gestalt civics:
-# - the best place for hive civics is likely going to be adding raiding to the existing bodysnatchers civic
-# That will need overwrite of the locs and we can just pretends its a raiding civic in all our internal triggers. Probably organic only raiding by default? they dont need machines
+##############################
+# REAVERS (Standard)         #
+##############################
+# Normal-empire resource-raider. Native plundering + Plunderer trait + (Overlord) +1 enclave capacity.
+# Mirrors vanilla Letters of Marque (civic_crusader_spirit_corporate) for the megacorp side.
+civic_gk_reavers = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_reavers_effects
+
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+
+	possible = {
+		is_nomadic = no # Nomad empires use Void Reavers instead.
+		ethics = {
+			OR = {
+				text = civic_tooltip_authoritarian_or_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+			}
+			NOR = {
+				text = civic_tooltip_not_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_militarist
+		}
+	}
+
+	modifier = {
+		ships_upkeep_mult = -0.05
+	}
+
+	# With Overlord, the civic ALSO grants +1 enclave capacity. swap_type modifiers stack on top of the
+	# base modifier (they don't replace it), so the base -5% ship upkeep persists — mirrors vanilla
+	# Letters of Marque, whose Overlord swap_type likewise lists only the enclave-capacity delta.
+	swap_type = {
+		trigger = {
+			host_has_dlc = "Overlord"
+		}
+		description = civic_gk_reavers_effects
+		modifier = {
+			country_enclave_capacity_add = 1
+		}
+	}
+
+	modification = yes
+}
+
+##############################
+# RAVAGER SWARM (Hive)       #
+##############################
+# Hive combined pop+resource raider (replaces the old Bodysnatcher raiding hack). Livestock/biomass twist:
+# consumes raided pops via purge for workforce + food.
+civic_gk_ravager_swarm = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	description = civic_gk_ravager_swarm_effects
+
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_hive_devouring_swarm
+			}
+		}
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 0
+			has_global_flag = game_started
+		}
+	}
+
+	modification = no
+
+	modifier = {
+		pop_cat_purge_bonus_workforce_mult = 1.00
+		planet_jobs_food_produces_mult = 0.10
+	}
+}
