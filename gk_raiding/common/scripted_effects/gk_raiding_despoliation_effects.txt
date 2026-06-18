@@ -1,6 +1,61 @@
 # GK Raiding Despoliation Effects
 
-# This = leader scope
+# This = leader. Grants the Plunderer trait once to an eligible commander.
+# Used by the Acquisitive Officers tradition (as one of its three options) AND the Reavers civic (via
+# gk_raiding_grant_civic_commander_trait). Corsair Protocol grants Shipbreaker instead; Ravager Swarm
+# grants no leader trait.
+gk_raiding_grant_plunderer_trait = {
+	if = {
+		limit = {
+			leader_class = commander
+			is_xenophile = no
+			is_pacifist = no
+			NOT = { has_leader_flag = gk_raiding_plunderer_applied }
+			NOR = {
+				has_trait = leader_trait_plunderer
+				has_trait = leader_trait_plunderer_2
+			}
+		}
+		set_leader_flag = gk_raiding_plunderer_applied
+		give_trait_no_notify_ignore_autocracy_restriction = {
+			TRAIT = leader_trait_plunderer
+		}
+	}
+}
+
+# This = leader. Grants the Shipbreaker trait once to an eligible commander (Corsair Protocol civic).
+# Corsair Protocol is a machine intelligence, so no xenophile/pacifist gate — granted to any commander.
+gk_raiding_grant_shipbreaker_trait = {
+	if = {
+		limit = {
+			leader_class = commander
+			NOT = { has_leader_flag = gk_raiding_shipbreaker_applied }
+			NOR = {
+				has_trait = leader_trait_shipbreaker
+				has_trait = leader_trait_shipbreaker_2
+			}
+		}
+		set_leader_flag = gk_raiding_shipbreaker_applied
+		give_trait_no_notify_ignore_autocracy_restriction = {
+			TRAIT = leader_trait_shipbreaker
+		}
+	}
+}
+
+# This = leader. Grants the commander trait appropriate to the empire's resource-raid civic.
+# Reavers → Plunderer.  Corsair Protocol → Shipbreaker.  (Ravager Swarm grants no leader trait.)
+gk_raiding_grant_civic_commander_trait = {
+	if = {
+		limit = { owner = { has_valid_civic = civic_gk_corsair_protocol } }
+		gk_raiding_grant_shipbreaker_trait = yes
+	}
+	else_if = {
+		limit = { owner = { has_valid_civic = civic_gk_reavers } }
+		gk_raiding_grant_plunderer_trait = yes
+	}
+}
+
+# This = leader scope. Fired only for Acquisitive Officers (tr_gk_raiding_despoliation_5) holders.
 gk_raiding_grant_despoliation_commander_trait = {
 	if = {
 		limit = {
@@ -10,6 +65,10 @@ gk_raiding_grant_despoliation_commander_trait = {
 
 		set_leader_flag = gk_raiding_despoliation_trait_applied
 
+		# Plunderer / Corsair / Shipbreaker — Acquisitive Officers tradition only (this effect is fired
+		# only by the tradition-gated gk_raiding_misc.110/.112). The commander gains ONE of the three.
+		# Plunderer is weighted to 0 when the leader can't take it (xenophile/pacifist or already has it),
+		# falling back to a 50/50 Corsair/Shipbreaker pick.
 		if = {
 			limit = {
 				NOR = {
@@ -20,6 +79,18 @@ gk_raiding_grant_despoliation_commander_trait = {
 				}
 			}
 			random_list = {
+				50 = {
+					modifier = {
+						factor = 0
+						OR = {
+							is_xenophile = yes
+							is_pacifist = yes
+							has_trait = leader_trait_plunderer
+							has_trait = leader_trait_plunderer_2
+						}
+					}
+					gk_raiding_grant_plunderer_trait = yes
+				}
 				50 = {
 					give_trait_no_notify_ignore_autocracy_restriction = {
 						TRAIT = leader_trait_corsair
@@ -118,42 +189,5 @@ gk_raiding_apply_despoliation_commander_traits = {
 
 	every_pool_leader = {
 		gk_raiding_grant_despoliation_commander_trait = yes
-	}
-}
-
-# This = country scope
-# Prev = planet that just took devastation
-gk_gain_despoliation_devastation_unity = {
-	if = {
-		limit = {
-			has_tradition = tr_gk_raiding_despoliation_3
-		}
-		export_resource_income_to_variable = {
-			resource = unity
-			variable = gk_despoliation_unity_reward
-		}
-		if = {
-			limit = {
-				check_variable = { which = gk_despoliation_unity_reward value > 0 }
-			}
-			multiply_variable = {
-				which = gk_despoliation_unity_reward
-				value = prev.local_devastation
-			}
-			divide_variable = {
-				which = gk_despoliation_unity_reward
-				value = @gk_pillage_devastation_per_packet
-			}
-			if = {
-				limit = {
-					check_variable = { which = gk_despoliation_unity_reward value > 0 }
-				}
-				add_resource = {
-					unity = 1
-					mult = gk_despoliation_unity_reward
-				}
-			}
-		}
-		clear_variable = gk_despoliation_unity_reward
 	}
 }

@@ -30,7 +30,7 @@ tradition_gk_raiding_despoliation = {
 		}
 		modifier = {
 			factor = 2
-			gk_has_native_pillage_access = yes
+			gk_has_native_plunder_access = yes
 		}
 		modifier = {
 			factor = 2

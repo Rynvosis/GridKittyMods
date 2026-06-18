@@ -1,0 +1,46 @@
+# GK Raiding — Despoliation tradition tree on_actions.
+#
+# tr_1 Raider's Fervor kill-unity (.1 ship, .2 army) and tr_3 Restless Raiders
+# war-window stability flags (.10/.11/.12).
+#
+# NOTE: the contract named "on_ship_destroyed", but that on_action does not exist
+# in vanilla. The vanilla Crusader trait (paragon_2.1005) is hooked from
+# on_ship_destroyed_perp (perpetrator = owner of the winning ship), so we hook there
+# too. Stellaris merges events = {} for the same on_action across files, so this
+# coexists with the on_ship_destroyed_perp block in gk_raiding_misc_on_actions.txt.
+
+# This = owner of winning ship, From = owner of destroyed ship,
+# FromFrom = winning ship, FromFromFrom = destroyed ship.
+on_ship_destroyed_perp = {
+	events = {
+		gk_raiding_despoliation.1   # tr_1 Raider's Fervor — unity per ship kill
+	}
+}
+
+# This = owner, From = killed army, FromFrom = opponent, FromFromFrom = colony.
+on_army_killed_in_combat = {
+	events = {
+		gk_raiding_despoliation.2   # tr_1 Raider's Fervor — unity per army kill
+	}
+}
+
+# Root = Country (every participant), From = War.
+on_war_beginning = {
+	events = {
+		gk_raiding_despoliation.10  # tr_3 Restless Raiders — open war window
+	}
+}
+
+# Root = Loser, From = Main Winner.
+on_war_ended = {
+	events = {
+		gk_raiding_despoliation.11  # tr_3 Restless Raiders — recent-war flag
+	}
+}
+
+# Root = Winner Warleader, From = Loser Warleader, FromFrom = War.
+on_war_won = {
+	events = {
+		gk_raiding_despoliation.12  # tr_3 Restless Raiders — recent-victory flag
+	}
+}

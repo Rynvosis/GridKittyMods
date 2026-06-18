@@ -10,3 +10,60 @@ gk_despoliation_shipkill_trait_mult = {
 		}
 	}
 }
+
+# Forward Raiding Base (tr_gk_raiding_despoliation_2) per-tick skim percentage.
+# Evaluated in PLANET scope: `owner` is the victim country, event_target:gk_forward_base_raider is the
+# raiding country. Base skim is doubled when the victim's owner is a declared rival of the raider.
+gk_forward_base_raid_percentage = {
+	base = @gk_forward_base_raid_pct
+}
+
+# Void Reavers swap (tr_gk_raiding_despoliation_2): pirate-waystation piracy skim percentage, used by the
+# nomads.5010 overwrite (events/zz_gk_raiding_void_reaver_piracy_OW.txt). Evaluated in PLANET scope (the
+# colony being skimmed); root = the waystation starbase, root.owner = the pirate patron.
+gk_waystation_piracy_pct = {
+	base = @gk_waystation_piracy_base
+	# Reaver stronghold module → vanilla 3% (0.015 + 0.015).
+	modifier = {
+		root.owner = {
+			any_owned_fleet = {
+				is_waystation_ship = yes
+				starbase = { has_starbase_module = waystation_reaver_stronghold }
+			}
+		}
+		add = @gk_waystation_piracy_base
+	}
+	# Forward Raiding Bases tradition → +50%.
+	modifier = {
+		root.owner = { has_tradition = tr_gk_raiding_despoliation_2 }
+		multiply = @gk_void_reaver_piracy_mult
+	}
+}
+
+# floor(loser's ACQUIRED specimens / 9), min 1 — used by gk_steal_specimens on a surrender. Evaluated on
+# the raider; reads the loser's count via trigger_scope. Uses acquired_specimen_count (count of ACQUIRED
+# specimens — count_exhibit would undercount, since not all acquired specimens are exhibited).
+# NOTE (verify in-game): trigger_scope = event_target and steal_specimens' count = value: ; if error.log
+# objects, fall back to a one-shot exported variable + a `while` loop.
+gk_specimen_steal_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = acquired_specimen_count
+		trigger_scope = event_target:gk_raidee
+		mode = add
+	}
+	divide = 9
+	floor = yes
+	min = 1
+}
+
+# Count of STEALABLE relics the (target) country owns = num_owned_relics minus the 4 can_be_stolen=no
+# relics. Gates the Steal Relic war goal (steal_relic { relic = random } only takes stealable ones).
+# Evaluated in the target country scope.
+gk_stealable_relic_count = {
+	add = trigger:num_owned_relics
+	modifier = { has_relic = r_the_rulerchip          subtract = 1 }
+	modifier = { has_relic = r_pyroglyphic_codex       subtract = 1 }
+	modifier = { has_relic = r_crystallized_singularity subtract = 1 }
+	modifier = { has_relic = r_cfl_trophy             subtract = 1 }
+}

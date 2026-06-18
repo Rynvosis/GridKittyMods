@@ -1,0 +1,144 @@
+###############################################################
+#                                                             #
+#  GK Raiding — Despoliation tradition tree events.           #
+#                                                             #
+#  tr_1 Raider's Fervor : unity per destroyed enemy ship/army #
+#                         (scaled by used naval capacity),     #
+#                         mirroring the vanilla Crusader trait. #
+#  tr_3 Restless Raiders : war-window stability flags.         #
+#                                                             #
+###############################################################
+
+namespace = gk_raiding_despoliation
+
+# tr_1 Raider's Fervor — unity on destroying an enemy ship.
+# Hooked from on_ship_destroyed_perp (the vanilla Crusader trait, paragon_2.1005,
+# is hooked there too — NOT from a literal "on_ship_destroyed", which does not exist).
+# This        = owner of winning ship (combatant)
+# From        = owner of destroyed ship
+# FromFrom    = winning ship
+# FromFromFrom = destroyed ship
+# Logic copied from the Crusader branch of paragon_2.1005, gated on the tradition
+# instead of a leader trait. Scales unity off the destroyed ship's used naval cap
+# via value:trait_kill_naval_cap_scaling (which reads event_target:paragon_destroyed_ship).
+country_event = {
+	id = gk_raiding_despoliation.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Gate in the trigger so the event short-circuits on the vast majority of galaxy-wide ship kills
+	# (by empires without the tradition) before doing any work in immediate.
+	trigger = {
+		has_tradition = tr_gk_raiding_despoliation_1
+		from = { is_default_or_fallen = yes } # Owner of losing ship.
+	}
+
+	immediate = {
+		# Cache the destroyed ship so the reward can scale off its used naval capacity.
+		fromfromfrom = { save_event_target_as = paragon_destroyed_ship }
+		# This = owner of winning ship.
+		add_resource = {
+			unity = @gk_despoliation_kill_unity
+			mult = value:trait_kill_naval_cap_scaling|MULT|1|
+		}
+	}
+}
+
+# tr_1 Raider's Fervor — unity on killing an enemy army in ground combat.
+# Hooked from on_army_killed_in_combat. Logic copied from the Crusader branch of
+# paragon_2.1040, gated on the tradition instead of a leader trait.
+# This         = owner
+# From         = army (the killed army)
+# FromFrom     = opponent
+# FromFromFrom = colony where ground combat is taking place
+country_event = {
+	id = gk_raiding_despoliation.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Gate in the trigger so most galaxy-wide army kills short-circuit before the defender/attacker
+	# iteration: the dead army must be a defender (an attacker won) and some attacker must belong to a
+	# Raider's Fervor empire.
+	trigger = {
+		fromfromfrom = {
+			any_ground_combat_defender = { is_same_value = root.from }
+			any_ground_combat_attacker = {
+				owner = { has_tradition = tr_gk_raiding_despoliation_1 }
+			}
+		}
+	}
+
+	immediate = {
+		fromfromfrom = {
+			# Award Unity directly to the attacking Raider's Fervor empire (inline, no saved target, so a
+			# later army kill with no qualifying attacker can't re-award a stale empire).
+			random_ground_combat_attacker = {
+				limit = {
+					exists = owner
+					owner = { has_tradition = tr_gk_raiding_despoliation_1 }
+				}
+				owner = {
+					add_resource = {
+						unity = @gk_despoliation_kill_unity
+					}
+				}
+			}
+		}
+	}
+}
+
+#####################################################################
+# tr_3 Restless Raiders — war-window stability flags.               #
+# Flags consumed by triggered_modifiers on tr_gk_raiding_despoliation_3. #
+#####################################################################
+
+# on_war_beginning — Root = Country (fires for every country in the war), From = War.
+# Open the 20-year war window when a Restless Raider enters any war.
+country_event = {
+	id = gk_raiding_despoliation.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_tradition = tr_gk_raiding_despoliation_3
+	}
+
+	immediate = {
+		set_timed_country_flag = { flag = gk_rr_war_window days = @gk_rr_window_days }
+	}
+}
+
+# on_war_ended — Root = Loser, From = Main Winner.
+# A Restless Raider that just ended a war counts as recently at war.
+country_event = {
+	id = gk_raiding_despoliation.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_tradition = tr_gk_raiding_despoliation_3
+	}
+
+	immediate = {
+		set_timed_country_flag = { flag = gk_rr_recent_war days = @gk_rr_recent_days }
+		set_timed_country_flag = { flag = gk_rr_war_window days = @gk_rr_window_days }
+	}
+}
+
+# on_war_won — Root = Winner Warleader, From = Loser Warleader, FromFrom = War.
+# A victorious Restless Raider gets the recent-victory stability bonus.
+country_event = {
+	id = gk_raiding_despoliation.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_tradition = tr_gk_raiding_despoliation_3
+	}
+
+	immediate = {
+		set_timed_country_flag = { flag = gk_rr_recent_victory days = @gk_rr_recent_days }
+		set_timed_country_flag = { flag = gk_rr_recent_war days = @gk_rr_recent_days }
+		set_timed_country_flag = { flag = gk_rr_war_window days = @gk_rr_window_days }
+	}
+}
