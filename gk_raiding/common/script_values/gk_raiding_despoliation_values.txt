@@ -18,28 +18,6 @@ gk_forward_base_raid_percentage = {
 	base = @gk_forward_base_raid_pct
 }
 
-# Void Reavers swap (tr_gk_raiding_despoliation_2): pirate-waystation piracy skim percentage, used by the
-# nomads.5010 overwrite (events/zz_gk_raiding_void_reaver_piracy_OW.txt). Evaluated in PLANET scope (the
-# colony being skimmed); root = the waystation starbase, root.owner = the pirate patron.
-gk_waystation_piracy_pct = {
-	base = @gk_waystation_piracy_base
-	# Reaver stronghold module → vanilla 3% (0.015 + 0.015).
-	modifier = {
-		root.owner = {
-			any_owned_fleet = {
-				is_waystation_ship = yes
-				starbase = { has_starbase_module = waystation_reaver_stronghold }
-			}
-		}
-		add = @gk_waystation_piracy_base
-	}
-	# Forward Raiding Bases tradition → +50%.
-	modifier = {
-		root.owner = { has_tradition = tr_gk_raiding_despoliation_2 }
-		multiply = @gk_void_reaver_piracy_mult
-	}
-}
-
 # floor(loser's ACQUIRED specimens / 9), min 1 — used by gk_steal_specimens on a surrender. Evaluated on
 # the raider; reads the loser's count via trigger_scope. Uses acquired_specimen_count (count of ACQUIRED
 # specimens — count_exhibit would undercount, since not all acquired specimens are exhibited).

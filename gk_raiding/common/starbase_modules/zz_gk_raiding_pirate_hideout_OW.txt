@@ -1,0 +1,103 @@
+# Version last updated: 4.4.4
+# Overwrite of vanilla waystation_pirate_hideout (common/starbase_modules/00_waystation_modules.txt).
+# Changed: added one triggered_station_modifier granting tr_2 Void Reavers +50% colony collection.
+# Everything else is verbatim vanilla.
+waystation_pirate_hideout = {
+	icon = "GFX_waystation_pirate_hideout"
+	section = "HANGAR_STARBASE_SECTION"
+	construction_days = @waystation_build_time_180
+	starbase_type = waystation
+	category = sm_piracy_cat
+
+	starbase_limit = {
+		base = 1
+	}
+
+	potential = {
+		is_waystation_starbase = yes
+		exists = owner
+		can_build_pirate_waystation_module = yes
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = requires_colony_no
+			success_text = requires_colony
+			solar_system? = {
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+		}
+	}
+
+	collected_colony_resources = {
+		collection_type = steal
+		all = {
+			NOT = { from.owner = { is_same_value = root.owner } }
+		}
+	}
+
+	station_modifier = {
+		starbase_stockpile_capacity_add = @waystation_stockpile_1000
+		starbase_collected_colony_resources_add = 0.015
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			owner? = {
+				any_owned_fleet = {
+					is_waystation_ship = yes
+					starbase = { has_starbase_module = waystation_reaver_stronghold }
+				}
+			}
+		}
+		custom_tooltip = waystation_pirate_hideout_reaver_stronghold_tt
+		show_only_custom_tooltip = no
+		starbase_collected_colony_resources_add = 0.015
+	}
+
+	# gk_raiding: Void Reaver tr_2 Forward Raiding Bases buff. +0.015, same value/loc as the Reaver Stronghold.
+	triggered_station_modifier = {
+		potential = {
+			owner? = {
+				has_valid_civic = civic_void_reavers
+				has_tradition = tr_gk_raiding_despoliation_2
+			}
+		}
+		custom_tooltip = gk_waystation_pirate_hideout_void_reaver_tt
+		show_only_custom_tooltip = no
+		starbase_collected_colony_resources_add = 0.015
+	}
+
+	on_finished = {
+		#fire recurring monthly opinion event on system
+		if = {
+			limit = {
+				NOT = {
+					has_starbase_flag = piracy_collected
+				}
+			}
+			starbase_event = {
+				id = nomads.5010
+				days = 30
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_waystations_modules
+		cost = {
+			alloys = @waystation_cost_alloys_150
+		}
+		upkeep = {
+			trade = @waystation_upkeep_trade_8
+		}
+	}
+
+	custom_tooltip = waystation_pirate_hideout_tt
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}

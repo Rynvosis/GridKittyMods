@@ -1,8 +1,8 @@
 namespace = nomads
 
-# Version last updated: 4.4.3
+# Version last updated: 4.4.4
 # Overwrite of vanilla nomads.5005 (events/nomads_events_1.txt) — GK Raiding plunder loot.
-# Changed: target gating, no-booty weight, devastation cliff, steal percentage. Before-values inline.
+# Changed: target gating, devastation cliff, duplicate (not steal) doubled take, thief-only notify. Before-values inline.
 # This = Planet, From = Bombarder country
 carrier_event = {
 	id = nomads.5005
@@ -27,7 +27,7 @@ carrier_event = {
 		owner = { save_event_target_as = gk_plunder_victim }
 
 		random_list = {
-			5 = { # was 7.5 — No Booty, suppressed by planetary defenders
+			7.5 = { # No Booty, suppressed by planetary defenders
 				modifier = {
 					factor = trigger:num_armies
 				}
@@ -59,9 +59,9 @@ carrier_event = {
 					planet = this
 					who = FROM
 					resource = all
-					percentage = value:gk_plunder_percentage # was 0.4
-					mode = steal
-					notification_mode = both
+					percentage = value:gk_bombard_plunder_percentage # was 0.4
+					mode = duplicate # was steal; victim keeps their resources
+					notification_mode = thief # was both; only the raider is notified
 				}
 			}
 		}

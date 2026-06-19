@@ -161,19 +161,19 @@ All modifiers exclude fallen empires and homicidal empires. Ethics bonuses (egal
 
 ## Plundering
 
-Resource plundering is available to empires with **Barbaric Despoilers**, **Harvesting Protocol**, **Harvest Incorporated**, **Letters of Marque**, or the **Despoliation** tradition adoption. Plundering happens **through bombardment**: select the **Plundering** bombardment stance — vanilla's own stance, which the mod opens to any empire that can plunder (so there is one shared plunder stance, not a parallel mod one) — and you steal a slice of the planet's output each tick. The mod uses vanilla's `steal_planet_output` engine effect, so loot is the enemy's **actual resources**, scaled to the target's real economy.
+Resource plundering is available to empires with **Barbaric Despoilers**, **Harvesting Protocol**, **Harvest Incorporated**, **Letters of Marque**, or the **Despoliation** tradition adoption. Plundering happens **through bombardment**: select the **Plundering** bombardment stance — vanilla's own stance, which the mod opens to any empire that can plunder (so there is one shared plunder stance, not a parallel mod one) — and you skim a slice of the planet's output each tick. The mod uses vanilla's `steal_planet_output` engine effect, so loot is scaled to the target's real economy.
 
 Three loot vectors:
 
-- **Bombardment (Plundering stance):** each tick (throttled to once per 30 days per bombarding fleet, and suppressed by planetary defenders) steals a percentage of the planet's **current** monthly output. The take naturally tapers as devastation suppresses the planet's production — no devastation gate, no hard cliff. Percentage (capped at 100%):
+- **Bombardment (Plundering stance):** each tick (throttled to once per 30 days per bombarding fleet, and suppressed by planetary defenders) the raider **duplicates** a percentage of the planet's **current** monthly output into its own treasury. The victim keeps their resources, and only the raider is notified. The take naturally tapers as devastation suppresses the planet's production — no devastation gate, no hard cliff. The composed rate below is **doubled** for bombardment:
 
-| Source | Steal % |
+| Source | Rate |
 |--------|---------|
-| Base | 40% |
+| Base | 50% |
 | Plunder war goal (`wg_plunder_raid`) | +40% (or +20% if pivoted-to-plundering) |
 | Native despoilator | +20% |
 
-- **Invasion (conquest):** winning a ground invasion plunders **~a year's worth** of the planet's output in one shot (the same composition × 12 months, uncapped — drawn from the enemy's stockpile).
+- **Invasion (conquest):** winning a ground invasion plunders **~18 months' worth** of the planet's output in one shot (the same composition × 18 months, uncapped — taken from the enemy's stockpile).
 - **Surrender (Plunder war goal):** steals **50% of the loser's entire stockpile** (all stored resources).
 
 There is no post-war "Ransacked" colony debuff or re-plunder lockout — plundering simply tapers as devastation suppresses output, and a planet can be plundered again whenever it is producing.

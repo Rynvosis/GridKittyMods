@@ -106,10 +106,9 @@ tr_gk_raiding_despoliation_2 = {
 		trigger = {
 			has_valid_civic = civic_void_reavers
 		}
-		# The +50% piracy is applied by the nomads.5010 overwrite
-		# (events/zz_gk_raiding_void_reaver_piracy_OW.txt), gated on this tradition — NOT a modifier
-		# (starbase_collected_system_resources_mult would buff ALL of a starbase's resource collection,
-		# not the pirate skim).
+		# The +50% piracy is applied by the waystation_pirate_hideout overwrite
+		# (common/starbase_modules/zz_gk_raiding_pirate_hideout_OW.txt): a triggered_station_modifier
+		# gated on this tradition + civic_void_reavers adds to starbase_collected_colony_resources_add.
 		custom_tooltip = GK_RAIDING_TR_GK_RAIDING_DESPOLIATION_2_VOID_REAVERS_EFFECT
 		weight = {
 			factor = 1

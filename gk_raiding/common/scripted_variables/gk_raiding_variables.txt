@@ -63,7 +63,8 @@
 @gk_plunder_pct_pivot = 0.20           # + instead of the war bonus when pivoted-to-plundering
 @gk_plunder_pct_native = 0.20          # + for native despoilators
 @gk_plunder_throttle_days = 30         # one steal per planet per raider per N days (wired into the loot event)
-@gk_plunder_invasion_months = 12       # invasion one-shot steals (composition x this) months of output (distinct from pop-raid @gk_invasion_months)
+@gk_bombard_plunder_mult = 2           # bombardment plunder uses duplicate mode (victim keeps theirs), so the take is doubled
+@gk_plunder_invasion_months = 18       # invasion one-shot steals (composition x this) months of output (distinct from pop-raid @gk_invasion_months)
 @gk_surrender_stockpile_pct = 0.5      # surrender steals this fraction of the loser's stockpile
 @gk_privateer_steal_pct = 0.40         # privateer raid steals this fraction of output into the raider's stockpile
 
@@ -79,9 +80,8 @@
 @gk_forward_base_radius = 3              # raid radius in hyperlane jumps (compile-time @-constant; range can't scale at runtime)
 @gk_forward_base_skim_days = 29          # skim cadence in days (matches the vanilla waystation cycle)
 
-# tr_2 Void Reavers swap — pirate-waystation piracy buff (overwrites vanilla nomads.5010)
-@gk_waystation_piracy_base = 0.015       # vanilla base piracy skim (becomes 0.03 with a reaver stronghold)
-@gk_void_reaver_piracy_mult = 1.5        # +50% piracy for Forward Raiding Bases (tr_2) Void Reavers
+# tr_2 Void Reavers swap — the +50% pirate-waystation buff lives on the waystation_pirate_hideout
+# overwrite (common/starbase_modules/zz_gk_raiding_pirate_hideout_OW.txt), not a script value.
 
 # tr_3 Restless Raiders — war-window stability flags
 @gk_rr_recent_days = 3650                # gk_rr_recent_war / gk_rr_recent_victory duration (10 years)

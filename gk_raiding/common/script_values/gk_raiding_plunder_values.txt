@@ -44,7 +44,15 @@ gk_plunder_percentage = {
 	min = 0
 }
 
-# Invasion one-shot: same composition, scaled to a year of output. Uncapped — steal_planet_output draws
+# Bombardment plunder: same composition, doubled. Bombardment uses duplicate mode (the victim keeps their
+# resources), so the raider's take is multiplied to keep raiding rewarding. Evaluated in PLANET scope.
+gk_bombard_plunder_percentage = {
+	base = 0
+	add = value:gk_plunder_percentage
+	multiply = @gk_bombard_plunder_mult
+}
+
+# Invasion one-shot: same composition, scaled to 18 months of output. Uncapped — steal_planet_output draws
 # from the victim's country stockpile, so > 100% is valid.
 gk_invasion_percentage = {
 	base = 0
