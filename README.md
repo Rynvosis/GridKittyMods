@@ -24,13 +24,6 @@ tools/           Python tooling — showcase image rendering, generators
 assets/          Shared icons and source art
 ```
 
-## Conventions
-
-- `OW` filename suffix marks a partial or full overwrite of vanilla content.
-- Localisation files are UTF-8 **with BOM**; concepts use `['concept_name']` syntax.
-- Script values are preferred over temporary variables on persistent scopes.
-- Conventional commits scoped per mod, e.g. `feat(gk_raiding):`, `fix(gk_ec):`.
-
 ## Tooling
 
 `tools/` contains Python utilities for the suite, including a showcase-image renderer and content generators used to keep Workshop art and documentation in sync with the mod data.
