@@ -1,7 +1,8 @@
-# War Engineers — Research-military hybrid
-# Engineering and science in service of war
+# Destructive Engineering — destruction as an applied discipline
+# Explosive ordnance, bombardment, and collateral wrecking
+# Adds tech_missiles_2 as a research option at game start (see gk_ec_civic.500)
 
-civic_gk_ec_war_engineers = {
+civic_gk_ec_destructive_engineering = {
 	playable = { always = yes }
 	ai_playable = { always = yes }
 
@@ -32,19 +33,20 @@ civic_gk_ec_war_engineers = {
 		}
 	}
 
+	description = civic_gk_ec_destructive_engineering_effects
+
 	modifier = {
-		ship_hull_mult = 0.10
-		ship_weapon_damage = 0.05
-		category_military_theory_research_speed_mult = 0.25
-		ships_upkeep_mult = 0.10
+		weapon_type_explosive_weapon_damage_mult = 0.10
+		ship_orbital_bombardment_mult = 0.33
+		army_collateral_damage_mult = 0.25
 	}
 
-	alternate_civic_version = civic_gk_ec_war_engineers_megacorp
+	alternate_civic_version = civic_gk_ec_destructive_engineering_megacorp
 
 	modification = yes
 }
 
-civic_gk_ec_war_engineers_megacorp = {
+civic_gk_ec_destructive_engineering_megacorp = {
 	playable = { always = yes }
 	ai_playable = { always = yes }
 
@@ -67,19 +69,20 @@ civic_gk_ec_war_engineers_megacorp = {
 		base = @ai_civic_default_base_weight
 	}
 
+	description = civic_gk_ec_destructive_engineering_effects
+
 	modifier = {
-		ship_hull_mult = 0.10
-		ship_weapon_damage = 0.05
-		category_military_theory_research_speed_mult = 0.25
-		ships_upkeep_mult = 0.10
+		weapon_type_explosive_weapon_damage_mult = 0.10
+		ship_orbital_bombardment_mult = 0.33
+		army_collateral_damage_mult = 0.25
 	}
 
-	alternate_civic_version = civic_gk_ec_war_engineers
+	alternate_civic_version = civic_gk_ec_destructive_engineering
 
 	modification = yes
 }
 
-civic_gk_ec_war_engineers_hive = {
+civic_gk_ec_destructive_engineering_hive = {
 	playable = { always = yes }
 	ai_playable = { always = yes }
 
@@ -89,16 +92,17 @@ civic_gk_ec_war_engineers_hive = {
 
 	random_weight = { base = @civic_default_random_weight }
 
+	description = civic_gk_ec_destructive_engineering_effects
+
 	modifier = {
-		ship_hull_mult = 0.10
-		ship_weapon_damage = 0.05
-		category_military_theory_research_speed_mult = 0.25
-		ships_upkeep_mult = 0.10
+		weapon_type_explosive_weapon_damage_mult = 0.10
+		ship_orbital_bombardment_mult = 0.33
+		army_collateral_damage_mult = 0.25
 		councilor_gestalt_legion_exp_gain = @gestalt_civic_node_xp_rate
 	}
 }
 
-civic_gk_ec_war_engineers_machine = {
+civic_gk_ec_destructive_engineering_machine = {
 	playable = { always = yes }
 	ai_playable = { always = yes }
 
@@ -108,11 +112,12 @@ civic_gk_ec_war_engineers_machine = {
 
 	random_weight = { base = @civic_default_random_weight }
 
+	description = civic_gk_ec_destructive_engineering_effects
+
 	modifier = {
-		ship_hull_mult = 0.10
-		ship_weapon_damage = 0.05
-		category_military_theory_research_speed_mult = 0.25
-		ships_upkeep_mult = 0.10
+		weapon_type_explosive_weapon_damage_mult = 0.10
+		ship_orbital_bombardment_mult = 0.33
+		army_collateral_damage_mult = 0.25
 		councilor_gestalt_legion_exp_gain = @gestalt_civic_node_xp_rate
 	}
 }

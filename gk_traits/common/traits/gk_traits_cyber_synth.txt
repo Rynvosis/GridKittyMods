@@ -1,0 +1,68 @@
+# gk_traits CYBER/SYNTH suite
+#
+# Mirrors the vanilla psionic-trait pattern (see 17_shroud_species_traits.txt):
+#   species_class      = { CYBERNETIC }   (vanilla ship-set-only class; nothing
+#                                          matches it by class, so portrait_override
+#                                          is the actual gate)
+#   portrait_override  = { <all CYBER + SYNTH + MACHINE_ROBOT portraits> }
+#
+# When the sheet changes the CYBSYNTH portrait list, regenerate it with
+# `python3 tools/build_gate_lists.py` and paste the CYBSYNTH block into
+# every portrait_override below.
+
+trait_gk_marker_cybsynth = {
+	cost = 0
+	initial = yes
+	randomized = no
+	species_potential_add = { always = yes }
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { CYBERNETIC }
+	portrait_override = {
+		aqu_machine avi15 bio12 cyb1 cyb10 cyb11 cyb12 cyb13
+		cyb2 cyb3 cyb4 cyb5 cyb6 cyb7 cyb8 cyb9
+		cyb_machine default_robot humanoid_hp_10 inf4 lith_machine nec2 nec8 nec9
+		nec_machine sd_art_robot sd_avi_robot sd_fun_robot sd_hum_robot sd_mam_robot sd_mol_robot sd_pla_robot
+		sd_rep_robot synth01 synth02 synth03 synth04 synth05 synth06 synth07
+		synth08 synth09 synth_machine_01 synth_machine_02 synth_machine_03 synth_machine_04 synth_machine_05 synth_machine_06
+		synth_machine_07 synth_machine_08 synth_machine_09 tox1 tox13 tox14 tox_machine
+	}
+	tags = { organic positive marker special }
+	ai_weight = { weight = 0 }
+}
+
+# Tinkerer
+# Engineer/roboticist workforce uplift at the cost of biologist/physicist output.
+# Placeholder content for the eventual CYBER/SYNTH positive suite.
+trait_gk_tinkerer = {
+	cost = 2
+	initial = yes
+	randomized = yes
+	species_potential_add = { always = yes }
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	species_possible_merge_remove = { always = yes }
+	opposites = { }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { CYBERNETIC }
+	portrait_override = {
+		aqu_machine avi15 bio12 cyb1 cyb10 cyb11 cyb12 cyb13
+		cyb2 cyb3 cyb4 cyb5 cyb6 cyb7 cyb8 cyb9
+		cyb_machine default_robot humanoid_hp_10 inf4 lith_machine nec2 nec8 nec9
+		nec_machine sd_art_robot sd_avi_robot sd_fun_robot sd_hum_robot sd_mam_robot sd_mol_robot sd_pla_robot
+		sd_rep_robot synth01 synth02 synth03 synth04 synth05 synth06 synth07
+		synth08 synth09 synth_machine_01 synth_machine_02 synth_machine_03 synth_machine_04 synth_machine_05 synth_machine_06
+		synth_machine_07 synth_machine_08 synth_machine_09 tox1 tox13 tox14 tox_machine
+	}
+	tags = { organic positive drawbacks research }
+	modifier = {
+		pop_engineer_bonus_workforce_mult = 0.20
+		pop_roboticist_bonus_workforce_mult = 0.10
+		pop_biologist_workforce_mult = -0.10
+		pop_physicist_workforce_mult = -0.10
+	}
+	slave_cost = {
+		energy = 1000
+	}
+}

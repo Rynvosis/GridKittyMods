@@ -1,0 +1,114 @@
+# Overwrite vanilla Galvanic Symbiosis civics to drop the INF (Infernal) species_class restriction.
+
+civic_galvanic_symbiosis = {
+	modification = {
+		add = {
+			hidden_trigger = { has_civic = civic_corporate_galvanic_symbiosis }
+		}
+		remove = { always = no }
+	}
+	alternate_civic_version = civic_corporate_galvanic_symbiosis
+	playable = { has_infernals = yes }
+	ai_playable = { has_infernals = yes }
+	description = "civic_galvanic_symbiosis_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+	possible = {
+		origin = {
+			NOT = {
+				value = origin_synthetic_fertility
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_beastmasters
+			}
+		}
+	}
+	modifier = {
+		planet_building_refund_mult = 0.75
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Infernals Species Pack" }
+		}
+	}
+}
+
+civic_hive_galvanic_symbiosis = {
+	modification = no
+	playable = { has_infernals = yes }
+	ai_playable = { has_infernals = yes }
+	description = "civic_hive_galvanic_symbiosis_effects"
+	potential = { authority = { value = auth_hive_mind } }
+	possible = {
+		origin = {
+			NOR = {
+				value = origin_wilderness
+				value = origin_synthetic_fertility
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_hive_beastmasters
+			}
+		}
+	}
+	modifier = {
+		planet_building_refund_mult = 0.75
+		councilor_gestalt_growth_exp_gain = @gestalt_civic_node_xp_rate
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Infernals Species Pack" }
+		}
+	}
+}
+
+civic_corporate_galvanic_symbiosis = {
+	modification = {
+		add = {
+			hidden_trigger = { has_civic = civic_galvanic_symbiosis }
+		}
+		remove = { always = no }
+	}
+	alternate_civic_version = civic_galvanic_symbiosis
+	playable = { has_infernals = yes }
+	ai_playable = { has_infernals = yes }
+	description = "civic_corporate_galvanic_symbiosis_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		OR = {
+			authority = { value = auth_corporate }
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		origin = {
+			NOT = {
+				value = origin_synthetic_fertility
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_corporate_beastmasters
+			}
+		}
+	}
+	modifier = {
+		planet_building_refund_mult = 0.75
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Infernals Species Pack" }
+		}
+	}
+}

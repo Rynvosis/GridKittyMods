@@ -63,5 +63,8 @@ gk_forward_base_valid_target = {
 # steal_relic { relic = random } would actually take something. value:gk_stealable_relic_count is
 # num_owned_relics minus the 4 can_be_stolen=no relics.
 gk_target_has_stealable_relic = {
-	gk_stealable_relic_count > 0
+	check_variable_arithmetic = {
+		which = value:gk_stealable_relic_count
+		value > 0
+	}
 }

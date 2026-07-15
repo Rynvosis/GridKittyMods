@@ -22,6 +22,7 @@ planet_organic_batteries = {
 	}
 	generate_mult_modifiers = {
 		produces
+		upkeep
 	}
 #	 Inherited Modifiers
 	triggered_produces_modifier = {

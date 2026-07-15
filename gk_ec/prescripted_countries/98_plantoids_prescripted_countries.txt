@@ -1,5 +1,6 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # OW: All empires updated with 4th ethic point (Individualist/Collectivist) and 3rd civic for gk_ec compatibility
+
 # Maweer
 maweer = {
 	name = "EMPIRE_DESIGN_maweer"

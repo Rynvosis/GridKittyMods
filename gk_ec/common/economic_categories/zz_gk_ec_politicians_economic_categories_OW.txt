@@ -1,6 +1,11 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # Overwrites: planet_politicians
 # Reason: Inherit soldier produces/upkeep modifiers for Stratocracy civic
+# Body synced to vanilla 4.4.5: restore planet_sacred_path_elites triggered modifiers
+# Policy: economic category overwrites generate the full add/mult x produces/upkeep
+# matrix even where vanilla generates a subset, so a mod overwriting this category
+# after us still finds every modifier it expects. The engine logs the unused ones as
+# "never used from script"; that warning is intentional, do not trim the generate blocks.
 
 planet_politicians = {
 	parent = planet_jobs_ruler
@@ -13,13 +18,43 @@ planet_politicians = {
 		upkeep
 	}
 	triggered_produces_modifier = {
+		key = planet_sacred_path_elites
+		modifier_types = {
+			add
+		}
+		trigger = {
+			exists = planet
+			planet = {
+				politician_is_sacred_path_elite = yes
+			}
+		}
+		use_parent_icon = yes
+	}
+	triggered_upkeep_modifier = {
+		key = planet_sacred_path_elites
+		modifier_types = {
+			add
+		}
+		trigger = {
+			exists = planet
+			planet = {
+				politician_is_sacred_path_elite = yes
+			}
+		}
+		use_parent_icon = yes
+	}
+	## GK EC Stratocracy: inherit soldier produces/upkeep modifiers
+	triggered_produces_modifier = {
 		key = planet_soldiers
 		modifier_types = {
 			add
 			mult
 		}
 		trigger = {
-			politician_is_stratocrat = yes
+			exists = planet
+			planet = {
+				politician_is_stratocrat = yes
+			}
 		}
 		use_parent_icon = yes
 	}
@@ -30,7 +65,10 @@ planet_politicians = {
 			mult
 		}
 		trigger = {
-			politician_is_stratocrat = yes
+			exists = planet
+			planet = {
+				politician_is_stratocrat = yes
+			}
 		}
 		use_parent_icon = yes
 	}

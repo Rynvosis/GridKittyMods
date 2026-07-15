@@ -1,3 +1,4 @@
+# Version last updated: 4.4.5
 # Overwrite vanilla ap_synthetic_evolution to remove the is_galvanic_empire block.
 # With civic_galvanic_symbiosis (and corp/hive variants) no longer requiring species_class = INF,
 # the original cascade reason for this restriction is gone.
@@ -66,10 +67,6 @@ ap_synthetic_evolution = {
 	}
 
 	potential = {
-		OR = {
-			has_utopia = yes
-			has_machine_age_dlc = yes
-		}
 		NOR = {
 			has_ascension_perk = ap_synthetic_evolution
 			is_machine_empire = yes

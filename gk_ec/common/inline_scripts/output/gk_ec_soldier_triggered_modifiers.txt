@@ -1,0 +1,156 @@
+# Version last updated: 4.4.5
+# GK EC private copy of vanilla output/soldier_triggered_modifiers, NOT an overwrite.
+# Does not touch the shared vanilla soldier inline script, so if this drifts only Stratocracy breaks,
+# never every empire's soldier jobs. Resync the vanilla blocks against vanilla each patch.
+# Adds an optional CONDITION parameter so the Stratocracy politician can reuse soldier modifiers,
+# plus a Stratocracy councilor amenities block.
+# Usage: inline_script = { script = output/gk_ec_soldier_triggered_modifiers CONDITION = "politician_is_stratocrat = yes" }
+
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		owner = { has_technology = "tech_ground_defense_planning" }
+	}
+	country_naval_cap_add = 1
+}
+
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		owner = {
+			any_owned_leader = {
+				is_councilor = yes
+				has_trait = leader_trait_bellicose
+			}
+		}
+	}
+
+	country_naval_cap_add = @bellicose_naval_cap_add
+	mult = value:bellicose_naval_cap
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+		owner? = {
+			is_nomadic = no
+		}
+	}
+	planet_defense_armies_add = 1
+}
+
+triggered_country_modifier = {
+	potential = {
+		$CONDITION$
+		owner? = {
+			is_nomadic = yes
+		}
+	}
+	country_naval_cap_add = 1
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+	}
+	planet_stability_add = 0.15
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		$CONDITION$
+		owner = {
+			any_owned_leader = {
+				is_councilor = yes
+				has_trait = leader_trait_bellicose
+			}
+		}
+	}
+	planet_defense_armies_add = @bellicose_defense_armies_add
+	mult = value:bellicose_naval_cap
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+	}
+	modifier = {
+		planet_stability_add = 1
+	}
+	mult = colony.modifier:job_soldier_stability_add
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+		colony? = {
+			exists = owner
+			owner = { has_tradition = "tr_modularity_3" }
+		}
+	}
+	planet_stability_add = 0.25
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+		has_councilor = { COUNCILOR = "councilor_private_military_companies" }
+	}
+
+	planet_stability_add = @councilor_private_military_companies_stability
+	mult = value:councilor_level|TYPE|councilor_private_military_companies|
+}
+
+triggered_country_modifier = {
+	potential = {
+		$CONDITION$
+		colony? = {
+			has_deposit = d_abandoned_black_needle_base
+		}
+	}
+	country_naval_cap_add = @abandoned_black_needle_base_naval_cap_from_soldier_job
+}
+
+triggered_country_modifier = {
+	potential = {
+		$CONDITION$
+		soldier_is_shipwright_trigger = yes
+	}
+	country_naval_cap_add = 2
+	starbase_shipyard_build_speed_mult = 0.015
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+		soldier_is_missile_crew_trigger = yes
+	}
+	weapon_type_explosive_weapon_damage_mult = 0.05
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+		soldier_is_ammunition_loader_trigger = yes
+	}
+	weapon_type_kinetic_weapon_damage_mult = 0.05
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+		soldier_is_laser_gunner_trigger = yes
+	}
+	weapon_type_energy_weapon_damage_mult = 0.05
+}
+
+triggered_planet_modifier = {
+	potential = {
+		$CONDITION$
+		soldier_is_flight_deck_crew_trigger = yes
+	}
+	weapon_type_strike_craft_weapon_damage_mult = 0.05
+}

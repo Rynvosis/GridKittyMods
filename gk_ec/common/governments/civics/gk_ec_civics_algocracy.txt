@@ -16,7 +16,6 @@ civic_gk_ec_algocracy = {
 
 		origin = {
 			NOR = {
-				value = origin_messiah_cult
 				value = origin_legendary_leader
 				value = origin_legendary_leader_dictatorial
 				value = origin_legendary_leader_imperial

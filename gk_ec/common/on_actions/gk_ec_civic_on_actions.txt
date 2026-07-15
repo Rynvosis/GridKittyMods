@@ -5,6 +5,7 @@ on_game_start_country = {
 		gk_ec_civic.200 # constitutional monarchy: spawn monarch
 		gk_ec_civic.300 # stratocracy: replace factory with foundry on capital
 		gk_ec_civic.400 # algocracy: spawn AI ruler
+		gk_ec_civic.500 # destructive engineering: unlock tech_missiles_2 as research option
 	}
 }
 

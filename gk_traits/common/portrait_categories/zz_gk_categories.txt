@@ -1,0 +1,60 @@
+# gk_traits: extend the empire-designer UI categories with our crosslist
+# portrait_sets so cross-tagged portraits appear in the right dropdowns.
+#
+# Stellaris MERGES the inner `sets` list across files when the same category
+# block appears more than once - vanilla's sets are preserved automatically.
+# We only list our NEW gk_* sets here; redeclaring vanilla sets would cause
+# duplicates.
+#
+# DLC gating lives inside each gk_* portrait_set's conditional_portraits
+# block (see common/portrait_sets/01_gk_crosslist_sets.txt) - this file is
+# strictly category membership.
+
+infernals = {
+	name = INF
+
+	sets = {
+		gk_fun_hum_rep_as_inf
+		gk_tox_as_inf
+	}
+}
+
+plantoids = {
+	name = PLANT
+
+	sets = {
+		gk_lithoid_as_plant
+	}
+}
+
+reptilians = {
+	name = REP
+
+	sets = {
+		gk_inf_as_rep
+	}
+}
+
+arthropoids = {
+	name = ART
+
+	sets = {
+		gk_inf_as_art
+	}
+}
+
+toxoids = {
+	name = TOX
+
+	sets = {
+		gk_inf_as_tox
+	}
+}
+
+lithoids = {
+	name = LITHOID
+
+	sets = {
+		gk_inf_as_lithoid
+	}
+}

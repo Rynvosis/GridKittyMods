@@ -21,7 +21,7 @@ wg_gk_reaping = {
 	}
 
 	potential = {
-		has_total_war_cb = no
+		gk_no_blocking_total_war_cb = yes
 		has_policy_flag = gk_focus_reaping
 		NOT = { is_in_federation_with = from }
 		NAND = {
@@ -34,7 +34,7 @@ wg_gk_reaping = {
 		custom_tooltip = {
 			fail_text = has_claimed_all_systems
 			from = {
-				is_country_type = default
+				# Any empire with a colony is reapable, fallen empires included
 				any_owned_planet = {
 					is_colony = yes
 					root = {
@@ -101,7 +101,7 @@ wg_gk_emancipation = {
 	surrender_acceptance = -75
 
 	potential = {
-		has_total_war_cb = no
+		gk_no_blocking_total_war_cb = yes
 		gk_can_use_emancipation_cb = yes
 		NOT = { is_in_federation_with = from }
 		NAND = {
@@ -114,7 +114,7 @@ wg_gk_emancipation = {
 		custom_tooltip = {
 			fail_text = gk_requires_enemy_has_slaves
 			from = {
-				is_country_type = default
+				# Any empire holding slaves is a valid target, fallen empires included
 				any_owned_planet = {
 					any_owned_pop_group = {
 						is_enslaved = yes

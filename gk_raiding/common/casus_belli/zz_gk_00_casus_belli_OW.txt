@@ -17,7 +17,7 @@ cb_despoliation = {
 	}
 
 	is_valid = {
-		has_total_war_cb = no
+		gk_no_blocking_total_war_cb = yes   # was has_total_war_cb = no
 		NOT = { is_overlord_to = FROM }
 		OR = {
 			is_subject = no
@@ -48,7 +48,7 @@ cb_gk_emancipation = {
 	}
 
 	is_valid = {
-		has_total_war_cb = no
+		gk_no_blocking_total_war_cb = yes   # was has_total_war_cb = no
 		NOT = { is_overlord_to = FROM }
 		OR = {
 			is_subject = no
@@ -90,7 +90,7 @@ cb_pirate_raid = {
 	}
 
 	is_valid = {
-		has_total_war_cb = no
+		gk_no_blocking_total_war_cb = yes   # was has_total_war_cb = no
 		NOT = { is_overlord_to = FROM }
 		OR = {
 			is_subject = no

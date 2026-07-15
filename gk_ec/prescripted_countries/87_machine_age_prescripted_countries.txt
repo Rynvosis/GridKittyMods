@@ -1,5 +1,6 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # OW: All empires updated with 4th ethic point (Individualist/Collectivist) and 3rd civic for gk_ec compatibility
+
 basidrix_cyber_ecclesia = {
 	name = "EMPIRE_DESIGN_BASIDRIX_CYBER_ECCLESIA"
 	adjective = "PRESCRIPTED_adjective_basidrix_cyber_ecclesia"
@@ -28,7 +29,7 @@ basidrix_cyber_ecclesia = {
 
 	ethic = ethic_fanatic_spiritualist
 	ethic = ethic_xenophobe
-	ethic = "ethic_collectivist"
+	ethic = ethic_collectivist
 	flag = empire_basidrix_cyber_ecclesia
 	authority = "auth_oligarchic"
 	government = gov_holy_tribunal

@@ -1,0 +1,13 @@
+﻿l_english:
+ trait_gk_tinkerer:0 "Tinkerer"
+ trait_gk_tinkerer_desc:0 "These pops have an instinctive feel for mechanical and cybernetic systems. They produce more on engineering and robotics jobs, but neglect biology and physics research."
+
+ # Marker traits - test scaffolding for gk_traits category gates.
+ # Invisible by design (no modifier). If a marker trait appears on a species,
+ # the gate for that category is working.
+ trait_gk_marker_cybsynth:0 "Marker: Cyber/Synth"
+ trait_gk_marker_cybsynth_desc:0 "Test marker. If you can see this trait, the Cyber/Synth gate matched this portrait."
+ trait_gk_marker_biogen:0 "Marker: Biogenesis"
+ trait_gk_marker_biogen_desc:0 "Test marker. If you can see this trait, the Biogenesis gate matched this portrait."
+ trait_gk_marker_common:0 "Marker: Common"
+ trait_gk_marker_common_desc:0 "Test marker. If you can see this trait, the Common gate matched this portrait."

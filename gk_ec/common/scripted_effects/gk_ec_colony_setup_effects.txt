@@ -19,9 +19,10 @@ gk_ec_add_housing_district = {
 
 # Add 1 mining or farming district based on capital's original type
 # Requires gk_ec_capital_had_mining flag set on capital before district removal
+# capital_scope is a colony; the flag lives on the planet under it
 gk_ec_add_resource_district = {
 	if = {
-		limit = { owner = { capital_scope = { has_planet_flag = gk_ec_capital_had_mining } } }
+		limit = { owner = { capital_scope = { planet = { has_planet_flag = gk_ec_capital_had_mining } } } }
 		add_district = district_mining
 	}
 	else = {

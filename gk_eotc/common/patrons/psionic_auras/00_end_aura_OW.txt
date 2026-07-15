@@ -1,0 +1,383 @@
+end_aura = {
+	patron = end_of_the_cycle
+	background = "GFX_aura_end_background"
+
+	intensity_level = {
+		end = value:eotc_lvl1_end
+		owner_fleet_modifier = {
+			modifier = {
+				ships_upkeep_mult = -0.1
+			}
+		}
+		owner_fleet_modifier = {
+			potential = {
+				is_scope_type = fleet
+				exists = leader
+				leader = { has_trait = leader_trait_disciple_of_the_end }
+			}
+			modifier = {
+				ship_ftl_jumpdrive_range_mult = @disciple_of_the_end_jumpdrive_range
+			}
+		}
+		owner_planet_modifier = {
+			modifier = {
+				station_researchers_produces_mult = 0.33
+				station_gatherers_produces_mult = 0.33
+				planet_jobs_produces_mult = 0.33
+				pop_bonus_workforce_mult = 0.33
+			}
+		}
+		rival_planet_modifier = {
+			modifier = {
+				planet_crime_mult = 0.1
+			}
+		}
+		rival_fleet_modifier = {
+			potential = {
+				OR = {
+					is_scope_type = no_scope
+					is_scope_type = galactic_object
+					is_ship_class = shipclass_military
+				}
+			}
+			modifier = {
+				ship_monthly_hull_damage = 5
+			}
+		}
+	}
+	intensity_level = {
+		end = value:eotc_lvl2_end
+		owner_fleet_modifier = {
+			modifier = {
+				ships_upkeep_mult = -0.2
+			}
+		}
+		owner_fleet_modifier = {
+			potential = {
+				is_scope_type = fleet
+				exists = leader
+				leader = { has_trait = leader_trait_disciple_of_the_end }
+			}
+			modifier = {
+				ship_ftl_jumpdrive_range_mult = @disciple_of_the_end_jumpdrive_range
+			}
+		}
+		owner_planet_modifier = {
+			modifier = {
+				station_researchers_produces_mult = 0.66
+				station_gatherers_produces_mult = 0.66
+				planet_jobs_produces_mult = 0.66
+				pop_bonus_workforce_mult = 0.66
+			}
+		}
+		rival_planet_modifier = {
+			modifier = {
+				planet_crime_mult = 0.2
+			}
+		}
+		rival_fleet_modifier = {
+			potential = {
+				OR = {
+					is_scope_type = no_scope
+					is_scope_type = galactic_object
+					is_ship_class = shipclass_military
+				}
+			}
+			modifier = {
+				ship_monthly_hull_damage = 10
+			}
+		}
+	}
+	intensity_level = {
+		end = value:eotc_lvl3_end
+		owner_fleet_modifier = {
+			modifier = {
+				ships_upkeep_mult = -0.3
+			}
+		}
+		owner_fleet_modifier = {
+			potential = {
+				is_scope_type = fleet
+				exists = leader
+				leader = { has_trait = leader_trait_disciple_of_the_end }
+			}
+			modifier = {
+				ship_ftl_jumpdrive_range_mult = @disciple_of_the_end_jumpdrive_range
+			}
+		}
+		owner_planet_modifier = {
+			modifier = {
+				station_researchers_produces_mult = 1.0
+				station_gatherers_produces_mult = 1.0
+				planet_jobs_produces_mult = 1.0
+				pop_bonus_workforce_mult = 1.0
+			}
+		}
+		rival_planet_modifier = {
+			modifier = {
+				planet_crime_mult = 0.3
+			}
+		}
+		rival_fleet_modifier = {
+			potential = {
+				OR = {
+					is_scope_type = no_scope
+					is_scope_type = galactic_object
+					is_ship_class = shipclass_military
+				}
+			}
+			modifier = {
+				ship_monthly_hull_damage = 15
+			}
+		}
+	}
+
+	on_start = {
+		on_psionic_aura_spawned = { TYPE = end_aura }
+		check_psionic_suppression_eligibility = yes
+		setup_aura_clashing = yes
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOR = {
+						is_same_value = root.aura_owner
+						has_country_flag = has_encountered_end_aura
+					}
+				}
+			}
+			owner = {
+				country_event = {
+					id = shroud.4950
+					scopes = {
+						from = root
+						fromfrom = root.aura_owner
+					}
+				}
+				set_country_flag = has_encountered_psionic_auras
+				set_country_flag = has_encountered_end_aura
+				if = {
+					limit = { is_ai = yes }
+					give_technology = { tech = tech_psionic_suppression }
+					if = {
+						limit = {
+							NOT = { has_technology = tech_mine_zro }
+						}
+						add_tech_option_or_research_effect = {
+							TECH = tech_mine_zro
+							PROGRESS = 0.1
+							CATEGORY = society_research
+						}
+					}
+					if = {
+						limit = {
+							NOT = {
+								any_planet_within_border = {
+									has_zro_deposit = yes
+								}
+							}
+						}
+						random_planet_within_border = {
+							limit = {
+								OR = {
+									has_deposit_for = shipclass_research_station
+									has_deposit = no
+								}
+							}
+							add_deposit = d_zro_deposit_1
+						}
+					}
+				}
+			}
+		}
+		every_neighbor_system = {
+			limit = {
+				exists = owner
+				owner = {
+					NOR = {
+						is_same_value = root.aura_owner
+						has_country_flag = has_encountered_end_aura
+					}
+				}
+			}
+			owner = {
+				country_event = {
+					id = shroud.4950
+					scopes = {
+						from = root
+						fromfrom = root.aura_owner
+					}
+				}
+				set_country_flag = has_encountered_psionic_auras
+				set_country_flag = has_encountered_end_aura
+				if = {
+					limit = { is_ai = yes }
+					give_technology = { tech = tech_psionic_suppression }
+					if = {
+						limit = {
+							NOT = { has_technology = tech_mine_zro }
+						}
+						add_tech_option_or_research_effect = {
+							TECH = tech_mine_zro
+							PROGRESS = 0.1
+							CATEGORY = society_research
+						}
+					}
+					if = {
+						limit = {
+							NOT = {
+								any_planet_within_border = {
+									has_zro_deposit = yes
+								}
+							}
+						}
+						random_planet_within_border = {
+							limit = {
+								OR = {
+									has_deposit_for = shipclass_research_station
+									has_deposit = no
+								}
+							}
+							add_deposit = d_zro_deposit_1
+						}
+					}
+				}
+			}
+		}
+		aura_owner = {
+			if = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = end_aura_coverage_second_event_triggered }
+						check_variable_arithmetic = {
+							which = value:num_end_cycle_galaxy_systems_percent
+							value >= 0.75
+						}
+					}
+					set_country_flag = end_aura_coverage_second_event_triggered
+					every_playable_country = {
+						limit = {
+							NOT = { is_same_value = root.aura_owner }
+						}
+						country_event = {
+							id = shroud.4965
+							scopes = {
+								from = root.aura_owner
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = { has_country_flag = end_aura_coverage_first_event_triggered }
+						check_variable_arithmetic = {
+							which = value:num_end_cycle_galaxy_systems_percent
+							value >= 0.5
+						}
+					}
+					set_country_flag = end_aura_coverage_first_event_triggered
+					every_playable_country = {
+						limit = {
+							NOT = { is_same_value = root.aura_owner }
+						}
+						country_event = {
+							id = shroud.4960
+							scopes = {
+								from = root.aura_owner
+							}
+						}
+					}
+				}
+			}
+			check_end_aura_win_condition = yes
+		}
+	}
+	on_monthly = {
+		setup_aura_clashing_monthly = yes
+	}
+	on_gain_level = {
+		spread_aura_endlessly = yes
+		add_psionic_aura_level_visual = { TYPE = end_aura }
+	}
+	on_lose_level = {
+		remove_psionic_aura_level_visual = yes
+	}
+	on_progress_complete = {
+		spread_aura_endlessly = yes
+		hidden_effect = {
+			set_aura_intensity = value:eotc_lvl2_end
+		}
+	}
+	on_type_change = {
+		update_psionic_aura_visuals = { TYPE = end_aura }
+	}
+	on_vanish = {
+		on_psionic_aura_vanishing = yes
+	}
+
+	inline_script = "shroud/psionic_aura_daily_decrease"
+	monthly_decrease = {
+		base = 0
+		modifier = {
+			subtract = @aura_clashing_loser_decrease
+			any_neighbor_system = {
+				has_star_flag = aura_clash_winning_against_@root
+			}
+			desc = BLANK_STRING
+		}
+	}
+
+	increase_trigger = {
+		NOT = {
+			any_neighbor_system = {
+				has_star_flag = aura_is_clashing_against_@root
+			}
+		}
+	}
+	monthly_increase = {
+		base = 0
+		modifier = {
+			add = value:calc_psionic_aura_monthly_increase
+			desc = tech_psionic_aura
+		}
+		modifier = {
+			add = value:count_command_fleets_in_system
+			any_fleet_in_system = { is_owned_by = root.aura_owner }
+			desc = tech_psionic_aura
+		}
+		modifier = {
+			add = @psionic_offices_intensity
+			has_star_flag = building_psionic_offices_emitting@root.aura_owner
+			desc = tech_psionic_aura
+		}
+	}
+
+	triggered_system_modifier = {
+		potential = {
+			has_global_flag = shroud_seals_disabled
+		}
+		custom_tooltip = intensification_accord_aura_tt
+	}
+
+	triggered_system_modifier = {
+		potential = {
+			NOT = { is_scope_type = no_scope }
+			has_psionic_aura = yes
+			aura_owner = {
+				check_variable = {
+					which = fractalization_accord_activation
+					value > 0
+				}
+			}
+			exists = owner
+			owner = { is_same_value = prev.aura_owner }
+		}
+		custom_tooltip = fractalization_effect_tt
+		station_gatherers_produces_mult = 1.0
+		station_researchers_produces_mult = 1.0
+		mult = aura_owner.fractalization_accord_activation
+	}
+
+	aura_galaxy_texture = "gfx/map/psionic_auras/end_aura.dds"
+	aura_hyperlane_texture = "gfx/map/psionic_auras/end_aura_hyperlane.dds"
+}

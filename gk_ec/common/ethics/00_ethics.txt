@@ -1,4 +1,5 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
+# Overwrites: all vanilla ethics (4-axis wheel repositioning + Authoritarian enforcer/slave rework)
 
 ####
 
@@ -16,7 +17,7 @@ ethic_fanatic_authoritarian = {
 		custom_tooltip = GK_EC_AUTH_TT_FANATIC
 		country_ethic_influence_produces_add = 1
 		enforcer_jobs_bonus_workforce_mult = 0.20
-		pop_cat_slave_bonus_workforce_mult = 0.10
+		pop_slave_bonus_workforce_mult = 0.10 # was pop_cat_slave_bonus_workforce_mult (renamed in 4.4)
 		add_attunement_the_instrument_of_desire = @ethic_attunement2
 	}
 
@@ -51,7 +52,7 @@ ethic_authoritarian = {
 		custom_tooltip = GK_EC_AUTH_TT_REGULAR
 		country_ethic_influence_produces_add = 0.5
 		enforcer_jobs_bonus_workforce_mult = 0.10
-		pop_cat_slave_bonus_workforce_mult = 0.05
+		pop_slave_bonus_workforce_mult = 0.05 # was pop_cat_slave_bonus_workforce_mult (renamed in 4.4)
 		add_attunement_the_instrument_of_desire = @ethic_attunement1
 	}
 
@@ -814,10 +815,23 @@ ethic_fanatic_xenophobe = {
 	}
 
 	country_modifier = {
-		country_starbase_influence_cost_mult = -0.4
 		founder_species_growth_mult = 0.20
 		add_attunement_the_eater_of_worlds = @ethic_attunement2
 		refugee_attraction = -0.30
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = no
+		}
+		country_starbase_influence_cost_mult = -0.4
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		megastructures_arkships_influence_cost_mult = -0.1
 	}
 
 	random_weight = {
@@ -848,10 +862,23 @@ ethic_xenophobe = {
 	}
 
 	country_modifier = {
-		country_starbase_influence_cost_mult = -0.2
 		founder_species_growth_mult = 0.10
 		add_attunement_the_eater_of_worlds = @ethic_attunement1
 		refugee_attraction = -0.15
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = no
+		}
+		country_starbase_influence_cost_mult = -0.2
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		megastructures_arkships_influence_cost_mult = -0.05
 	}
 
 	random_weight = {
@@ -1711,9 +1738,22 @@ ethic_fanatic_militarist = {
 	}
 
 	country_modifier = {
-		country_claim_influence_cost_mult = -0.2
 		ship_fire_rate_mult = 0.20
 		add_attunement_the_eater_of_worlds = @ethic_attunement2
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = no
+		}
+		country_claim_influence_cost_mult = -0.2
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		scavenge_debris_mult = 0.1
 	}
 
 	# more common ethic
@@ -1742,9 +1782,22 @@ ethic_militarist = {
 	}
 
 	country_modifier = {
-		country_claim_influence_cost_mult = -0.1
 		ship_fire_rate_mult = 0.10
 		add_attunement_the_eater_of_worlds = @ethic_attunement1
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = no
+		}
+		country_claim_influence_cost_mult = -0.1
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			is_nomadic = yes
+		}
+		scavenge_debris_mult = 0.05
 	}
 
 	# more common ethic
@@ -3291,19 +3344,6 @@ ethic_materialist = {
 
 
 ethic_gestalt_consciousness = {
-	playable = {
-		OR = {
-			has_utopia = yes
-			has_synthetic_dawn = yes
-			has_machine_age_dlc = yes
-			has_biogenesis_dlc = yes
-			AND = {
-				is_scope_valid = yes
-				has_origin = origin_shroud_forged
-			}
-		}
-	}
-
 	cost = 4
 	category = "hive"
 	category_value = 0

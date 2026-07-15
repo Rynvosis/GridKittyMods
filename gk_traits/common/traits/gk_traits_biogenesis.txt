@@ -1,0 +1,28 @@
+# gk_traits BIOGENESIS suite
+#
+# Mirrors the vanilla psionic-trait pattern:
+#   species_class      = { BIOGENESIS_02 }   (vanilla ship-set-only class; nothing
+#                                             matches it by class, so portrait_override
+#                                             is the actual gate)
+#   portrait_override  = { <all BIOGENESIS portraits> }
+#
+# When the sheet changes the BIOGEN portrait list, regenerate it with
+# `python3 tools/build_gate_lists.py` and paste the BIOGEN block into
+# every portrait_override below.
+
+trait_gk_marker_biogen = {
+	cost = 0
+	initial = yes
+	randomized = no
+	species_potential_add = { always = yes }
+	species_possible_add = { can_add_genetic_traits = yes }
+	species_possible_remove = { can_remove_beneficial_genetic_traits = yes }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { BIOGENESIS_02 }
+	portrait_override = {
+		ant1 bio10 bio11 bio4 bio5 bio6 bio7 bio8
+		bio9 pdx_signup_portrait_01 pro1 pro2 tox4
+	}
+	tags = { organic positive marker special }
+	ai_weight = { weight = 0 }
+}

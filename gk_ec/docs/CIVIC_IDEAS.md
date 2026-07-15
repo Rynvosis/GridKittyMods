@@ -80,7 +80,7 @@ The following have been implemented and are no longer ideas:
 - Pathfinders (all authorities)
 - Surveillance State (standard, megacorp, hive)
 - Paternalism (standard, hive, machine) / Industrial Democracy (megacorp) / Social Democracy (democratic)
-- War Engineers (all authorities)
+- Destructive Engineering (all authorities)
 - Austere Society / Lean Enterprise / Low-Power Mode (overwrites Hive Ascetic)
 - Constitutional Monarchy (democratic)
 - Parliamentary Monarchy (imperial/dictatorial)

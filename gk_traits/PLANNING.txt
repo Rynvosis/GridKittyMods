@@ -1,0 +1,330 @@
+GK Traits - Planning
+====================
+
+GOAL
+----
+Every species portrait belongs to two trait categories (occasionally three
+via Cat C). Categories are flat - no primary/secondary.
+
+Two kinds of work:
+
+1. NEW gk trait suites for the three overlay categories that vanilla doesn't
+   already cover well:
+     - CYBER + SYNTH (shared, also covers MACHINE_ROBOT)
+     - BIOGENESIS
+     - COMMON
+
+2. EXISTING vanilla traits get their gates widened so cross-classified
+   portraits gain access:
+     - vanilla phenotype-gated traits (rapid_breeders, plantoid_*, lithoid_*,
+       aquatic, infernal, etc.) extend to include their cross-tagged portraits
+     - vanilla cybernetic/synthetic ascension traits extend to CYBER/SYNTH
+       tags
+     - vanilla biogenesis traits extend to BIOGENESIS tag
+     - vanilla psionic traits extend to PSIONIC tag
+
+3. Portrait_set / portrait_category adjustments so a LITHOID+PLANT portrait
+   can be picked as a plantoid empire at game start, etc. (the "Also moving
+   into X list" notes in the sheet).
+
+Phenotype tags (HUM, MAM, REP...) drive #2 and #3 - they do NOT get new gk
+trait suites.
+
+The portrait-to-category mapping lives in PORTRAIT_MAPPING.csv / the user's
+Google Sheet. That sheet is the source of truth - the generator script under
+tools/ is a one-shot scaffold, not maintained.
+
+
+CATEGORIES (19 tags, 17 trait suites)
+--------------------------------------
+Phenotype tags (14):
+  HUM, MAM, REP, AVI, ART, MOL, FUN, PLANT, LITHOID, NECROID, AQUATIC,
+  TOX, INF, MACHINE_ROBOT
+
+Overlay tags (4):
+  CYBER       cyb* portraits + cross-classified non-cyber portraits
+  SYNTH       synth* portraits + all machine/robot portraits
+  BIOGENESIS  bio*, pro*, ant* portraits + cross-classified
+  PSIONIC     vanilla psionic_* portraits + cross-classified (e.g. nec5)
+
+Fallback (1):
+  COMMON      portraits that only naturally fit one other category
+
+What each tag drives:
+
+  HUM..MACHINE_ROBOT (14 phenotypes)  widening vanilla phenotype trait gates
+                                       to include cross-tagged portraits;
+                                       cross-listing in vanilla portrait_sets
+                                       so they're player-pickable as that
+                                       phenotype. No new gk traits.
+
+  CYBER + SYNTH (+MACHINE_ROBOT pool)  NEW gk trait suite (Tinkerer is the
+                                       first positive, already drafted);
+                                       PLUS widening vanilla cybernetic/
+                                       synthetic trait gates to include
+                                       cross-tagged portraits.
+
+  BIOGENESIS                          NEW gk trait suite; PLUS widening
+                                       vanilla biogenesis trait gates.
+
+  COMMON                              NEW gk trait suite; applies to every
+                                       portrait that has COMMON as one of
+                                       its two tags.
+
+  PSIONIC                             widening vanilla psionic trait gates
+                                       to include cross-tagged portraits
+                                       (e.g., nec5). No new gk traits.
+
+Three new gk trait suites total: CYBER/SYNTH, BIOGENESIS, COMMON.
+
+
+PORTRAIT MAPPING
+================
+Format:   portrait_id : CAT_A + CAT_B    [notes]
+"?" marks portraits that need user sign-off (visual call).
+"SKIP" marks portraits explicitly excluded.
+
+CYBER_SYNTH (overlay)
+---------------------
+cyb1            : CYBER_SYNTH + MAM
+cyb2            : CYBER_SYNTH + MAM
+cyb3            : CYBER_SYNTH + MAM
+cyb4            : CYBER_SYNTH + REP
+cyb5            : CYBER_SYNTH + AVI
+cyb6            : CYBER_SYNTH + MAM
+cyb7            : CYBER_SYNTH + MAM
+cyb8            : CYBER_SYNTH + HUM
+cyb9            : CYBER_SYNTH + ART
+cyb10           : CYBER_SYNTH + REP
+cyb11           : CYBER_SYNTH + REP
+cyb12           : CYBER_SYNTH + HUM
+cyb13           : CYBER_SYNTH + FUN
+cyb_machine     : CYBER_SYNTH + MACHINE_ROBOT
+synth01         : CYBER_SYNTH + AVI
+synth02         : CYBER_SYNTH + ART
+synth03         : CYBER_SYNTH + MOL
+synth04         : CYBER_SYNTH + HUM
+synth05         : CYBER_SYNTH + MOL
+synth06         : CYBER_SYNTH + AQUATIC
+synth07         : CYBER_SYNTH + HUM
+synth08         : CYBER_SYNTH + ART
+synth09         : CYBER_SYNTH + ART
+synth_machine_01..09  : CYBER_SYNTH + MACHINE_ROBOT
+
+BIOGENESIS (overlay)
+--------------------
+bio4            : BIOGENESIS + AVI
+bio5            : BIOGENESIS + PLANT
+bio6            : BIOGENESIS + MOL
+bio7            : BIOGENESIS + ART
+bio8            : BIOGENESIS + AQUATIC
+bio9            : BIOGENESIS + REP
+bio10           : BIOGENESIS + MAM
+bio11           : BIOGENESIS + MOL
+bio12           : BIOGENESIS + MACHINE_ROBOT
+ant1            : BIOGENESIS + MOL
+pro1            : BIOGENESIS + AQUATIC
+pro2            : BIOGENESIS + REP
+
+PSIONIC (skip - vanilla already cross-classifies)
+-------------------------------------------------
+psionic_01..12  : SKIP
+mindwarden_01   : SKIP
+
+HUM (humanoids - no overlay)
+----------------------------
+human               : HUM + COMMON
+human_legacy        : HUM + COMMON
+humanoid_02..05     : HUM + COMMON
+humanoid_hp_01      : HUM + COMMON      ? could cross-list
+humanoid_hp_02      : HUM + COMMON      ?
+humanoid_hp_06..14  : HUM + COMMON      ? several look mam/rep/avi-flavored
+humanoid_hp_16      : HUM + COMMON      ?
+humanoid_elf        : HUM + COMMON      ?
+
+MAM (mammalians - no overlay)
+-----------------------------
+mam1..17                : MAM + COMMON
+mam_rat                 : MAM + COMMON
+mammalian_ar_01..10     : MAM + COMMON
+
+REP (reptilians - no overlay)
+-----------------------------
+rep1..17                : REP + COMMON
+pdx_signup_portrait_01  : REP + COMMON
+
+AVI (avians - no overlay)
+-------------------------
+avi1..18                : AVI + COMMON
+
+ART (arthropoids - no overlay)
+------------------------------
+art1..20                : ART + COMMON
+
+MOL (molluscoids - no overlay)
+------------------------------
+mol1..18                : MOL + COMMON
+stargazer_01            : MOL + COMMON      ? could be its own thing
+
+FUN (fungoids - no overlay)
+---------------------------
+fun1..17                : FUN + COMMON
+
+PLANT (plantoids - no overlay)
+------------------------------
+pla1..17                : PLANT + COMMON
+pla16_baol              : PLANT + COMMON
+
+LITHOID (no overlay)
+--------------------
+lith1..15               : LITHOID + COMMON
+lith_human              : LITHOID + HUM    ? humanoid silhouette, lithoid skin
+
+NECROID (no overlay)
+--------------------
+nec1..15                : NECROID + COMMON
+season_10_portrait      : NECROID + COMMON
+Candidates to remap (user call):
+  nec? as LITHOID, REP, or ART (a few read non-humanoid)
+
+AQUATIC (no overlay)
+--------------------
+aqu1..15                : AQUATIC + COMMON
+Candidates to remap (user call):
+  aqu? as REP or MOL (some have reptilian/molluscoid silhouette)
+
+TOX (no overlay)
+----------------
+tox1..15                : TOX + COMMON
+Candidates to remap (user call):
+  tox? as FUN, ART, or REP (varied silhouettes)
+
+INF (infernals - no overlay)
+----------------------------
+inf1..10                : INF + COMMON
+lith_human_inf          : INF + LITHOID     [already crosses]
+lith2_inf               : INF + LITHOID     [already crosses]
+
+MACHINE_ROBOT (no overlay - handled via overlays above)
+-------------------------------------------------------
+sd_hum_robot            : MACHINE_ROBOT + HUM   ? silhouette is human-ish
+sd_mam_robot            : MACHINE_ROBOT + MAM   ?
+sd_rep_robot            : MACHINE_ROBOT + REP   ?
+sd_avi_robot            : MACHINE_ROBOT + AVI   ?
+sd_art_robot            : MACHINE_ROBOT + ART   ?
+sd_mol_robot            : MACHINE_ROBOT + MOL   ?
+sd_fun_robot            : MACHINE_ROBOT + FUN   ?
+sd_pla_robot            : MACHINE_ROBOT + PLANT ?
+lith_machine            : MACHINE_ROBOT + LITHOID ?
+nec_machine             : MACHINE_ROBOT + NECROID ?
+aqu_machine             : MACHINE_ROBOT + AQUATIC ?
+tox_machine             : MACHINE_ROBOT + TOX     ?
+default_robot           : MACHINE_ROBOT + COMMON
+
+  Open question: do sd_*_robot portraits "count" as their phenotype?
+  Visually they're robot-shells of that phenotype. If yes, no COMMON needed.
+  If no, all sd_*_robot are MACHINE_ROBOT + COMMON.
+
+SPECIAL (probably skip - non-empire portraits)
+----------------------------------------------
+salvager01..03      : SKIP
+shroudwalker01..03  : SKIP
+paragon01..03       : SKIP
+paragon_exakeides_artifact_1  : SKIP
+msi_slaver1_male    : SKIP
+msi_slaver1_female  : SKIP
+
+
+OPEN DECISIONS
+==============
+1. sd_*_robot portraits: cross-list with their visual phenotype, or
+   MACHINE_ROBOT + COMMON?
+2. Necroid/Aquatic/Toxoid candidates for cross-phenotype remap - need to
+   eyeball each portrait.
+3. Some humanoid_hp_* portraits may visually fit MAM/REP/AVI - need to
+   eyeball.
+4. lith_human - LITHOID + HUM (proposed) or LITHOID + COMMON?
+5. stargazer_01 - keep MOL + COMMON or its own thing?
+
+
+BUILD ORDER
+===========
+Scaffolding:
+[X] three category-suite scaffold files, each with its placeholder marker:
+    [X] common/traits/gk_traits_cyber_synth.txt   (trait_gk_marker_cybsynth)
+    [X] common/traits/gk_traits_biogenesis.txt    (trait_gk_marker_biogen)
+    [X] common/traits/gk_traits_common.txt        (trait_gk_marker_common)
+[X] tools/build_gate_lists.py
+    -- default --print: per-category portrait lists for copy-paste
+    -- --widen-vanilla / --patch-vanilla: read or patch vanilla trait files
+    -- --list-crosslists / --emit-crosslist-sets: parse / emit crosslist
+       portrait_sets from the sheet's "Also moving into" notes
+[X] english loc for marker traits
+
+NEW trait suites (3) -- OUT OF SCOPE for current iteration:
+[X] CYBER/SYNTH - 1/5 done (in gk_traits_cyber_synth.txt)
+    [X] trait_gk_tinkerer (positive, engineer/roboticist)
+    [ ] 2x more positives
+    [ ] 2x negatives
+[ ] BIOGENESIS - 0/5 (in gk_traits_biogenesis.txt)
+    [ ] 3x positives (healthcare/sociologist themed)
+    [ ] 2x negatives
+[ ] COMMON - 0/5 (in gk_traits_common.txt)
+    [ ] 3x positives
+    [ ] 2x negatives
+
+Vanilla trait gate widening:
+[X] 04_species_traits.txt -- 9 traits widened
+[X] 09_ascension_traits.txt -- 1 trait widened
+[X] 15_biogenesis_species_traits.txt -- 16 traits widened
+[X] 16_infernals_traits.txt -- 4 traits widened
+[X] 17_shroud_species_traits.txt -- 4 traits widened (psionic + nec5)
+[skipped] 12_astral_planes_traits.txt -- EXD-only, no sheet additions
+
+Portrait_set cross-listing:
+[X] common/portrait_sets/01_gk_crosslist_sets.txt
+    -- 7 sets covering all 12 "Also moving into" notes from the sheet:
+       gk_inf_as_art (inf1)
+       gk_fun_hum_rep_as_inf (fun13, humanoid_hp_01, rep17)
+       gk_tox_as_inf (tox9; has_toxoids + has_infernals)
+       gk_inf_as_lithoid (inf6; has_infernals + has_lithoids)
+       gk_lithoid_as_plant (lith6, lith8; has_lithoids + Plantoids DLC)
+       gk_inf_as_rep (inf2, inf3, inf7)
+       gk_inf_as_tox (inf10; has_infernals + has_toxoids)
+
+Portrait_category extension:
+[X] common/portrait_categories/zz_gk_categories.txt
+    -- duplicate-block extensions for infernals, plantoids, reptilians,
+       arthropoids, toxoids, lithoids UI categories. Stellaris merges the
+       inner `sets` list across files; we list ONLY our new gk sets to avoid
+       duplicating vanilla entries.
+
+
+CONVENTIONS
+===========
+- Trait IDs: trait_gk_<category>_<name>
+- Loc keys mirror trait IDs
+- Each trait gates with: species_class + portrait_override (derived from
+  this mapping, not hand-written per-trait)
+- Cost convention: positives 1-3, negatives -1 to -3
+- All loc files UTF-8 with BOM, ASCII string contents only
+
+
+VANILLA WIDENING RULES (apply during the file-by-file widening pass)
+===================================================================
+1. UNION, NEVER REPLACE on portrait_override.
+   Vanilla puts single-portrait special permissions on certain traits -
+   e.g. trait_shelled has portrait_override = { rep14 pro2 } so the Tortoise
+   Reptilian can take Shelled despite being REP, not MOL/NECROID. When we
+   widen a trait's gate, we ADD the sheet-derived portraits to the existing
+   list; we never overwrite it. Same for species_class lists.
+
+2. Preserve every host_has_dlc / has_X trigger exactly as-is. DLC compliance
+   is non-negotiable.
+
+3. When copying a vanilla file in, do a diff against the next game update -
+   Paradox sometimes silently extends a portrait_override and we'd lose the
+   addition if we just copied and forgot.
+
+4. The build_gate_lists.py --print output is the ADDITIONS, not the final
+   list. Manual or scripted merge with the existing vanilla list is required.

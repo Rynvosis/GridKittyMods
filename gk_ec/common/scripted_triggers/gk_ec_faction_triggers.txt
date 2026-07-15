@@ -26,6 +26,7 @@ gk_ec_has_any_welfare = {
 			has_living_standard = { type = living_standard_utopian country = prev }
 			has_living_standard = { type = living_standard_good country = prev }
 			has_living_standard = { type = living_standard_shared_burden country = prev }
+			has_living_standard = { type = living_standard_worker_ownership country = prev } # Employee Ownership counts as "good enough" welfare
 		}
 	}
 }

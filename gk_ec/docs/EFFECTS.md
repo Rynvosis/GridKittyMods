@@ -148,16 +148,17 @@ Available to: Standard empires (Democratic authority required).
 **Councilor** (Minister of Public Welfare):
 - -1% Housing Usage per level
 
-### War Engineers / Arms Conglomerate / Evolved Armaments / Weapons Research Node
+### Destructive Engineering
 
 Available to: All authority types. Requires Militarist (standard/megacorp).
 
 **Effects**:
-- +10% Ship Hull, +5% Weapon Damage, +25% Military Theory Research, +10% Ship Upkeep
+- +10% Explosive (missile/torpedo) Weapon Damage, +33% Orbital Bombardment Damage, +25% Army Collateral Damage
+- Unlocks tech_missiles_2 as a research option from the start of the game
 
-**Councilor** (Master Armorer / Arms Director):
-- Soldiers produce +0.05 Physics, +0.05 Society, +0.05 Engineering per level
-- Soldiers cost +0.075 Alloys upkeep per level
+**Councilor** (Master of Ordnance / Munitions Director):
+- Soldiers produce +0.10 Engineering per level
+- Soldiers cost +0.05 Alloys upkeep per level
 
 ### Austere Society / Lean Enterprise / Hive Ascetic (OW) / Low-Power Mode
 

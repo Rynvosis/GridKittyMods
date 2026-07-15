@@ -1,0 +1,341 @@
+end_of_the_cycle = {
+	category = great_patron
+	color = { 0.79 0.27 0.22 1 }
+	text_color_code = "R"
+
+	pre_communications_name_format = "{<end_cycle_adj> {<patron_noun>}}"
+
+	position = { x = 0 y = 0 }
+
+	covenant = {
+		name = "COVENANT_EOTC"
+		icon = "GFX_end_of_the_cycle_covenant"
+		desc = covenant_end_of_the_cycle_desc
+		triggered_modifier = {
+			country_naval_cap_mult = 1
+			country_starbase_capacity_add = 10
+			country_covenant_influence_produces_add = 5
+		}
+		triggered_modifier = {
+			country_naval_cap_add = 10
+			mult = value:gk_eotc_aura_systems_count
+		}
+		triggered_modifier = {
+			shipclass_military_build_speed_mult = 1.0
+			ship_military_cost_mult = -0.5
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_CREATION"
+		icon = "GFX_accord_creation"
+		sound = "accord_activation_eotc_creation"
+
+		cooldown = 5400
+		activation_cost = {
+			cost = {
+				energy = 10000
+			}
+		}
+
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_CREATION_TRIGGER
+				has_country_flag = unlock_accord_creation
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_CREATION_TT
+			hidden_effect = {
+				country_event = { id = shroud.4935 }
+			}
+			if = {
+				limit = { NOT = { has_technology = tech_precognition_interface } }
+				give_technology = { tech = tech_precognition_interface }
+			}
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_ANNIHILATION"
+		icon = "GFX_accord_annihilation"
+		sound = "accord_activation_endbringers_annihilation"
+
+		cooldown = 0
+		activation_cost = {
+			cost = {
+				energy = @annihilation_cost
+				minerals = @annihilation_cost
+				food = @annihilation_cost
+				alloys = @annihilation_cost
+			}
+		}
+		cost_override_key = "ACCORD_ANNIHILATION_COST"
+
+		potential = {
+			has_origin = origin_endbringers
+		}
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_ANNIHILATION_TRIGGER_ONCE
+				NOT = { has_country_flag = annihilation_activated }
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = annihilation_activated }
+				}
+				custom_tooltip = {
+					fail_text = ACCORD_ANNIHILATION_TRIGGER
+					has_country_flag = unlock_accord_annihilation
+				}
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_ANNIHILATION_TT
+			hidden_effect = {
+				country_event = { id = shroud.4910 }
+			}
+			if = {
+				limit = { NOT = { has_technology = tech_psionic_disruptor } }
+				give_technology = { tech = tech_psionic_disruptor }
+			}
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_FRACTALIZATION"
+		icon = "GFX_accord_fractalization"
+		sound = "accord_activation_eotc_fractalization"
+
+		cooldown = 7200
+		activation_cost = {
+			cost = {
+				energy = 5000
+			}
+		}
+
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_FRACTALIZATION_TRIGGER
+				has_country_flag = unlock_accord_fractalization
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_FRACTALIZATION_TT
+			hidden_effect = {
+				country_event = { id = shroud.4930 }
+			}
+			if = {
+				limit = { NOT = { has_technology = tech_psionic_shield } }
+				give_technology = { tech = tech_psionic_shield }
+			}
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_EXTERMINATION"
+		icon = "GFX_accord_extermination"
+		sound = "accord_activation_endbringers_extermination"
+
+		cost_override_key = "ACCORD_EXTERMINATION_COST"
+		cooldown = 0
+
+		potential = {
+			has_origin = origin_endbringers
+		}
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_EXTERMINATION_TRIGGER_ONCE
+				NOT = { has_country_flag = extermination_activated }
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = extermination_activated }
+				}
+				custom_tooltip = {
+					fail_text = ACCORD_EXTERMINATION_TRIGGER
+					has_country_flag = unlock_accord_extermination
+				}
+				custom_tooltip = {
+					fail_text = ACCORD_EXTERMINATION_TRIGGER_POP
+					pop_amount >= 3000
+				}
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_EXTERMINATION_TT
+			hidden_effect = {
+				country_event = { id = shroud.4915 }
+			}
+			if = {
+				limit = { NOT = { has_technology = tech_psionic_bombers } }
+				give_technology = { tech = tech_psionic_bombers }
+			}
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_DISTORTION"
+		icon = "GFX_accord_distortion"
+		sound = "accord_activation_eotc_distortion"
+
+		cooldown = 3600
+		activation_cost = {
+			cost = {
+				energy = 15000
+			}
+		}
+
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_DISTORTION_TRIGGER
+				has_country_flag = unlock_accord_distortion
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_DISTORTION_TT
+			hidden_effect = {
+				country_event = { id = shroud.4940 }
+			}
+			if = {
+				limit = { NOT = { has_technology = tech_psi_jump_drive_1 } }
+				give_technology = { tech = tech_psi_jump_drive_1 }
+			}
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_DESTRUCTION"
+		icon = "GFX_accord_destruction"
+		sound = "accord_activation_endbringers_destruction"
+
+		cost_override_key = "ACCORD_DESTRUCTION_COST"
+		cooldown = 0
+
+		potential = {
+			has_origin = origin_endbringers
+		}
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_DESTRUCTION_TRIGGER_ONCE
+				NOT = { has_country_flag = destruction_activated }
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = destruction_activated }
+				}
+				custom_tooltip = {
+					fail_text = ACCORD_DESTRUCTION_TRIGGER
+					has_country_flag = unlock_accord_destruction
+				}
+				custom_tooltip = {
+					fail_text = ACCORD_DESTRUCTION_TRIGGER_PLANET
+					any_owned_planet = {
+						pop_amount >= @destruction_planet_pop_min
+						is_capital = no
+					}
+				}
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_DESTRUCTION_TT
+			hidden_effect = {
+				country_event = { id = shroud.4920 }
+			}
+			if = {
+				limit = { NOT = { has_technology = tech_zro_launcher } }
+				give_technology = { tech = tech_zro_launcher }
+			}
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_INTENSIFICATION"
+		icon = "GFX_accord_intensification"
+		sound = "accord_activation_eotc_intensification"
+
+		cooldown = 0
+		activation_cost = {
+			cost = {
+				energy = 20000
+			}
+		}
+
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_INTENSIFICATION_TRIGGER_COOLDOWN
+				NOT = { has_country_flag = intensification_activated }
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = intensification_activated }
+				}
+				custom_tooltip = {
+					fail_text = ACCORD_INTENSIFICATION_TRIGGER
+					has_country_flag = unlock_accord_intensification
+				}
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_INTENSIFICATION_TT
+			hidden_effect = {
+				set_timed_country_flag = {
+					flag = intensification_activated
+					years = @intensification_accord_cooldown
+				}
+				set_saved_date = {
+					key = intensification_cooldown_timer
+					days_from_present = @[ intensification_accord_cooldown * 360 ]
+					expires = @[ intensification_accord_cooldown * 360 ]
+				}
+				country_event = { id = shroud.4945 }
+			}
+			if = {
+				limit = { NOT = { has_technology = tech_psionic_lightning } }
+				give_technology = { tech = tech_psionic_lightning }
+			}
+		}
+	}
+
+	active_accord = {
+		name = "ACCORD_ERADICATION"
+		icon = "GFX_accord_eradication"
+		sound = "accord_activation_endbringers_eradication"
+
+		cooldown = 0
+		cost_override_key = "ACCORD_ERADICATION_COST"
+
+		potential = {
+			has_origin = origin_endbringers
+		}
+		possible = {
+			custom_tooltip = {
+				fail_text = ACCORD_ERADICATION_TRIGGER_ONCE
+				NOT = { has_country_flag = eradication_activated }
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = eradication_activated }
+				}
+				custom_tooltip = {
+					fail_text = ACCORD_ERADICATION_TRIGGER
+					has_country_flag = unlock_accord_eradication
+				}
+			}
+		}
+
+		effect = {
+			custom_tooltip = ACCORD_ERADICATION_TT
+			hidden_effect = {
+				country_event = { id = shroud.4925 }
+			}
+		}
+	}
+}

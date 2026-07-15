@@ -1,4 +1,4 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # Overrides:
 # - living_standard_utopian: allow collectivist ethics
 # - living_standard_stratified: allow individualist ethics, block welfare civics
@@ -32,9 +32,6 @@ living_standard_utopian = {
 		potential = {
 			always = yes
 		}
-		pop_cat_ruler_unemployment_political_power = 4
-		pop_cat_specialist_unemployment_political_power = 4
-		pop_cat_worker_unemployment_political_power = 4
 	}
 
 	pop_group_modifier = {
@@ -42,7 +39,6 @@ living_standard_utopian = {
 		pop_category_specialists_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
 		pop_category_workers_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
 		pop_category_civilians_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
-		pop_category_slave_consumer_goods_upkeep_add = @living_standard_luxuries_high
 		pop_cat_ruler_political_power = 4
 		pop_cat_specialist_political_power = 4
 		pop_cat_worker_political_power = 4
@@ -180,7 +176,7 @@ living_standard_stratified = {
 		}
 		pop_cat_worker_happiness = -0.10
 		pop_cat_civilian_happiness = -0.10
-		pop_cat_slave_happiness = -0.10
+		pop_slave_happiness = -0.10
 	}
 
 	triggered_pop_group_modifier = {
@@ -188,9 +184,6 @@ living_standard_stratified = {
 		potential = {
 			always = yes
 		}
-		pop_cat_ruler_unemployment_political_power = 8
-		pop_cat_specialist_unemployment_political_power = 1.25
-		pop_cat_worker_unemployment_political_power = -0.25
 	}
 
 	pop_group_modifier = {
@@ -198,7 +191,6 @@ living_standard_stratified = {
 		pop_category_specialists_consumer_goods_upkeep_add = @living_standard_luxuries_high
 		pop_category_workers_consumer_goods_upkeep_add = @living_standard_luxuries_low
 		pop_category_civilians_consumer_goods_upkeep_add = @living_standard_luxuries_low
-		pop_category_slave_consumer_goods_upkeep_add = @living_standard_luxuries_none
 		pop_cat_ruler_political_power = 8
 		pop_cat_specialist_political_power = 1.25
 		pop_cat_worker_political_power = -0.25
@@ -319,9 +311,6 @@ living_standard_normal = {
 		potential = {
 			always = yes
 		}
-		pop_cat_ruler_unemployment_political_power = 5
-		pop_cat_specialist_unemployment_political_power = 2.5
-		pop_cat_worker_unemployment_political_power = 1.5
 	}
 
 	pop_group_modifier = {
@@ -329,7 +318,6 @@ living_standard_normal = {
 		pop_category_specialists_consumer_goods_upkeep_add = @living_standard_luxuries_high
 		pop_category_workers_consumer_goods_upkeep_add = @living_standard_luxuries_normal
 		pop_category_civilians_consumer_goods_upkeep_add = @living_standard_luxuries_normal
-		pop_category_slave_consumer_goods_upkeep_add = @living_standard_luxuries_very_low
 		pop_cat_ruler_political_power = 5.0
 		pop_cat_specialist_political_power = 2.5
 		pop_cat_worker_political_power = 1.5
@@ -439,9 +427,6 @@ living_standard_academic_privilege = {
 		potential = {
 			always = yes
 		}
-		pop_cat_ruler_unemployment_political_power = 6
-		pop_cat_specialist_unemployment_political_power = 2.5
-		pop_cat_worker_unemployment_political_power = 0.5
 	}
 
 	pop_group_modifier = {
@@ -449,7 +434,6 @@ living_standard_academic_privilege = {
 		pop_category_specialists_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
 		pop_category_workers_consumer_goods_upkeep_add = @living_standard_luxuries_normal
 		pop_category_civilians_consumer_goods_upkeep_add = @living_standard_luxuries_normal
-		pop_category_slave_consumer_goods_upkeep_add = @living_standard_luxuries_very_low
 		pop_cat_ruler_political_power = 6
 		pop_cat_specialist_political_power = 2.5
 		pop_cat_worker_political_power = 0.5
@@ -582,7 +566,6 @@ living_standard_chemical_bliss = {
 		pop_category_rulers_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
 		pop_category_specialists_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
 		pop_category_workers_consumer_goods_upkeep_add = @living_standard_luxuries_very_high
-		pop_category_slave_consumer_goods_upkeep_add = @living_standard_luxuries_low
 		pop_category_civilians_consumer_goods_upkeep_add = @living_standard_luxuries_low
 	}
 

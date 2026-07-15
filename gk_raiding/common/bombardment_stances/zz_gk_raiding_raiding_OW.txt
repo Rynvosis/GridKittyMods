@@ -41,8 +41,8 @@ raiding = {
 	kill_pop_chance = {
 		base = 0.15
 	}
-	min_pops_to_kill_pop = 100
-	kill_pop_amount = { min = 0 max = 100 }
+	min_pops_to_kill_pop = 0   # was 200 — no floor, so bombardment can take the last pops and clear the colony
+	kill_pop_amount = { min = 0 max = 100 }   # was { min = 0 max = 200 }
 
 	# root = fleet
 	# from = planet

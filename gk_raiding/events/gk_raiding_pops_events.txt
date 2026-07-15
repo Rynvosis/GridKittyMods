@@ -62,8 +62,9 @@ pop_group_event = {
 			save_event_target_as = gk_raider
 		}
 		save_event_target_as = gk_source_pop_group
-		# Find preferred destination
-		gk_find_destination_planet = yes
+		# Find preferred destination. SOURCE must be passed here: the engine has already
+		# merged this pop group onto its own pick, so `planet` is no longer the source.
+		gk_find_destination_planet = { SOURCE = from }
 		# Skip if the engine already picked our preferred planet
 		if = {
 			limit = {
@@ -130,7 +131,8 @@ country_event = {
 		every_country = {
 			limit = {
 				is_at_war_with = root
-				is_country_type = default
+				# No country-type filter: any enemy holding an occupied colony can be
+				# auto-raided, fallen empires included
 				# Cap not reached and not terminated
 				NOT = {
 					has_country_flag = gk_raid_cap_reached_by_@root
@@ -467,9 +469,8 @@ country_event = {
 			is_colony = yes
 		}
 		gk_can_pop_raid_personally = yes
-		from = {
-			is_country_type = default
-		}
+		# No country-type filter on the defender: invading a fallen empire colony
+		# raids it like any other
 	}
 	immediate = {
 		save_event_target_as = gk_raider

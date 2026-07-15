@@ -1,4 +1,4 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # OW: All empires updated with 4th ethic point (Individualist/Collectivist) and 3rd civic for gk_ec compatibility
 
 # Driven Assimilator - Tebrid Homolog
@@ -8,7 +8,7 @@ tebrid = {
 	spawn_enabled = yes # yes / no / always
 	ignore_portrait_duplication = yes
 
-	playable = has_synthetic_dawn_not_machine_age # scripted_triggers
+	playable = has_not_machine_age_dlc # scripted_triggers
 
 	ship_prefix = "PRESCRIPTED_ship_prefix_tebrid"
 
@@ -92,7 +92,7 @@ custodianship = {
 	spawn_enabled = no # yes / no / always
 	ignore_portrait_duplication = yes
 
-	playable = has_synthetic_dawn_not_machine_age
+	playable = has_not_machine_age_dlc # scripted_triggers
 
 	ship_prefix = "PRESCRIPTED_ship_prefix_custodianship"
 
@@ -127,7 +127,7 @@ custodianship = {
 	ethic = ethic_gestalt_consciousness
 	authority = "auth_machine_intelligence"
 	government = gov_machine_servitor
-	civics = { "civic_machine_servitor" "civic_machine_delegated_functions" "civic_machine_emotion_emulators" }
+	civics = { "civic_machine_servitor" "civic_machine_delegated_functions" "civic_machine_maintenance_protocols" }
 	origin = "origin_default"
 
 	planet_name = "NAME_Earth"
@@ -135,8 +135,8 @@ custodianship = {
 	initializer = "sol_system_initializer"
 	system_name = "NAME_Sol"
 
-	graphical_culture = "mammalian_01"
-	city_graphical_culture = "mammalian_01"
+	graphical_culture = "humanoid_01"
+	city_graphical_culture = "humanoid_01"
 
 	empire_flag = {
 		icon= {
@@ -175,7 +175,7 @@ xt489 = {
 	spawn_enabled = yes # yes / no / always
 	ignore_portrait_duplication = yes
 
-	playable = has_synthetic_dawn_not_machine_age # scripted_triggers
+	playable = has_not_machine_age_dlc # scripted_triggers
 
 	ship_prefix = "PRESCRIPTED_ship_prefix_xt489"
 
@@ -247,7 +247,7 @@ tebrid_machine_age = {
 	spawn_enabled = yes # yes / no / always
 	ignore_portrait_duplication = yes
 
-	playable = has_synthetic_dawn_and_machine_age # scripted_triggers
+	playable = has_machine_age_dlc # scripted_triggers
 
 	ship_prefix = "PRESCRIPTED_ship_prefix_tebrid"
 
@@ -332,7 +332,7 @@ custodianship_machine_age = {
 	spawn_enabled = no # yes / no / always
 	ignore_portrait_duplication = yes
 
-	playable = has_synthetic_dawn_and_machine_age
+	playable = has_machine_age_dlc # scripted_triggers
 
 	ship_prefix = "PRESCRIPTED_ship_prefix_custodianship"
 
@@ -368,7 +368,7 @@ custodianship_machine_age = {
 	ethic = ethic_gestalt_consciousness
 	authority = "auth_machine_intelligence"
 	government = gov_machine_servitor
-	civics = { "civic_machine_servitor" "civic_machine_delegated_functions" "civic_machine_emotion_emulators" }
+	civics = { "civic_machine_servitor" "civic_machine_delegated_functions" "civic_machine_maintenance_protocols" }
 	origin = "origin_default"
 
 	planet_name = "NAME_Earth"
@@ -376,8 +376,8 @@ custodianship_machine_age = {
 	initializer = "sol_system_initializer"
 	system_name = "NAME_Sol"
 
-	graphical_culture = "mammalian_01"
-	city_graphical_culture = "mammalian_01"
+	graphical_culture = "humanoid_01"
+	city_graphical_culture = "humanoid_01"
 
 	empire_flag = {
 		icon= {
@@ -416,7 +416,7 @@ xt489_machine_age = {
 	spawn_enabled = yes # yes / no / always
 	ignore_portrait_duplication = yes
 
-	playable = has_synthetic_dawn_and_machine_age # scripted_triggers
+	playable = has_machine_age_dlc # scripted_triggers
 
 	ship_prefix = "PRESCRIPTED_ship_prefix_xt489"
 

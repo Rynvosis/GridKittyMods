@@ -1,6 +1,7 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # Overwrites: politician
 # Reason: Add Stratocracy swap types (stratocrat + combo variants)
+# Body synced to vanilla 4.4.5: colony? job scope, sacred_path_elite content, dropped promotion{} and job_weights_modifier
 
 politician = {
 	category = ruler
@@ -194,6 +195,15 @@ politician = {
 			desc = job_noble_merchant_desc
 			weight = 20
 		}
+		swap_type = {
+			trigger = {
+				politician_is_sacred_path_elite = yes
+			}
+			name = sacred_path_elite
+			desc = job_sacred_path_elite_desc
+			icon = sacred_path_elite
+			weight = 50
+		}
 		## GK EC Stratocracy swaps
 		swap_type = {
 			trigger = {
@@ -265,6 +275,7 @@ politician = {
 				politician_is_pyrocrat = yes
 				politician_is_ashbroker = yes
 				politician_is_blazing_harbinger = yes
+				politician_is_sacred_path_elite = yes
 			}
 		}
 		tags = { psionic_aura }
@@ -312,8 +323,7 @@ politician = {
 		##Merchant
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					OR = {
 						politician_is_merchant = yes
 						politician_is_augmentation_merchant = yes
@@ -327,8 +337,7 @@ politician = {
 		##Science Director
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					politician_is_science_director = yes
 				}
 			}
@@ -340,8 +349,7 @@ politician = {
 		##High Priest
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					OR = {
 						politician_is_high_priest = yes
 						politician_is_fire_oracle = yes
@@ -350,11 +358,19 @@ politician = {
 			}
 			unity = 1
 		}
+		# High Pilgrim
+		produces = {
+			trigger = {
+				colony? = {
+					politician_is_sacred_path_elite = yes
+				}
+			}
+			unity = 2
+		}
 		##Technophant
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					politician_is_technophant = yes
 				}
 			}
@@ -363,8 +379,7 @@ politician = {
 		## Fire Cult swaps
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					politician_is_blazewright = yes
 					politician_is_radiant_priest = yes
 				}
@@ -373,8 +388,7 @@ politician = {
 		}
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					politician_is_blazing_harbinger = yes
 				}
 			}
@@ -383,8 +397,7 @@ politician = {
 		##High Astrologist
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					politician_is_superstitious_beliefs_high_priest = yes
 				}
 			}
@@ -393,8 +406,7 @@ politician = {
 		##Fortune Broker
 		produces = {
 			trigger = {
-				exists = planet
-				planet = {
+				colony? = {
 					politician_is_superstitious_beliefs_high_priest_corporate = yes
 				}
 			}
@@ -453,10 +465,7 @@ politician = {
 	## Technophant
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
-				has_origin = origin_cybernetic_creed
-			}
+			owner? = { has_origin = origin_cybernetic_creed }
 		}
 		planet_amenities_add = 200
 		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
@@ -470,15 +479,23 @@ politician = {
 		planet_stability_add = 1
 	}
 
-	## GK EC Stratocrat: soldier triggered modifiers
+	## Sacred Path - First Light Guidance
+	triggered_planet_modifier = {
+		potential = {
+			politician_is_sacred_path_elite = yes
+			owner? = { has_modifier = first_light_guidance }
+		}
+		planet_stability_add = 0.25
+	}
+
+	## GK EC Stratocrat: soldier triggered modifiers (gk_ec private copy, not a vanilla overwrite)
 	inline_script = {
-		script = output/soldier_triggered_modifiers_OW
+		script = output/gk_ec_soldier_triggered_modifiers
 		CONDITION = "politician_is_stratocrat = yes"
 	}
 
 	weight = {
 		weight = @ruler_job_weight
-		mult = value:job_weights_modifier|JOB|politician|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		modifier = {
 			factor = 0.1
@@ -488,9 +505,7 @@ politician = {
 		# crisis purge
 		modifier = {
 			factor = 0.01
-			exists = planet
-			exists = planet.controller
-			planet.controller = {
+			colony.controller? = {
 				OR = {
 					is_country_type = swarm
 					is_country_type = ai_empire
@@ -501,13 +516,4 @@ politician = {
 
 	inline_script = "jobs/automodding_priority_charisma"
 
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = ruler
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 }

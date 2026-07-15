@@ -1,3 +1,4 @@
+# Version last updated: 4.4.5
 # Overwrite vanilla lm_imbued_army (Mimetic Strike Force) to widen the non-infernal pop bypass.
 # Adds trait_mechanical so synth-ascended (and individualist-machine) galvanic empires can recruit.
 lm_imbued_army = {

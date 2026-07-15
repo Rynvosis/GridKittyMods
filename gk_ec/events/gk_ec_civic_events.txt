@@ -5,6 +5,7 @@ namespace = gk_ec_civic
 # 200-299: Constitutional Monarchy
 # 300-399: Stratocracy
 # 400-499: Algocracy
+# 500-599: Destructive Engineering
 
 ############################
 # SOCIAL WELFARE FORCING   #
@@ -301,5 +302,30 @@ country_event = {
 				days = 40
 			}
 		}
+	}
+}
+
+############################
+# DESTRUCTIVE ENGINEERING  #
+############################
+
+# Add tech_missiles_2 as a research option at game start (0% progress, still researched normally)
+country_event = {
+	id = gk_ec_civic.500
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_valid_civic = civic_gk_ec_destructive_engineering
+			has_valid_civic = civic_gk_ec_destructive_engineering_megacorp
+			has_valid_civic = civic_gk_ec_destructive_engineering_hive
+			has_valid_civic = civic_gk_ec_destructive_engineering_machine
+		}
+	}
+
+	immediate = {
+		add_research_option = tech_missiles_2
 	}
 }

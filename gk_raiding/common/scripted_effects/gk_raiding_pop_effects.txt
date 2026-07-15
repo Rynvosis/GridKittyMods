@@ -272,7 +272,7 @@ gk_prompt_opportunistic_if_eligible = {
 			is_at_war_with = event_target:gk_raidee
 			NOT = { has_country_flag = gk_opportunistic_prompted_@event_target:gk_raidee }
 			event_target:gk_raidee = {
-				is_country_type = default
+				# No country-type filter: fallen empires can be authorized like anyone else
 				NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
 				NOT = { gk_target_is_raidable_by_root = yes }
 			}
@@ -641,44 +641,83 @@ gk_abduct_pops_from_target = {
 # Find destination planet for resettlement
 # This = pop_group being resettled
 # event_target:gk_raider = raider country
-# Sets: event_target:gk_destination_planet
+# Optional SOURCE = the planet being raided. Callers where the pop group still sits
+# on the source planet can omit it; gk_raiding_pops.105 must pass it, because the
+# engine has already moved the group off the source by the time we run.
+# Sets: event_target:gk_source_planet, event_target:gk_destination_planet
 gk_find_destination_planet = {
+	[[SOURCE]
+		$SOURCE$ = { save_event_target_as = gk_source_planet }
+	]
+	[[!SOURCE]
+		planet = { save_event_target_as = gk_source_planet }
+	]
+	# Default to the capital, then let the weighted pick below overwrite it.
+	# Event targets cannot be unset, so seeding it every call is what stops a
+	# previous pop group's destination from being reused when the pick finds nothing.
+	event_target:gk_raider = {
+		capital_scope = {
+			save_event_target_as = gk_destination_planet
+		}
+	}
 	# Try to find an ideal planet with weighted random
 	event_target:gk_raider = {
 		random_owned_planet = {
 			limit = {
-				gk_is_valid_pop_destination = yes
+				if = {
+					limit = {
+						event_target:gk_raider = { is_nomadic = yes }
+					}
+					# Nomads always deliver to an arkship, even a full one. Deliberately
+					# skips the housing/amenities guard: overcrowding the ark is preferred
+					# to scattering pops across settled colonies.
+					is_planet_class = pc_ark
+				}
+				else = {
+					gk_is_valid_pop_destination = yes
+				}
 			}
 			weights = {
 				base = 1
 				# Slave concentration: if pop would be enslaved, prefer existing slave planets
 				modifier = {
+					NOT = { is_planet_class = pc_ark }
 					prevprev = { has_citizenship_type = { type = citizenship_slavery country = event_target:gk_raider } }
 					add = value:gk_destination_slave_weight
 				}
 				# Housing as multiplier (0 = excluded by limit, 1-1000 = 1x, 1000+ = 2x)
 				modifier = {
+					NOT = { is_planet_class = pc_ark }
 					factor = value:gk_destination_housing_factor
 				}
 				# Habitability as quartic curve (1.0->1.0, 0.8->0.41, 0.6->0.13, 0.4->0.03)
 				modifier = {
+					NOT = { is_planet_class = pc_ark }
 					factor = value:gk_destination_habitability_factor
+				}
+				# Arks weight space additively, never multiplicatively: the housing factor
+				# is 0 on a full ark and as a factor would zero out the ark we must force.
+				modifier = {
+					is_planet_class = pc_ark
+					add = value:gk_destination_housing_factor
+				}
+				# Ark priority: in orbit of the raided planet, then same system, then any ark.
+				# Factors are orders of magnitude apart, so space only breaks ties within a tier.
+				modifier = {
+					is_planet_class = pc_ark
+					gk_ark_orbits_source_planet = yes
+					factor = 1000000
+				}
+				modifier = {
+					is_planet_class = pc_ark
+					exists = event_target:gk_source_planet
+					solar_system = {
+						is_same_value = event_target:gk_source_planet.solar_system
+					}
+					factor = 1000
 				}
 			}
 			save_event_target_as = gk_destination_planet
-		}
-	}
-	# Fallback to capital if no suitable planet found
-	if = {
-		limit = {
-			NOT = {
-				exists = event_target:gk_destination_planet
-			}
-		}
-		event_target:gk_raider = {
-			capital_scope = {
-				save_event_target_as = gk_destination_planet
-			}
 		}
 	}
 }

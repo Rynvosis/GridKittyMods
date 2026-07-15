@@ -18,7 +18,7 @@ wg_plunder = {
 	surrender_acceptance = -75
 
 	potential = {
-		has_total_war_cb = no
+		gk_no_blocking_total_war_cb = yes   # was has_total_war_cb = no
 		gk_can_use_raiding_cb = yes
 		has_policy_flag = gk_focus_raiding
 		NOT = { is_in_federation_with = from }
@@ -32,7 +32,8 @@ wg_plunder = {
 		custom_tooltip = {
 			fail_text = has_claimed_all_systems
 			from = {
-				is_country_type = default
+				# was is_country_type = default — any empire with a colony is raidable,
+				# fallen empires included
 				any_owned_planet = {
 					is_colony = yes
 					root = {

@@ -99,9 +99,10 @@ country_event = {
 			}
 
 			# save resource type before removing (options need to know what to add)
+			# capital_scope is a colony; planet flags only exist on the planet under it
 			if = {
 				limit = { has_district = district_mining }
-				set_planet_flag = gk_ec_capital_had_mining
+				planet = { set_planet_flag = gk_ec_capital_had_mining }
 			}
 
 			# remove districts from capital
@@ -119,7 +120,7 @@ country_event = {
 			}
 
 			if = {
-				limit = { has_planet_flag = gk_ec_capital_had_mining }
+				limit = { planet = { has_planet_flag = gk_ec_capital_had_mining } }
 				remove_district = district_mining
 			}
 			else_if = {

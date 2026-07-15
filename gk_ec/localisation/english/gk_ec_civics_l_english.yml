@@ -144,24 +144,25 @@
   councilor_gk_ec_social_democracy_desc: "The $TITLE$ oversees the expansion of public services and social safety nets, fostering steady population growth."
 
   ###
-  # War Engineers
+  # Destructive Engineering
   ###
 
-  civic_gk_ec_war_engineers: "War Engineers"
-  civic_gk_ec_war_engineers_desc: "This society channels its brightest minds into the science of destruction. Research labs and weapons foundries share campuses, and military breakthroughs are the measure of national prestige."
-  civic_gk_ec_war_engineers_megacorp: "Arms Conglomerate"
-  civic_gk_ec_war_engineers_megacorp_desc: "This corporation has cornered the market on military research and advanced weapons systems. Their R&D divisions are the envy of the galaxy, and their profit margins reflect it."
-  civic_gk_ec_war_engineers_hive: "Evolved Armaments"
-  civic_gk_ec_war_engineers_hive_desc: "The hive has directed its evolutionary pressure toward combat superiority. Generations of selective adaptation have produced organisms that are living weapons platforms, constantly refined through biological research."
-  civic_gk_ec_war_engineers_machine: "Weapons Research Node"
-  civic_gk_ec_war_engineers_machine_desc: "This intelligence devotes a majority of its processing capacity to weapons research and combat optimization. Every engagement generates data; every analysis yields deadlier designs."
+  civic_gk_ec_destructive_engineering: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering_desc: "This society treats destruction as a formal discipline. Its engineers study warheads, blast yield, and bombardment with the rigor others reserve for power generation, and its missiles are built to wreck everything within reach."
+  civic_gk_ec_destructive_engineering_megacorp: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering_megacorp_desc: "This corporation built its fortune on ordnance. Its laboratories design missiles and demolition charges for any buyer, and its own fleets always field the new warheads first."
+  civic_gk_ec_destructive_engineering_hive: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering_hive_desc: "The hive has turned its shared study toward demolition. Every drone refines the warhead and the bombardment pattern, and its broods exist to deliver them."
+  civic_gk_ec_destructive_engineering_machine: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering_machine_desc: "This intelligence devotes its processing to the engineering of destruction. Each detonation is measured and modeled, and every result yields a more thorough way to take a target apart."
+  civic_gk_ec_destructive_engineering_effects: "- Unlocks ['technology:tech_missiles_2', $tech_missiles_2$] as a research option from the start of the game"
 
-  councilor_gk_ec_war_engineers: "Master Armorer"
-  councilor_gk_ec_war_engineers_female: "$councilor_gk_ec_war_engineers$"
-  councilor_gk_ec_war_engineers_desc: "The $TITLE$ integrates military and research personnel, embedding soldiers into the scientific process."
-  councilor_gk_ec_war_engineers_megacorp: "Arms Director"
-  councilor_gk_ec_war_engineers_megacorp_female: "$councilor_gk_ec_war_engineers_megacorp$"
-  councilor_gk_ec_war_engineers_megacorp_desc: "The $TITLE$ coordinates between the corporation's military contracts and research divisions, ensuring soldiers contribute to ongoing weapons development."
+  councilor_gk_ec_destructive_engineering: "Master of Ordnance"
+  councilor_gk_ec_destructive_engineering_female: "$councilor_gk_ec_destructive_engineering$"
+  councilor_gk_ec_destructive_engineering_desc: "The $TITLE$ directs the empire's destructive research, putting soldiers to work on warhead design and bombardment doctrine."
+  councilor_gk_ec_destructive_engineering_megacorp: "Munitions Director"
+  councilor_gk_ec_destructive_engineering_megacorp_female: "$councilor_gk_ec_destructive_engineering_megacorp$"
+  councilor_gk_ec_destructive_engineering_megacorp_desc: "The $TITLE$ runs the corporation's munitions divisions, ensuring its soldiers feed the next line of ordnance."
 
   ###
   # Ascetic
@@ -254,7 +255,6 @@
   tt:0 "        "
   ttt:0 "            "
   tttt:0 "                "
-  councilor_gk_ec_stratocracy_effects: "$t$- £amenities£ Produced per 100 $soldier_type_plural_with_icon$: §G+25§!"
 
   ###
   # Algocracy

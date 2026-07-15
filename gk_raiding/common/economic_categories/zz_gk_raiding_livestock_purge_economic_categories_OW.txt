@@ -1,7 +1,7 @@
 # Version last updated: 4.4.3
 # Overwrites: planet_livestock_farmers, planet_livestock_miners, planet_livestock_metallurgists from 01_job_categories.txt
 # Overwrites: pop_category_purge from 02_pop_categories_categories.txt
-# Adds generate_add_modifiers { produces } so civics/modifiers can add trade production to livestock and purge pops
+# Adds the full generate_add/mult modifier matrix so civics/modifiers can add trade production to livestock and purge pops
 #
 # Mod compatibility: when overwriting economic categories, include the full range of vanilla
 # generate_add/mult options. Other mods loading before us won't lose their modifier hooks.

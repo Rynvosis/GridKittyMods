@@ -1,4 +1,4 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # OW: All empires updated with 4th ethic point (Individualist/Collectivist) and 3rd civic for gk_ec compatibility
 
 # This deliberately DOES NOT include Human variants.
@@ -8,8 +8,6 @@ voor = {
 	adjective = "PRESCRIPTED_adjective_voor"
 	spawn_enabled = yes # yes / no / always
 	ignore_portrait_duplication = yes
-
-	playable = has_humanoids # Note: a 'host_has_dlc' check is redundant as the 'humanoid_hp_06' Humanoid portrait is local only
 
 	ship_prefix = "PRESCRIPTED_ship_prefix_voor"
 

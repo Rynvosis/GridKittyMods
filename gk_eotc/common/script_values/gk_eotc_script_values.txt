@@ -1,0 +1,4 @@
+gk_eotc_aura_systems_count = {
+	base = 0
+	add = trigger:count_systems_with_aura
+}

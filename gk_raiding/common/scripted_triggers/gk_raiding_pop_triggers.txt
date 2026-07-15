@@ -79,6 +79,18 @@ gk_can_pop_raid_personally = {
 }
 
 # This = country scope
+# Vanilla denies the raiding/plunder CBs to any empire holding a total war CB.
+# Driven Assimilators are carved out: assimilating stolen pops is the whole point
+# of the civic, so they keep access despite being a total war empire.
+# Single source of truth for every CB and pop war goal that gates on this.
+gk_no_blocking_total_war_cb = {
+	OR = {
+		has_total_war_cb = no
+		has_valid_civic = civic_machine_assimilator
+	}
+}
+
+# This = country scope
 # Can use Emancipation war goal (requires emancipation policy)
 gk_can_use_emancipation_cb = {
 	has_policy_flag = gk_focus_emancipation
@@ -177,6 +189,27 @@ gk_has_reaping_war_with = {
 	}
 }
 
+# This = target country, Root = raider country
+# Total war needs no raiding war goal and no authorization: taking everything is
+# already the war's terms. Single source of truth for every raid vector.
+gk_has_total_war_with = {
+	root = {
+		any_war = {
+			OR = {
+				AND = {
+					is_war_participant = { who = prev side = attackers }
+					is_war_participant = { who = prevprev side = defenders }
+				}
+				AND = {
+					is_war_participant = { who = prev side = defenders }
+					is_war_participant = { who = prevprev side = attackers }
+				}
+			}
+			is_total_war = yes
+		}
+	}
+}
+
 ####################
 # Escalation Checks #
 ####################
@@ -228,15 +261,17 @@ gk_has_opportunistic_raiding_with = {
 }
 
 # This = target country, Root = raider country
-# Single source of truth: is the target currently raidable (primary wg or opportunistic)?
+# Single source of truth: is the target currently raidable (primary wg, total war,
+# or opportunistic)?
 # Order: opportunistic flag check is cheapest; put it first so the OR short-circuits
-# before the three any_war scans.
+# before the any_war scans.
 gk_target_is_raidable_by_root = {
 	OR = {
 		gk_has_opportunistic_raiding_with = yes
 		gk_has_standard_raiding_war_with = yes
 		gk_has_emancipation_war_with = yes
 		gk_has_reaping_war_with = yes
+		gk_has_total_war_with = yes
 	}
 }
 
@@ -268,33 +303,7 @@ gk_can_abduct_pop_group_war_goal_check = {
 		# Total war - always allow
 		planet = {
 			owner = {
-				root = {
-					any_war = {
-						OR = {
-							AND = {
-								is_war_participant = {
-									who = prev
-									side = attackers
-								}
-								is_war_participant = {
-									who = prevprev
-									side = defenders
-								}
-							}
-							AND = {
-								is_war_participant = {
-									who = prev
-									side = defenders
-								}
-								is_war_participant = {
-									who = prevprev
-									side = attackers
-								}
-							}
-						}
-						is_total_war = yes
-					}
-				}
+				gk_has_total_war_with = yes
 			}
 		}
 		# Standard raiding or reaping war with this defender - any pop
@@ -341,33 +350,7 @@ gk_can_abduct_pop_group_cap_check = {
 		# Total war - no cap
 		planet = {
 			owner = {
-				root = {
-					any_war = {
-						OR = {
-							AND = {
-								is_war_participant = {
-									who = prev
-									side = attackers
-								}
-								is_war_participant = {
-									who = prevprev
-									side = defenders
-								}
-							}
-							AND = {
-								is_war_participant = {
-									who = prev
-									side = defenders
-								}
-								is_war_participant = {
-									who = prevprev
-									side = attackers
-								}
-							}
-						}
-						is_total_war = yes
-					}
-				}
+				gk_has_total_war_with = yes
 			}
 		}
 		# Primitives - no cap
@@ -472,6 +455,19 @@ gk_can_abduct_pop_group = {
 	gk_can_abduct_pop_group_cap_check = yes
 	# Check 3: Robot Raiding Policy
 	gk_can_abduct_pop_group_robot_check = yes
+}
+
+# This = candidate arkship colony (pc_ark)
+# Requires: event_target:gk_source_planet = the planet being raided
+# True if this ark's own fleet is in orbit of the raided planet.
+gk_ark_orbits_source_planet = {
+	exists = fleet
+	exists = event_target:gk_source_planet
+	event_target:gk_source_planet = {
+		any_fleet_in_orbit = {
+			is_same_value = prevprev.fleet
+		}
+	}
 }
 
 # This = planet scope

@@ -1,9 +1,10 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # OW: All empires updated with 4th ethic point (Individualist/Collectivist) and 3rd civic for gk_ec compatibility
 
 # Human empires belong at the top of the list.
 
-# UNE with Mammalian ships
+# UNE with Mammalian ships. Kept as a stub (always = no) for backward compatibility
+# with mods referencing this empire design key.
 humans1 = {
 	name = "EMPIRE_DESIGN_humans1"
 	adjective = "PRESCRIPTED_adjective_humans1"
@@ -25,7 +26,7 @@ humans1 = {
 		trait = "trait_wasteful"
 	}
 
-	playable = has_not_humanoids # scripted_triggers
+	playable = empire_design_never # scripted_triggers
 
 	room = "personality_federation_builders_room"
 
@@ -78,7 +79,8 @@ humans1 = {
 	}
 }
 
-# COM with Mammalian ships
+# COM with Mammalian ships. Kept as a stub (always = no) for backward compatibility
+# with mods referencing this empire design key.
 humans2 = {
 	name = "EMPIRE_DESIGN_humans2"
 	adjective = "PRESCRIPTED_adjective_humans2"
@@ -100,7 +102,7 @@ humans2 = {
 		trait = "trait_wasteful"
 	}
 
-	playable = has_not_humanoids # scripted_triggers
+	playable = empire_design_never # scripted_triggers
 
 	room = "personality_hegemonic_imperialists_room"
 
@@ -189,8 +191,6 @@ humans1_1 = {
 
 	flag = empire_human_1
 
-	playable = has_humanoids # scripted_triggers
-
 	planet_name = "NAME_Earth"
 	planet_class = "pc_continental"
 	initializer = "sol_system_initializer"
@@ -264,8 +264,6 @@ humans2_1 = {
 
 	flag = empire_human_2
 
-	playable = has_humanoids # scripted_triggers
-
 	planet_name = "NAME_Unity"
 	planet_class = "pc_continental"
 	initializer = "deneb_system"
@@ -301,6 +299,92 @@ humans2_1 = {
 		trait = "trait_ruler_warlike"
 		leader_class = commander
 	}
+}
+
+# GRS with Humanoid ships
+humans3 = {
+	name = "EMPIRE_DESIGN_humans3"
+	adjective = "PRESCRIPTED_adjective_humans3"
+	spawn_enabled = no
+	ignore_portrait_duplication = yes
+
+	ship_prefix = "PRESCRIPTED_ship_prefix_humans3"
+
+	species = {
+		class = "HUM"
+		portrait = "human"
+		name = "PRESCRIPTED_species_name_humans3"
+		plural = "PRESCRIPTED_species_plural_humans3"
+		adjective = "PRESCRIPTED_species_adjective_humans3"
+		name_list = "HUMAN2"
+		trait = "trait_organic"
+		trait = "trait_adaptive"
+		trait = "trait_nomadic"
+		trait = "trait_wasteful"
+	}
+
+	is_nomadic = yes
+	room = "nomads_science_room"
+
+	authority = "auth_imperial"
+	government = "gov_enlightened_monarchy"
+	civics = { "civic_philosopher_king" "civic_star_seekers" "civic_efficient_bureaucracy" }
+
+	ethic = "ethic_authoritarian"
+	ethic = "ethic_xenophile"
+	ethic = "ethic_materialist"
+	ethic = "ethic_collectivist"
+
+	origin = "origin_lost_colony"
+
+	flag = empire_human_3
+
+	planet_name = "NAME_Hyacinth"
+	planet_class = "pc_ark"
+	ship_size = "science_arkship_tier_1"
+	system_name = "NAME_Vela"
+	initializer = "vela_system"
+
+	playable = has_nomads_dlc # scripted_triggers
+
+	graphical_culture = "humanoid_01"
+	city_graphical_culture = "humanoid_01"
+
+	advisor_voice_type = "l_the_technocrat"
+
+	empire_flag = {
+		icon = {
+			category = "domination"
+			file = "domination_9.dds"
+		}
+		background = {
+			category = "backgrounds"
+			file = "flag_BG_20.dds"
+		}
+		colors = {
+			"dark_purple"
+			"pink_purple"
+			"black"
+			"null"
+		}
+	}
+
+	ruler = {
+		name = "PRESCRIPTED_ruler_name_humans3"
+		ruler_title = "RT_ARCH_SURVEYOR"
+		ruler_title_female = "RT_ARCH_SURVEYOR_FEMALE"
+		heir_title = "RT_SURVEYOR_APPARENT"
+		heir_title_female = "RT_SURVEYOR_APPARENT_FEMALE"
+		gender = male
+		portrait = "human_male_04"
+		texture = 2
+		attachment = 84
+		clothes = 3
+		trait = "leader_trait_spark_of_genius"
+		leader_class = scientist
+	}
+
+	spawn_as_fallen = no
 }
 
 #Federated Theian Preservers, FTP. Lithoid Humans

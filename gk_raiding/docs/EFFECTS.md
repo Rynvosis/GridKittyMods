@@ -71,7 +71,9 @@ Available to: Hive Mind (not Devouring Swarm)
 
 ## Nihilistic Acquisition
 
-The ascension perk grants pop raiding access and the raiding bombardment stance, same as Barbaric Despoilers. Xenophobe empires with Nihilistic Acquisition can also select the Reaping focus.
+The ascension perk grants pop raiding access and the raiding bombardment stance, same as Barbaric Despoilers. Xenophobe and gestalt empires with Nihilistic Acquisition can also select the Reaping focus.
+
+Vanilla denies the raiding casus belli to any empire that holds a total war casus belli. Driven Assimilators are exempted: they keep the Raiding and Reaping CBs alongside their own total war CB, because stealing pops to assimilate is the point of the civic.
 
 Nihilistic Acquisition works with any raiding policy combination:
 
@@ -82,7 +84,7 @@ Nihilistic Acquisition works with any raiding policy combination:
 - **Egalitarian** with Emancipation: liberate enslaved pops through force
 - **Xenophobe** with Reaping: no limits, no surrender
 
-Reaping is available to Xenophobe empires with Barbaric Despoiler civics or Nihilistic Acquisition, plus Harvesting Protocol and Ravager Swarm unconditionally. These empires don't need Influence to take everything, but the galaxy will hate them for it.
+Reaping is available to Xenophobe and gestalt empires with Barbaric Despoiler civics or Nihilistic Acquisition, plus Harvesting Protocol and Ravager Swarm unconditionally. These empires don't need Influence to take everything, but the galaxy will hate them for it.
 
 ## Policies
 
@@ -92,7 +94,7 @@ Cannot be changed while at war. Governs pop-raiding war goals only; does not dis
 
 - **Raiding**: Standard pop-raiding. Bucket-based escalation with Influence costs.
 - **Emancipation**: Targets enslaved pops only. Can demand abolition of slavery. Requires Slavery to be banned (or Rogue Servitor).
-- **Reaping**: Removes all pop capture limits and prevents surrender. Available to Barbaric Despoiler civics and Ravager Swarm only.
+- **Reaping**: Removes all pop capture limits and prevents surrender. Available to Barbaric Despoiler civics, Harvesting Protocol, Ravager Swarm, and Xenophobe or gestalt empires with Nihilistic Acquisition.
 
 ### Robot Raiding
 
@@ -131,6 +133,8 @@ With sufficient intel on the target, the escalation popup shows estimated eligib
 ## Opportunistic Raiding
 
 A raiding war goal auto-authorizes raiding only against the **enemy-side war leader** — the empire actually named by the casus belli. Every other target (co-belligerent defenders of a raiding war, or any enemy in a non-raiding war) requires opportunistic authorization.
+
+**Total war is always authorized.** Any enemy in a total war is raidable through every vector, with no prompt, no Influence, and no escalation cap — the war's terms already take everything. This covers Driven Assimilators, Devouring Swarms, Fanatic Purifiers, and nomad total wars.
 
 The first time a raid vector fires against an unauthorized target (bombardment tick in raiding stance, ground-invasion win, or monthly auto-raid on an occupied planet), a prompt appears:
 
@@ -178,11 +182,29 @@ Three loot vectors:
 
 There is no post-war "Ransacked" colony debuff or re-plunder lockout — plundering simply tapers as devastation suppresses output, and a planet can be plundered again whenever it is producing.
 
+## Target Empires
+
+Pop raiding works against any empire you can go to war with, fallen and awakened empires included. Primitives can be raided without a formal war.
+
+Galaxy-wide opinion penalties still skip fallen empires and homicidal empires, so raiding them carries no diplomatic cost.
+
+## Depopulation
+
+Raiding bombardment has no pop floor: it keeps abducting until the planet is empty, and the colony is destroyed when the last pop leaves. Ground invasion and the monthly auto-raid on occupied planets can also empty a planet outright.
+
+Pops that are ineligible for capture are never taken and will keep a colony alive on their own: robots under the Organics Only policy, organics under Robots Only, pre-sapients, and pops your empire would purge on arrival.
+
 ## Invasion and Occupation
 
 Occupied enemy planets are automatically raided each month during war. Transfer rate: 50 base + 10 per offensive army on the planet.
 
 Multi-raider invasions distribute captured pops proportionally among each army's owner. Allies without pop-raiding capability redirect their share to the war leader.
+
+## Nomad Raiders
+
+Nomad empires deliver every captured pop to an arkship, however the pops were taken. The arkship in orbit of the raided planet is used first, then one in the same system, then any arkship you own. Where several arkships qualify, the one with more free housing is more likely to receive them.
+
+Delivery is forced: pops arrive even when the arkship has no housing left, so raiding hard enough will overcrowd your arkship.
 
 ## Tradition Tree — Despoliation
 

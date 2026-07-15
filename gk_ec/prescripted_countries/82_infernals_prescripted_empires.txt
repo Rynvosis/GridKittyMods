@@ -1,4 +1,4 @@
-# Version last updated: 4.3.0
+# Version last updated: 4.4.5
 # OW: All empires updated with 4th ethic point (Individualist/Collectivist) and 3rd civic for gk_ec compatibility
 
 # Infernals "Pyrrag'Thul Planet Forgers"
