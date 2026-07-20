@@ -9,11 +9,9 @@ trait_gk_burnout_susceptibility = {
 	inline_script = "traits/gk_access_negative_machine"
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { PSIONIC }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
-	tags = { organic negative leader cybernetic psionic species gk_random_death }
+	tags = { organic negative leader cybernetic psionic species }
 	modifier = {
 		gk_monthly_burnout_chance = 0.00168
 	}
@@ -32,9 +30,7 @@ trait_gk_sleepless = {
 	opposites = { "trait_seasonal_dormancy" "trait_low_maintenance" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { AQUATIC ART }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
 	localized_tags = { SPECIES_TRAIT_AQUATIC SPECIES_TRAIT_ARTHROPOID }
 	tags = { organic negative upkeep aquatic arthropoid cybernetic species }
@@ -66,9 +62,7 @@ trait_gk_cannibalistic = {
 	opposites = { "trait_familial" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { MAM MOL REP }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
-	}
+	inline_script = "traits/gk_portraits_biogen"
 	inline_script = "traits/gk_class_override"
 	localized_tags = { SPECIES_TRAIT_MAMMALIAN SPECIES_TRAIT_MOLLUSCOID SPECIES_TRAIT_REPTILIAN }
 	tags = { organic negative pop_growth upkeep food mammalian molluscoid reptilian species }
@@ -92,9 +86,7 @@ trait_gk_hypermetabolism = {
 	opposites = { "trait_gk_efficient_metabolism" "trait_gk_high_metabolism" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { LITHOID INF TOX }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
-	}
+	inline_script = "traits/gk_portraits_biogen"
 	inline_script = "traits/gk_class_override"
 	localized_tags = { SPECIES_TRAIT_LITHOID SPECIES_TRAIT_TOXOID }
 	tags = { organic negative upkeep food lithoid toxoid species }

@@ -9,9 +9,7 @@ trait_gk_durasteel_plating = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { ART MOL }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
 	tags = { organic positive army habitability cybernetic species }
 	modifier = {
@@ -38,9 +36,7 @@ trait_gk_dragon_scales = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { REP }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
-	}
+	inline_script = "traits/gk_portraits_biogen"
 	inline_script = "traits/gk_class_override"
 	tags = { organic positive army habitability reptilian species }
 	modifier = {
@@ -60,7 +56,8 @@ trait_gk_hosts = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { BIOGENESIS_02 }
 	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
+		ant1 bio10 bio11 bio4 bio5 bio6 bio7 bio8
+		bio9 pdx_signup_portrait_01 pro1 pro2 tox4
 		mol2 fun4 fun16
 	}
 	inline_script = "traits/gk_class_override"
@@ -82,9 +79,7 @@ trait_gk_regenerative = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { ART MOL }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
-	}
+	inline_script = "traits/gk_portraits_biogen"
 	inline_script = "traits/gk_class_override"
 	tags = { organic positive leader pop_output upkeep species }
 	modifier = {
@@ -104,9 +99,7 @@ trait_gk_natural_artisans = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { HUM }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
 	tags = { organic positive pop_output consumer_goods cybernetic species }
 	modifier = {
@@ -124,9 +117,7 @@ trait_gk_intrauterine_cannibalism = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { AQUATIC }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
-	}
+	inline_script = "traits/gk_portraits_biogen"
 	inline_script = "traits/gk_class_override"
 	tags = { organic positive army aquatic species }
 	modifier = {
@@ -145,7 +136,8 @@ trait_gk_polycephalous = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { BIOGENESIS_02 }
 	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
+		ant1 bio10 bio11 bio4 bio5 bio6 bio7 bio8
+		bio9 pdx_signup_portrait_01 pro1 pro2 tox4
 		mol16 lith6 aqu7 tox3
 	}
 	inline_script = "traits/gk_class_override"
@@ -166,9 +158,7 @@ trait_gk_tinkerers = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { HUM }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
 	tags = { organic positive pop_output research drawbacks cybernetic species }
 	modifier = {
@@ -189,9 +179,7 @@ trait_gk_panoptics = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { PSIONIC }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
 	tags = { organic positive pop_output research drawbacks cybernetic psionic species }
 	modifier = {
@@ -213,9 +201,7 @@ trait_gk_radiation_shielding = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { TOX NECROID }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
 	tags = { organic positive habitability migration cybernetic species }
 	modifier = {
@@ -234,9 +220,7 @@ trait_gk_etched_frames = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { NECROID LITHOID }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_cyber"
-	}
+	inline_script = "traits/gk_portraits_cyber"
 	inline_script = "traits/gk_class_override_cyber"
 	tags = { organic positive unity cybernetic species }
 	resources = {
@@ -258,9 +242,7 @@ trait_gk_sanguivore = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { ART }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_biogen"
-	}
+	inline_script = "traits/gk_portraits_biogen"
 	inline_script = "traits/gk_class_override"
 	tags = { organic positive upkeep drawbacks food species }
 	modifier = {

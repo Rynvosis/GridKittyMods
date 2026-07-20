@@ -7,9 +7,7 @@ trait_gk_high_metabolism = {
 	opposites = { "trait_gk_efficient_metabolism" "trait_gk_hypermetabolism" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { WILDERNESS }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_common"
-	}
+	inline_script = "traits/gk_portraits_common"
 	tags = { organic negative upkeep food }
 	modifier = {
 		gk_diet_upkeep_mult = 0.40
@@ -28,18 +26,13 @@ trait_gk_ephemeral = {
 	opposites = { "trait_gk_hale" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { WILDERNESS }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_common"
-	}
+	inline_script = "traits/gk_portraits_common"
 	tags = { organic negative leader }
+	# Sheet wanted -50 for lithoids, but leader_lifespan_add is leader-scope and
+	# is rejected inside triggered_species_modifier (pop-scope only). The source
+	# mod solved this with a second LITHOID-gated trait; flat -20 for now.
 	modifier = {
 		leader_lifespan_add = -20
-	}
-	triggered_species_modifier = {
-		potential = {
-			has_trait = trait_lithoid
-		}
-		leader_lifespan_add = -30
 	}
 	slave_cost = {
 		trade = -200
@@ -53,9 +46,7 @@ trait_gk_weak_immune_systems = {
 	inline_script = "traits/gk_access_negative"
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { WILDERNESS }
-	portrait_override = {
-		inline_script = "traits/gk_portraits_common"
-	}
+	inline_script = "traits/gk_portraits_common"
 	tags = { organic negative pop_growth habitability }
 	custom_tooltip = trait_gk_weak_immune_systems_effect
 	triggered_planet_growth_habitability_modifier = {
