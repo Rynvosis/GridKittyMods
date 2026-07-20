@@ -1,0 +1,9 @@
+# has_trait leg reaches ascended cyborgs whose portrait is not in the CYBER set.
+species_class_override = {
+	hidden_trigger = {
+		OR = {
+			can_add_or_remove_phenotype_traits = yes
+			has_trait = trait_cybernetic
+		}
+	}
+}

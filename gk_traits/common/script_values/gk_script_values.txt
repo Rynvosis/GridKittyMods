@@ -1,0 +1,46 @@
+# Clone of counter_familial (06_script_values_biogenesis.txt:248).
+# Resolves at the scope it is called from - always invoke as planet.value:
+counter_gk_cannibalistic = {
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		parameters = {
+			limit = {
+				has_trait = trait_gk_cannibalistic
+			}
+		}
+		mode = add
+	}
+	max = 20000
+}
+
+# Empire-wide and deliberately uncapped, unlike counter_gk_cannibalistic.
+counter_gk_last_children = {
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		parameters = {
+			limit = {
+				has_trait = trait_gk_last_children
+			}
+		}
+		mode = add
+	}
+}
+
+# Reads the skill level of `from` (the dead leader) from the country scope of
+# gk_burnout.3. Clone of prev_has_skill (01_script_values_paragon.txt:911).
+gk_burnout_skill = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = has_base_skill
+		trigger_scope = from
+		mode = add
+	}
+}
+
+gk_aeroplankton_size_mult = {
+	base = 25
+	subtract = planet.trigger:planet_size
+	mult = 2
+	divide = 3
+	min = 0
+}

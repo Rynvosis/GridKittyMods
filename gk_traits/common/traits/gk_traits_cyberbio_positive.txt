@@ -1,0 +1,273 @@
+# Positive traits on the CYBER and BIOGENESIS overlay legs.
+# CYBER and BIOGENESIS are not real species_class tokens; those legs come in via
+# portrait_override. Real-class legs go in species_class.
+
+trait_gk_durasteel_plating = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive_machine"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { ART MOL }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	tags = { organic positive army habitability cybernetic species }
+	modifier = {
+		pop_environment_tolerance   = 0.10
+		pop_resettlement_cost_mult  = 0.5
+		army_health                 = 1.0
+		army_disengage_chance_mult  = -0.50
+	}
+	resources = {
+		category = planet_pops
+		upkeep = {
+			alloys = 0.10
+		}
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_dragon_scales = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { REP }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+	}
+	inline_script = "traits/gk_class_override"
+	tags = { organic positive army habitability reptilian species }
+	modifier = {
+		army_health               = 0.40
+		pop_environment_tolerance = 0.15
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_hosts = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { BIOGENESIS_02 }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+		mol2 fun4 fun16
+	}
+	inline_script = "traits/gk_class_override"
+	tags = { organic positive leader habitability army species }
+	modifier = {
+		leader_lifespan_add       = 30
+		pop_environment_tolerance = 0.10
+		army_morale               = -0.15
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_regenerative = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { ART MOL }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+	}
+	inline_script = "traits/gk_class_override"
+	tags = { organic positive leader pop_output upkeep species }
+	modifier = {
+		leader_lifespan_add                = 40
+		pop_livestock_bonus_workforce_mult = 0.25
+		planet_pops_food_upkeep_mult       = 0.15
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_natural_artisans = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive_machine"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { HUM }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	tags = { organic positive pop_output consumer_goods cybernetic species }
+	modifier = {
+		artisan_jobs_bonus_workforce_mult = 0.20
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_intrauterine_cannibalism = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { AQUATIC }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+	}
+	inline_script = "traits/gk_class_override"
+	tags = { organic positive army aquatic species }
+	modifier = {
+		army_starting_experience_add = 500
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_polycephalous = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { BIOGENESIS_02 }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+		mol16 lith6 aqu7 tox3
+	}
+	inline_script = "traits/gk_class_override"
+	tags = { organic positive pop_output research unity species }
+	modifier = {
+		bureaucrat_jobs_bonus_workforce_mult = 0.10
+		researcher_jobs_bonus_workforce_mult = 0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_tinkerers = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_machine"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { HUM }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	tags = { organic positive pop_output research drawbacks cybernetic species }
+	modifier = {
+		engineer_jobs_bonus_workforce_mult   = 0.20
+		roboticist_jobs_bonus_workforce_mult = 0.10
+		biologist_jobs_bonus_workforce_mult  = -0.10
+		physicist_jobs_bonus_workforce_mult  = -0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_panoptics = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_machine"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { PSIONIC }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	tags = { organic positive pop_output research drawbacks cybernetic psionic species }
+	modifier = {
+		physicist_jobs_bonus_workforce_mult = 0.20
+		enforcer_jobs_bonus_workforce_mult  = 0.10
+		engineer_jobs_bonus_workforce_mult  = -0.10
+		biologist_jobs_bonus_workforce_mult = -0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+# pc_irradiated_habitability from the sheet dropped: no such planet class.
+trait_gk_radiation_shielding = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_machine"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { TOX NECROID }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	tags = { organic positive habitability migration cybernetic species }
+	modifier = {
+		pc_nuked_habitability      = 0.5
+		pop_resettlement_cost_mult = 0.5
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_etched_frames = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_machine"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { NECROID LITHOID }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	tags = { organic positive unity cybernetic species }
+	resources = {
+		category = planet_pops
+		produces = {
+			unity = 0.05
+			mult  = owner.trigger:num_ascension_perks
+		}
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_sanguivore = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { ART }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+	}
+	inline_script = "traits/gk_class_override"
+	tags = { organic positive upkeep drawbacks food species }
+	modifier = {
+		planet_pops_food_upkeep_mult     = -0.225
+		farmer_jobs_bonus_workforce_mult = -0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}

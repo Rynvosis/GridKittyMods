@@ -1,0 +1,135 @@
+# Positive traits with no phenotype gate.
+
+trait_gk_ascetic = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive upkeep housing amenities consumer_goods }
+	modifier = {
+		planet_pops_consumer_goods_upkeep_mult = -0.10
+		pop_housing_usage_mult                 = -0.10
+		pop_amenities_usage_mult               = -0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_gifted = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" "trait_gk_arrested_learning" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive leader }
+	modifier = {
+		species_leader_exp_gain            = 0.20
+		leader_trait_selection_options_add = 1
+		negative_leader_traits_species     = -1
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_stoic = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive army leader }
+	modifier = {
+		army_morale                   = 0.30
+		army_morale_damage_taken_mult = -0.5
+		negative_leader_traits_species = -1
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_hale = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" "trait_gk_ephemeral" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive leader }
+	modifier = {
+		leader_lifespan_mult = 0.20
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_zealous = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive pop_output ethic_attraction }
+	custom_tooltip = trait_gk_zealous_effect
+	triggered_pop_group_modifier = {
+		pop_government_ethic_attraction         = 0.10
+		pop_cat_specialist_bonus_workforce_mult = 0.02
+		pop_cat_worker_bonus_workforce_mult     = 0.04
+		mult = owner.trigger:num_rivals
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_huge = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" "trait_gk_tiny" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive army upkeep housing pop_output }
+	modifier = {
+		army_damage_mult                                 = 0.20
+		army_health                                      = 0.10
+		planet_pops_upkeep_mult                          = 0.10
+		pop_housing_usage_mult                           = 0.10
+		worker_and_simple_drone_cat_bonus_workforce_mult = 0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_sadistic = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive army }
+	modifier = {
+		army_collateral_damage_mult = 0.50
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_undemanding = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" "trait_gk_unamuseable" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive amenities }
+	modifier = {
+		pop_amenities_usage_mult = -0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}

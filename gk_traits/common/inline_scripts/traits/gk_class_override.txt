@@ -1,0 +1,5 @@
+species_class_override = {
+	hidden_trigger = {
+		can_add_or_remove_phenotype_traits = yes
+	}
+}

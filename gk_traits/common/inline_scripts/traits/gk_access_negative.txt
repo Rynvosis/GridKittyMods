@@ -1,0 +1,8 @@
+# Negatives gate with potential_add (hides) not possible_add (greys out).
+# Removal is ungated in vanilla; can_remove_detrimental_genetic_traits does not exist.
+species_potential_add = {
+	can_add_negative_organic_traits = yes
+}
+ai_weight = {
+	weight = 0
+}

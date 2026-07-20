@@ -1,0 +1,107 @@
+# Positive traits for the COMMON category (portraits with no overlay).
+# Gate is the dummy no-match class plus the COMMON portrait list; no
+# species_class_override, so Mutation cannot grant these off-portrait.
+
+trait_gk_efficient_metabolism = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" "trait_gk_high_metabolism" "trait_gk_hypermetabolism" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic positive upkeep food }
+	modifier = {
+		gk_diet_upkeep_mult = -0.40
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_extremophiles = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic positive habitability }
+	modifier = {
+		pop_environment_tolerance = 0.15
+		habitability_floor_add    = 0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_teeming = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic positive pop_growth upkeep food }
+	modifier = {
+		logistic_growth_mult         = 0.20
+		planet_pops_food_upkeep_mult = 0.20
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_warrior_caste = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" "trait_gk_unwarlike" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic positive army pop_output drawbacks }
+	modifier = {
+		army_damage_mult                                 = 0.30
+		army_health                                      = 0.20
+		soldier_jobs_bonus_workforce_mult                = 0.15
+		researcher_jobs_bonus_workforce_mult             = -0.10
+		worker_and_simple_drone_cat_bonus_workforce_mult = -0.05
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_herbalists = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic positive pop_output research drawbacks }
+	modifier = {
+		biologist_jobs_bonus_workforce_mult = 0.20
+		pop_healthcare_bonus_workforce_mult = 0.10
+		engineer_jobs_bonus_workforce_mult  = -0.10
+		physicist_jobs_bonus_workforce_mult = -0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}

@@ -1,0 +1,72 @@
+# Negative traits for the COMMON category (portraits with no overlay).
+
+trait_gk_high_metabolism = {
+	cost = -2
+	category = normal
+	inline_script = "traits/gk_access_negative"
+	opposites = { "trait_gk_efficient_metabolism" "trait_gk_hypermetabolism" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic negative upkeep food }
+	modifier = {
+		gk_diet_upkeep_mult = 0.40
+	}
+	slave_cost = {
+		trade = -200
+	}
+}
+
+# -20 base, -50 total for lithoids. triggered_species_modifier auto-localises,
+# so no custom_tooltip.
+trait_gk_ephemeral = {
+	cost = -2
+	category = normal
+	inline_script = "traits/gk_access_negative"
+	opposites = { "trait_gk_hale" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic negative leader }
+	modifier = {
+		leader_lifespan_add = -20
+	}
+	triggered_species_modifier = {
+		potential = {
+			has_trait = trait_lithoid
+		}
+		leader_lifespan_add = -30
+	}
+	slave_cost = {
+		trade = -200
+	}
+}
+
+# triggered_planet_growth_habitability_modifier does not auto-localise.
+trait_gk_weak_immune_systems = {
+	cost = -2
+	category = normal
+	inline_script = "traits/gk_access_negative"
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { WILDERNESS }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_common"
+	}
+	tags = { organic negative pop_growth habitability }
+	custom_tooltip = trait_gk_weak_immune_systems_effect
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			NOT = {
+				is_ideal_planet_class = { who = from status = yes }
+			}
+		}
+		logistic_growth_mult = -0.25
+	}
+	slave_cost = {
+		trade = -200
+	}
+}

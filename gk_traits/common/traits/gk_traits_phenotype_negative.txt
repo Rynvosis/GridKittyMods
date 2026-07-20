@@ -1,0 +1,38 @@
+# Negative traits gated on real species_class tokens only.
+
+trait_gk_hoarders = {
+	cost = -3
+	category = normal
+	inline_script = "traits/gk_access_negative_pheno"
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { HUM AVI NECROID }
+	# the two dragons: rep17 and pdx_signup_portrait_01 (Behemothkin)
+	portrait_override = { rep17 pdx_signup_portrait_01 }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_HUMANOID SPECIES_TRAIT_AVIAN SPECIES_TRAIT_NECROID }
+	tags = { organic negative upkeep consumer_goods humanoid avian necroid species }
+	modifier = {
+		planet_pops_consumer_goods_upkeep_mult = 0.3
+	}
+	slave_cost = {
+		trade = -200
+	}
+}
+
+trait_gk_sprawling_overgrowth = {
+	cost = -3
+	category = normal
+	inline_script = "traits/gk_access_negative_pheno"
+	opposites = { "trait_unruly" "trait_docile" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { FUN PLANT }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_FUNGOID SPECIES_TRAIT_PLANTOID }
+	tags = { organic negative empire_size fungoid plantoid species }
+	modifier = {
+		species_empire_size_mult = 0.15
+	}
+	slave_cost = {
+		trade = -200
+	}
+}

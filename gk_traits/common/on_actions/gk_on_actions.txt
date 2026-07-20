@@ -1,0 +1,11 @@
+on_monthly_pulse_country = {
+	events = {
+		gk_burnout.1
+	}
+}
+
+on_leader_death = {
+	events = {
+		gk_burnout.3
+	}
+}

@@ -1,0 +1,20 @@
+species_potential_add = {
+	if = {
+		limit = {
+			OR = {
+				is_archetype = MACHINE
+				is_archetype = ROBOT
+			}
+		}
+		always = yes
+	}
+	else = {
+		OR = {
+			can_add_negative_organic_traits = yes
+			can_add_or_remove_phenotype_traits = yes
+		}
+	}
+}
+ai_weight = {
+	weight = 0
+}

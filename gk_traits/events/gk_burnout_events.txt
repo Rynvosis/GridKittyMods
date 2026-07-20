@@ -1,0 +1,99 @@
+namespace = gk_burnout
+
+# Monthly roll for trait_gk_burnout_susceptibility. Country pulse fans out to one
+# leader event each, which rolls a weighted random_list against the scripted
+# modifier. Structure follows V_TRAITS' v_traits_monthly_death_chance_event.
+# The research payout on death lives in gk_burnout.3, hooked from on_leader_death.
+
+country_event = {
+	id = gk_burnout.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_leader = {
+			species = {
+				has_trait = trait_gk_burnout_susceptibility
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				species = {
+					has_trait = trait_gk_burnout_susceptibility
+				}
+				NOR = {
+					has_trait = leader_trait_ruler_machine_intelligence
+					has_trait = leader_trait_ruler_hive_mind
+				}
+			}
+			leader_event = { id = gk_burnout.2 }
+		}
+	}
+}
+
+leader_event = {
+	id = gk_burnout.2
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		random_list = {
+			0 = {
+				modifier = {
+					add = root.modifier:gk_monthly_burnout_chance
+				}
+				modifier = {
+					factor = 100
+				}
+				kill_leader = {
+					show_notification = yes
+				}
+			}
+			1 = {
+				modifier = {
+					subtract = root.modifier:gk_monthly_burnout_chance
+				}
+				modifier = {
+					factor = 100
+				}
+			}
+		}
+	}
+}
+
+# Research payout on death - hooked from on_leader_death (This = Country, From = Leader).
+# add_monthly_resource_mult grants skill months of each research type, no floor, no cap.
+country_event = {
+	id = gk_burnout.3
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			species = {
+				has_trait = trait_gk_burnout_susceptibility
+			}
+		}
+	}
+
+	immediate = {
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = 1
+			mult = value:gk_burnout_skill
+		}
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = 1
+			mult = value:gk_burnout_skill
+		}
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = 1
+			mult = value:gk_burnout_skill
+		}
+	}
+}

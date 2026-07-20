@@ -1,0 +1,11 @@
+# A static_modifier key is usable directly in a trait's modifier block; the value
+# passed multiplies each member's coefficient. Vanilla: 24_static_modifiers_jobs.txt
+# Wrapping replaces auto-localisation with the custom_tooltip, so only group
+# members that read better as one line.
+
+gk_diet_upkeep_mult = {
+	custom_tooltip = gk_diet_upkeep_mult_tt
+	planet_pops_organics_food_upkeep_mult     = 1
+	planet_pops_organics_minerals_upkeep_mult = 1
+	planet_pops_organics_alloys_upkeep_mult   = 1
+}

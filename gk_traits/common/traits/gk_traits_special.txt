@@ -1,0 +1,25 @@
+# SPECIAL - traits that are not part of the phenotype/overlay scheme.
+
+# -0.5% workforce per 100 own-trait pops, empire-wide and uncapped, against a
+# flat +30%. Pop counts are raw, so the per-100 rate is divided by 100 - same
+# encoding as trait_familial (+0.1%/100 = 0.00001, 15_biogenesis:517).
+# ~5k starting pops lands at -25%, i.e. +5% net at game start.
+trait_gk_last_children = {
+	cost = -10
+	category = normal
+	inline_script = "traits/gk_access_negative"
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic negative pop_growth pop_output species special }
+	infertile = yes
+	custom_tooltip = trait_gk_last_children_effect
+	modifier = {
+		pop_bonus_workforce_mult = 0.30
+	}
+	triggered_pop_group_modifier = {
+		pop_bonus_workforce_mult = -0.00005
+		mult = owner.value:counter_gk_last_children
+	}
+	slave_cost = {
+		trade = -200
+	}
+}

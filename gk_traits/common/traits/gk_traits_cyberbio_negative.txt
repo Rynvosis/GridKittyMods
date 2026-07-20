@@ -1,0 +1,107 @@
+# Negative traits on the CYBER and BIOGENESIS overlay legs.
+
+# gk_monthly_burnout_chance is a scripted modifier, not an engine one - see
+# common/scripted_modifiers/gk_scripted_modifiers.txt and the pulse in
+# events/gk_burnout_events.txt. Sheet says 2%/yr; 0.00168/month is that rate.
+trait_gk_burnout_susceptibility = {
+	cost = -1
+	category = normal
+	inline_script = "traits/gk_access_negative_machine"
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { PSIONIC }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	tags = { organic negative leader cybernetic psionic species gk_random_death }
+	modifier = {
+		gk_monthly_burnout_chance = 0.00168
+	}
+	slave_cost = {
+		trade = -200
+	}
+}
+
+# Sign-flipped mirror of trait_seasonal_dormancy
+# (15_biogenesis_species_traits.txt:132-144). Realised cost is 0.15 employed /
+# 0.75 idle; the triggered block carries 0.60 because the flat block stacks.
+trait_gk_sleepless = {
+	cost = -2
+	category = normal
+	inline_script = "traits/gk_access_negative_machine"
+	opposites = { "trait_seasonal_dormancy" "trait_low_maintenance" }
+	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
+	species_class = { AQUATIC ART }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_cyber"
+	}
+	inline_script = "traits/gk_class_override_cyber"
+	localized_tags = { SPECIES_TRAIT_AQUATIC SPECIES_TRAIT_ARTHROPOID }
+	tags = { organic negative upkeep aquatic arthropoid cybernetic species }
+	custom_tooltip = trait_gk_sleepless_effect
+	modifier = {
+		planet_pops_upkeep_mult = 0.15
+	}
+	triggered_pop_group_modifier = {
+		potential = {
+			OR = {
+				is_unemployed = yes
+				is_pop_category = civilian
+				is_pop_category = maintenance_drone
+			}
+		}
+		planet_pops_upkeep_mult = 0.60
+	}
+	slave_cost = {
+		trade = -200
+	}
+}
+
+# -0.1% growth per 100 own-trait pops on the planet, -20% at the 20000 cap.
+# Counter mirrors counter_familial; planet-scoped, always.
+trait_gk_cannibalistic = {
+	cost = -1
+	category = normal
+	inline_script = "traits/gk_access_negative_pheno"
+	opposites = { "trait_familial" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { MAM MOL REP }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+	}
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_MAMMALIAN SPECIES_TRAIT_MOLLUSCOID SPECIES_TRAIT_REPTILIAN }
+	tags = { organic negative pop_growth upkeep food mammalian molluscoid reptilian species }
+	custom_tooltip = trait_gk_cannibalistic_effect
+	modifier = {
+		gk_diet_upkeep_mult = -0.05
+	}
+	triggered_pop_group_modifier = {
+		logistic_growth_mult = -0.00001
+		mult = planet.value:counter_gk_cannibalistic
+	}
+	slave_cost = {
+		trade = -200
+	}
+}
+
+trait_gk_hypermetabolism = {
+	cost = -4
+	category = normal
+	inline_script = "traits/gk_access_negative_pheno"
+	opposites = { "trait_gk_efficient_metabolism" "trait_gk_high_metabolism" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { LITHOID INF TOX }
+	portrait_override = {
+		inline_script = "traits/gk_portraits_biogen"
+	}
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_LITHOID SPECIES_TRAIT_TOXOID }
+	tags = { organic negative upkeep food lithoid toxoid species }
+	modifier = {
+		gk_diet_upkeep_mult = 1.50
+	}
+	slave_cost = {
+		trade = -200
+	}
+}

@@ -1,0 +1,15 @@
+species_possible_add = {
+	OR = {
+		can_add_genetic_traits = yes
+		can_add_or_remove_phenotype_traits = yes
+	}
+}
+species_possible_remove = {
+	OR = {
+		can_remove_beneficial_genetic_traits = yes
+		can_add_or_remove_phenotype_traits = yes
+	}
+}
+species_possible_merge_remove = {
+	always = yes
+}

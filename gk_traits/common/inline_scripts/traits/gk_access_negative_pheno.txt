@@ -1,0 +1,9 @@
+species_potential_add = {
+	OR = {
+		can_add_negative_organic_traits = yes
+		can_add_or_remove_phenotype_traits = yes
+	}
+}
+ai_weight = {
+	weight = 0
+}

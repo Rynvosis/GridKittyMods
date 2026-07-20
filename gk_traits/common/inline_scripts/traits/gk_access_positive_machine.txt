@@ -1,0 +1,39 @@
+# can_add_genetic_traits requires tech_gene_tailoring, which machines never have.
+# Archetype branch per trait_pc_ark_preference, 01_species_traits_habitability.txt:902.
+species_possible_add = {
+	if = {
+		limit = {
+			OR = {
+				is_archetype = MACHINE
+				is_archetype = ROBOT
+			}
+		}
+		always = yes
+	}
+	else = {
+		OR = {
+			can_add_genetic_traits = yes
+			can_add_or_remove_phenotype_traits = yes
+		}
+	}
+}
+species_possible_remove = {
+	if = {
+		limit = {
+			OR = {
+				is_archetype = MACHINE
+				is_archetype = ROBOT
+			}
+		}
+		always = yes
+	}
+	else = {
+		OR = {
+			can_remove_beneficial_genetic_traits = yes
+			can_add_or_remove_phenotype_traits = yes
+		}
+	}
+}
+species_possible_merge_remove = {
+	always = yes
+}

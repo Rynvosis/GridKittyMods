@@ -1,0 +1,257 @@
+# Positive traits gated on real species_class tokens only.
+
+trait_gk_lignified = {
+	cost = 4
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { PLANT FUN }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_PLANTOID SPECIES_TRAIT_FUNGOID }
+	tags = { organic positive leader army habitability pop_growth plantoid fungoid species }
+	modifier = {
+		leader_lifespan_add       = 50
+		army_health               = 0.50
+		pop_environment_tolerance = 0.30
+		logistic_growth_mult      = -0.15
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_pestilent_byproducts = {
+	cost = 4
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { TOX NECROID }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_TOXOID SPECIES_TRAIT_NECROID }
+	tags = { organic positive pop_output toxoid necroid species }
+	resources = {
+		category = planet_pops
+		produces = {
+			exotic_gases   = 0.005
+			volatile_motes = 0.005
+			rare_crystals  = 0.005
+			mult = value:count_negative_traits
+		}
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_courtship_displays = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { AVI MAM AQUATIC }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_AVIAN SPECIES_TRAIT_MAMMALIAN SPECIES_TRAIT_AQUATIC }
+	tags = { organic positive pop_growth pop_output avian mammalian aquatic species }
+	modifier = {
+		logistic_growth_mult                 = 0.10
+		influential_jobs_bonus_workforce_mult = 0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_fire_breath = {
+	cost = 3
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { REP INF }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_REPTILIAN }
+	tags = { organic positive army pop_output alloys reptilian species }
+	modifier = {
+		foundry_jobs_bonus_workforce_mult = 0.20
+		army_damage_mult                  = 0.50
+		army_morale_damage_mult           = 0.50
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_mycorrhizal = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { FUN PLANT }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_FUNGOID SPECIES_TRAIT_PLANTOID }
+	tags = { organic positive upkeep food fungoid plantoid species }
+	custom_tooltip = trait_gk_mycorrhizal_effect
+	triggered_pop_group_modifier = {
+		gk_diet_upkeep_mult = -0.05
+		mult = planet.value:natural_blocker_count
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_ferroelectric = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { LITHOID INF }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_LITHOID }
+	tags = { organic positive pop_output army lithoid species }
+	custom_tooltip = trait_gk_ferroelectric_effect
+	triggered_pop_group_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_deficit = energy } }
+		}
+		soldier_jobs_bonus_workforce_mult                = 0.25
+		worker_and_simple_drone_cat_bonus_workforce_mult = 0.10
+	}
+	triggered_pop_group_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_deficit = energy }
+		}
+		soldier_jobs_bonus_workforce_mult                = -0.2
+		worker_and_simple_drone_cat_bonus_workforce_mult = -0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_aeroplankton = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { PLANT FUN }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_PLANTOID SPECIES_TRAIT_FUNGOID }
+	tags = { organic positive pop_growth migration plantoid fungoid species }
+	custom_tooltip = trait_gk_aeroplankton_effect
+	modifier = {
+		pop_resettlement_cost_mult = -0.35
+	}
+	triggered_planet_growth_habitability_modifier = {
+		logistic_growth_mult = 0.01
+		mult = value:gk_aeroplankton_size_mult
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_radiotoxic = {
+	cost = 2
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { TOX AVI REP }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_TOXOID SPECIES_TRAIT_AVIAN SPECIES_TRAIT_REPTILIAN }
+	tags = { organic positive habitability toxoid avian reptilian species }
+	modifier = {
+		pop_livestock_bonus_workforce_mult = -1.00
+		pc_nuked_habitability              = 0.20
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_gregarious = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { MAM AVI }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_MAMMALIAN SPECIES_TRAIT_AVIAN }
+	tags = { organic positive happiness mammalian avian species }
+	modifier = {
+		pop_cat_worker_happiness = 0.1
+		pop_slave_happiness      = 0.1
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_elders = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { MAM HUM }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_MAMMALIAN }
+	tags = { organic positive leader mammalian species }
+	modifier = {
+		leader_starting_age_mult = 0.50
+		leader_initial_skill     = 2
+		leaders_cost_mult        = -0.25
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_extrasensory = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { MOL PSIONIC AQUATIC }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_MOLLUSCOID SPECIES_TRAIT_AQUATIC }
+	tags = { organic positive pop_output army molluscoid psionic aquatic species }
+	modifier = {
+		influential_jobs_bonus_workforce_mult = 0.10
+		enforcer_jobs_bonus_workforce_mult    = 0.05
+		army_damage_mult                      = 0.20
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_gk_death_echoes = {
+	cost = 1
+	category = normal
+	inline_script = "traits/gk_access_positive_pheno"
+	opposites = { "trait_invasive" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { NECROID PSIONIC }
+	inline_script = "traits/gk_class_override"
+	localized_tags = { SPECIES_TRAIT_NECROID }
+	tags = { organic positive pop_output leader research necroid psionic species }
+	modifier = {
+		biologist_jobs_bonus_workforce_mult = 0.05
+		species_leader_exp_gain             = 0.10
+	}
+	slave_cost = {
+		trade = 500
+	}
+}

@@ -1,0 +1,9 @@
+# Not an engine modifier - declared here for display, driven by
+# events/gk_burnout_events.txt. Prefixed to avoid colliding with V_TRAITS,
+# which ships its own monthly_leader_death_chance.
+gk_monthly_burnout_chance = {
+	icon = mod_pop_happiness
+	good = no
+	percentage = yes
+	category = leader
+}
