@@ -1,3 +1,10 @@
+# OVERWRITE of vanilla common/traits/17_shroud_species_traits.txt
+# Purpose: widen phenotype trait gates (portrait_override) so gk cross-classified
+# portraits can take these vanilla traits. The ONLY intended deviation from vanilla
+# is each line marked '# gk_widen:'. Grep that tag to see every change.
+# Synced against vanilla v4.4.6. Re-sync: python3 tools/widen.py --regen
+# Widened: trait_cranial_hypertrophy trait_cranial_megatrophy trait_haunting_visions trait_uncanny_intuition
+# === gk header ends; below is current vanilla + lines marked '# gk_widen:' ===
  ########################################
  # Shadows of the Shroud Species Traits #
  ########################################
@@ -17,7 +24,7 @@ trait_tankbound = {
 	species_possible_merge_remove = {
 		always = no
 	}
-	opposites = { "trait_weak" "trait_hollow_bones" }
+	opposites = { "trait_weak" "trait_hollow_bones" "trait_photoadaptive" }
 
 	custom_tooltip_with_modifiers = trait_tankbound_effects
 
@@ -58,7 +65,7 @@ trait_uncanny_intuition = {
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { PSIONIC }
-	portrait_override = { mam_rat mindwarden_01 nec5 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 }
+	portrait_override = { mam_rat mindwarden_01 nec5 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 } # gk_widen: +nec5
 	localized_tags = {
 		SPECIES_TRAIT_PSIONIC
 	}
@@ -74,7 +81,7 @@ trait_uncanny_intuition = {
 	}
 
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -103,7 +110,7 @@ trait_cranial_hypertrophy = {
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { PSIONIC }
-	portrait_override = { aqu12 fun8 humanoid_hp_16 mam_rat mindwarden_01 mol7 nec5 nec6 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 tox10 tox13 }
+	portrait_override = { aqu12 fun8 humanoid_hp_16 mam_rat mindwarden_01 mol7 nec5 nec6 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 tox10 tox13 } # gk_widen: +nec5
 	localized_tags = {
 		SPECIES_TRAIT_PSIONIC
 	}
@@ -120,7 +127,7 @@ trait_cranial_hypertrophy = {
 	}
 
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 }
 
@@ -148,7 +155,7 @@ trait_cranial_megatrophy = {
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { PSIONIC }
-	portrait_override = { aqu12 fun8 humanoid_hp_16 mam_rat mindwarden_01 mol7 nec5 nec6 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 tox10 tox13 }
+	portrait_override = { aqu12 fun8 humanoid_hp_16 mam_rat mindwarden_01 mol7 nec5 nec6 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 tox10 tox13 } # gk_widen: +nec5
 	localized_tags = {
 		SPECIES_TRAIT_PSIONIC
 	}
@@ -165,7 +172,7 @@ trait_cranial_megatrophy = {
 	}
 
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -183,7 +190,7 @@ trait_haunting_visions = {
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { PSIONIC }
-	portrait_override = { mam_rat mindwarden_01 nec5 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 }
+	portrait_override = { mam_rat mindwarden_01 nec5 psionic_01 psionic_02 psionic_03 psionic_04 psionic_05 psionic_06 psionic_07 psionic_08 psionic_09 psionic_10 psionic_12 } # gk_widen: +nec5
 	localized_tags = {
 		SPECIES_TRAIT_PSIONIC
 	}
@@ -200,7 +207,7 @@ trait_haunting_visions = {
 	}
 
 	slave_cost = {
-		energy = -1000
+		trade = -1000
 	}
 }
 

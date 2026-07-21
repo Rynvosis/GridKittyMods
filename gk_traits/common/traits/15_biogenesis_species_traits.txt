@@ -1,3 +1,10 @@
+# OVERWRITE of vanilla common/traits/15_biogenesis_species_traits.txt
+# Purpose: widen phenotype trait gates (portrait_override) so gk cross-classified
+# portraits can take these vanilla traits. The ONLY intended deviation from vanilla
+# is each line marked '# gk_widen:'. Grep that tag to see every change.
+# Synced against vanilla v4.4.6. Re-sync: python3 tools/widen.py --regen
+# Widened: trait_acidic_vascularity trait_brittle trait_camouflage trait_chromalogs trait_egg_laying trait_familial trait_flight trait_genetic_memory trait_hollow_bones trait_nascent_stage trait_permeable_skin trait_rooted trait_seasonal_dormancy trait_shelled trait_spare_organs trait_spatial_mastery
+# === gk header ends; below is current vanilla + lines marked '# gk_widen:' ===
 #############################
 # BioGenesis Species Traits #
 #############################
@@ -36,7 +43,7 @@ trait_egg_laying = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art15 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio4 bio8 bio9 cyb10 cyb11 cyb4 cyb5 inf2 inf3 inf6 inf7 lith14 mam16 mindwarden_01 mol17 mol4 pdx_signup_portrait_01 pro1 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 stargazer_01 synth01 synth06 tox15 }
+	portrait_override = { aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art15 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio4 bio8 bio9 cyb10 cyb11 cyb4 cyb5 inf2 inf3 inf6 inf7 lith14 mam16 mindwarden_01 mol17 mol4 pdx_signup_portrait_01 pro1 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 stargazer_01 synth01 synth06 tox15 } # gk_widen: +aqu1 +aqu10 +aqu11 +aqu12 +aqu13 +aqu14 +aqu15 +aqu2 +aqu3 +aqu4 +aqu5 +aqu6 +aqu7 +aqu8 +aqu9 +art15 +avi1 +avi10 +avi11 +avi12 +avi13 +avi14 +avi15 +avi16 +avi17 +avi18 +avi2 +avi3 +avi4 +avi5 +avi6 +avi7 +avi8 +avi9 +bio4 +bio8 +bio9 +cyb10 +cyb11 +cyb4 +cyb5 +inf2 +inf3 +inf6 +inf7 +lith14 +mol17 +mol4 +pdx_signup_portrait_01 +pro1 +pro2 +rep1 +rep10 +rep11 +rep12 +rep13 +rep14 +rep15 +rep16 +rep17 +rep2 +rep3 +rep4 +rep5 +rep6 +rep7 +rep8 +rep9 +stargazer_01 +synth01 +synth06 +tox15
 	tags = { organic positive pop_growth avian reptilian aquatic species }
 	custom_tooltip = trait_egg_laying_effect
 	triggered_planet_growth_habitability_modifier = {
@@ -92,7 +99,7 @@ trait_egg_laying = {
 	}
 
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -114,7 +121,7 @@ trait_seasonal_dormancy = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	portrait_override = { bio10 bio9 cyb1 cyb10 cyb11 cyb2 cyb3 cyb4 cyb6 cyb7 fun16 fun4 inf2 inf3 inf6 inf7 lith10 lith14 mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 mindwarden_01 pdx_signup_portrait_01 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 tox11 tox12 }
+	portrait_override = { bio10 bio9 cyb1 cyb10 cyb11 cyb2 cyb3 cyb4 cyb6 cyb7 fun16 fun4 inf2 inf3 inf6 inf7 lith10 lith14 mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 mindwarden_01 pdx_signup_portrait_01 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 tox11 tox12 } # gk_widen: +bio10 +bio9 +cyb1 +cyb10 +cyb11 +cyb2 +cyb3 +cyb4 +cyb6 +cyb7 +inf2 +inf3 +inf6 +inf7 +lith10 +lith14 +mam1 +mam10 +mam11 +mam12 +mam13 +mam14 +mam15 +mam16 +mam17 +mam2 +mam3 +mam4 +mam5 +mam6 +mam7 +mam8 +mam9 +mam_rat +mammalian_ar_01 +mammalian_ar_02 +mammalian_ar_03 +mammalian_ar_04 +mammalian_ar_05 +mammalian_ar_06 +mammalian_ar_07 +mammalian_ar_08 +mammalian_ar_09 +mammalian_ar_10 +pdx_signup_portrait_01 +pro2 +rep1 +rep10 +rep11 +rep12 +rep13 +rep14 +rep15 +rep16 +rep17 +rep2 +rep3 +rep4 +rep5 +rep6 +rep7 +rep8 +rep9 +tox11 +tox12
 	opposites = { "trait_wasteful" "trait_conservational" "trait_low_maintenance" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { MAM REP }
@@ -144,7 +151,7 @@ trait_seasonal_dormancy = {
 	}
 
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 
 	assembly_score = {
@@ -165,10 +172,10 @@ trait_hollow_bones = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	opposites = { "trait_strong" "trait_very_strong" "trait_weak" "trait_tankbound" }
+	opposites = { "trait_strong" "trait_very_strong" "trait_weak" "trait_tankbound" "trait_photoadaptive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { TOX AVI }
-	portrait_override = { avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio4 cyb5 inf10 synth01 tox1 tox10 tox11 tox12 tox13 tox14 tox15 tox2 tox3 tox4 tox5 tox6 tox7 tox8 tox9 }
+	portrait_override = { avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio4 cyb5 inf10 synth01 tox1 tox10 tox11 tox12 tox13 tox14 tox15 tox2 tox3 tox4 tox5 tox6 tox7 tox8 tox9 } # gk_widen: +avi1 +avi10 +avi11 +avi12 +avi13 +avi14 +avi15 +avi16 +avi17 +avi18 +avi2 +avi3 +avi4 +avi5 +avi6 +avi7 +avi8 +avi9 +bio4 +cyb5 +inf10 +synth01 +tox1 +tox10 +tox11 +tox12 +tox13 +tox14 +tox15 +tox2 +tox3 +tox4 +tox5 +tox6 +tox7 +tox8 +tox9
 	localized_tags = {
 		SPECIES_TRAIT_AVIAN
 		SPECIES_TRAIT_TOXOID
@@ -190,7 +197,7 @@ trait_hollow_bones = {
 	}
 
 	slave_cost = {
-		energy = -400
+		trade = -400
 	}
 
 	assembly_score = {
@@ -222,7 +229,7 @@ trait_rooted = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { aqu7 avi3 bio5 cyb13 fun1 fun10 fun11 fun12 fun13 fun14 fun15 fun16 fun17 fun2 fun3 fun4 fun6 fun7 fun8 fun9 lith6 lith8 nec3 pla1 pla10 pla11 pla12 pla13 pla14 pla15 pla16_baol pla17 pla2 pla3 pla4 pla5 pla6 pla7 pla8 pla9 }
+	portrait_override = { aqu7 avi3 bio5 cyb13 fun1 fun10 fun11 fun12 fun13 fun14 fun15 fun16 fun17 fun2 fun3 fun4 fun6 fun7 fun8 fun9 lith6 lith8 nec3 pla1 pla10 pla11 pla12 pla13 pla14 pla15 pla16_baol pla17 pla2 pla3 pla4 pla5 pla6 pla7 pla8 pla9 } # gk_widen: +avi3 +bio5 +cyb13 +fun1 +fun10 +fun11 +fun12 +fun13 +fun14 +fun15 +fun16 +fun17 +fun2 +fun3 +fun4 +fun6 +fun7 +fun8 +fun9 +lith8 +pla1 +pla10 +pla11 +pla12 +pla13 +pla14 +pla15 +pla16_baol +pla17 +pla2 +pla3 +pla4 +pla5 +pla6 +pla7 +pla8 +pla9
 	tags = { organic negative migration fungoid plantoid species }
 	custom_tooltip = trait_rooted_effect
 	modifier = {
@@ -230,7 +237,7 @@ trait_rooted = {
 	}
 
 	slave_cost = {
-		energy = -400
+		trade = -400
 	}
 	assembly_score = {
 		modifier = {
@@ -263,7 +270,7 @@ trait_acidic_vascularity = {
 	}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { NECROID TOX }
-	portrait_override = { inf10 mam8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 season_10_portrait tox1 tox10 tox11 tox12 tox13 tox14 tox15 tox2 tox3 tox4 tox5 tox6 tox7 tox8 tox9 }
+	portrait_override = { inf10 mam8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 season_10_portrait tox1 tox10 tox11 tox12 tox13 tox14 tox15 tox2 tox3 tox4 tox5 tox6 tox7 tox8 tox9 } # gk_widen: +inf10 +mam8 +nec1 +nec10 +nec11 +nec12 +nec13 +nec14 +nec15 +nec2 +nec3 +nec4 +nec5 +nec6 +nec7 +nec8 +nec9 +season_10_portrait +tox1 +tox10 +tox11 +tox12 +tox13 +tox14 +tox15 +tox2 +tox3 +tox4 +tox5 +tox6 +tox7 +tox8 +tox9
 	localized_tags = {
 		SPECIES_TRAIT_NECROID
 		SPECIES_TRAIT_TOXOID
@@ -279,7 +286,7 @@ trait_acidic_vascularity = {
 		pop_cat_purge_bonus_workforce_mult = -0.75
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -313,7 +320,7 @@ trait_shelled = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { ant1 aqu12 aqu13 bio11 bio6 mam8 mol1 mol11 mol12 mol13 mol14 mol15 mol16 mol17 mol18 mol2 mol3 mol4 mol5 mol6 mol7 mol8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 pro2 rep14 season_10_portrait stargazer_01 synth03 synth05 tox3 tox7 }
+	portrait_override = { ant1 aqu12 aqu13 bio11 bio6 mam8 mol1 mol11 mol12 mol13 mol14 mol15 mol16 mol17 mol18 mol2 mol3 mol4 mol5 mol6 mol7 mol8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 pro2 rep14 season_10_portrait stargazer_01 synth03 synth05 tox3 tox7 } # gk_widen: +ant1 +aqu12 +aqu13 +bio11 +bio6 +mam8 +mol1 +mol11 +mol12 +mol13 +mol14 +mol15 +mol16 +mol17 +mol18 +mol2 +mol3 +mol4 +mol5 +mol6 +mol7 +mol8 +nec1 +nec10 +nec11 +nec12 +nec13 +nec14 +nec15 +nec2 +nec3 +nec4 +nec5 +nec6 +nec7 +nec8 +nec9 +season_10_portrait +stargazer_01 +synth03 +synth05 +tox3 +tox7
 	tags = { organic positive habitability housing necroid molluscoid species }
 	modifier = {
 		pop_housing_usage_mult = -0.3
@@ -327,7 +334,7 @@ trait_shelled = {
 		}
 	}
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 }
 
@@ -362,7 +369,7 @@ trait_camouflage = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi5 bio7 bio8 bio9 cyb10 cyb11 cyb4 cyb9 inf1 inf2 inf3 inf6 inf7 lith14 lith9 mindwarden_01 mol17 mol4 nec15 pdx_signup_portrait_01 pro1 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 stargazer_01 synth02 synth06 synth08 synth09 tox12 tox15 }
+	portrait_override = { aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi5 bio7 bio8 bio9 cyb10 cyb11 cyb4 cyb9 inf1 inf2 inf3 inf6 inf7 lith14 lith9 mindwarden_01 mol17 mol4 nec15 pdx_signup_portrait_01 pro1 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 stargazer_01 synth02 synth06 synth08 synth09 tox12 tox15 } # gk_widen: +aqu1 +aqu10 +aqu11 +aqu12 +aqu13 +aqu14 +aqu15 +aqu2 +aqu3 +aqu4 +aqu5 +aqu6 +aqu7 +aqu8 +aqu9 +art1 +art10 +art11 +art12 +art13 +art14 +art15 +art16 +art17 +art18 +art19 +art20 +art3 +art5 +art6 +art7 +art8 +art9 +avi5 +bio7 +bio8 +bio9 +cyb10 +cyb11 +cyb4 +cyb9 +inf1 +inf2 +inf3 +inf6 +inf7 +lith14 +lith9 +mol17 +mol4 +nec15 +pdx_signup_portrait_01 +pro1 +pro2 +rep1 +rep10 +rep11 +rep12 +rep13 +rep14 +rep15 +rep16 +rep17 +rep2 +rep3 +rep4 +rep5 +rep6 +rep7 +rep8 +rep9 +stargazer_01 +synth02 +synth06 +synth08 +synth09 +tox15
 	tags = { organic positive army research pop_output aquatic arthropoid reptilian species }
 	modifier = {
 		physicist_jobs_bonus_workforce_mult = 0.10
@@ -381,7 +388,7 @@ trait_camouflage = {
 	}
 
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -416,7 +423,7 @@ trait_chromalogs = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi18 avi5 bio7 bio8 bio9 cyb10 cyb11 cyb4 cyb9 inf1 inf2 inf3 inf6 inf7 lith14 lith9 mindwarden_01 mol17 mol4 nec15 pdx_signup_portrait_01 pro1 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 stargazer_01 synth02 synth06 synth08 synth09 tox12 tox15 }
+	portrait_override = { aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi18 avi5 bio7 bio8 bio9 cyb10 cyb11 cyb4 cyb9 inf1 inf2 inf3 inf6 inf7 lith14 lith9 mindwarden_01 mol17 mol4 nec15 pdx_signup_portrait_01 pro1 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 stargazer_01 synth02 synth06 synth08 synth09 tox12 tox15 } # gk_widen: +aqu1 +aqu10 +aqu11 +aqu12 +aqu13 +aqu14 +aqu15 +aqu2 +aqu3 +aqu4 +aqu5 +aqu6 +aqu7 +aqu8 +aqu9 +art1 +art10 +art11 +art12 +art13 +art14 +art15 +art16 +art17 +art18 +art19 +art20 +art3 +art5 +art6 +art7 +art8 +art9 +avi5 +bio7 +bio8 +bio9 +cyb10 +cyb11 +cyb4 +cyb9 +inf1 +inf2 +inf3 +inf6 +inf7 +lith14 +lith9 +mol17 +mol4 +nec15 +pdx_signup_portrait_01 +pro1 +pro2 +rep1 +rep10 +rep11 +rep12 +rep13 +rep14 +rep15 +rep16 +rep17 +rep2 +rep3 +rep4 +rep5 +rep6 +rep7 +rep8 +rep9 +stargazer_01 +synth02 +synth06 +synth08 +synth09 +tox15
 	tags = { organic positive army research pop_output unity aquatic arthropoid reptilian species }
 	modifier = {
 		physicist_jobs_bonus_workforce_mult = 0.20
@@ -441,7 +448,7 @@ trait_chromalogs = {
 	}
 
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 }
 
@@ -456,7 +463,7 @@ trait_brittle = {
 	}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { LITHOID NECROID }
-	portrait_override = { aqu7 inf6 lith1 lith10 lith11 lith12 lith13 lith14 lith15 lith2 lith2_inf lith3 lith4 lith5 lith6 lith7 lith8 lith9 lith_human lith_human_inf mam8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 season_10_portrait }
+	portrait_override = { aqu7 inf6 lith1 lith10 lith11 lith12 lith13 lith14 lith15 lith2 lith2_inf lith3 lith4 lith5 lith6 lith7 lith8 lith9 lith_human lith_human_inf mam8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 season_10_portrait } # gk_widen: +aqu7 +inf6 +lith1 +lith10 +lith11 +lith12 +lith13 +lith14 +lith15 +lith2 +lith2_inf +lith3 +lith4 +lith5 +lith6 +lith7 +lith8 +lith9 +lith_human +lith_human_inf +mam8 +nec1 +nec10 +nec11 +nec12 +nec13 +nec14 +nec15 +nec2 +nec3 +nec4 +nec5 +nec6 +nec7 +nec8 +nec9 +season_10_portrait
 	localized_tags = {
 		SPECIES_TRAIT_LITHOID
 		SPECIES_TRAIT_NECROID
@@ -471,7 +478,7 @@ trait_brittle = {
 		pop_amenities_usage_add = 0.5
 	}
 	slave_cost = {
-		energy = -1000
+		trade = -1000
 	}
 	assembly_score = {
 		modifier = {
@@ -500,7 +507,7 @@ trait_familial = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	portrait_override = { aqu5 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio10 bio4 cyb1 cyb12 cyb2 cyb3 cyb5 cyb6 cyb7 cyb8 fun16 fun4 human human_legacy humanoid_02 humanoid_03 humanoid_04 humanoid_05 humanoid_elf humanoid_hp_01 humanoid_hp_02 humanoid_hp_06 humanoid_hp_07 humanoid_hp_08 humanoid_hp_09 humanoid_hp_10 humanoid_hp_11 humanoid_hp_12 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 lith10 lith_human lith_human_inf mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 nec1 nec11 nec12 nec13 nec14 pla17 synth01 synth04 synth07 tox11 tox12 tox6 }
+	portrait_override = { aqu5 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio10 bio4 cyb1 cyb12 cyb2 cyb3 cyb5 cyb6 cyb7 cyb8 fun16 fun4 human human_legacy humanoid_02 humanoid_03 humanoid_04 humanoid_05 humanoid_elf humanoid_hp_01 humanoid_hp_02 humanoid_hp_06 humanoid_hp_07 humanoid_hp_08 humanoid_hp_09 humanoid_hp_10 humanoid_hp_11 humanoid_hp_12 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 lith10 lith_human lith_human_inf mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 nec1 nec11 nec12 nec13 nec14 pla17 synth01 synth04 synth07 tox11 tox12 tox6 } # gk_widen: +avi1 +avi10 +avi11 +avi12 +avi13 +avi14 +avi15 +avi16 +avi17 +avi18 +avi2 +avi3 +avi4 +avi5 +avi6 +avi7 +avi8 +avi9 +bio10 +bio4 +cyb1 +cyb12 +cyb2 +cyb3 +cyb5 +cyb6 +cyb7 +cyb8 +human +human_legacy +humanoid_02 +humanoid_03 +humanoid_04 +humanoid_05 +humanoid_elf +humanoid_hp_01 +humanoid_hp_02 +humanoid_hp_06 +humanoid_hp_07 +humanoid_hp_08 +humanoid_hp_09 +humanoid_hp_10 +humanoid_hp_11 +humanoid_hp_12 +humanoid_hp_13 +humanoid_hp_14 +humanoid_hp_16 +lith10 +mam1 +mam10 +mam11 +mam12 +mam13 +mam14 +mam15 +mam16 +mam17 +mam2 +mam3 +mam4 +mam5 +mam6 +mam7 +mam8 +mam9 +mam_rat +mammalian_ar_01 +mammalian_ar_02 +mammalian_ar_03 +mammalian_ar_04 +mammalian_ar_05 +mammalian_ar_06 +mammalian_ar_07 +mammalian_ar_08 +mammalian_ar_09 +mammalian_ar_10 +nec1 +nec11 +nec12 +nec13 +nec14 +synth01 +synth04 +synth07 +tox11 +tox12 +tox6
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { HUM MAM AVI }
 	localized_tags = {
@@ -521,7 +528,7 @@ trait_familial = {
 		mult = planet.value:counter_familial
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 
 	assembly_score = {
@@ -552,7 +559,7 @@ trait_permeable_skin = {
 	}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { MOL AQUATIC }
-	portrait_override = { ant1 aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art15 avi5 bio11 bio6 bio8 mol1 mol11 mol12 mol13 mol14 mol15 mol16 mol17 mol18 mol2 mol3 mol4 mol5 mol6 mol7 mol8 pro1 stargazer_01 synth03 synth05 synth06 tox15 tox3 tox7 }
+	portrait_override = { ant1 aqu1 aqu10 aqu11 aqu12 aqu13 aqu14 aqu15 aqu2 aqu3 aqu4 aqu5 aqu6 aqu7 aqu8 aqu9 art15 avi5 bio11 bio6 bio8 mol1 mol11 mol12 mol13 mol14 mol15 mol16 mol17 mol18 mol2 mol3 mol4 mol5 mol6 mol7 mol8 pro1 stargazer_01 synth03 synth05 synth06 tox15 tox3 tox7 } # gk_widen: +ant1 +aqu1 +aqu10 +aqu11 +aqu12 +aqu13 +aqu14 +aqu15 +aqu2 +aqu3 +aqu4 +aqu5 +aqu6 +aqu7 +aqu8 +aqu9 +art15 +avi5 +bio11 +bio6 +bio8 +mol1 +mol11 +mol12 +mol13 +mol14 +mol15 +mol16 +mol17 +mol18 +mol2 +mol3 +mol4 +mol5 +mol6 +mol7 +mol8 +pro1 +stargazer_01 +synth03 +synth05 +synth06 +tox15 +tox3 +tox7
 	localized_tags = {
 		SPECIES_TRAIT_MOLLUSCOID
 		SPECIES_TRAIT_AQUATIC
@@ -602,7 +609,7 @@ trait_permeable_skin = {
 		pop_environment_tolerance = -0.2
 	}
 	slave_cost = {
-		energy = -1000
+		trade = -1000
 	}
 }
 
@@ -624,8 +631,8 @@ trait_genetic_memory = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	portrait_override = { aqu5 bio10 cyb1 cyb12 cyb2 cyb3 cyb6 cyb7 cyb8 fun16 fun4 human human_legacy humanoid_02 humanoid_03 humanoid_04 humanoid_05 humanoid_elf humanoid_hp_01 humanoid_hp_02 humanoid_hp_06 humanoid_hp_07 humanoid_hp_08 humanoid_hp_09 humanoid_hp_10 humanoid_hp_11 humanoid_hp_12 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 lith10 lith_human lith_human_inf mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 pla17 season_10_portrait synth04 synth07 tox11 tox12 tox6 }
-	opposites = { "trait_nonadaptive" }
+	portrait_override = { aqu5 bio10 cyb1 cyb12 cyb2 cyb3 cyb6 cyb7 cyb8 fun16 fun4 human human_legacy humanoid_02 humanoid_03 humanoid_04 humanoid_05 humanoid_elf humanoid_hp_01 humanoid_hp_02 humanoid_hp_06 humanoid_hp_07 humanoid_hp_08 humanoid_hp_09 humanoid_hp_10 humanoid_hp_11 humanoid_hp_12 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 lith10 lith_human lith_human_inf mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 pla17 season_10_portrait synth04 synth07 tox11 tox12 tox6 } # gk_widen: +bio10 +cyb1 +cyb12 +cyb2 +cyb3 +cyb6 +cyb7 +cyb8 +human +human_legacy +humanoid_02 +humanoid_03 +humanoid_04 +humanoid_05 +humanoid_elf +humanoid_hp_01 +humanoid_hp_02 +humanoid_hp_06 +humanoid_hp_07 +humanoid_hp_08 +humanoid_hp_09 +humanoid_hp_10 +humanoid_hp_11 +humanoid_hp_12 +humanoid_hp_13 +humanoid_hp_14 +humanoid_hp_16 +lith10 +mam1 +mam10 +mam11 +mam12 +mam13 +mam14 +mam15 +mam16 +mam17 +mam2 +mam3 +mam4 +mam5 +mam6 +mam7 +mam8 +mam9 +mam_rat +mammalian_ar_01 +mammalian_ar_02 +mammalian_ar_03 +mammalian_ar_04 +mammalian_ar_05 +mammalian_ar_06 +mammalian_ar_07 +mammalian_ar_08 +mammalian_ar_09 +mammalian_ar_10 +nec1 +nec10 +nec11 +nec12 +nec13 +nec14 +nec15 +nec2 +nec3 +nec4 +nec5 +nec6 +nec7 +nec8 +nec9 +season_10_portrait +synth04 +synth07 +tox11 +tox12 +tox6
+	opposites = { "trait_nonadaptive" "trait_pc_ark_preference" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { HUM MAM NECROID }
 	localized_tags = {
@@ -651,7 +658,7 @@ trait_genetic_memory = {
 		mult = value:genetic_memory_mult
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -664,7 +671,7 @@ trait_nascent_stage = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { aqu3 aqu5 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 bio10 bio7 bio9 cyb1 cyb10 cyb11 cyb12 cyb2 cyb3 cyb4 cyb6 cyb7 cyb8 cyb9 fun16 fun4 human human_legacy humanoid_02 humanoid_03 humanoid_04 humanoid_05 humanoid_elf humanoid_hp_01 humanoid_hp_02 humanoid_hp_06 humanoid_hp_07 humanoid_hp_08 humanoid_hp_09 humanoid_hp_10 humanoid_hp_11 humanoid_hp_12 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 inf1 inf2 inf3 inf6 inf7 lith10 lith14 lith9 lith_human lith_human_inf mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 mindwarden_01 nec1 nec11 nec12 nec13 nec14 nec15 pdx_signup_portrait_01 pla17 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 synth02 synth04 synth07 synth08 synth09 tox11 tox12 tox6 }
+	portrait_override = { aqu3 aqu5 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 bio10 bio7 bio9 cyb1 cyb10 cyb11 cyb12 cyb2 cyb3 cyb4 cyb6 cyb7 cyb8 cyb9 fun16 fun4 human human_legacy humanoid_02 humanoid_03 humanoid_04 humanoid_05 humanoid_elf humanoid_hp_01 humanoid_hp_02 humanoid_hp_06 humanoid_hp_07 humanoid_hp_08 humanoid_hp_09 humanoid_hp_10 humanoid_hp_11 humanoid_hp_12 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 inf1 inf2 inf3 inf6 inf7 lith10 lith14 lith9 lith_human lith_human_inf mam1 mam10 mam11 mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3 mam4 mam5 mam6 mam7 mam8 mam9 mam_rat mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 mindwarden_01 nec1 nec11 nec12 nec13 nec14 nec15 pdx_signup_portrait_01 pla17 pro2 rep1 rep10 rep11 rep12 rep13 rep14 rep15 rep16 rep17 rep2 rep3 rep4 rep5 rep6 rep7 rep8 rep9 synth02 synth04 synth07 synth08 synth09 tox11 tox12 tox6 } # gk_widen: +aqu3 +art1 +art10 +art11 +art12 +art13 +art14 +art15 +art16 +art17 +art18 +art19 +art20 +art3 +art5 +art6 +art7 +art8 +art9 +bio10 +bio7 +bio9 +cyb1 +cyb10 +cyb11 +cyb12 +cyb2 +cyb3 +cyb4 +cyb6 +cyb7 +cyb8 +cyb9 +human +human_legacy +humanoid_02 +humanoid_03 +humanoid_04 +humanoid_05 +humanoid_elf +humanoid_hp_01 +humanoid_hp_02 +humanoid_hp_06 +humanoid_hp_07 +humanoid_hp_08 +humanoid_hp_09 +humanoid_hp_10 +humanoid_hp_11 +humanoid_hp_12 +humanoid_hp_13 +humanoid_hp_14 +humanoid_hp_16 +inf1 +inf2 +inf3 +inf6 +inf7 +lith10 +lith14 +lith9 +mam1 +mam10 +mam11 +mam12 +mam13 +mam14 +mam15 +mam16 +mam17 +mam2 +mam3 +mam4 +mam5 +mam6 +mam7 +mam8 +mam9 +mam_rat +mammalian_ar_01 +mammalian_ar_02 +mammalian_ar_03 +mammalian_ar_04 +mammalian_ar_05 +mammalian_ar_06 +mammalian_ar_07 +mammalian_ar_08 +mammalian_ar_09 +mammalian_ar_10 +nec1 +nec11 +nec12 +nec13 +nec14 +nec15 +pdx_signup_portrait_01 +pro2 +rep1 +rep10 +rep11 +rep12 +rep13 +rep14 +rep15 +rep16 +rep17 +rep2 +rep3 +rep4 +rep5 +rep6 +rep7 +rep8 +rep9 +synth02 +synth04 +synth07 +synth08 +synth09 +tox11 +tox12 +tox6
 	opposites = { "trait_slow_breeders" "trait_humanoid_psychological_infertility" "trait_unplugged_cybernetic_positives_3" "trait_unplugged_cybernetic_positives_2" "trait_unplugged_cybernetic_positives_1" "trait_pathogenic_genes" "trait_wilderness" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { HUM MAM REP ART }
@@ -682,7 +689,7 @@ trait_nascent_stage = {
 	tags = { organic negative pop_growth humanoid mammalian reptilian arthropoid species }
 	custom_tooltip = trait_nascent_stage_effect
 	slave_cost = {
-		energy = -1000
+		trade = -1000
 	}
 }
 
@@ -716,14 +723,14 @@ trait_flight = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { aqu3 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio10 bio4 bio7 cyb5 cyb9 inf1 lith9 mam1 nec15 rep17 synth01 synth02 synth08 synth09 }
+	portrait_override = { aqu3 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio10 bio4 bio7 cyb5 cyb9 inf1 lith9 mam1 nec15 rep17 synth01 synth02 synth08 synth09 } # gk_widen: +aqu3 +art1 +art10 +art11 +art12 +art13 +art14 +art15 +art16 +art17 +art18 +art19 +art20 +art3 +art5 +art6 +art7 +art8 +art9 +avi1 +avi10 +avi11 +avi12 +avi13 +avi14 +avi15 +avi16 +avi17 +avi18 +avi2 +avi3 +avi4 +avi5 +avi6 +avi7 +avi8 +avi9 +bio4 +bio7 +cyb5 +cyb9 +inf1 +lith9 +nec15 +synth01 +synth02 +synth08 +synth09
 	tags = { organic positive army leader avian arthropoid species }
 	modifier = {
 		commander_skill_add = 1
 		army_damage_taken_mult = -0.30
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -757,7 +764,7 @@ trait_spatial_mastery = {
 			can_add_or_remove_phenotype_traits = yes
 		}
 	}
-	portrait_override = { aqu3 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio10 bio4 bio7 cyb5 cyb9 inf1 lith9 mam1 nec15 rep17 synth01 synth02 synth08 synth09 }
+	portrait_override = { aqu3 art1 art10 art11 art12 art13 art14 art15 art16 art17 art18 art19 art20 art3 art5 art6 art7 art8 art9 avi1 avi10 avi11 avi12 avi13 avi14 avi15 avi16 avi17 avi18 avi2 avi3 avi4 avi5 avi6 avi7 avi8 avi9 bio10 bio4 bio7 cyb5 cyb9 inf1 lith9 mam1 nec15 rep17 synth01 synth02 synth08 synth09 } # gk_widen: +aqu3 +art1 +art10 +art11 +art12 +art13 +art14 +art15 +art16 +art17 +art18 +art19 +art20 +art3 +art5 +art6 +art7 +art8 +art9 +avi1 +avi10 +avi11 +avi12 +avi13 +avi14 +avi15 +avi16 +avi17 +avi18 +avi2 +avi3 +avi4 +avi5 +avi6 +avi7 +avi8 +avi9 +bio4 +bio7 +cyb5 +cyb9 +inf1 +lith9 +nec15 +synth01 +synth02 +synth08 +synth09
 	tags = { organic positive army housing leader avian arthropoid species }
 	modifier = {
 		leader_skill_add = 1
@@ -765,7 +772,7 @@ trait_spatial_mastery = {
 		pop_housing_usage_mult = -0.10
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -789,7 +796,7 @@ trait_spare_organs = {
 	}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { MOL NECROID TOX }
-	portrait_override = { ant1 aqu12 aqu13 bio11 bio6 inf10 mam8 mol1 mol11 mol12 mol13 mol14 mol15 mol16 mol17 mol18 mol2 mol3 mol4 mol5 mol6 mol7 mol8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 season_10_portrait stargazer_01 synth03 synth05 tox1 tox10 tox11 tox12 tox13 tox14 tox15 tox2 tox3 tox4 tox5 tox6 tox7 tox8 tox9 }
+	portrait_override = { ant1 aqu12 aqu13 bio11 bio6 inf10 mam8 mol1 mol11 mol12 mol13 mol14 mol15 mol16 mol17 mol18 mol2 mol3 mol4 mol5 mol6 mol7 mol8 nec1 nec10 nec11 nec12 nec13 nec14 nec15 nec2 nec3 nec4 nec5 nec6 nec7 nec8 nec9 season_10_portrait stargazer_01 synth03 synth05 tox1 tox10 tox11 tox12 tox13 tox14 tox15 tox2 tox3 tox4 tox5 tox6 tox7 tox8 tox9 } # gk_widen: +ant1 +aqu12 +aqu13 +bio11 +bio6 +inf10 +mam8 +mol1 +mol11 +mol12 +mol13 +mol14 +mol15 +mol16 +mol17 +mol18 +mol2 +mol3 +mol4 +mol5 +mol6 +mol7 +mol8 +nec1 +nec10 +nec11 +nec12 +nec13 +nec14 +nec15 +nec2 +nec3 +nec4 +nec5 +nec6 +nec7 +nec8 +nec9 +season_10_portrait +stargazer_01 +synth03 +synth05 +tox1 +tox10 +tox11 +tox12 +tox13 +tox14 +tox15 +tox2 +tox3 +tox4 +tox5 +tox6 +tox7 +tox8 +tox9
 	localized_tags = {
 		SPECIES_TRAIT_MOLLUSCOID
 		SPECIES_TRAIT_NECROID
@@ -824,7 +831,7 @@ trait_spare_organs = {
 	}
 
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -1059,7 +1066,7 @@ trait_malleable_genes = {
 
 	custom_tooltip = trait_malleable_genes_cant_modify
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -1402,7 +1409,7 @@ trait_adaptive_mutations = {
 	tags = { organic positive automod special }
 
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	custom_tooltip_with_modifiers = automodding_trait_adaptive_mutations_tt
 }

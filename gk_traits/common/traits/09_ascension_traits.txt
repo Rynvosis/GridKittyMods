@@ -1,3 +1,10 @@
+# OVERWRITE of vanilla common/traits/09_ascension_traits.txt
+# Purpose: widen phenotype trait gates (portrait_override) so gk cross-classified
+# portraits can take these vanilla traits. The ONLY intended deviation from vanilla
+# is each line marked '# gk_widen:'. Grep that tag to see every change.
+# Synced against vanilla v4.4.6. Re-sync: python3 tools/widen.py --regen
+# Widened: trait_ductile
+# === gk header ends; below is current vanilla + lines marked '# gk_widen:' ===
 # Regular Traits that require Genetic Ascension
 
 trait_adaptive_lithoid = {
@@ -27,7 +34,7 @@ trait_adaptive_lithoid = {
 		pop_environment_tolerance = 0.10
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -58,7 +65,7 @@ trait_rapid_breeders_lithoid = {
 		logistic_growth_mult = 0.1
 	}
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -94,7 +101,7 @@ trait_delicious = {
 		pop_livestock_bonus_workforce_mult = 1
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -132,7 +139,7 @@ trait_nerve_stapled = {
 	}
 	custom_tooltip_with_modifiers = TRAIT_NERVE_STAPLED_EFFECT
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 
 	assembly_score = {
@@ -183,7 +190,7 @@ trait_fertile = {
 		pop_happiness = 0.10
 	}
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -219,7 +226,7 @@ trait_robust = {
 		leader_lifespan_add = 50
 	}
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 	assembly_score = {
 		modifier = {
@@ -261,7 +268,7 @@ trait_erudite = {
 		leaders_upkeep_mult = -0.1
 	}
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 	assembly_score = {
 		modifier = {
@@ -328,7 +335,7 @@ trait_vat_grown = {
 	}
 	infertile = yes
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -359,7 +366,7 @@ trait_felsic = {
 		pop_livestock_lithoid_bonus_workforce_mult = 1
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -389,12 +396,12 @@ trait_ductile = {
 	allowed_archetypes = { BIOLOGICAL }
 	tags = { organic positive alloys livestock genetic_ascension }
 	species_class = { INF }
-	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 }
+	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 } # gk_widen: +fun13 +humanoid_hp_01 +inf1 +inf10 +inf2 +inf3 +inf4 +inf5 +inf6 +inf7 +inf8 +inf9 +lith2 +lith2_inf +lith_human +lith_human_inf +rep17 +tox9
 	modifier = {
 		pop_livestock_infernal_bonus_workforce_mult = 1
 	}
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 }
 
@@ -426,7 +433,7 @@ trait_natural_machinist = {
 		artisan_jobs_bonus_workforce_mult = 0.25
 	}
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 	assembly_score = {
 		modifier = {
@@ -474,7 +481,7 @@ trait_drake_scaled = {
 	}
 
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -517,7 +524,7 @@ trait_voidling = {
 		habitability_floor_add = 0.80
 	}
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 }
 
@@ -553,6 +560,6 @@ trait_tiyanki = {
 		bonus_pop_growth = @tiyanki_budding_rate
 	}
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 }

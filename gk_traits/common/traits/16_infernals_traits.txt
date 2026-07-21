@@ -1,3 +1,10 @@
+# OVERWRITE of vanilla common/traits/16_infernals_traits.txt
+# Purpose: widen phenotype trait gates (portrait_override) so gk cross-classified
+# portraits can take these vanilla traits. The ONLY intended deviation from vanilla
+# is each line marked '# gk_widen:'. Grep that tag to see every change.
+# Synced against vanilla v4.4.6. Re-sync: python3 tools/widen.py --regen
+# Widened: trait_crucible_community trait_infernal trait_pyroclastic trait_shell_slag
+# === gk header ends; below is current vanilla + lines marked '# gk_widen:' ===
 trait_infernal = {
 	cost = 0
 	category = normal
@@ -20,7 +27,7 @@ trait_infernal = {
 	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
 	tags = { organic species infernal leader habitability special }
 	species_class = { INF PRE_INF }
-	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 }
+	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 } # gk_widen: +fun13 +humanoid_hp_01 +inf1 +inf10 +inf2 +inf3 +inf4 +inf5 +inf6 +inf7 +inf8 +inf9 +lith2 +lith2_inf +lith_human +lith_human_inf +rep17 +tox9
 	localized_tags = {
 		SPECIES_TRAIT_INFERNAL
 	}
@@ -112,7 +119,7 @@ trait_unbreakable_resolve = {
 	icon = "gfx/interface/icons/traits/trait_unbreakable_resolve.dds"
 	custom_tooltip = trait_unbreakable_resolve_tooltip
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -149,7 +156,7 @@ trait_shell_slag = {
 	}
 	tags = { organic positive infernal species rare_resource production}
 	species_class = { INF }
-	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 }
+	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 } # gk_widen: +fun13 +humanoid_hp_01 +inf1 +inf10 +inf2 +inf3 +inf4 +inf5 +inf6 +inf7 +inf8 +inf9 +lith2 +lith2_inf +lith_human +lith_human_inf +rep17 +tox9
 	localized_tags = {
 		SPECIES_TRAIT_INFERNAL
 	}
@@ -159,7 +166,7 @@ trait_shell_slag = {
 	icon = "gfx/interface/icons/traits/trait_shell_slag.dds"
 	custom_tooltip = trait_shell_slag_tooltip
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	resources = {
 		category = planet_pops
@@ -188,7 +195,7 @@ trait_robot_assembly_slag = {
 	icon = "gfx/interface/icons/traits/trait_robot_assembly_slag.dds"
 	custom_tooltip = trait_shell_slag_tooltip
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	resources = {
 		category = planet_pops
@@ -234,7 +241,7 @@ trait_pyroclastic = {
 	allowed_archetypes = { BIOLOGICAL }
 	tags = { organic infernal positive pop_growth species }
 	species_class = { INF }
-	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 }
+	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 } # gk_widen: +fun13 +humanoid_hp_01 +inf1 +inf10 +inf2 +inf3 +inf4 +inf5 +inf6 +inf7 +inf8 +inf9 +lith2 +lith2_inf +lith_human +lith_human_inf +rep17 +tox9
 	localized_tags = {
 		SPECIES_TRAIT_INFERNAL
 	}
@@ -244,7 +251,7 @@ trait_pyroclastic = {
 	icon = "gfx/interface/icons/traits/trait_pyroclastic.dds"
 	custom_tooltip = trait_pyroclastic_tooltip
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	triggered_planet_growth_habitability_modifier = {
 		potential = {
@@ -290,7 +297,7 @@ trait_crucible_community = {
 	}
 	tags = { organic infernal positive edict_fund }
 	species_class = { INF }
-	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 }
+	portrait_override = { fun13 humanoid_hp_01 inf1 inf10 inf2 inf3 inf4 inf5 inf6 inf7 inf8 inf9 lith2 lith2_inf lith_human lith_human_inf rep17 tox9 } # gk_widen: +fun13 +humanoid_hp_01 +inf1 +inf10 +inf2 +inf3 +inf4 +inf5 +inf6 +inf7 +inf8 +inf9 +lith2 +lith2_inf +lith_human +lith_human_inf +rep17 +tox9
 	localized_tags = {
 		SPECIES_TRAIT_INFERNAL
 	}
@@ -300,7 +307,7 @@ trait_crucible_community = {
 	icon = "gfx/interface/icons/traits/trait_crucible_community.dds"
 	custom_tooltip = trait_crucible_community_tooltip
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
