@@ -90,7 +90,7 @@ trait_gk_hypermetabolism = {
 	inline_script = "traits/gk_portraits_biogen"
 	inline_script = "traits/gk_class_override_biogen"
 	localized_tags = { SPECIES_TRAIT_LITHOID SPECIES_TRAIT_INFERNAL SPECIES_TRAIT_TOXOID SPECIES_TRAIT_GK_BIOGENESIS }
-	tags = { organic negative upkeep food lithoid toxoid species }
+	tags = { organic negative upkeep food lithoid toxoid infernal species }
 	modifier = {
 		gk_diet_upkeep_mult = 1.50
 	}

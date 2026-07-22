@@ -1,5 +1,10 @@
+# Transgenic leg follows the Infernals convention (vanilla 16_infernals_traits.txt),
+# reaching Genetics empires with Enhanced Expression as well as Unnatural Selection.
 species_class_override = {
 	hidden_trigger = {
-		can_add_or_remove_phenotype_traits = yes
+		OR = {
+			can_add_or_remove_phenotype_traits = yes
+			can_add_transgenic_traits = yes
+		}
 	}
 }
