@@ -1,0 +1,68 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# Crocsidon
+
+
+	crocsidon = {	entity = "paragan_crocsidon_portrait_entity" clothes_selector = "cybernetics_clothes_04" greeting_sound = "reptilian_01_greetings" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/crocsidon_portrait_01.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_02.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_03.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_04.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_05.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_06.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_07.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_08.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_09.dds"
+                    "gfx/models/portraits/paragans/crocsidon_portrait_10.dds"
+			}
+		custom_close_up_position_offset = { x = 80 y = 315 }
+		custom_close_up_scale = 2.0
+
+		 portrait_evolution = {
+			evolution_stages = {
+				# cybernetization stages
+				{
+					values = {
+						# stage 1 variant 1
+						{
+							decal = "gfx/models/portraits/cybernetics/cybernetics_portrait_04_stage_1_decal.dds"
+							mask = "gfx/models/portraits/cybernetics/cybernetics_portrait_04_stage_1_mask.dds"
+						}
+					}
+
+					#leader, pop or species scope (when called with species scope, from subscope can contain a country species related to)
+					trigger = {
+						has_cybernetization_stage_1 = yes
+					}
+				}
+
+				{
+					values = {
+						# stage 2 variant 1
+						{
+							decal = "gfx/models/portraits/cybernetics/cybernetics_portrait_04_stage_2_decal.dds"
+							mask = "gfx/models/portraits/cybernetics/cybernetics_portrait_04_stage_2_mask.dds"
+						}
+					}
+
+					#leader, pop or species scope (when called with species scope, from subscope can contain a country species related to)
+					trigger = {
+						has_cybernetization_stage_2 = yes
+					}
+				}
+			}
+		}
+  	}
+}

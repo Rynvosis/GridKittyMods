@@ -1,0 +1,34 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# Raptoris
+
+	raptoris = {	entity = "paragan_raptoris_portrait_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "avian_01_greetings" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/raptoris_portrait_01.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_02.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_03.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_04.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_05.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_06.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_07.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_08.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_09.dds"
+                    "gfx/models/portraits/paragans/raptoris_portrait_10.dds"
+			}
+		 custom_close_up_position_offset = { x = -20 y = 200 }
+		 custom_close_up_scale = 1.5
+		 custom_mid_close_up_position_offset = { x = -30 y = 78 }
+		 custom_mid_close_up_scale = 1.4
+    }
+}	

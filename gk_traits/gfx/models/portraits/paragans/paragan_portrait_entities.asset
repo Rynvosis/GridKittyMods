@@ -1,0 +1,314 @@
+
+# Aquariel
+entity = {
+	name = "paragan_aquariel_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_11_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Botler
+entity = {
+	name = "paragan_botler_portrait_entity"
+	pdxmesh = "cpl_01_portrait_04_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 7.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 1.5 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.5 looping = no next_state = idle}
+	scale = 0.77
+	#scale = .9
+}
+
+# Centurionex
+entity = {
+	name = "paragan_centurionex_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_03_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle
+	start_event = { node = "hologram_01" particle = "par_01_head_holo_effect"	keep_particle = no trigger_once = yes }
+	}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle
+	start_event = { node = "hologram_01" particle = "par_01_head_holo_effect"	keep_particle = no trigger_once = yes }
+	}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle
+	start_event = { node = "hologram_01" particle = "par_01_head_holo_effect"	keep_particle = no trigger_once = yes }
+	}
+	scale = 0.9
+}
+
+# Cyclopsia
+entity = {
+	name = "paragan_cyclopsia_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_05_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle
+	#start_event = { node = "tablet_effect" particle = "par_01_tablet_effect" keep_particle = no trigger_once = yes }
+}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle
+	#start_event = { node = "tablet_effect" particle = "par_01_tablet_effect" keep_particle = no trigger_once = yes }
+}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle
+	#start_event = { node = "tablet_effect" particle = "par_01_tablet_effect" keep_particle = no trigger_once = yes }
+}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle
+	#start_event = { node = "tablet_effect" particle = "par_01_tablet_effect" keep_particle = no trigger_once = yes }
+}
+	scale = 1
+
+	attach = { "tablet_effect" = "paragon_01_renown_portrait_05_vfx_entity" }
+	#locator = { name = "root" 	position = { 0 0 0 } }
+}
+
+# Diviner
+entity = {
+	name = "paragan_diviner_portrait_entity"
+	pdxmesh = "shroudwalker_01_portrait_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0.1 chance = 2.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0.1 chance = 2.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0.1 chance = 1.0 looping = no next_state = idle}
+	scale = 1
+}
+
+# Eruditer
+entity = {
+	name = "paragan_eruditer_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_09_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Humano
+entity = {
+	name = "paragan_humano_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_01_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle}
+	#state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	scale = 0.82
+}
+
+# Magyar
+entity = {
+	name = "paragan_magyar_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_06_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	#state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Merlinite
+entity = {
+	name = "paragan_merlinite_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_16_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Presentor
+entity = {
+	name = "paragan_presentor_portrait_entity"
+	pdxmesh = "paragon_01_legendary_portrait_04_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Raptoris
+entity = {
+	name = "paragan_raptoris_portrait_entity"
+	pdxmesh = "paragon_01_legendary_portrait_02_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Scalyboi
+entity = {
+	name = "paragan_scalyboi_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_12_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Shadeling
+entity = {
+	name = "paragan_shadeling_portrait_entity"
+	pdxmesh = "paragon_01_renown_portrait_14_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	scale = 0.95
+}
+
+# Swarmler
+entity = {
+	name = "paragan_swarmler_portrait_entity"
+	pdxmesh = "portrait_swarm_01_mesh"
+	
+	default_state = "idle"
+	#state = { name = "idle"       animation = "idle"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	scale = 1.7
+}
+
+# Treeling
+entity = {
+	name = "paragan_treeling_portrait_entity"
+	pdxmesh = "paragon_01_legendary_portrait_03_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	state = { name = "greeting"       animation = "greeting"    animation_blend_time = 0 chance = 5.0 looping = no next_state = idle}
+	scale = 0.9
+}
+
+# Yarla
+entity = {
+	name = "paragan_yarla_portrait_entity"
+	pdxmesh = "cpl_01_portrait_01_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 7.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	scale = 1
+}
+
+# Fadeling
+entity = {
+	name = "paragan_fadeling_portrait_entity"
+	pdxmesh = "portrait_extradimensional_01_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0 chance = 4.0 looping = no next_state = idle }
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle }
+	scale = 0.85
+
+	game_data = {
+		flowmap_intensity = 1
+		uv_animation_speed = 0.05
+	}
+}
+
+# Unimatrix
+entity = {
+	name = "paragan_unimatrix_portrait_entity"
+	pdxmesh = "unimatrix_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	
+	state = { name = "sad"       animation = "sad"    animation_blend_time = 0 chance = 3.0 looping = no next_state = sad}
+	state = { name = "sad"       animation = "sad2"    animation_blend_time = 0 chance = 1.0 looping = no next_state = sad}
+	scale = 1.13
+}
+
+# Darkoid
+entity = {
+	name = "paragan_darkoid_portrait_entity"
+	pdxmesh = "portrait_molluscoid_synthetic_dawn_01_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"      animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"     animation_blend_time = 0 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"     animation_blend_time = 0 chance = 0.7 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"     animation_blend_time = 0 chance = 0.7 looping = no next_state = idle}
+
+	scale = 0.9
+}
+
+# Zephyran
+entity = {
+	name = "paragan_zephyran_portrait_entity"
+	pdxmesh = "humanoid_hp_14_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 8.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 2.0 looping = no next_state = idle}
+	
+	scale = 1.01
+}
+
+# Fulgar
+entity = {
+	name = "paragan_fulgar_portrait_entity"
+	pdxmesh = "portrait_aquatic_04_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0.5 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0.5 chance = 3.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle3"    animation_blend_time = 0.5 chance = 1.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle4"    animation_blend_time = 0.5 chance = 3.0 looping = no next_state = idle}
+	
+	scale = 1.1
+}
+
+# Crocsidon
+entity = {
+	name = 		"paragan_crocsidon_portrait_entity"
+	pdxmesh = 	"cybernetics_01_portrait_04_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0.45 chance = 5 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0.45 chance = 5 looping = no next_state = idle}
+	scale = 1.1
+}
+
+# Xegleri
+entity = {
+	name = "paragan_xegleri_portrait_entity"
+	pdxmesh = "portrait_mammalian_ratling_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"	animation = "idle" animation_speed = 1.0 chance = 3.0 looping = no next_state = idle }
+	state = { name = "idle"	animation = "idle2" animation_speed = 1.0 chance = 1.0 looping = no next_state = idle }
+	
+	scale = 1.05
+}
+
+entity = {
+	name = "paragan_mythara_portrait_entity"
+	pdxmesh = "humanoid_hp_16_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle1"    animation_blend_time = 0 chance = 7.0 looping = no next_state = idle}
+	state = { name = "idle"       animation = "idle2"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	
+	scale = 1.35
+}

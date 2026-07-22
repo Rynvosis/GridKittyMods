@@ -1,0 +1,35 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# mythara
+
+
+	mythara = {	entity = "paragan_mythara_portrait_entity" clothes_selector = "humanoid_hp_16_clothes" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_j_malee" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/mythara_portrait_01.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_02.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_03.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_04.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_05.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_06.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_07.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_08.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_09.dds"
+                    "gfx/models/portraits/paragans/mythara_portrait_10.dds"
+			}
+		custom_mid_close_up_position_offset = { x = 0 y = -10 }
+		custom_mid_close_up_scale = 1.20
+		custom_close_up_position_offset = { x = -30 y = 60 }
+		custom_close_up_scale = 1.35
+    	}
+}	

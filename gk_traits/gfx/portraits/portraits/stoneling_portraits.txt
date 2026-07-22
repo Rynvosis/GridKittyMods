@@ -1,0 +1,32 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# stoneling
+
+
+	stoneling = {	entity = "portrait_lithoid_07_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "lithoid_portrait_7_pyrite" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/stoneling_portrait_01.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_02.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_03.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_04.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_05.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_06.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_07.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_08.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_09.dds"
+                    "gfx/models/portraits/paragans/stoneling_portrait_10.dds"
+			}
+
+    }
+}	

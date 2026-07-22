@@ -1,0 +1,32 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# oldesek
+
+
+	oldesek = {	entity = "portrait_necroid_13_entity" clothes_selector = "necroid_clothes_02" attachment_selector = "no_texture"	greeting_sound = "necroid_portrait_15_feral_zombie" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/oldesek_portrait_01.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_02.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_03.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_04.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_05.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_06.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_07.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_08.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_09.dds"
+                    "gfx/models/portraits/paragans/oldesek_portrait_10.dds"
+			}
+
+    }
+}	

@@ -1,4 +1,5 @@
 portrait_override = {
 	ant1 bio10 bio11 bio4 bio5 bio6 bio7 bio8
-	bio9 pdx_signup_portrait_01 pro1 pro2 tox4
+	bio9 mcrab pdx_signup_portrait_01 pla11 pla16_baol pro1 pro2 swarmler
+	tox4 tox9 yarla
 }

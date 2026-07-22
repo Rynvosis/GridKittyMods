@@ -1,0 +1,26 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# scavver
+
+
+	scavver = {	entity = "paragon_01_renown_portrait_07_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "par_portrait_07" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/scavver_portrait_01.dds"
+                    "gfx/models/portraits/paragans/scavver_portrait_02.dds"
+                    "gfx/models/portraits/paragans/scavver_portrait_03.dds"
+			}
+		custom_close_up_position_offset = { x = -5 y = 110 }
+		custom_close_up_scale = 1.2
+    }
+}

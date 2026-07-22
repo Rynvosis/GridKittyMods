@@ -1,14 +1,92 @@
-# gk_traits: extend the empire-designer UI categories with our crosslist
-# portrait_sets so cross-tagged portraits appear in the right dropdowns.
+# gk_traits: extend the empire-designer UI categories with our portrait_sets so
+# cross-tagged and merged portraits appear in the right dropdowns.
 #
 # Stellaris MERGES the inner `sets` list across files when the same category
 # block appears more than once - vanilla's sets are preserved automatically.
 # We only list our NEW gk_* sets here; redeclaring vanilla sets would cause
 # duplicates.
 #
-# DLC gating lives inside each gk_* portrait_set's conditional_portraits
-# block (see common/portrait_sets/01_gk_crosslist_sets.txt) - this file is
-# strictly category membership.
+# A set may be listed under MORE THAN ONE category: that is how a portrait shows
+# in several dropdowns while keeping one species_class. gk_gauntlet_cybernetic_reptilians
+# is listed under both `reptilians` and `cybernetics`, mirroring vanilla's
+# cybernetic_avians (species_class = AVI, listed under `avians` and `cybernetics`).
+#
+# DLC gating lives inside each gk_* portrait_set's conditional_portraits block
+# (see 01_gk_crosslist_sets.txt) - this file is strictly category membership.
+
+humanoids = {
+	name = HUM
+
+	sets = {
+		gk_gauntlet_humanoids
+	}
+}
+
+mammalians = {
+	name = MAM
+
+	sets = {
+		gk_gauntlet_mammalians
+	}
+}
+
+avians = {
+	name = AVI
+
+	sets = {
+		gk_gauntlet_avians
+	}
+}
+
+molluscoids = {
+	name = MOL
+
+	sets = {
+		gk_gauntlet_molluscoids
+	}
+}
+
+fungoids = {
+	name = FUN
+
+	sets = {
+		gk_gauntlet_fungoids
+	}
+}
+
+necroids = {
+	name = NECROID
+
+	sets = {
+		gk_gauntlet_necroids
+	}
+}
+
+aquatics = {
+	name = AQUATIC
+
+	sets = {
+		gk_gauntlet_aquatics
+	}
+}
+
+machines = {
+	name = MACHINE_ROBOT
+
+	sets = {
+		gk_gauntlet_machines
+	}
+}
+
+# crocsidon only: the sole Gauntlet portrait with a portrait_evolution. This
+# category is for portraits that change with ascension, so nothing else qualifies.
+cybernetics = {
+	name = CYBER
+
+	sets = {
+		gk_gauntlet_cybernetic_reptilians
+	}
+}
 
 infernals = {
 	name = INF
@@ -24,6 +102,7 @@ plantoids = {
 
 	sets = {
 		gk_lithoid_as_plant
+		gk_gauntlet_plantoids
 	}
 }
 
@@ -32,6 +111,8 @@ reptilians = {
 
 	sets = {
 		gk_inf_as_rep
+		gk_gauntlet_reptilians
+		gk_gauntlet_cybernetic_reptilians
 	}
 }
 
@@ -40,6 +121,7 @@ arthropoids = {
 
 	sets = {
 		gk_inf_as_art
+		gk_gauntlet_arthropoids
 	}
 }
 
@@ -48,6 +130,7 @@ toxoids = {
 
 	sets = {
 		gk_inf_as_tox
+		gk_gauntlet_toxoids
 	}
 }
 
@@ -56,5 +139,6 @@ lithoids = {
 
 	sets = {
 		gk_inf_as_lithoid
+		gk_gauntlet_lithoids
 	}
 }

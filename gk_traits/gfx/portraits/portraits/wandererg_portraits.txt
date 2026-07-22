@@ -1,0 +1,37 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# wandererg
+
+
+	wandererg = {	entity = "toxoid_01_portrait_02_entity" clothes_selector = "no_texture" attachment_selector = "toxoid_mask_01"	greeting_sound = "tox_portrait_02" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/wandererg_portrait_01.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_02.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_03.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_04.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_05.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_06.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_07.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_08.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_09.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_10.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_11.dds"
+                    "gfx/models/portraits/paragans/wandererg_portrait_12.dds"
+			}
+		custom_attachment_label = "MASK"
+
+		custom_close_up_position_offset = { x = 30 y = 0 }
+		custom_close_up_scale = 1.2
+    }
+}	

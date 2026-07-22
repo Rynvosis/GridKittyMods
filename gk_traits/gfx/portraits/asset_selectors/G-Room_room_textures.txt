@@ -1,0 +1,259 @@
+room_selector = {
+	#default = "d_room"	#point to textures that end with "_room.dds" but remove the file ending
+
+	default = "ethic_authoritarian_room"	#point to textures that end with "_room.dds" but remove the file ending
+
+	#will run with a limited country scope. species and government is set but the country does not actually exist
+	game_setup = {
+		"G-Room 01A_room" = {}
+		"G-Room 01B_room" = {}
+		"G-Room 01C_room" = {}
+		"G-Room 02A_room" = {}
+		"G-Room 02B_room" = {}
+		"G-Room 02C_room" = {}
+		"G-Room 02D_room" = {}
+		"G-Room 02E_room" = {}
+		"G-Room 02F_room" = {}
+		"G-Room 02G_room" = {}
+		"G-Room 03A_room" = {}
+		"G-Room 03B_room" = {}
+		"G-Room 03C_room" = {}
+		"G-Room 04A_room" = {}
+		"G-Room 04B_room" = {}
+		"G-Room 04C_room" = {}
+		"G-Room 05A_room" = {}
+		"G-Room 05B_room" = {}
+		"G-Room 05C_room" = {}
+		"G-Room 06A_room" = {}
+		"G-Room 07A_room" = {}
+		"G-Room 08A_room" = {}
+		"G-Room 08B_room" = {}
+		"G-Room 09A_room" = {}
+		"G-Room 09B_room" = {}
+		"G-Room 09C_room" = {}
+		"G-Room 10A_room" = {}
+		"G-Room 10B_room" = {}
+		"G-Room 10C_room" = {}
+		"G-Room 11A_room" = {}
+		"G-Room 11B_room" = {}
+		"G-Room 11C_room" = {}
+		"G-Room 12A_room" = {}
+		"G-Room 12B_room" = {}
+		"G-Room 12C_room" = {}
+		"G-Room 13A_room" = {}
+		"G-Room 13B_room" = {}
+		"G-Room 13C_room" = {}
+		"G-Room 14A_room" = {}
+		"G-Room 14B_room" = {}
+		"G-Room 14C_room" = {}
+		"G-Room 14D_room" = {}
+		"G-Room 14E_room" = {}
+		"G-Room 15A_room" = {}
+		"G-Room 15B_room" = {}
+		"G-Room 16A_room" = {}
+		"G-Room 16B_room" = {}
+		"G-Room 16C_room" = {}
+		"G-Room 17A_room" = {}
+		"G-Room 17B_room" = {}
+		"G-Room 18A_room" = {}
+		"G-Room 18B_room" = {}
+		"G-Room 19A_room" = {}
+		"G-Room 19B_room" = {}
+		"G-Room 19C_room" = {}
+		"G-Room 20A_room" = {}
+		"G-Room 20B_room" = {}
+		"G-Room 21A_room" = {}
+		"G-Room 21B_room" = {}
+		"G-Room 21C_room" = {}
+		"G-Room 21D_room" = {}
+		"G-Room 22A_room" = {}
+		"G-Room 22B_room" = {}
+		"G-Room 22C_room" = {}
+		"G-Room 22D_room" = {}
+		"G-Room 23A_room" = {}
+		"G-Room 23B_room" = {}
+		"G-Room 23C_room" = {}
+		"G-Room 24A_room" = {}
+		"G-Room 24B_room" = {}
+		"G-Room 25A_room" = {}
+		"G-Room 25B_room" = {}
+		"G-Room 26A_room" = {}
+		"G-Room 26B_room" = {}
+		"G-Room 26C_room" = {}
+		"G-Room 27A_room" = {}
+		"G-Room 27B_room" = {}
+		"G-Room 28A_room" = {}
+		"G-Room 28B_room" = {}
+		"G-Room 29A_room" = {}
+		"G-Room 29B_room" = {}
+		"G-Room 29C_room" = {}
+		"G-Room 29D_room" = {}
+		"G-Room 30A_room" = {}
+		"G-Room 30B_room" = {}
+		"G-Room 30C_room" = {}
+		"G-Room 31A_room" = {}
+		"G-Room 31B_room" = {}
+		"G-Room 31C_room" = {}
+		"G-Room 32A_room" = {}
+		"G-Room 32B_room" = {}
+		"G-Room 33A_room" = {}
+		"G-Room 33B_room" = {}
+		"G-Room 34A_room" = {}
+		"G-Room 34B_room" = {}
+		"G-Room 35A_room" = {}
+		"G-Room 35B_room" = {}
+		"G-Room 36A_room" = {}
+		"G-Room 36B_room" = {}
+		"G-Room 37A_room" = {}
+		"G-Room 37B_room" = {}
+		"G-Room 38A_room" = {}
+		"G-Room 38B_room" = {}
+		"G-Room 39A_room" = {}
+		"G-Room 39B_room" = {}
+		"G-Room 40A_room" = {}
+		"G-Room 40B_room" = {}
+		"G-Room 40C_room" = {}
+		"G-Room 40D_room" = {}
+		"G-Room 41A_room" = {}
+		"G-Room 41B_room" = {}
+		"G-Room 42A_room" = {}
+		"G-Room 43A_room" = {}
+		"G-Room 43B_room" = {}
+		"G-Room 44A_room" = {}
+		"G-Room 44B_room" = {}
+		"G-Room 45A_room" = {}
+		"G-Room 45B_room" = {}
+		"G-Room 46A_room" = {}
+		"G-Room 46B_room" = {}
+		"G-Room 47A_room" = {}
+		"G-Room 47B_room" = {}
+		"G-Room 48A_room" = {}
+		"G-Room 48B_room" = {}
+
+}
+	#leader scope
+	ruler = {
+		"G-Room 01A_room" = exists = owner owner = {}
+		"G-Room 01B_room" = exists = owner owner = {}
+		"G-Room 01C_room" = exists = owner owner = {}
+		"G-Room 02A_room" = exists = owner owner = {}
+		"G-Room 02B_room" = exists = owner owner = {}
+		"G-Room 02C_room" = exists = owner owner = {}
+		"G-Room 02D_room" = exists = owner owner = {}
+		"G-Room 02E_room" = exists = owner owner = {}
+		"G-Room 02F_room" = exists = owner owner = {}
+		"G-Room 02G_room" = exists = owner owner = {}
+		"G-Room 03A_room" = exists = owner owner = {}
+		"G-Room 03B_room" = exists = owner owner = {}
+		"G-Room 03C_room" = exists = owner owner = {}
+		"G-Room 04A_room" = exists = owner owner = {}
+		"G-Room 04B_room" = exists = owner owner = {}
+		"G-Room 04C_room" = exists = owner owner = {}
+		"G-Room 05A_room" = exists = owner owner = {}
+		"G-Room 05B_room" = exists = owner owner = {}
+		"G-Room 05C_room" = exists = owner owner = {}
+		"G-Room 06A_room" = exists = owner owner = {}
+		"G-Room 07A_room" = exists = owner owner = {}
+		"G-Room 08A_room" = exists = owner owner = {}
+		"G-Room 08B_room" = exists = owner owner = {}
+		"G-Room 09A_room" = exists = owner owner = {}
+		"G-Room 09B_room" = exists = owner owner = {}
+		"G-Room 09C_room" = exists = owner owner = {}
+		"G-Room 10A_room" = exists = owner owner = {}
+		"G-Room 10B_room" = exists = owner owner = {}
+		"G-Room 10C_room" = exists = owner owner = {}
+		"G-Room 11A_room" = exists = owner owner = {}
+		"G-Room 11B_room" = exists = owner owner = {}
+		"G-Room 11C_room" = exists = owner owner = {}
+		"G-Room 12A_room" = exists = owner owner = {}
+		"G-Room 12B_room" = exists = owner owner = {}
+		"G-Room 12C_room" = exists = owner owner = {}
+		"G-Room 13A_room" = exists = owner owner = {}
+		"G-Room 13B_room" = exists = owner owner = {}
+		"G-Room 13C_room" = exists = owner owner = {}
+		"G-Room 14A_room" = exists = owner owner = {}
+		"G-Room 14B_room" = exists = owner owner = {}
+		"G-Room 14C_room" = exists = owner owner = {}
+		"G-Room 14D_room" = exists = owner owner = {}
+		"G-Room 15A_room" = exists = owner owner = {}
+		"G-Room 15B_room" = exists = owner owner = {}
+		"G-Room 16A_room" = exists = owner owner = {}
+		"G-Room 16B_room" = exists = owner owner = {}
+		"G-Room 16C_room" = exists = owner owner = {}
+		"G-Room 17A_room" = exists = owner owner = {}
+		"G-Room 17B_room" = exists = owner owner = {}
+		"G-Room 18A_room" = exists = owner owner = {}
+		"G-Room 18B_room" = exists = owner owner = {}
+		"G-Room 19A_room" = exists = owner owner = {}
+		"G-Room 19B_room" = exists = owner owner = {}
+		"G-Room 19C_room" = exists = owner owner = {}
+		"G-Room 20A_room" = exists = owner owner = {}
+		"G-Room 20B_room" = exists = owner owner = {}
+		"G-Room 21A_room" = exists = owner owner = {}
+		"G-Room 21B_room" = exists = owner owner = {}
+		"G-Room 21C_room" = exists = owner owner = {}
+		"G-Room 21D_room" = exists = owner owner = {}
+		"G-Room 22A_room" = exists = owner owner = {}
+		"G-Room 22B_room" = exists = owner owner = {}
+		"G-Room 22C_room" = exists = owner owner = {}
+		"G-Room 22D_room" = exists = owner owner = {}
+		"G-Room 23A_room" = exists = owner owner = {}
+		"G-Room 23B_room" = exists = owner owner = {}
+		"G-Room 23C_room" = exists = owner owner = {}
+		"G-Room 24A_room" = exists = owner owner = {}
+		"G-Room 24B_room" = exists = owner owner = {}
+		"G-Room 25A_room" = exists = owner owner = {}
+		"G-Room 25B_room" = exists = owner owner = {}
+		"G-Room 26A_room" = exists = owner owner = {}
+		"G-Room 26B_room" = exists = owner owner = {}
+		"G-Room 26C_room" = exists = owner owner = {}
+		"G-Room 27A_room" = exists = owner owner = {}
+		"G-Room 27B_room" = exists = owner owner = {}
+		"G-Room 28A_room" = exists = owner owner = {}
+		"G-Room 28B_room" = exists = owner owner = {}
+		"G-Room 29A_room" = exists = owner owner = {}
+		"G-Room 29B_room" = exists = owner owner = {}
+		"G-Room 29C_room" = exists = owner owner = {}
+		"G-Room 29D_room" = exists = owner owner = {}
+		"G-Room 30A_room" = exists = owner owner = {}
+		"G-Room 30B_room" = exists = owner owner = {}
+		"G-Room 30C_room" = exists = owner owner = {}
+		"G-Room 31A_room" = exists = owner owner = {}
+		"G-Room 31B_room" = exists = owner owner = {}
+		"G-Room 31C_room" = exists = owner owner = {}
+		"G-Room 32A_room" = exists = owner owner = {}
+		"G-Room 32B_room" = exists = owner owner = {}
+		"G-Room 33A_room" = exists = owner owner = {}
+		"G-Room 33B_room" = exists = owner owner = {}
+		"G-Room 34A_room" = exists = owner owner = {}
+		"G-Room 34B_room" = exists = owner owner = {}
+		"G-Room 35A_room" = exists = owner owner = {}
+		"G-Room 35B_room" = exists = owner owner = {}
+		"G-Room 36A_room" = exists = owner owner = {}
+		"G-Room 36B_room" = exists = owner owner = {}
+		"G-Room 37A_room" = exists = owner owner = {}
+		"G-Room 37B_room" = exists = owner owner = {}
+		"G-Room 38A_room" = exists = owner owner = {}
+		"G-Room 38B_room" = exists = owner owner = {}
+		"G-Room 39A_room" = exists = owner owner = {}
+		"G-Room 39B_room" = exists = owner owner = {}
+		"G-Room 40A_room" = exists = owner owner = {}
+		"G-Room 40B_room" = exists = owner owner = {}
+		"G-Room 40C_room" = exists = owner owner = {}
+		"G-Room 40D_room" = exists = owner owner = {}
+		"G-Room 41A_room" = exists = owner owner = {}
+		"G-Room 41B_room" = exists = owner owner = {}
+		"G-Room 42A_room" = exists = owner owner = {}
+		"G-Room 43A_room" = exists = owner owner = {}
+		"G-Room 43B_room" = exists = owner owner = {}
+		"G-Room 44A_room" = exists = owner owner = {}
+		"G-Room 44B_room" = exists = owner owner = {}
+		"G-Room 45A_room" = exists = owner owner = {}
+		"G-Room 45B_room" = exists = owner owner = {}
+		"G-Room 46A_room" = exists = owner owner = {}
+		"G-Room 46B_room" = exists = owner owner = {}
+		"G-Room 47A_room" = exists = owner owner = {}
+		"G-Room 47B_room" = exists = owner owner = {}
+		"G-Room 48A_room" = exists = owner owner = {}
+		"G-Room 48B_room" = exists = owner owner = {}
+}

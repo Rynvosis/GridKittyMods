@@ -1,0 +1,3695 @@
+# Species names merged from Gauntlet's Portraits Unleashed (2992343965).
+# His class-keyed blocks are re-keyed to the vanilla equivalents so the flavour
+# species and homeworlds join the vanilla name pools instead of being orphaned
+# when his species classes are dropped. Stellaris merges name blocks per class.
+
+# Generated species derive their names from here
+
+HUM = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+ART = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+FUN = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+AQUATIC = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+MAM = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+MOL = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+AVI = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+TOX = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+MACHINE = {
+
+	shazarak =  {
+		name = SPEC_Shazarak
+		plural = SPEC_Shazarak_pl
+		home_planet = SPEC_Shazarak_planet
+		home_system = SPEC_Shazarak_system
+		name_list =  "MACHINE1"
+	}
+
+	mechazur =  {
+		name = SPEC_Mechazur
+		plural = SPEC_Mechazur_pl
+		home_planet = SPEC_Mechazur_planet
+		home_system = SPEC_Mechazur_system
+		name_list =  "MACHINE2"
+	}
+
+	zero-zero-one =  {
+		name = SPEC_Zero-Zero-One
+		plural = SPEC_Zero-Zero-One_pl
+		home_planet = SPEC_Zero-Zero-One_planet
+		home_system = SPEC_Zero-Zero-One_system
+		name_list =  "MACHINE3"
+	}
+
+	prime =  {
+		name = SPEC_Prime
+		plural = SPEC_Prime_pl
+		home_planet = SPEC_Prime_planet
+		home_system = SPEC_Prime_system
+		name_list =  "MACHINE4"
+	}
+
+	zenak =  {
+		name = SPEC_Zenak
+		plural = SPEC_Zenak_pl
+		home_planet = SPEC_Zenak_planet
+		home_system = SPEC_Zenak_system
+		name_list =  "MACHINE1"
+	}
+
+	omni =  {
+		name = SPEC_Omni
+		plural = SPEC_Omni_pl
+		home_planet = SPEC_Omni_planet
+		home_system = SPEC_Omni_system
+		name_list =  "MACHINE2"
+	}
+
+	daar =  {
+		name = SPEC_DAAR
+		plural = SPEC_DAAR_pl
+		home_planet = SPEC_DAAR_planet
+		home_system = SPEC_DAAR_system
+		name_list =  "MACHINE3"
+	}
+
+	tronzaru =  {
+		name = SPEC_Tronzaru
+		plural = SPEC_Tronzaru_pl
+		home_planet = SPEC_Tronzaru_planet
+		home_system = SPEC_Tronzaru_system
+		name_list =  "MACHINE4"
+	}
+
+	techarus =  {
+		name = SPEC_Techarus
+		plural = SPEC_Techarus_pl
+		home_planet = SPEC_Techarus_planet
+		home_system = SPEC_Techarus_system
+		name_list =  "MACHINE1"
+	}
+
+	jonus =  {
+		name = SPEC_Jonus
+		plural = SPEC_Jonus_pl
+		home_planet = SPEC_Jonus_planet
+		home_system = SPEC_Jonus_system
+		name_list =  "MACHINE2"
+	}
+
+	iribot =  {
+		name = SPEC_Iribot
+		plural = SPEC_Iribot_pl
+		home_planet = SPEC_Iribot_planet
+		home_system = SPEC_Iribot_system
+		name_list =  "MACHINE3"
+	}
+
+	silicron =  {
+		name = SPEC_Silicron
+		plural = SPEC_Silicron_pl
+		home_planet = SPEC_Silicron_planet
+		home_system = SPEC_Silicron_system
+		name_list =  "MACHINE4"
+	}
+
+	dekron =  {
+		name = SPEC_Dekron
+		plural = SPEC_Dekron_pl
+		home_planet = SPEC_Dekron_planet
+		home_system = SPEC_Dekron_system
+		name_list =  "MACHINE1"
+	}
+
+	synthoid =  {
+		name = SPEC_Synthoid
+		plural = SPEC_Synthoid_pl
+		home_planet = SPEC_Synthoid_planet
+		home_system = SPEC_Synthoid_system
+		name_list =  "MACHINE2"
+	}
+
+	cydran =  {
+		name = SPEC_Cydran
+		plural = SPEC_Cydran_pl
+		home_planet = SPEC_Cydran_planet
+		home_system = SPEC_Cydran_system
+		name_list =  "MACHINE3"
+	}
+
+	kelbrid =  {
+		name = SPEC_Kelbrid
+		plural = SPEC_Kelbrid_pl
+		home_planet = SPEC_Kelbrid_planet
+		home_system = SPEC_Kelbrid_system
+		name_list =  "MACHINE4"
+	}
+
+	model-16 =  {
+		name = SPEC_Model-16
+		plural = SPEC_Model-16_pl
+		home_planet = SPEC_Model-16_planet
+		home_system = SPEC_Model-16_system
+		name_list =  "MACHINE1"
+	}
+
+	nex =  {
+		name = SPEC_NEX
+		plural = SPEC_NEX_pl
+		home_planet = SPEC_NEX_planet
+		home_system = SPEC_NEX_system
+		name_list =  "MACHINE2"
+	}
+
+	sictor =  {
+		name = SPEC_Mictor
+		plural = SPEC_Mictor_pl
+		home_planet = SPEC_Mictor_planet
+		home_system = SPEC_Mictor_system
+		name_list =  "MACHINE3"
+	}
+}
+
+PLANT = {
+
+	alari =  {
+		name = SPEC_Alari
+		plural = SPEC_Alari_pl
+		home_planet = SPEC_Alari_planet
+		home_system = SPEC_Alari_system
+		name_list =  "HUM1"
+	}
+
+	mireesh =  {
+		name = SPEC_Mireesh
+		plural = SPEC_Mireesh_pl
+		home_planet = SPEC_Mireesh_planet
+		home_system = SPEC_Mireesh_system
+		name_list =  "HUM2"
+	}
+
+	triech =  {
+		name = SPEC_Triech
+		plural = SPEC_Triech_pl
+		home_planet = SPEC_Triech_planet
+		home_system = SPEC_Triech_system
+		name_list =  "HUM3"
+	}
+
+	vrinn =  {
+		name = SPEC_Vrinn
+		plural = SPEC_Vrinn_pl
+		home_planet = SPEC_Vrinn_planet
+		home_system = SPEC_Vrinn_system
+		name_list =  "HUM4"
+	}
+
+	cevanti =  {
+		name = SPEC_Cevanti
+		plural = SPEC_Cevanti_pl
+		home_planet = SPEC_Cevanti_planet
+		home_system = SPEC_Cevanti_system
+		name_list =  "HUM1"
+	}
+
+	mishar =  {
+		name = SPEC_Mishar
+		plural = SPEC_Mishar_pl
+		home_planet = SPEC_Mishar_planet
+		home_system = SPEC_Mishar_system
+		name_list =  "HUM2"
+	}
+
+	fareen =  {
+		name = SPEC_Fareen
+		plural = SPEC_Fareen_pl
+		home_planet = SPEC_Fareen_planet
+		home_system = SPEC_Fareen_system
+		name_list =  "HUM3"
+	}
+
+	yldar =  {
+		name = SPEC_Yldar
+		plural = SPEC_Yldar_pl
+		home_planet = SPEC_Yldar_planet
+		home_system = SPEC_Yldar_system
+		name_list =  "HUM4"
+	}
+
+	korinth =  {
+		name = SPEC_Korinth
+		plural = SPEC_Korinth_pl
+		home_planet = SPEC_Korinth_planet
+		home_system = SPEC_Korinth_system
+		name_list =  "HUM1"
+	}
+
+	sildor =  {
+		name = SPEC_Sildor
+		plural = SPEC_Sildor_pl
+		home_planet = SPEC_Sildor_planet
+		home_system = SPEC_Sildor_system
+		name_list =  "HUM2"
+	}
+
+	nagyari =  {
+		name = SPEC_Nagyari
+		plural = SPEC_Nagyari_pl
+		home_planet = SPEC_Nagyari_planet
+		home_system = SPEC_Nagyari_system
+		name_list =  "HUM3"
+	}
+
+	kobarian =  {
+		name = SPEC_Kobarian
+		plural = SPEC_Kobarian_pl
+		home_planet = SPEC_Kobarian_planet
+		home_system = SPEC_Kobarian_system
+		name_list =  "HUM4"
+	}
+
+	Hesukar =  {
+		name = SPEC_Hesukar
+		plural = SPEC_Hesukar_pl
+		home_planet = SPEC_Hesukar_planet
+		home_system = SPEC_Hesukar_system
+		name_list =  "HUM1"
+	}
+
+	giroid =  {
+		name = SPEC_Giroid
+		plural = SPEC_Giroid_pl
+		home_planet = SPEC_Giroid_planet
+		home_system = SPEC_Giroid_system
+		name_list =  "HUM2"
+	}
+
+	akkano =  {
+		name = SPEC_Akkano
+		plural = SPEC_Akkano_pl
+		home_planet = SPEC_Akkano_planet
+		home_system = SPEC_Akkano_system
+		name_list =  "HUM3"
+	}
+
+	kroll =  {
+		name = SPEC_Kroll
+		plural = SPEC_Kroll_pl
+		home_planet = SPEC_Kroll_planet
+		home_system = SPEC_Kroll_system
+		name_list =  "MAM1"
+	}
+
+	orassian =  {
+		name = SPEC_Orassian
+		plural = SPEC_Orassian_pl
+		home_planet = SPEC_Orassian_planet
+		home_system = SPEC_Orassian_system
+		name_list =  "MAM2"
+	}
+
+	aramathi =  {
+		name = SPEC_Aramathi
+		plural = SPEC_Aramathi_pl
+		home_planet = SPEC_Aramathi_planet
+		home_system = SPEC_Aramathi_system
+		name_list =  "MAM3"
+	}
+
+	immutharan =  {
+		name = SPEC_Immutharan
+		plural = SPEC_Immutharan_pl
+		home_planet = SPEC_Immutharan_planet
+		home_system = SPEC_Immutharan_system
+		name_list =  "MAM4"
+	}
+
+	hiffnar =  {
+		name = SPEC_Hiffnar
+		plural = SPEC_Hiffnar_pl
+		home_planet = SPEC_Hiffnar_planet
+		home_system = SPEC_Hiffnar_system
+		name_list =  "MAM1"
+	}
+
+	zaanami =  {
+		name = SPEC_Zaanami
+		plural = SPEC_Zaanami_pl
+		home_planet = SPEC_Zaanami_planet
+		home_system = SPEC_Zaanami_system
+		name_list =  "MAM2"
+	}
+
+	estwani =  {
+		name = SPEC_Estwani
+		plural = SPEC_Estwani_pl
+		home_planet = SPEC_Estwani_planet
+		home_system = SPEC_Estwani_system
+		name_list =  "MAM3"
+	}
+
+	vailon =  {
+		name = SPEC_Vailon
+		plural = SPEC_Vailon_pl
+		home_planet = SPEC_Vailon_planet
+		home_system = SPEC_Vailon_system
+		name_list =  "MAM4"
+	}
+
+	raltek =  {
+		name = SPEC_Raltek
+		plural = SPEC_Raltek_pl
+		home_planet = SPEC_Raltek_planet
+		home_system = SPEC_Raltek_system
+		name_list =  "MAM1"
+	}
+
+	birnathi =  {
+		name = SPEC_Birnathi
+		plural = SPEC_Birnathi_pl
+		home_planet = SPEC_Birnathi_planet
+		home_system = SPEC_Birnathi_system
+		name_list =  "MAM2"
+	}
+
+	othari =  {
+		name = SPEC_Othari
+		plural = SPEC_Othari_pl
+		home_planet = SPEC_Othari_planet
+		home_system = SPEC_Othari_system
+		name_list =  "MAM3"
+	}
+
+	evandari =  {
+		name = SPEC_Evandari
+		plural = SPEC_Evandari_pl
+		home_planet = SPEC_Evandari_planet
+		home_system = SPEC_Evandari_system
+		name_list =  "MAM4"
+	}
+
+	bothrian =  {
+		name = SPEC_Bothrian
+		plural = SPEC_Bothrian_pl
+		home_planet = SPEC_Bothrian_planet
+		home_system = SPEC_Bothrian_system
+		name_list =  "MAM1"
+	}
+
+	dorbolan =  {
+		name = SPEC_Dorbolan
+		plural = SPEC_Dorbolan_pl
+		home_planet = SPEC_Dorbolan_planet
+		home_system = SPEC_Dorbolan_system
+		name_list =  "MAM2"
+	}
+
+	fevarian =  {
+		name = SPEC_Fevarian
+		plural = SPEC_Fevarian_pl
+		home_planet = SPEC_Fevarian_planet
+		home_system = SPEC_Fevarian_system
+		name_list =  "MAM3"
+	}
+
+	kenjodan =  {
+		name = SPEC_Kenjodan
+		plural = SPEC_Kenjodan_pl
+		home_planet = SPEC_Kenjodan_planet
+		home_system = SPEC_Kenjodan_system
+		name_list =  "MAM4"
+	}
+
+	glyrran =  {
+		name = SPEC_Glyrran
+		plural = SPEC_Glyrran_pl
+		home_planet = SPEC_Glyrran_planet
+		home_system = SPEC_Glyrran_system
+		name_list =  "MAM1"
+	}
+
+	pallyrian =  {
+		name = SPEC_Pallyrian
+		plural = SPEC_Pallyrian_pl
+		home_planet = SPEC_Pallyrian_planet
+		home_system = SPEC_Pallyrian_system
+		name_list =  "MAM2"
+	}
+
+	quvarian =  {
+		name = SPEC_Quvarian
+		plural = SPEC_Quvarian_pl
+		home_planet = SPEC_Quvarian_planet
+		home_system = SPEC_Quvarian_system
+		name_list =  "MAM3"
+	}
+
+	qellnuram =  {
+		name = SPEC_QellNudar
+		plural = SPEC_QellNudar_pl
+		home_planet = SPEC_QellNudar_planet
+		home_system = SPEC_QellNudar_system
+		name_list =  "MAM4"
+	}
+
+	valdari =  {
+		name = SPEC_Valdari
+		plural = SPEC_Valdari_pl
+		home_planet = SPEC_Valdari_planet
+		home_system = SPEC_Valdari_system
+		name_list =  "MAM1"
+	}
+
+	igarian =  {
+		name = SPEC_Igarian
+		plural = SPEC_Igarian_pl
+		home_planet = SPEC_Igarian_planet
+		home_system = SPEC_Igarian_system
+		name_list =  "MAM2"
+	}
+
+	adnoran =  {
+		name = SPEC_Adnoran
+		plural = SPEC_Adnoran_pl
+		home_planet = SPEC_Adnoran_planet
+		home_system = SPEC_Adnoran_system
+		name_list =  "MAM3"
+	}
+
+	tjell =  {
+		name = SPEC_TJell
+		plural = SPEC_TJell_pl
+		home_planet = SPEC_TJell_planet
+		home_system = SPEC_TJell_system
+		name_list =  "MAM4"
+	}
+
+	tarassi =  {
+		name = SPEC_Tarassi
+		plural = SPEC_Tarassi_pl
+		home_planet = SPEC_Tarassi_planet
+		home_system = SPEC_Tarassi_system
+		name_list =  "MAM1"
+	}
+
+	sinrath =  {
+		name = SPEC_Sinrath
+		plural = SPEC_Sinrath_pl
+		home_planet = SPEC_Sinrath_planet
+		home_system = SPEC_Sinrath_system
+		name_list =  "MAM2"
+	}
+
+	kaan_visam =  {
+		name = SPEC_Kaan-Visam
+		plural = SPEC_Kaan-Visam_pl
+		home_planet = SPEC_Kaan-Visam_planet
+		home_system = SPEC_Kaan-Visam_system
+		name_list =  "MAM3"
+	}
+
+	tebazoid =  {
+		name = SPEC_Tebazoid
+		plural = SPEC_Tebazoid_pl
+		home_planet = SPEC_Tebazoid_planet
+		home_system = SPEC_Tebazoid_system
+		name_list =  "MAM4"
+	}
+
+	kazam =  {
+		name = SPEC_Kazam
+		plural = SPEC_Kazam_pl
+		home_planet = SPEC_Kazam_planet
+		home_system = SPEC_Kazam_system
+		name_list =  "MAM1"
+	}
+
+	quvab =  {
+		name = SPEC_QuVab
+		plural = SPEC_QuVab_pl
+		home_planet = SPEC_QuVab_planet
+		home_system = SPEC_QuVab_system
+		name_list =  "MAM2"
+	}
+}
+
+LITHOID = {
+
+	tharbarite =  {
+		name = SPEC_Tharbarite
+		plural = SPEC_Tharbarite_pl
+		home_planet = SPEC_Tharbarite_planet
+		home_system = SPEC_Tharbarite_system
+		name_list =  "LITHOID1"
+	}
+
+	evarite =  {
+		name = SPEC_Evarite
+		plural = SPEC_Evarite_pl
+		home_planet = SPEC_Evarite_planet
+		home_system = SPEC_Evarite_system
+		name_list =  "LITHOID2"
+	}
+
+	praku =  {
+		name = SPEC_Praku
+		plural = SPEC_Praku_pl
+		home_planet = SPEC_Praku_planet
+		home_system = SPEC_Praku_system
+		name_list =  "LITHOID3"
+	}
+
+	rak-rak =  {
+		name = SPEC_Rak-Rak
+		plural = SPEC_Rak-Rak_pl
+		home_planet = SPEC_Rak-Rak_planet
+		home_system = SPEC_Rak-Rak_system
+		name_list =  "LITHOID4"
+	}
+
+	yru =  {
+		name = SPEC_Yru
+		plural = SPEC_Yru_pl
+		home_planet = SPEC_Yru_planet
+		home_system = SPEC_Yru_system
+		name_list =  "LITHOID1"
+	}
+
+	kodranite =  {
+		name = SPEC_Kodranite
+		plural = SPEC_Kodranite_pl
+		home_planet = SPEC_Kodranite_planet
+		home_system = SPEC_Kodranite_system
+		name_list =  "LITHOID2"
+	}
+
+	cherk =  {
+		name = SPEC_Cherk
+		plural = SPEC_Cherk_pl
+		home_planet = SPEC_Cherk_planet
+		home_system = SPEC_Cherk_system
+		name_list =  "LITHOID3"
+	}
+
+	tavurite =  {
+		name = SPEC_Tavurite
+		plural = SPEC_Tavurite_pl
+		home_planet = SPEC_Tavurite_planet
+		home_system = SPEC_Tavurite_system
+		name_list =  "LITHOID4"
+	}
+
+	ti-zru =  {
+		name = SPEC_Ti-Zru
+		plural = SPEC_Ti-Zru_pl
+		home_planet = SPEC_Ti-Zru_planet
+		home_system = SPEC_Ti-Zru_system
+		name_list =  "LITHOID1"
+	}
+
+	polvanite =  {
+		name = SPEC_Polvanite
+		plural = SPEC_Polvanite_pl
+		home_planet = SPEC_Polvanite_planet
+		home_system = SPEC_Polvanite_system
+		name_list =  "LITHOID2"
+	}
+
+	ithill =  {
+		name = SPEC_Ithill
+		plural = SPEC_Ithill_pl
+		home_planet = SPEC_Ithill_planet
+		home_system = SPEC_Ithill_system
+		name_list =  "LITHOID3"
+	}
+
+	irzuku =  {
+		name = SPEC_Irzuku
+		plural = SPEC_Irzuku_pl
+		home_planet = SPEC_Irzuku_planet
+		home_system = SPEC_Irzuku_system
+		name_list =  "LITHOID4"
+	}
+
+	glirr =  {
+		name = SPEC_Glirr
+		plural = SPEC_Glirr_pl
+		home_planet = SPEC_Glirr_planet
+		home_system = SPEC_Glirr_system
+		name_list =  "LITHOID1"
+	}
+
+	qvagh =  {
+		name = SPEC_Qvagh
+		plural = SPEC_Qvagh_pl
+		home_planet = SPEC_Qvagh_planet
+		home_system = SPEC_Qvagh_system
+		name_list =  "LITHOID2"
+	}
+
+	zurite =  {
+		name = SPEC_Zurite
+		plural = SPEC_Zurite_pl
+		home_planet = SPEC_Zurite_planet
+		home_system = SPEC_Zurite_system
+		name_list =  "LITHOID3"
+	}
+
+	oviir =  {
+		name = SPEC_Oviir
+		plural = SPEC_Oviir_pl
+		home_planet = SPEC_Oviir_planet
+		home_system = SPEC_Oviir_system
+		name_list =  "LITHOID4"
+	}
+
+	rukkari =  {
+		name = SPEC_Rukkari
+		plural = SPEC_Rukkari_pl
+		home_planet = SPEC_Rukkari_planet
+		home_system = SPEC_Rukkari_system
+		name_list =  "LITHOID1"
+	}
+
+	uraki =  {
+		name = SPEC_Uraki
+		plural = SPEC_Uraki_pl
+		home_planet = SPEC_Uraki_planet
+		home_system = SPEC_Uraki_system
+		name_list =  "LITHOID2"
+	}
+
+	bodranite =  {
+		name = SPEC_Bodranite
+		plural = SPEC_Bodranite_pl
+		home_planet = SPEC_Bodranite_planet
+		home_system = SPEC_Bodranite_system
+		name_list =  "LITHOID3"
+	}
+
+	vran =  {
+		name = SPEC_Vran
+		plural = SPEC_Vran_pl
+		home_planet = SPEC_Vran_planet
+		home_system = SPEC_Vran_system
+		name_list =  "LITHOID4"
+	}
+
+	zri =  {
+		name = SPEC_Zri
+		plural = SPEC_Zri_pl
+		home_planet = SPEC_Zri_planet
+		home_system = SPEC_Zri_system
+		name_list =  "LITHOID1"
+	}
+
+	vuur =  {
+		name = SPEC_Vuur
+		plural = SPEC_Vuur_pl
+		home_planet = SPEC_Vuur_planet
+		home_system = SPEC_Vuur_system
+		name_list =  "LITHOID2"
+	}
+
+	croll =  {
+		name = SPEC_Croll
+		plural = SPEC_Croll_pl
+		home_planet = SPEC_Croll_planet
+		home_system = SPEC_Croll_system
+		name_list =  "LITHOID3"
+	}
+
+	bruvan =  {
+		name = SPEC_Bruvan
+		plural = SPEC_Bruvan_pl
+		home_planet = SPEC_Bruvan_planet
+		home_system = SPEC_Bruvan_system
+		name_list =  "LITHOID4"
+	}
+
+	hrun =  {
+		name = SPEC_HRuni
+		plural = SPEC_HRuni_pl
+		home_planet = SPEC_HRuni_planet
+		home_system = SPEC_HRuni_system
+		name_list =  "LITHOID1"
+	}
+
+	rhonzar =  {
+		name = SPEC_Rhonzar
+		plural = SPEC_Rhonzar_pl
+		home_planet = SPEC_Rhonzar_planet
+		home_system = SPEC_Rhonzar_system
+		name_list =  "LITHOID2"
+	}
+
+	bhiir =  {
+		name = SPEC_Bhiir
+		plural = SPEC_Bhiir_pl
+		home_planet = SPEC_Bhiir_planet
+		home_system = SPEC_Bhiir_system
+		name_list =  "LITHOID3"
+	}
+
+	bzadi =  {
+		name = SPEC_Bzadi
+		plural = SPEC_Bzadi_pl
+		home_planet = SPEC_Bzadi_planet
+		home_system = SPEC_Bzadi_system
+		name_list =  "LITHOID4"
+	}
+
+	mtok =  {
+		name = SPEC_Mtok
+		plural = SPEC_Mtok_pl
+		home_planet = SPEC_Mtok_planet
+		home_system = SPEC_Mtok_system
+		name_list =  "LITHOID1"
+	}
+
+	makar =  {
+		name = SPEC_MaKar
+		plural = SPEC_MaKar_pl
+		home_planet = SPEC_MaKar_planet
+		home_system = SPEC_MaKar_system
+		name_list =  "LITHOID2"
+	}
+
+	shapa =  {
+		name = SPEC_Shapa
+		plural = SPEC_Shapa_pl
+		home_planet = SPEC_Shapa_planet
+		home_system = SPEC_Shapa_system
+		name_list =  "LITHOID3"
+	}
+
+	ferbanite =  {
+		name = SPEC_Ferbanite
+		plural = SPEC_Ferbanite_pl
+		home_planet = SPEC_Ferbanite_planet
+		home_system = SPEC_Ferbanite_system
+		name_list =  "LITHOID4"
+	}
+
+	pliffplaff =  {
+		name = SPEC_Pliff-Plaff
+		plural = SPEC_Pliff-Plaff_pl
+		home_planet = SPEC_Pliff-Plaff_planet
+		home_system = SPEC_Pliff-Plaff_system
+		name_list =  "LITHOID1"
+	}
+}

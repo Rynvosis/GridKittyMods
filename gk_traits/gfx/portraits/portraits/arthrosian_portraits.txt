@@ -1,0 +1,37 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# arthrosian
+
+
+	arthrosian = {	entity = "portrait_arthropoid_08_entity" clothes_selector = "arthropoid_normal_clothes_01" attachment_selector = "no_texture"	greeting_sound = "arthropoid_01_greetings" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/arthrosian_portrait_01.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_02.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_03.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_04.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_05.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_06.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_07.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_08.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_09.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_10.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_11.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_12.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_13.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_14.dds"
+                    "gfx/models/portraits/paragans/arthrosian_portrait_15.dds"
+			}
+
+    }
+}	

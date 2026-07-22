@@ -1,0 +1,179 @@
+# Gauntlet's Portraits Unleashed, merged onto vanilla species classes.
+#
+# A portrait_set carries ONE species_class (the real phenotype); category
+# membership is pure UI grouping and the SAME set may be listed under several
+# categories - see zz_gk_categories.txt. Vanilla precedent: cybernetic_avians is
+# species_class = AVI and appears under both `avians` and `cybernetics`.
+#
+# Portraits with two phenotypes appear in a set for each, so they show in both
+# dropdowns. No DLC conditional_portraits gate: these are mod assets, not DLC
+# assets. Generated from PORTRAIT_MAPPING.csv; keep in step with it.
+
+gk_gauntlet_aquatics = {
+	species_class = AQUATIC
+
+	portraits = {
+			"aquarian"
+			"aquariel"
+			"fishow"
+			"fulgar"
+	}
+}
+
+gk_gauntlet_arthropoids = {
+	species_class = ART
+
+	portraits = {
+			"arthrosian"
+			"yarla"
+	}
+}
+
+gk_gauntlet_avians = {
+	species_class = AVI
+
+	portraits = {
+			"raptoris"
+	}
+}
+
+gk_gauntlet_fungoids = {
+	species_class = FUN
+
+	portraits = {
+			"mantidite"
+			"tentacliz"
+	}
+}
+
+gk_gauntlet_humanoids = {
+	species_class = HUM
+
+	portraits = {
+			"aquariel"
+			"cyclopsia"
+			"diviner"
+			"humano"
+			"magyar"
+			"merlinite"
+			"mythara"
+			"nunner"
+			"oldesek"
+			"presentor"
+			"shadeling"
+			"treeling"
+			"zephyran"
+	}
+}
+
+gk_gauntlet_lithoids = {
+	species_class = LITHOID
+
+	portraits = {
+			"fadeling"
+			"stoneling"
+	}
+}
+
+gk_gauntlet_mammalians = {
+	species_class = MAM
+
+	portraits = {
+			"eruditer"
+			"scavver"
+			"scrapper"
+			"xegleri"
+	}
+}
+
+gk_gauntlet_molluscoids = {
+	species_class = MOL
+
+	portraits = {
+			"priester"
+			"squidler"
+			"swarmler"
+	}
+}
+
+gk_gauntlet_necroids = {
+	species_class = NECROID
+
+	portraits = {
+			"epicron"
+			"mantidite"
+			"oldesek"
+	}
+}
+
+gk_gauntlet_plantoids = {
+	species_class = PLANT
+
+	portraits = {
+			"gravitex"
+			"treeling"
+	}
+}
+
+gk_gauntlet_reptilians = {
+	species_class = REP
+
+	portraits = {
+			"krogg"
+			"scalyboi"
+	}
+}
+
+gk_gauntlet_toxoids = {
+	species_class = TOX
+
+	portraits = {
+			"scavver"
+			"scrapper"
+			"squidler"
+			"wandererg"
+	}
+}
+
+# crocsidon is the only Gauntlet portrait with a portrait_evolution (two
+# cybernetization stages), so it is the only one that earns a place under the
+# `cybernetics` category. Kept out of gk_gauntlet_reptilians to avoid listing it
+# twice under `reptilians`.
+gk_gauntlet_cybernetic_reptilians = {
+	species_class = REP
+
+	portraits = {
+			"crocsidon"
+	}
+}
+
+gk_gauntlet_machines = {
+	species_class = MACHINE
+
+	portraits = {
+			"botler"
+			"centurionex"
+			"darkoid"
+			"electroidian"
+			"robloxicon"
+			"trontar"
+			"unimatrix"
+	}
+}
+
+# Same seven as a ROBOT class so they work as robot pops too. Deliberately in
+# NO portrait_category, matching vanilla's own `robots` set - robot portraits are
+# chosen via robomodding, not the empire designer.
+gk_gauntlet_robots = {
+	species_class = ROBOT
+
+	portraits = {
+			"botler"
+			"centurionex"
+			"darkoid"
+			"electroidian"
+			"robloxicon"
+			"trontar"
+			"unimatrix"
+	}
+}

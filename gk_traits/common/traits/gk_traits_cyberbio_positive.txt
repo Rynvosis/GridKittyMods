@@ -55,10 +55,12 @@ trait_gk_hosts = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { BIOGENESIS_02 }
+	# biogen gate (see gk_portraits_biogen) + trait-specific extras; longhand
+	# because a whole-statement inline can't be appended to. gk-extras: mol2 fun4 fun16
 	portrait_override = {
 		ant1 bio10 bio11 bio4 bio5 bio6 bio7 bio8
-		bio9 pdx_signup_portrait_01 pro1 pro2 tox4
-		mol2 fun4 fun16
+		bio9 fun16 fun4 mcrab mol2 pdx_signup_portrait_01 pla11 pla16_baol
+		pro1 pro2 swarmler tox4 tox9 yarla
 	}
 	inline_script = "traits/gk_class_override"
 	tags = { organic positive leader habitability army species }
@@ -135,10 +137,12 @@ trait_gk_polycephalous = {
 	opposites = { "trait_invasive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { BIOGENESIS_02 }
+	# biogen gate (see gk_portraits_biogen) + trait-specific extras; longhand
+	# because a whole-statement inline can't be appended to. gk-extras: mol16 lith6 aqu7 tox3
 	portrait_override = {
-		ant1 bio10 bio11 bio4 bio5 bio6 bio7 bio8
-		bio9 pdx_signup_portrait_01 pro1 pro2 tox4
-		mol16 lith6 aqu7 tox3
+		ant1 aqu7 bio10 bio11 bio4 bio5 bio6 bio7
+		bio8 bio9 lith6 mcrab mol16 pdx_signup_portrait_01 pla11 pla16_baol
+		pro1 pro2 swarmler tox3 tox4 tox9 yarla
 	}
 	inline_script = "traits/gk_class_override"
 	tags = { organic positive pop_output research unity species }

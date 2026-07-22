@@ -1,0 +1,33 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+
+portraits = {
+
+	# fishow
+
+
+	fishow = {	entity = "paragon_01_renown_portrait_13_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "par_portrait_13" 
+			character_textures = {
+                    "gfx/models/portraits/paragans/fishow_portrait_01.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_02.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_03.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_04.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_05.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_06.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_07.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_08.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_09.dds"
+                    "gfx/models/portraits/paragans/fishow_portrait_10.dds"
+			}
+		custom_close_up_position_offset = { x = -20 y = 110 } #position ok
+		custom_close_up_scale = 1.2
+    }
+}	

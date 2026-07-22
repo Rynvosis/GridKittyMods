@@ -29,19 +29,23 @@ import re
 import sys
 from pathlib import Path
 
-DEFAULT_CSV = Path.home() / "Downloads" / "PORTRAIT_MAPPING - PORTRAIT_MAPPING.csv"
 MOD_ROOT = Path(__file__).resolve().parent.parent
+# The mod's own committed snapshot is the source of truth (the Downloads exports
+# drift). Re-export the sheet over this file to update the mapping.
+DEFAULT_CSV = MOD_ROOT / "PORTRAIT_MAPPING.csv"
 CROSSLIST_FILE = MOD_ROOT / "common" / "portrait_sets" / "01_gk_crosslist_sets.txt"
+INLINE_DIR = MOD_ROOT / "common" / "inline_scripts" / "traits"
 
 # Phenotype + overlay tags + COMMON.
 ALL_TAGS = {
     "HUM", "MAM", "REP", "AVI", "ART", "MOL", "FUN", "PLANT", "LITHOID",
     "NECROID", "AQUATIC", "TOX", "INF", "MACHINE_ROBOT",
-    "CYBER", "SYNTH", "BIOGENESIS", "PSIONIC", "COMMON",
+    "CYBER", "SYNTH", "CYBER_SYNTH", "BIOGENESIS", "PSIONIC", "COMMON",
 }
 
-# Groups for marker traits.
-GROUP_CYBSYNTH = {"CYBER", "SYNTH", "MACHINE_ROBOT"}
+# Groups for marker traits. The sheet writes CYBER+SYNTH as one combined
+# CYBER_SYNTH tag; older exports split them, so accept both.
+GROUP_CYBSYNTH = {"CYBER", "SYNTH", "CYBER_SYNTH", "MACHINE_ROBOT"}
 GROUP_BIOGEN = {"BIOGENESIS"}
 GROUP_COMMON = {"COMMON"}
 
@@ -187,6 +191,85 @@ def cmd_print(mapping: list[dict]) -> None:
     for tag in sorted(ALL_TAGS):
         ids = portraits_with(mapping, {tag})
         print(f"{tag:>16}: {len(ids):3d} portraits")
+
+
+# ----------------------------------------------------------------------------
+# Gate inline files: the three portrait_override lists the trait suite inlines.
+# ----------------------------------------------------------------------------
+
+GATE_FILES = {
+    "gk_portraits_cyber.txt": GROUP_CYBSYNTH,
+    "gk_portraits_biogen.txt": GROUP_BIOGEN,
+    "gk_portraits_common.txt": GROUP_COMMON,
+}
+
+TRAITS_DIR = MOD_ROOT / "common" / "traits"
+
+# Traits that write a gate list longhand + trait-specific extras (a whole-statement
+# inline can't be appended to). --check-gates verifies they equal group + extras.
+GATE_EXTRAS = {
+    "trait_gk_hosts": (GROUP_BIOGEN, ["mol2", "fun4", "fun16"], "gk_traits_cyberbio_positive.txt"),
+    "trait_gk_polycephalous": (GROUP_BIOGEN, ["mol16", "lith6", "aqu7", "tox3"], "gk_traits_cyberbio_positive.txt"),
+}
+
+
+def trait_portrait_override(fname: str, tid: str) -> list[str]:
+    text = (TRAITS_DIR / fname).read_text(encoding="utf-8")
+    m = re.search(r"(?ms)^" + re.escape(tid) + r"\s*=\s*\{.*?portrait_override\s*=\s*\{([^}]*)\}", text)
+    return sorted(m.group(1).split()) if m else []
+
+
+def render_gate(ids: list[str]) -> str:
+    return "portrait_override = {\n" + format_list(ids, per_line=8, indent="\t") + "\n}\n"
+
+
+def write_trait_override(fname: str, tid: str, ids: list[str]) -> bool:
+    """Rewrite one trait's longhand portrait_override in place."""
+    path = TRAITS_DIR / fname
+    text = path.read_text(encoding="utf-8")
+    pat = re.compile(r"(?ms)(^" + re.escape(tid) + r"\s*=\s*\{.*?portrait_override\s*=\s*\{)([^}]*)(\})")
+    m = pat.search(text)
+    if not m:
+        return False
+    block = "\n" + format_list(ids, per_line=8, indent="\t\t") + "\n\t"
+    path.write_text(text[:m.start(2)] + block + text[m.end(2):], encoding="utf-8")
+    return True
+
+
+def cmd_write_gates(mapping: list[dict]) -> None:
+    for fn, tags in GATE_FILES.items():
+        ids = portraits_with(mapping, tags)
+        (INLINE_DIR / fn).write_text(render_gate(ids), encoding="utf-8")
+        print(f"wrote {fn}: {len(ids)} portraits")
+    for tid, (group, extras, fname) in GATE_EXTRAS.items():
+        ids = sorted(set(portraits_with(mapping, group)) | set(extras))
+        ok = write_trait_override(fname, tid, ids)
+        print(f"wrote {tid}: {len(ids)} portraits" if ok else f"FAILED {tid}: block not found")
+
+
+def cmd_check_gates(mapping: list[dict]) -> None:
+    bad = 0
+    for fn, tags in GATE_FILES.items():
+        expected = portraits_with(mapping, tags)
+        text = (INLINE_DIR / fn).read_text(encoding="utf-8")
+        actual = sorted(text[text.index("{") + 1: text.rindex("}")].split())
+        if actual == expected:
+            print(f"OK    {fn}: {len(expected)} portraits")
+            continue
+        bad += 1
+        exp, act = set(expected), set(actual)
+        print(f"DRIFT {fn}: +{sorted(exp - act) or 'none'}  -{sorted(act - exp) or 'none'}")
+
+    for tid, (group, extras, fname) in GATE_EXTRAS.items():
+        expected = sorted(set(portraits_with(mapping, group)) | set(extras))
+        actual = trait_portrait_override(fname, tid)
+        if actual == expected:
+            print(f"OK    {tid} (biogen + extras)")
+            continue
+        bad += 1
+        exp, act = set(expected), set(actual)
+        print(f"DRIFT {tid}: +{sorted(exp - act) or 'none'}  -{sorted(act - exp) or 'none'}")
+    sys.exit(1 if bad else 0)
 
 
 # ----------------------------------------------------------------------------
@@ -576,6 +659,10 @@ def main() -> None:
     parser.add_argument("--patch-vanilla", type=Path, metavar="PATH")
     parser.add_argument("--list-crosslists", action="store_true")
     parser.add_argument("--emit-crosslist-sets", action="store_true")
+    parser.add_argument("--write-gates", action="store_true",
+                        help="write the three gk_portraits_* inline files from the CSV")
+    parser.add_argument("--check-gates", action="store_true",
+                        help="assert the inline files match the CSV; report drift")
     args = parser.parse_args()
 
     if not args.csv.exists():
@@ -592,6 +679,10 @@ def main() -> None:
         cmd_list_crosslists(mapping)
     elif args.emit_crosslist_sets:
         cmd_emit_crosslist_sets(mapping)
+    elif args.write_gates:
+        cmd_write_gates(mapping)
+    elif args.check_gates:
+        cmd_check_gates(mapping)
     else:
         cmd_print(mapping)
 

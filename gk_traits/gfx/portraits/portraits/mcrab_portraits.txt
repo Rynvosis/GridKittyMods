@@ -1,0 +1,314 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+portraits = {
+
+	mcrab_f_01 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = { 
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_1_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_1_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_1_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_1_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_1_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_1_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_1_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9			
+	}	
+	mcrab_f_02 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = { 
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_2_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_2_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_2_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_2_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_2_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_2_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_2_yellow.dds"
+		}	
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9		
+	}
+	mcrab_f_03 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = {
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_3_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_3_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_3_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_3_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_3_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_3_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_3_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9		
+	}
+	mcrab_f_04 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = {
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_4_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_4_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_4_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_4_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_4_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_4_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_4_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9		
+	}
+	mcrab_f_05 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = {
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_5_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_5_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_5_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_5_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_5_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_5_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_f_color_5_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9		
+	}
+	mcrab_m_01 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = { 
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_1_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_1_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_1_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_1_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_1_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_1_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_1_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9		
+	}	
+	mcrab_m_02 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = { 
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_2_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_2_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_2_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_2_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_2_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_2_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_2_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9			
+	}
+	mcrab_m_03 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = {
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_3_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_3_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_3_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_3_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_3_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_3_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_3_yellow.dds"
+		}	
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9		
+	}
+	mcrab_m_04 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = {
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_4_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_4_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_4_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_4_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_4_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_4_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_4_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9
+	}	
+	mcrab_m_05 = { entity = "bio_01_portrait_07_i_01_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "biogenesis_portrait_07"
+		character_textures = {
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_5_blue.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_5_green.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_5_red.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_5_purple.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_5_black.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_5_orange.dds"
+			"gfx/models/portraits/biogenesis/mcrab_01_portrait_07_m_color_5_yellow.dds"
+		}
+		custom_close_up_position_offset = { x = -10 y = 300 }
+		custom_close_up_scale = 1.9
+	}	
+}
+
+
+portrait_groups = {
+		mcrab = {
+		default = mcrab_m_01
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = {
+					ruler = {
+						OR = {
+							gender = male
+							gender = indeterminable
+						}
+					}
+				}
+				portraits = {
+					mcrab_m_01
+					mcrab_m_02
+					mcrab_m_03
+					mcrab_m_04
+					mcrab_m_05
+				}
+			}
+			add = {
+				trigger = {
+					ruler = {
+						OR = {
+							gender = female
+							gender = indeterminable
+						}
+					}
+				}
+				portraits = {
+					mcrab_f_01
+					mcrab_f_02
+					mcrab_f_03
+					mcrab_f_04
+					mcrab_f_05
+				}
+			}
+			#set = {
+			#	trigger = { ... }
+			#	portraits = { ... }
+			#	#using "set =" instead of "add" will first clear any portraits already added
+			#}
+		}
+
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				trigger = {
+					exists = species
+					NOT = { species = { species_gender = female } }
+				}
+				portraits = {
+					mcrab_m_01
+					mcrab_m_02
+					mcrab_m_03
+					mcrab_m_04
+					mcrab_m_05
+				}
+			}
+			add = {
+				trigger = {
+					exists = species
+					NOT = { species = { species_gender = male } }
+				}
+				portraits = {
+					mcrab_f_01
+					mcrab_f_02
+					mcrab_f_03
+					mcrab_f_04
+					mcrab_f_05
+				}
+			}
+		}
+
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				trigger = {
+					NOT = { species = { species_gender = female } }
+				}
+				portraits = {
+					mcrab_m_01
+					mcrab_m_02
+					mcrab_m_03
+					mcrab_m_04
+					mcrab_m_05
+				}
+			}
+			add = {
+				trigger = {
+					NOT = { species = { species_gender = male } }
+				}
+				portraits = {
+					mcrab_f_01
+					mcrab_f_02
+					mcrab_f_03
+					mcrab_f_04
+					mcrab_f_05
+				}
+			}
+		}
+
+		leader = {
+			add = {
+				trigger = {
+					OR = {
+						gender = male
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					mcrab_m_01
+					mcrab_m_02
+					mcrab_m_03
+					mcrab_m_04
+					mcrab_m_05
+				}
+			}
+			add = {
+				trigger = {
+					OR = {
+						gender = female
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					mcrab_f_01
+					mcrab_f_02
+					mcrab_f_03
+					mcrab_f_04
+					mcrab_f_05
+				}
+			}
+		}
+
+		ruler = {
+			add = {
+				trigger = {
+					OR = {
+						gender = male
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					mcrab_m_01
+					mcrab_m_02
+					mcrab_m_03
+					mcrab_m_04
+					mcrab_m_05
+				}
+			}
+			add = {
+				trigger = {
+					OR = {
+						gender = female
+						gender = indeterminable
+					}
+				}
+				portraits = {
+					mcrab_f_01
+					mcrab_f_02
+					mcrab_f_03
+					mcrab_f_04
+					mcrab_f_05
+				}
+			}
+		}
+	}
+}

@@ -1,285 +1,369 @@
-Internal ID,Wiki Filename,Preview,Category A,Category B,Status,Notes
-human,Human_updated_version.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Human_updated_version.png"")",HUM,COMMON,draft,
-human_legacy,Human_legacy_version.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Human_legacy_version.png"")",HUM,COMMON,draft,
-humanoid_02,Humanoid_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_02.png"")",HUM,COMMON,draft,
-humanoid_03,Humanoid_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_03.png"")",HUM,COMMON,draft,
-humanoid_04,Humanoid_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_04.png"")",HUM,COMMON,draft,
-humanoid_05,Humanoid_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_05.png"")",HUM,COMMON,draft,
-humanoid_hp_01,Humanoid_hp_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_01.png"")",HUM,COMMON,draft,
-humanoid_hp_02,Humanoid_hp_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_02.png"")",HUM,COMMON,draft,
-humanoid_hp_06,Humanoid_hp_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_06.png"")",HUM,COMMON,draft,
-humanoid_hp_07,Humanoid_hp_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_07.png"")",HUM,COMMON,draft,
-humanoid_hp_08,Humanoid_hp_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_08.png"")",HUM,COMMON,draft,
-humanoid_hp_09,Humanoid_hp_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_09.png"")",HUM,COMMON,draft,
-humanoid_hp_10,Humanoid_hp_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_10.png"")",HUM,COMMON,draft,
-humanoid_hp_11,Humanoid_hp_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_11.png"")",HUM,COMMON,draft,
-humanoid_hp_12,Humanoid_hp_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_12.png"")",HUM,COMMON,draft,
-humanoid_hp_13,Humanoid_hp_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_13.png"")",HUM,COMMON,draft,
-humanoid_hp_14,Humanoid_hp_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_14.png"")",HUM,COMMON,draft,internal has hp_14 but wiki may use hp_15; verify
-humanoid_hp_16,Humanoid_hp_16.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_hp_16.png"")",HUM,COMMON,draft,
-humanoid_elf,Humanoid_elf.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Humanoid_elf.png"")",HUM,COMMON,draft,
-mam1,Mammalian_slender_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_slender_01.png"")",MAM,COMMON,draft,
-mam2,Mammalian_slender_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_slender_02.png"")",MAM,COMMON,draft,
-mam3,Mammalian_slender_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_slender_03.png"")",MAM,COMMON,draft,
-mam4,Mammalian_slender_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_slender_04.png"")",MAM,COMMON,draft,
-mam5,Mammalian_slender_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_slender_05.png"")",MAM,COMMON,draft,
-mam6,Mammalian_normal_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_normal_06.png"")",MAM,COMMON,draft,
-mam7,Mammalian_normal_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_normal_07.png"")",MAM,COMMON,draft,
-mam8,Mammalian_normal_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_normal_08.png"")",MAM,COMMON,draft,
-mam9,Mammalian_normal_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_normal_09.png"")",MAM,COMMON,draft,
-mam10,Mammalian_normal_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_normal_10.png"")",MAM,COMMON,draft,
-mam11,Mammalian_massive_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_massive_11.png"")",MAM,COMMON,draft,
-mam12,Mammalian_massive_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_massive_12.png"")",MAM,COMMON,draft,
-mam13,Mammalian_massive_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_massive_13.png"")",MAM,COMMON,draft,
-mam14,Mammalian_massive_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_massive_14.png"")",MAM,COMMON,draft,
-mam15,Mammalian_massive_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_massive_15.png"")",MAM,COMMON,draft,
-mam16,Mammalian_massive_16.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_massive_16.png"")",MAM,COMMON,draft,
-mam17,Mammalian_massive_17.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_massive_17.png"")",MAM,COMMON,draft,
-mam_rat,Mammalian_ratling.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ratling.png"")",MAM,COMMON,draft,rat-themed novelty
-mammalian_ar_01,Mammalian_ar_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_01.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_02,Mammalian_ar_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_02.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_03,Mammalian_ar_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_03.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_04,Mammalian_ar_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_04.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_05,Mammalian_ar_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_05.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_06,Mammalian_ar_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_06.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_07,Mammalian_ar_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_07.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_08,Mammalian_ar_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_08.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_09,Mammalian_ar_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_09.png"")",MAM,COMMON,draft,Astral Rifts variant
-mammalian_ar_10,Mammalian_ar_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Mammalian_ar_10.png"")",MAM,COMMON,draft,Astral Rifts variant
-rep1,Reptilian_slender_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_slender_01.png"")",REP,COMMON,draft,
-rep2,Reptilian_slender_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_slender_02.png"")",REP,COMMON,draft,
-rep3,Reptilian_slender_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_slender_03.png"")",REP,COMMON,draft,
-rep4,Reptilian_slender_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_slender_04.png"")",REP,COMMON,draft,
-rep5,Reptilian_slender_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_slender_05.png"")",REP,COMMON,draft,
-rep6,Reptilian_normal_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_normal_06.png"")",REP,COMMON,draft,
-rep7,Reptilian_normal_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_normal_07.png"")",REP,COMMON,draft,
-rep8,Reptilian_normal_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_normal_08.png"")",REP,COMMON,draft,
-rep9,Reptilian_normal_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_normal_09.png"")",REP,COMMON,draft,
-rep10,Reptilian_normal_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_normal_10.png"")",REP,COMMON,draft,
-rep11,Reptilian_massive_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_massive_11.png"")",REP,COMMON,draft,
-rep12,Reptilian_massive_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_massive_12.png"")",REP,COMMON,draft,
-rep13,Reptilian_massive_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_massive_13.png"")",REP,COMMON,draft,
-rep14,Reptilian_massive_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_massive_14.png"")",REP,COMMON,draft,
-rep15,Reptilian_massive_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_massive_15.png"")",REP,COMMON,draft,
-rep16,Reptilian_16.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_16.png"")",REP,COMMON,draft,Leviathans DLC
-rep17,Reptilian_17.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_17.png"")",REP,COMMON,draft,
-pdx_signup_portrait_01,Reptilian_Behemothkin.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Reptilian_Behemothkin.png"")",REP,BIOGENESIS,draft,PDX account login Behemothkin; Behemoth lore is biogenesis-themed
-avi1,Avian_slender_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_slender_01.png"")",AVI,COMMON,draft,
-avi2,Avian_slender_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_slender_02.png"")",AVI,COMMON,draft,
-avi3,Avian_slender_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_slender_03.png"")",AVI,COMMON,draft,
-avi4,Avian_slender_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_slender_04.png"")",AVI,COMMON,draft,
-avi5,Avian_slender_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_slender_05.png"")",AVI,COMMON,draft,
-avi6,Avian_normal_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_normal_06.png"")",AVI,COMMON,draft,
-avi7,Avian_normal_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_normal_07.png"")",AVI,COMMON,draft,
-avi8,Avian_normal_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_normal_08.png"")",AVI,COMMON,draft,
-avi9,Avian_normal_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_normal_09.png"")",AVI,COMMON,draft,
-avi10,Avian_normal_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_normal_10.png"")",AVI,COMMON,draft,
-avi11,Avian_massive_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_massive_11.png"")",AVI,COMMON,draft,
-avi12,Avian_massive_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_massive_12.png"")",AVI,COMMON,draft,
-avi13,Avian_massive_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_massive_13.png"")",AVI,COMMON,draft,
-avi14,Avian_massive_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_massive_14.png"")",AVI,COMMON,draft,
-avi15,Avian_massive_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_massive_15.png"")",AVI,COMMON,draft,
-avi16,Avian_massive_16.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_massive_16.png"")",AVI,COMMON,draft,
-avi17,Avian_massive_17.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_massive_17.png"")",AVI,COMMON,draft,
-avi18,Avian_18.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Avian_18.png"")",AVI,COMMON,draft,
-art1,Arthropoid_slender_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_slender_01.png"")",ART,COMMON,draft,
-art2,Arthropoid_slender_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_slender_02.png"")",ART,COMMON,?,wiki may not have this exact file; verify
-art3,Arthropoid_slender_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_slender_03.png"")",ART,COMMON,draft,
-art4,Arthropoid_slender_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_slender_04.png"")",ART,COMMON,?,wiki may not have this exact file; verify
-art5,Arthropoid_slender_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_slender_05.png"")",ART,COMMON,draft,
-art6,Arthropoid_normal_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_normal_06.png"")",ART,COMMON,draft,
-art7,Arthropoid_normal_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_normal_07.png"")",ART,COMMON,draft,
-art8,Arthropoid_normal_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_normal_08.png"")",ART,COMMON,draft,
-art9,Arthropoid_normal_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_normal_09.png"")",ART,COMMON,draft,
-art10,Arthropoid_normal_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_normal_10.png"")",ART,COMMON,draft,
-art11,Arthropoid_massive_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_massive_11.png"")",ART,COMMON,draft,
-art12,Arthropoid_massive_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_massive_12.png"")",ART,COMMON,draft,
-art13,Arthropoid_massive_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_massive_13.png"")",ART,COMMON,draft,
-art14,Arthropoid_massive_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_massive_14.png"")",ART,COMMON,draft,
-art15,Arthropoid_massive_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_massive_15.png"")",ART,COMMON,draft,
-art16,Arthropoid_massive_16.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_massive_16.png"")",ART,COMMON,draft,
-art17,Arthropoid_massive_17.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_massive_17.png"")",ART,COMMON,draft,
-art18,Arthropoid_18.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_18.png"")",ART,COMMON,draft,
-art19,Arthropoid_19.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_19.png"")",ART,COMMON,draft,
-art20,Arthropoid_20.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Arthropoid_20.png"")",ART,COMMON,draft,
-mol1,Molluscoid_slender_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_slender_01.png"")",MOL,COMMON,draft,
-mol2,Molluscoid_slender_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_slender_02.png"")",MOL,COMMON,draft,
-mol3,Molluscoid_slender_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_slender_03.png"")",MOL,COMMON,draft,
-mol4,Molluscoid_slender_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_slender_04.png"")",MOL,COMMON,draft,
-mol5,Molluscoid_slender_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_slender_05.png"")",MOL,COMMON,draft,
-mol6,Molluscoid_normal_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_normal_06.png"")",MOL,COMMON,draft,
-mol7,Molluscoid_normal_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_normal_07.png"")",MOL,COMMON,draft,
-mol8,Molluscoid_normal_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_normal_08.png"")",MOL,COMMON,draft,
-mol11,Molluscoid_massive_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_massive_11.png"")",MOL,COMMON,draft,
-mol12,Molluscoid_massive_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_massive_12.png"")",MOL,COMMON,draft,
-mol13,Molluscoid_massive_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_massive_13.png"")",MOL,COMMON,draft,
-mol14,Molluscoid_massive_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_massive_14.png"")",MOL,COMMON,draft,
-mol15,Molluscoid_massive_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_massive_15.png"")",MOL,COMMON,draft,
-mol16,Molluscoid_massive_16.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_massive_16.png"")",MOL,COMMON,draft,
-mol17,Molluscoid_17.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_17.png"")",MOL,COMMON,draft,
-mol18,Molluscoid_18.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Molluscoid_18.png"")",MOL,COMMON,draft,
-stargazer_01,Stargazer_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Stargazer_01.png"")",MOL,COMMON,?,Stargazer DLC; wiki name unverified
-fun1,Fungoid_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_01.png"")",FUN,COMMON,draft,
-fun2,Fungoid_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_02.png"")",FUN,COMMON,draft,
-fun3,Fungoid_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_03.png"")",FUN,COMMON,draft,
-fun4,Fungoid_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_04.png"")",FUN,COMMON,draft,
-fun6,Fungoid_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_06.png"")",FUN,COMMON,draft,
-fun7,Fungoid_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_07.png"")",FUN,COMMON,draft,
-fun8,Fungoid_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_08.png"")",FUN,COMMON,draft,
-fun9,Fungoid_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_09.png"")",FUN,COMMON,draft,
-fun10,Fungoid_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_10.png"")",FUN,COMMON,draft,
-fun11,Fungoid_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_11.png"")",FUN,COMMON,draft,
-fun12,Fungoid_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_12.png"")",FUN,COMMON,draft,
-fun13,Fungoid_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_13.png"")",FUN,COMMON,draft,
-fun14,Fungoid_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_14.png"")",FUN,COMMON,draft,
-fun15,Fungoid_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_15.png"")",FUN,COMMON,draft,
-fun16,Fungoid_16.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_16.png"")",FUN,COMMON,draft,
-fun17,Fungoid_17.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Fungoid_17.png"")",FUN,COMMON,draft,
-pla1,Plantoid_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_01.png"")",PLANT,COMMON,draft,
-pla2,Plantoid_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_02.png"")",PLANT,COMMON,draft,
-pla3,Plantoid_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_03.png"")",PLANT,COMMON,draft,
-pla4,Plantoid_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_04.png"")",PLANT,COMMON,draft,
-pla5,Plantoid_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_05.png"")",PLANT,COMMON,draft,
-pla6,Plantoid_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_06.png"")",PLANT,COMMON,draft,
-pla7,Plantoid_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_07.png"")",PLANT,COMMON,draft,
-pla8,Plantoid_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_08.png"")",PLANT,COMMON,draft,
-pla9,Plantoid_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_09.png"")",PLANT,COMMON,draft,
-pla10,Plantoid_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_10.png"")",PLANT,COMMON,draft,
-pla11,Plantoid_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_11.png"")",PLANT,COMMON,draft,
-pla12,Plantoid_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_12.png"")",PLANT,COMMON,draft,
-pla13,Plantoid_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_13.png"")",PLANT,COMMON,draft,
-pla14,Plantoid_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_14.png"")",PLANT,COMMON,draft,
-pla15,Plantoid_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_15.png"")",PLANT,COMMON,draft,
-pla16_baol,Plantoid_16_baol.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_16_baol.png"")",PLANT,COMMON,?,wiki name unverified (Ancient Relics DLC)
-pla17,Plantoid_17_female.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Plantoid_17_female.png"")",PLANT,COMMON,draft,wiki uses _female suffix
-lith1,Lithoid_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_01.png"")",LITHOID,COMMON,draft,
-lith2,Lithoid_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_02.png"")",LITHOID,COMMON,draft,
-lith3,Lithoid_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_03.png"")",LITHOID,COMMON,draft,
-lith4,Lithoid_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_04.png"")",LITHOID,COMMON,draft,
-lith5,Lithoid_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_05.png"")",LITHOID,COMMON,draft,
-lith6,Lithoid_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_06.png"")",LITHOID,COMMON,draft,
-lith7,Lithoid_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_07.png"")",LITHOID,COMMON,draft,
-lith8,Lithoid_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_08.png"")",LITHOID,COMMON,draft,
-lith9,Lithoid_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_09.png"")",LITHOID,COMMON,draft,
-lith10,Lithoid_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_10.png"")",LITHOID,COMMON,draft,
-lith11,Lithoid_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_11.png"")",LITHOID,COMMON,draft,
-lith12,Lithoid_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_12.png"")",LITHOID,COMMON,draft,
-lith13,Lithoid_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_13.png"")",LITHOID,COMMON,draft,
-lith14,Lithoid_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_14.png"")",LITHOID,COMMON,draft,
-lith15,Lithoid_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_15.png"")",LITHOID,COMMON,draft,
-lith_human,Lithoid_human.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_human.png"")",LITHOID,HUM,draft,"humanoid silhouette, lithoid material"
-nec1,Necroids_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_01.png"")",NECROID,COMMON,draft,
-nec2,Necroids_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_02.png"")",NECROID,COMMON,draft,
-nec3,Necroids_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_03.png"")",NECROID,COMMON,draft,
-nec4,Necroids_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_04.png"")",NECROID,COMMON,draft,
-nec5,Necroids_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_05.png"")",NECROID,COMMON,draft,
-nec6,Necroids_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_06.png"")",NECROID,COMMON,draft,
-nec7,Necroids_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_07.png"")",NECROID,COMMON,draft,
-nec8,Necroids_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_08.png"")",NECROID,COMMON,draft,
-nec9,Necroids_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_09.png"")",NECROID,COMMON,draft,
-nec10,Necroids_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_10.png"")",NECROID,COMMON,draft,
-nec11,Necroids_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_11.png"")",NECROID,COMMON,draft,
-nec12,Necroids_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_12.png"")",NECROID,COMMON,draft,
-nec13,Necroids_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_13.png"")",NECROID,COMMON,draft,
-nec14,Necroids_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_14.png"")",NECROID,COMMON,draft,
-nec15,Necroids_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_15.png"")",NECROID,COMMON,draft,
-season_10_portrait,Necroids_Vipra.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_Vipra.png"")",NECROID,COMMON,draft,Vipra the Vapor DLC
-aqu1,Aquatic_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_01.png"")",AQUATIC,COMMON,draft,
-aqu2,Aquatic_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_02.png"")",AQUATIC,COMMON,draft,
-aqu3,Aquatic_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_03.png"")",AQUATIC,COMMON,draft,
-aqu4,Aquatic_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_04.png"")",AQUATIC,COMMON,draft,
-aqu5,Aquatic_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_05.png"")",AQUATIC,COMMON,draft,
-aqu6,Aquatic_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_06.png"")",AQUATIC,COMMON,draft,
-aqu7,Aquatic_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_07.png"")",AQUATIC,COMMON,draft,
-aqu8,Aquatic_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_08.png"")",AQUATIC,COMMON,draft,
-aqu9,Aquatic_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_09.png"")",AQUATIC,COMMON,draft,
-aqu10,Aquatic_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_10.png"")",AQUATIC,COMMON,draft,
-aqu11,Aquatic_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_11.png"")",AQUATIC,COMMON,draft,
-aqu12,Aquatic_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_12.png"")",AQUATIC,COMMON,draft,
-aqu13,Aquatic_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_13.png"")",AQUATIC,COMMON,draft,
-aqu14,Aquatic_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_14.png"")",AQUATIC,COMMON,draft,
-aqu15,Aquatic_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_15.png"")",AQUATIC,COMMON,draft,
-tox1,Toxic_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_01.png"")",TOX,COMMON,draft,
-tox2,Toxic_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_02.png"")",TOX,COMMON,draft,
-tox3,Toxic_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_03.png"")",TOX,COMMON,draft,
-tox4,Toxic_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_04.png"")",TOX,COMMON,draft,
-tox5,Toxic_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_05.png"")",TOX,COMMON,draft,
-tox6,Toxic_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_06.png"")",TOX,COMMON,draft,
-tox7,Toxic_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_07.png"")",TOX,COMMON,draft,
-tox8,Toxic_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_08.png"")",TOX,COMMON,draft,
-tox9,Toxic_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_09.png"")",TOX,COMMON,draft,
-tox10,Toxic_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_10.png"")",TOX,COMMON,draft,
-tox11,Toxic_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_11.png"")",TOX,COMMON,draft,
-tox12,Toxic_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_12.png"")",TOX,COMMON,draft,
-tox13,Toxic_13.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_13.png"")",TOX,COMMON,draft,
-tox14,Toxic_14.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_14.png"")",TOX,COMMON,draft,
-tox15,Toxic_15.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_15.png"")",TOX,COMMON,draft,
-inf1,Infernal_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_01.png"")",INF,COMMON,draft,
-inf2,Infernal_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_02.png"")",INF,COMMON,draft,
-inf3,Infernal_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_03.png"")",INF,COMMON,draft,
-inf4,Infernal_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_04.png"")",INF,COMMON,draft,
-inf5,Infernal_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_05.png"")",INF,COMMON,draft,
-inf6,Infernal_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_06.png"")",INF,COMMON,draft,
-inf7,Infernal_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_07.png"")",INF,COMMON,draft,
-inf8,Infernal_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_08.png"")",INF,COMMON,draft,
-inf9,Infernal_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_09.png"")",INF,COMMON,draft,
-inf10,Infernal_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_10.png"")",INF,COMMON,draft,
-lith_human_inf,Infernal_lithoid_human.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_lithoid_human.png"")",INF,LITHOID,?,wiki filename guess; verify
-lith2_inf,Infernal_lithoid_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Infernal_lithoid_02.png"")",INF,LITHOID,?,wiki filename guess; verify
-sd_hum_robot,Synthetic_dawn_portrait_humanoid.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_humanoid.png"")",MACHINE_ROBOT,COMMON,draft,
-sd_mam_robot,Synthetic_dawn_portrait_mammalian.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_mammalian.png"")",MACHINE_ROBOT,COMMON,draft,
-sd_rep_robot,Synthetic_dawn_portrait_reptilian.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_reptilian.png"")",MACHINE_ROBOT,COMMON,draft,
-sd_avi_robot,Synthetic_dawn_portrait_avian.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_avian.png"")",MACHINE_ROBOT,COMMON,draft,
-sd_art_robot,Synthetic_dawn_portrait_arthopoid.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_arthopoid.png"")",MACHINE_ROBOT,COMMON,draft,wiki filename has typo (arthopoid)
-sd_mol_robot,Synthetic_dawn_portrait_molluscoid.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_molluscoid.png"")",MACHINE_ROBOT,COMMON,draft,
-sd_fun_robot,Synthetic_dawn_portrait_fungoid.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_fungoid.png"")",MACHINE_ROBOT,COMMON,draft,
-sd_pla_robot,Synthetic_dawn_portrait_plantoid.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synthetic_dawn_portrait_plantoid.png"")",MACHINE_ROBOT,COMMON,draft,
-lith_machine,Lithoid_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Lithoid_machine.png"")",MACHINE_ROBOT,COMMON,draft,
-nec_machine,Necroids_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Necroids_machine.png"")",MACHINE_ROBOT,COMMON,draft,
-aqu_machine,Aquatic_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Aquatic_machine.png"")",MACHINE_ROBOT,COMMON,draft,
-tox_machine,Toxic_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Toxic_machine.png"")",MACHINE_ROBOT,COMMON,draft,
-cyb_machine,Cybernetics_portrait_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cybernetics_portrait_machine.png"")",MACHINE_ROBOT,CYBER_SYNTH,draft,
-default_robot,Default_robot.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Default_robot.png"")",MACHINE_ROBOT,COMMON,?,wiki filename guess
-cyb1,Cyber_01_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_01_stage_3.png"")",CYBER_SYNTH,MAM,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb2,Cyber_02_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_02_stage_3.png"")",CYBER_SYNTH,MAM,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb3,Cyber_03_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_03_stage_3.png"")",CYBER_SYNTH,MAM,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb4,Cyber_04_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_04_stage_3.png"")",CYBER_SYNTH,REP,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb5,Cyber_05_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_05_stage_3.png"")",CYBER_SYNTH,AVI,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb6,Cyber_06_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_06_stage_3.png"")",CYBER_SYNTH,MAM,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb7,Cyber_07_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_07_stage_3.png"")",CYBER_SYNTH,MAM,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb8,Cyber_08_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_08_stage_3.png"")",CYBER_SYNTH,HUM,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb9,Cyber_09_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_09_stage_3.png"")",CYBER_SYNTH,ART,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb10,Cyber_10_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_10_stage_3.png"")",CYBER_SYNTH,REP,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb11,Cyber_11_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_11_stage_3.png"")",CYBER_SYNTH,REP,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb12,Cyber_12_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_12_stage_3.png"")",CYBER_SYNTH,HUM,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-cyb13,Cyber_13_stage_3.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Cyber_13_stage_3.png"")",CYBER_SYNTH,FUN,draft,stage_3 = fully cybernetic; stage_1/2 also available on wiki
-synth01,Synth_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_01.png"")",CYBER_SYNTH,AVI,draft,
-synth02,Synth_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_02.png"")",CYBER_SYNTH,ART,draft,
-synth03,Synth_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_03.png"")",CYBER_SYNTH,MOL,draft,
-synth04,Synth_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_04.png"")",CYBER_SYNTH,HUM,draft,
-synth05,Synth_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_05.png"")",CYBER_SYNTH,MOL,draft,
-synth06,Synth_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_06.png"")",CYBER_SYNTH,AQUATIC,draft,
-synth07,Synth_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_07.png"")",CYBER_SYNTH,HUM,draft,
-synth08,Synth_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_08.png"")",CYBER_SYNTH,ART,draft,
-synth09,Synth_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_09.png"")",CYBER_SYNTH,ART,draft,
-synth_machine_01,Synth_01_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_01_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_02,Synth_02_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_02_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_03,Synth_03_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_03_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_04,Synth_04_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_04_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_05,Synth_05_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_05_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_06,Synth_06_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_06_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_07,Synth_07_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_07_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_08,Synth_08_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_08_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-synth_machine_09,Synth_09_machine.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Synth_09_machine.png"")",CYBER_SYNTH,MACHINE_ROBOT,draft,
-pro1,Bio_species_01.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_01.png"")",BIOGENESIS,AQUATIC,draft,
-ant1,Bio_species_02.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_02.png"")",BIOGENESIS,MOL,draft,
-pro2,Bio_species_03.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_03.png"")",BIOGENESIS,REP,draft,
-bio4,Bio_species_04.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_04.png"")",BIOGENESIS,AVI,draft,
-bio5,Bio_species_05.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_05.png"")",BIOGENESIS,PLANT,draft,
-bio6,Bio_species_06.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_06.png"")",BIOGENESIS,MOL,draft,
-bio7,Bio_species_07.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_07.png"")",BIOGENESIS,ART,draft,
-bio8,Bio_species_08.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_08.png"")",BIOGENESIS,AQUATIC,draft,
-bio9,Bio_species_09.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_09.png"")",BIOGENESIS,REP,draft,
-bio10,Bio_species_10.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_10.png"")",BIOGENESIS,MAM,draft,
-bio11,Bio_species_11.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_11.png"")",BIOGENESIS,MOL,draft,
-bio12,Bio_species_12.png,"=IMAGE(""https://stellaris.paradoxwikis.com/Special:FilePath/Bio_species_12.png"")",BIOGENESIS,MACHINE_ROBOT,draft,
+,,"The purpose of this spreadsheet is to *try* map every stellaris potrait to other potraits to open up trait diversity.
+This is both for the purpose of build diversity, a species will be able to access both categories of exclusive traits.
+And additionally when it comes to lithoids and thermophiles branch out a subset of potraits into more categories to play as other Primary species (IE thermophile portrait as organic.) ",,,"What is common?
+Common is for species that only fit into their 1 category
+Common, Cybernetic+Synthetic and Biogensis will be getting new traits. So no matter what every species gets access to atleast 2 categories. "
+Internal ID,Preview,Category A,Category B,Category C (Optional),Notes
+human,,HUM,COMMON,,
+human_legacy,,HUM,COMMON,,
+humanoid_02,,HUM,COMMON,,
+humanoid_03,,HUM,COMMON,,
+humanoid_04,,HUM,AQUATIC,PSIONIC,
+humanoid_05,,HUM,COMMON,,
+humanoid_hp_01,,HUM,INF,,"Also moving into Thermophile Potrait list
+(So can play as thermophile not organic)"
+humanoid_hp_02,,HUM,COMMON,,"gnome portrait, give it explicit tinkerer trait cuz duh"
+humanoid_hp_06,,HUM,CYBER,,"unsure on cyber but sure, ill trust you"
+humanoid_hp_07,,HUM,REP,,
+humanoid_hp_08,,HUM,COMMON,,
+humanoid_hp_09,,HUM,MOL,,not really that molluscy but i need a hum + mol
+humanoid_hp_10,,HUM,CYBER,,"Unsure on cyber here, but could be neat :3"
+humanoid_hp_11,,HUM,COMMON,,
+humanoid_hp_12,,HUM,FUN,,"Ork is fungi
+(invasive species orks sounds very funny to me)"
+humanoid_hp_13,,HUM,COMMON,,
+humanoid_hp_14,,HUM,COMMON,,
+humanoid_hp_16,,HUM,COMMON,,
+humanoid_elf,,HUM,COMMON,,
+mam1,,MAM,AVI,,
+mam2,,MAM,ART,,
+mam3,,MAM,COMMON,,
+mam4,,MAM,COMMON,,
+mam5,,MAM,COMMON,,
+mam6,,MAM,COMMON,,
+mam7,,MAM,COMMON,,
+mam8,,MAM,NECROID,,
+mam9,,MAM,COMMON,,
+mam10,,MAM,COMMON,,
+mam11,,MAM,COMMON,,
+mam12,,MAM,COMMON,,
+mam13,,MAM,COMMON,,
+mam14,,MAM,COMMON,,
+mam15,,MAM,COMMON,,
+mam16,,MAM,AQUATIC,,
+mam17,,MAM,NECROID,,
+mam_rat,,MAM,PSIONIC,,
+mammalian_ar_01,,MAM,COMMON,,
+mammalian_ar_02,,MAM,COMMON,,
+mammalian_ar_03,,MAM,COMMON,,
+mammalian_ar_04,,MAM,COMMON,,
+mammalian_ar_05,,MAM,HUM,,doesnt read to me distinctly as any 1 specific irl mammal so making this the hum + mam combo
+mammalian_ar_06,,MAM,COMMON,,
+mammalian_ar_07,,MAM,COMMON,,
+mammalian_ar_08,,MAM,COMMON,,
+mammalian_ar_09,,MAM,COMMON,,
+mammalian_ar_10,,MAM,COMMON,,
+rep1,,REP,HUM,,
+rep2,,REP,HUM,PSIONIC,
+rep3,,REP,COMMON,,
+rep4,,REP,COMMON,,
+rep5,,REP,COMMON,,
+rep6,,REP,COMMON,,
+rep7,,REP,COMMON,,
+rep8,,REP,MAM,,
+rep9,,REP,COMMON,,
+rep10,,REP,INF,,
+rep11,,REP,AQUATIC,,forg
+rep12,,REP,AQUATIC,,
+rep13,,REP,MAM,NECROID,
+rep14,,REP,AQUATIC,,turtles are aquatic :3
+rep15,,REP,COMMON,,Is this portrait thermophile enough to be copied into the list? unsure
+rep16,,REP,COMMON,,
+rep17,,REP,INF,,"Also moving into Thermophile Potrait list
+(So can play as thermophile not organic)"
+pdx_signup_portrait_01,,REP,BIOGENESIS,INF,
+avi1,,AVI,COMMON,,
+avi2,,AVI,REP,,
+avi3,,AVI,PLANT,,
+avi4,,AVI,NECROID,,
+avi5,,AVI,AQUATIC,,
+avi6,,AVI,COMMON,,
+avi7,,AVI,COMMON,,
+avi8,,AVI,COMMON,,
+avi9,,AVI,COMMON,,
+avi10,,AVI,COMMON,,
+avi11,,AVI,COMMON,,
+avi12,,AVI,COMMON,,
+avi13,,AVI,HUM,,
+avi14,,AVI,COMMON,,
+avi15,,AVI,CYBER,TOX,Not really that toxy but its got aparatus so for the sake of diversity
+avi16,,AVI,COMMON,,
+avi17,,AVI,NECROID,,
+avi18,,AVI,COMMON,,
+art1,,ART,AVI,,
+art3,,ART,COMMON,,
+art5,,ART,REP,,
+art6,,ART,COMMON,,
+art7,,ART,COMMON,,
+art8,,ART,COMMON,,
+art9,,ART,COMMON,,
+art10,,ART,COMMON,,
+art11,,ART,COMMON,,
+art12,,ART,COMMON,,
+art13,,ART,COMMON,,
+art14,,ART,COMMON,,
+art15,,ART,AQUATIC,,crab
+art16,,ART,NECROID,,
+art17,,ART,COMMON,,
+art18,,ART,COMMON,,
+art19,,ART,AQUATIC,,
+art20,,ART,COMMON,,
+mol1,,MOL,COMMON,,
+mol2,,MOL,COMMON,,
+mol3,,MOL,COMMON,,
+mol4,,MOL,AQUATIC,,
+mol5,,MOL,COMMON,,
+mol6,,MOL,COMMON,,
+mol7,,MOL,COMMON,,
+mol8,,MOL,AQUATIC,,
+mol11,,MOL,COMMON,,
+mol12,,MOL,FUN,,
+mol13,,MOL,COMMON,,
+mol14,,MOL,COMMON,,
+mol15,,MOL,COMMON,,
+mol16,,MOL,REP,,
+mol17,,MOL,AQUATIC,,
+mol18,,MOL,ART,,
+stargazer_01,,MOL,AQUATIC,PSIONIC,
+fun1,,FUN,COMMON,,
+fun2,,FUN,COMMON,,
+fun3,,FUN,COMMON,,
+fun4,,FUN,MAM,NECROID,
+fun6,,FUN,NECROID,,
+fun7,,FUN,COMMON,,
+fun8,,FUN,COMMON,,already got access to the big brain psionic trait
+fun9,,FUN,COMMON,,
+fun10,,FUN,COMMON,,
+fun11,,FUN,COMMON,,
+fun12,,FUN,COMMON,,
+fun13,,FUN,INF,,"Also moving into Thermophile Potrait list
+(So can play as thermophile not organic)"
+fun14,,FUN,COMMON,,
+fun15,,FUN,COMMON,,
+fun16,,FUN,MAM,NECROID,
+fun17,,FUN,COMMON,,
+pla1,,PLANT,AVI,,
+pla2,,PLANT,PSIONIC,AQUATIC,
+pla3,,PLANT,CYBER,,"Looks like its got metally bits like cybernetics, so doing cyber instead of psi"
+pla4,,PLANT,COMMON,,
+pla5,,PLANT,COMMON,,
+pla6,,PLANT,ART,,not the most arthropody but with this plant/fungoid + other cover every combo
+pla7,,PLANT,COMMON,,
+pla8,,PLANT,COMMON,,
+pla9,,PLANT,COMMON,,
+pla10,,PLANT,COMMON,,
+pla11,,PLANT,BIOGENESIS,,
+pla12,,PLANT,NECROID,,
+pla13,,PLANT,COMMON,,
+pla14,,PLANT,COMMON,,
+pla15,,PLANT,COMMON,,
+pla16_baol,,PLANT,BIOGENESIS,,
+pla17,,PLANT,HUM,,
+lith1,,LITHOID,HUM,,
+lith2,,LITHOID,INF,,
+lith3,,LITHOID,MAM,,
+lith4,,LITHOID,PSIONIC,,
+lith5,,LITHOID,INF,,"Also moving into Infernal Potrait list
+(So can play as thermophile not lithoid)"
+lith6,,LITHOID,PLANT,,"Also moving into Plant Potrait list
+(So can play as organic not lithoid)"
+lith7,,LITHOID,CYBER,,
+lith8,,LITHOID,PLANT,AQUATIC,"Also moving into Plant Potrait list
+(So can play as organic not lithoid)"
+lith9,,LITHOID,ART,,
+lith10,,LITHOID,MAM,,
+lith11,,LITHOID,PSIONIC,,
+lith12,,LITHOID,COMMON,,
+lith13,,LITHOID,ART,,
+lith14,,LITHOID,REP,,
+lith15,,LITHOID,NECROID,,not really necroidyh but why not for diversity
+lith_human,,LITHOID,HUM,INF,
+nec1,,NECROID,HUM,,
+nec2,,NECROID,CYBER,,
+nec3,,NECROID,FUN,,
+nec4,,NECROID,CYBER,,"Also moving into Robot Potrait list
+(So can play as machine not organic)
+
+Machine version wont have necroid traits and the usual machine traits + our new cyber/synth traits instead"
+nec5,,NECROID,PSIONIC,CYBER,
+nec6,,NECROID,AQUATIC,,
+nec7,,NECROID,COMMON,,
+nec8,,NECROID,CYBER,,
+nec9,,NECROID,CYBER,ART,
+nec10,,NECROID,MAM,,
+nec11,,NECROID,HUM,,
+nec12,,NECROID,MOL,,
+nec13,,NECROID,ART,,
+nec14,,NECROID,MAM,,
+nec15,,NECROID,REP,,
+season_10_portrait,,NECROID,TOX,,
+aqu1,,AQUATIC,COMMON,,
+aqu2,,AQUATIC,COMMON,,
+aqu3,,AQUATIC,ART,,
+aqu4,,AQUATIC,COMMON,,
+aqu5,,AQUATIC,MAM,,
+aqu6,,AQUATIC,MOL,,
+aqu7,,AQUATIC,PLANT,LITHOID,"Also moving into Lithoid Potrait list
+(So can play as lithoid not organic)"
+aqu8,,AQUATIC,COMMON,,
+aqu9,,AQUATIC,HUM,,
+aqu10,,AQUATIC,COMMON,,
+aqu11,,AQUATIC,COMMON,,
+aqu12,,AQUATIC,MOL,,
+aqu13,,AQUATIC,NECROID,TOX,
+aqu14,,AQUATIC,PSIONIC,,
+aqu15,,AQUATIC,COMMON,,
+tox1,,TOX,CYBER,AQUATIC,
+tox2,,TOX,MAM,,
+tox3,,TOX,MOL,AQUATIC,"Cant decide between mol, aquatic. maybe both?"
+tox4,,TOX,BIOGENESIS,,"I'm contemplating making this Tankbound. i know its not truely tankbound, but i think we need a bioship/catalytic tankbound portrait and this works great"
+tox5,,TOX,ART,PSIONIC,
+tox6,,TOX,HUM,,
+tox7,,TOX,MOL,,
+tox8,,TOX,COMMON,,could be humanoid/cybe but i want to leave a tox x common
+tox9,,TOX,INF,BIOGENESIS,"Also moving into Thermophile Potrait list
+(So can play as thermophile not organic)"
+tox10,,TOX,REP,FUN,"Fungoid is a bit of a stretch but the back things could be like spore organs.
+"
+tox11,,TOX,MAM,,
+tox12,,TOX,MAM,,
+tox13,,TOX,CYBER,,"Also moving into Robot Potrait list
+(So can play as machine not organic)
+
+Machine version wont have necroid/tox traits and the usual machine traits + our new cyber traits instead"
+tox14,,TOX,CYBER,,
+tox15,,TOX,AQUATIC,,
+inf1,,INF,ART,,"Also moving into Art Potrait list
+(So can play as organic not thermophile)"
+inf2,,INF,REP,,"Also moving into Rep Potrait list
+(So can play as organic not thermophile)"
+inf3,,INF,REP,,"Also moving into Rep Potrait list
+(So can play as organic not thermophile)"
+inf4,,INF,CYBER,,
+inf5,,INF,MAM,,"Also moving into Mam Potrait list
+(So can play as organic not thermophile)"
+inf6,,INF,LITHOID,REP,"Also moving into Lithoid Potrait list
+(So can play as lithoid not thermophile)"
+inf7,,INF,REP,,"Also moving into Rep Potrait list
+(So can play as organic not thermophile)"
+inf8,,INF,MOL,,"Also moving into Mol Potrait list
+(So can play as organic not thermophile)"
+inf9,,INF,COMMON,,
+inf10,,INF,TOX,AQUATIC,"Also moving into Tox Potrait lists
+(So can play as organic not thermophile)"
+lith_human_inf,,INF,LITHOID,,
+lith2_inf,,INF,LITHOID,,
+mcrab,https://steamcommunity.com/sharedfiles/filedetails/?id=3656019390,INF,ART,BIOGENESIS,Infernal version of bio7 crab portrait
+sd_hum_robot,,MACHINE_ROBOT,CYBER,,
+sd_mam_robot,,MACHINE_ROBOT,CYBER,,
+sd_rep_robot,,MACHINE_ROBOT,CYBER,,
+sd_avi_robot,,MACHINE_ROBOT,CYBER,,
+sd_art_robot,,MACHINE_ROBOT,CYBER,,
+sd_mol_robot,,MACHINE_ROBOT,CYBER,,
+sd_fun_robot,,MACHINE_ROBOT,CYBER,,
+sd_pla_robot,,MACHINE_ROBOT,CYBER,,
+lith_machine,,MACHINE_ROBOT,CYBER,,
+nec_machine,,MACHINE_ROBOT,CYBER,,
+aqu_machine,,MACHINE_ROBOT,CYBER,,
+tox_machine,,MACHINE_ROBOT,CYBER,,
+cyb_machine,,MACHINE_ROBOT,CYBER,,
+default_robot,,MACHINE_ROBOT,CYBER,,
+cyb1,,CYBER,MAM,,
+cyb2,,CYBER,MAM,,
+cyb3,,CYBER,MAM,,
+cyb4,,CYBER,REP,,
+cyb5,,CYBER,AVI,,
+cyb6,,CYBER,MAM,,
+cyb7,,CYBER,MAM,,
+cyb8,,CYBER,HUM,,
+cyb9,,CYBER,ART,,
+cyb10,,CYBER,REP,,
+cyb11,,CYBER,REP,,
+cyb12,,CYBER,HUM,,
+cyb13,,CYBER,FUN,,
+synth01,,CYBER,AVI,,
+synth02,,CYBER,ART,,
+synth03,,CYBER,MOL,,
+synth04,,CYBER,HUM,MOL,
+synth05,,CYBER,MOL,,
+synth06,,CYBER,AQUATIC,,
+synth07,,CYBER,HUM,,
+synth08,,CYBER,ART,,
+synth09,,CYBER,ART,NECROID,
+synth_machine_01,,MACHINE_ROBOT,CYBER,,
+synth_machine_02,,MACHINE_ROBOT,CYBER,,
+synth_machine_03,,MACHINE_ROBOT,CYBER,,
+synth_machine_04,,MACHINE_ROBOT,CYBER,,
+synth_machine_05,,MACHINE_ROBOT,CYBER,,
+synth_machine_06,,MACHINE_ROBOT,CYBER,,
+synth_machine_07,,MACHINE_ROBOT,CYBER,,
+synth_machine_08,,MACHINE_ROBOT,CYBER,,
+synth_machine_09,,MACHINE_ROBOT,CYBER,,
+pro1,,BIOGENESIS,AQUATIC,,
+ant1,,BIOGENESIS,MOL,,
+pro2,,BIOGENESIS,REP,,
+bio4,,BIOGENESIS,AVI,,
+bio5,,BIOGENESIS,PLANT,HUM,
+bio6,,BIOGENESIS,MOL,FUN,
+bio7,,BIOGENESIS,ART,AQUATIC,crab
+bio8,,BIOGENESIS,AQUATIC,FUN,
+bio9,,BIOGENESIS,REP,,
+bio10,,BIOGENESIS,MAM,NECROID,
+bio11,,BIOGENESIS,MOL,MAM,
+bio12,,MACHINE_ROBOT,CYBER,,
+psionic_01,,PSIONIC,MOL,,
+psionic_02,,PSIONIC,FUN,,
+psionic_03,,PSIONIC,HUM,,
+psionic_04,,PSIONIC,AQUATIC,,
+psionic_05,,PSIONIC,ART,,
+psionic_06,,PSIONIC,HUM,,
+psionic_07,,PSIONIC,AQUATIC,,
+psionic_08,,PSIONIC,AVI,,
+psionic_09,,PSIONIC,HUM,,
+psionic_10,,PSIONIC,HUM,,
+psionic_11,,MACHINE_ROBOT,CYBER,,
+psionic_12,,PSIONIC,MAM,,
+mindwarden_01,,PSIONIC,CYBER,,
+aquarian,,AQUATIC,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+aquariel,,HUM,AQUATIC,PSIONIC,Gauntlet's Portraits Unleashed (2992343965)
+arthrosian,,ART,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+botler,,MACHINE_ROBOT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+centurionex,,MACHINE_ROBOT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+crocsidon,,CYBER,REP,,Gauntlet's Portraits Unleashed (2992343965)
+cyclopsia,,HUM,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+darkoid,,MACHINE_ROBOT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+diviner,,PSIONIC,HUM,,Gauntlet's Portraits Unleashed (2992343965)
+electroidian,,MACHINE_ROBOT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+epicron,,NECROID,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+eruditer,,MAM,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+fadeling,,LITHOID,PSIONIC,,Gauntlet's Portraits Unleashed (2992343965)
+fishow,,AQUATIC,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+fulgar,,AQUATIC,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+gravitex,,PLANT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+humano,,HUM,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+krogg,,REP,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+magyar,,HUM,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+mantidite,,NECROID,FUN,,Gauntlet's Portraits Unleashed (2992343965)
+merlinite,,HUM,PSIONIC,,Gauntlet's Portraits Unleashed (2992343965)
+mythara,,HUM,PSIONIC,,Gauntlet's Portraits Unleashed (2992343965)
+nunner,,HUM,PSIONIC,,Gauntlet's Portraits Unleashed (2992343965)
+oldesek,,NECROID,HUM,,Gauntlet's Portraits Unleashed (2992343965)
+presentor,,HUM,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+priester,,MOL,PSIONIC,,Gauntlet's Portraits Unleashed (2992343965)
+raptoris,,AVI,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+robloxicon,,MACHINE_ROBOT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+scalyboi,,REP,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+scavver,,MAM,TOX,CYBER,Gauntlet's Portraits Unleashed (2992343965)
+scrapper,,MAM,TOX,CYBER,Gauntlet's Portraits Unleashed (2992343965)
+shadeling,,HUM,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+squidler,,MOL,TOX,CYBER,Gauntlet's Portraits Unleashed (2992343965)
+stoneling,,LITHOID,PSIONIC,,Gauntlet's Portraits Unleashed (2992343965)
+swarmler,,MOL,BIOGENESIS,,Gauntlet's Portraits Unleashed (2992343965)
+tentacliz,,FUN,COMMON,,Gauntlet's Portraits Unleashed (2992343965)
+treeling,,PLANT,HUM,,Gauntlet's Portraits Unleashed (2992343965)
+trontar,,MACHINE_ROBOT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+unimatrix,,MACHINE_ROBOT,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+wandererg,,TOX,CYBER,,Gauntlet's Portraits Unleashed (2992343965)
+xegleri,,MAM,PSIONIC,CYBER,Gauntlet's Portraits Unleashed (2992343965)
+yarla,,ART,BIOGENESIS,PSIONIC,Gauntlet's Portraits Unleashed (2992343965)
+zephyran,,HUM,COMMON,,Gauntlet's Portraits Unleashed (2992343965)

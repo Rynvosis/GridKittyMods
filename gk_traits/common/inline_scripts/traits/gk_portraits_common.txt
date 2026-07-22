@@ -1,23 +1,17 @@
 portrait_override = {
-	aqu1 aqu10 aqu11 aqu14 aqu15 aqu2 aqu4 aqu5
-	aqu6 aqu8 aqu9 art1 art10 art11 art12 art13
-	art14 art16 art17 art18 art19 art20 art3 art5
-	art6 art7 art8 art9 avi1 avi10 avi11 avi12
-	avi13 avi14 avi16 avi17 avi18 avi2 avi4 avi6
-	avi7 avi8 avi9 fun1 fun10 fun11 fun12 fun14
-	fun15 fun17 fun2 fun3 fun6 fun7 fun8 fun9
-	human human_legacy humanoid_02 humanoid_03 humanoid_04 humanoid_05 humanoid_elf humanoid_hp_02
-	humanoid_hp_06 humanoid_hp_07 humanoid_hp_08 humanoid_hp_09 humanoid_hp_11 humanoid_hp_12 humanoid_hp_13 humanoid_hp_14
-	humanoid_hp_16 inf5 inf8 inf9 lith1 lith11 lith12 lith13
-	lith15 lith3 lith4 lith5 lith7 mam1 mam10 mam11
-	mam12 mam13 mam14 mam15 mam16 mam17 mam2 mam3
-	mam4 mam5 mam6 mam7 mam9 mam_rat mammalian_ar_01 mammalian_ar_02
-	mammalian_ar_03 mammalian_ar_04 mammalian_ar_05 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10
-	mol1 mol11 mol12 mol13 mol14 mol15 mol16 mol18
-	mol2 mol3 mol5 mol6 mol7 mol8 nec10 nec4
-	nec6 nec7 pla1 pla10 pla11 pla12 pla13 pla14
-	pla15 pla16_baol pla2 pla3 pla4 pla5 pla6 pla7
-	pla8 pla9 rep1 rep10 rep11 rep12 rep13 rep14
-	rep15 rep16 rep2 rep3 rep4 rep5 rep6 rep7
-	rep8 rep9 season_10_portrait tox10 tox2 tox5 tox8
+	aqu1 aqu10 aqu11 aqu15 aqu2 aqu4 aqu8 aquarian
+	art10 art11 art12 art13 art14 art17 art18 art20
+	art3 art6 art7 art8 art9 arthrosian avi1 avi10
+	avi11 avi12 avi14 avi16 avi18 avi6 avi7 avi8
+	avi9 cyclopsia eruditer fishow fulgar fun1 fun10 fun11
+	fun12 fun14 fun15 fun17 fun2 fun3 fun7 fun8
+	fun9 human human_legacy humano humanoid_02 humanoid_03 humanoid_05 humanoid_elf
+	humanoid_hp_02 humanoid_hp_08 humanoid_hp_11 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 inf9 krogg
+	lith12 mam10 mam11 mam12 mam13 mam14 mam15 mam3
+	mam4 mam5 mam6 mam7 mam9 mammalian_ar_01 mammalian_ar_02 mammalian_ar_03
+	mammalian_ar_04 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 mol1 mol11
+	mol13 mol14 mol15 mol2 mol3 mol5 mol6 mol7
+	nec7 pla10 pla13 pla14 pla15 pla4 pla5 pla7
+	pla8 pla9 presentor raptoris rep15 rep16 rep3 rep4
+	rep5 rep6 rep7 rep9 scalyboi tentacliz tox8 zephyran
 }

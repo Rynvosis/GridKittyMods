@@ -1,9 +1,12 @@
 portrait_override = {
-	aqu_machine avi15 bio12 cyb1 cyb10 cyb11 cyb12 cyb13
-	cyb2 cyb3 cyb4 cyb5 cyb6 cyb7 cyb8 cyb9
-	cyb_machine default_robot humanoid_hp_10 inf4 lith_machine nec2 nec8 nec9
-	nec_machine sd_art_robot sd_avi_robot sd_fun_robot sd_hum_robot sd_mam_robot sd_mol_robot sd_pla_robot
-	sd_rep_robot synth01 synth02 synth03 synth04 synth05 synth06 synth07
-	synth08 synth09 synth_machine_01 synth_machine_02 synth_machine_03 synth_machine_04 synth_machine_05 synth_machine_06
-	synth_machine_07 synth_machine_08 synth_machine_09 tox1 tox13 tox14 tox_machine
+	aqu_machine avi15 bio12 botler centurionex crocsidon cyb1 cyb10
+	cyb11 cyb12 cyb13 cyb2 cyb3 cyb4 cyb5 cyb6
+	cyb7 cyb8 cyb9 cyb_machine darkoid default_robot electroidian epicron
+	gravitex humanoid_hp_06 humanoid_hp_10 inf4 lith7 lith_machine magyar mindwarden_01
+	nec2 nec4 nec5 nec8 nec9 nec_machine pla3 psionic_11
+	robloxicon scavver scrapper sd_art_robot sd_avi_robot sd_fun_robot sd_hum_robot sd_mam_robot
+	sd_mol_robot sd_pla_robot sd_rep_robot shadeling squidler synth01 synth02 synth03
+	synth04 synth05 synth06 synth07 synth08 synth09 synth_machine_01 synth_machine_02
+	synth_machine_03 synth_machine_04 synth_machine_05 synth_machine_06 synth_machine_07 synth_machine_08 synth_machine_09 tox1
+	tox13 tox14 tox_machine trontar unimatrix wandererg xegleri
 }

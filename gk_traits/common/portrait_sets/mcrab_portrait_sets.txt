@@ -1,0 +1,23 @@
+# Infernal Crab portrait registration (merged from the "Infernal Crab Portrait"
+# workshop mod, id 3656019390 - see descriptor.mod credits).
+# Home species_class is INF (Cat A in PORTRAIT_MAPPING.csv). ART / BIOGENESIS
+# cross-access is handled by the gk_traits marker/suite portrait_override lists.
+infernals = {
+	species_class = INF
+
+	# Match vanilla's infernals set: every INF portrait is gated on the
+	# Infernals Species Pack (the INF species_class is itself playable =
+	# has_infernals). Keep mcrab inside the same conditional so it never
+	# leaks into random INF-species generation for non-DLC hosts.
+	conditional_portraits = {
+		randomizable = {
+			has_infernals = yes
+		}
+		playable = {
+			has_infernals = yes
+		}
+		portraits = {
+			"mcrab"
+		}
+	}
+}
