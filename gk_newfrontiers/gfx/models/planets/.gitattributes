@@ -1,0 +1,5 @@
+# Planet surface textures: 135 files, ~534 MB. Kept out of git history via LFS.
+# Scoped to this directory so the small interface icons (17 KB avg) stay in normal git.
+# .png is here for the single 19 MB cloud texture; everything else is .dds.
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text

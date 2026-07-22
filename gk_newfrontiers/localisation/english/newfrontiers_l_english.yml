@@ -1,0 +1,254 @@
+﻿l_english:
+ 
+  ####################################
+  # Planet Decision
+  ####################################
+
+  decision_protective_equipment: "Protective Equipment"
+  decision_protective_equipment_desc: "A number of government programs provide the population of harsh worlds with personal protective equipment, distributed for mandatory use."
+  decision_ark_project: "Launch the Ark project"
+  decision_ark_project_desc: "Our homeworld will be destroyed by catastrophe. One of the measures proposed to save our civilization was the Ark project. A huge colonial ship, provided with everything for long flights, will embark in search of a new home."
+  decision_ark_project_effect_desc: "The construction of the Ark spaceship will begin.\n\n§YAfter the planet dies, the Ark will become a new empire. If the Ark colonizes a new world before the planet is destroyed, a new empire will be created. You will be able to choose which empire you continue to rule.§!"
+  decision_planetary_excavation: "Start planetary excavation"
+  decision_planetary_excavation_desc: "Underneath the overgrown surface of this ancient world are the ruins of a huge planetary city. Planetary excavations will destroy the natural beauty of this world, but this is a necessary step to study valuable long-lost technologies and ultimately restore the former greatness of the planet."
+  decision_planetary_excavation_effect_desc: "Turns the planet into §Y$pc_relic$§!."
+  decision_build_cloud_platform: "Start Building Cloud Platform"
+  decision_build_cloud_platform_desc: "Construction of special platforms, on which entire cities can be built, will allow the development of territories covered with toxic fumes, and will open access to mining."
+  decision_demolish_cloud_platform: "Demolish Cloud Platform"
+  decision_demolish_cloud_platform_desc: "If the maintenance of the celestial platform becomes unprofitable, it can be disposed of."
+  decision_start_ecosystem_creation_project: "Start Ecosystem Creation Project"
+  decision_start_ecosystem_creation_project_desc: "This decision launches one of the projects for terraforming the planet.\n\nDead worlds can be revived by creating favorable conditions on the surface and in the atmosphere of the planet. Then plant the seeds of life and carefully care for the sprouts that will rapidly develop in the warm oceans of this world under our supervision."
+  decision_start_ecosystem_creation_project_effect_desc: "Triggers a special terraforming process. To progress, you will need various terraforming structures."
+  decision_end_ecosystem_creation_project: "End Ecosystem Creation Project"
+  decision_end_ecosystem_creation_project_desc: "This decision will stop the ecosystem creation project. The result will not be achieved."
+  decision_abolish_nature_preserves: "Abolish Nature Preserves"
+  decision_abolish_nature_preserves_desc: "This decision will revoke the planet's status as a nature reserve and open the way for mineral extraction. However, civil society environmental organizations will almost certainly be displeased."
+  
+  
+  ####################################
+  # Origins
+  ####################################
+  
+  origin_subterranean: "Subterranean"
+  origin_subterranean_desc: "The change in the activity of the sun turned the homeworld of this civilization into a lifeless wasteland and they had to go deep underground. For many centuries they dug tunnels and built cities, until they finally realized that this underground crypt could not be their home forever."
+  origin_scavengers: "Scavengers"
+  origin_scavengers_desc: "It is still not known exactly how this civilization found a home on a devastated world. It is known only that the industrial ruins were not created by them. Maybe the ancient masters of this planet brought them in as pets or slaves. However, they were able to adapt and quickly developed by studying the abandoned technology of this planet. "
+  civic_tooltip_scavengers_effects: "You start the game in §YDepleted World§!, which contains §Y$d_subway_tunnel_network$§!.\nYou have the ability to receive £alloys£ §Yalloys§! after clearing the §Y$d_industrial_boneyard$§! blockers."
+  origin_ark: "Ark"
+  origin_ark_desc: "The homeworld of this civilization was destroyed. In search of a new home, a few survivors boarded a giant spaceship and braved a long journey through endless void."
+  civic_tooltip_ark_effects: "You start the game with one single ship, the §YSpace Ark§!, in orbit of your destroyed homeworld. You need to bring the Ark into orbit of a habitable planet that you want to make the capital of your empire."
+  
+  
+  ####################################
+  # Traits
+  ####################################
+  
+  trait_subterranean: "Subterranean"
+  trait_subterranean_desc: "§LThis species has lived underground for a long time and is accustomed to cramped quarters.§!\n"
+  
+  trait_pc_sterile_preference: "Sterile World Preference"
+  trait_pc_sterile_preference_desc: "$trait_pc_arctic_preference_desc$"
+  
+  
+  ####################################
+  # Start Screen Mesages
+  ####################################
+  
+  
+  
+  ####################################
+  # Tooltip Massages
+  ####################################
+  
+  has_dangerous_wildlife: "Has a planetary modifier $dangerous_wildlife$"
+  has_toxic_atmosphere: "Has a planetary modifier $toxic_atmosphere$"
+  has_greenhouse_world: "Has a planetary modifier $greenhouse_world$"
+  has_poisonous_world: "Has a planetary modifier $poisonous_world$"
+  has_death_world: "Has a planetary modifier $death_world$"
+  has_scorched_world: "Has a planetary modifier $scorched_world$"
+
+  NO_TERRAFORM_HOLLOW_WORLD: "§RHollow World is impossible to terraform.§!"
+  NO_BOMBING_HOLLOW_WORLD: "§RBombing this planet will not produce any results, since all the buildings are deep underground.§!"
+  NO_TERRAFORM_OVERMIND: "§RKill yourself? .. No way!§!"
+  
+  requires_actor_exomycosis: "Exomycosis must be studied to remove."
+  max_infestation: "Maximum number of infected regions created"
+  cloud_platform_max: "The maximum number of cloud platforms for this planet has been reached."
+
+  
+  ####################################
+  # Army
+  ####################################
+
+  
+  
+  ####################################
+  # Technology
+  ####################################
+  
+  tech_blocked_tunnell: "Thermal Drilling"
+  tech_blocked_tunnell_desc: "The development of special mechanisms that heat the rock to a melting point will allow the formation of a network of underground tunnels efficiently and in a short time."
+  tech_igneous_traps: "Effusive Processes Stabilization"
+  tech_igneous_traps_desc: "Sufficient knowledge about the internal processes in the crust of the planet will open up opportunities for large-scale geological operations. Sophisticated technological measures will make it possible to localize foci of strong magmatism and cool the areas of effusive and intrusive rocks."
+  tech_ice_crust: "Ice Tunneling"
+  tech_ice_crust_desc: "Creating effective methods for stabilizing glacier caves is a necessary measure for survival in extremely cold worlds."
+  tech_dune_sea: "Sandy Rotation"
+  tech_dune_sea_desc: "Using heavy machinery for complex reclamation processes is the next step in terraforming unusable worlds. Autonomous Terrain Reclamation Stations are capable of stopping the movement of sands and transforming mobile soil into solid soil."
+  tech_thick_forest: "Eco Infrastructure Mapping"
+  tech_thick_forest_desc: "The use of artificial intelligence protocols in the planning of quarterly forest networks will allow the use of the planet's resources without upsetting the fragile ecological balance."
+  tech_large_ice_ridge: "Regulation of Glacial Pressure"
+  tech_large_ice_ridge_desc: "The system of autonomous locks will allow regulating the movement of continental ice masses of cold planets."
+  tech_igneous_traps: "Stabilization of Effusive Processes"
+  tech_igneous_traps_desc: "Sufficient knowledge of the internal processes in the planet's crust will open up opportunities for large-scale geological operations. Complex technological measures will make it possible to localize the centers of strong magmatism and cool areas of effusive and intrusive rocks."
+  tech_cloud_platform: "Cloud Platform Design"
+  tech_cloud_platform_desc: "The need to develop closed territories of poisonous worlds to access resources requires the development of special engineering solutions."
+  
+  
+  ####################################
+  # Buildings
+  ####################################
+  
+  building_ark: "Remains of the Ark"
+  building_ark_desc: "This is the hull of the Ark that landed on the planet to found a new colony. The inner complexes in this huge building provide housing for the colonists."
+  building_pharmaceutical_production_complex: "Pharmaceutical Production Complex"
+  building_pharmaceutical_production_complex_desc: "This facility uses the planet's unique algae to produce more advanced medical products."
+  
+  
+  ####################################
+  # Starbase Modules
+  ####################################
+  
+  sm_stellar_reducer: "Star reducer"
+  sm_stellar_reducer_desc: "§YThis device is designed to stop the star in this system from and prevent a catastrophe.§!"
+  
+  project_ark_ship: "Space Ark"
+  project_ark_ship_plural: "Space Arks"
+  
+  ####################################
+  # Planet Classes
+  ####################################
+  pc_sterile: "Sterile World"
+  pc_sterile_desc: "A rocky world with a nitrogen-oxygen atmosphere and an almost complete absence of complex life forms. Extreme conditions on the surface are caused by a sharp temperature drop and an atmosphere mixed with various harmful gases from volcanic activity."
+  
+  ####################################
+  # Preference Tooltips
+  ####################################
+  
+  TRAIT_DESERT_PREFERENCE_EFFECT: "$mod_pc_desert_habitability$:§G +80%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+  TRAIT_ARID_PREFERENCE_EFFECT: "$mod_pc_arid_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+  TRAIT_SAVANNAH_PREFERENCE_EFFECT: "$mod_pc_savannah_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+  TRAIT_TROPICAL_PREFERENCE_EFFECT: "$mod_pc_tropical_habitability$:§G +80%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_CONTINENTAL_PREFERENCE_EFFECT: "$mod_pc_continental_habitability$:§G +80%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_OCEAN_PREFERENCE_EFFECT: "$mod_pc_ocean_habitability$:§G +80%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_ARCTIC_PREFERENCE_EFFECT: "$mod_pc_arctic_habitability$:§G +80%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_alpine_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_TUNDRA_PREFERENCE_EFFECT: "$mod_pc_tundra_habitability$:§G +80%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_alpine_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_ALPINE_PREFERENCE_EFFECT: "$mod_pc_alpine_habitability$:§G +80%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_AI_PREFERENCE_EFFECT: "$mod_pc_ai_habitability$:§G +100%§!\n$mod_pc_desert_habitability$:§G +10%§!\n$mod_pc_tropical_habitability$:§G +10%§!\n$mod_pc_continental_habitability$:§G +10%§!\n$mod_pc_ocean_habitability$:§G +10%§!\n$mod_pc_arctic_habitability$:§G +10%§!\n$mod_pc_tundra_habitability$:§G +10%§!\n$mod_pc_arid_habitability$:§G +10%§!\n$mod_pc_savannah_habitability$:§G +10%§!"
+  TRAIT_NUKED_PREFERENCE_EFFECT: "$mod_pc_nuked_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!"
+  TRAIT_GAIA_PREFERENCE_EFFECT: "$mod_pc_gaia_habitability$:§G +10%§!"
+  TRAIT_STERILE_PREFERENCE_EFFECT: "$mod_pc_sterile_habitability$:§G +60%§!"
+  mod_pc_sterile_habitability: "Sterile Habitability"
+  mod_pc_dune_habitability: "Dune Habitability"
+  mod_pc_oasis_habitability: "Oasis Habitability"
+  mod_pc_salt_habitability: "Salt Habitability"
+  mod_pc_adiabatic_habitability: "Adiabatic Habitability"
+  mod_pc_karstic_habitability: "Karst Habitability"
+  mod_pc_dust_habitability: "Dust Habitability"
+  mod_pc_mediterranean_habitability: "Mediterranean Habitability"
+  mod_pc_mesa_habitability: "Mesa Habitability"
+  mod_pc_steppe_habitability: "Steppe Habitability"
+  mod_pc_coriolis_habitability: "Coriolis Habitability"
+  mod_pc_prairie_habitability: "Prarie Habitability"
+  mod_pc_veld_habitability: "Veld Habitability"
+  mod_pc_swamp_habitability: "Swamp Habitability"
+  mod_pc_forest_habitability: "Forest Habitability"
+  mod_pc_monsoon_habitability: "Monsoon Habitability"
+  mod_pc_megaflora_habitability: "Megaflora Habitability"
+  mod_pc_boreal_habitability: "Boreal Habitability"
+  mod_pc_pangea_habitability: "Pangea Habitability"
+  mod_pc_young_habitability: "Young Habitability"
+  mod_pc_primal_habitability: "Primal Habitability"
+  mod_pc_taiga_habitability: "Taiga Habitability"
+  mod_pc_frigid_habitability: "Frigid Habitability"
+  mod_pc_bog_habitability: "Bog Habitability"
+  mod_pc_mushroom_habitability: "Mushroom Habitability"
+  mod_pc_glacial_habitability: "Glacial Habitability"
+  mod_pc_melting_habitability: "Melting Habitability"
+  mod_pc_geothermal_habitability: "Geothermal Habitability"
+  mod_pc_ice_habitability: "Ice Habitability"
+  mod_pc_panthalassic_habitability: "Panthalassic Habitability"
+  mod_pc_atoll_habitability: "Atoll Habitability"
+  mod_pc_storm_habitability: "Storm Habitability"
+  mod_pc_crag_habitability: "Crag Habitability"
+  mod_pc_mineral_habitability: "Mineral Habitability"
+  mod_pc_snow_habitability: "Snow Habitability"
+  mod_pc_plateau_habitability: "Plateau Habitability"
+  mod_pc_highland_habitability: "Highland Habitability"
+  mod_pc_flaming_habitability: "Flaming Habitability"
+  mod_pc_meridiem_habitability: "Meridiem Habitability"
+  mod_pc_eyeball_habitability: "Eyeball Habitability"
+  mod_pc_lava_habitability: "Lava Habitability"
+  mod_pc_ash_habitability: "Ash Habitability"
+  mod_pc_archean_habitability: "Archean Habitability"
+  mod_pc_infernal_habitability: "Infernal Habitability"
+  mod_pc_subglacial_habitability: "Subglacial Habitability"
+  mod_pc_depleted_habitability: "Depleted Habitability"
+  mod_pc_ancient_habitability: "Ancient Habitability"
+  
+  
+  
+  ark_admiral: "$default_admiral$"
+  ark_general: "$default_general$"
+  ark_scientist: "$default_scientist$"
+  ark_governor: "$default_governor$"
+  ark_ruler: "$default_ruler$"
+  
+  ####################################
+  # Jobs
+  ####################################
+
+ mod_job_pioneer_add: "$job_pioneer$ Jobs"
+ mod_job_pioneer_per_pop: "§G+1§! $job_pioneer$ Job per $VALUE$ Pops"
+ mod_job_pioneer_per_pop_short: "\n§G+1§! £mod_job_pioneer_add£ per $VALUE$ £pop£"
+ mod_job_smuggler_add: "$job_smuggler$ Jobs"
+ mod_job_smuggler_per_pop: "§G+1§! $job_smuggler$ Job per $VALUE$ Pops"
+ mod_job_smuggler_per_pop_short: "\n§G+1§! £mod_job_smuggler_add£ per $VALUE$ £pop£"
+ mod_job_opportunist_drone_add: "$job_opportunist_drone$ Jobs"
+ mod_job_opportunist_drone_per_pop: "§G+1§! $job_opportunist_drone$ Job per $VALUE$ Pops"
+ mod_job_opportunist_drone_per_pop_short: "\n§G+1§! £mod_job_opportunist_drone_add£ per $VALUE$ £pop£"
+ mod_job_aberrant_drone_add: "$job_aberrant_drone$ Jobs"
+ mod_job_aberrant_drone_per_pop: "§G+1§! $job_aberrant_drone$ Job per $VALUE$ Pops"
+ mod_job_aberrant_drone_per_pop_short: "\n§G+1§! £mod_job_aberrant_drone_add£ per $VALUE$ £pop£"
+ mod_job_scout_drone_add: "$job_scout_drone$ Jobs"
+ mod_job_scout_drone_per_pop: "§G+1§! $job_scout_drone$ Job per $VALUE$ Pops"
+ mod_job_scout_drone_per_pop_short: "\n§G+1§! £mod_job_scout_drone_add£ per $VALUE$ £pop£"
+ mod_job_renegade_drone_add: "$job_renegade_drone$ Jobs"
+ mod_job_renegade_drone_per_pop: "§G+1§! $job_renegade_drone$ Job per $VALUE$ Pops"
+ mod_job_renegade_drone_per_pop_short: "\n§G+1§! £mod_job_renegade_drone_add£ per $VALUE$ £pop£"
+  
+ #Common Categories
+ 
+ planet_pioneers: "Pioneer Jobs"
+ planet_smugglers: "Smuggler Jobs"
+ planet_opportunist_drones: "Opportunist Drone Jobs"
+ planet_aberrant_drones: "Aberrant Drone Jobs"
+ planet_scout_drones: "Scout Drones Jobs"
+ planet_renegade_drones: "Renegade Drone Jobs"
+ 
+  ####################################
+  # Initializers
+  ####################################
+  
+  NAME_Ark_Fleet: "The Exodus"
+  NAME_Ark: "The Exodus"
+  NAME_Project_Ark_Ship: "The Ark"
+  NAME_Bastion: "The Bastion"
+  NAME_Sentinel: "The Sentinel"
+  NAME_Spectator: "The Spectator"
+  NAME_Witness: "The Witness"
+  NAME_Salvation: "Salvation"
+  NAME_New_World: "New World"
+  NAME_Tanis: "Tanis"
+  NAME_Hope: "Hope"
+  NAME_Ark_Country: "Ark"
+ 

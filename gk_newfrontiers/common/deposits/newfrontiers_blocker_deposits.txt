@@ -1,0 +1,518 @@
+## New Frontiers Deposits by Annatar ##
+
+@blocker_high = 10
+@blocker_low = 5
+@blocker_rare = 0.25
+@ranger_small_production = 0.5
+@ranger_large_production = 1
+
+d_dune_sea = {
+	time = 180
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	icon = d_searing_desert
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+	
+	potential = {
+		OR = {
+			is_dry = yes
+			is_planet_class = pc_sterile
+			has_modifier = "supercontinental_world"
+			has_modifier = "mediterranean_world"
+			has_modifier = "flaming_world"
+		}
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_food_produces_add = @ranger_small_production
+	}
+	
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	
+	inline_script = deposits/environmental_architects_natural_blocker_pops
+	
+	inline_script = deposits/ai_weight_natural_blocker
+	
+	all_blocker_swap_types = yes
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 3
+			is_planet_class = pc_desert
+		}
+		modifier = {
+			factor = 2
+			has_modifier = "dune_world"
+		}
+		modifier = {
+			factor = 0.5
+			has_modifier = "oasis_world"
+		}
+		modifier = {
+			factor = 0.25
+			OR = {
+				has_modifier = "salt_world"
+				has_modifier = "mesocyclonic_world"
+				has_modifier = "steppe_world"
+			}
+		}
+		modifier = {
+			factor = 0
+			has_modifier = "rust_world"
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+	
+	prerequisites = { "tech_dune_sea" }
+}
+
+d_thick_forest = {
+	time = 180
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+	
+	potential = {
+		OR = {
+			is_planet_class = pc_continental
+			is_planet_class = pc_tundra
+			is_planet_class = pc_alpine
+			has_modifier = "meridiem_world"
+		}
+		NOR = { 
+			has_modifier = "supercontinental_world"
+			has_modifier = "mediterranean_world"
+			has_modifier = "mineral_world"
+			has_modifier = "moraine_world"
+		}
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_food_produces_add = @ranger_small_production
+	}
+	
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	
+	on_cleared = {
+		hidden_effect = {
+			give_bio_repurposing_reward_on_organic_deposit_cleared = yes
+		}
+		planetscaper_pop_effect = yes
+	}
+	
+	inline_script = deposits/ai_weight_natural_blocker
+	
+	all_blocker_swap_types = yes
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 3
+			OR = {
+				has_modifier = "boreal_world"
+				has_modifier = "taiga_world"
+				has_modifier = "snow_world"
+			}
+		}
+		modifier = {
+			factor = 2
+			has_modifier = "snow_world"
+		}
+		modifier = {
+			factor = 0.5
+			is_planet_class = pc_alpine
+		}
+		modifier = {
+			factor = 0.25
+			is_planet_class = pc_tundra
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+	
+	prerequisites = { "tech_thick_forest" }
+}
+
+d_large_ice_ridge = {
+	time = 180
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+	
+	potential = {
+		OR = {
+			has_modifier = "moraine_world"
+			has_modifier = "iceberg_world"
+			has_modifier = "eyeball_world"
+		}
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_food_produces_add = @ranger_small_production
+	}
+	
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	
+	inline_script = deposits/environmental_architects_natural_blocker_pops
+	
+	inline_script = deposits/ai_weight_natural_blocker
+	
+	all_blocker_swap_types = yes
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 0.5
+			has_modifier = "moraine_world"
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+	
+	prerequisites = { "tech_large_ice_ridge" }
+}
+
+d_blocked_tunnell = {
+	time = 180
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+		}
+	}
+	
+	potential = {
+		NOT = { has_modifier = "subglacial_world" }
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	
+	inline_script = deposits/environmental_architects_natural_blocker_pops
+	
+	inline_script = deposits/ai_weight_natural_blocker
+	
+	all_blocker_swap_types = yes
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+	
+	prerequisites = { "tech_blocked_tunnell" }
+}
+
+d_ice_crust = {
+	time = 180
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+		}
+	}
+	
+	potential = {
+		has_modifier = "subglacial_world"
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	
+	inline_script = deposits/environmental_architects_natural_blocker_pops
+	
+	inline_script = deposits/ai_weight_natural_blocker
+	
+	all_blocker_swap_types = yes
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+	
+	prerequisites = { "tech_ice_crust" }
+}
+
+d_industrial_boneyard = {
+	time = 270
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	icon = d_metal_boneyard
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 700
+		}
+	}
+	
+	potential = { always = no }
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_jobs_engineering_research_produces_mult = 0.10
+	}
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 5
+			has_modifier = "rust_world"
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+}
+
+d_igneous_traps = {
+	time = 300
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1500
+		}
+	}
+	
+	potential = {
+		OR = {
+			can_have_habitable_deposits = yes
+			is_planet_class = pc_sterile
+		}
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -3
+		planet_jobs_engineering_research_produces_mult = 0.10
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_energy_produces_add = @ranger_large_production
+	}
+	
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	
+	inline_script = deposits/ai_weight_natural_blocker
+	
+	on_cleared = {
+		planetscaper_pop_effect = yes
+		if = {
+			limit = { exists = owner }
+			owner = { add_resource = { alloys = 100 } }
+		}
+	}
+
+	drop_weight = {
+		weight = @blocker_rare
+		modifier = {
+			factor = 10
+			has_modifier = "caustic_world"
+		}
+		modifier = {
+			factor = 5
+			has_modifier = "young_world"
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_modifier = "primal_world"
+				has_modifier = "effusive_world"
+			}
+		}
+		modifier = {
+			factor = 1.5
+			is_planet_class = pc_volcanic
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_modifier = "magma_world"
+				is_planet_class = pc_ocean
+			}
+		}
+	}
+	
+	prerequisites = { "tech_igneous_traps" }
+}
+
+d_rusty_debris = {
+	icon = d_organic_landfill
+	category = deposit_cat_blockers
+	time = 120
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	
+	potential = { always = no }
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	all_blocker_swap_types = yes
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_giant_fossils = {
+	icon = d_boneyard
+	category = deposit_cat_blockers
+	time = 120
+	
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	
+	potential = { always = no }
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	all_blocker_swap_types = yes
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+

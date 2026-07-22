@@ -1,0 +1,9 @@
+# Adds the Frontier column to the empire creation homeworld picker.
+# Vanilla 00_defines.txt:1243. initial = yes only makes a class eligible; the picker
+# renders this list, plus whatever civics inject via added_planet_types.
+NGameplay = {
+	DEFAULT_HOME_PLANETS = { "pc_desert" "pc_ocean" "pc_arctic" "pc_arid" "pc_continental"
+							 "pc_alpine" "pc_savannah" "pc_tropical" "pc_tundra"
+							 "pc_sterile" }
+	DEFAULT_CLIMATE_LABELS = { "TYPE_HEADER_01" "TYPE_HEADER_02" "TYPE_HEADER_03" "TYPE_HEADER_05" }
+}

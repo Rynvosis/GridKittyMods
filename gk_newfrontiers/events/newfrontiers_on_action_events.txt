@@ -1,0 +1,321 @@
+############################
+#
+# On Action Events
+#
+# Written by Annatar
+#
+############################
+
+
+namespace = newfrontiers_action
+carrier_event = {
+	id = newfrontiers_action.2
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		THIS = {
+			remove_subclass_modifiers = yes
+			remove_condition_modifiers = yes
+		}
+	}
+
+}
+carrier_event = {
+	id = newfrontiers_action.13
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		is_planet_subclass = yes
+	}
+	
+	immediate = {
+		remove_incorrect_subclass = yes
+	}
+}
+
+### Nuclear war happened
+carrier_event = {
+	id = newfrontiers_action.14
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		is_planet_class = pc_nuked
+		is_planet_subclass = no
+	}
+	
+	immediate = {
+		random_list = {
+			30 = {
+				set_fallout_subclass = yes
+			}
+			70 = {
+				set_wasteland_subclass = yes
+			}
+		}
+	}
+}
+
+### Rust World for Fen Habbanis
+carrier_event = {
+	id = newfrontiers_action.15
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		set_rust_subclass = yes
+	}
+}
+
+
+### Bioluminescent World
+
+# Bioluminescent World colonized
+carrier_event = {
+	id = newfrontiers_action.16
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		has_modifier = bioluminescent_world
+	}
+	
+	immediate = {
+		if = {
+			limit = { 
+				exists = owner
+				owner = { is_regular_empire = yes }
+				NOT = { has_modifier = preserve_planet }
+			}
+			carrier_event = { id = newfrontiers_action.17 days = 60 random = 30 }
+		}
+		if = {
+			limit = { 
+				exists = owner
+				owner = { is_regular_empire = yes }
+				has_modifier = preserve_planet
+				num_buildings = {
+					type = any
+					value > 0
+					category = manufacturing
+				}
+			}
+			carrier_event = { id = newfrontiers_action.20 days = 5 }
+		}
+		if = {
+			limit = { 
+				has_modifier = environmentalists_protests
+				num_buildings = {
+					type = any
+					value > 0
+					category = manufacturing
+				}
+			}
+			carrier_event = { id = newfrontiers_action.20 days = 5 }
+		}
+		if = {
+			limit = { 
+				exists = owner
+				owner = { is_regular_empire = no }
+				has_modifier = environmentalists_protests
+			}
+			remove_modifier = environmentalists_protests
+		}
+		carrier_event = { id = newfrontiers_action.16 days = 1800 random = 900 }
+	}
+}
+
+carrier_event = {
+	id = newfrontiers_action.17
+	title = "newfrontiers_action.17.name"
+	desc = "newfrontiers_action.17.desc"
+	picture = GFX_evt_bioluminescent_world
+	show_sound = event_alien_nature
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_modifier = bioluminescent_world
+		owner = { is_regular_empire = yes }
+		NOT = { has_modifier = preserve_planet }
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = "newfrontiers_action.17.a"
+		add_modifier = {
+			modifier = "preserve_planet"
+			days = -1
+		}
+		hidden_effect = {
+			every_deposit = {
+				if = {
+					limit = {
+						OR = {
+							is_deposit_type = d_mineral_fields
+							is_deposit_type = d_prosperous_mesa
+							is_deposit_type = d_submerged_ore_veins
+						}
+					}
+					root = { 
+						add_blocker = {
+							type = d_nature_preserve
+							blocked_deposit = prev
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "newfrontiers_action.17.b"
+		hidden_effect = {
+			carrier_event = { id = newfrontiers_action.18 days = 10 random = 5 }
+		}
+	}
+}
+
+carrier_event = {
+	id = newfrontiers_action.18
+	title = "newfrontiers_action.18.name"
+	desc = "newfrontiers_action.18.desc"
+	picture = GFX_evt_civil_action
+	show_sound = event_assembly_fight
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_modifier = bioluminescent_world
+		owner = { is_regular_empire = yes }
+		NOT = { has_modifier = preserve_planet }
+	}
+	
+	immediate = {
+		random_list = {
+			50 = {
+				add_modifier = { modifier = civil_disobedience days = 30 }
+				owner = { add_modifier = { modifier = rejected_beauty days = 30 } }
+			}
+			30 = {
+				add_modifier = { modifier = civil_disobedience days = 90 }
+				owner = { add_modifier = { modifier = rejected_beauty days = 90 } }
+			}
+			20 = {
+				add_modifier = { modifier = civil_disobedience days = 180 }
+				owner = { add_modifier = { modifier = rejected_beauty days = 180 } }
+			}
+		}
+	}
+
+	option = {
+		name = "newfrontiers_action.18.a"
+			add_modifier = {
+				modifier = "preserve_planet"
+				days = -1
+			}
+		hidden_effect = {
+			every_deposit = {
+				if = {
+					limit = {
+						OR = {
+							is_deposit_type = d_mineral_fields
+							is_deposit_type = d_prosperous_mesa
+							is_deposit_type = d_submerged_ore_veins
+						}
+					}
+					root = { 
+						add_blocker = {
+							type = d_nature_preserve
+							blocked_deposit = prev
+						}
+					}
+				}
+			}
+			
+			remove_modifier = civil_disobedience
+			owner = { remove_modifier = rejected_beauty }
+		}
+	}
+	
+	option = {
+		name = "newfrontiers_action.18.b"
+	}
+}
+
+# Bioluminescent World manufacturing build 
+carrier_event = {
+	id = newfrontiers_action.19
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		has_modifier = bioluminescent_world
+		has_modifier = preserve_planet
+		NOT = { has_modifier = environmentalists_protests }
+		owner = { is_regular_empire = yes }
+		num_buildings = {
+			type = any
+			value > 0
+			category = manufacturing
+		}
+	}
+	
+	immediate = {
+		carrier_event = { id = newfrontiers_action.20 days = 5 }
+	}
+}
+
+carrier_event = {
+	id = newfrontiers_action.20
+	title = "newfrontiers_action.20.name"
+	desc = "newfrontiers_action.20.desc"
+	picture = GFX_evt_announcement
+	show_sound = event_announcement
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_modifier = bioluminescent_world
+		NOT = { has_modifier = environmentalists_protests }
+		owner = { is_regular_empire = yes }
+		has_modifier = preserve_planet
+		num_buildings = {
+			type = any
+			value > 0
+			category = manufacturing
+		}
+	}
+	
+	immediate = {
+	}
+
+	option = {
+		name = DISCONCERTING
+		add_modifier = { modifier = environmentalists_protests days = 180 }
+		hidden_effect = {
+			carrier_event = { id = newfrontiers_action.19 days = 200 random = 10 }
+		}
+	}
+}
+
+
+
+
+
+
+
+

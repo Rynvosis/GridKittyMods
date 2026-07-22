@@ -1,0 +1,290 @@
+on_game_start = {
+	events = {
+		#newfrontiers.2
+		newfrontiers.3
+		newfrontiers.7
+		newfrontiers.9
+		newfrontiers.11
+		#newfrontiers.16
+		newfrontiers.61
+
+		# moved off on_applying_rs_settings (Real Space menu hook)
+		newfrontiers.1
+		newfrontiers.4
+		newfrontiers.5
+		newfrontiers.10
+		newfrontiers.13
+	}
+}
+
+# No scope, like on_game_start
+# Does not run when loading MP saves due to OOS concerns
+on_single_player_save_game_load = {
+	events = {
+		newfrontiers.61
+	}
+}
+
+# New Frontiers Set Subclass (Old)
+on_set_subclass = {
+	events = {
+		#newfrontiers.4
+	}
+}
+
+# No scope, like on_game_start
+on_monthly_pulse = {
+	events = {
+	}
+}
+
+# No scope, like on_game_start
+on_yearly_pulse = {
+	events = {
+	}
+}
+
+# No scope, like on_game_start
+on_five_year_pulse = {
+	events = {
+	}
+}
+
+# Triggers country_event for the defender upon defeat
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_lose = {
+	events = {
+	}
+}
+
+# Triggers when ground combat starts
+# This = planet
+# From = country attacking
+on_ground_combat_started = {
+	events = {
+	}
+}
+
+# Planet has taken damage from orbital bombardment - Damage is applied daily
+# This = Planet
+# From = Bombarder
+on_planet_bombarded = {
+	events = {
+	}
+}
+
+# A ship has surveyed a planet.
+# Scope = Ship
+# From = Planet
+on_survey = {
+	events = {
+		#newfrontiers_decision_event.3
+	}
+}
+
+#From = Planet/Starbase/Megastructure scope
+#This = Fleet scope
+on_fleet_enter_orbit = {
+	events = {
+		#newfrontiers_decision_event.3
+	}
+}
+
+# A country has gained a surveyed status on a planet. Happens after "on_survey" if a science ship surveyed a planet.
+# Root = Planet
+# From = Country
+# FromFrom = Fleet of the science ship that surveyed it, if any
+on_planet_surveyed = {
+	events = {
+	}
+}
+
+# A planet has been colonized.
+# Scope = Planet
+on_colonized = {
+	events = {
+		newfrontiers_action.16
+	}
+}
+
+on_colony_1_year_old = {
+	events = {
+	}
+
+	random_events = {
+		300 = 0
+	}
+}
+
+# X years has passed since a planet was colonized (won't trigger on empire homeworld)
+on_colony_2_years_old = {
+	events = {
+	}
+}
+
+# A colony has been destroyed. Called just before owner and controller is cleared
+# Scope = Planet
+on_colony_destroyed = {
+	events = {
+	}
+}
+
+#Fired whenever a new owner is set for a planet,
+#be it after a war or through a trade
+#From = Country scope (new owner)
+#This = Planet scope
+on_planet_transfer = {
+	events = {
+	}
+}
+
+# A planets controller becomes a country not the same as the owner.
+# Root = Planet
+# From = Planet Owner
+# FromFrom = Planet Controller (the one occupying)
+on_planet_occupied = {
+	events = {
+	}
+}
+
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+on_ship_destroyed_victim = {
+	events = {
+		#newfrontiers_decision_event.35
+	}
+}
+
+# From = system
+# FromFrom = country (new owner)
+# This = country (previous owner)
+on_system_lost = {
+	events = {
+	}
+}
+
+# From = system
+# FromFrom = country (previous owner)
+# This = country (new owner)
+on_system_gained = {
+	events = {
+	}
+}
+
+#You have changed the location of your capital. Also called when a country's capital is first set e.g. during galaxy creation (but then FROM is not set)
+#this/root = new capital
+#from = old capital
+on_capital_changed = {
+	events = {
+	}
+}
+
+# Planet has been terraformed
+# This = Planet
+# From = Terraformer
+on_terraforming_complete = {
+    events = {
+		newfrontiers_action.2
+    }
+}
+
+# Planet has changed planet class in whatever way. Note that this is also called during galaxy creation in some places.
+# This = Planet
+on_planet_class_changed = {
+	events = {
+		newfrontiers_action.14
+	}
+}
+
+#A building construction has been completed.
+# This = Planet
+on_building_complete = {
+	events = {
+		newfrontiers_action.19
+	}
+}
+
+# A building construction has finished, replacing another building.
+# This = Planet
+on_building_replaced = {
+	events = {
+		newfrontiers_action.19
+	}
+}
+
+# A building construction has demolished.
+# This = Planet
+on_building_demolished = {
+	events = {
+	}
+}
+
+# Called during empire initialization when starting a new game if has_secondary_species game rule is true.
+# Called before empire_init_create_capital_pops.
+# scope: planet
+# from: founder species
+# fromfrom: secondary species (if exists)
+# runs after vanilla game_start.12, which clears deposits and skips our three classes
+empire_init_capital_colony = {
+	events = {
+		newfrontiers.14
+	}
+}
+
+# Fires for each planet every year (counting up from colonisation date, includes home planet)
+on_colony_yearly_pulse = {
+	events = {
+	}
+}
+
+# THIS = Fen Habbanis planet
+on_fen_habbanis = {
+	events = {
+		newfrontiers_action.15
+	}
+}
+
+# This = Situation
+on_temperate_continental_climate_start = {
+	events = {
+	}
+}
+on_moderate_climate_start = {
+	events = {
+	}
+}
+on_semiarid_climate_start = {
+	events = {
+	}
+}
+on_humid_continental_climate_start = {
+	events = {
+	}
+}
+
+# This = Situation
+on_random_deposit_terraform_message = {
+	events = {
+	}
+}
+
+# This = Planet
+on_situation_eco_creation_terraforming_begun = {
+	events = {
+	}
+}
+on_situation_eco_creation_terraforming_complete = {
+	events = {
+	}
+}
+
+on_remove_subclass_modifiers_effect = {
+	events = {
+		newfrontiers_action.2
+	}
+}
+

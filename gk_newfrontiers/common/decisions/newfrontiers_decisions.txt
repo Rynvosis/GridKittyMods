@@ -1,0 +1,483 @@
+ ##########################################################################
+# Decisions
+##########################################################################
+
+decision_protective_equipment = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_protective_equipment
+	
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				pop_amount < 10
+			}
+			unity = 100
+			energy = 100
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 10
+				pop_amount < 20
+			}
+			unity = 200
+			energy = 200
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 20
+				pop_amount < 30
+			}
+			unity = 300
+			energy = 300
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 30
+				pop_amount < 40
+			}
+			unity = 400
+			energy = 400
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 40
+				pop_amount < 50
+			}
+			unity = 500
+			energy = 500
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 50
+				pop_amount < 60
+			}
+			unity = 600
+			energy = 600
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 60
+				pop_amount < 70
+			}
+			unity = 700
+			energy = 700
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 70
+				pop_amount < 85
+			}
+			unity = 800
+			energy = 800
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 85
+				pop_amount < 100
+			}
+			unity = 900
+			energy = 900
+		}
+		cost = {
+			trigger = {
+				pop_amount >= 100
+			}
+			unity = 1000
+			energy = 1000
+		}
+	}
+	
+	potential = {
+		AND = {
+			owner = { is_regular_empire = yes }
+			OR = {
+				has_modifier = dangerous_wildlife
+				has_modifier = toxic_atmosphere
+				has_modifier = death_world
+				has_modifier = caustic_world
+				has_modifier = ash_world
+			}
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = protective_equipment }
+	}
+	
+	effect = {
+		add_modifier = { modifier = "protective_equipment" days = 3600 }
+	}
+	
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			pop_amount < 10
+		}
+	}
+}
+
+# decision_ark_project = {
+	# owned_planets_only = yes
+	# sound = event_construction
+	# icon = decision_ark_project
+	
+	# enactment_time = 1080
+	# resources = {
+		# category = decisions
+		# cost = {
+			# alloys = 1000
+			# food = 2000
+			# consumer_goods = 1000
+		# }
+	# }
+	
+	# potential = {
+		# OR = {
+			# has_modifier = apocalypse
+			# has_modifier = moon_collision
+			# has_modifier = moon_fall
+			# has_modifier = orbit_reduction
+			# has_modifier = orbit_increase
+			# has_modifier = volcanic_activity
+			# has_modifier = secret_disaster
+			# has_modifier = doomsday_1
+			# has_modifier = doomsday_2
+			# has_modifier = doomsday_3
+			# has_modifier = doomsday_4
+			# has_modifier = doomsday_5
+			# solar_system = { has_star_flag = star_disaster }
+		# }
+		# OR = {
+			# owner = { num_owned_planets = 1 }
+			# AND = {
+				# owner = { num_owned_planets > 1 }
+				# owner = { any_owned_planet = { solar_system = { has_star_flag = star_disaster } } }
+				# owner = { NOT = { any_owned_planet = { solar_system = { NOT = { has_star_flag = star_disaster } } } } }
+			# }
+		# }
+	# }
+	
+	# allow = {
+		# is_controlled_by = owner
+		# has_ground_combat = no
+		# has_orbital_bombardment = no
+	# }
+	
+	# effect = {
+		# custom_tooltip = decision_ark_project_effect_desc
+		# hidden_effect = {
+			# owner = {
+				# country_event = { id = newfrontiers_decision_event.2 days = 1 }
+			# }
+		# }
+	# }
+	
+	# ai_weight = {
+		# weight = 0
+	# }
+# }
+
+# Tidally Locked Decisions
+# Ancient World Decision
+decision_planetary_excavation = {
+	owned_planets_only = yes
+	sound = event_construction
+	icon = decision_planetary_excavation
+	
+	enactment_time = 2000
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				planet_size < 10
+			}
+			unity = 250
+			energy = 2500
+		}
+		cost = {
+			trigger = {
+				planet_size >= 10
+				planet_size < 15
+			}
+			unity = 500
+			energy = 5000
+		}
+		cost = {
+			trigger = {
+				planet_size >= 15
+				planet_size < 20
+			}
+			unity = 750
+			energy = 10000
+		}	
+		cost = {
+			trigger = {
+				planet_size >= 20
+			}
+			unity = 1000
+			energy = 15000
+		}
+	}
+	
+	potential = {
+		has_modifier = ancient_world
+		habitable_structure = no
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+	
+	allow = {
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		custom_tooltip = decision_planetary_excavation_effect_desc
+		hidden_effect = {
+			change_pc = pc_relic
+			reset_planet = yes
+			clear_deposits = yes
+			
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+
+			add_deposit = d_relic_dense_ruins
+			add_deposit = d_collapsed_spire
+			add_deposit = d_massive_crevice
+			add_deposit = d_shattered_solar_array
+			add_deposit = d_flooded_reactor_pits
+			add_deposit = d_crumbling_mining_tunnels
+			add_deposit = d_relic_metal_boneyard
+			
+			carrier_event = { id = newfrontiers_decision_event.33 }
+			
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# Awakened Decision
+# Sentient Planet Decision
+
+# Noxious World Decision
+
+decision_build_cloud_platform = {
+	owned_planets_only = yes
+	sound = event_construction
+	icon = decision_build_cloud_platform
+
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+			alloys = 500
+		}
+	}
+
+	potential = {
+		has_modifier = noxious_world
+		exists = owner
+		owner = { 
+			has_technology = tech_cloud_platform
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = cloud_platform_max
+			if = {
+				limit = { planet_size <= 12 }
+				count_deposits = { type = d_cloud_platform count < 1 }
+			}
+			if = {
+				limit = { 
+					planet_size > 12
+					planet_size <= 15
+				}
+				count_deposits = { type = d_cloud_platform count < 2 }
+			}
+			if = {
+				limit = { 
+					planet_size > 16
+					planet_size <= 19
+				}
+				count_deposits = { type = d_cloud_platform count < 3 }
+			}
+			if = {
+				limit = { 
+					planet_size > 19
+					planet_size <= 22
+				}
+				count_deposits = { type = d_cloud_platform count < 4 }
+			}
+			if = {
+				limit = { planet_size > 22 }
+				count_deposits = { type = d_cloud_platform count < 5 }
+			}
+		}
+	}
+
+	effect = {
+		add_deposit = d_cloud_platform
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+}
+
+decision_demolish_cloud_platform = {
+	owned_planets_only = yes
+	sound = event_construction
+	icon = decision_demolish_cloud_platform
+
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 250
+			alloys = 500
+		}
+	}
+
+	potential = {
+		has_modifier = noxious_world
+		exists = owner
+		has_deposit = d_cloud_platform
+	}
+
+	effect = {
+		owner = {
+			add_resource = {
+				alloys = 500
+			}
+		}
+		remove_deposit = d_cloud_platform
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Real Terraforming
+
+decision_start_ecosystem_creation_project = {
+	owned_planets_only = yes
+	sound = event_construction
+	icon = decision_start_ecosystem_creation_project
+
+	resources = {
+		category = terraforming
+		cost = {
+			energy = 5000
+		}
+	}
+
+	potential = {
+		has_global_flag = has_real_terraforming_mod
+		owner = { has_technology = tech_climate_restoration }
+		NOT = { has_carrier_flag = ecosystem_creation_project }
+		is_planet_class = pc_sterile
+	}
+	
+	allow = {
+	}
+
+	effect = {
+		custom_tooltip = decision_start_ecosystem_creation_project_effect_desc
+		hidden_effect = {
+			if = {
+				limit = { has_modifier = ash_world }
+				set_carrier_flag = ash_world
+			}
+			else_if = {
+				limit = { has_modifier = archean_world }
+				set_carrier_flag = archean_world
+			}
+			else = {
+				limit = { has_modifier = young_world }
+				set_carrier_flag = young_world
+			}
+			fire_on_action = { on_action = on_situation_eco_creation_terraforming_begun }
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_end_ecosystem_creation_project = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_end_ecosystem_creation_project
+
+	resources = {
+		category = decisions
+	}
+
+	potential = {
+		has_carrier_flag = ecosystem_creation_project
+	}
+
+	effect = {
+		custom_tooltip = end_terraform_progect
+		hidden_effect = { fire_on_action = { on_action = on_situation_eco_creation_terraforming_complete } }
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Bioluminescent World Decision
+
+decision_abolish_nature_preserves = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_abolish_nature_preserves
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+
+	potential = {
+		has_modifier = preserve_planet
+	}
+
+	effect = {
+		remove_modifier = preserve_planet
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

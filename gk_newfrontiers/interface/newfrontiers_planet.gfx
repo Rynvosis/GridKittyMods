@@ -1,0 +1,43 @@
+spriteTypes = {	
+	#Sprite sheet
+	spriteType = {
+		name = "GFX_newfrontiers_planet_type"
+		texturefile = "gfx/interface/icons/newfrontiers_planet_type_icons.dds"
+		noOfFrames = 2
+	}
+
+	#Individual sprites from it
+	spriteType = {
+		name = "GFX_planet_type_tidallylocked"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_newfrontiers_planet_type"
+		default_frame = 1
+	}
+	spriteType = {
+		name = "GFX_planet_type_sterile"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_newfrontiers_planet_type"
+		default_frame = 2
+	}
+	
+	
+	spriteType = {
+		name = "GFX_newfrontiers_planet_type_big"
+		texturefile = "gfx/interface/icons/newfrontiers_planet_type_big_icons.dds"
+		noOfFrames = 2
+	}
+
+	#Individual sprites from it
+	spriteType = {
+		name = "GFX_planet_type_tidallylocked_big"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_newfrontiers_planet_type_big"
+		default_frame = 1
+	}
+	spriteType = {
+		name = "GFX_planet_type_sterile_big"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_newfrontiers_planet_type_big"
+		default_frame = 2
+	}
+}

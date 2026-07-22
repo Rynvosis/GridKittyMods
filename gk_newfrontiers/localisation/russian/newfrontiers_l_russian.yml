@@ -1,0 +1,264 @@
+﻿l_russian:
+  
+  ####################################
+  # Planet Decision
+  ####################################
+
+  decision_protective_equipment: "Средства защиты"
+  decision_protective_equipment_desc: "Данное решение создает ряд правительственных программ для обязательного обеспечения всех колонистов в неблагоприятных мирах индивидуальными средствами защиты."
+  decision_ark_project: "Запуск проекта «Ковчег»"
+  decision_ark_project_desc: "Наш родной мир будет уничтожен катастрофой. Одной из мер по спасению нашей цивилизации был предложен проект «Ковчег». Огромный колониальный корабль, обеспеченный всем для долгих перелетов, отправится на поиски нового дома."
+  decision_ark_project_effect_desc: "Начнет строительство космического корабля «Ковчег».\n\n§YПосле того как планета погибнет, ‘Ковчег’ станет новой империей. Если «Ковчег» колонизирует новый мир до того, как планета будет уничтожена, то будет создана новая империя. Вы будете вправе выбрать какой империей вы продолжите управлять.§!"
+  decision_planetary_excavation: "Начать планетарные раскопки"
+  decision_planetary_excavation_desc: "Под заросшей поверхностью этого древнего мира находятся руины огромного планетарного города. Планетарные раскопки убьют нетронутую красоту этого мира, но это первый шаг к изучению забытых технологий и восстановлению былого величия планеты."
+  decision_planetary_excavation_effect_desc: "Превращает планету в §Y$pc_relic$§!."
+  decision_megamicelium_assimilation: "Начать ассимиляцию мегамицелия"
+  decision_megamicelium_assimilation_desc: "Этот мир будет поглощен экзогрибком и полностью перестроен для наших нужд."
+  decision_megamicelium_assimilation_effect_desc: "Планета превратится в §Y$mycelium_world$§!."
+  decision_infestation: "Создать зараженный регион"
+  decision_infestation_desc: "Отдельные регионы планеты полностью поглощаются плесенью для быстрого роста колоний."
+  decision_quarantine: "Объявить карантин"
+  decision_quarantine_desc: "Это решение позволит применить все административные ресурсы чтобы изолировать этот мир и ограничить распространение болезни."
+  decision_abolish_quarantine: "Отменить карантин"
+  decision_abolish_quarantine_desc: "Снятие карантина отменит все меры ограничений, наложенные на эту планету."
+  decision_build_cloud_platform: "Начать строительство небесной платформы"
+  decision_build_cloud_platform_desc: "Строительство специальных платформ, на которых можно возводить целые города, позволит осваивать территории, покрытые ядовитыми испарениями, и откроет доступ к добыче полезных ископаемых."
+  decision_demolish_cloud_platform: "Разобрать небесную платформу"
+  decision_demolish_cloud_platform_desc: "Если содержание небесной платформы становится не рентабельным, ее можно утилизировать."
+  decision_start_ecosystem_creation_project: "Начать проект создания экосистемы"
+  decision_start_ecosystem_creation_project_desc: "Это решение запускает один из проектов терраформирования планеты.\n\nМертвые миры можно оживить, создав благоприятные условия на поверхности и в атмосфере планеты. Затем посадить семена жизни и бережно ухаживать за ростками, которые будут стремительно развиваться в теплых океанах этого мира под нашим надзором."
+  decision_start_ecosystem_creation_project_effect_desc: "Запускает особый процесс терраформирования. Для прогресса вам потребуются различные сооружения для терраформирования."
+  decision_end_ecosystem_creation_project: "Завершить проект создания экосистемы"
+  decision_end_ecosystem_creation_project_desc: "Это решение остановит проект создания экосистемы. Результат не будет достигнут."
+  decision_abolish_nature_preserves: "Упразднить природные заповедники"
+  decision_abolish_nature_preserves_desc: "Данное решение позволит отменить статус планеты как заповедника и откроет возможность добычи полезных ископаемых. Хотя, почти наверняка гражданские природоохранные организации будут не довольны."
+  
+  
+  ####################################
+  # Origins
+  ####################################
+  
+  origin_subterranean: "Подземные жители"
+  origin_subterranean_desc: "Изменение активности солнца превратило родной мир этой цивилизации в безжизненную пустошь и им пришлось уйти глубоко под землю. Многие столетия они рыли тоннели и строили города, пока наконец не поняли, что этот подземный склеп не может быть их домом вечно."
+  origin_scavengers: "Мусорщики"
+  origin_scavengers_desc: "До сих пор точно неизвестно как эта цивилизация оказалась на опустошенном мире. Абсолютно точно известно только то, что индустриальные руины не принадлежали им в прошлом. Может древние хозяева этой планеты завезли их в качестве животных или рабов, или она сами каким-то образом попали сюда. Они смогли приспособиться и быстро развивались, изучая брошенные технологии этой планеты."
+  civic_tooltip_scavengers_effects: "Вы начинаете игру в §Yиндустриальном кладбище§!, на котором находятся §Y$d_subway_tunnel_network$§!.\nВы обладаете способностью получать £alloys£ §Yсплавы§! после очистки блокираторов §Y$d_industrial_boneyard$§!."
+  origin_ark: "Ковчег"
+  origin_ark_desc: "Родной мир этой цивилизации был уничтожен. Немногие выжившие спаслись на гигантском космическом корабле, чтобы отправится в долгое путешествие сквозь безжизненную пустоту на поиски нового дома."
+  civic_tooltip_ark_effects: "Вы начнете игру с одним единственным кораблем §YКосмический ковчег§! на орбите вашего погибшего родного мира. Необходимо доставить Ковчег на орбиту пригодной для обитания планеты, которую вы хотите сделать столицей своей империи."
+  civic_tooltip_exomycosis_effects: "Ваш родной мир — §Y$mycelium_world$§!.\nПредпочтительная пригодность — §Y$trait_pc_tropical_preference$§!.\nНаселение получает признак §Y$trait_molded$§!, дающий следующее:\n  $MOD_POP_ENVIRONMENT_TOLERANCE$: §G+10%§!.\n  $MOD_ARMY_MORALE_DAMAGE_MULT$: §G+30%§!.\nВы сможете превращать любые влажные миры в §Y$mycelium_world$§!."
+  
+  
+  ####################################
+  # Traits
+  ####################################
+  
+  trait_subterranean: "Подземные"
+  trait_subterranean_desc: "§LЭта раса долгое время прожила под землей и привыкла к тесным помещениям.§!\n"
+  
+  trait_pc_sterile_preference: "Предпочтительный стерильный мир"
+  trait_pc_sterile_preference_desc: "$trait_pc_arctic_preference_desc$"
+  
+  
+  ####################################
+  # Start Screen Mesages
+  ####################################
+  
+  
+  
+  ####################################
+  # Tooltip Massages
+  ####################################
+  
+  has_dangerous_wildlife: "Есть планетарный модификатор $dangerous_wildlife$"
+  has_toxic_atmosphere: "Есть планетарный модификатор $toxic_atmosphere$"
+  has_greenhouse_world: "Есть планетарный модификатор $greenhouse_world$"
+  has_poisonous_world: "Есть планетарный модификатор $poisonous_world$"
+  has_death_world: "Есть планетарный модификатор $death_world$"
+  has_scorched_world: "Есть планетарный модификатор $scorched_world$"
+
+  NO_TERRAFORM_HOLLOW_WORLD: "§RПолый мир невозможно терраформировать.§!"
+  NO_BOMBING_HOLLOW_WORLD: "§RБомбардировка этой планеты не даст никаких результатов, так как все укрепления находятся глубоко под поверхностью.§!"
+  NO_TERRAFORM_OVERMIND: "§RУбить себя?.. Ни за что!§!"
+  
+  requires_actor_exomycosis: "Для удаления необходимо изучение экзогрибка."
+  max_infestation: "Создано максимальное количество зараженных регионов"
+  3_armies_needed: "Необходимое количество армий на планете: §R3§!."
+  8_armies_needed: "Необходимое количество армий на планете: §R8§!."
+  cloud_platform_max: "Достигнуто максимальное количество облачных платформ для этой планеты."
+
+  
+  ####################################
+  # Army
+  ####################################
+
+  
+  
+  ####################################
+  # Technology
+  ####################################
+  
+  tech_blocked_tunnell: "Термальное бурение"
+  tech_blocked_tunnell_desc: "Разработка специальных механизмов нагревающих горную породу до температуры плавления позволить формировать сеть подземных тоннелей эффективно и за короткие сроки."
+  tech_ice_crust: "Ледниковое туннелированние"
+  tech_ice_crust_desc: "Создание эффективных методов стабилизации ледниковых пещер является необходимой мерой для выживания в экстремально холодных мирах."
+  tech_dune_sea: "Песчаное ротирование"
+  tech_dune_sea_desc: "Применение тяжелых механизмов для сложных процессов рекультивации — это следующий шаг в терраформировании непригодных миров. Автономные станции рекультивации рельефа способны остановить движение песков и преобразовать подвижную почву в твердый грунт."
+  tech_thick_forest: "Эко-инфраструктурное картирование"
+  tech_thick_forest_desc: "Применение протоколов искусственного интеллекта в планировании квартальных сетей лесов позволит использовать ресурсы планеты, не нарушая хрупкий экологический баланс."
+  tech_large_ice_ridge: "Регуляция ледникового давления"
+  tech_large_ice_ridge_desc: "Система автономных шлюзов позволит регулировать движение континентальных ледниковых масс холодных планет."
+  tech_igneous_traps: "Стабилизация эффузивных процессов"
+  tech_igneous_traps_desc: "Достаточные знания о внутренних процессах в коре планеты, откроют возможности для проведения масштабных геологических операций. Сложные технологические мероприятия позволят локализовать очаги сильного магматизма и остудить участки эффузивных и интрузивных пород."
+  tech_cloud_platform: "Проектирование облачных платформ"
+  tech_cloud_platform_desc: "Необходимость освоения закрытых территорий ядовитых миров для доступа к ресурсам, требует разработки особых инженерных решений."
+  
+  
+  
+  ####################################
+  # Buildings
+  ####################################
+  
+  building_ark: "Останки Ковчега"
+  building_ark_desc: "Эта часть Ковчега, которая высадилась на планету и основала новую колонию. Внутренние комплексы в этом огромном сооружении предоставляют жилье для колонистов."
+  building_pharmaceutical_production_complex: "Фармацевтический производственный комплекс"
+  building_pharmaceutical_production_complex_desc: "Это сооружение использует уникальные водоросли планеты для производства более совершенных медицинских препаратов."
+  
+  
+  ####################################
+  # Starbase Modules
+  ####################################
+  
+  sm_stellar_reducer: "Звездный редуктор"
+  sm_stellar_reducer_desc: "§YЭто устройство призвано остановить старение звезды в этой системе и тем самым предотвратить катастрофу.§!"
+  
+  project_ark_ship: "Космический ковчег"
+  project_ark_ship_plural: "Космические ковчеги"
+  
+  ####################################
+  # Planet Classes
+  ####################################
+  pc_sterile: "Стерильный мир"
+  pc_sterile_desc: "Каменистый мир с азотно-кислородной атмосферой и почти полным отсутствием сложных форм жизни. Экстремальные условия на поверхности обусловлены резким перепадом температур и атмосферой с примесями различных вредных газов от вулканической активности."
+  
+  ####################################
+  # Preference Tooltips
+  ####################################
+  
+  TRAIT_DESERT_PREFERENCE_EFFECT: "$mod_pc_desert_habitability$:§G +80%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+  TRAIT_ARID_PREFERENCE_EFFECT: "$mod_pc_arid_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+  TRAIT_SAVANNAH_PREFERENCE_EFFECT: "$mod_pc_savannah_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+  TRAIT_TROPICAL_PREFERENCE_EFFECT: "$mod_pc_tropical_habitability$:§G +80%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_CONTINENTAL_PREFERENCE_EFFECT: "$mod_pc_continental_habitability$:§G +80%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_OCEAN_PREFERENCE_EFFECT: "$mod_pc_ocean_habitability$:§G +80%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_ARCTIC_PREFERENCE_EFFECT: "$mod_pc_arctic_habitability$:§G +80%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_alpine_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_TUNDRA_PREFERENCE_EFFECT: "$mod_pc_tundra_habitability$:§G +80%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_alpine_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_ALPINE_PREFERENCE_EFFECT: "$mod_pc_alpine_habitability$:§G +80%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+  TRAIT_AI_PREFERENCE_EFFECT: "$mod_pc_ai_habitability$:§G +100%§!\n$mod_pc_desert_habitability$:§G +10%§!\n$mod_pc_tropical_habitability$:§G +10%§!\n$mod_pc_continental_habitability$:§G +10%§!\n$mod_pc_ocean_habitability$:§G +10%§!\n$mod_pc_arctic_habitability$:§G +10%§!\n$mod_pc_tundra_habitability$:§G +10%§!\n$mod_pc_arid_habitability$:§G +10%§!\n$mod_pc_savannah_habitability$:§G +10%§!"
+  TRAIT_NUKED_PREFERENCE_EFFECT: "$mod_pc_nuked_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!"
+  TRAIT_GAIA_PREFERENCE_EFFECT: "$mod_pc_gaia_habitability$:§G +10%§!"
+  TRAIT_STERILE_PREFERENCE_EFFECT: "$mod_pc_sterile_habitability$:§G +60%§!"
+  mod_pc_sterile_habitability: "Приспособленность — стерильный мир"
+  mod_pc_dune_habitability: "Приспос. подкласса дюн"
+  mod_pc_oasis_habitability: "Приспос. оазисного подкласса"
+  mod_pc_salt_habitability: "Приспос. соляного подкласса"
+  mod_pc_adiabatic_habitability: "Приспос. адиабатического подкласса"
+  mod_pc_karstic_habitability: "Приспос. карстового подкласса"
+  mod_pc_dust_habitability: "Приспос. пыльного подкласса"
+  mod_pc_mediterranean_habitability: "Приспос. средиземноморского подкласса"
+  mod_pc_mesa_habitability: "Приспос. подкласса меза"
+  mod_pc_steppe_habitability: "Приспос. степного подкласса"
+  mod_pc_coriolis_habitability: "Приспос. кориолисового подкласса"
+  mod_pc_prairie_habitability: "Приспос. подкласса прерий"
+  mod_pc_veld_habitability: "Приспос. подкласса вельд"
+  mod_pc_swamp_habitability: "Приспос. болотного подкласса"
+  mod_pc_forest_habitability: "Приспос. лесного подкласса"
+  mod_pc_monsoon_habitability: "Приспос. муссонного подкласса"
+  mod_pc_megaflora_habitability: "Приспос. подкласса мегафлоры"
+  mod_pc_boreal_habitability: "Приспос. бореального подкласса"
+  mod_pc_pangea_habitability: "Приспос. подкласса пангеи"
+  mod_pc_young_habitability: "Приспос. молодого подкласса"
+  mod_pc_primal_habitability: "Приспос. первобытного подкласса"
+  mod_pc_taiga_habitability: "Приспос. таежного подкласса"
+  mod_pc_frigid_habitability: "Приспос. фригидного подкласса"
+  mod_pc_bog_habitability: "Приспос. подкласса топей"
+  mod_pc_mushroom_habitability: "Приспос. грибного подкласса"
+  mod_pc_glacial_habitability: "Приспос. ледникового подкласса"
+  mod_pc_melting_habitability: "Приспос. тающего подкласса"
+  mod_pc_geothermal_habitability: "Приспос. геотермального подкласса"
+  mod_pc_ice_habitability: "Приспос. ледяного подкласса"
+  mod_pc_panthalassic_habitability: "Приспос. панталассического подкласса"
+  mod_pc_atoll_habitability: "Приспос. подкласса атолл"
+  mod_pc_storm_habitability: "Приспос. штормового подкласса"
+  mod_pc_crag_habitability: "Приспос. скального подкласса"
+  mod_pc_mineral_habitability: "Приспос. минерального подкласса"
+  mod_pc_snow_habitability: "Приспос. снежного подкласса"
+  mod_pc_plateau_habitability: "Приспос. подкласса плато"
+  mod_pc_highland_habitability: "Приспос. высокогорного подкласса"
+  mod_pc_flaming_habitability: "Приспос. пылающего подкласса"
+  mod_pc_meridiem_habitability: "Приспос. подкласса меридием"
+  mod_pc_eyeball_habitability: "Приспос. подкласса око"
+  mod_pc_lava_habitability: "Приспос. лавового подкласса"
+  mod_pc_ash_habitability: "Приспос. подкласса пепла"
+  mod_pc_archean_habitability: "Приспос. архейского подкласса"
+  mod_pc_infernal_habitability: "Приспос. инфернального подкласса"
+  mod_pc_subglacial_habitability: "Приспос. подледникового подкласса"
+  mod_pc_depleted_habitability: "Приспос. истощенного подкласса"
+  mod_pc_ancient_habitability: "Приспос. древнего подкласса"
+  
+  ark_admiral: "$default_admiral$"
+  ark_general: "$default_general$"
+  ark_scientist: "$default_scientist$"
+  ark_governor: "$default_governor$"
+  ark_ruler: "$default_ruler$"
+  
+  ####################################
+  # Jobs
+  ####################################
+
+  mod_job_pioneer_add: "Деятельность: $job_pioneer$"
+  mod_job_pioneer_per_pop: "§G+1§! $job_pioneer$ как вид деятельности для $VALUE$ поселений"
+  mod_job_pioneer_per_pop_short: "\n§G+1§! £mod_job_pioneer_add£ для $VALUE$ £pop£"
+  mod_job_smuggler_add: "Деятельность: $job_smuggler$"
+  mod_job_smuggler_per_pop: "§G+1§! $job_smuggler$ как вид деятельности для $VALUE$ поселений"
+  mod_job_smuggler_per_pop_short: "\n§G+1§! £mod_job_smuggler_add£ для $VALUE$ £pop£"
+  mod_job_opportunist_drone_add: "Деятельность: $job_opportunist_drone$"
+  mod_job_opportunist_drone_per_pop: "§G+1§! $job_opportunist_drone$ как вид деятельности для $VALUE$ поселений"
+  mod_job_opportunist_drone_per_pop_short: "\n§G+1§! £mod_job_opportunist_drone_add£ для $VALUE$ £pop£"
+  mod_job_aberrant_drone_add: "Деятельность: $job_aberrant_drone$"
+  mod_job_aberrant_drone_per_pop: "§G+1§! $job_aberrant_drone$ как вид деятельности для $VALUE$ поселений"
+  mod_job_aberrant_drone_per_pop_short: "\n§G+1§! £mod_job_aberrant_drone_add£ для $VALUE$ £pop£"
+  mod_job_scout_drone_add: "Деятельность: $job_scout_drone$"
+  mod_job_scout_drone_per_pop: "§G+1§! $job_scout_drone$ как вид деятельности для $VALUE$ поселений"
+  mod_job_scout_drone_per_pop_short: "\n§G+1§! £mod_job_scout_drone_add£ для $VALUE$ £pop£"
+  mod_job_renegade_drone_add: "Деятельность: $job_renegade_drone$"
+  mod_job_renegade_drone_per_pop: "§G+1§! $job_renegade_drone$ как вид деятельности для $VALUE$ поселений"
+  mod_job_renegade_drone_per_pop_short: "\n§G+1§! £mod_job_renegade_drone_add£ для $VALUE$ £pop£"
+  
+  #Common Categories
+ 
+  planet_pioneers: "Исследование планеты"
+  planet_smugglers: "Контрабандистская деятельность"
+  planet_opportunist_drones: "Приспосабливаемость к планетарным условиям"
+  planet_aberrant_drones: "Анализ аберрантных отклонений"
+  planet_scout_drones: "Планетарная разведка"
+  planet_renegade_drones: "Угроза дронов ренегатов"
+  
+  ####################################
+  # Initializers
+  ####################################
+  
+  NAME_Ark_Fleet: "Исход"
+  NAME_Ark: "Исход"
+  NAME_Project_Ark_Ship: "Ковчег"
+  NAME_Bastion: "Бастион"
+  NAME_Sentinel: "Часовой"
+  NAME_Spectator: "Наблюдатель"
+  NAME_Witness: "Свидетель"
+  NAME_Salvation: "Спасение"
+  NAME_New_World: "Новый Мир"
+  NAME_Tanis: "Танис"
+  NAME_Hope: "Надежда"
+  NAME_Ark_Country: "Ковчег"
+  
+ 

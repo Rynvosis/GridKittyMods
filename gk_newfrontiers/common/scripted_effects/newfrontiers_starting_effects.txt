@@ -1,0 +1,345 @@
+
+rust_world_deposits = {
+	clear_deposits = yes
+	
+	if = {
+		limit = { planet_size <= 15 }
+		while = {
+			count = 3
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 16 }
+		while = {
+			count = 4
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 17 }
+		while = {
+			count = 5
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 18 }
+		while = {
+			count = 6
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 19 }
+		while = {
+			count = 7
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 20 }
+		while = {
+			count = 8
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 21 }
+		while = {
+			count = 9
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 22 }
+		while = {
+			count = 10
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 23 }
+		while = {
+			count = 11
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else_if = {
+		limit = { planet_size = 24 }
+		while = {
+			count = 12
+			add_deposit = d_ruined_arcology
+		}
+	}
+	else = {
+		limit = { planet_size >= 25 }
+		while = {
+			count = 13
+			add_deposit = d_ruined_arcology
+		}
+	}
+	
+	add_deposit = d_relic_dense_ruins
+	add_deposit = d_collapsed_spire
+	add_deposit = d_massive_crevice
+	add_deposit = d_shattered_solar_array
+	add_deposit = d_flooded_reactor_pits
+	add_deposit = d_crumbling_mining_tunnels
+	add_deposit = d_relic_metal_boneyard
+	add_deposit = d_relic_metal_boneyard
+	
+	prevent_anomaly = yes
+}
+
+set_starting_subclass = {
+	random_list = {
+		30 = {
+			#Settings
+			modifier = {
+				factor = 2
+				has_global_flag = subclasses_x2_setting
+			}
+			modifier = {
+				factor = 1.5
+				has_global_flag = subclasses_x1_5_setting
+			}
+			modifier = {
+				factor = 0.5
+				has_global_flag = subclasses_x0_5_setting
+			}
+			modifier = {
+				factor = 0.25
+				has_global_flag = subclasses_x0_25_setting
+			}
+			if = {
+				limit = { is_planet_class = pc_desert }
+				random_list = {
+					20 = {
+						set_flaming_subclass = yes
+					}
+					30 = {
+						set_dune_subclass = yes
+					}
+					20 = {
+						set_oasis_subclass = yes
+					}
+					25 = {
+						set_salt_subclass = yes
+					}
+					25 = {
+						set_adiabatic_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_arid }
+				random_list = {
+					25 = {
+						set_karst_subclass = yes
+					}
+					25 = {
+						set_dust_subclass = yes
+					}
+					25 = {
+						set_mesa_subclass = yes
+					}
+					25 = {
+						set_aeolian_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_savannah }
+				random_list = {
+					25 = {
+						set_steppe_subclass = yes
+					}
+					25 = {
+						set_mesocyclonic_subclass = yes
+					}
+					25 = {
+						set_effusive_subclass = yes
+					}
+					25 = {
+						set_veld_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_tropical }
+				random_list = {
+					20 = {
+						set_meridiem_subclass = yes
+					}
+					25 = {
+						set_forest_subclass = yes
+					}
+					25 = {
+						set_megaflora_subclass = yes
+					}
+					25 = {
+						set_swamp_subclass = yes
+					}
+					25 = {
+						set_monsoon_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_continental }
+				random_list = {
+					20 = {
+						set_twilight_subclass = yes
+					}
+					25 = {
+						set_boreal_subclass = yes
+						add_modifier = {
+							modifier = "production_boost"
+							days = -1
+						}
+						add_modifier = {
+							modifier = "melting_glaciers"
+							days = 3600
+						}
+						add_modifier = {
+							modifier = "melting_glaciers"
+							days = 9000
+						}
+						add_modifier = {
+							modifier = "melting_glaciers"
+							days = 18000
+						}
+					}
+					25 = {
+						set_supercontinental_subclass = yes
+					}
+					25 = {
+						set_mediterranean_subclass = yes
+					}
+					25 = {
+						set_hollow_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_ocean }
+				random_list = {
+					25 = {
+						set_panthalassic_subclass = yes
+					}
+					30 = {
+						set_storm_subclass = yes
+					}
+					20 = {
+						set_atoll_subclass = yes
+					}
+					25 = {
+						set_reef_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_tundra }
+				random_list = {
+					25 = {
+						set_taiga_subclass = yes
+					}
+					25 = {
+						set_bog_subclass = yes
+					}
+					25 = {
+						set_moraine_subclass = yes
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							owner = { species = { NOT = { is_species_class = FUN } } }
+						}
+						modifier = {
+							factor = 2
+							owner = { species = { is_species_class = FUN } }
+						}
+						set_mushroom_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_arctic }
+				random_list = {
+					20 = {
+						set_eyeball_subclass = yes
+					}
+					30 = {
+						set_glacial_subclass = yes
+					}
+					25 = {
+						set_frigid_subclass = yes
+					}
+					25 = {
+						set_iceberg_subclass = yes
+					}
+					20 = {
+						set_geothermal_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_alpine }
+				random_list = {
+					25 = {
+						set_subglacial_subclass = yes
+					}
+					25 = {
+						set_snow_subclass = yes
+					}
+					25 = {
+						set_plateau_subclass = yes
+					}
+					25 = {
+						set_highland_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_gaia }
+				set_garden_subclass = yes
+			}
+			else_if = {
+				limit = { is_planet_class = pc_nuked }
+				random_list = {
+					50 = {
+						set_wasteland_subclass = yes
+					}
+					50 = {
+						set_fallout_subclass = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { is_planet_class = pc_relic }
+				set_rust_subclass = yes
+			}
+			else_if = {
+				limit = { is_planet_class = pc_sterile }
+				random_list = {
+					25 = {
+						set_caustic_subclass = yes
+					}
+					25 = {
+						set_ash_subclass = yes
+					}
+					25 = {
+						set_archean_subclass = yes
+					}
+					25 = {
+						set_mineral_subclass = yes
+					}
+				}
+			}
+		}
+		70 = {
+			#Null
+		}
+	}
+}

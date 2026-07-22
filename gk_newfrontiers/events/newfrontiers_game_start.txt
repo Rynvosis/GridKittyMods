@@ -1,0 +1,3355 @@
+############################
+#
+# Game Start Events
+#
+# Written by Annatar
+#
+############################
+
+namespace = newfrontiers
+
+### Generate Starting Subclass
+event = {
+	id = newfrontiers.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		# Start Subclass Menu
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = newfrontiers.8 }
+		}
+		
+		every_country = {
+			limit = { 
+				is_ai = yes
+				OR = {
+					is_country_type = default
+					#is_country_type = fallen_empire
+					is_country_type = primitive
+				}
+			}					
+			capital_scope = { carrier_event = { id = newfrontiers.15 } }
+		}
+		
+		#Living Sea
+		random_galaxy_planet = {
+			limit = { has_modifier = "living_sea" }
+			set_planet_entity = {
+				picture = pc_living_sea
+				entity = ocean_planet_sea_of_conciousness_entity
+			}
+		}
+	}
+}
+
+### Test Event
+event = {
+	id = newfrontiers.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		random_galaxy_planet = {
+			limit = { has_carrier_flag = test_1 }
+			set_algae_subclass = yes
+		}
+		random_galaxy_planet = {
+			limit = { has_carrier_flag = test_2 }
+			set_bioluminescent_subclass = yes
+		}
+		random_galaxy_planet = {
+			limit = { has_carrier_flag = test_3 }
+			set_crystal_subclass = yes
+		}
+		random_galaxy_planet = {
+			limit = { has_carrier_flag = test_4 }
+			set_meridiem_subclass = yes
+		}
+	}
+}
+
+### Start message and sets global flag “has_new_frontiers_mod”
+event = {
+	id = newfrontiers.3
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		set_global_flag = "has_new_frontiers_mod"
+	}
+}
+
+### Generate Subclass
+event = {
+	id = newfrontiers.4
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_global_flag = planetary_diversity_active }
+	}
+	
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				is_homeworld = no
+				is_planet_subclass = no
+				solar_system = { NOT = { has_star_flag = sol_sector }}
+				NOT = { has_modifier = "living_sea" }
+			}
+			random_list = {
+				40 = {
+					#Generate Subclass
+					modifier = {
+						factor = 0.5
+						is_colonizable = no
+					}
+					
+					#Settings
+					modifier = {
+						factor = 2
+						has_global_flag = subclasses_x2_setting
+					}
+					modifier = {
+						factor = 1.5
+						has_global_flag = subclasses_x1_5_setting
+					}
+					modifier = {
+						factor = 0.5
+						has_global_flag = subclasses_x0_5_setting
+					}
+					modifier = {
+						factor = 0.25
+						has_global_flag = subclasses_x0_25_setting
+					}
+					switch = {
+					trigger = is_planet_class
+						pc_desert = {
+							random_list = {
+								30 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_dune_subclass = yes
+								}
+								20 = {
+									modifier = {
+										factor = 2
+										has_favorable_conditions = yes
+									}
+									modifier = {
+										factor = 0.5
+										has_natural_hazards = yes
+									}
+									set_oasis_subclass = yes
+								}
+								25 = {
+									set_salt_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_adiabatic_subclass = yes
+								}
+							}					
+						}
+						pc_arid = {
+							random_list = {
+								25 = {
+									set_karst_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_dust_subclass = yes
+								}
+								25 = {
+									set_mesa_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_aeolian_subclass = yes
+								}
+							}					
+						}
+						pc_savannah = {
+							random_list = {
+								25 = {
+									set_steppe_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_mesocyclonic_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_effusive_subclass = yes
+								}
+								25 = {
+									set_veld_subclass = yes
+								}
+							}
+						}
+						pc_tropical = {
+							random_list = {
+								25 = {
+									set_forest_subclass = yes
+								}
+								25 = {
+									set_megaflora_subclass = yes
+								}
+								25 = {
+									set_swamp_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_monsoon_subclass = yes
+								}
+							}					
+						}
+						pc_continental = {
+							random_list = {
+								25 = {
+									set_boreal_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_supercontinental_subclass = yes
+								}
+								25 = {
+									set_mediterranean_subclass = yes
+								}
+								25 = {
+									set_hollow_subclass = yes
+								}
+							}					
+						}
+						pc_ocean = {
+							random_list = {
+								25 = {
+									set_panthalassic_subclass = yes
+								}
+								30 = {
+									set_storm_subclass = yes
+								}
+								20 = {
+									modifier = {
+										factor = 2
+										has_favorable_conditions = yes
+									}
+									modifier = {
+										factor = 0.5
+										has_natural_hazards = yes
+									}
+									set_atoll_subclass = yes
+								}
+								25 = {
+									set_reef_subclass = yes
+								}
+							}					
+						}
+						pc_tundra = {
+							random_list = {
+								25 = {
+									set_taiga_subclass = yes
+								}
+								25 = {
+									set_bog_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_moraine_subclass = yes
+								}
+								25 = {
+									set_mushroom_subclass = yes
+								}
+							}					
+						}
+						pc_arctic = {
+							random_list = {
+								30 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_glacial_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_frigid_subclass = yes
+								}
+								25 = {
+									set_iceberg_subclass = yes
+								}
+								20 = {
+									modifier = {
+										factor = 2
+										has_favorable_conditions = yes
+									}
+									modifier = {
+										factor = 0.5
+										has_natural_hazards = yes
+									}
+									set_geothermal_subclass = yes
+								}
+							}					
+						}
+						pc_alpine = {
+							random_list = {
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_subglacial_subclass = yes
+								}
+								25 = {
+									set_snow_subclass = yes
+								}
+								25 = {
+									set_plateau_subclass = yes
+								}
+								25 = {
+									set_highland_subclass = yes
+								}
+							}					
+						}
+						pc_nuked = {
+							random_list = {
+								25 = {
+									set_wasteland_subclass = yes
+								}
+								25 = {
+									set_fallout_subclass = yes
+								}
+								50 = {
+									#Null
+								}
+							}
+						}
+						pc_gaia = {
+							random_list = {
+								25 = {
+									set_ancient_subclass = yes
+								}
+								25 = {
+									set_garden_subclass = yes
+								}
+								50 = {
+									#Null
+								}
+							}
+						}
+						pc_relic = {
+							random_list = {
+								30 = {
+									set_rust_subclass = yes
+								}
+								70 = {
+									#Null
+								}
+							}
+						}
+						pc_sterile = {
+							random_list = {
+								25 = {
+									set_caustic_subclass = yes
+								}
+								25 = {
+									set_ash_subclass = yes
+								}
+								25 = {
+									set_archean_subclass = yes
+								}
+								25 = {
+									set_mineral_subclass = yes
+								}
+							}
+						}
+						pc_volcanic = {
+							random_list = {
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_primal_subclass = yes
+								}
+								25 = {
+									set_young_subclass = yes
+								}
+								25 = {
+									set_magma_subclass = yes
+								}
+							}
+						}
+					}
+					
+					reroll_deposits = yes
+				}
+				60 = {
+					#Null
+				}
+			}
+		}
+		
+		#Set Exotic Subclass
+		#random_galaxy_planet = {
+		#	limit = {
+		#		is_planet_class = pc_tropical
+		#		is_homeworld = no
+		#		is_planet_subclass = no
+		#	}
+		#	set_planet_entity = {
+		#		picture = pc_fungal
+		#		entity = fungal_planet_01_entity
+		#	}
+		#	add_modifier = {
+		#		modifier = "fungal_world"
+		#		days = -1
+		#	}
+		#	reroll_deposits = yes
+		#}
+		
+		
+		#Set Tidally-Locked
+		every_galaxy_planet = {
+			limit = { has_modifier = "tidal_locked" }
+			remove_modifier = "tidal_locked"
+		}
+		
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_dry = yes
+					is_wet = yes
+					is_cold = yes
+				}
+				NOR = {
+					is_homeworld = yes
+					is_planet_subclass = yes
+					has_ring = yes
+					is_moon = yes
+					has_moon = yes
+					has_modifier = "living_sea" 
+				}
+			}
+			random_list = {
+				10 = {
+					modifier = {
+						factor = 3
+						has_carrier_flag = hot_zone
+					}
+					modifier = {
+						factor = 2
+						has_carrier_flag = warm_zone
+					}
+					modifier = {
+						factor = 1.5
+						has_carrier_flag = temperate_zone
+					}
+					random_list = {
+						25 = {
+							modifier = {
+								factor = 2
+								has_carrier_flag = hot_zone
+							}
+							
+							set_flaming_subclass = yes
+						}
+						25 = {
+							modifier = {
+								factor = 2
+								has_carrier_flag = warm_zone
+							}
+							
+							set_eyeball_subclass = yes
+						}
+						25 = {
+							modifier = {
+								factor = 2
+								has_carrier_flag = temperate_zone
+							}
+							
+								set_twilight_subclass = yes
+						}
+						25 = {
+							set_meridiem_subclass = yes
+						}
+					}
+				}
+				90 = {
+					#Null
+				}
+			}
+		}
+		
+		#Set Hollow World Flag
+		
+		
+		
+		
+		random_galaxy_planet = {
+			limit = { has_modifier = "living_sea" }
+			set_planet_entity = {
+				picture = pc_living_sea
+				entity = ocean_planet_sea_of_conciousness_entity
+			}
+		}
+		
+		#Exotic Worlds
+		
+		#Noxious World
+		random_list = {
+			70 = {
+				#Settings
+				modifier = {
+					factor = 2
+					has_global_flag = subclasses_x2_setting
+				}
+				modifier = {
+					factor = 1.5
+					has_global_flag = subclasses_x1_5_setting
+				}
+				modifier = {
+					factor = 0.5
+					has_global_flag = subclasses_x0_5_setting
+				}
+				modifier = {
+					factor = 0.25
+					has_global_flag = subclasses_x0_25_setting
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = no_exotic_subclasses
+				}
+				random_galaxy_planet = {
+					limit = {
+						is_homeworld = no
+						is_planet_subclass = no
+						is_planet_class = pc_tropical
+					}
+					set_noxious_subclass = yes
+				}
+			}
+			30 = {
+				#Null
+			}
+		}
+		#Algae World
+		random_list = {
+			70 = {
+				#Settings
+				modifier = {
+					factor = 2
+					has_global_flag = subclasses_x2_setting
+				}
+				modifier = {
+					factor = 1.5
+					has_global_flag = subclasses_x1_5_setting
+				}
+				modifier = {
+					factor = 0.5
+					has_global_flag = subclasses_x0_5_setting
+				}
+				modifier = {
+					factor = 0.25
+					has_global_flag = subclasses_x0_25_setting
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = no_exotic_subclasses
+				}
+				random_galaxy_planet = {
+					limit = {
+						is_homeworld = no
+						is_planet_subclass = no
+						is_planet_class = pc_ocean
+					}
+					set_algae_subclass = yes
+				}
+			}
+			30 = {
+				#Null
+			}
+		}
+		#Bioluminescent World
+		random_list = {
+			70 = {
+				#Settings
+				modifier = {
+					factor = 2
+					has_global_flag = subclasses_x2_setting
+				}
+				modifier = {
+					factor = 1.5
+					has_global_flag = subclasses_x1_5_setting
+				}
+				modifier = {
+					factor = 0.5
+					has_global_flag = subclasses_x0_5_setting
+				}
+				modifier = {
+					factor = 0.25
+					has_global_flag = subclasses_x0_25_setting
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = no_exotic_subclasses
+				}
+				random_galaxy_planet = {
+					limit = {
+						is_homeworld = no
+						is_planet_subclass = no
+						is_planet_class = pc_tropical
+					}
+					set_bioluminescent_subclass = yes
+				}
+			}
+			30 = {
+				#Null
+			}
+		}
+		#Crystal World
+		random_list = {
+			70 = {
+				#Settings
+				modifier = {
+					factor = 2
+					has_global_flag = subclasses_x2_setting
+				}
+				modifier = {
+					factor = 1.5
+					has_global_flag = subclasses_x1_5_setting
+				}
+				modifier = {
+					factor = 0.5
+					has_global_flag = subclasses_x0_5_setting
+				}
+				modifier = {
+					factor = 0.25
+					has_global_flag = subclasses_x0_25_setting
+				}
+				modifier = {
+					factor = 0
+					has_global_flag = no_exotic_subclasses
+				}
+				random_galaxy_planet = {
+					limit = {
+						is_homeworld = no
+						is_planet_subclass = no
+						is_planet_class = pc_tundra
+					}
+					set_crystal_subclass = yes
+				}
+			}
+			30 = {
+				#Null
+			}
+		}
+	}
+}
+
+### Starlord deposits (Patreon)
+event = {
+	id = newfrontiers.5
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		#Craisiman's Labyrinth
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_planet_class = pc_ocean
+					is_planet_class = pc_continental
+					has_modifier = "oasis_world"
+				}
+				NOT = { has_modifier = "panthalassic_world" }
+			}
+			add_deposit = d_crazymans_labyrinth
+		}
+		#Rahman's Canyon
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_dry = yes
+					has_modifier = "supercontinental_world"
+					is_planet_class = pc_sterile
+				}
+				NOR = {
+					has_modifier = "steppe_world"
+					has_modifier = "salt_world"
+					has_modifier = "mesocyclonic_world"
+				}
+			}
+			add_deposit = d_rahmans_canyon
+		}
+		#Bynum's Dale
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					can_have_habitable_deposits = yes
+				}
+				NOR = {
+					has_modifier = "panthalassic_world"
+					has_modifier = "storm_world"
+					has_modifier = "eyeball_world"
+					has_modifier = "glacial_world"
+					has_modifier = "frigid_world"
+					has_modifier = "moraine_world"
+					has_modifier = "magma_world"
+					has_modifier = "subglacial_world"
+				}
+			}
+			add_deposit = d_bynums_dale
+		}
+		#Mattern's Formation
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_dry = yes
+					is_wet = yes
+					is_cold = yes
+					is_planet_class = pc_nuked
+					is_planet_class = pc_gaia
+					is_planet_class = pc_relic
+				}
+				NOR = {
+					has_modifier = "panthalassic_world"
+					has_modifier = "storm_world"
+					has_modifier = "iceberg_world"
+					has_modifier = "eyeball_world"
+				}
+			}
+			add_deposit = d_matterns_formation
+		}
+		#Bluehawk's Cavities
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_dry = yes
+					is_wet = yes
+					is_cold = yes
+					is_planet_class = pc_nuked
+					is_planet_class = pc_gaia
+					is_planet_class = pc_relic
+				}
+				NOR = {
+					has_modifier = "panthalassic_world"
+					has_modifier = "eyeball_world"
+				}
+			}
+			add_deposit = d_bluehawks_cavities
+		}
+		#Stevens's Fields
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					can_have_habitable_deposits = yes
+					is_planet_class = pc_sterile
+				}
+			}
+			add_deposit = d_stevens_fields
+		}
+		#Moonizer's Fossils
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_dry = yes
+					is_wet = yes
+					is_cold = yes
+					is_planet_class = pc_nuked
+					is_planet_class = pc_gaia
+					is_planet_class = pc_relic
+					is_planet_class = pc_sterile
+				}
+				NOR = {
+					has_modifier = "panthalassic_world"
+					has_modifier = "storm_world"
+					has_modifier = "eyeball_world"
+				}
+			}
+			add_deposit = d_moonizer_fossils
+		}
+		#Aries S6 Region
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_planet_class = pc_ocean
+					has_modifier = "eyeball_world"
+					has_modifier = "iceberg_world"
+				}
+			}
+			add_deposit = d_region_ariess6
+		}
+		#Da Gwim Weaper's Range
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_planet_class = pc_continental
+					is_planet_class = pc_desert
+					is_planet_class = pc_alpine
+					is_planet_class = pc_arctic
+					is_planet_class = pc_arid
+					is_planet_class = pc_tundra
+					is_planet_class = pc_gaia
+					is_planet_class = pc_relic
+					is_planet_class = pc_sterile
+					has_modifier = "noxious_world"
+				}
+				NOR = {
+					has_modifier = "eyeball_world"
+					has_modifier = "karst_world"
+					has_modifier = "iceberg_world"
+				}
+			}
+			add_deposit = d_dagwimweaper_range
+		}
+		#Zhenn Sea
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					has_modifier = "young_world"
+					has_modifier = "panthalassic_world"
+					has_modifier = "storm_world"
+					has_modifier = "reef_world"
+					has_modifier = "iceberg_world"
+					has_modifier = "eyeball_world"
+					has_modifier = "subglacial_world"
+				}
+			}
+			add_deposit = d_zhenn_sea
+		}
+		#Edholm Caverns
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_planet_class = pc_ocean
+					is_planet_class = pc_alpine
+					is_planet_class = pc_arctic
+					is_planet_class = pc_arid
+					is_planet_class = pc_tundra
+					is_planet_class = pc_nuked
+					is_planet_class = pc_gaia
+					is_planet_class = pc_relic
+					has_modifier = "effusive_world"
+				}
+				NOR = {
+					has_modifier = "panthalassic_world"
+					has_modifier = "atoll_world"
+					has_modifier = "eyeball_world"
+					has_modifier = "subglacial_world"
+					has_modifier = "mesa_world"
+					has_modifier = "plateau_world"
+				}
+			}
+			add_deposit = d_edholm_caverns
+		}
+		#Grigorievsky Oasis
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_planet_class = pc_arid
+					is_planet_class = pc_desert
+					has_modifier = "flaming_world"
+				}
+				NOR = {
+					has_modifier = "karst_world"
+					has_modifier = "dust_world"
+					has_modifier = "oasis_world"
+				}
+			}
+			add_deposit = d_grigorievsky_oasis
+		}
+		#Ushakov Geysers
+		random_galaxy_planet = {
+			limit = { 
+				is_homeworld = no 
+				OR = {
+					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
+					is_planet_class = pc_savannah
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_sterile
+					has_modifier = "boreal_world"
+					has_modifier = "primal_world"
+					has_modifier = "meridiem_world"
+				}
+				NOR = {
+					has_modifier = "oasis_world"
+					has_modifier = "frigid_world"
+					has_modifier = "subglacial_world"
+				}
+			}
+			add_deposit = d_ushakov_geysers
+		}
+	}
+}
+event = {
+	id = newfrontiers.7
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_galaxy_planet = {	
+			
+			limit = {
+				AND = {
+					OR = {
+						solar_system = {
+							OR = {
+								is_star_class = sc_l
+								is_star_class = sc_t
+								is_star_class = sc_y
+								is_star_class = sc_d
+							}
+						}
+						AND = {
+							solar_system = {
+								is_star_class = sc_m
+							}
+							has_carrier_flag = cold_zone
+						}
+					}
+					OR = {
+						is_planet_class = "pc_desert"
+						is_planet_class = "pc_arid"
+						is_planet_class = "pc_ocean"
+						is_planet_class = "pc_tundra"
+						is_planet_class = "pc_arctic"
+						is_planet_class = "pc_alpine"
+					}
+					NOT = { num_modifiers > 2 }
+					NOT = { has_modifier = "long_night" }
+				}
+			}
+			add_modifier = {
+				modifier = "eternal_night"
+				days = -1
+			}
+		}
+	}
+}
+
+#Subclass Menu
+country_event = {
+	id = newfrontiers.8
+	title = "newfrontiers.8.name"
+	desc = "newfrontiers.8.desc"
+	picture = GFX_evt_colony_settlement
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	#Default: your current class. No trigger, so the popup always has an option.
+	option = {
+		name = "newfrontiers.8.default"
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.69 } }
+		}
+	}
+
+	#Desert
+	option = {
+		name = "newfrontiers.8.dune"
+		trigger = {
+			capital_scope = { is_planet_class = pc_desert }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.18 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.oasis"
+		trigger = {
+			capital_scope = { is_planet_class = pc_desert }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.19 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.salt"
+		trigger = {
+			capital_scope = { is_planet_class = pc_desert }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.20 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.adiabatic"
+		trigger = {
+			capital_scope = { is_planet_class = pc_desert }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.21 } }
+		}
+	}
+	#Arid
+	option = {
+		name = "newfrontiers.8.karst"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arid }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.22 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.dust"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arid }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.23 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.aeolian"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arid }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.24 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.mesa"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arid }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.25 } }
+		}
+	}
+	#Savannah
+	option = {
+		name = "newfrontiers.8.steppe"
+		trigger = {
+			capital_scope = { is_planet_class = pc_savannah }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.26 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.mesocyclonic"
+		trigger = {
+			capital_scope = { is_planet_class = pc_savannah }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.27 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.effusive"
+		trigger = {
+			capital_scope = { is_planet_class = pc_savannah }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.28 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.veld"
+		trigger = {
+			capital_scope = { is_planet_class = pc_savannah }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.29 } }
+		}
+	}
+	#Tropical
+	option = {
+		name = "newfrontiers.8.swamp"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tropical }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.30 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.forest"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tropical }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.31 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.monsoon"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tropical }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.32 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.megaflora"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tropical }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.33 } }
+		}
+	}
+	#Continental
+	option = {
+		name = "newfrontiers.8.hollow"
+		trigger = {
+			capital_scope = { is_planet_class = pc_continental }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.71 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.boreal"
+		trigger = {
+			capital_scope = { is_planet_class = pc_continental }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.34 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.supercontinental"
+		trigger = {
+			capital_scope = { is_planet_class = pc_continental }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.35 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.mediterranean"
+		trigger = {
+			capital_scope = { is_planet_class = pc_continental }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.36 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.primal"
+		trigger = {
+			capital_scope = { is_planet_class = pc_volcanic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.37 } }
+		}
+	}
+	#Ocean
+	option = {
+		name = "newfrontiers.8.panthalassic"
+		trigger = {
+			capital_scope = { is_planet_class = pc_ocean }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.38 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.atoll"
+		trigger = {
+			capital_scope = { is_planet_class = pc_ocean }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.39 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.storm"
+		trigger = {
+			capital_scope = { is_planet_class = pc_ocean }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.40 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.reef"
+		trigger = {
+			capital_scope = { is_planet_class = pc_ocean }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.41 } }
+		}
+	}
+	#Tundra
+	option = {
+		name = "newfrontiers.8.taiga"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tundra }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.42 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.moraine"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tundra }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.43 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.bog"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tundra }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.44 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.mushroom"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tundra }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.45 } }
+		}
+	}
+	#Arctic
+	option = {
+		name = "newfrontiers.8.glacial"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arctic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.46 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.iceberg"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arctic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.47 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.geothermal"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arctic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.48 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.frigid"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arctic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.49 } }
+		}
+	}
+	#Alpine
+	option = {
+		name = "newfrontiers.8.mineral"
+		trigger = {
+			capital_scope = { is_planet_class = pc_sterile }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.50 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.snow"
+		trigger = {
+			capital_scope = { is_planet_class = pc_alpine }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.51 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.plateau"
+		trigger = {
+			capital_scope = { is_planet_class = pc_alpine }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.52 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.highland"
+		trigger = {
+			capital_scope = { is_planet_class = pc_alpine }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.53 } }
+		}
+	}
+	#Tidal family
+	option = {
+		name = "newfrontiers.8.flaming"
+		trigger = {
+			capital_scope = { is_planet_class = pc_desert }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.54 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.meridiem"
+		trigger = {
+			capital_scope = { is_planet_class = pc_tropical }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.55 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.eyeball"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arctic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.56 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.twilight"
+		trigger = {
+			capital_scope = { is_planet_class = pc_continental }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.72 } }
+		}
+	}
+	#Sterille
+	option = {
+		name = "newfrontiers.8.caustic"
+		trigger = {
+			capital_scope = { is_planet_class = pc_sterile }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.70 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.ash"
+		trigger = {
+			capital_scope = { is_planet_class = pc_sterile }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.58 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.archean"
+		trigger = {
+			capital_scope = { is_planet_class = pc_sterile }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.63 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.young"
+		trigger = {
+			capital_scope = { is_planet_class = pc_volcanic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.64 } }
+		}
+	}
+	#Hollow
+	option = {
+		name = "newfrontiers.8.magma"
+		trigger = {
+			capital_scope = { is_planet_class = pc_volcanic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.59 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.subglacial"
+		trigger = {
+			capital_scope = { is_planet_class = pc_alpine }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.60 } }
+		}
+	}
+	#Gaia
+	#option = {
+	#	name = "newfrontiers.8.garden"
+	#	trigger = {
+	#		capital_scope = { is_planet_class = pc_gaia }
+	#	}
+	#	custom_tooltip = newfrontiers.8.more_details.tooltip
+	#	hidden_effect = {
+	#		capital_scope = { carrier_event = { id newfrontiers.65 }
+	#	}
+	#}
+	#Nuked
+	option = {
+		name = "newfrontiers.8.wasteland"
+		trigger = {
+			capital_scope = { is_planet_class = pc_nuked }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.66 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.fallout"
+		trigger = {
+			capital_scope = { is_planet_class = pc_nuked }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.67 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.rust"
+		trigger = {
+			capital_scope = { is_planet_class = pc_relic }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.68 } }
+		}
+	}
+}
+
+#Adding modifiers Beautiful Sky
+event = {
+	id = newfrontiers.9
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_galaxy_planet = {	
+			limit = {
+				AND = {
+					solar_system = {
+						OR = {
+							is_star_class = sc_nova_1
+							is_star_class = sc_nova_2
+							is_star_class = sc_w_azure
+							is_star_class = sc_w_red
+							is_star_class = sc_w_green
+							is_star_class = sc_w_purple
+							is_star_class = sc_lbv_blue
+							is_star_class = sc_lbv_green
+							is_star_class = sc_lbv_red
+							is_star_class = sc_p_purple
+							is_star_class = sc_p_green
+							is_star_class = sc_p_red
+						}
+					}
+					is_colonizable = yes
+					NOT = { num_modifiers > 2 }
+				}
+			}
+			add_modifier = {
+				modifier = "beautiful_sky"
+				days = -1
+			}
+		}
+	}
+}
+
+### Event planet changes 
+event = {
+	id = newfrontiers.10
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		#Wenkwort Artem
+		random_galaxy_planet = {
+			limit = { has_modifier = pm_wenkwort_gardens }
+			set_garden_subclass = yes
+		}
+	}
+}
+
+#Adding modifiers Rings
+event = {
+	id = newfrontiers.11
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_galaxy_planet = {	
+			
+			limit = {
+				AND = {
+					has_ring = yes
+					NOT = { num_modifiers > 2 }
+				}
+			}
+			if = {
+				limit = { is_colonizable = yes }
+				random_list = {
+					10 = {
+						add_modifier = {
+							modifier = "picturesque_rings"
+							days = -1
+						}
+					}
+					10 = {
+						add_modifier = {
+							modifier = "desynchronous_rings"
+							days = -1
+						}
+					}
+					10 = {
+						add_modifier = {
+							modifier = "rich_rings"
+							days = -1
+						}
+					}
+					10 = {
+						add_modifier = {
+							modifier = "diamond_rings"
+							days = -1
+						}
+					}
+					60 = {
+						# Null
+					}
+				}
+				
+			}
+		}
+	}
+}
+event = {
+	id = newfrontiers.13
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_global_flag = no_exotic_subclasses
+			has_global_flag = no_legendary_subclasses
+		}
+	}
+
+
+	immediate = {
+		if = {
+			limit = { has_global_flag = no_legendary_subclasses }
+			every_galaxy_planet = {
+				limit = { has_carrier_flag = legendary_world }
+				remove_subclass_modifiers = yes
+				change_pc = pc_shattered
+				clear_deposits = yes
+			}
+		}
+	}
+}
+
+# Stocks Frontier-class capitals. Vanilla generate_start_deposits_and_blockers clears
+# deposits then only re-adds them for the 11 classes it knows, so these three come up
+# empty. Fires from empire_init_capital_colony after vanilla's game_start.12.
+# this: capital colony, from: founder species
+colony_event = {
+	id = newfrontiers.14
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { is_planet_class = pc_sterile }
+			add_deposit = d_geothermal_vent
+			add_deposit = d_rich_mountain
+			add_deposit = d_mineral_fields
+			add_deposit = d_hydroponic_complex
+			if = {
+				limit = { owner = { is_lithoid_empire = yes } }
+				add_deposit = d_ore_rich_caverns
+			}
+			else = {
+				add_deposit = d_irrigated_fields
+			}
+			add_deposit = d_dust_desert
+			add_deposit = d_fuming_bog
+		}
+	}
+}
+
+carrier_event = {
+	id = newfrontiers.15
+	hide_window = yes
+	is_triggered_only = yes
+
+
+	immediate = {
+		set_starting_subclass = yes
+	}
+}
+# Details page for keeping the plain class, so the default previews like every other option.
+carrier_event = {
+	id = newfrontiers.69
+	title = "newfrontiers.69.name"
+	picture = {
+		trigger = { is_planet_class = pc_desert }
+		picture = GFX_evt_desert
+	}
+	picture = {
+		trigger = { is_planet_class = pc_arid }
+		picture = GFX_evt_arid
+	}
+	picture = {
+		trigger = { is_planet_class = pc_savannah }
+		picture = GFX_evt_savannah
+	}
+	picture = {
+		trigger = { is_planet_class = pc_tropical }
+		picture = GFX_evt_tropical
+	}
+	picture = {
+		trigger = { is_planet_class = pc_continental }
+		picture = GFX_evt_continental
+	}
+	picture = {
+		trigger = { is_planet_class = pc_ocean }
+		picture = GFX_evt_ocean
+	}
+	picture = {
+		trigger = { is_planet_class = pc_tundra }
+		picture = GFX_evt_tundra
+	}
+	picture = {
+		trigger = { is_planet_class = pc_arctic }
+		picture = GFX_evt_arctic
+	}
+	picture = {
+		trigger = { is_planet_class = pc_alpine }
+		picture = GFX_evt_alpine_city
+	}
+	picture = {
+		trigger = { is_planet_class = pc_gaia }
+		picture = GFX_evt_gaia
+	}
+	picture = {
+		trigger = { is_planet_class = pc_nuked }
+		picture = GFX_evt_tomb_world
+	}
+	picture = {
+		trigger = { is_planet_class = pc_relic }
+		picture = GFX_evt_relic_world
+	}
+	picture = {
+		trigger = { is_planet_class = pc_sterile }
+		picture = GFX_evt_sterile_world
+	}
+	picture = {
+		picture = GFX_evt_colony_settlement
+	}
+	show_sound = event_radio_chatter
+	location = ROOT
+
+	is_triggered_only = yes
+
+	desc = {
+		trigger = { is_planet_class = pc_desert }
+		text = newfrontiers.69.desc.desert
+	}
+	desc = {
+		trigger = { is_planet_class = pc_arid }
+		text = newfrontiers.69.desc.arid
+	}
+	desc = {
+		trigger = { is_planet_class = pc_savannah }
+		text = newfrontiers.69.desc.savannah
+	}
+	desc = {
+		trigger = { is_planet_class = pc_tropical }
+		text = newfrontiers.69.desc.tropical
+	}
+	desc = {
+		trigger = { is_planet_class = pc_continental }
+		text = newfrontiers.69.desc.continental
+	}
+	desc = {
+		trigger = { is_planet_class = pc_ocean }
+		text = newfrontiers.69.desc.ocean
+	}
+	desc = {
+		trigger = { is_planet_class = pc_tundra }
+		text = newfrontiers.69.desc.tundra
+	}
+	desc = {
+		trigger = { is_planet_class = pc_arctic }
+		text = newfrontiers.69.desc.arctic
+	}
+	desc = {
+		trigger = { is_planet_class = pc_alpine }
+		text = newfrontiers.69.desc.alpine
+	}
+	desc = {
+		trigger = { is_planet_class = pc_gaia }
+		text = newfrontiers.69.desc.gaia
+	}
+	desc = {
+		trigger = { is_planet_class = pc_nuked }
+		text = newfrontiers.69.desc.nuked
+	}
+	desc = {
+		trigger = { is_planet_class = pc_relic }
+		text = newfrontiers.69.desc.relic
+	}
+	desc = {
+		trigger = { is_planet_class = pc_sterile }
+		text = newfrontiers.69.desc.sterile
+	}
+	desc = {
+		text = newfrontiers.69.desc.generic
+	}
+
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.no_changes.tooltip
+	}
+
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+
+}
+
+carrier_event = {
+	id = newfrontiers.18
+	title = "newfrontiers.18.name"
+	desc = "newfrontiers.18.desc"
+	picture = GFX_evt_dune_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_dune_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Oasis World 
+carrier_event = {
+	id = newfrontiers.19
+	title = "newfrontiers.19.name"
+	desc = "newfrontiers.19.desc"
+	picture = GFX_evt_oasis_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_oasis_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Salt World 
+carrier_event = {
+	id = newfrontiers.20
+	title = "newfrontiers.20.name"
+	desc = "newfrontiers.20.desc"
+	picture = GFX_evt_salt_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_salt_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Adiabatic World 
+carrier_event = {
+	id = newfrontiers.21
+	title = "newfrontiers.21.name"
+	desc = "newfrontiers.21.desc"
+	picture = GFX_evt_adiabatic_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_adiabatic_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Karst World 
+carrier_event = {
+	id = newfrontiers.22
+	title = "newfrontiers.22.name"
+	desc = "newfrontiers.22.desc"
+	picture = GFX_evt_karst_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_karst_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Dust World 
+carrier_event = {
+	id = newfrontiers.23
+	title = "newfrontiers.23.name"
+	desc = "newfrontiers.23.desc"
+	picture = GFX_evt_dust_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_dust_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Aeolian World 
+carrier_event = {
+	id = newfrontiers.24
+	title = "newfrontiers.24.name"
+	desc = "newfrontiers.24.desc"
+	picture = GFX_evt_aeolian_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_aeolian_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Mesa World 
+carrier_event = {
+	id = newfrontiers.25
+	title = "newfrontiers.25.name"
+	desc = "newfrontiers.25.desc"
+	picture = GFX_evt_mesa_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_mesa_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Steppe World 
+carrier_event = {
+	id = newfrontiers.26
+	title = "newfrontiers.26.name"
+	desc = "newfrontiers.26.desc"
+	picture = GFX_evt_steppe_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_steppe_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Mesocyclonic World 
+carrier_event = {
+	id = newfrontiers.27
+	title = "newfrontiers.27.name"
+	desc = "newfrontiers.27.desc"
+	picture = GFX_evt_mesocyclonic_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_mesocyclonic_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Effusive World 
+carrier_event = {
+	id = newfrontiers.28
+	title = "newfrontiers.28.name"
+	desc = "newfrontiers.28.desc"
+	picture = GFX_evt_effusive_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_effusive_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Veld World 
+carrier_event = {
+	id = newfrontiers.29
+	title = "newfrontiers.29.name"
+	desc = "newfrontiers.29.desc"
+	picture = GFX_evt_veld_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_veld_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Swamp World 
+carrier_event = {
+	id = newfrontiers.30
+	title = "newfrontiers.30.name"
+	desc = "newfrontiers.30.desc"
+	picture = GFX_evt_swamp_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_swamp_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Forest World 
+carrier_event = {
+	id = newfrontiers.31
+	title = "newfrontiers.31.name"
+	desc = "newfrontiers.31.desc"
+	picture = GFX_evt_forest_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_forest_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Monsoon World 
+carrier_event = {
+	id = newfrontiers.32
+	title = "newfrontiers.32.name"
+	desc = "newfrontiers.32.desc"
+	picture = GFX_evt_monsoon_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_monsoon_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Megaflora World 
+carrier_event = {
+	id = newfrontiers.33
+	title = "newfrontiers.33.name"
+	desc = "newfrontiers.33.desc"
+	picture = GFX_evt_megaflora_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_megaflora_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Hollow World 
+carrier_event = {
+	id = newfrontiers.71
+	title = "newfrontiers.71.name"
+	desc = "newfrontiers.71.desc"
+	picture = GFX_evt_hollow_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_hollow_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Twilight World 
+carrier_event = {
+	id = newfrontiers.72
+	title = "newfrontiers.72.name"
+	desc = "newfrontiers.72.desc"
+	picture = GFX_evt_prairie_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_twilight_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Boreal World 
+carrier_event = {
+	id = newfrontiers.34
+	title = "newfrontiers.34.name"
+	desc = "newfrontiers.34.desc"
+	picture = GFX_evt_boreal_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_boreal_subclass = yes
+				
+			add_modifier = {
+				modifier = "production_boost"
+				days = -1
+			}
+			add_modifier = {
+				modifier = "melting_glaciers"
+				days = 3600
+			}
+			add_modifier = {
+				modifier = "melting_glaciers"
+				days = 9000
+			}
+			add_modifier = {
+				modifier = "melting_glaciers"
+				days = 18000
+			}
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Supercontinental World 
+carrier_event = {
+	id = newfrontiers.35
+	title = "newfrontiers.35.name"
+	desc = "newfrontiers.35.desc"
+	picture = GFX_evt_supercontinental_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_supercontinental_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Mediterranean World 
+carrier_event = {
+	id = newfrontiers.36
+	title = "newfrontiers.36.name"
+	desc = "newfrontiers.36.desc"
+	picture = GFX_evt_mediterranean_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_mediterranean_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Primal World 
+carrier_event = {
+	id = newfrontiers.37
+	title = "newfrontiers.37.name"
+	desc = "newfrontiers.37.desc"
+	picture = GFX_evt_primal_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_primal_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Panthalassic World 
+carrier_event = {
+	id = newfrontiers.38
+	title = "newfrontiers.38.name"
+	desc = "newfrontiers.38.desc"
+	picture = GFX_evt_panthalassic_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_panthalassic_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Atoll World 
+carrier_event = {
+	id = newfrontiers.39
+	title = "newfrontiers.39.name"
+	desc = "newfrontiers.39.desc"
+	picture = GFX_evt_atoll_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_atoll_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Storm World 
+carrier_event = {
+	id = newfrontiers.40
+	title = "newfrontiers.40.name"
+	desc = "newfrontiers.40.desc"
+	picture = GFX_evt_storm_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_storm_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Reef World 
+carrier_event = {
+	id = newfrontiers.41
+	title = "newfrontiers.41.name"
+	desc = "newfrontiers.41.desc"
+	picture = GFX_evt_reef_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_reef_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Taiga World 
+carrier_event = {
+	id = newfrontiers.42
+	title = "newfrontiers.42.name"
+	desc = "newfrontiers.42.desc"
+	picture = GFX_evt_taiga_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_taiga_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Moraine World 
+carrier_event = {
+	id = newfrontiers.43
+	title = "newfrontiers.43.name"
+	desc = "newfrontiers.43.desc"
+	picture = GFX_evt_moraine_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_moraine_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Bog World 
+carrier_event = {
+	id = newfrontiers.44
+	title = "newfrontiers.44.name"
+	desc = "newfrontiers.44.desc"
+	picture = GFX_evt_bog_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_bog_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Mushroom World 
+carrier_event = {
+	id = newfrontiers.45
+	title = "newfrontiers.45.name"
+	desc = "newfrontiers.45.desc"
+	picture = GFX_evt_mushroom_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_mushroom_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Glacial World 
+carrier_event = {
+	id = newfrontiers.46
+	title = "newfrontiers.46.name"
+	desc = "newfrontiers.46.desc"
+	picture = GFX_evt_glacial_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_glacial_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Iceberg World 
+carrier_event = {
+	id = newfrontiers.47
+	title = "newfrontiers.47.name"
+	desc = "newfrontiers.47.desc"
+	picture = GFX_evt_iceberg_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_iceberg_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Geothermal World 
+carrier_event = {
+	id = newfrontiers.48
+	title = "newfrontiers.48.name"
+	desc = "newfrontiers.48.desc"
+	picture = GFX_evt_geothermal_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_geothermal_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Frigid World 
+carrier_event = {
+	id = newfrontiers.49
+	title = "newfrontiers.49.name"
+	desc = "newfrontiers.49.desc"
+	picture = GFX_evt_frigid_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_frigid_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Mineral World 
+carrier_event = {
+	id = newfrontiers.50
+	title = "newfrontiers.50.name"
+	desc = "newfrontiers.50.desc"
+	picture = GFX_evt_mineral_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_mineral_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Snow World 
+carrier_event = {
+	id = newfrontiers.51
+	title = "newfrontiers.51.name"
+	desc = "newfrontiers.51.desc"
+	picture = GFX_evt_snow_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_snow_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Plateau World 
+carrier_event = {
+	id = newfrontiers.52
+	title = "newfrontiers.52.name"
+	desc = "newfrontiers.52.desc"
+	picture = GFX_evt_plateau_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_plateau_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Highland World 
+carrier_event = {
+	id = newfrontiers.53
+	title = "newfrontiers.53.name"
+	desc = "newfrontiers.53.desc"
+	picture = GFX_evt_highland_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_highland_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Flaming World 
+carrier_event = {
+	id = newfrontiers.54
+	title = "newfrontiers.54.name"
+	desc = "newfrontiers.54.desc"
+	picture = GFX_evt_flaming_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_flaming_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Meridiem World 
+carrier_event = {
+	id = newfrontiers.55
+	title = "newfrontiers.55.name"
+	desc = "newfrontiers.55.desc"
+	picture = GFX_evt_meridiem_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_meridiem_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Eyeball World 
+carrier_event = {
+	id = newfrontiers.56
+	title = "newfrontiers.56.name"
+	desc = "newfrontiers.56.desc"
+	picture = GFX_evt_eyeball_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_eyeball_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Caustic World 
+carrier_event = {
+	id = newfrontiers.70
+	title = "newfrontiers.70.name"
+	desc = "newfrontiers.70.desc"
+	picture = GFX_evt_toxic
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_caustic_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+
+#Start on Ash World 
+carrier_event = {
+	id = newfrontiers.58
+	title = "newfrontiers.58.name"
+	desc = "newfrontiers.58.desc"
+	picture = GFX_evt_ash_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_ash_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Infernal World 
+carrier_event = {
+	id = newfrontiers.59
+	title = "newfrontiers.59.name"
+	desc = "newfrontiers.59.desc"
+	picture = GFX_evt_infernal_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_magma_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Subglacial World 
+carrier_event = {
+	id = newfrontiers.60
+	title = "newfrontiers.60.name"
+	desc = "newfrontiers.60.desc"
+	picture = GFX_evt_subglacial_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_subglacial_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Planetary Exploration Alert!
+event = {
+	id = newfrontiers.61
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_country = {	
+			limit = { is_ai = no }
+			country_event = { id = newfrontiers.62 days = 1 }
+		}
+	}
+}
+
+country_event = {
+	id = newfrontiers.62
+	title = "newfrontiers.62.name"
+	desc = "newfrontiers.62.desc"
+	picture = GFX_evt_colony_settlement
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = has_planetaryexploration_mod
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+#Start on Archean World 
+carrier_event = {
+	id = newfrontiers.63
+	title = "newfrontiers.63.name"
+	desc = "newfrontiers.63.desc"
+	picture = GFX_evt_archean_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_archean_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Young World 
+carrier_event = {
+	id = newfrontiers.64
+	title = "newfrontiers.64.name"
+	desc = "newfrontiers.64.desc"
+	picture = GFX_evt_young_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_young_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Garden World 
+carrier_event = {
+	id = newfrontiers.65
+	title = "newfrontiers.65.name"
+	desc = "newfrontiers.65.desc"
+	picture = GFX_evt_garden_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_garden_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Wasteland World 
+carrier_event = {
+	id = newfrontiers.66
+	title = "newfrontiers.66.name"
+	desc = "newfrontiers.66.desc"
+	picture = GFX_evt_wasteland_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_wasteland_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Fallout World 
+carrier_event = {
+	id = newfrontiers.67
+	title = "newfrontiers.67.name"
+	desc = "newfrontiers.67.desc"
+	picture = GFX_evt_fallout_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_fallout_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+
+#Start on Rust World 
+carrier_event = {
+	id = newfrontiers.68
+	title = "newfrontiers.68.name"
+	desc = "newfrontiers.68.desc"
+	picture = GFX_evt_rust_world
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "newfrontiers.choose"
+		custom_tooltip = newfrontiers.choose.tooltip
+		hidden_effect = {
+			set_rust_subclass = yes
+		}
+	}
+	
+	option = {
+		name = "newfrontiers.back"
+		default_hide_option = yes
+		hidden_effect = {
+			owner = { country_event = { id = newfrontiers.8 } }
+		}
+	}
+	
+}
+

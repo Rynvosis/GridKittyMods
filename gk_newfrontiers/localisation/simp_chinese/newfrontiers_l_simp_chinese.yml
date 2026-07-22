@@ -1,0 +1,393 @@
+﻿l_simp_chinese:
+ 
+  ####################################
+  # Planet Decision
+  ####################################
+
+ decision_protective_equipment: "防护装备"
+ decision_protective_equipment_desc: "这些政府项目旨在为生活于恶劣环境的居民提供个人防护装备，分发供强制使用。"
+  decision_ark_project: "启动方舟计划"
+  decision_ark_project_desc: "我们的家园将被灾难所毁灭。拯救我们文明的措施之一是方舟计划。一艘为远航提供了所有必需品的巨大殖民船，将前往寻找一个新的家园。"
+  decision_ark_project_effect_desc: "方舟飞船将开始建造。\n\n§Y在行星毁灭后，方舟将成为一个新的帝国。如果方舟在母星被摧毁之前殖民了一个新的世界，一个新的帝国将被创建。你将能够选择继续统治这个新帝国。§!"
+ decision_planetary_excavation: "开始挖掘行星计划"
+ decision_planetary_excavation_desc: "在这个古老世界杂草丛生的表面下，是一个巨大的行星城市的废墟。行星挖掘将破坏这个世界的原始之美，但这是研究被遗忘的技术并最终恢复这个星球昔日的伟大的第一步。"
+ decision_planetary_excavation_effect_desc: "将这个行星转变为§Y$pc_relic$§!。"
+ decision_megamicelium_assimilation: "开始巨型菌丝体同化"
+ decision_megamicelium_assimilation_desc: "这个星球会被外星真菌吞噬，并完全按照我们的需求重塑。"
+ decision_megamicelium_assimilation_effect_desc: "该星球会转变为§Y$mycelium_world$§!。"
+ decision_infestation: "建立感染区"
+ decision_infestation_desc: "星球上的部分区域会被霉菌完全吸收，以迅速进行殖民。"
+ decision_quarantine: "宣布隔离"
+ decision_quarantine_desc: "这种措施会使用所有行政资源来隔离这个星球，并限制疾病的传播。"
+ decision_abolish_quarantine: "取消隔离"
+ decision_abolish_quarantine_desc: "取消隔离，会移除所有施加于该星球的隔离措施。"
+ decision_liquidation_of_infected: "清理感染者"
+ decision_liquidation_of_infected_desc: "极端举措一旦被人知晓，就会在社会上引发不可预料的后果。但是，艰难时期也需要严苛举措。"
+ decision_liquidation_of_infected_effect_desc: "摧毁所有被感染的定居点。警告！这种措施并非完全有效。一些感染者可能会躲藏起来，避免被消灭。"
+ decision_purge_of_contagion: "开始消灭传染病"
+ decision_purge_of_contagion_desc: "有些时候，你需要砍掉自己的手，这样你才不会失去自己的脑袋。"
+ decision_purge_of_contagion_effect_desc: "毁灭所有被感染子个体。警告！这种措施并非完全有效。一些感染个体可能不会听从死亡指令。"
+ decision_rejection: "开始【否决】"
+ decision_rejection_desc: "破损的工具是最容易丢弃的。"
+ decision_rejection_effect_desc: "摧毁所有故障子个体。警告！这种措施并非完全有效。一些故障子个体可能不会接受自毁命令。"
+ decision_disinfection: "开始消毒"
+ decision_disinfection_desc: "对外星真菌进行研究后所开发的一系列措施将会终止霉菌在星球上的传播并消除其后果。"
+ decision_disinfection_effect_desc: "除了被感染的定居点外，星球上所有霉菌痕迹都会被消除。"
+ decision_vaccination: "开始疫苗接种"
+ decision_vaccination_desc: "在外星菌症的早期阶段，使用坏死毒素，可以完全清除该病原体在有机活体中的生长。"
+ decision_vaccination_effect_desc: "所有被感染人口会被治愈。"
+ decision_sterilization_process: "开始灭菌处理"
+ decision_sterilization_process_desc: "用特殊的毒素处理受损材料，会使菌斑变为易于剥离的矿物。"
+ decision_sterilization_process_effect_desc: "正在根除感染。"
+ decision_build_cloud_platform: "开始建造云上平台"
+ decision_build_cloud_platform_desc: "特殊的平台，整座城市都会被筑于其上。通过建造此类平台，我们可以开发那些被有毒烟雾覆盖的土地，也可以进行矿物开采作业。"
+ decision_demolish_cloud_platform: "拆除云上平台"
+ decision_demolish_cloud_platform_desc: "如果空中平台的维护变得无利可图，就可以将这些平台处理掉。"
+ decision_start_ecosystem_creation_project: "Start Ecosystem Creation Project"
+ decision_start_ecosystem_creation_project_desc: "This decision launches one of the projects for terraforming the planet.\n\nDead worlds can be revived by creating favorable conditions on the surface and in the atmosphere of the planet. Then plant the seeds of life and carefully care for the sprouts that will rapidly develop in the warm oceans of this world under our supervision."
+ decision_start_ecosystem_creation_project_effect_desc: "Triggers a special terraforming process. To progress, you will need various terraforming structures."
+ decision_end_ecosystem_creation_project: "End Ecosystem Creation Project"
+ decision_end_ecosystem_creation_project_desc: "This decision will stop the ecosystem creation project. The result will not be achieved."
+ decision_abolish_nature_preserves: "Abolish Nature Preserves"
+ decision_abolish_nature_preserves_desc: "This decision will revoke the planet's status as a nature reserve and open the way for mineral extraction. However, civil society environmental organizations will almost certainly be displeased."
+  
+  
+  ####################################
+  # Origins
+  ####################################
+  
+  origin_subterranean: "厚土之下"
+  origin_subterranean_desc: "恒星活动的变化将这个文明的母星化成一片了无生机的废土，他们被迫深入地下。数个世纪以来，他们不断挖掘隧道，建造地下城市，直到有一天他们终于意识到地底之所不可能永远是他们的家园。"
+  origin_scavengers: "拾荒者"
+  origin_scavengers_desc: "至今仍不清楚这个文明是如何找到并定居于这个满目疮痍的世界之上。我们只知道这片工业废墟并不出自他们之手。也许是这个星球的古代主人把他们作为牲畜或奴隶携带至此。然而，现在他们已经够适应并能研究这个星球上的废弃技术来发展他们自己的文明。"
+  civic_tooltip_scavengers_effects: "开局以一个§Y枯竭星球§!作为母星，拥有§Y$d_subway_tunnel_network$§!。\n清除§Y$d_industrial_boneyard$§!障碍后能获得 £alloys£ §Y合金§!。"
+ origin_ark: "方舟计划"
+ origin_ark_desc: "这个文明的母星被摧毁了。剩下的幸存者登上一艘巨大的宇宙飞船，而他们将穿越无尽的虚空，开启漫长的旅程去寻找新的家园。"
+ civic_tooltip_ark_effects: "选择停靠在被摧毁的母星轨道上的§Y太空方舟§!开始游戏。你需要操作方舟来寻找宜居星球作为帝国首都。"
+ origin_exomycosis: "感染"
+ origin_exomycosis_desc: "这种集体性生物是一种寄生虫，被创造用以征服宇宙中所有的活物和死物。也许，这个菌群曾是某个未知文明的环境改造机制的一部分，但是一场可怕的实验失去了控制。现在，这团宇宙霉菌已经产生了思想，并有一种强烈的冲动，去吞食其他世界和其他文明。"
+ civic_tooltip_exomycosis_effects: "你的母星为§Y$mycelium_world$§!。\n宜居偏好为§Y$trait_pc_tropical_preference$§!。\n你可以将任何湿润气候星球改造为§Y$mycelium_world$§!。\n人口获得§Y$trait_molded$§!特质，拥有如下效果：\n $MOD_POP_ENVIRONMENT_TOLERANCE$：§G+10%§!\n $MOD_ARMY_MORALE_DAMAGE_MULT$：§G+30%§!"
+  
+  
+  ####################################
+  # Traits
+  ####################################
+  
+ trait_subterranean: "深地种"
+ trait_subterranean_desc: "§L此物种在地下生活了很长时间，习惯于狭窄的空间。§!\n"
+ trait_molded: "霉化"
+ trait_molded_desc: "§L这些生物是一种寄宿于其他有机体的菌群。§!\n"
+ trait_infected: "被感染"
+ trait_infected_desc: "§L这些定居点已受到真菌感染。§!\n"
+ trait_corrupted: "腐化"
+ trait_corrupted_desc: "$trait_infected_desc$"
+  
+ trait_pc_sterile_preference: "贫瘠星球偏好"
+ trait_pc_sterile_preference_desc: "$trait_pc_arctic_preference_desc$"
+  
+  
+  ####################################
+  # Start Screen Mesages
+  ####################################
+  
+  
+  
+  ####################################
+  # Tooltip Massages
+  ####################################
+  
+ has_dangerous_wildlife: "拥有行星修正 $dangerous_wildlife$"
+ has_toxic_atmosphere: "拥有行星修正 $toxic_atmosphere$"
+ has_greenhouse_world: "拥有行星修正 $greenhouse_world$"
+ has_poisonous_world: "拥有一个行星修正 $poisonous_world$"
+ has_death_world: "拥有一个行星修正 $death_world$"
+ has_scorched_world: "拥有行星修正 $scorched_world$"
+
+ NO_TERRAFORM_HOLLOW_WORLD: "§R无法对空洞星球进行环境改造。§!"
+ NO_BOMBING_HOLLOW_WORLD: "§R轰炸这个星球不会有任何成效，因为所有的建筑都在地下深处。§!"
+ NO_TERRAFORM_OVERMIND: "§R杀死你自己？……没门！§!"
+  
+ requires_actor_exomycosis: "需要研究外星菌症，才可将其消除。"
+ max_infestation: "已建立感染区的上限"
+ 3_armies_needed: "星球所需陆军数量：§R3§!。"
+ 8_armies_needed: "星球所需陆军数量：§R8§!。"
+ cloud_platform_max: "该星球的云上平台已达上限。"
+
+  
+  ####################################
+  # Army
+  ####################################
+
+ infected_army: "受感染突变体"
+ infected_army_desc: "这些外星霉菌怪物已经完全失去了原先的外表。"
+  
+  
+  ####################################
+  # Technology
+  ####################################
+  
+ tech_blocked_tunnell: "高温钻孔"
+ tech_blocked_tunnell_desc: "我们可以利用这项新技术将岩石加热至熔点，从而提高挖掘隧道网络的速度。"
+ tech_igneous_traps: "喷发稳定化"
+ tech_igneous_traps_desc: "对星球地壳内部运动的充分了解为我们提供了大规模地质作业的机会。复杂的技术能检测到可能强岩浆活动的中心和喷出岩与侵入岩的冷却区域。"
+ tech_ice_crust: "冰隧道"
+ tech_ice_crust_desc: "建造稳定的冰川隧道是在寒冷世界生存的必要措施。"
+ tech_dune_sea: "沙旋"
+ tech_dune_sea_desc: "使用针对复杂垦荒过程所研发的重型机械，是对恶劣星球地貌改造的下一步骤。自动化开垦站能够使流沙移动停滞，并将流质土壤转化为固态土壤。"
+ tech_thick_forest: "生态基础设施编绘"
+ tech_thick_forest_desc: "在规划季度森林网络时使用人工智能协议，可以利用星球上的资源而不致破坏脆弱的生态平衡。"
+ tech_large_ice_ridge: "冰川压力调控"
+ tech_large_ice_ridge_desc: "自主锁系统将允许调节寒冷星球上的大陆冰川的运动。"
+ tech_igneous_traps: "喷发稳定化"
+ tech_igneous_traps_desc: "对星球地壳内部运动的充分了解为我们提供了大规模地质作业的机会。复杂的技术能检测到可能强岩浆活动的中心和喷出岩与侵入岩的冷却区域。"
+ tech_megamycete: "外星菌症"
+ tech_megamycete_desc: "对外星真菌进行研究，可以开发出应对这种危险病原体的有效措施，并在未来用于我们自身的需求。"
+ tech_invasive_necrotoxication: "侵入性坏死毒素作用"
+ tech_invasive_necrotoxication_desc: "详细研究受外星真菌影响的细胞对各种坏死毒素的反应，有助于找到治疗感染者的方法。"
+ tech_structural_calcification: "结构钙化"
+ tech_structural_calcification_desc: "进行将毒素用于外星真菌样本的实验，确定对这些微观有机体进行即时脱水和消灭的方法，将有利于防范固体材料的侵蚀。"
+ tech_cloud_platform: "云上平台"
+ tech_cloud_platform_desc: "为了开发毒物星球上的封闭区域并开采资源，需要研发特殊的工程措施。"
+  
+  
+  ####################################
+  # Buildings
+  ####################################
+  
+ building_ark: "方舟残骸"
+  building_ark_desc: "这是方舟的残骸，它降落在这个星球上，一个新的殖民地由此建成。这座巨大建筑的内部综合体为殖民者提供了安栖之所。"
+  building_pharmaceutical_production_complex: "Pharmaceutical Production Complex"
+  building_pharmaceutical_production_complex_desc: "This facility uses the planet's unique algae to produce more advanced medical products."
+  
+  
+  ####################################
+  # Starbase Modules
+  ####################################
+  
+ sm_stellar_reducer: "恒星抑制器"
+  sm_stellar_reducer_desc: "§Y这个装置被设计用来减缓恒星内核的核聚变老化——减缓恒星老化对恒星系的影响以防止灾难的发生。§!"
+  
+ project_ark_ship: "太空方舟"
+ project_ark_ship_plural: "太空方舟"
+  
+  ####################################
+  # Planet Classes
+  ####################################
+ pc_sterile: "贫瘠星球"
+ pc_sterile_desc: "充满氮氧大气层的岩石星球，几乎没有复杂的生命形式。星球表面的极端条件是由急剧降温以及火山活动排放到大气中的有毒气体引起的。"
+  
+  ####################################
+  # Spoof Subclasses
+  ####################################
+  
+ pc_dune: "$pc_desert$"
+ pc_dune_desc: "$pc_desert_desc$"
+ pc_oasis: "$pc_desert$"
+ pc_oasis_desc: "$pc_desert_desc$"
+ pc_salt: "$pc_desert$"
+ pc_salt_desc: "$pc_desert_desc$"
+ pc_adiabatic: "$pc_desert$"
+ pc_adiabatic_desc: "$pc_desert_desc$"
+ pc_karstic: "$pc_arid$"
+ pc_karstic_desc: "$pc_arid_desc$"
+ pc_dust: "$pc_arid$"
+ pc_dust_desc: "$pc_arid_desc$"
+ pc_mediterranean: "$pc_arid$"
+ pc_mediterranean_desc: "$pc_arid_desc$"
+ pc_mesa: "$pc_arid$"
+ pc_mesa_desc: "$pc_arid_desc$"
+ pc_steppe: "$pc_savannah$"
+ pc_steppe_desc: "$pc_savannah_desc$"
+ pc_coriolis: "$pc_savannah$"
+ pc_coriolis_desc: "$pc_savannah_desc$"
+ pc_prairie: "$pc_savannah$"
+ pc_prairie_desc: "$pc_savannah_desc$"
+ pc_veld: "$pc_savannah$"
+ pc_veld_desc: "$pc_savannah_desc$"
+ pc_swamp: "$pc_tropical$"
+ pc_swamp_desc: "$pc_tropical_desc$"
+ pc_forest: "$pc_tropical$"
+ pc_forest_desc: "$pc_tropical_desc$"
+ pc_monsoon: "$pc_tropical$"
+ pc_monsoon_desc: "$pc_tropical_desc$"
+ pc_megaflora: "$pc_tropical$"
+ pc_megaflora_desc: "$pc_tropical_desc$"
+ pc_mycelium: "$pc_tropical$"
+ pc_mycelium_desc: "$pc_tropical_desc$"
+ pc_boreal: "$pc_continental$"
+ pc_boreal_desc: "$pc_continental_desc$"
+ pc_pangea: "$pc_continental$"
+ pc_pangea_desc: "$pc_continental_desc$"
+ pc_young: "$pc_continental$"
+ pc_young_desc: "$pc_continental_desc$"
+ pc_primal: "$pc_continental$"
+ pc_primal_desc: "$pc_continental_desc$"
+ pc_panthalassic: "$pc_ocean$"
+ pc_panthalassic_desc: "$pc_ocean_desc$"
+ pc_atoll: "$pc_ocean$"
+ pc_atoll_desc: "$pc_ocean_desc$"
+ pc_storm: "$pc_ocean$"
+ pc_storm_desc: "$pc_ocean_desc$"
+ pc_crag: "$pc_ocean$"
+ pc_crag_desc: "$pc_ocean_desc$"
+ pc_taiga: "$pc_tundra$"
+ pc_taiga_desc: "$pc_tundra_desc$"
+ pc_frigid: "$pc_tundra$"
+ pc_frigid_desc: "$pc_tundra_desc$"
+ pc_bog: "$pc_tundra$"
+ pc_bog_desc: "$pc_tundra_desc$"
+ pc_mushroom: "$pc_tundra$"
+ pc_mushroom_desc: "$pc_tundra_desc$"
+ pc_glacial: "$pc_arctic$"
+ pc_glacial_desc: "$pc_arctic_desc$"
+ pc_melting: "$pc_arctic$"
+ pc_melting_desc: "$pc_arctic_desc$"
+ pc_geothermal: "$pc_arctic$"
+ pc_geothermal_desc: "$pc_arctic_desc$"
+ pc_ice: "$pc_arctic$"
+ pc_ice_desc: "$pc_arctic_desc$"
+ pc_mineral: "$pc_alpine$"
+ pc_mineral_desc: "$pc_alpine_desc$"
+ pc_snow: "$pc_alpine$"
+ pc_snowl_desc: "$pc_alpine_desc$"
+ pc_plateau: "$pc_alpine$"
+ pc_plateau_desc: "$pc_alpine_desc$"
+ pc_highland: "$pc_alpine$"
+ pc_highland_desc: "$pc_alpine_desc$"
+ pc_depleted: "$pc_nuked$"
+ pc_depleted_desc: "$pc_nuked_desc$"
+ pc_ancient: "$pc_gaia$"
+ pc_ancient_desc: "$pc_nuked_desc$"
+ pc_lava: "$pc_sterile$"
+ pc_lava_desc: "$pc_sterile_desc$"
+ pc_ash: "$pc_sterile$"
+ pc_ash_desc: "$pc_sterile_desc$"
+ pc_archean: "$pc_sterile$"
+ pc_archean_desc: "$pc_sterile_desc$"
+  
+  ####################################
+  # Preference Tooltips
+  ####################################
+  
+ TRAIT_DESERT_PREFERENCE_EFFECT: "$mod_pc_desert_habitability$:§G +80%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+ TRAIT_ARID_PREFERENCE_EFFECT: "$mod_pc_arid_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+ TRAIT_SAVANNAH_PREFERENCE_EFFECT: "$mod_pc_savannah_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!"
+ TRAIT_TROPICAL_PREFERENCE_EFFECT: "$mod_pc_tropical_habitability$:§G +80%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+ TRAIT_CONTINENTAL_PREFERENCE_EFFECT: "$mod_pc_continental_habitability$:§G +80%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+ TRAIT_OCEAN_PREFERENCE_EFFECT: "$mod_pc_ocean_habitability$:§G +80%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_tundra_habitability$:§G +20%§!\n$mod_pc_arctic_habitability$:§G +20%§!\n$mod_pc_alpine_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+ TRAIT_ARCTIC_PREFERENCE_EFFECT: "$mod_pc_arctic_habitability$:§G +80%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_alpine_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+ TRAIT_TUNDRA_PREFERENCE_EFFECT: "$mod_pc_tundra_habitability$:§G +80%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_alpine_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+ TRAIT_ALPINE_PREFERENCE_EFFECT: "$mod_pc_alpine_habitability$:§G +80%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +20%§!\n$mod_pc_desert_habitability$:§G +20%§!\n$mod_pc_tropical_habitability$:§G +20%§!\n$mod_pc_continental_habitability$:§G +20%§!\n$mod_pc_arid_habitability$:§G +20%§!\n$mod_pc_savannah_habitability$:§G +20%§!"
+ TRAIT_AI_PREFERENCE_EFFECT: "$mod_pc_ai_habitability$:§G +100%§!\n$mod_pc_desert_habitability$:§G +10%§!\n$mod_pc_tropical_habitability$:§G +10%§!\n$mod_pc_continental_habitability$:§G +10%§!\n$mod_pc_ocean_habitability$:§G +10%§!\n$mod_pc_arctic_habitability$:§G +10%§!\n$mod_pc_tundra_habitability$:§G +10%§!\n$mod_pc_arid_habitability$:§G +10%§!\n$mod_pc_savannah_habitability$:§G +10%§!"
+ TRAIT_NUKED_PREFERENCE_EFFECT: "$mod_pc_nuked_habitability$:§G +80%§!\n$mod_pc_desert_habitability$:§G +60%§!\n$mod_pc_tropical_habitability$:§G +60%§!\n$mod_pc_continental_habitability$:§G +60%§!\n$mod_pc_ocean_habitability$:§G +60%§!\n$mod_pc_arctic_habitability$:§G +60%§!\n$mod_pc_tundra_habitability$:§G +60%§!\n$mod_pc_arid_habitability$:§G +60%§!\n$mod_pc_savannah_habitability$:§G +60%§!"
+ TRAIT_GAIA_PREFERENCE_EFFECT: "$mod_pc_gaia_habitability$:§G +10%§!"
+ TRAIT_STERILE_PREFERENCE_EFFECT: "$mod_pc_sterile_habitability$：§G+60%§!"
+ mod_pc_sterile_habitability: "贫瘠星球宜居性"
+ mod_pc_dune_habitability: "沙丘星球宜居性"
+ mod_pc_oasis_habitability: "绿洲星球宜居性"
+ mod_pc_salt_habitability: "盐碱星球宜居性"
+ mod_pc_adiabatic_habitability: "绝热星球宜居性"
+ mod_pc_karstic_habitability: "岩溶星球宜居性"
+ mod_pc_dust_habitability: "尘土星球宜居性"
+ mod_pc_mediterranean_habitability: "地中海星球宜居性"
+ mod_pc_mesa_habitability: "台地星球宜居性"
+ mod_pc_steppe_habitability: "斯太普星球宜居性"
+ mod_pc_coriolis_habitability: "科氏力星球宜居性"
+ mod_pc_prairie_habitability: "普列里星球宜居性"
+ mod_pc_veld_habitability: "斐勒得星球宜居性"
+ mod_pc_swamp_habitability: "沼泽星球宜居性"
+ mod_pc_forest_habitability: "森林星球宜居性"
+ mod_pc_monsoon_habitability: "季风星球宜居性"
+ mod_pc_megaflora_habitability: "巨植星球宜居性"
+ mod_pc_mycelium_habitability: "菌丝星球宜居性"
+ mod_pc_boreal_habitability: "亚寒带星球宜居性"
+ mod_pc_pangea_habitability: "泛大陆星球宜居性"
+ mod_pc_young_habitability: "年轻星球宜居性"
+ mod_pc_primal_habitability: "原始星球宜居性"
+ mod_pc_taiga_habitability: "泰加林星球宜居性"
+ mod_pc_frigid_habitability: "严寒星球宜居性"
+ mod_pc_bog_habitability: "泥沼星球宜居性"
+ mod_pc_mushroom_habitability: "蕈菌星球宜居性"
+ mod_pc_glacial_habitability: "冰川星球宜居性"
+ mod_pc_melting_habitability: "融冰星球宜居性"
+ mod_pc_geothermal_habitability: "地热星球宜居性"
+ mod_pc_ice_habitability: "寒冰星球宜居性"
+ mod_pc_panthalassic_habitability: "泛大洋星球宜居性"
+ mod_pc_atoll_habitability: "环礁星球宜居性"
+ mod_pc_storm_habitability: "风潦星球宜居性"
+ mod_pc_crag_habitability: "峭壁星球宜居性"
+ mod_pc_mineral_habitability: "矿物星球宜居性"
+ mod_pc_snow_habitability: "冰雪星球宜居性"
+ mod_pc_plateau_habitability: "高原星球宜居性"
+ mod_pc_highland_habitability: "高地星球宜居性"
+ mod_pc_flaming_habitability: "灼热星球宜居性"
+ mod_pc_meridiem_habitability: "正午星球宜居性"
+ mod_pc_eyeball_habitability: "眼瞳星球宜居性"
+ mod_pc_lava_habitability: "岩浆星球宜居性"
+ mod_pc_ash_habitability: "灰烬星球宜居性"
+ mod_pc_archean_habitability: "太古宙星球宜居性"
+ mod_pc_infernal_habitability: "冥狱星球宜居性"
+ mod_pc_subglacial_habitability: "冰下星球宜居性"
+ mod_pc_depleted_habitability: "枯竭星球宜居性"
+ mod_pc_ancient_habitability: "上古星球宜居性"
+  
+  
+  
+ ark_admiral: "$default_admiral$"
+ ark_general: "$default_general$"
+ ark_scientist: "$default_scientist$"
+ ark_governor: "$default_governor$"
+ ark_ruler: "$default_ruler$"
+  
+  ####################################
+  # Jobs
+  ####################################
+
+ mod_job_pioneer_add: "$job_pioneer$岗位"
+ mod_job_pioneer_per_pop: "每$VALUE$人口§G+1§! $job_pioneer$岗位"
+ mod_job_pioneer_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_pioneer_add£"
+ mod_job_smuggler_add: "$job_smuggler$岗位"
+ mod_job_smuggler_per_pop: "每$VALUE$人口§G+1§! $job_smuggler$岗位"
+ mod_job_smuggler_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_smuggler_add£"
+ mod_job_opportunist_drone_add: "$job_opportunist_drone$岗位"
+ mod_job_opportunist_drone_per_pop: "每$VALUE$人口§G+1§! $job_opportunist_drone$岗位"
+ mod_job_opportunist_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_opportunist_drone_add£"
+ mod_job_aberrant_drone_add: "$job_aberrant_drone$岗位"
+ mod_job_aberrant_drone_per_pop: "每$VALUE$人口§G+1§! $job_aberrant_drone$岗位"
+ mod_job_aberrant_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§!£mod_job_aberrant_drone_add£"
+ mod_job_scout_drone_add: "$job_scout_drone$岗位"
+ mod_job_scout_drone_per_pop: "每$VALUE$人口§G+1§! $job_scout_drone$岗位"
+ mod_job_scout_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_scout_drone_add£"
+ mod_job_renegade_drone_add: "$job_renegade_drone$岗位"
+ mod_job_renegade_drone_per_pop: "每$VALUE$人口§G+1§! $job_renegade_drone$岗位"
+ mod_job_renegade_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_renegade_drone_add£"
+  
+ #Common Categories
+ 
+ planet_pioneers: "拓荒者岗位"
+ planet_smugglers: "走私者岗位"
+ planet_opportunist_drones: "机遇工蜂岗位"
+ planet_aberrant_drones: "离群工蜂岗位"
+ planet_scout_drones: "侦查工蜂岗位"
+ planet_renegade_drones: "背叛工蜂岗位"
+ 
+  ####################################
+  # Initializers
+  ####################################
+  
+ NAME_Ark_Fleet: "出谷纪"
+ NAME_Ark: "出谷纪"
+ NAME_Project_Ark_Ship: "方舟"
+ NAME_Bastion: "堡垒"
+ NAME_Sentinel: "哨兵"
+ NAME_Spectator: "观者"
+ NAME_Witness: "见证者"
+ NAME_Salvation: "救赎者"
+ NAME_New_World: "新世界"
+ NAME_Tanis: "坦尼斯"
+ NAME_Hope: "希望"
+ NAME_Ark_Country: "方舟"
+ NAME_Mutated_Infected: "突变感染体"
+ NAME_Molded: "霉化"
+ NAME_Immersion: "浸没"
+ 

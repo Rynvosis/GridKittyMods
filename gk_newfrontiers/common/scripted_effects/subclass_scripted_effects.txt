@@ -1,0 +1,2041 @@
+set_subclass = {
+	switch = {
+		trigger = has_modifier
+		panthalassic_world = { 
+			set_planet_entity = {
+				picture = pc_panthalassic
+				entity = panthalassic_planet_01_entity
+			} 
+		}
+		swamp_world = { 
+			set_planet_entity = {
+				picture = pc_swamp
+				entity = swamp_planet_01_entity
+			}
+		}
+		glacial_world = { 
+			set_planet_entity = {
+				picture = pc_glacial
+				entity = glacial_planet_01_entity
+			}
+		}
+		young_world = { 
+			set_planet_entity = {
+				picture = pc_young
+				entity = young_planet_01_entity
+			}
+		}
+		dune_world = { 
+			set_planet_entity = {
+				picture = pc_dune
+				entity = dune_planet_01_entity
+			}
+		}
+		karst_world = { 
+			set_planet_entity = {
+				picture = pc_karst
+				entity = karst_planet_01_entity
+			}
+		}
+		boreal_world = { 
+			set_planet_entity = {
+				picture = pc_boreal
+				entity = boreal_planet_01_entity
+			}
+		}
+		forest_world = { 
+			set_planet_entity = {
+				picture = pc_forest
+				entity = forest_planet_01_entity
+			}
+		}
+		geothermal_world = { 
+			set_planet_entity = {
+				picture = pc_geothermal
+				entity = geothermal_planet_01_entity
+			}
+		}
+		magma_world = { 
+			set_planet_entity = {
+				picture = pc_infernal
+				entity = molten_planet_01_entity
+			}
+		}
+		atoll_world = { 
+			set_planet_entity = {
+				picture = pc_atoll
+				entity = atoll_planet_01_entity
+			}
+		}
+		subglacial_world = { 
+			set_planet_entity = {
+				picture = pc_subglacial
+				entity = frozen_planet_01_entity
+			}
+		}
+		dust_world = { 
+			set_planet_entity = {
+				picture = pc_dust
+				entity = dust_planet_01_entity
+			}
+		}
+		oasis_world = { 
+			set_planet_entity = {
+				picture = pc_oasis
+				entity = oasis_planet_01_entity
+			}
+		}
+		salt_world = { 
+			set_planet_entity = {
+				picture = pc_salt
+				entity = salt_planet_01_entity
+			}
+		}
+		steppe_world = { 
+			set_planet_entity = {
+				picture = pc_steppe
+				entity = steppe_planet_01_entity
+			}
+		}
+		snow_world = { 
+			set_planet_entity = {
+				picture = pc_snow
+				entity = snow_planet_01_entity
+			}
+		}
+		iceberg_world = { 
+			set_planet_entity = {
+				picture = pc_iceberg
+				entity = iceberg_planet_01_entity
+			}
+		}
+		supercontinental_world = { 
+			set_planet_entity = {
+				picture = pc_supercontinental_world
+				entity = supercontinental_planet_01_entity
+			}
+		}
+		monsoon_world = { 
+			set_planet_entity = {
+				picture = pc_monsoon
+				entity = monsoon_planet_01_entity
+			}
+		}
+		ancient_world = { 
+			set_planet_entity = {
+				picture = pc_ancient
+				entity = ancient_planet_01_entity
+			}
+		}
+		primal_world = { 
+			set_planet_entity = {
+				picture = pc_primal
+				entity = primal_planet_01_entity
+			}
+		}
+		mesa_world = { 
+			set_planet_entity = {
+				picture = pc_mesa
+				entity = mesa_planet_01_entity
+			}
+		}
+		bog_world = { 
+			set_planet_entity = {
+				picture = pc_bog
+				entity = bog_planet_01_entity
+			}
+		}
+		storm_world = { 
+			set_planet_entity = {
+				picture = pc_storm
+				entity = storm_planet_01_entity
+			}
+		}
+		mediterranean_world = { 
+			set_planet_entity = {
+				picture = pc_mediterranean
+				entity = mediterranean_planet_01_entity
+			}
+		}
+		plateau_world = { 
+			set_planet_entity = {
+				picture = pc_plateau
+				entity = plateau_planet_01_entity
+			}
+		}
+		megaflora_world = { 
+			set_planet_entity = {
+				picture = pc_megaflora
+				entity = megaflora_planet_01_entity
+			}
+		}
+		ash_world = { 
+			set_planet_entity = {
+				picture = pc_ash
+				entity = ash_planet_01_entity
+			}
+		}
+		mesocyclonic_world = { 
+			set_planet_entity = {
+				picture = pc_mesocyclonic
+				entity = mesocyclonic_planet_01_entity
+			}
+		}
+		mineral_world = { 
+			set_planet_entity = {
+				picture = pc_mineral
+				entity = mineral_planet_01_entity
+			}
+		}
+		frigid_world = { 
+			set_planet_entity = {
+				picture = pc_frigid
+				entity = frigid_planet_01_entity
+			}
+		}
+		reef_world = { 
+			set_planet_entity = {
+				picture = pc_reef
+				entity = reef_planet_01_entity
+			}
+		}
+		effusive_world = { 
+			set_planet_entity = {
+				picture = pc_effusive
+				entity = effusive_planet_01_entity
+			}
+		}
+		veld_world = { 
+			set_planet_entity = {
+				picture = pc_veld
+				entity = veld_planet_01_entity
+			}
+		}
+		adiabatic_world = { 
+			set_planet_entity = {
+				picture = pc_adiabatic
+				entity = adiabatic_planet_01_entity
+			}
+		}
+		moraine_world = { 
+			set_planet_entity = {
+				picture = pc_moraine
+				entity = moraine_planet_01_entity
+			}
+		}
+		mushroom_world = { 
+			set_planet_entity = {
+				picture = pc_mushroom
+				entity = awakened_planet_01_entity
+			}
+		}
+		taiga_world = { 
+			set_planet_entity = {
+				picture = pc_taiga
+				entity = taiga_planet_01_entity
+			}
+		}
+		highland_world = { 
+			set_planet_entity = {
+				picture = pc_highland
+				entity = highland_planet_01_entity
+			}
+		}
+		eyeball_world = { 
+			set_planet_entity = {
+				picture = pc_eyeball
+				entity = eyeball_planet_01_entity
+			}
+		}
+		meridiem_world = { 
+			set_planet_entity = {
+				picture = pc_meridiem
+				entity = meridiem_planet_01_entity
+			}
+		}
+		flaming_world = { 
+			set_planet_entity = {
+				picture = pc_flaming
+				entity = flaming_planet_01_entity
+			}
+		}
+		living_sea = { 
+			set_planet_entity = {
+				picture = pc_living_sea
+				entity = ocean_planet_sea_of_conciousness_entity
+			}
+		}
+		archean_world = { 
+			set_planet_entity = {
+				picture = pc_archean
+				entity = archean_planet_01_entity
+			}
+		}
+		noxious_world = { 
+			set_planet_entity = {
+				picture = pc_noxious
+				entity = noxious_planet_01_entity
+			}
+		}
+		forgotten_world = { 
+			set_planet_entity = {
+				picture = pc_forgotten
+				entity = forgotten_planet_01_entity
+			}
+		}
+		aeolian_world = { 
+			set_planet_entity = {
+				picture = pc_aeolian
+				entity = aeolian_planet_01_entity
+			}
+		}
+		wasteland_world = { 
+			set_planet_entity = {
+				picture = pc_wasteland
+				entity = wasteland_planet_01_entity
+			}
+		}
+		fallout_world = { 
+			set_planet_entity = {
+				picture = pc_fallout
+				entity = fallout_planet_01_entity
+			}
+		}
+		garden_world = { 
+			set_planet_entity = {
+				picture = pc_garden
+				entity = garden_planet_01_entity
+			}
+		}
+		rust_world = { 
+			set_planet_entity = {
+				picture = pc_rust
+				entity = rust_planet_01_entity
+			}
+		}
+		algae_world = { 
+			set_planet_entity = {
+				picture = pc_algae
+				entity = algae_planet_01_entity
+			}
+		}
+		bioluminescent_world = { 
+			set_planet_entity = {
+				picture = pc_bioluminescent
+				entity = bioluminescent_planet_01_entity
+			}
+		}
+		crystal_world = { 
+			set_planet_entity = {
+				picture = pc_crystal
+				entity = crystal_planet_01_entity
+			}
+		}
+	}
+}
+
+remove_subclass_modifiers = {
+	if = {
+		limit = {  has_modifier = "dune_world" }
+		remove_modifier = "dune_world"
+	}
+	if = {
+		limit = {  has_modifier = "magma_world" }
+		remove_modifier = "magma_world"
+	}
+	if = {
+		limit = {  has_modifier = "karst_world" }
+		remove_modifier = "karst_world"
+	}
+	if = {
+		limit = {  has_modifier = "young_world" }
+		remove_modifier = "young_world"
+	}
+	if = {
+		limit = {  has_modifier = "panthalassic_world" }
+		remove_modifier = "panthalassic_world"
+	}
+	if = {
+		limit = {  has_modifier = "swamp_world" }
+		remove_modifier = "swamp_world"
+	}
+	if = {
+		limit = {  has_modifier = "boreal_world" }
+		remove_modifier = "boreal_world"
+	}
+	if = {
+		limit = {  has_modifier = "forest_world" }
+		remove_modifier = "forest_world"
+	}
+	if = {
+		limit = {  has_modifier = "geothermal_world" }
+		remove_modifier = "geothermal_world"
+	}
+	if = {
+		limit = {  has_modifier = "glacial_world" }
+		remove_modifier = "glacial_world"
+	}
+	if = {
+		limit = {  has_modifier = "oasis_world" }
+		remove_modifier = "oasis_world"
+	}
+	if = {
+		limit = {  has_modifier = "salt_world" }
+		remove_modifier = "salt_world"
+	}
+	if = {
+		limit = {  has_modifier = "dust_world" }
+		remove_modifier = "dust_world"
+	}
+	if = {
+		limit = {  has_modifier = "steppe_world" }
+		remove_modifier = "steppe_world"
+	}
+	if = {
+		limit = {  has_modifier = "atoll_world" }
+		remove_modifier = "atoll_world"
+	}
+	if = {
+		limit = {  has_modifier = "monsoon_world" }
+		remove_modifier = "monsoon_world"
+	}
+	if = {
+		limit = {  has_modifier = "supercontinental_world" }
+		remove_modifier = "supercontinental_world"
+	}
+	if = {
+		limit = {  has_modifier = "snow_world" }
+		remove_modifier = "snow_world"
+	}
+	if = {
+		limit = {  has_modifier = "subglacial_world" }
+		remove_modifier = "subglacial_world"
+	}
+	if = {
+		limit = {  has_modifier = "iceberg_world" }
+		remove_modifier = "iceberg_world"
+	}
+	if = {
+		limit = {  has_modifier = "ancient_world" }
+		remove_modifier = "ancient_world"
+	}
+	if = {
+		limit = {  has_modifier = "primal_world" }
+		remove_modifier = "primal_world"
+	}
+	if = {
+		limit = {  has_modifier = "mesa_world" }
+		remove_modifier = "mesa_world"
+	}
+	if = {
+		limit = {  has_modifier = "bog_world" }
+		remove_modifier = "bog_world"
+	}
+	if = {
+		limit = {  has_modifier = "storm_world" }
+		remove_modifier = "storm_world"
+	}
+	if = {
+		limit = {  has_modifier = "mediterranean_world" }
+		remove_modifier = "mediterranean_world"
+	}
+	if = {
+		limit = {  has_modifier = "plateau_world" }
+		remove_modifier = "plateau_world"
+	}
+	if = {
+		limit = {  has_modifier = "megaflora_world" }
+		remove_modifier = "megaflora_world"
+	}
+	if = {
+		limit = {  has_modifier = "ash_world" }
+		remove_modifier = "ash_world"
+	}
+	if = {
+		limit = {  has_modifier = "mesocyclonic_world" }
+		remove_modifier = "mesocyclonic_world"
+	}
+	if = {
+		limit = {  has_modifier = "mineral_world" }
+		remove_modifier = "mineral_world"
+	}
+	if = {
+		limit = {  has_modifier = "frigid_world" }
+		remove_modifier = "frigid_world"
+	}
+	if = {
+		limit = {  has_modifier = "reef_world" }
+		remove_modifier = "reef_world"
+	}
+	if = {
+		limit = {  has_modifier = "effusive_world" }
+		remove_modifier = "effusive_world"
+	}
+	if = {
+		limit = {  has_modifier = "veld_world" }
+		remove_modifier = "veld_world"
+	}
+	if = {
+		limit = {  has_modifier = "adiabatic_world" }
+		remove_modifier = "adiabatic_world"
+	}
+	if = {
+		limit = {  has_modifier = "moraine_world" }
+		remove_modifier = "moraine_world"
+	}
+	if = {
+		limit = {  has_modifier = "mushroom_world" }
+		remove_modifier = "mushroom_world"
+	}
+	if = {
+		limit = {  has_modifier = "taiga_world" }
+		remove_modifier = "taiga_world"
+	}
+	if = {
+		limit = {  has_modifier = "highland_world" }
+		remove_modifier = "highland_world"
+	}
+	if = {
+		limit = {  has_modifier = "flaming_world" }
+		remove_modifier = "flaming_world"
+	}
+	if = {
+		limit = {  has_modifier = "eyeball_world" }
+		remove_modifier = "eyeball_world"
+	}
+	if = {
+		limit = {  has_modifier = "meridiem_world" }
+		remove_modifier = "meridiem_world"
+	}
+	if = {
+		limit = {  has_modifier = "twilight_world" }
+		remove_modifier = "twilight_world"
+	}
+	if = {
+		limit = {  has_modifier = "living_sea" }
+		remove_modifier = "living_sea"
+	}
+	if = {
+		limit = {  has_modifier = "archean_world" }
+		remove_modifier = "archean_world"
+	}
+	if = {
+		limit = {  has_modifier = "noxious_world" }
+		remove_modifier = "noxious_world"
+	}
+	if = {
+		limit = {  has_modifier = "forgotten_world" }
+		remove_modifier = "forgotten_world"
+	}
+	if = {
+		limit = {  has_modifier = "aeolian_world" }
+		remove_modifier = "aeolian_world"
+	}
+	if = {
+		limit = {  has_modifier = "wasteland_world" }
+		remove_modifier = "wasteland_world"
+	}
+	if = {
+		limit = {  has_modifier = "fallout_world" }
+		remove_modifier = "fallout_world"
+	}
+	if = {
+		limit = {  has_modifier = "garden_world" }
+		remove_modifier = "garden_world"
+	}
+	if = {
+		limit = {  has_modifier = "rust_world" }
+		remove_modifier = "rust_world"
+	}
+	if = {
+		limit = {  has_modifier = "algae_world" }
+		remove_modifier = "algae_world"
+	}
+	if = {
+		limit = {  has_modifier = "bioluminescent_world" }
+		remove_modifier = "bioluminescent_world"
+	}
+	if = {
+		limit = {  has_modifier = "crystal_world" }
+		remove_modifier = "crystal_world"
+	}
+}
+
+remove_incorrect_subclass = {
+	if = {
+		limit = {
+			has_modifier = "dune_world"
+			NOT = { is_planet_class = pc_desert }
+		}
+		remove_modifier = "dune_world"
+	}
+	if = {
+		limit = {  
+			has_modifier = "magma_world"
+			NOT = { is_planet_class = pc_volcanic }
+		}
+		remove_modifier = "magma_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "karst_world"
+			NOT = { is_planet_class = pc_arid }
+		}
+		remove_modifier = "karst_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "young_world"
+			NOT = { is_planet_class = pc_continental }
+		}
+		remove_modifier = "young_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "panthalassic_world"
+			NOT = { is_planet_class = pc_ocean }
+		}
+		remove_modifier = "panthalassic_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "swamp_world"
+			NOT = { is_planet_class = pc_tropical }
+		}
+		remove_modifier = "swamp_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "boreal_world"
+			NOT = { is_planet_class = pc_continental }
+		}
+		remove_modifier = "boreal_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "forest_world"
+			NOT = { is_planet_class = pc_tropical }
+		}
+		remove_modifier = "forest_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "geothermal_world"
+			NOT = { is_planet_class = pc_arctic }
+		}
+		remove_modifier = "geothermal_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "glacial_world"
+			NOT = { is_planet_class = pc_arctic }
+		}
+		remove_modifier = "glacial_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "oasis_world"
+			NOT = { is_planet_class = pc_desert }
+		}
+		remove_modifier = "oasis_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "salt_world"
+			NOT = { is_planet_class = pc_desert }
+		}
+		remove_modifier = "salt_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "dust_world"
+			NOT = { is_planet_class = pc_arid }
+		}
+		remove_modifier = "dust_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "steppe_world"
+			NOT = { is_planet_class = pc_savannah }
+		}
+		remove_modifier = "steppe_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "atoll_world"
+			NOT = { is_planet_class = pc_ocean }
+		}
+		remove_modifier = "atoll_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "monsoon_world"
+			NOT = { is_planet_class = pc_tropical }
+		}
+		remove_modifier = "monsoon_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "supercontinental_world"
+			NOT = { is_planet_class = pc_continental }
+		}
+		remove_modifier = "supercontinental_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "snow_world"
+			NOT = { is_planet_class = pc_alpine }
+		}
+		remove_modifier = "snow_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "subglacial_world"
+			NOT = { is_planet_class = pc_alpine }
+		}
+		remove_modifier = "subglacial_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "iceberg_world"
+			NOT = { is_planet_class = pc_arctic }
+		}
+		remove_modifier = "iceberg_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "ancient_world"
+			NOT = { is_planet_class = pc_gaia }
+		}
+		remove_modifier = "ancient_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "primal_world"
+			NOT = { is_planet_class = pc_continental }
+		}
+		remove_modifier = "primal_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "mesa_world"
+			NOT = { is_planet_class = pc_arid }
+		}
+		remove_modifier = "mesa_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "bog_world"
+			NOT = { is_planet_class = pc_tundra }
+		}
+		remove_modifier = "bog_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "storm_world"
+			NOT = { is_planet_class = pc_ocean }
+		}
+		remove_modifier = "storm_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "mediterranean_world"
+			NOT = { is_planet_class = pc_arid }
+		}
+		remove_modifier = "mediterranean_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "plateau_world"
+			NOT = { is_planet_class = pc_alpine }
+		}
+		remove_modifier = "plateau_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "megaflora_world"
+			NOT = { is_planet_class = pc_tropical }
+		}
+		remove_modifier = "megaflora_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "ash_world"
+			NOT = { is_planet_class = pc_sterile }
+		}
+		remove_modifier = "ash_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "mesocyclonic_world"
+			NOT = { is_planet_class = pc_savannah }
+		}
+		remove_modifier = "mesocyclonic_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "mineral_world"
+			NOT = { is_planet_class = pc_alpine }
+		}
+		remove_modifier = "mineral_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "frigid_world"
+			NOT = { is_planet_class = pc_arctic }
+		}
+		remove_modifier = "frigid_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "reef_world"
+			NOT = { is_planet_class = pc_ocean }
+		}
+		remove_modifier = "reef_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "effusive_world"
+			NOT = { is_planet_class = pc_savannah }
+		}
+		remove_modifier = "effusive_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "veld_world"
+			NOT = { is_planet_class = pc_savannah }
+		}
+		remove_modifier = "veld_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "adiabatic_world"
+			NOT = { is_planet_class = pc_desert }
+		}
+		remove_modifier = "adiabatic_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "moraine_world"
+			NOT = { is_planet_class = pc_tundra }
+		}
+		remove_modifier = "moraine_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "mushroom_world"
+			NOT = { is_planet_class = pc_tundra }
+		}
+		remove_modifier = "mushroom_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "taiga_world"
+			NOT = { is_planet_class = pc_tundra }
+		}
+		remove_modifier = "taiga_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "highland_world"
+			NOT = { is_planet_class = pc_alpine }
+		}
+		remove_modifier = "highland_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "flaming_world"
+			NOT = { is_planet_class = pc_desert }
+		}
+		remove_modifier = "flaming_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "eyeball_world"
+			NOT = { is_planet_class = pc_arctic }
+		}
+		remove_modifier = "eyeball_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "meridiem_world"
+			NOT = { is_planet_class = pc_tropical }
+		}
+		remove_modifier = "meridiem_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "twilight_world"
+			NOT = { is_planet_class = pc_continental }
+		}
+		remove_modifier = "twilight_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "living_sea"
+			NOT = { is_planet_class = pc_ocean }
+		}
+		remove_modifier = "living_sea"
+	}
+	if = {
+		limit = {
+			has_modifier = "archean_world"
+			NOT = { is_planet_class = pc_sterile }
+		}
+		remove_modifier = "archean_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "noxious_world"
+			NOT = { is_planet_class = pc_tropical }
+		}
+		remove_modifier = "noxious_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "forgotten_world"
+			NOT = { is_planet_class = pc_relic }
+		}
+		remove_modifier = "forgotten_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "aeolian_world"
+			NOT = { is_planet_class = pc_desert }
+		}
+		remove_modifier = "aeolian_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "wasteland_world"
+			NOT = { is_planet_class = pc_nuked }
+		}
+		remove_modifier = "wasteland_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "fallout_world"
+			NOT = { is_planet_class = pc_nuked }
+		}
+		remove_modifier = "fallout_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "garden_world"
+			NOT = { is_planet_class = pc_gaia }
+		}
+		remove_modifier = "garden_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "rust_world"
+			NOT = { is_planet_class = pc_relic }
+		}
+		remove_modifier = "rust_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "algae_world"
+			NOT = { is_planet_class = pc_ocean }
+		}
+		remove_modifier = "algae_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "bioluminescent_world"
+			NOT = { is_planet_class = pc_tropical }
+		}
+		remove_modifier = "bioluminescent_world"
+	}
+	if = {
+		limit = {
+			has_modifier = "crystal_world"
+			NOT = { is_planet_class = pc_tundra }
+		}
+		remove_modifier = "crystal_world"
+	}
+}
+
+
+set_dune_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_desert } }
+		change_pc = pc_desert
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_dune
+		entity = dune_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "dune_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_dust_desert } }
+		add_deposit = d_dust_desert
+	}
+}
+
+set_oasis_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_desert } }
+		change_pc = pc_desert
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_oasis
+		entity = oasis_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "oasis_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_salt_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_desert } }
+		change_pc = pc_desert
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_salt
+		entity = salt_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "salt_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_adiabatic_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_desert } }
+		change_pc = pc_desert
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_adiabatic
+		entity = adiabatic_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "adiabatic_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_crystal_forest } }
+		add_deposit = d_crystal_forest
+	}
+}
+
+set_forgotten_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_relic } }
+		change_pc = pc_relic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_forgotten
+		entity = forgotten_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "forgotten_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_hollow_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_continental } }
+		change_pc = pc_continental
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_hollow
+		entity = barren_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "hollow_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_karst_cave } }
+		add_deposit = d_karst_cave
+	}
+}
+
+set_karst_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arid } }
+		change_pc = pc_arid
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_karst
+		entity = karst_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "karst_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_karst_cave } }
+		add_deposit = d_karst_cave
+	}
+}
+
+set_dust_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arid } }
+		change_pc = pc_arid
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_dust
+		entity = dust_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "dust_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_dust_caverns } }
+		add_deposit = d_dust_caverns
+	}
+}
+
+set_aeolian_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arid } }
+		change_pc = pc_arid
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_aeolian
+		entity = aeolian_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "aeolian_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_mesa_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arid } }
+		change_pc = pc_arid
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_mesa
+		entity = mesa_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "mesa_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_grand_canyon } }
+		add_deposit = d_grand_canyon
+	}
+}
+
+set_steppe_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_savannah } }
+		change_pc = pc_savannah
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_steppe
+		entity = steppe_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "steppe_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_mesocyclonic_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_savannah } }
+		change_pc = pc_savannah
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_mesocyclonic
+		entity = mesocyclonic_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "mesocyclonic_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_great_vortex } }
+		add_deposit = d_great_vortex
+	}
+}
+
+set_effusive_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_savannah } }
+		change_pc = pc_savannah
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_effusive
+		entity = effusive_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "effusive_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_veld_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_savannah } }
+		change_pc = pc_savannah
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_veld
+		entity = veld_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "veld_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_panthalassic_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_ocean } }
+		change_pc = pc_ocean
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_panthalassic
+		entity = panthalassic_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "panthalassic_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_atoll_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_ocean } }
+		change_pc = pc_ocean
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_atoll
+		entity = atoll_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "atoll_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_serene_coastline } }
+		add_deposit = d_serene_coastline
+	}
+}
+
+set_storm_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_ocean } }
+		change_pc = pc_ocean
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_storm
+		entity = storm_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "storm_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_stormy_water } }
+		add_deposit = d_stormy_water
+	}
+}
+
+set_reef_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_ocean } }
+		change_pc = pc_ocean
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_reef
+		entity = reef_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "reef_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_maze_cliff_formations } }
+		add_deposit = d_maze_cliff_formations
+	}
+}
+
+set_living_sea_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_ocean } }
+		change_pc = pc_ocean
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_living_sea
+		entity = ocean_planet_sea_of_conciousness_entity
+	}
+	add_modifier = {
+		modifier = "living_sea_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_swamp_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tropical } }
+		change_pc = pc_tropical
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_swamp
+		entity = swamp_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "swamp_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_bubbling_swamp } }
+		add_deposit = d_bubbling_swamp
+	}
+}
+
+set_forest_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tropical } }
+		change_pc = pc_tropical
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_forest
+		entity = forest_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "forest_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_monsoon_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tropical } }
+		change_pc = pc_tropical
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_monsoon
+		entity = monsoon_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "monsoon_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_betharian_deposit } }
+		add_deposit = d_betharian_deposit
+	}
+}
+
+set_megaflora_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tropical } }
+		change_pc = pc_tropical
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_megaflora
+		entity = megaflora_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "megaflora_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_noxious_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tropical } }
+		change_pc = pc_tropical
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_noxious
+		entity = noxious_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "noxious_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_boreal_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_continental } }
+		change_pc = pc_continental
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_boreal
+		entity = boreal_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "boreal_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_supercontinental_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_continental } }
+		change_pc = pc_continental
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_supercontinental
+		entity = supercontinental_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "supercontinental_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_great_vortex } }
+		add_deposit = d_great_vortex
+	}
+}
+
+set_primal_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_volcanic } }
+		change_pc = pc_volcanic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_primal
+		entity = primal_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "primal_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_mediterranean_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_continental } }
+		change_pc = pc_continental
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_mediterranean
+		entity = mediterranean_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "mediterranean_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_mineral_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_sterile } }
+		change_pc = pc_sterile
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_mineral
+		entity = mineral_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "mineral_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_crystalline_caverns } }
+		add_deposit = d_crystalline_caverns
+	}
+}
+
+set_snow_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_alpine } }
+		change_pc = pc_alpine
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_snow
+		entity = snow_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "snow_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_plateau_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_alpine } }
+		change_pc = pc_alpine
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_plateau
+		entity = plateau_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "plateau_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_highland_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_alpine } }
+		change_pc = pc_alpine
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_highland
+		entity = highland_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "highland_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_taiga_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tundra } }
+		change_pc = pc_tundra
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_taiga
+		entity = taiga_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "taiga_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_moraine_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tundra } }
+		change_pc = pc_tundra
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_moraine
+		entity = moraine_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "moraine_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_bog_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tundra } }
+		change_pc = pc_tundra
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_bog
+		entity = bog_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "bog_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_fuming_bog } }
+		add_deposit = d_fuming_bog
+	}
+}
+
+set_mushroom_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tundra } }
+		change_pc = pc_tundra
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_mushroom
+		entity = mushroom_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "mushroom_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_glacial_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arctic } }
+		change_pc = pc_arctic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_glacial
+		entity = glacial_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "glacial_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_crystal_forest } }
+		add_deposit = d_crystal_forest
+	}
+}
+
+set_iceberg_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arctic } }
+		change_pc = pc_arctic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_iceberg
+		entity = iceberg_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "iceberg_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_geothermal_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arctic } }
+		change_pc = pc_arctic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_geothermal
+		entity = geothermal_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "geothermal_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_frigid_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arctic } }
+		change_pc = pc_arctic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_frigid
+		entity = frigid_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "frigid_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_crystal_forest } }
+		add_deposit = d_crystal_forest
+	}
+}
+
+set_ancient_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_gaia } }
+		change_pc = pc_gaia
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_ancient
+		entity = ancient_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "ancient_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_flaming_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_desert } }
+		change_pc = pc_desert
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_flaming
+		entity = flaming_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "flaming_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_dust_desert } }
+		add_deposit = d_dust_desert
+	}
+}
+
+set_meridiem_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tropical } }
+		change_pc = pc_tropical
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_meridiem
+		entity = meridiem_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "meridiem_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_eyeball_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_arctic } }
+		change_pc = pc_arctic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_eyeball
+		entity = eyeball_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "eyeball_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_twilight_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_continental } }
+		change_pc = pc_continental
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_tidallylocked
+		entity = tidallylocked_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "twilight_world"
+		days = -1
+	}
+}
+
+set_caustic_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_sterile } }
+		change_pc = pc_sterile
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_caustic
+		entity = toxic_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "caustic_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_fuming_bog } }
+		add_deposit = d_fuming_bog
+	}
+}
+
+set_ash_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_sterile } }
+		change_pc = pc_sterile
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_ash
+		entity = ash_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "ash_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_dust_caverns } }
+		add_deposit = d_dust_caverns
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_crystal_forest } }
+		add_deposit = d_crystal_forest
+	}
+}
+
+set_archean_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_sterile } }
+		change_pc = pc_sterile
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_archean
+		entity = archean_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "archean_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_young_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_volcanic } }
+		change_pc = pc_volcanic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_young
+		entity = young_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "young_world"
+		days = -1
+	}
+}
+
+set_magma_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_volcanic } }
+		change_pc = pc_volcanic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_infernal
+		entity = infernal_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "magma_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_karst_cave } }
+		add_deposit = d_karst_cave
+	}
+}
+
+set_subglacial_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_alpine } }
+		change_pc = pc_alpine
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_subglacial
+		entity = subglacial_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "subglacial_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_karst_cave } }
+		add_deposit = d_karst_cave
+	}
+}
+
+set_wasteland_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_nuked } }
+		change_pc = pc_nuked
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_wasteland
+		entity = wasteland_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "wasteland_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_fallout_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_nuked } }
+		change_pc = pc_nuked
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_fallout
+		entity = fallout_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "fallout_world"
+		days = -1
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_bubbling_swamp } }
+		add_deposit = d_bubbling_swamp
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_tomb_world_wasteland } }
+		add_deposit = d_tomb_world_wasteland
+	}
+}
+
+set_garden_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_gaia } }
+		change_pc = pc_gaia
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_garden
+		entity = garden_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "garden_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_rust_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_relic } }
+		change_pc = pc_relic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_rust
+		entity = rust_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "rust_world"
+		days = -1
+	}
+	rust_world_deposits = yes
+}
+
+set_algae_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_ocean } }
+		change_pc = pc_ocean
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_algae
+		entity = algae_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "algae_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+	add_deposit = d_medicinal_algae
+}
+
+set_bioluminescent_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tropical } }
+		change_pc = pc_tropical
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_bioluminescent
+		entity = bioluminescent_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "bioluminescent_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+}
+
+set_crystal_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_tundra } }
+		change_pc = pc_tundra
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_crystal
+		entity = crystal_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "crystal_world"
+		days = -1
+	}
+	#reroll_deposits = yes
+	add_deposit = d_crystalline_array
+	random_list = {
+		50 = {
+			add_deposit = d_gemstone_quarry
+		}
+		35 = {
+			add_deposit = d_gemstone_quarry
+			add_deposit = d_gemstone_quarry
+		}
+		15 = {
+			add_deposit = d_gemstone_quarry
+			add_deposit = d_gemstone_quarry
+			add_deposit = d_gemstone_quarry
+		}
+	}
+}
+
+
+
+
+
+
