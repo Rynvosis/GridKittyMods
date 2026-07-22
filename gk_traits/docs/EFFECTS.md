@@ -2,41 +2,36 @@
 
 Quick reference for all gameplay effects in the GK Traits mod. Keep this up to date when traits change.
 
-## Category Suite Scaffolds
+## Trait Access Gates
 
-Three files, one per new trait category. Each will eventually host that category's full positive/negative trait suite; for now each contains only an invisible placeholder marker trait so we can verify gates in-game before writing the suite.
+Every gk trait is gated two ways at once, and a species needs only one of them to pass.
 
-| File | Marker | Category gate |
-|---|---|---|
-| `gk_traits_cyber_synth.txt` | `trait_gk_marker_cybsynth` | CYBER + SYNTH + MACHINE_ROBOT (55 portraits) |
-| `gk_traits_biogenesis.txt`  | `trait_gk_marker_biogen`   | BIOGENESIS (13 portraits) |
-| `gk_traits_common.txt`      | `trait_gk_marker_common`   | COMMON (167 portraits) |
+The **portrait leg** is the primary gate: a `portrait_override` list pulled in by inline script, so the trait is offered to anything wearing one of those portraits. The **override leg** is `species_class_override`, a second route for species that qualify by what they have become rather than by what they look like.
 
-Marker design: cost 0, no modifier block. Uses the vanilla psionic-trait gate pattern - `species_class = { <vanilla ship-set-only class> }` + `portrait_override = { <category portraits> }`. The ship-set-only classes (`CYBERNETIC`, `BIOGENESIS_02`, `WILDERNESS`) are vanilla species_classes that exist but are never assigned to any species, so the class check never matches; the `portrait_override` list is the actual gate.
+| Suite | Portrait leg | Override leg | Override file |
+|---|---|---|---|
+| Mechanist (CYBER) | `gk_portraits_cyber` — cybernetic, synthetic and machine portraits | has `trait_cybernetic`, so ascended cyborgs qualify whatever their portrait | `gk_class_override_cyber` |
+| Biogenesis | `gk_portraits_biogen` | empire has the Engineered Evolution ascension perk | `gk_class_override_biogen` |
+| Phenotype | per-phenotype lists | empire has the Unnatural Selection tradition (vanilla `can_add_or_remove_phenotype_traits`) | `gk_class_override` |
+| Common | `gk_portraits_common` | none | none |
 
-Class anchors used:
-| File | Anchor species_class | Why |
-|---|---|---|
-| `gk_traits_cyber_synth.txt` | `CYBERNETIC` | vanilla cybernetic ship-set class |
-| `gk_traits_biogenesis.txt` | `BIOGENESIS_02` | vanilla biogenesis ship-set class |
-| `gk_traits_common.txt`     | `WILDERNESS`  | vanilla biogenesis city-set class (used as a neutral never-match anchor) |
+Three points that follow from this and are easy to get wrong:
 
-### Tinkerer (placeholder, in `gk_traits_cyber_synth.txt`)
+The Mechanist override reads on the **species** (`has_trait`), so only species you actually cyberised qualify. The Biogenesis and Phenotype overrides read on the **country** (through `from`), so once the empire qualifies, every species in it does. That asymmetry is deliberate, not an oversight.
 
-Trait ID: `trait_gk_tinkerer`. Cost 2. Sits alongside the cybsynth marker as the first real content in the CYBER/SYNTH file - placeholder until the full suite is written.
+Engineered Evolution is the single perk behind all four genetics trees (base without Biogenesis, then cloning, purity and mutation with it), so gating on the perk covers every genetic ascension path. Gating on a tradition would reach only one of them, which is why the Biogenesis leg does not share the phenotype override.
 
-| Modifier | Value |
-|---|---|
-| Engineer Jobs Bonus Workforce | +20% |
-| Roboticist Jobs Bonus Workforce | +10% |
-| Biologist Jobs Workforce | -10% |
-| Physicist Jobs Workforce | -10% |
+DLC checks are not needed on these traits, because the portrait is the gate. A DLC portrait in an override list is simply unavailable to a player without that DLC, so the trait is unreachable through it.
 
-Gated by the same 55-portrait CYBER/SYNTH portrait_override as the marker. Slave cost 1000 energy.
+When the sheet changes a per-category portrait list, regenerate with `python3 tools/build_gate_lists.py`.
 
-DLC checks aren't needed on these traits - the portrait is the gate. If a DLC portrait is in the override list and the player lacks the DLC, the portrait is unavailable so the trait is unreachable through it.
+## Trait Category Tooltips
 
-When the sheet changes the per-category portrait list, regenerate the lists with `python3 tools/build_gate_lists.py` and paste the relevant block into the `portrait_override` of each trait in the matching file. (No auto-patcher: trait content is hand-maintained.)
+The "belongs to the following categories" line on a trait comes from its `localized_tags`. The trait list *inside* each of those category popups is a separate hand-written enumeration in localisation, which the engine never derives from the tags. Both halves have to be maintained or a trait appears in one direction only.
+
+Our half lives in `localisation/replace/english/gk_phenotype_concepts_l_english.yml`: the twelve vanilla phenotype lists rebuilt with gk traits appended, plus a psionic list, plus the two suite concepts `concept_gk_mechanist_traits` and `concept_gk_biogenesis_traits`. Each suite concept opens with its access rules and then lists its traits. The `replace` directory is used so the override wins regardless of load order.
+
+Traits carrying a `portrait_override` also need a `<trait>_portrait_override_tt` key, or the game logs an error and drops the explanation line from the tooltip. This applies to the vanilla traits widened below, not just to gk traits.
 
 ## Vanilla Trait Widening
 

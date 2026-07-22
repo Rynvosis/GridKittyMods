@@ -44,3 +44,10 @@ gk_aeroplankton_size_mult = {
 	divide = 3
 	min = 0
 }
+
+# Clone of transcendental_growth (00_script_values.txt:2311), but with a floor of
+# two perks so the trait is not dead weight at game start. Invoke as owner.value:
+gk_etched_frames_scaling = {
+	base = 2
+	add = trigger:num_ascension_perks
+}

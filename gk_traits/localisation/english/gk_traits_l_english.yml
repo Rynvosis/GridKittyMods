@@ -14,6 +14,11 @@
  trait_gk_cannibalistic_effect:0 "Pop Growth Speed per §Y100§! Pops with this Trait on the same planet: §R-0.1%§! (Max: §R-20%§!)"
  trait_gk_last_children_effect:0 "Workforce per §Y100§! Pops with this Trait in the empire: §R-0.5%§!"
 
+ # resources/produces blocks never auto-localise on traits; vanilla hand-writes these too
+ # (see TRAIT_DRAKE_SCALED_EFFECT, inorganic_breath_tooltip).
+ trait_gk_etched_frames_effect:0 "Every $pop_group_unit$ £pop£ §HPops§! produces §G0.10§! $unity_with_icon$ per month, increased by §G0.05§! for each §YAscension Perk§! our Empire has taken."
+ trait_gk_pestilent_byproducts_effect:0 "Every $pop_group_unit$ £pop£ §HPops§! produces §G0.005§! $exotic_gases_with_icon$, $volatile_motes_with_icon$, and $rare_crystals_with_icon$ per month for each §Ynegative trait§! this species has."
+
  # --- portrait_override explanations (why a trait reaches off-phenotype portraits) ---
  trait_gk_durasteel_plating_portrait_override_tt:0 "Available to Cybernetic, Synthetic, and Machine portraits."
  trait_gk_natural_artisans_portrait_override_tt:0 "Available to Cybernetic, Synthetic, and Machine portraits."
@@ -40,6 +45,27 @@
  trait_gk_ephemeral_portrait_override_tt:0 "Available to portraits without a dedicated overlay category."
  trait_gk_weak_immune_systems_portrait_override_tt:0 "Available to portraits without a dedicated overlay category."
  trait_gk_hoarders_portrait_override_tt:0 "Available to the draconic portraits."
+
+ # Widened vanilla traits (tools/widen.py). Vanilla ships no _tt for these
+ # because it never restricts them itself.
+ trait_lithoid_scintillating_portrait_override_tt:0 "Available to portraits with a mineral-based physiology."
+ trait_lithoid_gaseous_byproducts_portrait_override_tt:0 "$trait_lithoid_scintillating_portrait_override_tt$"
+ trait_lithoid_volatile_excretions_portrait_override_tt:0 "$trait_lithoid_scintillating_portrait_override_tt$"
+ trait_lithoid_budding_portrait_override_tt:0 "$trait_lithoid_scintillating_portrait_override_tt$"
+ trait_brittle_portrait_override_tt:0 "$trait_lithoid_scintillating_portrait_override_tt$"
+ trait_plantoid_bloomed_portrait_override_tt:0 "Available to portraits with a plant-like physiology."
+ trait_plantoid_phototrophic_portrait_override_tt:0 "$trait_plantoid_bloomed_portrait_override_tt$"
+ trait_plantoid_radiotrophic_portrait_override_tt:0 "$trait_plantoid_bloomed_portrait_override_tt$"
+ trait_invasive_portrait_override_tt:0 "$trait_plantoid_bloomed_portrait_override_tt$"
+ trait_infernal_portrait_override_tt:0 "Available to portraits adapted to infernal worlds."
+ trait_shell_slag_portrait_override_tt:0 "$trait_infernal_portrait_override_tt$"
+ trait_pyroclastic_portrait_override_tt:0 "$trait_infernal_portrait_override_tt$"
+ trait_crucible_community_portrait_override_tt:0 "$trait_infernal_portrait_override_tt$"
+ trait_ductile_portrait_override_tt:0 "$trait_infernal_portrait_override_tt$"
+ trait_hollow_bones_portrait_override_tt:0 "Available to portraits with a lightweight skeletal structure."
+ trait_acidic_vascularity_portrait_override_tt:0 "Available to portraits with a caustic circulatory system."
+ trait_permeable_skin_portrait_override_tt:0 "Available to portraits with a moisture-permeable hide."
+ trait_spare_organs_portrait_override_tt:0 "Available to portraits with redundant internal organs."
 
  # --- GLOBAL positive ---
  trait_gk_ascetic:0 "Ascetic"

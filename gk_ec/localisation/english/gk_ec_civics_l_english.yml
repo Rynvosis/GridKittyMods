@@ -147,13 +147,13 @@
   # Destructive Engineering
   ###
 
-  civic_gk_ec_destructive_engineering: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering: "Architects of Destruction"
   civic_gk_ec_destructive_engineering_desc: "This society treats destruction as a formal discipline. Its engineers study warheads, blast yield, and bombardment with the rigor others reserve for power generation, and its missiles are built to wreck everything within reach."
-  civic_gk_ec_destructive_engineering_megacorp: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering_megacorp: "Architects of Destruction"
   civic_gk_ec_destructive_engineering_megacorp_desc: "This corporation built its fortune on ordnance. Its laboratories design missiles and demolition charges for any buyer, and its own fleets always field the new warheads first."
-  civic_gk_ec_destructive_engineering_hive: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering_hive: "Architects of Destruction"
   civic_gk_ec_destructive_engineering_hive_desc: "The hive has turned its shared study toward demolition. Every drone refines the warhead and the bombardment pattern, and its broods exist to deliver them."
-  civic_gk_ec_destructive_engineering_machine: "Destructive Engineering"
+  civic_gk_ec_destructive_engineering_machine: "Architects of Destruction"
   civic_gk_ec_destructive_engineering_machine_desc: "This intelligence devotes its processing to the engineering of destruction. Each detonation is measured and modeled, and every result yields a more thorough way to take a target apart."
   civic_gk_ec_destructive_engineering_effects: "- Unlocks ['technology:tech_missiles_2', $tech_missiles_2$] as a research option from the start of the game"
 

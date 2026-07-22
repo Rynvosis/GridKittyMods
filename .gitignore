@@ -27,3 +27,5 @@ Thumbs.db
 # Paradox Launcher
 .metadata/
 .obsidian/
+assets/.venv/
+assets/.iconsearch.pkl

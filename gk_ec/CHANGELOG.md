@@ -18,7 +18,7 @@ Added Surveillance State civic (standard, megacorp, hive): intel decryption, spy
 Added Paternalism civic (standard, hive, machine): authoritarian golden cage with stability, happiness, reduced leader XP and ethics shift. Forces Social Welfare.
 Added Industrial Democracy civic (megacorp): worker empowerment with political power, happiness, stability. Forces Social Welfare.
 Added Social Democracy civic (democratic): welfare state with housing usage reduction, pop growth, stability. Forces Social Welfare.
-Added Destructive Engineering civic (standard, megacorp, hive, machine): explosive weapon damage, orbital bombardment damage, and army collateral damage. Unlocks tech_missiles_2 as a research option at game start. Soldiers produce engineering research via councilor.
+Added Architects of Destruction civic (standard, megacorp, hive, machine): explosive weapon damage, orbital bombardment damage, and army collateral damage. Unlocks tech_missiles_2 as a research option at game start. Soldiers produce engineering research via councilor.
 Added Austere Society / Lean Enterprise / Low-Power Mode civics (standard, megacorp, machine): reduced amenities usage and upkeep at the cost of job output
 Overhauled Hive Ascetic (vanilla overwrite): now reduces job output by 5% alongside existing amenities and habitability bonuses
 Added Constitutional Monarchy civic (democratic): spawns a diplomatic figurehead monarch with galactic community and federation bonuses. Coronation event on death.

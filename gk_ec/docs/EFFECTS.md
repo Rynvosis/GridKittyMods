@@ -148,7 +148,7 @@ Available to: Standard empires (Democratic authority required).
 **Councilor** (Minister of Public Welfare):
 - -1% Housing Usage per level
 
-### Destructive Engineering
+### Architects of Destruction
 
 Available to: All authority types. Requires Militarist (standard/megacorp).
 

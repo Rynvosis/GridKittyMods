@@ -71,7 +71,7 @@ aquatics = {
 }
 
 machines = {
-	name = MACHINE_ROBOT
+	name = MACHINE
 
 	sets = {
 		gk_gauntlet_machines
@@ -81,7 +81,7 @@ machines = {
 # crocsidon only: the sole Gauntlet portrait with a portrait_evolution. This
 # category is for portraits that change with ascension, so nothing else qualifies.
 cybernetics = {
-	name = CYBER
+	name = CYBERNETIC
 
 	sets = {
 		gk_gauntlet_cybernetic_reptilians

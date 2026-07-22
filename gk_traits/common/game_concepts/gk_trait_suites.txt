@@ -1,0 +1,8 @@
+# Bodies and trait lists live in localisation/replace.
+concept_gk_mechanist_traits = {
+
+}
+
+concept_gk_biogenesis_traits = {
+
+}

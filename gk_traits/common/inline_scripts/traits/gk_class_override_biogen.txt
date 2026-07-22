@@ -1,0 +1,8 @@
+# ap_engineered_evolution is the single perk behind all four genetics trees
+# (base, cloning, purity, mutation), so gating on it covers every genetic path.
+species_class_override = {
+	hidden_trigger = {
+		exists = from
+		from = { has_genetic_ascension = yes }
+	}
+}
