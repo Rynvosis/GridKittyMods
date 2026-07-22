@@ -15,13 +15,19 @@ The **portrait leg** is the primary gate: a `portrait_override` list pulled in b
 | Phenotype | per-phenotype lists | empire has the Unnatural Selection tradition (vanilla `can_add_or_remove_phenotype_traits`) | `gk_class_override` |
 | Common | `gk_portraits_common` | none | none |
 
-Three points that follow from this and are easy to get wrong:
+A trait's `species_class` is a **direct grant**, not a restriction the other two legs widen (vanilla `common/traits/000_documentation_species_traits.txt:52-64`). A reptilian can take Dragon Scales on phenotype alone, without Engineered Evolution. The portrait and override legs extend reach beyond the phenotype; they never gate it.
+
+Three further points, all easy to get wrong:
 
 The Mechanist override reads on the **species** (`has_trait`), so only species you actually cyberised qualify. The Biogenesis and Phenotype overrides read on the **country** (through `from`), so once the empire qualifies, every species in it does. That asymmetry is deliberate, not an oversight.
 
 Engineered Evolution is the single perk behind all four genetics trees (base without Biogenesis, then cloning, purity and mutation with it), so gating on the perk covers every genetic ascension path. Gating on a tradition would reach only one of them, which is why the Biogenesis leg does not share the phenotype override.
 
 DLC checks are not needed on these traits, because the portrait is the gate. A DLC portrait in an override list is simply unavailable to a player without that DLC, so the trait is unreachable through it.
+
+Vanilla's random-trait mechanics, Evolutionary Predators above all, select on a trait's `tags` rather than on any list of trait ids, so nothing can omit us by oversight. The consequence is that `tags` must name every phenotype the trait is available to, or that phenotype's DNA pool will skip it. The `cybernetic` and `drawbacks` tags are exclusions in those pools, which is why no Mechanist trait can be rolled by Evolutionary Predators.
+
+Portrait cross-listing re-keys which DNA an empire banks: a species picked through our `inf1`-as-arthropoid set registers arthropoid DNA, not infernal, because vanilla keys that on `is_species_class` and never on portrait. Consistent, and not a bug.
 
 When the sheet changes a per-category portrait list, regenerate with `python3 tools/build_gate_lists.py`.
 
