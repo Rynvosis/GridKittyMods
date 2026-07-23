@@ -918,22 +918,6 @@ pm_old_star = {
 			is_planet_class = "pc_m_giant_star"
 		}
 		modifier = {
-			add = 20
-			is_planet_class = "pc_m_super_star"
-		}
-		modifier = {
-			add = 20
-			is_planet_class = "pc_m_hyper_star"
-		}
-		modifier = {
-			add = 10
-			is_planet_class = "pc_k_giant_star"
-		}
-		modifier = {
-			add = 10
-			is_planet_class = "pc_k_super_star"
-		}
-		modifier = {
 			factor = 0
 			has_modifier = "old_star"
 		}
@@ -999,15 +983,7 @@ pm_active_processes = {
 	spawn_chance = {
 		modifier = {
 			add = 20
-			is_planet_class = "pc_l_star"
-		}
-		modifier = {
-			add = 20
 			is_planet_class = "pc_t_star"
-		}
-		modifier = {
-			add = 10
-			is_planet_class = "pc_y_star"
 		}
 		modifier = {
 			factor = 0

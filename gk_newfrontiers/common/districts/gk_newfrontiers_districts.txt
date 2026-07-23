@@ -1,0 +1,106 @@
+# Sterile World signature district. Modelled on district_polytechnic.
+district_vault = {
+	expansion_planner = no
+	base_buildtime = 250
+	icon = district_nexus
+	overlay_icon = GFX_district_amenities
+	is_uncapped = { always = no }
+	shared_capacity_modifier = district_vault
+
+	show_tech_unlock_if = {
+		is_nomadic = no
+		is_wilderness_empire = no
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_carrier_flag = arcology_project_construction }
+		}
+	}
+
+	zone_slots = {
+		slot_vault
+	}
+
+	show_on_uncolonized = { is_planet_class = pc_sterile }
+	potential = { is_planet_class = pc_sterile }
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_hive
+		district_nexus
+	}
+
+	resources = {
+		category = planet_districts
+		cost = { minerals = 450 }
+		upkeep = { energy = 3 }
+	}
+
+	# storage is promised by the specializations, not the base district
+	planet_modifier = {
+		planet_housing_add = 200
+	}
+
+	inline_script = {
+		script = jobs/clerks_add
+		AMOUNT = 50
+	}
+
+	inline_script = { script = districts/gk_vault_triggered_name }
+
+	ai_weight_coefficient = 1.5
+	additional_ai_weight = 100
+}
+
+# Display-only swap variants. A zone's swap_type points here so the tile takes
+# a colour-themed vanilla base icon plus the specialization overlay when built,
+# as vanilla swaps generator -> volatile motes. All icons reference vanilla
+# assets by key, so UI mods that resize them carry through and nothing breaks.
+
+district_vault_hydroponics = {
+	icon = district_farming
+	overlay_icon = GFX_district_food
+	zone_slots = { slot_empty }
+	show_on_uncolonized = { always = no }
+	potential = { always = no }
+	inline_script = { script = districts/gk_vault_triggered_name }
+}
+
+district_vault_garrison = {
+	icon = district_mining
+	overlay_icon = GFX_district_fortress
+	zone_slots = { slot_empty }
+	show_on_uncolonized = { always = no }
+	potential = { always = no }
+	inline_script = { script = districts/gk_vault_triggered_name }
+}
+
+district_vault_archive = {
+	icon = district_hive
+	overlay_icon = GFX_district_research
+	zone_slots = { slot_empty }
+	show_on_uncolonized = { always = no }
+	potential = { always = no }
+	inline_script = { script = districts/gk_vault_triggered_name }
+}
+
+district_vault_stockpile = {
+	icon = district_nexus
+	overlay_icon = GFX_district_housing
+	zone_slots = { slot_empty }
+	show_on_uncolonized = { always = no }
+	potential = { always = no }
+	inline_script = { script = districts/gk_vault_triggered_name }
+}
+
+district_vault_refinery = {
+	icon = district_geothermal
+	overlay_icon = GFX_district_exotic_gases
+	zone_slots = { slot_empty }
+	show_on_uncolonized = { always = no }
+	potential = { always = no }
+	inline_script = { script = districts/gk_vault_triggered_name }
+}

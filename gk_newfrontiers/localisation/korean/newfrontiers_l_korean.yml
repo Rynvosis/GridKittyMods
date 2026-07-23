@@ -207,24 +207,6 @@
   # Jobs
   ####################################
 
- mod_job_pioneer_add: "$job_pioneer$ 직업"
- mod_job_pioneer_per_pop: "$VALUE$ POP마다 §G+1§! $job_pioneer$ 직업"
- mod_job_pioneer_per_pop_short: "\n$VALUE$ £pop£마다 §G+1§! £mod_job_pioneer_add£"
- mod_job_smuggler_add: "$job_smuggler$ 직업"
- mod_job_smuggler_per_pop: "$VALUE$ POP마다 §G+1§! $job_smuggler$ 직업"
- mod_job_smuggler_per_pop_short: "\n$VALUE$ £pop£마다 §G+1§! £mod_job_smuggler_add£"
- mod_job_opportunist_drone_add: "$job_opportunist_drone$ 직업"
- mod_job_opportunist_drone_per_pop: "$VALUE$ POP마다 §G+1§! $job_opportunist_drone$ 직업"
- mod_job_opportunist_drone_per_pop_short: "\n$VALUE$ £pop£마다 §G+1§! £mod_job_opportunist_drone_add£"
- mod_job_aberrant_drone_add: "$job_aberrant_drone$ 직업"
- mod_job_aberrant_drone_per_pop: "$VALUE$ POP마다 §G+1§! $job_aberrant_drone$ 직업"
- mod_job_aberrant_drone_per_pop_short: "\n$VALUE$ £pop£마다 §G+1§! £mod_job_aberrant_drone_add£"
- mod_job_scout_drone_add: "$job_scout_drone$ 직업"
- mod_job_scout_drone_per_pop: "$VALUE$ POP마다 §G +1§! $job_scout_drone$ 직업"
- mod_job_scout_drone_per_pop_short: "\n$VALUE$ £pop£마다 §G+1§! £mod_job_scout_drone_add£"
- mod_job_renegade_drone_add: "$job_renegade_drone$ 직업"
- mod_job_renegade_drone_per_pop: "$VALUE$ POP마다 §G+1§! $job_renegade_drone$ 직업"
- mod_job_renegade_drone_per_pop_short: "\n$VALUE$ £pop£마다 §G+1§! £mod_job_renegade_drone_add£"
  
  #Common Categories
  

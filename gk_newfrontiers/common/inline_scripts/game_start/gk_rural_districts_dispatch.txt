@@ -1,0 +1,10 @@
+# Fan-out for planet classes that consume the starting rural district counts
+# differently. Each branch clears only the variables it consumes, so vanilla's
+# placement below handles whatever is left. Same contract as volcanic_world_setup.
+#
+# Adding a new planet class: write its setup script and add a branch here.
+
+if = {
+	limit = { is_planet_class = pc_sterile }
+	inline_script = "game_start/gk_sterile_world_setup"
+}

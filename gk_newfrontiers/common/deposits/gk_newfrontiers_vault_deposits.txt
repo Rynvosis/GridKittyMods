@@ -1,0 +1,231 @@
+## Sterile World district-capacity deposits: energy, mineral and vault families.
+## Sterile is rich in energy and minerals both (mineral-saturated crust, exposed
+## geothermal), so it draws high on each, plus a vault family matching Volcanic's
+## polytechnic distribution in 15_infernals_deposits.txt.
+##
+## One set serves two masters, exactly like the d_volcanic_* deposits: the wild
+## galaxy generator picks by drop_weight, and gk_sterile_world_setup composes a
+## capital total from the same pool via while + random_list. Bigger deposits are
+## rarer in the wild (+2 = @high, +3 = @low), following vanilla.
+
+@high = 16
+@med = 8
+@low = 4
+
+# ##########
+# Energy family (favours the +2 while-pool, then +1 and +3 fixed picks)
+# ##########
+
+d_sterile_thermal_vents = {
+	icon = d_geothermal_vent
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+	planet_modifier = { district_generator_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_magma_pockets = {
+	icon = d_blue_lava
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+	planet_modifier = { district_generator_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_fumarole_fields = {
+	icon = d_lava_tubes
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+	planet_modifier = { district_generator_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_warm_flats = {
+	icon = d_arid_highlands
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+	planet_modifier = { district_generator_max_add = 1 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_heat_seams = {
+	icon = d_geothermal_hotspot
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+	planet_modifier = { district_generator_max_add = 1 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_geothermal_fields = {
+	icon = d_underwater_vent
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+	planet_modifier = { district_generator_max_add = 3 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @low }
+}
+
+# ##########
+# Mineral family (mirrors Volcanic's 9-total mining spread)
+# ##########
+
+d_sterile_rich_seams = {
+	icon = d_rich_mountain
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+	planet_modifier = { district_mining_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_ore_layers = {
+	icon = d_submerged_ore_veins
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+	planet_modifier = { district_mining_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_metal_fields = {
+	icon = d_metal_boneyard
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+	planet_modifier = { district_mining_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_mineral_hills = {
+	icon = d_mineral_fields
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+	planet_modifier = { district_mining_max_add = 1 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_ore_veins = {
+	icon = d_mineral_striations
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+	planet_modifier = { district_mining_max_add = 1 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_deep_ore = {
+	icon = d_ore_rich_caverns
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+	planet_modifier = { district_mining_max_add = 3 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @low }
+}
+
+# ##########
+# Vault family (the +2 pool feeds the 6-total capital roll; rares are wild-only)
+# ##########
+
+d_sterile_salt_domes = {
+	icon = d_salt_flat
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+	planet_modifier = { district_vault_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_basalt_galleries = {
+	icon = d_volcanic_basalt_plains
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+	planet_modifier = { district_vault_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_stable_strata = {
+	icon = d_prosperous_mesa
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+	planet_modifier = { district_vault_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_collapsed_aquifer = {
+	icon = d_dust_caverns
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+	planet_modifier = { district_vault_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @med }
+}
+
+d_sterile_fractured_shelf = {
+	icon = d_volcanic_stable_plateaus
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+	planet_modifier = { district_vault_max_add = 1 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @high }
+}
+
+d_sterile_sealed_caverns = {
+	icon = d_crystalline_caverns
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_rare
+	planet_modifier = {
+		district_vault_max_add = 2
+		pop_environment_tolerance = 0.15
+	}
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @med }
+}
+
+d_sterile_deep_cavity = {
+	icon = d_karst_cave
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_rare
+	planet_modifier = {
+		district_vault_max_add = 2
+		planet_max_districts_add = 1
+	}
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @low }
+}
+
+d_sterile_gas_pockets = {
+	icon = d_gaseous_eruption
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_rare_resource
+	planet_modifier = { district_vault_max_add = 2 }
+	potential = { is_planet_class = pc_sterile }
+	drop_weight = { weight = @med }
+}

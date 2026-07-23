@@ -1,0 +1,294 @@
+# Partial overwrite of five vanilla deposits from 01_planetary_deposits.txt.
+#
+# WHAT: each block below is the vanilla definition with one line added to its
+# potential, "is_planet_class = pc_sterile".
+#
+# WHY: vanilla gates these deposits on the scripted trigger
+# can_have_habitable_deposits, whose class list does not include pc_sterile.
+# Sterile subclasses grant four of them at game start (Ash grants dust caverns
+# and crystal forest, Mineral grants crystalline caverns, the Sterile world
+# setup grants dust desert). add_deposit is filtered by the target deposit's
+# potential and fails silently when it rejects the planet, so without these
+# blocks those grants do nothing and produce no error. Betharian is not granted
+# by anything; it is here so Sterile can roll it in the wild like other classes.
+#
+# These are listed individually rather than adding pc_sterile to
+# can_have_habitable_deposits itself. Patching that trigger reaches only one
+# further deposit but pulls in the two farming deposits Sterile must not have
+# (d_fuming_bog and d_bubbling_swamp), and terra.65 force-adds d_fuming_bog via
+# add_deposit on the barren-to-sterile terraform path this mod ships, bypassing
+# drop_weight entirely. The trigger also drives decisions and terraforming
+# events. Naming the deposits keeps Sterile excluded from everything else by
+# default, so no future deposit adopting that trigger can leak onto Sterile.
+#
+# The @ variables vanilla uses in these blocks are file-local to
+# 01_planetary_deposits.txt and do not carry across files, so they are declared
+# here with vanilla's values. Update if vanilla changes them.
+
+@SR_SMALL = 0.05
+@SR_LARGE = 0.10
+@DISTRICTS_FROM_SR_DEPOSITS = 3
+@deposit_chance_high_rare = 2
+@deposit_chance_med_rare = 1
+@deposit_chance_planet_type_bonus = 1.5
+@deposit_chance_gaia_bonus = 2
+
+##### SPECIAL #####
+
+d_betharian_deposit = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		OR = {
+			can_have_habitable_deposits = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_sterile # gk
+		}
+	}
+	custom_tooltip = unlocks_zone_betharian
+	planet_modifier = {
+		district_mining_max_add = 4
+	}
+
+	drop_weight = {
+		weight = @deposit_chance_med_rare
+		modifier = {
+			factor = @deposit_chance_gaia_bonus
+			is_planet_class = pc_gaia
+		}
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}
+
+##### MOTES #####
+
+d_dust_caverns = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	potential = {
+		OR = {
+			can_have_habitable_deposits = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_sterile # gk
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_volatile_motes
+			}
+		}
+		planet_technician_volatile_motes_produces_add = @SR_SMALL
+	}
+
+	planet_modifier = {
+		district_generator_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	drop_weight = {
+		weight = @deposit_chance_high_rare
+		modifier = {
+			factor = @deposit_chance_planet_type_bonus
+			is_dry = yes
+		}
+		modifier = {
+			factor = @deposit_chance_gaia_bonus
+			is_planet_class = pc_gaia
+		}
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}
+
+d_dust_desert = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	potential = {
+		OR = {
+			can_have_habitable_deposits = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_sterile # gk
+		}
+		NOT = { is_planet_class = pc_volcanic } # Have their own version
+	}
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_volcanic_stifling_atmosphere
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_volatile_motes
+			}
+		}
+		planet_technician_volatile_motes_produces_add = @SR_LARGE
+	}
+
+	planet_modifier = {
+		district_generator_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	drop_weight = {
+		weight = @deposit_chance_high_rare
+		modifier = {
+			factor = @deposit_chance_planet_type_bonus
+			is_dry = yes
+		}
+		modifier = {
+			factor = @deposit_chance_gaia_bonus
+			is_planet_class = pc_gaia
+		}
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}
+
+##### CRYSTALS #####
+
+d_crystal_forest = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_rare_crystals
+			}
+		}
+		planet_miners_rare_crystals_produces_add = @SR_LARGE
+	}
+
+	planet_modifier = {
+		district_mining_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	potential = {
+		OR = {
+			can_have_habitable_deposits = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_sterile # gk
+		}
+		NOR = {
+			is_planet_class = pc_ocean
+			is_planet_class = pc_nuked
+			is_planet_class = pc_gaia
+			is_planet_class = pc_volcanic
+		}
+	}
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_crystalline_caverns
+	}
+
+	drop_weight = {
+		weight = @deposit_chance_high_rare
+		modifier = {
+			factor = @deposit_chance_planet_type_bonus
+			is_cold = yes
+		}
+		modifier = {
+			factor = @deposit_chance_gaia_bonus
+			is_planet_class = pc_gaia
+		}
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}
+
+d_crystalline_caverns = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	potential = {
+		OR = {
+			can_have_habitable_deposits = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_sterile # gk
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_rare_crystals
+			}
+		}
+		planet_miners_rare_crystals_produces_add = @SR_SMALL
+	}
+
+	planet_modifier = {
+		district_mining_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	drop_weight = {
+		weight = @deposit_chance_high_rare
+		modifier = {
+			factor = @deposit_chance_planet_type_bonus
+			is_cold = yes
+		}
+		modifier = {
+			factor = @deposit_chance_gaia_bonus
+			is_planet_class = pc_gaia
+		}
+		modifier = {
+			factor = 1.25
+			is_planet_class = pc_volcanic
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}

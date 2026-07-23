@@ -155,7 +155,7 @@ event = {
 										factor = 1.5
 										has_natural_hazards = yes
 									}
-									set_adiabatic_subclass = yes
+									set_flaming_subclass = yes
 								}
 							}					
 						}
@@ -180,6 +180,13 @@ event = {
 										has_natural_hazards = yes
 									}
 									set_aeolian_subclass = yes
+								}
+								25 = {
+									modifier = {
+										factor = 1.5
+										has_natural_hazards = yes
+									}
+									set_adiabatic_subclass = yes
 								}
 							}					
 						}
@@ -225,6 +232,17 @@ event = {
 									}
 									set_monsoon_subclass = yes
 								}
+								20 = {
+									modifier = {
+										factor = 2
+										has_favorable_conditions = yes
+									}
+									modifier = {
+										factor = 0.5
+										has_natural_hazards = yes
+									}
+									set_meridiem_subclass = yes
+								}
 							}					
 						}
 						pc_continental = {
@@ -244,6 +262,9 @@ event = {
 								}
 								25 = {
 									set_hollow_subclass = yes
+								}
+								25 = {
+									set_twilight_subclass = yes
 								}
 							}					
 						}
@@ -320,6 +341,9 @@ event = {
 										has_natural_hazards = yes
 									}
 									set_geothermal_subclass = yes
+								}
+								25 = {
+									set_eyeball_subclass = yes
 								}
 							}					
 						}
@@ -941,10 +965,7 @@ event = {
 					OR = {
 						solar_system = {
 							OR = {
-								is_star_class = sc_l
 								is_star_class = sc_t
-								is_star_class = sc_y
-								is_star_class = sc_d
 							}
 						}
 						AND = {
@@ -1025,16 +1046,6 @@ country_event = {
 			capital_scope = { carrier_event = { id = newfrontiers.20 } }
 		}
 	}
-	option = {
-		name = "newfrontiers.8.adiabatic"
-		trigger = {
-			capital_scope = { is_planet_class = pc_desert }
-		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
-		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.21 } }
-		}
-	}
 	#Arid
 	option = {
 		name = "newfrontiers.8.karst"
@@ -1047,16 +1058,6 @@ country_event = {
 		}
 	}
 	option = {
-		name = "newfrontiers.8.dust"
-		trigger = {
-			capital_scope = { is_planet_class = pc_arid }
-		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
-		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.23 } }
-		}
-	}
-	option = {
 		name = "newfrontiers.8.aeolian"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arid }
@@ -1064,6 +1065,16 @@ country_event = {
 		custom_tooltip = newfrontiers.8.more_details.tooltip
 		hidden_effect = {
 			capital_scope = { carrier_event = { id = newfrontiers.24 } }
+		}
+	}
+	option = {
+		name = "newfrontiers.8.adiabatic"
+		trigger = {
+			capital_scope = { is_planet_class = pc_arid }
+		}
+		custom_tooltip = newfrontiers.8.more_details.tooltip
+		hidden_effect = {
+			capital_scope = { carrier_event = { id = newfrontiers.21 } }
 		}
 	}
 	option = {
@@ -1521,42 +1532,6 @@ country_event = {
 }
 
 #Adding modifiers Beautiful Sky
-event = {
-	id = newfrontiers.9
-	hide_window = yes
-	is_triggered_only = yes
-	
-	immediate = {
-		every_galaxy_planet = {	
-			limit = {
-				AND = {
-					solar_system = {
-						OR = {
-							is_star_class = sc_nova_1
-							is_star_class = sc_nova_2
-							is_star_class = sc_w_azure
-							is_star_class = sc_w_red
-							is_star_class = sc_w_green
-							is_star_class = sc_w_purple
-							is_star_class = sc_lbv_blue
-							is_star_class = sc_lbv_green
-							is_star_class = sc_lbv_red
-							is_star_class = sc_p_purple
-							is_star_class = sc_p_green
-							is_star_class = sc_p_red
-						}
-					}
-					is_colonizable = yes
-					NOT = { num_modifiers > 2 }
-				}
-			}
-			add_modifier = {
-				modifier = "beautiful_sky"
-				days = -1
-			}
-		}
-	}
-}
 
 ### Event planet changes 
 event = {
@@ -1646,35 +1621,6 @@ event = {
 				change_pc = pc_shattered
 				clear_deposits = yes
 			}
-		}
-	}
-}
-
-# Stocks Frontier-class capitals. Vanilla generate_start_deposits_and_blockers clears
-# deposits then only re-adds them for the 11 classes it knows, so these three come up
-# empty. Fires from empire_init_capital_colony after vanilla's game_start.12.
-# this: capital colony, from: founder species
-colony_event = {
-	id = newfrontiers.14
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		if = {
-			limit = { is_planet_class = pc_sterile }
-			add_deposit = d_geothermal_vent
-			add_deposit = d_rich_mountain
-			add_deposit = d_mineral_fields
-			add_deposit = d_hydroponic_complex
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_ore_rich_caverns
-			}
-			else = {
-				add_deposit = d_irrigated_fields
-			}
-			add_deposit = d_dust_desert
-			add_deposit = d_fuming_bog
 		}
 	}
 }
@@ -1969,33 +1915,6 @@ carrier_event = {
 }
 
 #Start on Dust World 
-carrier_event = {
-	id = newfrontiers.23
-	title = "newfrontiers.23.name"
-	desc = "newfrontiers.23.desc"
-	picture = GFX_evt_dust_world
-	show_sound = event_radio_chatter
-	location = ROOT
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = "newfrontiers.choose"
-		custom_tooltip = newfrontiers.choose.tooltip
-		hidden_effect = {
-			set_dust_subclass = yes
-		}
-	}
-	
-	option = {
-		name = "newfrontiers.back"
-		default_hide_option = yes
-		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
-		}
-	}
-	
-}
 
 #Start on Aeolian World 
 carrier_event = {
@@ -2321,7 +2240,7 @@ carrier_event = {
 	id = newfrontiers.72
 	title = "newfrontiers.72.name"
 	desc = "newfrontiers.72.desc"
-	picture = GFX_evt_prairie_world
+	picture = GFX_evt_twilight_world
 	show_sound = event_radio_chatter
 	location = ROOT
 	
@@ -3034,7 +2953,7 @@ carrier_event = {
 	id = newfrontiers.70
 	title = "newfrontiers.70.name"
 	desc = "newfrontiers.70.desc"
-	picture = GFX_evt_toxic
+	picture = GFX_evt_caustic_world
 	show_sound = event_radio_chatter
 	location = ROOT
 	

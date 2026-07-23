@@ -1013,8 +1013,8 @@ set_salt_subclass = {
 
 set_adiabatic_subclass = {
 	if = {
-		limit = { NOT = { is_planet_class = pc_desert } }
-		change_pc = pc_desert
+		limit = { NOT = { is_planet_class = pc_arid } }
+		change_pc = pc_arid
 	}
 	remove_subclass_modifiers = yes
 	set_planet_entity = {
@@ -1106,6 +1106,10 @@ set_dust_subclass = {
 		limit = { NOT = { has_deposit = d_dust_caverns } }
 		add_deposit = d_dust_caverns
 	}
+	if = {
+		limit = { NOT = { has_deposit = d_dust_desert } }
+		add_deposit = d_dust_desert
+	}
 }
 
 set_aeolian_subclass = {
@@ -1123,6 +1127,10 @@ set_aeolian_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	if = {
+		limit = { NOT = { has_deposit = d_crystalline_caverns } }
+		add_deposit = d_crystalline_caverns
+	}
 }
 
 set_mesa_subclass = {
@@ -1197,6 +1205,10 @@ set_effusive_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	if = {
+		limit = { NOT = { has_deposit = d_fuming_bog } }
+		add_deposit = d_fuming_bog
+	}
 }
 
 set_veld_subclass = {
@@ -1399,6 +1411,14 @@ set_noxious_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	if = {
+		limit = { NOT = { has_deposit = d_fuming_bog } }
+		add_deposit = d_fuming_bog
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_bubbling_swamp } }
+		add_deposit = d_bubbling_swamp
+	}
 }
 
 set_boreal_subclass = {
@@ -1575,6 +1595,10 @@ set_moraine_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	if = {
+		limit = { NOT = { has_deposit = d_crystal_forest } }
+		add_deposit = d_crystal_forest
+	}
 }
 
 set_bog_subclass = {
@@ -1790,8 +1814,8 @@ set_caustic_subclass = {
 		days = -1
 	}
 	if = {
-		limit = { NOT = { has_deposit = d_fuming_bog } }
-		add_deposit = d_fuming_bog
+		limit = { NOT = { has_deposit = d_sterile_gas_pockets } }
+		add_deposit = d_sterile_gas_pockets
 	}
 }
 
@@ -2000,6 +2024,10 @@ set_bioluminescent_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	if = {
+		limit = { NOT = { has_deposit = d_crystalline_caverns } }
+		add_deposit = d_crystalline_caverns
+	}
 }
 
 set_crystal_subclass = {
@@ -2017,20 +2045,13 @@ set_crystal_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
-	add_deposit = d_crystalline_array
-	random_list = {
-		50 = {
-			add_deposit = d_gemstone_quarry
-		}
-		35 = {
-			add_deposit = d_gemstone_quarry
-			add_deposit = d_gemstone_quarry
-		}
-		15 = {
-			add_deposit = d_gemstone_quarry
-			add_deposit = d_gemstone_quarry
-			add_deposit = d_gemstone_quarry
-		}
+	if = {
+		limit = { NOT = { has_deposit = d_crystal_forest } }
+		add_deposit = d_crystal_forest
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_crystalline_caverns } }
+		add_deposit = d_crystalline_caverns
 	}
 }
 

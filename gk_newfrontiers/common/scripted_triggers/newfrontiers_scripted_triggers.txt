@@ -67,10 +67,8 @@ is_extreme_subclass = {
 		has_modifier = "glacial_world"
 		has_modifier = "dune_world"
 		has_modifier = "magma_world"
-		has_modifier = "dust_world"
 		has_modifier = "monsoon_world"
 		has_modifier = "supercontinental_world"
-		has_modifier = "subglacial_world"
 		has_modifier = "caustic_world"
 		has_modifier = "flaming_world"
 		has_modifier = "aeolian_world"
@@ -83,6 +81,7 @@ is_extreme_subclass = {
 		has_modifier = "adiabatic_world"
 		has_modifier = "moraine_world"
 		has_modifier = "fallout_world"
+		is_exotic_subclass = yes
 	}
 }
 
@@ -101,6 +100,7 @@ is_exotic_subclass = {
 		has_modifier = "algae_world"
 		has_modifier = "bioluminescent_world"
 		has_modifier = "crystal_world"
+		has_modifier = "dust_world"
 	}
 }
 
@@ -129,8 +129,6 @@ is_regular_star = {
 is_giant_star = {
 	OR = {
 		is_planet_class = pc_m_giant_star
-		is_planet_class = pc_k_giant_star
-		is_planet_class = pc_g_giant_star
 		is_planet_class = pc_a_star
 		is_planet_class = pc_b_star
 	}
@@ -172,8 +170,6 @@ star_catastrophe_is_possible = {
 		is_planet_class = pc_g_star
 		is_planet_class = pc_f_star
 		is_planet_class = pc_m_giant_star
-		is_planet_class = pc_k_giant_star
-		is_planet_class = pc_g_giant_star
 		is_planet_class = pc_a_star
 		is_planet_class = pc_b_star
 	}

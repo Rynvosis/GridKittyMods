@@ -93,7 +93,6 @@ forgotten_world_system = {
 			reroll_deposits = yes
 			add_deposit = d_ancient_temple_ruins
 			add_deposit = d_enigmatic_remnants
-			add_deposit = d_artifacts_valley
 			set_carrier_flag = legendary_world
 			set_carrier_flag = unique_planet
 		}

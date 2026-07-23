@@ -446,7 +446,7 @@ decision_end_ecosystem_creation_project = {
 	}
 
 	effect = {
-		custom_tooltip = end_terraform_progect
+		custom_tooltip = end_terraform_project
 		hidden_effect = { fire_on_action = { on_action = on_situation_eco_creation_terraforming_complete } }
 	}
 

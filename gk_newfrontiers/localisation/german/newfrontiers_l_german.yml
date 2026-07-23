@@ -207,24 +207,6 @@
   # Jobs
   ####################################
 
- mod_job_pioneer_add: "$job_pioneer$ Jobs"
- mod_job_pioneer_per_pop: "§G+1§! $job_pioneer$ Job per $VALUE$ Pops"
- mod_job_pioneer_per_pop_short: "\n§G+1§! £mod_job_pioneer_add£ per $VALUE$ £pop£"
- mod_job_smuggler_add: "$job_smuggler$ Jobs"
- mod_job_smuggler_per_pop: "§G+1§! $job_smuggler$ Job per $VALUE$ Pops"
- mod_job_smuggler_per_pop_short: "\n§G+1§! £mod_job_smuggler_add£ per $VALUE$ £pop£"
- mod_job_opportunist_drone_add: "$job_opportunist_drone$ Jobs"
- mod_job_opportunist_drone_per_pop: "§G+1§! $job_opportunist_drone$ Job per $VALUE$ Pops"
- mod_job_opportunist_drone_per_pop_short: "\n§G+1§! £mod_job_opportunist_drone_add£ per $VALUE$ £pop£"
- mod_job_aberrant_drone_add: "$job_aberrant_drone$ Jobs"
- mod_job_aberrant_drone_per_pop: "§G+1§! $job_aberrant_drone$ Job per $VALUE$ Pops"
- mod_job_aberrant_drone_per_pop_short: "\n§G+1§! £mod_job_aberrant_drone_add£ per $VALUE$ £pop£"
- mod_job_scout_drone_add: "$job_scout_drone$ Jobs"
- mod_job_scout_drone_per_pop: "§G+1§! $job_scout_drone$ Job per $VALUE$ Pops"
- mod_job_scout_drone_per_pop_short: "\n§G+1§! £mod_job_scout_drone_add£ per $VALUE$ £pop£"
- mod_job_renegade_drone_add: "$job_renegade_drone$ Jobs"
- mod_job_renegade_drone_per_pop: "§G+1§! $job_renegade_drone$ Job per $VALUE$ Pops"
- mod_job_renegade_drone_per_pop_short: "\n§G+1§! £mod_job_renegade_drone_add£ per $VALUE$ £pop£"
   
  #Common Categories
  

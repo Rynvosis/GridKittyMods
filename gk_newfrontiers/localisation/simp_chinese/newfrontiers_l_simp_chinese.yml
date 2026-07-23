@@ -343,24 +343,6 @@
   # Jobs
   ####################################
 
- mod_job_pioneer_add: "$job_pioneer$岗位"
- mod_job_pioneer_per_pop: "每$VALUE$人口§G+1§! $job_pioneer$岗位"
- mod_job_pioneer_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_pioneer_add£"
- mod_job_smuggler_add: "$job_smuggler$岗位"
- mod_job_smuggler_per_pop: "每$VALUE$人口§G+1§! $job_smuggler$岗位"
- mod_job_smuggler_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_smuggler_add£"
- mod_job_opportunist_drone_add: "$job_opportunist_drone$岗位"
- mod_job_opportunist_drone_per_pop: "每$VALUE$人口§G+1§! $job_opportunist_drone$岗位"
- mod_job_opportunist_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_opportunist_drone_add£"
- mod_job_aberrant_drone_add: "$job_aberrant_drone$岗位"
- mod_job_aberrant_drone_per_pop: "每$VALUE$人口§G+1§! $job_aberrant_drone$岗位"
- mod_job_aberrant_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§!£mod_job_aberrant_drone_add£"
- mod_job_scout_drone_add: "$job_scout_drone$岗位"
- mod_job_scout_drone_per_pop: "每$VALUE$人口§G+1§! $job_scout_drone$岗位"
- mod_job_scout_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_scout_drone_add£"
- mod_job_renegade_drone_add: "$job_renegade_drone$岗位"
- mod_job_renegade_drone_per_pop: "每$VALUE$人口§G+1§! $job_renegade_drone$岗位"
- mod_job_renegade_drone_per_pop_short: "\n每$VALUE$ £pop£ §G+1§! £mod_job_renegade_drone_add£"
   
  #Common Categories
  

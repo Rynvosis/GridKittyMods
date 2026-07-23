@@ -1,0 +1,26 @@
+# Yellow subtitle for the Vault Complex and its swap variants: the built
+# specialization's name, first match wins, defaulting to the district name.
+triggered_name = {
+	trigger = { num_zones = { type = zone_vault_hydroponics value > 0 } }
+	text = zone_vault_hydroponics
+}
+triggered_name = {
+	trigger = { num_zones = { type = zone_vault_garrison value > 0 } }
+	text = zone_vault_garrison
+}
+triggered_name = {
+	trigger = { num_zones = { type = zone_vault_archive value > 0 } }
+	text = zone_vault_archive
+}
+triggered_name = {
+	trigger = { num_zones = { type = zone_vault_stockpile value > 0 } }
+	text = zone_vault_stockpile
+}
+triggered_name = {
+	trigger = { num_zones = { type = zone_vault_refinery value > 0 } }
+	text = zone_vault_refinery
+}
+triggered_name = {
+	trigger = { always = yes }
+	text = district_vault
+}

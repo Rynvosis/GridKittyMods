@@ -1,0 +1,9 @@
+# Specialization slot on the Vault Complex.
+slot_vault = {
+	included_zone_sets = {
+		vault
+	}
+	unlock = { # planet scope
+		always = yes
+	}
+}

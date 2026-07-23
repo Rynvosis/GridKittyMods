@@ -1,0 +1,463 @@
+# Agricultural specialization for the Thermotechnic Forum, Primal World only.
+#
+# zones/shared_food_zone is expanded by hand rather than included. It emits its
+# own potential and unlock, and a zone may only declare each key once: a second
+# unlock block is discarded, not ANDed with the first. The Primal gate therefore
+# has to live inside the same unlock block as the shared checks.
+zone_food_volcanic = {
+	icon = GFX_district_specialization_food
+	base_buildtime = @zone_buildtime
+
+	potential = { # planet scope
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_anglers_empire = yes }
+			}
+			is_wet = no
+		}
+		else = {
+			hidden_trigger = {
+				owner? = {
+					is_wilderness_empire = no
+				}
+			}
+		}
+	}
+
+	unlock = { # planet scope
+		if = {
+			limit = {
+				owner? = { is_anglers_empire = yes }
+			}
+			is_wet = no
+		}
+		else = {
+			hidden_trigger = {
+				owner? = {
+					is_wilderness_empire = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = zone_food_volcanic_unavailable
+			has_modifier = primal_world
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
+		}
+	}
+
+	inline_script = {
+		script = jobs/zone_farmers_add
+		AMOUNT = @scaling_district_1_job
+	}
+
+	included_building_sets = {
+		farming
+		hydroponics
+		farming_automation
+		fallen_empire_farming
+	}
+
+	convert_to = {
+		zone_food
+		zone_food_ring_world
+		zone_food_hive
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	ai_priority = 5
+
+	zone_sets = {
+		polytechnic
+	}
+}
+
+# ##################
+# Vault Complex specializations, Sterile World.
+# ##################
+
+# zones/shared_food_zone expanded by hand, as for zone_food_volcanic above: the
+# tech gate and the urban building set both have to be merged into the shared
+# script's own unlock and included_building_sets, because a duplicate key is
+# discarded rather than combined.
+zone_vault_hydroponics = {
+	swap_type = district_vault_hydroponics
+	swap_type_weight = 5
+
+	icon = GFX_district_specialization_food
+	base_buildtime = @zone_buildtime
+
+	potential = { # planet scope
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_anglers_empire = yes }
+			}
+			is_wet = no
+		}
+		else = {
+			hidden_trigger = {
+				owner? = {
+					is_wilderness_empire = no
+				}
+			}
+		}
+	}
+
+	# slot_vault carries no tech gate, so the build is gated here as slot_food
+	# does. Shows always, builds on the tech.
+	unlock = { # planet scope
+		if = {
+			limit = {
+				owner? = { is_anglers_empire = yes }
+			}
+			is_wet = no
+		}
+		else = {
+			hidden_trigger = {
+				owner? = {
+					is_wilderness_empire = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = zone_unavailable_tech_hydroponics
+			owner = { has_tech_or_functional_civic = { TECH = tech_hydroponics } }
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
+		}
+	}
+
+	inline_script = {
+		script = jobs/zone_farmers_add
+		AMOUNT = @bonus_scaling_district_1_job
+	}
+
+	included_building_sets = {
+		farming
+		hydroponics
+		farming_automation
+		fallen_empire_farming
+		urban
+	}
+
+	convert_to = {
+		zone_food
+		zone_food_ring_world
+		zone_food_hive
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	ai_priority = 5
+
+	# storage lives on the specialization, not the base district
+	district_country_modifier = {
+		country_resource_max_add = 1000
+	}
+
+	zone_sets = {
+		vault
+	}
+}
+
+# zones/shared_fortress_zone expanded by hand so the urban building set merges
+# into the script's own included_building_sets instead of duplicating the key.
+zone_vault_garrison = {
+	swap_type = district_vault_garrison
+	swap_type_weight = 5
+
+	icon = GFX_district_specialization_fortress
+	base_buildtime = @zone_buildtime
+
+	potential = { # planet scope
+		hidden_trigger = {
+			exists = owner
+			owner = {
+				is_wilderness_empire = no
+			}
+		}
+	}
+
+	unlock = { # planet scope
+		hidden_trigger = {
+			exists = owner
+			owner = {
+				is_wilderness_empire = no
+			}
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
+		}
+	}
+
+	included_building_sets = {
+		fortress
+		urban_automation
+		origin
+		urban
+	}
+
+	inline_script = {
+		script = jobs/zone_soldiers_add
+		AMOUNT = @bonus_scaling_district_1_job
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	ai_priority = 10
+
+	# storage lives on the specialization, not the base district
+	district_country_modifier = {
+		country_resource_max_add = 1000
+	}
+
+	zone_sets = {
+		vault
+	}
+}
+
+# Copy of zone_research_unity's job split, scaled to 150 total.
+zone_vault_archive = {
+	swap_type = district_vault_archive
+	swap_type_weight = 5
+
+	icon = GFX_district_specialization_bureaucrat
+	base_buildtime = @zone_buildtime
+
+	potential = { # planet scope
+		hidden_trigger = {
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+	}
+
+	unlock = { # planet scope
+		hidden_trigger = {
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
+		}
+	}
+
+	included_building_sets = {
+		research
+		urban
+		unity
+		origin
+	}
+
+	inline_script = {
+		script = jobs/zone_researchers_add
+		AMOUNT = 30
+	}
+
+	inline_script = {
+		script = jobs/zone_unity_jobs_add
+		AMOUNT = 60
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	ai_priority = 8
+
+	# storage lives on the specialization, not the base district
+	district_country_modifier = {
+		country_resource_max_add = 1000
+	}
+
+	zone_sets = {
+		vault
+	}
+}
+
+zone_vault_stockpile = {
+	swap_type = district_vault_stockpile
+	swap_type_weight = 5
+
+	icon = GFX_district_specialization_urban
+	base_buildtime = @zone_buildtime
+
+	potential = { # planet scope
+		hidden_trigger = {
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+	}
+
+	unlock = { # planet scope
+		hidden_trigger = {
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
+		}
+	}
+
+	included_building_sets = {
+		urban
+		trade
+		urban_automation
+		origin
+	}
+
+	# clerks and traders both auto-swap to logistics drones for gestalts
+	inline_script = {
+		script = jobs/zone_clerks_add
+		AMOUNT = 50
+	}
+	inline_script = {
+		script = jobs/zone_trader_add
+		AMOUNT = @scaling_district_1_job
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	ai_priority = 5
+
+	# storage lives on the specialization, not the base district
+	district_country_modifier = {
+		country_resource_max_add = 2000
+	}
+
+	zone_sets = {
+		vault
+	}
+}
+
+# Specialist gas, not vanilla's zone_exotic_gases, which is a farmer swap.
+# refiner_add is flat and needs building_refinery, so the jobs are written here
+# district-scaled instead.
+zone_vault_refinery = {
+	swap_type = district_vault_refinery
+	swap_type_weight = 5
+
+	icon = GFX_district_specialization_exotic_gases
+	base_buildtime = @zone_buildtime
+
+	potential = { # planet scope
+		has_deposit = d_sterile_gas_pockets
+		hidden_trigger = {
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+	}
+
+	unlock = { # planet scope
+		hidden_trigger = {
+			has_deposit = d_sterile_gas_pockets
+			exists = owner
+			owner = { is_wilderness_empire = no }
+		}
+		custom_tooltip = {
+			fail_text = zone_unavailable_tech_mine_exotic_gases
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
+		}
+	}
+
+	included_building_sets = {
+		industrial
+		urban
+		urban_automation
+		origin
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		job_gas_refiner_add = @bonus_scaling_district_1_job
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_gas_refiner_drone_add = @bonus_scaling_district_1_job
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	# storage lives on the specialization, not the base district
+	district_country_modifier = {
+		country_resource_max_add = 1000
+	}
+
+	zone_sets = {
+		vault
+	}
+
+	ai_priority = 10
+}

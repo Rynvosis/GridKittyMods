@@ -57,7 +57,7 @@
  rocky_world: "Rocky World"
  rocky_world_desc: "Frequent storms and strong winds on this planet contributed to the strong weathering of its geological formations. As a result, much of the surface of this world is eroded rocks.\n\nType: §Mexotic§!"
  primal_world: "Primal World"
- primal_world_desc: "This world is still quite young and is experiencing frequent periods of volcanic activity. The lush jungle can be abruptly replaced by dead wastelands. Lava flows erupting from the bowels of the planet spread through the valleys and canyons, absorbing the once-blooming land, and turning it into a hellish landscape.\n\nType: §Bnormal§!"
+ primal_world_desc: "This world is still quite young and is experiencing frequent periods of volcanic activity. The lush jungle can be abruptly replaced by dead wastelands. Lava flows erupting from the bowels of the planet spread through the valleys and canyons, absorbing the once-blooming land, and turning it into a hellish landscape.\n\nType: §Gparadise§!"
  mesa_world: "Mesa World"
  mesa_world_desc: "Frequent, sometimes unpredictable, changes in the warm and cold seasons of this world lead to strong winds and drought. Over the course of many millions of years, constant weathering has transformed the planet's topography into canyon-ridged plateaus and vast mesas. The planet's meager biosphere thrives only near rare water bodies in the polar zone.\n\nType: §Bnormal§!"
  bog_world: "Bog World"

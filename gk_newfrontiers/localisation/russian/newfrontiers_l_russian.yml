@@ -216,24 +216,6 @@
   # Jobs
   ####################################
 
-  mod_job_pioneer_add: "Деятельность: $job_pioneer$"
-  mod_job_pioneer_per_pop: "§G+1§! $job_pioneer$ как вид деятельности для $VALUE$ поселений"
-  mod_job_pioneer_per_pop_short: "\n§G+1§! £mod_job_pioneer_add£ для $VALUE$ £pop£"
-  mod_job_smuggler_add: "Деятельность: $job_smuggler$"
-  mod_job_smuggler_per_pop: "§G+1§! $job_smuggler$ как вид деятельности для $VALUE$ поселений"
-  mod_job_smuggler_per_pop_short: "\n§G+1§! £mod_job_smuggler_add£ для $VALUE$ £pop£"
-  mod_job_opportunist_drone_add: "Деятельность: $job_opportunist_drone$"
-  mod_job_opportunist_drone_per_pop: "§G+1§! $job_opportunist_drone$ как вид деятельности для $VALUE$ поселений"
-  mod_job_opportunist_drone_per_pop_short: "\n§G+1§! £mod_job_opportunist_drone_add£ для $VALUE$ £pop£"
-  mod_job_aberrant_drone_add: "Деятельность: $job_aberrant_drone$"
-  mod_job_aberrant_drone_per_pop: "§G+1§! $job_aberrant_drone$ как вид деятельности для $VALUE$ поселений"
-  mod_job_aberrant_drone_per_pop_short: "\n§G+1§! £mod_job_aberrant_drone_add£ для $VALUE$ £pop£"
-  mod_job_scout_drone_add: "Деятельность: $job_scout_drone$"
-  mod_job_scout_drone_per_pop: "§G+1§! $job_scout_drone$ как вид деятельности для $VALUE$ поселений"
-  mod_job_scout_drone_per_pop_short: "\n§G+1§! £mod_job_scout_drone_add£ для $VALUE$ £pop£"
-  mod_job_renegade_drone_add: "Деятельность: $job_renegade_drone$"
-  mod_job_renegade_drone_per_pop: "§G+1§! $job_renegade_drone$ как вид деятельности для $VALUE$ поселений"
-  mod_job_renegade_drone_per_pop_short: "\n§G+1§! £mod_job_renegade_drone_add£ для $VALUE$ £pop£"
   
   #Common Categories
  

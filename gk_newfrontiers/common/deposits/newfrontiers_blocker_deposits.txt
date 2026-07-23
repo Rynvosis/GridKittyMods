@@ -125,12 +125,6 @@ d_thick_forest = {
 			is_planet_class = pc_alpine
 			has_modifier = "meridiem_world"
 		}
-		NOR = { 
-			has_modifier = "supercontinental_world"
-			has_modifier = "mediterranean_world"
-			has_modifier = "mineral_world"
-			has_modifier = "moraine_world"
-		}
 	}
 	
 	planet_modifier = {

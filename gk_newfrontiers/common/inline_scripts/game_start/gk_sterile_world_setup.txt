@@ -1,0 +1,73 @@
+# Sterile capital setup. Sterile has no farming districts, so the farming
+# allocation becomes Vault Complexes running the Hydroponics specialization.
+# Composes district capacity for all three families before placement, the way
+# volcanic_world_setup does: while + random_list so no two starts are identical.
+# Totals: 9 energy, 9 mineral, 6 vault, above the 2 / 2 / 3 pre-built below.
+
+# Energy - 9 total
+while = {
+	count = 2
+	random_list = {
+		1 = { add_deposit = d_sterile_thermal_vents }
+		1 = { add_deposit = d_sterile_magma_pockets }
+		1 = { add_deposit = d_sterile_fumarole_fields }
+	}
+}
+add_deposit = d_sterile_warm_flats
+add_deposit = d_sterile_heat_seams
+add_deposit = d_sterile_geothermal_fields
+
+# Mineral - 9 total
+while = {
+	count = 2
+	random_list = {
+		1 = { add_deposit = d_sterile_rich_seams }
+		1 = { add_deposit = d_sterile_ore_layers }
+		1 = { add_deposit = d_sterile_metal_fields }
+	}
+}
+add_deposit = d_sterile_mineral_hills
+add_deposit = d_sterile_ore_veins
+add_deposit = d_sterile_deep_ore
+
+# Vault - 6 total
+while = {
+	count = 3
+	random_list = {
+		1 = { add_deposit = d_sterile_salt_domes }
+		1 = { add_deposit = d_sterile_basalt_galleries }
+		1 = { add_deposit = d_sterile_stable_strata }
+		1 = { add_deposit = d_sterile_collapsed_aquifer }
+	}
+}
+
+# Flavour
+add_deposit = d_dust_desert
+
+# Place the Vault Complexes for the farming allocation. Energy and mining are
+# left to vanilla's own blocks, which now see 9 capacity each.
+if = {
+	limit = {
+		check_variable = {
+			which = farming_districts
+			value >= 1
+		}
+	}
+	add_district_and_planet_size_if_needed_effect_amount = {
+		amount = farming_districts
+		district = district_vault
+	}
+	if = {
+		limit = { has_district = district_vault }
+		add_zone = {
+			district = district_vault
+			zone = zone_vault_hydroponics
+		}
+		add_building = {
+			zone = zone_vault_hydroponics
+			building = building_hydroponics_farm
+		}
+	}
+}
+
+clear_variable = farming_districts

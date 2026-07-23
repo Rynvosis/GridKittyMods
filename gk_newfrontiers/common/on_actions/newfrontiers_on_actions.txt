@@ -3,7 +3,6 @@ on_game_start = {
 		#newfrontiers.2
 		newfrontiers.3
 		newfrontiers.7
-		newfrontiers.9
 		newfrontiers.11
 		#newfrontiers.16
 		newfrontiers.61
@@ -220,18 +219,6 @@ on_building_replaced = {
 # This = Planet
 on_building_demolished = {
 	events = {
-	}
-}
-
-# Called during empire initialization when starting a new game if has_secondary_species game rule is true.
-# Called before empire_init_create_capital_pops.
-# scope: planet
-# from: founder species
-# fromfrom: secondary species (if exists)
-# runs after vanilla game_start.12, which clears deposits and skips our three classes
-empire_init_capital_colony = {
-	events = {
-		newfrontiers.14
 	}
 }
 
