@@ -4,18 +4,12 @@
   # Planet Decision
   ####################################
 
-  decision_protective_equipment: "Protective Equipment"
-  decision_protective_equipment_desc: "A number of government programs provide the population of harsh worlds with personal protective equipment, distributed for mandatory use."
   decision_ark_project: "Launch the Ark project"
   decision_ark_project_desc: "Our homeworld will be destroyed by catastrophe. One of the measures proposed to save our civilization was the Ark project. A huge colonial ship, provided with everything for long flights, will embark in search of a new home."
   decision_ark_project_effect_desc: "The construction of the Ark spaceship will begin.\n\n§YAfter the planet dies, the Ark will become a new empire. If the Ark colonizes a new world before the planet is destroyed, a new empire will be created. You will be able to choose which empire you continue to rule.§!"
   decision_planetary_excavation: "Start planetary excavation"
   decision_planetary_excavation_desc: "Underneath the overgrown surface of this ancient world are the ruins of a huge planetary city. Planetary excavations will destroy the natural beauty of this world, but this is a necessary step to study valuable long-lost technologies and ultimately restore the former greatness of the planet."
   decision_planetary_excavation_effect_desc: "Turns the planet into §Y$pc_relic$§!."
-  decision_build_cloud_platform: "Start Building Cloud Platform"
-  decision_build_cloud_platform_desc: "Construction of special platforms, on which entire cities can be built, will allow the development of territories covered with toxic fumes, and will open access to mining."
-  decision_demolish_cloud_platform: "Demolish Cloud Platform"
-  decision_demolish_cloud_platform_desc: "If the maintenance of the celestial platform becomes unprofitable, it can be disposed of."
   decision_start_ecosystem_creation_project_effect_desc: "Triggers a special terraforming process. To progress, you will need various terraforming structures."
   
   
@@ -67,7 +61,6 @@
   
   requires_actor_exomycosis: "Exomycosis must be studied to remove."
   max_infestation: "Maximum number of infected regions created"
-  cloud_platform_max: "The maximum number of cloud platforms for this planet has been reached."
 
   
   ####################################
@@ -80,8 +73,6 @@
   # Technology
   ####################################
   
-  tech_cloud_platform: "Cloud Platform Design"
-  tech_cloud_platform_desc: "The need to develop closed territories of poisonous worlds to access resources requires the development of special engineering solutions."
   
   
   ####################################
@@ -90,8 +81,6 @@
   
   building_ark: "Remains of the Ark"
   building_ark_desc: "This is the hull of the Ark that landed on the planet to found a new colony. The inner complexes in this huge building provide housing for the colonists."
-  building_pharmaceutical_production_complex: "Pharmaceutical Production Complex"
-  building_pharmaceutical_production_complex_desc: "This facility uses the planet's unique algae to produce more advanced medical products."
   
   
   ####################################

@@ -121,8 +121,6 @@
  d_remains_of_ark_desc: "행성에 착륙하여 새로운 식민지의 기초로써 사용된 방주의 잔해입니다. 과거 이 행성에 살았던 문명을 떠올리게 하는 기념비입니다."
  d_settler_camp: "정착민 야영지"
  d_settler_camp_desc: "방주의 사람들이 고철을 사용해 거대한 정착지를 만들었습니다."
- d_cloud_platform: "구름 플랫폼"
- d_cloud_platform_desc: "이 거대한 구조물은 끔찍한 안개로 덮인 지표면에서 안전할 정도로 높이 올라와 있습니다."
  d_ancient_temple_ruins: "고대 신전 유적"
  d_ancient_temple_ruins_desc: "고대의 신들을 숭배하는 수수께끼의 사원으로, 순례자들과 과학자, 다양한 종파의 대표단들이 흥미를 느낍니다."
  d_enigmatic_remnants: "수수께끼의 유물"

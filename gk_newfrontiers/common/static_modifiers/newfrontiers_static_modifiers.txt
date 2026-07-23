@@ -152,35 +152,3 @@ alien_star = {
 
 
 
-protective_equipment = {
-	pop_environment_tolerance = 0.10
-	
-	icon = "gfx/interface/icons/planet_modifiers/pm_protective_equipment.dds"
-	icon_frame = 1
-}
-
-
-
-
-
-
-
-production_boost = {
-	planet_jobs_produces_mult = 0.15
-	
-	icon = "gfx/interface/icons/planet_modifiers/pm_production_boost.dds"
-	icon_frame = 1
-}
-
-
-melting_glaciers = {
-	planet_max_districts_mult = -0.1
-	planet_jobs_produces_mult = -0.05
-	
-	icon = "gfx/interface/icons/planet_modifiers/pm_glacial_planet.dds"
-	icon_frame = 3
-}
-
-
-
-

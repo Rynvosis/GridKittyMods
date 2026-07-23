@@ -1,22 +1,4 @@
 namespace = newfrontiers_decision_event
-carrier_event = {
-	id = newfrontiers_decision_event.33
-	title = newfrontiers_decision_event.33.name
-	desc = newfrontiers_decision_event.33.desc
-	picture = GFX_evt_relic_world
-	show_sound = event_mystic_reveal
-	location = root
-
-	is_triggered_only = yes
-
-	trigger = {
-		is_planet_class = pc_relic
-	}
-
-	option = {
-		name = EXCELLENT
-	}
-}
 
 # Founding Ark World
 # carrier_event = {

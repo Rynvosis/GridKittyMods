@@ -1493,36 +1493,6 @@ d_settler_camp = {
 # home world
 
 #Noxious world
-d_cloud_platform = {
-	is_for_colonizable = yes
-	category = deposit_cat_rare_resource
-	
-	resources = {
-		category = planet_districts
-		upkeep = {
-			energy = 10
-		}
-	}
-	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_technology = tech_mine_exotic_gases
-			}
-		}
-		planet_farmers_exotic_gases_produces_add = @SR_LARGEST
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = 1
-		district_farming_max_add = @DISTRICTS_FROM_SR_DEPOSITS
-	}
-	
-	drop_weight = {
-		weight = 0
-	}
-}
 
 # Forgotten World Deposites
 

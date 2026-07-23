@@ -58,8 +58,6 @@
  newfrontiers_decision_event.16.name: "Ark Navigation Computer Crash"
  newfrontiers_decision_event.16.desc: "The on-board computer navigation module was damaged by an unknown virus. The computer closed all of its outboard connections, after which it erased all the navigation data. We do not know how the virus got aboard the Ark. Perhaps this is sabotage of the still active critics of the Ark project, or simply negligence on the part of some overworked information security worker. Nevertheless, communication channels do not work. The crew of the ship is at a loss, and the colonists are facing psychological hardship. The Ark is left completely alone in the black and unfamiliar void of space."
  newfrontiers_decision_event.16.tooltip: "The new civilization of the Ark lost all data about stars and planets. The Ark flies blindly."
- newfrontiers_decision_event.33.name: "Excavations of the Ancient World Completed"
- newfrontiers_decision_event.33.desc: "We were able to dig up most of the buried facilities on [From.GetName], which used to be an Ecumenopolis. Exposing the infrastructure required massive geological projects, but several archaeological sites are now available to our scientists."
  
  
  ####################################

@@ -194,22 +194,6 @@ set_starting_subclass = {
 					}
 					25 = {
 						set_boreal_subclass = yes
-						add_modifier = {
-							modifier = "production_boost"
-							days = -1
-						}
-						add_modifier = {
-							modifier = "melting_glaciers"
-							days = 3600
-						}
-						add_modifier = {
-							modifier = "melting_glaciers"
-							days = 9000
-						}
-						add_modifier = {
-							modifier = "melting_glaciers"
-							days = 18000
-						}
 					}
 					25 = {
 						set_supercontinental_subclass = yes

@@ -2,122 +2,6 @@
 # Decisions
 ##########################################################################
 
-decision_protective_equipment = {
-	owned_planets_only = yes
-	sound = event_administrative_work
-	icon = decision_protective_equipment
-	
-	resources = {
-		category = decisions
-		cost = {
-			trigger = {
-				pop_amount < 10
-			}
-			unity = 100
-			energy = 100
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 10
-				pop_amount < 20
-			}
-			unity = 200
-			energy = 200
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 20
-				pop_amount < 30
-			}
-			unity = 300
-			energy = 300
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 30
-				pop_amount < 40
-			}
-			unity = 400
-			energy = 400
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 40
-				pop_amount < 50
-			}
-			unity = 500
-			energy = 500
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 50
-				pop_amount < 60
-			}
-			unity = 600
-			energy = 600
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 60
-				pop_amount < 70
-			}
-			unity = 700
-			energy = 700
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 70
-				pop_amount < 85
-			}
-			unity = 800
-			energy = 800
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 85
-				pop_amount < 100
-			}
-			unity = 900
-			energy = 900
-		}
-		cost = {
-			trigger = {
-				pop_amount >= 100
-			}
-			unity = 1000
-			energy = 1000
-		}
-	}
-	
-	potential = {
-		AND = {
-			owner = { is_regular_empire = yes }
-			OR = {
-				has_modifier = dangerous_wildlife
-				has_modifier = toxic_atmosphere
-				has_modifier = nf_death_world
-				has_modifier = caustic_world
-				has_modifier = ash_world
-			}
-		}
-	}
-
-	allow = {
-		NOT = { has_modifier = protective_equipment }
-	}
-	
-	effect = {
-		add_modifier = { modifier = "protective_equipment" days = 3600 }
-	}
-	
-	ai_weight = {
-		weight = 1
-		modifier = {
-			factor = 0
-			pop_amount < 10
-		}
-	}
-}
 
 # decision_ark_project = {
 	# owned_planets_only = yes
@@ -237,26 +121,16 @@ decision_planetary_excavation = {
 		custom_tooltip = decision_planetary_excavation_effect_desc
 		hidden_effect = {
 			change_pc = pc_relic
-			nf_reset_planet = yes
-			clear_deposits = yes
-			
-			add_deposit = d_ruined_arcology
-			add_deposit = d_ruined_arcology
-			add_deposit = d_ruined_arcology
-			add_deposit = d_ruined_arcology
-			add_deposit = d_ruined_arcology
-			add_deposit = d_ruined_arcology
-			add_deposit = d_ruined_arcology
+			nf_reset_planet = yes	# rerolls vanilla relic-world deposits
 
-			add_deposit = d_relic_dense_ruins
-			add_deposit = d_collapsed_spire
-			add_deposit = d_massive_crevice
-			add_deposit = d_shattered_solar_array
-			add_deposit = d_flooded_reactor_pits
-			add_deposit = d_crumbling_mining_tunnels
-			add_deposit = d_relic_metal_boneyard
-			
-			carrier_event = { id = newfrontiers_decision_event.33 }
+			# Hand the world to Relic World Flavour when it is loaded: flag it a
+			# history relic world so RWF's expedition decision and ambient events
+			# treat it as one. No-op if RWF is absent.
+			set_planet_flag = rwf_treat_as_relic_world
+			if = {
+				limit = { has_global_flag = relic_world_flavour }
+				planet_event = { id = rwf_flavour.2 }
+			}
 			
 			if = {
 				limit = {
@@ -282,107 +156,7 @@ decision_planetary_excavation = {
 
 # Noxious World Decision
 
-decision_build_cloud_platform = {
-	owned_planets_only = yes
-	sound = event_construction
-	icon = decision_build_cloud_platform
 
-	enactment_time = 360
-
-	resources = {
-		category = decisions
-		cost = {
-			energy = 500
-			alloys = 500
-		}
-	}
-
-	potential = {
-		has_modifier = noxious_world
-		exists = owner
-		owner = { 
-			has_technology = tech_cloud_platform
-		}
-	}
-
-	allow = {
-		custom_tooltip = {
-			fail_text = cloud_platform_max
-			if = {
-				limit = { planet_size <= 12 }
-				count_deposits = { type = d_cloud_platform count < 1 }
-			}
-			if = {
-				limit = { 
-					planet_size > 12
-					planet_size <= 15
-				}
-				count_deposits = { type = d_cloud_platform count < 2 }
-			}
-			if = {
-				limit = { 
-					planet_size > 16
-					planet_size <= 19
-				}
-				count_deposits = { type = d_cloud_platform count < 3 }
-			}
-			if = {
-				limit = { 
-					planet_size > 19
-					planet_size <= 22
-				}
-				count_deposits = { type = d_cloud_platform count < 4 }
-			}
-			if = {
-				limit = { planet_size > 22 }
-				count_deposits = { type = d_cloud_platform count < 5 }
-			}
-		}
-	}
-
-	effect = {
-		add_deposit = d_cloud_platform
-	}
-
-	ai_weight = {
-		weight = 50
-	}
-}
-
-decision_demolish_cloud_platform = {
-	owned_planets_only = yes
-	sound = event_construction
-	icon = decision_demolish_cloud_platform
-
-	enactment_time = 360
-
-	resources = {
-		category = decisions
-		cost = {
-			energy = 250
-			alloys = 500
-		}
-	}
-
-	potential = {
-		has_modifier = noxious_world
-		exists = owner
-		has_deposit = d_cloud_platform
-	}
-
-	effect = {
-		owner = {
-			add_resource = {
-				alloys = 500
-			}
-		}
-		remove_deposit = d_cloud_platform
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
 
 # Real Terraforming
 

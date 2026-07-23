@@ -4,8 +4,6 @@
   # Planet Decision
   ####################################
 
- decision_protective_equipment: "防护装备"
- decision_protective_equipment_desc: "这些政府项目旨在为生活于恶劣环境的居民提供个人防护装备，分发供强制使用。"
   decision_ark_project: "启动方舟计划"
   decision_ark_project_desc: "我们的家园将被灾难所毁灭。拯救我们文明的措施之一是方舟计划。一艘为远航提供了所有必需品的巨大殖民船，将前往寻找一个新的家园。"
   decision_ark_project_effect_desc: "方舟飞船将开始建造。\n\n§Y在行星毁灭后，方舟将成为一个新的帝国。如果方舟在母星被摧毁之前殖民了一个新的世界，一个新的帝国将被创建。你将能够选择继续统治这个新帝国。§!"
@@ -39,10 +37,6 @@
  decision_sterilization_process: "开始灭菌处理"
  decision_sterilization_process_desc: "用特殊的毒素处理受损材料，会使菌斑变为易于剥离的矿物。"
  decision_sterilization_process_effect_desc: "正在根除感染。"
- decision_build_cloud_platform: "开始建造云上平台"
- decision_build_cloud_platform_desc: "特殊的平台，整座城市都会被筑于其上。通过建造此类平台，我们可以开发那些被有毒烟雾覆盖的土地，也可以进行矿物开采作业。"
- decision_demolish_cloud_platform: "拆除云上平台"
- decision_demolish_cloud_platform_desc: "如果空中平台的维护变得无利可图，就可以将这些平台处理掉。"
  decision_start_ecosystem_creation_project_effect_desc: "Triggers a special terraforming process. To progress, you will need various terraforming structures."
   
   
@@ -105,7 +99,6 @@
  max_infestation: "已建立感染区的上限"
  3_armies_needed: "星球所需陆军数量：§R3§!。"
  8_armies_needed: "星球所需陆军数量：§R8§!。"
- cloud_platform_max: "该星球的云上平台已达上限。"
 
   
   ####################################
@@ -126,8 +119,6 @@
  tech_invasive_necrotoxication_desc: "详细研究受外星真菌影响的细胞对各种坏死毒素的反应，有助于找到治疗感染者的方法。"
  tech_structural_calcification: "结构钙化"
  tech_structural_calcification_desc: "进行将毒素用于外星真菌样本的实验，确定对这些微观有机体进行即时脱水和消灭的方法，将有利于防范固体材料的侵蚀。"
- tech_cloud_platform: "云上平台"
- tech_cloud_platform_desc: "为了开发毒物星球上的封闭区域并开采资源，需要研发特殊的工程措施。"
   
   
   ####################################
@@ -136,8 +127,6 @@
   
  building_ark: "方舟残骸"
   building_ark_desc: "这是方舟的残骸，它降落在这个星球上，一个新的殖民地由此建成。这座巨大建筑的内部综合体为殖民者提供了安栖之所。"
-  building_pharmaceutical_production_complex: "Pharmaceutical Production Complex"
-  building_pharmaceutical_production_complex_desc: "This facility uses the planet's unique algae to produce more advanced medical products."
   
   
   ####################################

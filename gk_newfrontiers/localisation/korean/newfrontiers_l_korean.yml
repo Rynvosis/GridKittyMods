@@ -4,18 +4,12 @@
   # Planet Decision
   ####################################
 
-  decision_protective_equipment: "보호 장비"
-  decision_protective_equipment_desc: "정부 프로그램이 가혹한 행성의 주민들에게 의무 착용의 개인 보호 장비를 제공합니다."
   decision_ark_project: "방주 프로젝트 실행"
   decision_ark_project_desc: "우리의 고향이 재앙으로 파괴될 것입니다. 제안된 조치 중 하나는 우리 문명을 방주 프로젝트로 구하자는 것입니다. 장기 비행을 위한 모든 것이 준비된다면 거대한 개척선은 새로운 고향을 찾아 나설 것입니다."
   decision_ark_project_effect_desc: "방주 우주선의 건조가 시작될 것입니다.\n\n§Y행성이 죽은 뒤, 방주는 새로운 제국이 될 것입니다. 행성이 파괴되기 전 방주가 새로운 행성을 개척한다면 새로운 제국이 생성될 것입니다. 여러분은 어떤 제국을 통치해 나갈지 선택할 수 있습니다.§!"
   decision_planetary_excavation: "행성 발굴 시작"
   decision_planetary_excavation_desc: "이 고대 행성에 잡초가 무성한 땅, 그 밑에 거대한 도시의 폐허가 잠들어 있습니다. 행성을 채굴하면 이 행성의 자연미는 파괴되겠지만, 오래 전 사라진 귀중한 기술을 연구하고 궁극적으로는 행성에게 과거의 위대함을 되돌려주기 위해서는 필요한 수순입니다."
   decision_planetary_excavation_effect_desc: "행성이 §Y$pc_relic$§!으로 바뀝니다."
-  decision_build_cloud_platform: "구름 플랫폼 건설 시작"
-  decision_build_cloud_platform_desc: "도시 전체가 올라갈 수 있는 특수 플랫폼의 건설을 통해, 독성 안개로 덮인 지역을 개발할 수 있을 것이고 채광이 가능해질 것입니다."
-  decision_demolish_cloud_platform: "구름 플랫폼 제거"
-  decision_demolish_cloud_platform_desc: "하늘 플랫폼을 유지할 가치가 없다면, 없애버릴 수 있습니다."  
   decision_start_ecosystem_creation_project_effect_desc: "특별한 테라포밍 과정을 시작합니다. 진행하려면 다양한 테라포밍 구조물이 필요합니다."
   
   
@@ -67,7 +61,6 @@
  
   requires_actor_exomycosis: "외계 진균증을 제거하려면 연구해야합니다."
   max_infestation: "감염 지역의 수가 한계치에 도달함"
-  cloud_platform_max: "구름 플랫폼 수가 한계치에 도달함"
  
   
   ####################################
@@ -80,8 +73,6 @@
   # Technology
   ####################################
   
-  tech_cloud_platform: "구름 플랫폼 구조"
-  tech_cloud_platform_desc: "자원에 접근하기 위해 독성 행성에 폐쇄된 지역을 개발할 필요가 있습니다. 특수한 공학적 해결책을 개발할 필요가 있습니다."
   
   
   ####################################
@@ -90,8 +81,6 @@
   
   building_ark: "방주의 잔해"
   building_ark_desc: "이것은 새 식민지가 세워진 행성에 착륙했던 방주의 선체입니다. 이 거대한 건물의 내부 복합 단지는 개척자들에게 거주 공간을 제공합니다."
-  building_pharmaceutical_production_complex: "Pharmaceutical Production Complex"
-  building_pharmaceutical_production_complex_desc: "This facility uses the planet's unique algae to produce more advanced medical products."
   
   
   ####################################
