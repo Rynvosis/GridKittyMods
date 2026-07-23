@@ -110,6 +110,7 @@ event = {
 					has_planet_flag = ignore_startup_effect
 					has_carrier_flag = ignore_startup_effect
 					has_planet_flag = rwf_carachel        # Relic World Flavour
+					has_carrier_flag = ratling_planet     # Ketling home system (Ruinous Core, Lost Encampment)
 				}
 			}
 			random_list = {

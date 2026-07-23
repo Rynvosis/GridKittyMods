@@ -90,8 +90,6 @@
  
  #starting deposits
  
- d_solar_array: "太阳能阵列"
- d_solar_array_desc: "广袤的土地上覆盖着无数太阳能发电站镜面。"
  d_urban_agglomeration: "城市聚居地"
  d_urban_agglomeration_desc: "这个星球上的许多巨城已经统合为一个单一的基础设施群。"
  d_reactor_zone: "反应堆区域"
@@ -136,8 +134,6 @@
  has_preserve_planet: "$TRIGGER_FAIL$§RThis blocker will remain uncleanable as long as §Y$preserve_planet$§!.§! exists."
  d_crystalline_array: "Crystalline Array"
  d_crystalline_array_desc: "The enormous crystalline formations in this region are absolutely unique and unparalleled in the galaxy. This place contains a virtually inexhaustible resource of rare crystals and minerals."
- d_gemstone_quarry: "Gemstone Quarry"
- d_gemstone_quarry_desc: "The open-pit mining of rare minerals in this area makes this planet truly priceless."
  
  #event deposits
  

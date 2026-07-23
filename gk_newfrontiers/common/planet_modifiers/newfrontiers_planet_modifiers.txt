@@ -579,53 +579,11 @@ pm_ancient_cities = {
 	modifier = "ancient_cities"
 }
 
-pm_meteorite_showers = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "meteorite_showers"
-}
 
-pm_incessant_thunderstorm = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "incessant_thunderstorm"
-}
 
-pm_terrible_hurricanes = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "terrible_hurricanes"
-}
 
-pm_heavy_sandstorms = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "heavy_sandstorms"
-}
 
-pm_heavy_blizzards = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "heavy_blizzards"
-}
 
-pm_prolonged_drought = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "prolonged_drought"
-}
 
 pm_toxic_atmosphere = {
 	spawn_chance = {
@@ -748,69 +706,6 @@ pm_long_night = {
 	modifier = "long_night"
 }
 
-pm_geomagnetic_storm = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "geomagnetic_storm"
-}
-
-pm_ion_storm = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "ion_storm"
-}
-
-pm_wild_hunt = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "wild_hunt"
-}
-
-pm_insatiable_swarm = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "insatiable_swarm"
-}
-
-pm_abyssal_devourers = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "abyssal_devourers"
-}
-
-pm_sea_monsters = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "sea_monsters"
-}
-
-pm_tremor_earth = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "tremor_earth"
-}
-
-pm_vast_beasts = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "vast_beasts"
-}
 
 pm_iron_planet = {
 	spawn_chance = {

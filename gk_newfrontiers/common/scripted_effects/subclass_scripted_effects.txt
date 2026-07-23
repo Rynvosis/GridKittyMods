@@ -1102,9 +1102,10 @@ set_dust_subclass = {
 		modifier = "dust_world"
 		days = -1
 	}
+	# unique + related rare
 	if = {
-		limit = { NOT = { has_deposit = d_dust_caverns } }
-		add_deposit = d_dust_caverns
+		limit = { NOT = { has_deposit = d_volatile_flats } }
+		add_deposit = d_volatile_flats
 	}
 	if = {
 		limit = { NOT = { has_deposit = d_dust_desert } }
@@ -1411,13 +1412,14 @@ set_noxious_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	# unique + related rare
+	if = {
+		limit = { NOT = { has_deposit = d_gas_marsh } }
+		add_deposit = d_gas_marsh
+	}
 	if = {
 		limit = { NOT = { has_deposit = d_fuming_bog } }
 		add_deposit = d_fuming_bog
-	}
-	if = {
-		limit = { NOT = { has_deposit = d_bubbling_swamp } }
-		add_deposit = d_bubbling_swamp
 	}
 }
 
@@ -2006,7 +2008,12 @@ set_algae_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	# unique + related rare
 	add_deposit = d_medicinal_algae
+	if = {
+		limit = { NOT = { has_deposit = d_algae_tracts } }
+		add_deposit = d_algae_tracts
+	}
 }
 
 set_bioluminescent_subclass = {
@@ -2024,9 +2031,14 @@ set_bioluminescent_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	# unique + related rare (research world; its rare is farming, no strategic parallel)
 	if = {
-		limit = { NOT = { has_deposit = d_crystalline_caverns } }
-		add_deposit = d_crystalline_caverns
+		limit = { NOT = { has_deposit = d_luminous_reef } }
+		add_deposit = d_luminous_reef
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_algae_tracts } }
+		add_deposit = d_algae_tracts
 	}
 }
 
@@ -2045,13 +2057,14 @@ set_crystal_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+	# unique + related rare
+	if = {
+		limit = { NOT = { has_deposit = d_crystalline_array } }
+		add_deposit = d_crystalline_array
+	}
 	if = {
 		limit = { NOT = { has_deposit = d_crystal_forest } }
 		add_deposit = d_crystal_forest
-	}
-	if = {
-		limit = { NOT = { has_deposit = d_crystalline_caverns } }
-		add_deposit = d_crystalline_caverns
 	}
 }
 

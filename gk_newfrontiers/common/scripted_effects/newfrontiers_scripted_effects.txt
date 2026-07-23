@@ -13,38 +13,7 @@
 #
 
 remove_condition_modifiers = {
-	if = {
-		limit = { has_modifier = "heavy_sandstorms" }
-		remove_modifier = "heavy_sandstorms"
-	}
-	if = {
-		limit = { has_modifier = "prolonged_drought" }
-		remove_modifier = "prolonged_drought"
-	}
-	if = {
-		limit = { has_modifier = "terrible_hurricanes" }
-		remove_modifier = "terrible_hurricanes"
-	}
-	if = {
-		limit = { has_modifier = "incessant_thunderstorm" }
-		remove_modifier = "incessant_thunderstorm"
-	}
-	if = {
-		limit = { has_modifier = "geomagnetic_storm" }
-		remove_modifier = "geomagnetic_storm"
-	}
-	if = {
-		limit = { has_modifier = "heavy_blizzards" }
-		remove_modifier = "heavy_blizzards"
-	}
-	if = {
-		limit = { has_modifier = "coriolis_storm" }
-		remove_modifier = "coriolis_storm"
-	}
-	if = {
-		limit = { has_modifier = "ion_storm" }
-		remove_modifier = "ion_storm"
-	}
+	# storm condition modifiers purged; nothing to clean
 }
 
 # Was an overwrite of vanilla's reset_planet. Renamed so the vanilla effect keeps
@@ -1627,13 +1596,11 @@ planet_strong_heating_effect = {
 			# # Bad opinion modifier
 			# add_opinion_modifier = {
 				# who = event_target:dying_empire
-				# modifier = opinion_homeland
 			# }
 				
 			# event_target:dying_empire = {
 				# add_opinion_modifier = {
 					# who = prev
-					# modifier = opinion_resentment
 				# }
 			# }
 		# }
@@ -1641,7 +1608,6 @@ planet_strong_heating_effect = {
 			# # Good opinion modifier
 			# add_opinion_modifier = {
 				# who = event_target:dying_empire
-				# modifier = opinion_homeland
 			# }
 				
 			# event_target:dying_empire = {
@@ -1903,264 +1869,12 @@ build_bastion_project = {
 	}
 }
 
-add_incessant_thunderstorm = {
-	random_list = {
-		25 = {
-			add_modifier = {
-				modifier = "incessant_thunderstorm"
-				days = 30
-			}
-		}
-		25 = {
-			add_modifier = {
-				modifier = "incessant_thunderstorm"
-				days = 90
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				is_extreme_subclass = yes
-			}
-			add_modifier = {
-				modifier = "incessant_thunderstorm"
-				days = 360
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				has_modifier = "nf_death_world"
-			}
-			add_modifier = {
-				modifier = "incessant_thunderstorm"
-				days = 720
-			}
-		}
-	}
-}
 
-add_terrible_hurricanes = {
-	random_list = {
-		25 = {
-			add_modifier = {
-				modifier = "terrible_hurricanes"
-				days = 30
-			}
-		}
-		25 = {
-			add_modifier = {
-				modifier = "terrible_hurricanes"
-				days = 90
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				is_extreme_subclass = yes
-			}
-			add_modifier = {
-				modifier = "terrible_hurricanes"
-				days = 360
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				has_modifier = "nf_death_world"
-			}
-			add_modifier = {
-				modifier = "terrible_hurricanes"
-				days = 720
-			}
-		}
-	}
-}
 
-add_heavy_sandstorms = {
-	random_list = {
-		25 = {
-			add_modifier = {
-				modifier = "heavy_sandstorms"
-				days = 30
-			}
-		}
-		25 = {
-			add_modifier = {
-				modifier = "heavy_sandstorms"
-				days = 90
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				is_extreme_subclass = yes
-			}
-			add_modifier = {
-				modifier = "heavy_sandstorms"
-				days = 360
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				has_modifier = "nf_death_world"
-			}
-			add_modifier = {
-				modifier = "heavy_sandstorms"
-				days = 720
-			}
-		}
-	}
-}
 
-add_heavy_blizzards = {
-	random_list = {
-		25 = {
-			add_modifier = {
-				modifier = "heavy_blizzards"
-				days = 30
-			}
-		}
-		25 = {
-			add_modifier = {
-				modifier = "heavy_blizzards"
-				days = 90
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				is_extreme_subclass = yes
-			}
-			add_modifier = {
-				modifier = "heavy_blizzards"
-				days = 360
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				has_modifier = "nf_death_world"
-			}
-			add_modifier = {
-				modifier = "heavy_blizzards"
-				days = 720
-			}
-		}
-	}
-}
 
-add_prolonged_drought = {
-	random_list = {
-		25 = {
-			add_modifier = {
-				modifier = "prolonged_drought"
-				days = 30
-			}
-		}
-		25 = {
-			add_modifier = {
-				modifier = "prolonged_drought"
-				days = 90
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				is_extreme_subclass = yes
-			}
-			add_modifier = {
-				modifier = "prolonged_drought"
-				days = 360
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				has_modifier = "nf_death_world"
-			}
-			add_modifier = {
-				modifier = "prolonged_drought"
-				days = 720
-			}
-		}
-	}
-}
 
-add_coriolis_storm = {
-	random_list = {
-		25 = {
-			add_modifier = {
-				modifier = "coriolis_storm"
-				days = 30
-			}
-		}
-		25 = {
-			add_modifier = {
-				modifier = "coriolis_storm"
-				days = 90
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				is_extreme_subclass = yes
-			}
-			add_modifier = {
-				modifier = "coriolis_storm"
-				days = 360
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				has_modifier = "nf_death_world"
-			}
-			add_modifier = {
-				modifier = "coriolis_storm"
-				days = 720
-			}
-		}
-	}
-}
 
-add_geomagnetic_storm = {
-	random_list = {
-		25 = {
-			add_modifier = {
-				modifier = "geomagnetic_storm"
-				days = 30
-			}
-		}
-		25 = {
-			add_modifier = {
-				modifier = "geomagnetic_storm"
-				days = 90
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				is_extreme_subclass = yes
-			}
-			add_modifier = {
-				modifier = "geomagnetic_storm"
-				days = 360
-			}
-		}
-		25 = {
-			modifier = {
-				factor = 2
-				has_modifier = "nf_death_world"
-			}
-			add_modifier = {
-				modifier = "geomagnetic_storm"
-				days = 720
-			}
-		}
-	}
-}
 
 give_random_eng_technology = {
 	random_list = {

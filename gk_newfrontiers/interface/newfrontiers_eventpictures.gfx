@@ -114,20 +114,8 @@ spriteTypes = {
 		alwaystransparent = yes	
 	}
 	spriteType = {
-		name = "GFX_evt_orbit_reduction"
-		texturefile = "gfx/event_pictures/orbit_reduction.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
 		name = "GFX_evt_scorched_world"
 		texturefile = "gfx/event_pictures/scorched_world.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_orbit_increase"
-		texturefile = "gfx/event_pictures/orbit_increase.dds"
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
 		alwaystransparent = yes	
 	}
@@ -158,96 +146,6 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_evt_global_warming"
 		texturefile = "gfx/event_pictures/global_warming.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_meteorite_showers"
-		texturefile = "gfx/event_pictures/meteorite_showers.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_incessant_thunderstorm"
-		texturefile = "gfx/event_pictures/incessant_thunderstorm.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_terrible_hurricanes"
-		texturefile = "gfx/event_pictures/terrible_hurricanes.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_heavy_sandstorms"
-		texturefile = "gfx/event_pictures/heavy_sandstorms.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_heavy_blizzards"
-		texturefile = "gfx/event_pictures/heavy_blizzards.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_prolonged_drought"
-		texturefile = "gfx/event_pictures/prolonged_drought.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_coriolis_storm"
-		texturefile = "gfx/event_pictures/coriolis_storm.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_geomagnetic_storm"
-		texturefile = "gfx/event_pictures/geomagnetic_storm.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_ion_storm"
-		texturefile = "gfx/event_pictures/ion_storm.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_wild_hunt"
-		texturefile = "gfx/event_pictures/wild_hunt.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_insatiable_swarm"
-		texturefile = "gfx/event_pictures/insatiable_swarm.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_abyssal_devourers"
-		texturefile = "gfx/event_pictures/abyssal_devourers.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_sea_monsters"
-		texturefile = "gfx/event_pictures/sea_monsters.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_tremor_earth"
-		texturefile = "gfx/event_pictures/tremor_earth.dds"
-		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes	
-	}
-	spriteType = {
-		name = "GFX_evt_vast_beasts"
-		texturefile = "gfx/event_pictures/vast_beasts.dds"
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
 		alwaystransparent = yes	
 	}

@@ -47,8 +47,9 @@ carrier_event = {
 	trigger = {
 		is_planet_class = pc_nuked
 		is_planet_subclass = no
+		NOT = { has_carrier_flag = ratling_planet }   # never convert the Ketling home worlds
 	}
-	
+
 	immediate = {
 		random_list = {
 			30 = {

@@ -1282,17 +1282,6 @@ d_serene_coastline = {
 ##### STARTING ####
 ###################
 
-d_solar_array = {
-	is_for_colonizable = yes
-	
-	planet_modifier = { 
-		district_generator_max_add = 1
-	}
-	
-	drop_weight = {
-		weight = 0
-	}
-}
 
 d_urban_agglomeration = {
 	is_for_colonizable = yes
@@ -1692,25 +1681,78 @@ d_crystalline_array = {
 	planet_modifier = {
 		district_mining_max_add = 3
 	}
-	
+
 	drop_weight = {
 		weight = 0
 	}
 }
 
-d_gemstone_quarry = {
+# Guaranteed unique deposit for Dust World. Same shape as d_crystalline_array:
+# rare output gated behind the extraction tech, district capacity unconditional,
+# weight 0 so it never rolls wild and is only granted by set_dust_subclass.
+d_volatile_flats = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_volatile_motes
+			}
+		}
+		planet_technician_volatile_motes_produces_add = 0.75
+	}
+
+	planet_modifier = {
+		district_generator_max_add = 3
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+# Guaranteed unique deposit for Noxious World, exotic gases on farmers.
+d_gas_marsh = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_exotic_gases
+			}
+		}
+		planet_farmers_exotic_gases_produces_add = 0.75
+	}
+
+	planet_modifier = {
+		district_farming_max_add = 3
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+# Guaranteed unique deposit for Bioluminescent World. Research-flavoured to match
+# the subclass identity; no extraction tech since research is not a rare resource.
+d_luminous_reef = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare_resource
 
 	planet_modifier = {
-		district_mining_max_add = 1
-		planet_miners_trade_produces_add = 0.25
+		planet_jobs_society_research_produces_mult = 0.20
+		district_farming_max_add = 3
 	}
-	
+
 	drop_weight = {
 		weight = 0
 	}
 }
+
 
 #################
 ####  EVENT  ####

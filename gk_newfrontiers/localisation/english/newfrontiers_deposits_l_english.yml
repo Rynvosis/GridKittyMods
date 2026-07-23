@@ -90,8 +90,6 @@
  
  #starting deposits
  
- d_solar_array: "Solar Array"
- d_solar_array_desc: "Vast territories covered with countless mirrors of solar power plants."
  d_urban_agglomeration: "Urban Agglomeration"
  d_urban_agglomeration_desc: "Many megacities of the planet have united into a single infrastructure cluster."
  d_reactor_zone: "Reactor Zone"
@@ -136,9 +134,13 @@
  has_preserve_planet: "$TRIGGER_FAIL$§RThis blocker will remain uncleanable as long as §Y$preserve_planet$§!.§! exists."
  d_crystalline_array: "Crystalline Array"
  d_crystalline_array_desc: "The enormous crystalline formations in this region are absolutely unique and unparalleled in the galaxy. This place contains a virtually inexhaustible resource of rare crystals and minerals."
- d_gemstone_quarry: "Gemstone Quarry"
- d_gemstone_quarry_desc: "The open-pit mining of rare minerals in this area makes this planet truly priceless."
- 
+ d_volatile_flats: "Volatile Flats"
+ d_volatile_flats_desc: "Wind-scoured dust plains where combustible volatile compounds settle in vast drifts. The motes are dense enough here to feed generators across the whole world."
+ d_gas_marsh: "Gas Marsh"
+ d_gas_marsh_desc: "A sprawling wetland venting exotic gases from the rotting biomass beneath. Harvested carefully, its output rivals a dedicated gas giant."
+ d_luminous_reef: "Luminous Reef"
+ d_luminous_reef_desc: "A living reef whose bioluminescent organisms encode chemical signals of staggering complexity. Studying them accelerates every avenue of biological research."
+
  #event deposits
  
  d_collapsed_caves: "Collapsed Cave"

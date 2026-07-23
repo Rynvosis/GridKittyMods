@@ -22,8 +22,12 @@ magma_world = {
 	pop_environment_tolerance = -0.25
 	planet_max_districts_mult = 0.10
 	district_polytechnic_max_add = 2
-	planet_jobs_society_research_produces_mult = 0.10
-	
+	planet_building_build_speed_mult = -0.15
+	planet_buildings_upkeep_mult = 0.10
+	planet_districts_upkeep_mult = 0.10
+	planet_buildings_cost_mult = 0.10
+	planet_districts_cost_mult = 0.10
+
 	icon = "gfx/interface/icons/planet_modifiers/pm_infernal_world.dds"
 	icon_frame = 3
 }
@@ -44,7 +48,11 @@ oasis_world = {
 hollow_world = {
 	planet_max_districts_mult = 0.10
 	planet_building_build_speed_mult = -0.15
-	
+	planet_buildings_upkeep_mult = 0.10
+	planet_districts_upkeep_mult = 0.10
+	planet_buildings_cost_mult = 0.10
+	planet_districts_cost_mult = 0.10
+
 	icon = "gfx/interface/icons/planet_modifiers/pm_hollow_world.dds"
 	icon_frame = 2
 }
@@ -52,7 +60,11 @@ hollow_world = {
 karst_world = {
 	planet_max_districts_mult = 0.10
 	planet_building_build_speed_mult = -0.15
-	
+	planet_buildings_upkeep_mult = 0.10
+	planet_districts_upkeep_mult = 0.10
+	planet_buildings_cost_mult = 0.10
+	planet_districts_cost_mult = 0.10
+
 	icon = "gfx/interface/icons/planet_modifiers/pm_karst_world.dds"
 	icon_frame = 2
 }
@@ -161,7 +173,11 @@ glacial_world = {
 subglacial_world = {
 	planet_max_districts_mult = 0.10
 	planet_building_build_speed_mult = -0.15
-	
+	planet_buildings_upkeep_mult = 0.10
+	planet_districts_upkeep_mult = 0.10
+	planet_buildings_cost_mult = 0.10
+	planet_districts_cost_mult = 0.10
+
 	icon = "gfx/interface/icons/planet_modifiers/pm_subglacial_world.dds"
 	icon_frame = 3
 }
