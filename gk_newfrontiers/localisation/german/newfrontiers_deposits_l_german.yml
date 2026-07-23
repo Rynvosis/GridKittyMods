@@ -117,8 +117,6 @@
  
  d_subway_tunnel_network: "Subway Tunnel Network"
  d_subway_tunnel_network_desc: "This old network of planet-spanning transport tunnels, left over from the previous owners of the planet, now serves as a shelter from the radioactive rains."
- d_remains_of_ark: "Remains of the Ark"
- d_remains_of_ark_desc: "These are the remains of the Ark, which landed on the Planet and served as the foundation of a new colony. This is a memorial serving as a reminder of the civilization that once inhabited this world."
  d_settler_camp: "Settler Camp"
  d_settler_camp_desc: "The inhabitants of the Ark erected this vast settlement in a short time from scrap materials."
  d_ancient_temple_ruins: "Ancient Temple Ruins"
@@ -140,8 +138,6 @@
  d_troubled_waters_desc: "The vigorous activity of the massive lifeforms in this area has led to serious anomalies in water currents and the appearance of whirlpools."
  d_dooms_rift: "Doom's Rift"
  d_dooms_rift_desc: "A large number of massive lifeforms emerged from the ground in this region, leaving behind a deep and wide fissure in the land."
- d_destruction_marks: "Destruction Marks"
- d_destruction_marks_desc: "The herds of massive lifeforms that passed through this area left destruction in their wake."
 
  #starlord deposits
 

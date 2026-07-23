@@ -117,8 +117,6 @@
  
  d_subway_tunnel_network: "지하철 터널망"
  d_subway_tunnel_network_desc: "행성 전체를 관통하는 고대의 수송 터널망으로, 과거에 이곳에 살았던 자들의 잔재입니다. 현재는 방사능 비를 피하는 장소로 사용됩니다."
- d_remains_of_ark: "방주의 잔해"
- d_remains_of_ark_desc: "행성에 착륙하여 새로운 식민지의 기초로써 사용된 방주의 잔해입니다. 과거 이 행성에 살았던 문명을 떠올리게 하는 기념비입니다."
  d_settler_camp: "정착민 야영지"
  d_settler_camp_desc: "방주의 사람들이 고철을 사용해 거대한 정착지를 만들었습니다."
  d_ancient_temple_ruins: "고대 신전 유적"
@@ -140,8 +138,6 @@
  d_troubled_waters_desc: "이 지역에서 다수의 생명체들이 활발하게 활동하여, 해류에 심각한 이상현상이 발생했고 소용돌이가 나타났습니다."
  d_dooms_rift: "파멸의 균열"
  d_dooms_rift_desc: "이 지역에서는 엄청난 수의 거대 생명체들이 땅을 뚫고 나와, 넓고 깊은 균열만이 남아있습니다."
- d_destruction_marks: "파괴의 흔적"
- d_destruction_marks_desc: "거대한 생명체들이 이 지역을 지나가며 모든 것을 파괴했습니다."
  
  #starlord deposits
 

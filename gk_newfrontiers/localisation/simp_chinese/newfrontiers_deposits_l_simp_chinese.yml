@@ -117,8 +117,6 @@
  
  d_subway_tunnel_network: "地下隧道网络"
  d_subway_tunnel_network_desc: "这个星球前主人留下的跨越星球的古老运输隧道网络，现在是躲避辐射雨的庇护所。"
- d_remains_of_ark: "方舟遗迹"
- d_remains_of_ark_desc: "这些是“方舟”的残骸，它降落在星球上并作为新殖民地的基础。这是一座纪念碑，提醒人们曾经居住在这个世界上的文明。"
  d_settler_camp: "定居者营地"
  d_settler_camp_desc: "方舟的居民在短时间内用废旧材料搭建出这个庞大的定居点。"
  d_ancient_temple_ruins: "古代神殿遗迹"
@@ -140,8 +138,6 @@
  d_troubled_waters_desc: "这一地区巨型生命体的大量活动导致了水体的异常和奇怪漩涡的出现。"
  d_dooms_rift: "灾厄裂缝"
  d_dooms_rift_desc: "大量巨型生命体从这片区域的地表破土而出，在土地上留下了一道道又深又宽的裂缝。"
- d_destruction_marks: "破坏痕迹"
- d_destruction_marks_desc: "成群的巨型生命体在经过这个地区后留下了一片废墟。"
 
  #starlord deposits
 

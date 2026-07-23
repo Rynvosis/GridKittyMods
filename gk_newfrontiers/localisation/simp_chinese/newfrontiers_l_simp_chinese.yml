@@ -4,9 +4,6 @@
   # Planet Decision
   ####################################
 
-  decision_ark_project: "启动方舟计划"
-  decision_ark_project_desc: "我们的家园将被灾难所毁灭。拯救我们文明的措施之一是方舟计划。一艘为远航提供了所有必需品的巨大殖民船，将前往寻找一个新的家园。"
-  decision_ark_project_effect_desc: "方舟飞船将开始建造。\n\n§Y在行星毁灭后，方舟将成为一个新的帝国。如果方舟在母星被摧毁之前殖民了一个新的世界，一个新的帝国将被创建。你将能够选择继续统治这个新帝国。§!"
  decision_planetary_excavation: "开始挖掘行星计划"
  decision_planetary_excavation_desc: "在这个古老世界杂草丛生的表面下，是一个巨大的行星城市的废墟。行星挖掘将破坏这个世界的原始之美，但这是研究被遗忘的技术并最终恢复这个星球昔日的伟大的第一步。"
  decision_planetary_excavation_effect_desc: "将这个行星转变为§Y$pc_relic$§!。"
@@ -49,9 +46,6 @@
   origin_scavengers: "拾荒者"
   origin_scavengers_desc: "至今仍不清楚这个文明是如何找到并定居于这个满目疮痍的世界之上。我们只知道这片工业废墟并不出自他们之手。也许是这个星球的古代主人把他们作为牲畜或奴隶携带至此。然而，现在他们已经够适应并能研究这个星球上的废弃技术来发展他们自己的文明。"
   civic_tooltip_scavengers_effects: "开局以一个§Y枯竭星球§!作为母星，拥有§Y$d_subway_tunnel_network$§!。\n清除§Y$d_industrial_boneyard$§!障碍后能获得 £alloys£ §Y合金§!。"
- origin_ark: "方舟计划"
- origin_ark_desc: "这个文明的母星被摧毁了。剩下的幸存者登上一艘巨大的宇宙飞船，而他们将穿越无尽的虚空，开启漫长的旅程去寻找新的家园。"
- civic_tooltip_ark_effects: "选择停靠在被摧毁的母星轨道上的§Y太空方舟§!开始游戏。你需要操作方舟来寻找宜居星球作为帝国首都。"
  origin_exomycosis: "感染"
  origin_exomycosis_desc: "这种集体性生物是一种寄生虫，被创造用以征服宇宙中所有的活物和死物。也许，这个菌群曾是某个未知文明的环境改造机制的一部分，但是一场可怕的实验失去了控制。现在，这团宇宙霉菌已经产生了思想，并有一种强烈的冲动，去吞食其他世界和其他文明。"
  civic_tooltip_exomycosis_effects: "你的母星为§Y$mycelium_world$§!。\n宜居偏好为§Y$trait_pc_tropical_preference$§!。\n你可以将任何湿润气候星球改造为§Y$mycelium_world$§!。\n人口获得§Y$trait_molded$§!特质，拥有如下效果：\n $MOD_POP_ENVIRONMENT_TOLERANCE$：§G+10%§!\n $MOD_ARMY_MORALE_DAMAGE_MULT$：§G+30%§!"
@@ -125,8 +119,6 @@
   # Buildings
   ####################################
   
- building_ark: "方舟残骸"
-  building_ark_desc: "这是方舟的残骸，它降落在这个星球上，一个新的殖民地由此建成。这座巨大建筑的内部综合体为殖民者提供了安栖之所。"
   
   
   ####################################
@@ -136,8 +128,6 @@
  sm_stellar_reducer: "恒星抑制器"
   sm_stellar_reducer_desc: "§Y这个装置被设计用来减缓恒星内核的核聚变老化——减缓恒星老化对恒星系的影响以防止灾难的发生。§!"
   
- project_ark_ship: "太空方舟"
- project_ark_ship_plural: "太空方舟"
   
   ####################################
   # Planet Classes
@@ -302,11 +292,6 @@
   
   
   
- ark_admiral: "$default_admiral$"
- ark_general: "$default_general$"
- ark_scientist: "$default_scientist$"
- ark_governor: "$default_governor$"
- ark_ruler: "$default_ruler$"
   
   ####################################
   # Jobs
@@ -326,9 +311,6 @@
   # Initializers
   ####################################
   
- NAME_Ark_Fleet: "出谷纪"
- NAME_Ark: "出谷纪"
- NAME_Project_Ark_Ship: "方舟"
  NAME_Bastion: "堡垒"
  NAME_Sentinel: "哨兵"
  NAME_Spectator: "观者"
@@ -337,7 +319,6 @@
  NAME_New_World: "新世界"
  NAME_Tanis: "坦尼斯"
  NAME_Hope: "希望"
- NAME_Ark_Country: "方舟"
  NAME_Mutated_Infected: "突变感染体"
  NAME_Molded: "霉化"
  NAME_Immersion: "浸没"

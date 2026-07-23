@@ -4,9 +4,6 @@
   # Planet Decision
   ####################################
 
-  decision_ark_project: "Launch the Ark project"
-  decision_ark_project_desc: "Our homeworld will be destroyed by catastrophe. One of the measures proposed to save our civilization was the Ark project. A huge colonial ship, provided with everything for long flights, will embark in search of a new home."
-  decision_ark_project_effect_desc: "The construction of the Ark spaceship will begin.\n\n§YAfter the planet dies, the Ark will become a new empire. If the Ark colonizes a new world before the planet is destroyed, a new empire will be created. You will be able to choose which empire you continue to rule.§!"
   decision_planetary_excavation: "Start planetary excavation"
   decision_planetary_excavation_desc: "Underneath the overgrown surface of this ancient world are the ruins of a huge planetary city. Planetary excavations will destroy the natural beauty of this world, but this is a necessary step to study valuable long-lost technologies and ultimately restore the former greatness of the planet."
   decision_planetary_excavation_effect_desc: "Turns the planet into §Y$pc_relic$§!."
@@ -22,9 +19,6 @@
   origin_scavengers: "Scavengers"
   origin_scavengers_desc: "It is still not known exactly how this civilization found a home on a devastated world. It is known only that the industrial ruins were not created by them. Maybe the ancient masters of this planet brought them in as pets or slaves. However, they were able to adapt and quickly developed by studying the abandoned technology of this planet. "
   civic_tooltip_scavengers_effects: "You start the game in §YDepleted World§!, which contains §Y$d_subway_tunnel_network$§!.\nYou have the ability to receive £alloys£ §Yalloys§! after clearing the §Y$d_industrial_boneyard$§! blockers."
-  origin_ark: "Ark"
-  origin_ark_desc: "The homeworld of this civilization was destroyed. In search of a new home, a few survivors boarded a giant spaceship and braved a long journey through endless void."
-  civic_tooltip_ark_effects: "You start the game with one single ship, the §YSpace Ark§!, in orbit of your destroyed homeworld. You need to bring the Ark into orbit of a habitable planet that you want to make the capital of your empire."
   
   
   ####################################
@@ -79,8 +73,6 @@
   # Buildings
   ####################################
   
-  building_ark: "Remains of the Ark"
-  building_ark_desc: "This is the hull of the Ark that landed on the planet to found a new colony. The inner complexes in this huge building provide housing for the colonists."
   
   
   ####################################
@@ -90,8 +82,6 @@
   sm_stellar_reducer: "Star reducer"
   sm_stellar_reducer_desc: "§YThis device is designed to stop the star in this system from and prevent a catastrophe.§!"
   
-  project_ark_ship: "Space Ark"
-  project_ark_ship_plural: "Space Arks"
   
   ####################################
   # Planet Classes
@@ -166,11 +156,6 @@
   
   
   
-  ark_admiral: "$default_admiral$"
-  ark_general: "$default_general$"
-  ark_scientist: "$default_scientist$"
-  ark_governor: "$default_governor$"
-  ark_ruler: "$default_ruler$"
   
   ####################################
   # Jobs
@@ -190,9 +175,6 @@
   # Initializers
   ####################################
   
-  NAME_Ark_Fleet: "The Exodus"
-  NAME_Ark: "The Exodus"
-  NAME_Project_Ark_Ship: "The Ark"
   NAME_Bastion: "The Bastion"
   NAME_Sentinel: "The Sentinel"
   NAME_Spectator: "The Spectator"
@@ -201,5 +183,4 @@
   NAME_New_World: "New World"
   NAME_Tanis: "Tanis"
   NAME_Hope: "Hope"
-  NAME_Ark_Country: "Ark"
  

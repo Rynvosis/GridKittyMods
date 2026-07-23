@@ -1449,21 +1449,6 @@ d_subway_tunnel_network = {
 }
 
 #Ark
-d_remains_of_ark = {
-	is_for_colonizable = yes
-	category = deposit_cat_rare
-	
-	resources = {
-		category = planet_deposits
-		produces = {
-			unity = 5
-		}
-	}
-	
-	drop_weight = {
-		weight = 0
-	}
-}
 
 d_settler_camp = {
 	icon = d_slums
@@ -1769,28 +1754,6 @@ d_dooms_rift = {
 	}
 }
 
-d_destruction_marks = {
-	icon = d_burning_settlement
-	time = 120
-	
-	is_for_colonizable = yes
-	category = deposit_cat_blockers
-	
-	potential = { always = no }
-	
-	planet_modifier = {
-		planet_max_districts_add = -1
-	}
-	
-	all_blocker_swap_types = yes
-	
-	resources = {
-		category = deposit_blockers
-		cost = {
-			energy = 300
-		}
-	}
-}
 
 ##################
 #### STARLORD ####
