@@ -9,7 +9,7 @@
 # Generated Planet Modifiers
 ##########################################################################
 
-death_world = {
+nf_death_world = {
 	pop_environment_tolerance = -0.10
 	bonus_pop_growth_mult = -0.50
 	logistic_growth_mult = -0.30

@@ -100,7 +100,7 @@
  has_toxic_atmosphere: "拥有行星修正 $toxic_atmosphere$"
  has_greenhouse_world: "拥有行星修正 $greenhouse_world$"
  has_poisonous_world: "拥有一个行星修正 $poisonous_world$"
- has_death_world: "拥有一个行星修正 $death_world$"
+ has_death_world: "拥有一个行星修正 $nf_death_world$"
  has_scorched_world: "拥有行星修正 $scorched_world$"
 
  NO_TERRAFORM_HOLLOW_WORLD: "§R无法对空洞星球进行环境改造。§!"

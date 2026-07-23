@@ -99,6 +99,18 @@ event = {
 				is_planet_subclass = no
 				solar_system = { NOT = { has_star_flag = sol_sector }}
 				NOT = { has_modifier = "living_sea" }
+
+				# Skip planets that were placed deliberately rather than generated.
+				# Assigning a subclass rewrites planet class, art and deposits, which
+				# destroys hand-authored content. ignore_startup_effect is the vanilla
+				# flag for "do not run game-start setup on me"; the named flags below
+				# are the same opt-out for mods that do not set it. Both flag types are
+				# checked because initializers and events set them on different scopes.
+				NOR = {
+					has_planet_flag = ignore_startup_effect
+					has_carrier_flag = ignore_startup_effect
+					has_planet_flag = rwf_carachel        # Relic World Flavour
+				}
 			}
 			random_list = {
 				40 = {

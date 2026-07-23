@@ -494,7 +494,7 @@ pm_death_world = {
 		modifier = {
 			factor = 0
 			OR = {
-				has_modifier = "death_world"
+				has_modifier = "nf_death_world"
 				is_paradise_subclass = yes
 			}
 		}
@@ -505,7 +505,7 @@ pm_death_world = {
 		}
 	}
 	
-	modifier = "death_world"
+	modifier = "nf_death_world"
 }
 
 

@@ -1,4 +1,4 @@
- ##########################################################################
+﻿ ##########################################################################
 # Decisions
 ##########################################################################
 
@@ -95,7 +95,7 @@ decision_protective_equipment = {
 			OR = {
 				has_modifier = dangerous_wildlife
 				has_modifier = toxic_atmosphere
-				has_modifier = death_world
+				has_modifier = nf_death_world
 				has_modifier = caustic_world
 				has_modifier = ash_world
 			}
@@ -237,7 +237,7 @@ decision_planetary_excavation = {
 		custom_tooltip = decision_planetary_excavation_effect_desc
 		hidden_effect = {
 			change_pc = pc_relic
-			reset_planet = yes
+			nf_reset_planet = yes
 			clear_deposits = yes
 			
 			add_deposit = d_ruined_arcology

@@ -74,7 +74,7 @@
   has_toxic_atmosphere: "Есть планетарный модификатор $toxic_atmosphere$"
   has_greenhouse_world: "Есть планетарный модификатор $greenhouse_world$"
   has_poisonous_world: "Есть планетарный модификатор $poisonous_world$"
-  has_death_world: "Есть планетарный модификатор $death_world$"
+  has_death_world: "Есть планетарный модификатор $nf_death_world$"
   has_scorched_world: "Есть планетарный модификатор $scorched_world$"
 
   NO_TERRAFORM_HOLLOW_WORLD: "§RПолый мир невозможно терраформировать.§!"

@@ -64,7 +64,7 @@
   has_toxic_atmosphere: "Has a planetary modifier $toxic_atmosphere$"
   has_greenhouse_world: "Has a planetary modifier $greenhouse_world$"
   has_poisonous_world: "Has a planetary modifier $poisonous_world$"
-  has_death_world: "Has a planetary modifier $death_world$"
+  has_death_world: "Has a planetary modifier $nf_death_world$"
   has_scorched_world: "Has a planetary modifier $scorched_world$"
 
   NO_TERRAFORM_HOLLOW_WORLD: "§RHollow World is impossible to terraform.§!"

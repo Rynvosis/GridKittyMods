@@ -64,7 +64,7 @@
  rocky_world: "Rocky World"
  rocky_world_desc: "Frequent storms and strong winds on this planet contributed to the strong weathering of its geological formations. As a result, much of the surface of this world is eroded rocks.\n\nType: §Mexotic§!"
  primal_world: "Primal World"
- primal_world_desc: "This world is still quite young and is experiencing frequent periods of volcanic activity. The lush jungle can be abruptly replaced by dead wastelands. Lava flows erupting from the bowels of the planet spread through the valleys and canyons, absorbing the once-blooming land, and turning it into a hellish landscape.\n\nAsh-fed soil supports §Y$zone_food_volcanic$§! on £district£ $district_polytechnic_plural$.\n\nType: §Gparadise§!"
+ primal_world_desc: "This world is still quite young and is experiencing frequent periods of volcanic activity. Dead wastelands are as abruptly reclaimed by lush jungle as the jungle is buried by them. Lava flows erupting from the bowels of the planet spread through the valleys and canyons, burying the blooming land and leaving behind ash that weathers quickly into fertile soil.\n\nAsh-fed soil supports §Y$zone_food_volcanic$§! on £district£ $district_polytechnic_plural$.\n\nType: §Gparadise§!"
  mesa_world: "Mesa World"
  mesa_world_desc: "Frequent, sometimes unpredictable, changes in the warm and cold seasons of this world lead to strong winds and drought. Over the course of many millions of years, constant weathering has transformed the planet's topography into canyon-ridged plateaus and vast mesas. The planet's meager biosphere thrives only near rare water bodies in the polar zone.\n\nType: §Bnormal§!"
  bog_world: "Bog World"
@@ -143,7 +143,7 @@
  caustic_world: "Caustic World"
  caustic_world_desc: "A lifeless, rocky world beneath a thin haze of sulphur and halide gases. The air is faintly corrosive and what little moisture gathers is acidic, slowly pitting exposed metal and keeping the bare rock scoured of anything that might take hold. The reactive chemistry is not all hostile: the vents that feed it can be tapped for power by a colony sealed against the atmosphere.\n\nType: §Rextreme§!"
  ash_world: "Ash World"
- ash_world_desc: "This rocky world is going through an acute phase of a global volcanic winter. Active tectonic processes on the planet have stopped, but the atmosphere is heavily polluted with ash and sulfurous gases. The dense cover of volcanic emissions has led to an anti-greenhouse effect, and sunlight hardly reaches the surface.\n\nType: §Rextreme§!"
+ ash_world_desc: "This rocky world is going through an acute phase of a global volcanic winter. Active tectonic processes on the planet have stopped, but the atmosphere is heavily polluted with ash and fine volcanic dust. The dense cover of volcanic emissions has led to an anti-greenhouse effect, and sunlight hardly reaches the surface. What those old eruptions carried up from the mantle lies shallow beneath the ash, easily reached.\n\nType: §Rextreme§!"
  archean_world: "Archean World"
  archean_world_desc: "This planet is at a very early stage in the formation of organic life. Thanks to the photosynthesis of microbiota actively developing in shallow seas, a stable nitrogen-oxygen atmosphere has been formed. The continuing increase in oxygen saturation of the atmosphere will one day lead to an oxygen catastrophe and the onset of global glaciation.\n\nType: §Bnormal§!"
  

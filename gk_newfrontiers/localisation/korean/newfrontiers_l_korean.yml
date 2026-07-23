@@ -64,7 +64,7 @@
   has_toxic_atmosphere: "$toxic_atmosphere$ 행성 변동치가 있습니다."
   has_greenhouse_world: "$greenhouse_world$ 행성 변동치가 있습니다."
   has_poisonous_world: "$poisonous_world$ 행성 변동치가 있습니다."
-  has_death_world: "$death_world$ 행성 변동치가 있습니다."
+  has_death_world: "$nf_death_world$ 행성 변동치가 있습니다."
   has_scorched_world: "$scorched_world$ 행성 변동치가 있습니다."
 
   NO_TERRAFORM_HOLLOW_WORLD: "§R땅굴 행성은 테라포밍할 수 없습니다.§!"

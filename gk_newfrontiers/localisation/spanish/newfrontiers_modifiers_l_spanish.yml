@@ -8,8 +8,8 @@
  # Planet Modifiers
  ####################################
  
- death_world: "Death World"
- death_world_desc: "At first glance, this planet may seem like a paradise, but beneath the treacherous beauty and enticing richness of this world lies nothing but death. Constant biological competition between flora and fauna forces every species to develop deadly and horrific features. The biosphere is thus hostile towards colonizers, but settlers who are able to adapt and survive will emerge as hardened warriors."
+ nf_death_world: "Death World"
+ nf_death_world_desc: "At first glance, this planet may seem like a paradise, but beneath the treacherous beauty and enticing richness of this world lies nothing but death. Constant biological competition between flora and fauna forces every species to develop deadly and horrific features. The biosphere is thus hostile towards colonizers, but settlers who are able to adapt and survive will emerge as hardened warriors."
  ancient_cities: "Ancient Cities"
  ancient_cities_desc: "This planet was once home to an highly developed civilization, and the ruins of its once great-cities still dot the surface. It is a paradise for archaeologists who want to immerse themselves in the wonders of history."
  meteorite_showers: "Meteorite Showers"

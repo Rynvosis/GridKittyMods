@@ -280,7 +280,7 @@ has_natural_hazards = {
 		has_modifier = "bleak_planet"
 		has_modifier = "irradiated_planet"
 		has_modifier = "high_gravity"
-		has_modifier = "death_world"
+		has_modifier = "nf_death_world"
 		has_modifier = "toxic_atmosphere"
 	}
 }
