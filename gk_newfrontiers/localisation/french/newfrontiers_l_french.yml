@@ -16,13 +16,7 @@
   decision_build_cloud_platform_desc: "Construction of special platforms, on which entire cities can be built, will allow the development of territories covered with toxic fumes, and will open access to mining."
   decision_demolish_cloud_platform: "Demolish Cloud Platform"
   decision_demolish_cloud_platform_desc: "If the maintenance of the celestial platform becomes unprofitable, it can be disposed of."
-  decision_start_ecosystem_creation_project: "Start Ecosystem Creation Project"
-  decision_start_ecosystem_creation_project_desc: "This decision launches one of the projects for terraforming the planet.\n\nDead worlds can be revived by creating favorable conditions on the surface and in the atmosphere of the planet. Then plant the seeds of life and carefully care for the sprouts that will rapidly develop in the warm oceans of this world under our supervision."
   decision_start_ecosystem_creation_project_effect_desc: "Triggers a special terraforming process. To progress, you will need various terraforming structures."
-  decision_end_ecosystem_creation_project: "End Ecosystem Creation Project"
-  decision_end_ecosystem_creation_project_desc: "This decision will stop the ecosystem creation project. The result will not be achieved."
-  decision_abolish_nature_preserves: "Abolish Nature Preserves"
-  decision_abolish_nature_preserves_desc: "This decision will revoke the planet's status as a nature reserve and open the way for mineral extraction. However, civil society environmental organizations will almost certainly be displeased."
   
   
   ####################################
@@ -86,20 +80,6 @@
   # Technology
   ####################################
   
-  tech_blocked_tunnell: "Thermal Drilling"
-  tech_blocked_tunnell_desc: "The development of special mechanisms that heat the rock to a melting point will allow the formation of a network of underground tunnels efficiently and in a short time."
-  tech_igneous_traps: "Effusive Processes Stabilization"
-  tech_igneous_traps_desc: "Sufficient knowledge about the internal processes in the crust of the planet will open up opportunities for large-scale geological operations. Sophisticated technological measures will make it possible to localize foci of strong magmatism and cool the areas of effusive and intrusive rocks."
-  tech_ice_crust: "Ice Tunneling"
-  tech_ice_crust_desc: "Creating effective methods for stabilizing glacier caves is a necessary measure for survival in extremely cold worlds."
-  tech_dune_sea: "Sandy Rotation"
-  tech_dune_sea_desc: "Using heavy machinery for complex reclamation processes is the next step in terraforming unusable worlds. Autonomous Terrain Reclamation Stations are capable of stopping the movement of sands and transforming mobile soil into solid soil."
-  tech_thick_forest: "Eco Infrastructure Mapping"
-  tech_thick_forest_desc: "The use of artificial intelligence protocols in the planning of quarterly forest networks will allow the use of the planet's resources without upsetting the fragile ecological balance."
-  tech_large_ice_ridge: "Regulation of Glacial Pressure"
-  tech_large_ice_ridge_desc: "The system of autonomous locks will allow regulating the movement of continental ice masses of cold planets."
-  tech_igneous_traps: "Stabilization of Effusive Processes"
-  tech_igneous_traps_desc: "Sufficient knowledge of the internal processes in the planet's crust will open up opportunities for large-scale geological operations. Complex technological measures will make it possible to localize the centers of strong magmatism and cool areas of effusive and intrusive rocks."
   tech_cloud_platform: "Cloud Platform Design"
   tech_cloud_platform_desc: "The need to develop closed territories of poisonous worlds to access resources requires the development of special engineering solutions."
   

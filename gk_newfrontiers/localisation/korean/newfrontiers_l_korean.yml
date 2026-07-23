@@ -16,13 +16,7 @@
   decision_build_cloud_platform_desc: "도시 전체가 올라갈 수 있는 특수 플랫폼의 건설을 통해, 독성 안개로 덮인 지역을 개발할 수 있을 것이고 채광이 가능해질 것입니다."
   decision_demolish_cloud_platform: "구름 플랫폼 제거"
   decision_demolish_cloud_platform_desc: "하늘 플랫폼을 유지할 가치가 없다면, 없애버릴 수 있습니다."  
-  decision_start_ecosystem_creation_project: "생태계 조성 프로젝트 시작"
-  decision_start_ecosystem_creation_project_desc: "이 결정은 행성을 테라포밍하기 위한 프로젝트 중 하나를 시작합니다.\n\n죽은 행성은 행성 표면과 대기에 유리한 조건을 조성함으로써 되살릴 수 있습니다. 그런 다음 생명의 씨앗을 심고 우리의 감독 아래 이 세상의 따뜻한 바다에서 빠르게 성장할 새싹을 조심스럽게 돌봐주세요."
   decision_start_ecosystem_creation_project_effect_desc: "특별한 테라포밍 과정을 시작합니다. 진행하려면 다양한 테라포밍 구조물이 필요합니다."
-  decision_end_ecosystem_creation_project: "생태계 조성 프로젝트 종료"
-  decision_end_ecosystem_creation_project_desc: "이 결정으로 생태계 조성 프로젝트는 중단됩니다. 결과는 달성되지 않을 것입니다."
-  decision_abolish_nature_preserves: "Abolish Nature Preserves"
-  decision_abolish_nature_preserves_desc: "This decision will revoke the planet's status as a nature reserve and open the way for mineral extraction. However, civil society environmental organizations will almost certainly be displeased."
   
   
   ####################################
@@ -86,20 +80,6 @@
   # Technology
   ####################################
   
-  tech_blocked_tunnell: "열 사용 굴착법"
-  tech_blocked_tunnell_desc: "암석을 녹는 점까지 가열하는 특수한 방식을 개발함으로써 단시간 내에 그리고 효율적으로 지하 땅굴망을 만들 수 있게 되었습니다."
-  tech_igneous_traps: "분출 활동 안정화"
-  tech_igneous_traps_desc: "행성 지각 내부 과정에 대해 충분히 알게 되면, 대규모 지질학적 작전을 시행할 수 있을 것입니다. 복잡한 기술적 방법으로 인해 강한 분출 활동의 중심을 찾고 뜨거운 암석이 있는 지역을 식힐 수 있을 것입니다."
-  tech_ice_crust: "얼음 굴착"
-  tech_ice_crust_desc: "극도로 추운 행성에서 살아남기 위해서는 빙하 동굴을 안정화시킬 방법을 만들어야합니다."
-  tech_dune_sea: "모래 교체"
-  tech_dune_sea_desc: "복잡한 간척 작업을 위해 중장비를 사용하는 것은 테라포밍이 불가능한 행성에서의 다음 단계입니다. 자동화 지형 개간 스테이션은 모래의 움직임을 멈추고 움직이는 흙은 고정시킬 수 있습니다."
-  tech_thick_forest: "친환경 시설 계획"
-  tech_thick_forest_desc: "분기별 산림 계획에 인공지능 프로토콜을 사용하면, 취약한 환경적 균형을 갈아엎지 않고도 행성의 자원을 사용할 수 있을 것입니다."
-  tech_large_ice_ridge: "빙하 압력 제어"
-  tech_large_ice_ridge_desc: "자동 잠금 체계를 통해, 추운 행성의 얼음 대륙의 움직임을 통제할 수 있을 것입니다."
-  tech_igneous_traps: "분출 활동 안정화"
-  tech_igneous_traps_desc: "행성 지각 내부 과정에 대해 충분히 알게 되면, 대규모 지질학적 작전을 시행할 수 있을 것입니다. 복잡한 기술적 방법으로 인해 강한 분출 활동의 중심을 찾고 뜨거운 암석이 있는 지역을 식힐 수 있을 것입니다."
   tech_cloud_platform: "구름 플랫폼 구조"
   tech_cloud_platform_desc: "자원에 접근하기 위해 독성 행성에 폐쇄된 지역을 개발할 필요가 있습니다. 특수한 공학적 해결책을 개발할 필요가 있습니다."
   

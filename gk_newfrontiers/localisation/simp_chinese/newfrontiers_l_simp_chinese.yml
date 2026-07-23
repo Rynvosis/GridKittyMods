@@ -43,13 +43,7 @@
  decision_build_cloud_platform_desc: "特殊的平台，整座城市都会被筑于其上。通过建造此类平台，我们可以开发那些被有毒烟雾覆盖的土地，也可以进行矿物开采作业。"
  decision_demolish_cloud_platform: "拆除云上平台"
  decision_demolish_cloud_platform_desc: "如果空中平台的维护变得无利可图，就可以将这些平台处理掉。"
- decision_start_ecosystem_creation_project: "Start Ecosystem Creation Project"
- decision_start_ecosystem_creation_project_desc: "This decision launches one of the projects for terraforming the planet.\n\nDead worlds can be revived by creating favorable conditions on the surface and in the atmosphere of the planet. Then plant the seeds of life and carefully care for the sprouts that will rapidly develop in the warm oceans of this world under our supervision."
  decision_start_ecosystem_creation_project_effect_desc: "Triggers a special terraforming process. To progress, you will need various terraforming structures."
- decision_end_ecosystem_creation_project: "End Ecosystem Creation Project"
- decision_end_ecosystem_creation_project_desc: "This decision will stop the ecosystem creation project. The result will not be achieved."
- decision_abolish_nature_preserves: "Abolish Nature Preserves"
- decision_abolish_nature_preserves_desc: "This decision will revoke the planet's status as a nature reserve and open the way for mineral extraction. However, civil society environmental organizations will almost certainly be displeased."
   
   
   ####################################
@@ -126,20 +120,6 @@
   # Technology
   ####################################
   
- tech_blocked_tunnell: "高温钻孔"
- tech_blocked_tunnell_desc: "我们可以利用这项新技术将岩石加热至熔点，从而提高挖掘隧道网络的速度。"
- tech_igneous_traps: "喷发稳定化"
- tech_igneous_traps_desc: "对星球地壳内部运动的充分了解为我们提供了大规模地质作业的机会。复杂的技术能检测到可能强岩浆活动的中心和喷出岩与侵入岩的冷却区域。"
- tech_ice_crust: "冰隧道"
- tech_ice_crust_desc: "建造稳定的冰川隧道是在寒冷世界生存的必要措施。"
- tech_dune_sea: "沙旋"
- tech_dune_sea_desc: "使用针对复杂垦荒过程所研发的重型机械，是对恶劣星球地貌改造的下一步骤。自动化开垦站能够使流沙移动停滞，并将流质土壤转化为固态土壤。"
- tech_thick_forest: "生态基础设施编绘"
- tech_thick_forest_desc: "在规划季度森林网络时使用人工智能协议，可以利用星球上的资源而不致破坏脆弱的生态平衡。"
- tech_large_ice_ridge: "冰川压力调控"
- tech_large_ice_ridge_desc: "自主锁系统将允许调节寒冷星球上的大陆冰川的运动。"
- tech_igneous_traps: "喷发稳定化"
- tech_igneous_traps_desc: "对星球地壳内部运动的充分了解为我们提供了大规模地质作业的机会。复杂的技术能检测到可能强岩浆活动的中心和喷出岩与侵入岩的冷却区域。"
  tech_megamycete: "外星菌症"
  tech_megamycete_desc: "对外星真菌进行研究，可以开发出应对这种危险病原体的有效措施，并在未来用于我们自身的需求。"
  tech_invasive_necrotoxication: "侵入性坏死毒素作用"

@@ -93,7 +93,7 @@ d_dune_sea = {
 		}
 	}
 	
-	prerequisites = { "tech_dune_sea" }
+	prerequisites = { "tech_quicksand_basin" }
 }
 
 d_thick_forest = {
@@ -182,7 +182,7 @@ d_thick_forest = {
 		}
 	}
 	
-	prerequisites = { "tech_thick_forest" }
+	prerequisites = { "tech_dense_jungle" }
 }
 
 d_large_ice_ridge = {
@@ -249,7 +249,7 @@ d_large_ice_ridge = {
 		}
 	}
 	
-	prerequisites = { "tech_large_ice_ridge" }
+	prerequisites = { "tech_massive_glacier" }
 }
 
 d_blocked_tunnell = {
@@ -292,7 +292,7 @@ d_blocked_tunnell = {
 		}
 	}
 	
-	prerequisites = { "tech_blocked_tunnell" }
+	prerequisites = { "tech_deep_sinkhole" }
 }
 
 d_ice_crust = {
@@ -335,7 +335,7 @@ d_ice_crust = {
 		}
 	}
 	
-	prerequisites = { "tech_ice_crust" }
+	prerequisites = { "tech_massive_glacier" }
 }
 
 d_industrial_boneyard = {
@@ -458,7 +458,7 @@ d_igneous_traps = {
 		}
 	}
 	
-	prerequisites = { "tech_igneous_traps" }
+	prerequisites = { "tech_volcano" }
 }
 
 d_rusty_debris = {

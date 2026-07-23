@@ -104,7 +104,6 @@ on_planet_surveyed = {
 # Scope = Planet
 on_colonized = {
 	events = {
-		newfrontiers_action.16
 	}
 }
 
@@ -203,7 +202,6 @@ on_planet_class_changed = {
 # This = Planet
 on_building_complete = {
 	events = {
-		newfrontiers_action.19
 	}
 }
 
@@ -211,7 +209,6 @@ on_building_complete = {
 # This = Planet
 on_building_replaced = {
 	events = {
-		newfrontiers_action.19
 	}
 }
 

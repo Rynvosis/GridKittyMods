@@ -254,16 +254,6 @@
  ####################################
  
  newfrontiers_action.4.desc: "§Y[FromFrom.GetName]§! has a high pressure and atmosphere that is toxic to most life forms. Nevertheless, a thriving biocenosis has developed here, using ammonia instead of water as a solvent. The development of life has followed an ecological model that is significantly different from those that we know. Its study will significantly expand our knowledge in xenobiology."
- newfrontiers_action.17.name: "[Root.GetName]: Bioluminescent Preserve"
- newfrontiers_action.17.desc: "Our planet [Root.GetName] in the [Root.System.GetName] system is a unique world with a bioluminescent ecosystem. Several civil society organizations are pushing for environmental protection on this exotic planet. They believe that the planet's fossil resources are not worth the unique natural beauty of this place. Any chemical production or mining operations could disrupt the delicate balance of the bioluminescent environment. For this reason, environmental organizations are pushing for the entire planet to be designated a specially protected zone and for all industrial activity to be banned on this world."
- newfrontiers_action.17.a: "This may be reasonable. We will get more from tourism."
- newfrontiers_action.17.b: "Complete nonsense! Throw these good-for-nothings out!"
- newfrontiers_action.18.name: "[Root.GetName]: Green movement"
- newfrontiers_action.18.desc: "Environmental organizations appear to be deeply upset by our decision to deny special protection to the [Root.GetName] ecosystem. They have circulated several reports online about the unique nature of this bioluminescent world and the potential consequences of its exploitation. Civil society is outraged by ""such barbarity,"" and mass environmental protests are already unfolding on [Root.GetName]."
- newfrontiers_action.18.a: "Well... they won..."
- newfrontiers_action.18.b: "No big deal. They'll make some noise and then stop."
- newfrontiers_action.20.name: "[Root.GetName]: Violation of prohibition"
- newfrontiers_action.20.desc: "Environmentalists are calling our attention to the fact that the strictest ban on industrial and mining activity on planet [Root.GetName] has been violated. Environmentalists are now almost completely blocking production on the planet. The situation is escalating."
  
  ####################################
  # Periodic Events

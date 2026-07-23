@@ -249,16 +249,6 @@ newfrontiers.18.name: "New Frontiers: $dune_world$"
  ####################################
  
  newfrontiers_action.4.desc: "§Y[FromFrom.GetName]§!은(는) 대부분의 생명체에게 독성인 고압 대기를 가지고 있습니다. 그럼에도 이곳에서는 상당한 생물군집이 발달했고, 물 대신에 암모니아를 용매로 사용하고 있습니다. 우리가 아는 생태계적 모델과는 크게 다른 형태로 발달했으며, 이를 연구하면 외계 생물학에 큰 도움이 될 것입니다."
- newfrontiers_action.17.name: "[Root.GetName]: Bioluminescent Preserve"
- newfrontiers_action.17.desc: "Our planet [Root.GetName] in the [Root.System.GetName] system is a unique world with a bioluminescent ecosystem. Several civil society organizations are pushing for environmental protection on this exotic planet. They believe that the planet's fossil resources are not worth the unique natural beauty of this place. Any chemical production or mining operations could disrupt the delicate balance of the bioluminescent environment. For this reason, environmental organizations are pushing for the entire planet to be designated a specially protected zone and for all industrial activity to be banned on this world."
- newfrontiers_action.17.a: "This may be reasonable. We will get more from tourism."
- newfrontiers_action.17.b: "Complete nonsense! Throw these good-for-nothings out!"
- newfrontiers_action.18.name: "[Root.GetName]: Green movement"
- newfrontiers_action.18.desc: "Environmental organizations appear to be deeply upset by our decision to deny special protection to the [Root.GetName] ecosystem. They have circulated several reports online about the unique nature of this bioluminescent world and the potential consequences of its exploitation. Civil society is outraged by "such barbarity," and mass environmental protests are already unfolding on [Root.GetName]."
- newfrontiers_action.18.a: "Well... they won..."
- newfrontiers_action.18.b: "No big deal. They'll make some noise and then stop."
- newfrontiers_action.20.name: "[Root.GetName]: Violation of prohibition"
- newfrontiers_action.20.desc: "Environmentalists are calling our attention to the fact that the strictest ban on industrial and mining activity on planet [Root.GetName] has been violated. Environmentalists are now almost completely blocking production on the planet. The situation is escalating."
  
  
  ####################################

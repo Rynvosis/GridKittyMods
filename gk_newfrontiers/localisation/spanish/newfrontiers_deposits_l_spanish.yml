@@ -129,9 +129,6 @@
  d_enigmatic_remnants_desc: "The vast ruins of the agglomerate of ancient cities of a forgotten era covered with sand are the dream of any archaeologist."
  d_medicinal_algae: "Medicinal Algae"
  d_medicinal_algae_desc: "A unique species of algae has been discovered in this region, with healing properties surpassing many modern medications. This valuable resource significantly increases global trade and opens up new opportunities for biologists and the pharmaceutical industry."
- d_nature_preserve: "Nature Preserve"
- d_nature_preserve_desc: "This region with its unique ecosystem is protected by conservation organizations."
- has_preserve_planet: "$TRIGGER_FAIL$§RThis blocker will remain uncleanable as long as §Y$preserve_planet$§!.§! exists."
  d_crystalline_array: "Crystalline Array"
  d_crystalline_array_desc: "The enormous crystalline formations in this region are absolutely unique and unparalleled in the galaxy. This place contains a virtually inexhaustible resource of rare crystals and minerals."
  
