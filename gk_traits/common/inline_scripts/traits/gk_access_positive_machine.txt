@@ -1,5 +1,11 @@
-# can_add_genetic_traits requires tech_gene_tailoring, which machines never have.
-# Archetype branch per trait_pc_ark_preference, 01_species_traits_habitability.txt:902.
+# Access gate for the CYBER positive suite. Three ways in:
+#  - MACHINE / ROBOT archetypes short-circuit (can_add_genetic_traits needs
+#    tech_gene_tailoring, which machines never have). Branch per
+#    trait_pc_ark_preference, 01_species_traits_habitability.txt:902.
+#  - a cybernetically-ascended species (trait_cybernetic + Integrated Anatomy)
+#    or an Augmentation Bazaars empire mods them like vanilla cyborg traits
+#    (trait_cyborg_power_drills, 10_species_traits_cyborg.txt:65).
+#  - otherwise the ordinary genetic / Mutation genemod path.
 species_possible_add = {
 	if = {
 		limit = {
@@ -14,6 +20,8 @@ species_possible_add = {
 		OR = {
 			can_add_genetic_traits = yes
 			can_add_or_remove_phenotype_traits = yes
+			can_add_cybernetic_traits = yes
+			can_add_aug_bazaar_traits = yes
 		}
 	}
 }
@@ -31,6 +39,8 @@ species_possible_remove = {
 		OR = {
 			can_remove_beneficial_genetic_traits = yes
 			can_add_or_remove_phenotype_traits = yes
+			can_remove_cybernetic_traits = yes
+			can_add_aug_bazaar_traits = yes
 		}
 	}
 }
