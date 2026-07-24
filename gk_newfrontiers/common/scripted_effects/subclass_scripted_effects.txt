@@ -1371,6 +1371,35 @@ set_ancient_subclass = {
 	set_planet_flag = rwf_treat_as_relic_world
 }
 
+# Turn a world into a Forgotten World (a unique relic world). Codified from the
+# old forgotten_world_system initializer, which is gone. Call it by hand, e.g.
+# effect set_forgotten_subclass = yes, to make forgottens where you want them.
+set_forgotten_subclass = {
+	if = {
+		limit = { NOT = { is_planet_class = pc_relic } }
+		change_pc = pc_relic
+	}
+	remove_subclass_modifiers = yes
+	set_planet_entity = {
+		picture = pc_forgotten
+		entity = forgotten_planet_01_entity
+	}
+	add_modifier = {
+		modifier = "forgotten_world"
+		days = -1
+	}
+	prevent_anomaly = yes
+	reroll_deposits = yes
+	if = {
+		limit = { NOT = { has_deposit = d_ancient_temple_ruins } }
+		add_deposit = d_ancient_temple_ruins
+	}
+	if = {
+		limit = { NOT = { has_deposit = d_enigmatic_remnants } }
+		add_deposit = d_enigmatic_remnants
+	}
+}
+
 set_flaming_subclass = {
 	if = {
 		limit = { NOT = { is_planet_class = pc_desert } }

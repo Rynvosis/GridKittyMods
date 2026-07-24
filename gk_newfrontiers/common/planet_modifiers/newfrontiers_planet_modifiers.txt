@@ -351,13 +351,6 @@ pm_fallout_world = {
 }
 
 # Relic Worlds
-pm_forgotten_world = {
-	spawn_chance = {
-		#None - From start event
-	}
-	
-	modifier = "forgotten_world"
-}
 
 pm_rust_world = {
 	spawn_chance = {
