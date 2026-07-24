@@ -290,6 +290,293 @@ terraform_link = {
 	}
 }
 
+#######################
+## Into Sterile World ##
+#######################
+# Reverse of the sterile-to-habitable links: lets a sterile-preference
+# empire terraform a habitable world to its own ideal climate, the same
+# terraform-to-preference parity every vanilla climate already has.
+# ai_weight 0 so the AI never sterilises a world on its own.
+
+terraform_link = {
+	from = "pc_desert"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_arid"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_savannah"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_arctic"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_tundra"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_alpine"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_continental"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_tropical"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+terraform_link = {
+	from = "pc_ocean"
+	to = "pc_sterile"
+	
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+	
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+	
+	duration = 3600
+	
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
 ##################
 ## Barren World ##
 ##################
