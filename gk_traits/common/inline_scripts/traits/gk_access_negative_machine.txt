@@ -1,3 +1,7 @@
+# Access gate for the CYBER negative suite. As gk_access_positive_machine, but
+# negatives use potential_add and have no possible_remove (removal stays ungated,
+# matching vanilla negatives). Cyborgs and Augmentation Bazaars empires can add
+# these to free trait points, like they do vanilla cyborg traits.
 species_potential_add = {
 	if = {
 		limit = {
@@ -12,6 +16,8 @@ species_potential_add = {
 		OR = {
 			can_add_negative_organic_traits = yes
 			can_add_or_remove_phenotype_traits = yes
+			can_add_cybernetic_traits = yes
+			can_add_aug_bazaar_traits = yes
 		}
 	}
 }
