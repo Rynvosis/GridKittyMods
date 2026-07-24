@@ -1658,7 +1658,7 @@ d_luminous_reef = {
 #################
 
 d_collapsed_caves = {
-	icon = d_blocked_tunnell
+	icon = d_deep_sinkhole
 	time = 180
 	
 	is_for_colonizable = yes
@@ -1681,7 +1681,7 @@ d_collapsed_caves = {
 }
 
 d_sunken_cavity = {
-	icon = d_ice_crust
+	icon = d_massive_glacier
 	time = 180
 	
 	is_for_colonizable = yes

@@ -2514,9 +2514,9 @@ random_nf_deposit_terraform_cold_to_warm = {
 				is_deposit_type = d_noxious_swamp
 				AND = {
 					prev = { is_nf_hot_climate = yes }
-					is_deposit_type = d_thick_forest
+					is_deposit_type = d_dense_jungle
 				}
-				is_deposit_type = d_large_ice_ridge
+				is_deposit_type = d_massive_glacier
 			}
 		}
 		clear_blocker = yes
@@ -2650,9 +2650,9 @@ random_nf_deposit_terraform_warm_to_hot = {
 				is_deposit_type = d_noxious_swamp
 				AND = {
 					prev = { is_nf_hot_climate = yes }
-					is_deposit_type = d_thick_forest
+					is_deposit_type = d_dense_jungle
 				}
-				is_deposit_type = d_large_ice_ridge
+				is_deposit_type = d_massive_glacier
 			}
 		}
 		clear_blocker = yes
@@ -2797,7 +2797,7 @@ random_nf_deposit_terraform_hot_to_warm = {
 					NOT = { prev = { is_nf_dry_climate = yes } }
 					is_deposit_type = d_deep_sinkhole
 					is_deposit_type = d_quicksand_basin
-					is_deposit_type = d_dune_sea
+					is_deposit_type = d_quicksand_basin
 				}
 				is_deposit_type = d_noxious_swamp
 			}
@@ -2907,7 +2907,7 @@ random_nf_deposit_terraform_warm_to_cold = {
 			OR = {
 				is_deposit_type = d_deep_sinkhole
 				is_deposit_type = d_quicksand_basin
-				is_deposit_type = d_dune_sea
+				is_deposit_type = d_quicksand_basin
 				AND = {
 					prev = { is_nf_wet_climate = yes }
 					is_deposit_type = d_noxious_swamp
@@ -3134,7 +3134,7 @@ random_nf_deposit_terraform_dry_to_temperate = {
 					OR = {
 						is_deposit_type = d_deep_sinkhole
 						is_deposit_type = d_quicksand_basin
-						is_deposit_type = d_dune_sea
+						is_deposit_type = d_quicksand_basin
 					}
 				}
 				is_deposit_type = d_noxious_swamp
@@ -3234,9 +3234,9 @@ random_nf_deposit_terraform_temperate_to_wet = {
 			OR = {
 				is_deposit_type = d_deep_sinkhole
 				is_deposit_type = d_quicksand_basin
-				is_deposit_type = d_dune_sea
+				is_deposit_type = d_quicksand_basin
 				is_deposit_type = d_noxious_swamp
-				is_deposit_type = d_thick_forest
+				is_deposit_type = d_dense_jungle
 			}
 		}
 		clear_blocker = yes
@@ -3489,7 +3489,7 @@ random_nf_deposit_terraform_temperate_to_dry = {
 			}
 			AND = {
 				NOT = { prev = { is_nf_cold_climate = yes } }
-				is_deposit_type = d_thick_forest
+				is_deposit_type = d_dense_jungle
 			}
 		}
 		clear_blocker = yes
