@@ -4,9 +4,6 @@
   # Planet Decision
   ####################################
 
-  decision_planetary_excavation: "Start planetary excavation"
-  decision_planetary_excavation_desc: "Underneath the overgrown surface of this ancient world are the ruins of a huge planetary city. Planetary excavations will destroy the natural beauty of this world, but this is a necessary step to study valuable long-lost technologies and ultimately restore the former greatness of the planet."
-  decision_planetary_excavation_effect_desc: "Turns the planet into §Y$pc_relic$§!."
   decision_start_ecosystem_creation_project_effect_desc: "Triggers a special terraforming process. To progress, you will need various terraforming structures."
   
   

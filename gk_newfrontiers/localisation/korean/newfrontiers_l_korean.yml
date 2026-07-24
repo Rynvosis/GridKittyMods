@@ -4,9 +4,6 @@
   # Planet Decision
   ####################################
 
-  decision_planetary_excavation: "행성 발굴 시작"
-  decision_planetary_excavation_desc: "이 고대 행성에 잡초가 무성한 땅, 그 밑에 거대한 도시의 폐허가 잠들어 있습니다. 행성을 채굴하면 이 행성의 자연미는 파괴되겠지만, 오래 전 사라진 귀중한 기술을 연구하고 궁극적으로는 행성에게 과거의 위대함을 되돌려주기 위해서는 필요한 수순입니다."
-  decision_planetary_excavation_effect_desc: "행성이 §Y$pc_relic$§!으로 바뀝니다."
   decision_start_ecosystem_creation_project_effect_desc: "특별한 테라포밍 과정을 시작합니다. 진행하려면 다양한 테라포밍 구조물이 필요합니다."
   
   

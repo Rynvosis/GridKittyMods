@@ -4,9 +4,6 @@
   # Planet Decision
   ####################################
 
-  decision_planetary_excavation: "Начать планетарные раскопки"
-  decision_planetary_excavation_desc: "Под заросшей поверхностью этого древнего мира находятся руины огромного планетарного города. Планетарные раскопки убьют нетронутую красоту этого мира, но это первый шаг к изучению забытых технологий и восстановлению былого величия планеты."
-  decision_planetary_excavation_effect_desc: "Превращает планету в §Y$pc_relic$§!."
   decision_megamicelium_assimilation: "Начать ассимиляцию мегамицелия"
   decision_megamicelium_assimilation_desc: "Этот мир будет поглощен экзогрибком и полностью перестроен для наших нужд."
   decision_megamicelium_assimilation_effect_desc: "Планета превратится в §Y$mycelium_world$§!."

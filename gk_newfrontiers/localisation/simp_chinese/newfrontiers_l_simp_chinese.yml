@@ -4,9 +4,6 @@
   # Planet Decision
   ####################################
 
- decision_planetary_excavation: "开始挖掘行星计划"
- decision_planetary_excavation_desc: "在这个古老世界杂草丛生的表面下，是一个巨大的行星城市的废墟。行星挖掘将破坏这个世界的原始之美，但这是研究被遗忘的技术并最终恢复这个星球昔日的伟大的第一步。"
- decision_planetary_excavation_effect_desc: "将这个行星转变为§Y$pc_relic$§!。"
  decision_megamicelium_assimilation: "开始巨型菌丝体同化"
  decision_megamicelium_assimilation_desc: "这个星球会被外星真菌吞噬，并完全按照我们的需求重塑。"
  decision_megamicelium_assimilation_effect_desc: "该星球会转变为§Y$mycelium_world$§!。"

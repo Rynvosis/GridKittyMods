@@ -1362,6 +1362,13 @@ set_ancient_subclass = {
 		days = -1
 	}
 	#reroll_deposits = yes
+
+	# Mark it a relic-history world so Relic World Flavour adopts it for
+	# expeditions and its ambient events, while it stays a unique pc_gaia.
+	# rwf_treat_as_relic_world is RWF's documented compat flag; inert if RWF
+	# is not loaded. RWF's own on_colonized gatekeeper starts the loop when the
+	# world is settled, no decision or class change needed.
+	set_planet_flag = rwf_treat_as_relic_world
 }
 
 set_flaming_subclass = {
