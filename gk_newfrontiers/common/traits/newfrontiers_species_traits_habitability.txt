@@ -2,6 +2,11 @@
 @secondary = 0.60
 @tertiary = 0.20
 
+# Machine/robot habitability values, matching vanilla trait_cold_planet_preference.
+@machine_primary = 0.75
+@machine_secondary = 0.50
+@machine_tertiary = 0.25
+
 trait_pc_sterile_preference = {
 	icon = "gfx/interface/icons/traits/trait_pc_sterile_preference.dds"
 	species_potential_add = {
@@ -28,6 +33,43 @@ trait_pc_sterile_preference = {
 		pc_alpine_habitability = @tertiary
 		pc_volcanic_habitability = @tertiary
 		pc_nuked_habitability = @tertiary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Machine/robot equivalent of trait_pc_sterile_preference. Robots and machine pops take
+# habitability from climate-grouped preference traits (trait_dry/cold/wet_planet_preference),
+# none of which list pc_sterile, so robots have 0% on Sterile. This mirrors vanilla
+# trait_cold_planet_preference, bound to pc_sterile, so a machine/robot species can prefer
+# Sterile the same way a biological one takes trait_pc_sterile_preference.
+trait_sterile_planet_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_sterile_preference.dds"
+	short_name = "trait_sterile_planet_preference_short"
+	species_potential_add = {
+		can_change_habitability_preference = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	allowed_archetypes = { MACHINE ROBOT }
+	sorting_priority = 30
+	bound_to_planet_classes = { pc_sterile }
+	initial = no
+	randomized = no
+	modifier = {
+		pc_sterile_habitability = @machine_primary
+		pc_desert_habitability = @machine_secondary
+		pc_arid_habitability = @machine_secondary
+		pc_savannah_habitability = @machine_secondary
+		pc_ocean_habitability = @machine_secondary
+		pc_continental_habitability = @machine_secondary
+		pc_tropical_habitability = @machine_secondary
+		pc_arctic_habitability = @machine_secondary
+		pc_alpine_habitability = @machine_secondary
+		pc_tundra_habitability = @machine_secondary
+		pc_volcanic_habitability = @machine_tertiary
 	}
 	ai_weight = {
 		weight = 0

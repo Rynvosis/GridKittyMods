@@ -1,0 +1,16 @@
+# Species-editor portrait backgrounds for the Sterile preference traits.
+#
+# The editor picks a background by the sprite name GFX_species_selected_background_trait_<trait>,
+# built from the species' habitability-preference trait. Sterile has no vanilla entry, so both the
+# biological trait_pc_sterile_preference and the machine trait_sterile_planet_preference need one
+# registered here; both use the same bespoke Sterile preview background.
+spriteTypes = {
+	spriteType = {
+		name = "GFX_species_selected_background_trait_pc_sterile_preference"
+		texturefile = "gfx/portraits/species_preview_backgrounds/species_preview_bg_sterile.dds"
+	}
+	spriteType = {
+		name = "GFX_species_selected_background_trait_sterile_planet_preference"
+		texturefile = "gfx/portraits/species_preview_backgrounds/species_preview_bg_sterile.dds"
+	}
+}

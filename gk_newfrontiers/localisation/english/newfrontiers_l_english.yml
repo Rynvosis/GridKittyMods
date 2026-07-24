@@ -28,6 +28,9 @@
   trait_pc_sterile_preference: "Sterile World Preference"
  TRAIT_STERILE_PREFERENCE_EFFECT: "$mod_pc_sterile_habitability$: §G+80%§!\nAll Other $MOD_POP_ENVIRONMENT_TOLERANCE$: §G+20%§!"
   trait_pc_sterile_preference_desc: "$trait_pc_arctic_preference_desc$"
+  trait_sterile_planet_preference: "Sterile Planet Preference"
+  trait_sterile_planet_preference_short: "Sterile Planet"
+  trait_sterile_planet_preference_desc: "$trait_dry_planet_preference_desc$"
   
   
   ####################################
