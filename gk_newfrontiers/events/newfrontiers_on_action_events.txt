@@ -17,7 +17,6 @@ carrier_event = {
 	immediate = {
 		THIS = {
 			remove_subclass_modifiers = yes
-			remove_condition_modifiers = yes
 		}
 	}
 
