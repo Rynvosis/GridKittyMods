@@ -1,0 +1,19 @@
+# Deliberate overwrites of vanilla scripted effects.
+#
+# Files here replace a vanilla scripted effect of the same name so that every
+# caller, vanilla and modded, runs the mod's version instead of the original.
+# This is intentional, not a namespacing accident: the mod's planet reset has to
+# strip its own condition and subclass modifiers, which vanilla's reset_planet
+# does not know about.
+#
+# reset_planet: vanilla clears planet modifiers and rerolls deposits. This
+# version also runs remove_condition_modifiers (storm/hazard cleanup) and
+# remove_subclass_modifiers so a reset planet does not keep a stale subclass or
+# weather modifier. Every reset_planet call in the mod, and any vanilla path
+# that resets a planet, gets this behaviour.
+reset_planet = {
+	clear_planet_modifiers = yes
+	remove_condition_modifiers = yes
+	remove_subclass_modifiers = yes
+	reroll_deposits = yes
+}

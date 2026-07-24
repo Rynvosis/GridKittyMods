@@ -60,7 +60,7 @@ decision_planetary_excavation = {
 		custom_tooltip = decision_planetary_excavation_effect_desc
 		hidden_effect = {
 			change_pc = pc_relic
-			nf_reset_planet = yes	# rerolls vanilla relic-world deposits
+			reset_planet = yes	# rerolls vanilla relic-world deposits
 
 			# Hand the world to Relic World Flavour when it is loaded: flag it a
 			# history relic world so RWF's expedition decision and ambient events

@@ -16,15 +16,6 @@ remove_condition_modifiers = {
 	# storm condition modifiers purged; nothing to clean
 }
 
-# Was an overwrite of vanilla's reset_planet. Renamed so the vanilla effect keeps
-# its own definition and every other mod that calls it gets vanilla behaviour.
-nf_reset_planet = {
-	clear_planet_modifiers = yes
-	remove_condition_modifiers = yes
-	remove_subclass_modifiers = yes
-	reroll_deposits = yes
-}
-
 planet_heating_effect = {
 
 	if = {
@@ -33,7 +24,7 @@ planet_heating_effect = {
 			limit = { has_modifier = "oasis_world" }
 			remove_subclass_modifiers = yes
 			change_pc = pc_desert
-			nf_reset_planet = yes
+			reset_planet = yes
 		}
 		else = {
 			limit = { 
@@ -102,7 +93,7 @@ planet_heating_effect = {
 			}
 			remove_subclass_modifiers = yes
 			change_pc = pc_savannah
-			nf_reset_planet = yes
+			reset_planet = yes
 		}
 		else_if = {
 			limit = { has_modifier = "mesocyclonic_world" }
@@ -151,7 +142,7 @@ planet_heating_effect = {
 					reroll_deposits = yes
 				}
 			}
-			nf_reset_planet = yes
+			reset_planet = yes
 		}
 	}
 	else_if = {
@@ -180,7 +171,7 @@ planet_heating_effect = {
 			limit = { has_modifier = "mediterranean_world" } 
 			remove_subclass_modifiers = yes
 			change_pc = pc_arid
-			nf_reset_planet = yes
+			reset_planet = yes
 		}
 		else_if = {
 			limit = { has_modifier = "primal_world" }
@@ -200,7 +191,7 @@ planet_heating_effect = {
 			random_list = {
 				15 = { 
 					change_pc = pc_savannah
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				5 = { 
 					change_pc = pc_savannah
@@ -229,7 +220,7 @@ planet_heating_effect = {
 				}
 				15 = { 
 					change_pc = pc_arid
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				15 = { 
 					change_pc = pc_arid
@@ -246,7 +237,7 @@ planet_heating_effect = {
 				}
 				15 = { 
 					change_pc = pc_desert
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				10 = { 
 					change_pc = pc_desert
@@ -293,7 +284,7 @@ planet_heating_effect = {
 			random_list = {
 				50 = { 
 					change_pc = pc_savannah
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				50 = { 
 					change_pc = pc_savannah
@@ -408,7 +399,7 @@ planet_heating_effect = {
 			limit = { has_modifier = "ancient_world" }
 			remove_subclass_modifiers = yes
 			change_pc = pc_relic
-			nf_reset_planet = yes
+			reset_planet = yes
 		}
 		else = {
 			random_list = {
@@ -440,7 +431,7 @@ planet_heating_effect = {
 				}
 				20 = { 
 					change_pc = pc_tropical
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				20 = { 
 					change_pc = pc_tropical
@@ -479,7 +470,7 @@ planet_heating_effect = {
 				50 = { 
 					remove_subclass_modifiers = yes
 					change_pc = pc_tundra
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				50 = { 
 					change_pc = pc_desert
@@ -562,7 +553,7 @@ planet_heating_effect = {
 			random_list = {
 				50 = { 
 					change_pc = pc_savannah
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				25 = { 
 					change_pc = pc_savannah
@@ -604,7 +595,7 @@ planet_heating_effect = {
 			}
 			remove_subclass_modifiers = yes
 			change_pc = pc_alpine
-			nf_reset_planet = yes
+			reset_planet = yes
 		}
 		else_if = {
 			limit = { has_modifier = "highland_world" }
@@ -680,7 +671,7 @@ planet_heating_effect = {
 				}
 				25 = { 
 					change_pc = pc_ocean
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 			}
 		}
@@ -690,7 +681,7 @@ planet_heating_effect = {
 				25 = { 
 					remove_subclass_modifiers = yes
 					change_pc = pc_arctic
-					nf_reset_planet = yes
+					reset_planet = yes
 				}
 				50 = {
 					remove_subclass_modifiers = yes
@@ -790,7 +781,7 @@ planet_cooling_effect = {
 				limit = { has_modifier = "dune_world" }
 				remove_subclass_modifiers = yes
 				change_pc = pc_desert
-				nf_reset_planet = yes
+				reset_planet = yes
 			}
 			else_if = {
 				limit = { has_modifier = "adiabatic_world" }
@@ -824,7 +815,7 @@ planet_cooling_effect = {
 				random_list = {
 					40 = { 
 						change_pc = pc_savannah
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					40 = { 
 						change_pc = pc_savannah
@@ -841,7 +832,7 @@ planet_cooling_effect = {
 					}
 					15 = { 
 						change_pc = pc_tundra
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					5 = { 
 						change_pc = pc_tundra
@@ -870,13 +861,13 @@ planet_cooling_effect = {
 				}
 				remove_subclass_modifiers = yes
 				change_pc = pc_arid
-				nf_reset_planet = yes
+				reset_planet = yes
 			}
 			else = {
 				random_list = {
 					30 = { 
 						change_pc = pc_savannah
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					15 = { 
 						change_pc = pc_savannah
@@ -919,7 +910,7 @@ planet_cooling_effect = {
 					}
 					15 = { 
 						change_pc = pc_tundra
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					5 = { 
 						change_pc = pc_tundra
@@ -946,7 +937,7 @@ planet_cooling_effect = {
 				random_list = {
 					50 = {
 						change_pc = pc_continental
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					50 = { 
 						change_pc = pc_continental
@@ -982,7 +973,7 @@ planet_cooling_effect = {
 					50 = { change_pc = pc_continental }
 					50 = { change_pc = pc_tundra }
 				}
-				nf_reset_planet = yes
+				reset_planet = yes
 			}
 		}
 		else_if = {
@@ -1052,7 +1043,7 @@ planet_cooling_effect = {
 				random_list = {
 					25 = { 
 						change_pc = pc_alpine
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					25 = { 
 						change_pc = pc_alpine
@@ -1069,11 +1060,11 @@ planet_cooling_effect = {
 					}
 					25 = { 
 						change_pc = pc_tundra
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					25 = { 
 						change_pc = pc_arctic
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 				}
 			}
@@ -1120,7 +1111,7 @@ planet_cooling_effect = {
 				random_list = {
 					50 = { 
 						change_pc = pc_continental
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					50 = { 
 						change_pc = pc_tundra
@@ -1141,7 +1132,7 @@ planet_cooling_effect = {
 				random_list = {
 					50 = { 
 						change_pc = pc_continental
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					50 = { 
 						change_pc = pc_continental
@@ -1196,13 +1187,13 @@ planet_cooling_effect = {
 				limit = { has_modifier = "ancient_world" }
 				remove_subclass_modifiers = yes
 				change_pc = pc_relic
-				nf_reset_planet = yes
+				reset_planet = yes
 			}
 			else = {
 				random_list = {
 					20 = { 
 						change_pc = pc_continental
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					20 = { 
 						change_pc = pc_tropical
@@ -1232,7 +1223,7 @@ planet_cooling_effect = {
 					}
 					20 = { 
 						change_pc = pc_alpine
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					20 = { 
 						change_pc = pc_alpine
@@ -1271,7 +1262,7 @@ planet_cooling_effect = {
 				random_list = {
 					50 = { 
 						change_pc = pc_arctic
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					50 = {
 						remove_subclass_modifiers = yes
@@ -1323,7 +1314,7 @@ planet_cooling_effect = {
 					50 = {
 						remove_subclass_modifiers = yes
 						change_pc = pc_arctic
-						nf_reset_planet = yes
+						reset_planet = yes
 					}
 					50 = {
 						remove_subclass_modifiers = yes
@@ -1403,7 +1394,7 @@ planet_strong_heating_effect = {
 		random_list = {
 			20 = {
 				change_pc = pc_desert
-				nf_reset_planet = yes
+				reset_planet = yes
 			}
 			10 = {
 				change_pc = pc_desert
@@ -1446,7 +1437,7 @@ planet_strong_heating_effect = {
 			}
 			20 = {
 				change_pc = pc_arid
-				nf_reset_planet = yes
+				reset_planet = yes
 			}
 			10 = {
 				change_pc = pc_arid
