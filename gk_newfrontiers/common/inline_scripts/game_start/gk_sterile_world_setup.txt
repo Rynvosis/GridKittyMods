@@ -2,33 +2,34 @@
 # allocation becomes Vault Complexes running the Hydroponics specialization.
 # Composes district capacity for all three families before placement, the way
 # volcanic_world_setup does: while + random_list so no two starts are identical.
-# Totals: 9 energy, 9 mineral, 6 vault, above the 2 / 2 / 3 pre-built below.
+# Capacity target 9 energy / 9 mineral, held constant as deposits were made
+# richer. Each family now places three deposits (vanilla's homeworld count),
+# a random +3 plus the fixed +4 and +2, summing to 9, instead of stacking five
+# lean deposits. Vault stays 6, above the 2 / 2 / 3 pre-built below.
 
-# Energy - 9 total
+# Energy - 9 total (random +3, +4, +2)
 while = {
-	count = 2
+	count = 1
 	random_list = {
 		1 = { add_deposit = d_sterile_thermal_vents }
 		1 = { add_deposit = d_sterile_magma_pockets }
 		1 = { add_deposit = d_sterile_fumarole_fields }
 	}
 }
-add_deposit = d_sterile_warm_flats
-add_deposit = d_sterile_heat_seams
 add_deposit = d_sterile_geothermal_fields
+add_deposit = d_sterile_warm_flats
 
-# Mineral - 9 total
+# Mineral - 9 total (random +3, +4, +2)
 while = {
-	count = 2
+	count = 1
 	random_list = {
 		1 = { add_deposit = d_sterile_rich_seams }
 		1 = { add_deposit = d_sterile_ore_layers }
 		1 = { add_deposit = d_sterile_metal_fields }
 	}
 }
-add_deposit = d_sterile_mineral_hills
-add_deposit = d_sterile_ore_veins
 add_deposit = d_sterile_deep_ore
+add_deposit = d_sterile_mineral_hills
 
 # Vault - 6 total
 while = {

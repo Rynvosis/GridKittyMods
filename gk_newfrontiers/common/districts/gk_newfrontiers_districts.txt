@@ -6,6 +6,7 @@ district_vault = {
 	overlay_icon = GFX_district_amenities
 	is_uncapped = { always = no }
 	shared_capacity_modifier = district_vault
+	min_for_deposits_on_planet = 2
 
 	show_tech_unlock_if = {
 		is_nomadic = no
