@@ -9,7 +9,6 @@ councilor_gk_ec_destructive_engineering = {
 	}
 	modifier = {
 		planet_soldiers_engineering_research_produces_add = 0.10
-		planet_soldiers_alloys_upkeep_add = 0.05
 	}
 }
 
@@ -27,6 +26,5 @@ councilor_gk_ec_destructive_engineering_megacorp = {
 	}
 	modifier = {
 		planet_soldiers_engineering_research_produces_add = 0.10
-		planet_soldiers_alloys_upkeep_add = 0.05
 	}
 }
