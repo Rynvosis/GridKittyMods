@@ -4,4 +4,4 @@ tags={
 	"Gameplay"
 }
 name="GK Ascension Pacing"
-supported_version="v4.3.0"
+supported_version="v4.4.*"

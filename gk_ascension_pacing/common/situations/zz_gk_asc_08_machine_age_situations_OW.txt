@@ -1,10 +1,11 @@
-# GK Ascension Pacing — Overwrite of vanilla machine age ascension situations
+# GK Ascension Pacing: overwrite of vanilla machine age ascension situations
 
 situation_cybernetic_creed_cyberization = {
 	picture = GFX_evt_cyber_creed_2
 	category = positive
 	complete_icon_frame = GFX_situation_outcome_frame_green
 	complete_icon = GFX_situation_outcome_ascension
+	situation_log_category = empire_concerns
 	on_progress_complete = {
 		custom_tooltip = situation_cybernetic_creed_cyberization_complete
 		hidden_effect = {
@@ -241,7 +242,7 @@ situation_cybernetic_creed_cyberization = {
 			desc = cybernetic_creed_cyberization_ongoing
 			has_situation_flag = cybernetic_creed_cyberization_ongoing
 			owner = {
-				any_owned_planet = {
+				any_owned_colony = {
 					OR = {
 						has_active_building = building_augmentation_center
 						has_active_building = building_augmentation_bazaars
@@ -261,7 +262,7 @@ situation_cybernetic_creed_cyberization = {
 				}
 				NOT = {
 					owner = {
-						any_owned_planet = {
+						any_owned_colony = {
 							has_active_building = building_augmentation_center
 						}
 					}
@@ -304,7 +305,7 @@ situation_cybernetic_creed_cyberization = {
 			}
 			NOT = {
 				owner = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_augmentation_center
 					}
 				}
@@ -338,11 +339,13 @@ situation_cybernetic_creed_cyberization = {
 		}
 	}
 }
+
 situation_cyberization = {
 	category = neutral
 	picture = GFX_evt_cyberization_1
 	complete_icon_frame = GFX_situation_outcome_frame_green
 	complete_icon = GFX_situation_outcome_ascension
+	situation_log_category = urgent_matters
 	on_progress_complete = {
 		custom_tooltip = "situation_cyberization_outcome"
 		hidden_effect = {
@@ -574,7 +577,7 @@ situation_cyberization = {
 				has_situation_flag = cyberization_ongoing_forced
 			}
 			owner = {
-				any_owned_planet = {
+				any_owned_colony = {
 					OR = {
 						has_active_building = building_augmentation_center
 						has_active_building = building_augmentation_bazaars
@@ -596,7 +599,7 @@ situation_cyberization = {
 			}
 			NOT = {
 				owner = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_augmentation_center
 					}
 				}
@@ -660,7 +663,7 @@ situation_cyberization = {
 			}
 			NOT = {
 				owner = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_augmentation_center
 					}
 				}
@@ -697,11 +700,13 @@ situation_cyberization = {
 		}
 	}
 }
+
 situation_cyberization_hive = {
 	category = neutral
 	picture = GFX_evt_hive_cyberization
 	complete_icon_frame = GFX_situation_outcome_frame_green
 	complete_icon = GFX_situation_outcome_ascension
+	situation_log_category = urgent_matters
 	on_progress_complete = {
 		custom_tooltip = situation_cyberization_outcome
 		hidden_effect = {
@@ -875,7 +880,7 @@ situation_cyberization_hive = {
 				has_situation_flag = hive_cyberization_ongoing_limited
 			}
 			owner = {
-				any_owned_planet = {
+				any_owned_colony = {
 					OR = {
 						has_active_building = building_augmentation_center
 						has_active_building = building_augmentation_bazaars
@@ -897,7 +902,7 @@ situation_cyberization_hive = {
 			}
 			NOT = {
 				owner = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_augmentation_center
 					}
 				}
@@ -956,7 +961,7 @@ situation_cyberization_hive = {
 			}
 			NOT = {
 				owner = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_augmentation_center
 					}
 				}
@@ -993,11 +998,13 @@ situation_cyberization_hive = {
 		}
 	}
 }
+
 situation_digitization = {
 	category = neutral
 	picture = GFX_evt_synth_situation
 	complete_icon_frame = GFX_situation_outcome_frame_green
 	complete_icon = GFX_situation_outcome_ascension
+	situation_log_category = urgent_matters
 	on_progress_complete = {
 		custom_tooltip = "situation_digitization_outcome"
 		hidden_effect = {
@@ -1188,7 +1195,7 @@ situation_digitization = {
 			desc = "situation_digitization_ongoing_desc"
 			has_situation_flag = digitization_ongoing
 			owner = {
-				any_owned_planet = {
+				any_owned_colony = {
 					has_active_building = building_identity_complex
 				}
 			}
@@ -1198,7 +1205,7 @@ situation_digitization = {
 			desc = "situation_identity_complex_needed_desc"
 			owner = {
 				NOT = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_identity_complex
 					}
 				}
@@ -1214,7 +1221,7 @@ situation_digitization = {
 		trigger = {
 			owner = {
 				NOT = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_identity_complex
 					}
 				}
@@ -1229,11 +1236,13 @@ situation_digitization = {
 		}
 	}
 }
+
 situation_transformation = {
 	category = neutral
 	picture = GFX_evt_machine_sapience
 	complete_icon_frame = GFX_situation_outcome_frame_green
 	complete_icon = GFX_situation_outcome_ascension
+	situation_log_category = urgent_matters
 	on_progress_complete = {
 		custom_tooltip = situation_transformation_outcome
 		hidden_effect = {

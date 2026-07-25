@@ -1,4 +1,5 @@
-# GK Ascension Pacing — Overwrite of vanilla shroud ascension situation
+# GK Ascension Pacing: overwrite of vanilla shroud ascension situation
+
 situation_breach_shroud = {
 	title = situation_breach_shroud
 	desc = situation_breach_shroud_desc
@@ -29,6 +30,7 @@ situation_breach_shroud = {
 	complete_icon_frame = GFX_situation_outcome_frame_green
 	complete_icon = GFX_situation_outcome_ascension
 	initial_progress = @breach_shroud_start_value
+	situation_log_category = urgent_matters
 
 	on_start = {
 		owner = {
@@ -128,7 +130,7 @@ situation_breach_shroud = {
 			custom_tooltip = breach_shroud_commune_resources_tooltip
 			if = {
 				limit = {
-					owner = { NOT = { has_country_flag = zro_found } }
+					owner = { NOT = { has_country_flag = sr_zro_found } }
 				}
 				custom_tooltip = breach_shroud_commune_resources_unknown_tt
 			}
@@ -150,6 +152,14 @@ situation_breach_shroud = {
 		potential = {
 			owner = { has_technology = tech_mine_zro }
 		}
+		allow = {
+			owner = {
+				has_resource = {
+					type = sr_zro
+					amount >= 1
+				}
+			}
+		}
 		on_select = {
 			set_situation_flag = chaotic_approach
 			custom_tooltip = approach_situation_chaotic_tooltip
@@ -163,11 +173,7 @@ situation_breach_shroud = {
 						AND = {
 							current_stage = stage_2
 							owner = {
-								NOT = {
-									any_owned_planet = {
-										has_active_building = building_psi_corps
-									}
-								}
+								has_active_psi_corps = no
 							}
 						}
 						AND = {
@@ -233,6 +239,14 @@ situation_breach_shroud = {
 			has_astral_planes_dlc = yes
 			owner = { has_technology = tech_astral_harvesting }
 		}
+		allow = {
+			owner = {
+				has_resource = {
+					type = astral_threads
+					amount >= 10
+				}
+			}
+		}
 		on_select = {
 			set_situation_flag = chaotic_approach
 			custom_tooltip = approach_situation_chaotic_tooltip
@@ -246,11 +260,7 @@ situation_breach_shroud = {
 						AND = {
 							current_stage = stage_2
 							owner = {
-								NOT = {
-									any_owned_planet = {
-										has_active_building = building_psi_corps
-									}
-								}
+								has_active_psi_corps = no
 							}
 						}
 						AND = {
@@ -337,11 +347,7 @@ situation_breach_shroud = {
 			AND = {
 				current_stage = stage_2
 				owner = {
-					NOT = {
-						any_owned_planet = {
-							has_active_building = building_psi_corps
-						}
-					}
+					has_active_psi_corps = no
 				}
 			}
 		}
@@ -367,11 +373,7 @@ situation_breach_shroud = {
 		trigger = {
 			current_stage = stage_2
 			owner = {
-				NOT = {
-					any_owned_planet = {
-						has_active_building = building_psi_corps
-					}
-				}
+				has_active_psi_corps = no
 			}
 		}
 		text = "situation_breach_shroud_psi_corps_needed_desc"

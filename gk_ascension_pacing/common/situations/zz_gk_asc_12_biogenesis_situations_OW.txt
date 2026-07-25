@@ -1,7 +1,4 @@
-# GK Ascension Pacing — Overwrite of vanilla biogenesis ascension situations
-
-### GENETIC ASCENSION SITUATION
-# Regular Empires
+# GK Ascension Pacing: overwrite of vanilla biogenesis ascension situations
 
 genetic_ascension_situation = {
 	picture = GFX_evt_genetic_modification
@@ -9,6 +6,7 @@ genetic_ascension_situation = {
 	complete_icon = GFX_situation_outcome_ascension
 	category = positive
 	initial_progress = 0
+	situation_log_category = urgent_matters
 
 	on_progress_complete = {
 		custom_tooltip = genetic_ascension_situation_outcome
@@ -61,16 +59,20 @@ genetic_ascension_situation = {
 		modifier = {
 			mult = owner.value:biomorphosis_progress_mult_value
 			desc = genetic_ascension_number_of_genomic_researchers
+			owner = {
+				is_wilderness_empire = no
+			}
 		}
 		modifier = {
 			mult = 0
 			desc = "situation_genomic_facility_needed_desc"
 			owner = {
 				NOT = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_genomic_facility
 					}
 				}
+				is_wilderness_empire = no
 			}
 		}
 		modifier = {
@@ -101,10 +103,11 @@ genetic_ascension_situation = {
 		trigger = {
 			owner = {
 				NOT = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_genomic_facility
 					}
 				}
+				is_wilderness_empire = no
 			}
 		}
 		text = "situation_genomic_facility_needed_desc"
@@ -317,14 +320,13 @@ genetic_ascension_situation = {
 	}
 }
 
-# Hive Empires
-
 genetic_ascension_situation_hive = {
 	picture = GFX_evt_genetic_modification
 	complete_icon_frame = GFX_situation_outcome_frame_green
 	complete_icon = GFX_situation_outcome_ascension
 	category = positive
 	initial_progress = 0
+	situation_log_category = urgent_matters
 
 	on_progress_complete = {
 		custom_tooltip = genetic_ascension_situation_hive_outcome
@@ -386,7 +388,7 @@ genetic_ascension_situation_hive = {
 			desc = "situation_genomic_facility_needed_desc"
 			owner = {
 				NOT = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_genomic_facility
 					}
 				}
@@ -414,7 +416,7 @@ genetic_ascension_situation_hive = {
 		trigger = {
 			owner = {
 				NOT = {
-					any_owned_planet = {
+					any_owned_colony = {
 						has_active_building = building_genomic_facility
 					}
 				}

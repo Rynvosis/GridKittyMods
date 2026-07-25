@@ -2,7 +2,7 @@
 
 ## System 1: Ascension Speed Scaling
 
-All ascension situations have their base progress rate dynamically scaled by game year.
+Every ascension-perk-driven ascension situation has its base progress rate dynamically scaled by game year.
 
 **Formula:** `base_rate * (years_passed² / 5000 + 0.5)`, capped at 2.5x
 
@@ -25,6 +25,14 @@ Uses `set` on the base rate — approach percentage bonuses (+20% overdrive etc.
 - `situation_cybernetic_creed_cyberization` (Cybernetic Creed)
 - `situation_digitization` (Synthetic)
 - `situation_transformation` (Machine)
+
+### Deliberately Unpaced
+
+Two vanilla situations also grant an ascension but are left at vanilla speed, because
+their whole premise is ascending early without spending an ascension perk:
+
+- `situation_synthetic_fertility_synthesization` (Synthetic Fertility origin, escaping its dying-pops crisis)
+- `situation_breach_shroud_endbringers` (Endbringers origin)
 
 ## System 2: Patience Bonus
 
