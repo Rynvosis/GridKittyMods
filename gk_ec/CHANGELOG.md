@@ -1,3 +1,6 @@
+Rulers of the Collectivist and Individualist ethics no longer read as diverging from the empire, which was quietly costing every faction approval
+The Represented on Council penalty is now -15 instead of -20, since a fourth ethic means a fourth faction competing for the same three councilor seats
+Each of your empire's ethics is now guaranteed a seat on the starting council, so no faction begins the game demanding representation it could never have had
 Fixed the ethics editor failing to load, so the 5-axis ethic wheel now renders
 Fixed the lunar colony Mining Colony option granting farming districts instead of mining
 Resynced prescripted empires to 4.4.5: dropped the retired Utopia, Synthetic Dawn, and Humanoids gates, restored the nomad human empire, and replaced an invalid civic on the Custodianship designs with Maintenance Protocols

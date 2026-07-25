@@ -5,6 +5,26 @@
 
 namespace = gk_ec_misc
 
+# Every empire ethic gets a seat on the starting council, so no faction opens the game
+# missing its Represented on Council demand just from unlucky leader generation.
+# Fires on press begin, not on_game_start_country: leader backgrounds, and with them leader
+# ethics, are generated after game start, so anything set earlier is overwritten on the way in.
+# The player is still holding the opening dialogue here, so no council micro has happened yet.
+country_event = {
+	id = gk_ec_misc.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = { is_gestalt = no }
+			inline_script = { script = gk_mod/ethic_seat_pass EFFECT = gk_ec_lock_ruler_ethic_seat }
+			inline_script = { script = gk_mod/ethic_seat_pass EFFECT = gk_ec_lock_ethic_seat }
+			inline_script = { script = gk_mod/ethic_seat_pass EFFECT = gk_ec_fill_ethic_seat }
+		}
+	}
+}
+
 
 
 # New Subterranean

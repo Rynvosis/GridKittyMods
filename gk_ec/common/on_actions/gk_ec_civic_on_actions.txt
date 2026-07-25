@@ -9,6 +9,12 @@ on_game_start_country = {
 	}
 }
 
+on_press_begin = {
+	events = {
+		gk_ec_misc.1 # seat every empire ethic on the starting council
+	}
+}
+
 on_leader_death = {
 	events = {
 		gk_ec_civic.201 # constitutional monarchy: coronation of successor

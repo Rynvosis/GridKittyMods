@@ -2,3 +2,80 @@
 # See: mod/gk_utils/common/scripted_effects/gk_utils_geometry_effects.txt
 #   - gk_utils_add_every_non_intersecting_hyperlane (was gk_ec_add_every_non_intersecting_hyperlane)
 #   - gk_utils_calculate_PQ_relative_abs_RS_distance (was gk_ec_calculate_PQ_relative_abs_RS_distance)
+
+# Council ethic representation. Country scope, $ETHIC$ = bare ethic name, e.g. militarist.
+# Four ethics need four seats and there are only three councilors, so the ruler counts as a seat
+# in every pass. The faction demand accepts a ruler or a councilor either way.
+
+# Pass one: the ruler claims their own ethic first, freeing any councilor who shares it.
+gk_ec_lock_ruler_ethic_seat = {
+	if = {
+		limit = {
+			is_$ETHIC$ = yes
+			exists = ruler
+			ruler = { has_ethic = ethic_$ETHIC$ }
+		}
+		ruler = { set_leader_flag = gk_ec_ethic_seat }
+	}
+}
+
+# Pass two: every remaining ethic already sitting on the council claims its councilor.
+gk_ec_lock_ethic_seat = {
+	if = {
+		limit = { is_$ETHIC$ = yes }
+		random_owned_leader = {
+			limit = {
+				is_councilor = yes
+				is_ruler = no
+				has_ethic = ethic_$ETHIC$
+				NOT = { has_leader_flag = gk_ec_ethic_seat }
+			}
+			set_leader_flag = gk_ec_ethic_seat
+		}
+	}
+}
+
+# Pass three: reassign an unclaimed leader to any empire ethic still missing from the council.
+# Councilors go first; the ruler is rewritten only when the council has no free seat left, which
+# also clears the ruler's own divergence penalty since their new ethic is one the empire holds.
+gk_ec_fill_ethic_seat = {
+	if = {
+		limit = {
+			is_$ETHIC$ = yes
+			NOT = {
+				any_owned_leader = {
+					has_leader_flag = gk_ec_ethic_seat
+					has_ethic = ethic_$ETHIC$
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_owned_leader = {
+					is_councilor = yes
+					is_ruler = no
+					NOT = { has_leader_flag = gk_ec_ethic_seat }
+				}
+			}
+			random_owned_leader = {
+				limit = {
+					is_councilor = yes
+					is_ruler = no
+					NOT = { has_leader_flag = gk_ec_ethic_seat }
+				}
+				change_background_ethic = ethic_$ETHIC$
+				set_leader_flag = gk_ec_ethic_seat
+			}
+		}
+		else = {
+			random_owned_leader = {
+				limit = {
+					is_ruler = yes
+					NOT = { has_leader_flag = gk_ec_ethic_seat }
+				}
+				change_background_ethic = ethic_$ETHIC$
+				set_leader_flag = gk_ec_ethic_seat
+			}
+		}
+	}
+}

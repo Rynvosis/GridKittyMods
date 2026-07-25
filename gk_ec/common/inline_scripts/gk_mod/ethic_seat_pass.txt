@@ -1,0 +1,13 @@
+# Runs $EFFECT$ once per ethic axis, both vanilla and GK EC.
+# Usage: inline_script = { script = gk_mod/ethic_seat_pass EFFECT = gk_ec_lock_ethic_seat }
+
+$EFFECT$ = { ETHIC = militarist }
+$EFFECT$ = { ETHIC = pacifist }
+$EFFECT$ = { ETHIC = materialist }
+$EFFECT$ = { ETHIC = spiritualist }
+$EFFECT$ = { ETHIC = egalitarian }
+$EFFECT$ = { ETHIC = authoritarian }
+$EFFECT$ = { ETHIC = xenophile }
+$EFFECT$ = { ETHIC = xenophobe }
+$EFFECT$ = { ETHIC = collectivist }
+$EFFECT$ = { ETHIC = individualist }
