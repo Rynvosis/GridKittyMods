@@ -616,6 +616,44 @@ terraform_link = {
 	}
 }
 
+################
+## Tomb World ##
+################
+
+# Dead-to-dead parity: a sterile-preference empire can convert a tomb world
+# it holds into Sterile, gated behind the same hazard-world terraform tech as
+# Barren. ai_weight 0 so the AI never does it unprompted.
+terraform_link = {
+	from = "pc_nuked"
+	to = "pc_sterile"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 5000
+		}
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
+
+	duration = 3600
+
+	potential = {
+		NOT = { has_global_flag = has_real_terraforming_mod }
+	}
+
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
 ###################
 ## Machine World ##
 ###################

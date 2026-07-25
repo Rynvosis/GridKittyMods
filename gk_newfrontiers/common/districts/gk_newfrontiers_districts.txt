@@ -96,12 +96,3 @@ district_vault_stockpile = {
 	potential = { always = no }
 	inline_script = { script = districts/gk_vault_triggered_name }
 }
-
-district_vault_refinery = {
-	icon = district_geothermal
-	overlay_icon = GFX_district_exotic_gases
-	zone_slots = { slot_empty }
-	show_on_uncolonized = { always = no }
-	potential = { always = no }
-	inline_script = { script = districts/gk_vault_triggered_name }
-}

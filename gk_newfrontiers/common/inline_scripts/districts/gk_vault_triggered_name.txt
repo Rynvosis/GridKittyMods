@@ -17,10 +17,6 @@ triggered_name = {
 	text = zone_vault_stockpile
 }
 triggered_name = {
-	trigger = { num_zones = { type = zone_vault_refinery value > 0 } }
-	text = zone_vault_refinery
-}
-triggered_name = {
 	trigger = { always = yes }
 	text = district_vault
 }

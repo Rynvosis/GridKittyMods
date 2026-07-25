@@ -223,12 +223,22 @@ d_sterile_deep_cavity = {
 	drop_weight = { weight = @low }
 }
 
+# Exotic gas the vanilla way: miners produce it, no farmer job and no refinery
+# zone needed, exactly as d_volcanic_fumarole does for Volcanic. Adds mining
+# capacity, and once the tech is in, every miner here extracts exotic gases.
 d_sterile_gas_pockets = {
 	icon = d_gaseous_eruption
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resource
-	planet_modifier = { district_vault_max_add = 2 }
+	planet_modifier = { district_mining_max_add = @DISTRICTS_FROM_SR_DEPOSITS }
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+		planet_miners_exotic_gases_produces_add = @SR_SMALL
+	}
 	potential = { is_planet_class = pc_sterile }
 	drop_weight = { weight = @med }
 }

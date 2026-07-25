@@ -67,9 +67,38 @@ carrier_event = {
 	hide_window = yes
 
 	is_triggered_only = yes
-	
+
 	immediate = {
 		set_rust_subclass = yes
+	}
+}
+
+### Terraform-into-Sterile: snapshot district capacity before the wipe.
+# Fired from on_terraforming_begun, This = the terraforming planet.
+carrier_event = {
+	id = newfrontiers_action.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		gk_capture_predeposit_caps = yes
+	}
+}
+
+### Terraform-into-Sterile: rebuild deposits from the snapshot after the wipe.
+# Fired from on_terraforming_complete, This = planet. Only Sterile worlds rebuild;
+# every other terraform target keeps vanilla's own deposit swaps.
+carrier_event = {
+	id = newfrontiers_action.21
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_sterile
+	}
+
+	immediate = {
+		gk_rebuild_sterile_deposits = yes
 	}
 }
 

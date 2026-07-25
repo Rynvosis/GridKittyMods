@@ -1,0 +1,58 @@
+# Terraforming a habitable world into pc_sterile wipes every generic deposit:
+# vanilla swaps each deposit to a class-appropriate target, and Sterile is in no
+# swap list for the energy / mineral / food deposits, so they are all removed.
+# These two effects rebuild that generic capacity so the world is not left barren.
+#
+# Strategics are handled separately, by the vanilla swap itself. d_fuming_bog,
+# d_dust_desert and d_crystal_forest each list a Sterile-valid target
+# (d_sterile_gas_pockets / d_dust_caverns / d_crystalline_caverns, see
+# gk_newfrontiers_deposits_OW), so gas, motes and crystals convert to their
+# miner-based Sterile forms on terraform and survive the wipe. They are already
+# present when the rebuild runs, so the fill loops below count their capacity and
+# top up only the remainder, no strategic-specific handling needed here.
+#
+# gk_capture_predeposit_caps runs at on_terraforming_begun, while the old deposits
+# are still present, and snapshots district capacity from the accumulated
+# district_*_max_add modifiers (vanilla's rural_districts_placement reads them the
+# same way). gk_rebuild_sterile_deposits runs at on_terraforming_complete, after
+# the wipe, and fills energy / mineral / vault back to the captured targets.
+
+gk_capture_predeposit_caps = {
+	export_modifier_to_variable = { modifier = district_generator_max_add variable = st_energy_cap }
+	export_modifier_to_variable = { modifier = district_mining_max_add    variable = st_mineral_cap }
+	export_modifier_to_variable = { modifier = district_farming_max_add   variable = st_food_cap }
+}
+
+gk_rebuild_sterile_deposits = {
+	# Distribute the captured farming capacity. The low third seeds vault at 2x
+	# (the smallest Sterile vault deposit is +2, vanilla-style low-tier bump), the
+	# high two-thirds pay out as raw energy and minerals 1:1, split evenly. Net:
+	# vault ends up scarcer than the agri it replaces, as intended.
+	set_variable      = { which = st_vault_cap  value = st_food_cap }
+	divide_variable   = { which = st_vault_cap  value = 3 }              # food / 3
+	change_variable   = { which = st_energy_cap  value = st_vault_cap }  # energy += food/3
+	change_variable   = { which = st_mineral_cap value = st_vault_cap }  # mineral += food/3
+	multiply_variable = { which = st_vault_cap  value = 2 }              # vault = 2 * food/3
+
+	# Fill each family up to its captured target. check_modifier_value reads the
+	# live capacity, so each loop tops up only the remainder: any strategic deposit
+	# the terraform swap already converted (gas / motes / crystals) is present here
+	# and counts toward the target, as does any empire-wide district bonus.
+	while = {
+		limit = { check_modifier_value = { modifier = district_generator_max_add value < st_energy_cap } }
+		add_deposit = d_sterile_warm_flats
+	}
+	while = {
+		limit = { check_modifier_value = { modifier = district_mining_max_add value < st_mineral_cap } }
+		add_deposit = d_sterile_mineral_hills
+	}
+	while = {
+		limit = { check_modifier_value = { modifier = district_vault_max_add value < st_vault_cap } }
+		add_deposit = d_sterile_stable_strata
+	}
+
+	clear_variable = st_energy_cap
+	clear_variable = st_mineral_cap
+	clear_variable = st_food_cap
+	clear_variable = st_vault_cap
+}

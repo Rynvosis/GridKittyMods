@@ -140,31 +140,5 @@
  
  #patreon deposits
  
- d_crazymans_labyrinth: "Лабиринт Крейзимана"
- d_crazymans_labyrinth_desc: "$d_maze_cliff_formations_desc$"
- d_rahmans_canyon: "Каньон Рахмана"
- d_rahmans_canyon_desc: "$d_grand_canyon_desc$"
- d_bynums_dale: "Долина Байнума"
- d_bynums_dale_desc: "$d_alien_pets_deposit_desc$"
- d_matterns_formation: "Формация Маттерна"
- d_matterns_formation_desc: "$d_levitating_rocks_desc$"
- d_bluehawks_cavities: "Полости Блюхока"
- d_bluehawks_cavities_desc: "$d_levitating_rocks_desc$"
- d_stevens_fields: "Месторождения Стивенса"
- d_stevens_fields_desc: "$d_betharian_deposit_desc$"
- d_moonizer_fossils: "Окаменелости Мунизера"
- d_moonizer_fossils_desc: "$d_boneyard_desc$"
- d_region_ariess6: "Регион «Aries S6»"
- d_region_ariess6_desc: "$d_stormy_water_desc$"
- d_dagwimweaper_range: "Хребет Да Гвим Випера"
- d_dagwimweaper_range_desc: "$d_rich_mountain_desc$"
- d_zhenn_sea: "Море Женн"
- d_zhenn_sea_desc: "$d_kelp_forest_desc$"
- d_edholm_caverns: "Каверны Эдхольма"
- d_edholm_caverns_desc: "$d_ore_rich_caverns_desc$"
- d_grigorievsky_oasis: "Оазис Григориевского"
- d_grigorievsky_oasis_desc: "$d_marvelous_oasis_desc$"
- d_ushakov_geysers: "Гейзеры Ушакова"
- d_ushakov_geysers_desc: "$d_geothermal_vent_desc$"
  
  

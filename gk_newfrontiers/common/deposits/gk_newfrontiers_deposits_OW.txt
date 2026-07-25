@@ -140,6 +140,7 @@ d_dust_desert = {
 	should_swap_deposit_on_terraforming = yes
 	terraforming_swap_types = {
 		d_volcanic_stifling_atmosphere
+		d_dust_caverns # gk: Sterile-valid motes target, so motes survive terraform into Sterile
 	}
 
 	triggered_planet_modifier = {
@@ -282,6 +283,74 @@ d_crystalline_caverns = {
 		modifier = {
 			factor = 1.25
 			is_planet_class = pc_volcanic
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}
+
+# Overwrite: vanilla d_fuming_bog only swaps to the Volcanic gas deposit, so
+# exotic gas was lost when terraforming into Sterile. Adding d_sterile_gas_pockets
+# to the swap list lets it convert to the Sterile miner-gas deposit the same way
+# d_crystal_forest swaps to the Sterile-valid d_crystalline_caverns. Everything
+# else is verbatim vanilla.
+d_fuming_bog = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	potential = {
+		OR = {
+			can_have_habitable_deposits = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+		NOT = { is_planet_class = pc_volcanic }
+	}
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_volcanic_fumarole
+		d_sterile_gas_pockets # gk
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_exotic_gases
+			}
+		}
+		planet_farmers_exotic_gases_produces_add = @SR_LARGE
+	}
+
+	planet_modifier = {
+		district_farming_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	drop_weight = {
+		weight = @deposit_chance_high_rare
+		modifier = {
+			factor = @deposit_chance_planet_type_bonus
+			is_wet = yes
+		}
+		modifier = {
+			factor = @deposit_chance_gaia_bonus
+			is_planet_class = pc_gaia
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_deposit = d_bubbling_swamp
+				has_deposit = d_fuming_bog
+			}
+		}
+		modifier = {
+			factor = 0
 			solar_system = {
 				OR = {
 					has_star_flag = empire_home_system
