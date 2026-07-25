@@ -1,6 +1,6 @@
 # Tradition rubberbanding constants
 # Mirrors vanilla tradition cost defines (common/defines/00_defines.txt)
-# Values pinned at Stellaris 4.0.x — update if vanilla defines change.
+# Values verified against Stellaris 4.4.6. Update if vanilla defines change.
 #
 # cost(N) = base * (1 + (N/per_trad)^exp) * (1 + empire_size_penalty * empire_size) * gkrb_trad_cost_scale
 # where gkrb_trad_cost_scale is a host-set variable on global_event_country (gates pending count).
