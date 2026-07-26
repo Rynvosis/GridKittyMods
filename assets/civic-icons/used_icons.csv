@@ -47,6 +47,10 @@ feather,trait_gk_ascetic,gk_traits,trait,species_generic,21,0,0,,
 wisdom,trait_gk_elders,gk_traits,trait,species_generic,39,0,0,,1
 poison-gas,trait_gk_pestilent_byproducts,gk_traits,trait,species_generic,30,-1,0,,1
 dark-squad,trait_gk_teeming,gk_traits,trait,species_generic,25,0,0,,
+lorc/trap-mask,trait_gk_abhorrent,gk_traits,trait,species_generic_negative,25,0,0,,
+lorc/burning-book,trait_gk_apostates,gk_traits,trait,species_generic_negative,22,0,0,,
+delapouite/blindfold,trait_gk_luddites,gk_traits,trait,species_generic_negative,23,0,0,,
+lorc/despair,trait_gk_fatalistic,gk_traits,trait,species_generic_negative,23,0,0,,
 fire-silhouette,trait_gk_burnout_susceptibility,gk_traits,trait,species_generic_negative,23,0,0,,
 meat,trait_gk_cannibalistic,gk_traits,trait,species_generic_negative,21,0,0,,
 locked-chest,trait_gk_hoarders,gk_traits,trait,species_generic_negative,25,0,0,,
