@@ -8,9 +8,35 @@
 
 namespace = newfrontiers
 
+# Flag empires whose founder started on Sterile. Gates who can gene-mod sterile
+# habitability and terraform worlds into Sterile.
+event = {
+	id = newfrontiers.111
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				NOT = { has_country_flag = gk_sterile_dweller }
+				OR = {
+					founder_species = {
+						OR = {
+							has_trait = trait_pc_sterile_preference
+							has_trait = trait_sterile_planet_preference
+						}
+					}
+					capital_scope = { is_planet_class = pc_sterile }
+				}
+			}
+			set_country_flag = gk_sterile_dweller
+		}
+	}
+}
+
 ### Generate Starting Subclass
 event = {
-	id = newfrontiers.1
+	id = newfrontiers.100
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -18,7 +44,7 @@ event = {
 		# Start Subclass Menu
 		every_country = {
 			limit = { is_ai = no }
-			country_event = { id = newfrontiers.8 }
+			country_event = { id = newfrontiers.105 }
 		}
 		
 		every_country = {
@@ -30,7 +56,7 @@ event = {
 					is_country_type = primitive
 				}
 			}					
-			capital_scope = { carrier_event = { id = newfrontiers.15 } }
+			capital_scope = { carrier_event = { id = newfrontiers.109 } }
 		}
 		
 		#Living Sea
@@ -46,7 +72,7 @@ event = {
 
 ### Test Event
 event = {
-	id = newfrontiers.2
+	id = newfrontiers.101
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -72,7 +98,7 @@ event = {
 
 ### Start message and sets global flag “has_new_frontiers_mod”
 event = {
-	id = newfrontiers.3
+	id = newfrontiers.102
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -83,7 +109,7 @@ event = {
 
 ### Generate Subclass
 event = {
-	id = newfrontiers.4
+	id = newfrontiers.103
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -717,7 +743,7 @@ event = {
 }
 
 event = {
-	id = newfrontiers.7
+	id = newfrontiers.104
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -761,9 +787,9 @@ event = {
 
 #Subclass Menu
 country_event = {
-	id = newfrontiers.8
-	title = "newfrontiers.8.name"
-	desc = "newfrontiers.8.desc"
+	id = newfrontiers.105
+	title = "newfrontiers.105.name"
+	desc = "newfrontiers.105.desc"
 	picture = GFX_evt_colony_settlement
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -772,525 +798,525 @@ country_event = {
 	
 	#Default: your current class. No trigger, so the popup always has an option.
 	option = {
-		name = "newfrontiers.8.default"
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		name = "newfrontiers.105.default"
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.69 } }
+			capital_scope = { carrier_event = { id = newfrontiers.246 } }
 		}
 	}
 
 	#Desert
 	option = {
-		name = "newfrontiers.8.dune"
+		name = "newfrontiers.105.dune"
 		trigger = {
 			capital_scope = { is_planet_class = pc_desert }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.18 } }
+			capital_scope = { carrier_event = { id = newfrontiers.110 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.oasis"
+		name = "newfrontiers.105.oasis"
 		trigger = {
 			capital_scope = { is_planet_class = pc_desert }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.19 } }
+			capital_scope = { carrier_event = { id = newfrontiers.200 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.salt"
+		name = "newfrontiers.105.salt"
 		trigger = {
 			capital_scope = { is_planet_class = pc_desert }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.20 } }
+			capital_scope = { carrier_event = { id = newfrontiers.201 } }
 		}
 	}
 	#Arid
 	option = {
-		name = "newfrontiers.8.karst"
+		name = "newfrontiers.105.karst"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arid }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.22 } }
+			capital_scope = { carrier_event = { id = newfrontiers.203 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.aeolian"
+		name = "newfrontiers.105.aeolian"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arid }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.24 } }
+			capital_scope = { carrier_event = { id = newfrontiers.204 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.adiabatic"
+		name = "newfrontiers.105.adiabatic"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arid }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.21 } }
+			capital_scope = { carrier_event = { id = newfrontiers.202 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.mesa"
+		name = "newfrontiers.105.mesa"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arid }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.25 } }
+			capital_scope = { carrier_event = { id = newfrontiers.205 } }
 		}
 	}
 	#Savannah
 	option = {
-		name = "newfrontiers.8.steppe"
+		name = "newfrontiers.105.steppe"
 		trigger = {
 			capital_scope = { is_planet_class = pc_savannah }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.26 } }
+			capital_scope = { carrier_event = { id = newfrontiers.206 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.mesocyclonic"
+		name = "newfrontiers.105.mesocyclonic"
 		trigger = {
 			capital_scope = { is_planet_class = pc_savannah }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.27 } }
+			capital_scope = { carrier_event = { id = newfrontiers.207 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.effusive"
+		name = "newfrontiers.105.effusive"
 		trigger = {
 			capital_scope = { is_planet_class = pc_savannah }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.28 } }
+			capital_scope = { carrier_event = { id = newfrontiers.208 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.veld"
+		name = "newfrontiers.105.veld"
 		trigger = {
 			capital_scope = { is_planet_class = pc_savannah }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.29 } }
+			capital_scope = { carrier_event = { id = newfrontiers.209 } }
 		}
 	}
 	#Tropical
 	option = {
-		name = "newfrontiers.8.swamp"
+		name = "newfrontiers.105.swamp"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tropical }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.30 } }
+			capital_scope = { carrier_event = { id = newfrontiers.210 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.forest"
+		name = "newfrontiers.105.forest"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tropical }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.31 } }
+			capital_scope = { carrier_event = { id = newfrontiers.211 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.monsoon"
+		name = "newfrontiers.105.monsoon"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tropical }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.32 } }
+			capital_scope = { carrier_event = { id = newfrontiers.212 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.megaflora"
+		name = "newfrontiers.105.megaflora"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tropical }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.33 } }
+			capital_scope = { carrier_event = { id = newfrontiers.213 } }
 		}
 	}
 	#Continental
 	option = {
-		name = "newfrontiers.8.hollow"
+		name = "newfrontiers.105.hollow"
 		trigger = {
 			capital_scope = { is_planet_class = pc_continental }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.71 } }
+			capital_scope = { carrier_event = { id = newfrontiers.248 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.boreal"
+		name = "newfrontiers.105.boreal"
 		trigger = {
 			capital_scope = { is_planet_class = pc_continental }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.34 } }
+			capital_scope = { carrier_event = { id = newfrontiers.214 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.supercontinental"
+		name = "newfrontiers.105.supercontinental"
 		trigger = {
 			capital_scope = { is_planet_class = pc_continental }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.35 } }
+			capital_scope = { carrier_event = { id = newfrontiers.215 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.mediterranean"
+		name = "newfrontiers.105.mediterranean"
 		trigger = {
 			capital_scope = { is_planet_class = pc_continental }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.36 } }
+			capital_scope = { carrier_event = { id = newfrontiers.216 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.primal"
+		name = "newfrontiers.105.primal"
 		trigger = {
 			capital_scope = { is_planet_class = pc_volcanic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.37 } }
+			capital_scope = { carrier_event = { id = newfrontiers.217 } }
 		}
 	}
 	#Ocean
 	option = {
-		name = "newfrontiers.8.panthalassic"
+		name = "newfrontiers.105.panthalassic"
 		trigger = {
 			capital_scope = { is_planet_class = pc_ocean }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.38 } }
+			capital_scope = { carrier_event = { id = newfrontiers.218 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.atoll"
+		name = "newfrontiers.105.atoll"
 		trigger = {
 			capital_scope = { is_planet_class = pc_ocean }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.39 } }
+			capital_scope = { carrier_event = { id = newfrontiers.219 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.storm"
+		name = "newfrontiers.105.storm"
 		trigger = {
 			capital_scope = { is_planet_class = pc_ocean }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.40 } }
+			capital_scope = { carrier_event = { id = newfrontiers.220 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.reef"
+		name = "newfrontiers.105.reef"
 		trigger = {
 			capital_scope = { is_planet_class = pc_ocean }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.41 } }
+			capital_scope = { carrier_event = { id = newfrontiers.221 } }
 		}
 	}
 	#Tundra
 	option = {
-		name = "newfrontiers.8.taiga"
+		name = "newfrontiers.105.taiga"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tundra }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.42 } }
+			capital_scope = { carrier_event = { id = newfrontiers.222 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.moraine"
+		name = "newfrontiers.105.moraine"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tundra }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.43 } }
+			capital_scope = { carrier_event = { id = newfrontiers.223 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.bog"
+		name = "newfrontiers.105.bog"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tundra }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.44 } }
+			capital_scope = { carrier_event = { id = newfrontiers.224 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.mushroom"
+		name = "newfrontiers.105.mushroom"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tundra }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.45 } }
+			capital_scope = { carrier_event = { id = newfrontiers.225 } }
 		}
 	}
 	#Arctic
 	option = {
-		name = "newfrontiers.8.glacial"
+		name = "newfrontiers.105.glacial"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arctic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.46 } }
+			capital_scope = { carrier_event = { id = newfrontiers.226 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.iceberg"
+		name = "newfrontiers.105.iceberg"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arctic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.47 } }
+			capital_scope = { carrier_event = { id = newfrontiers.227 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.geothermal"
+		name = "newfrontiers.105.geothermal"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arctic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.48 } }
+			capital_scope = { carrier_event = { id = newfrontiers.228 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.frigid"
+		name = "newfrontiers.105.frigid"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arctic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.49 } }
+			capital_scope = { carrier_event = { id = newfrontiers.229 } }
 		}
 	}
 	#Alpine
 	option = {
-		name = "newfrontiers.8.mineral"
+		name = "newfrontiers.105.mineral"
 		trigger = {
 			capital_scope = { is_planet_class = pc_sterile }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.50 } }
+			capital_scope = { carrier_event = { id = newfrontiers.230 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.snow"
+		name = "newfrontiers.105.snow"
 		trigger = {
 			capital_scope = { is_planet_class = pc_alpine }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.51 } }
+			capital_scope = { carrier_event = { id = newfrontiers.231 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.plateau"
+		name = "newfrontiers.105.plateau"
 		trigger = {
 			capital_scope = { is_planet_class = pc_alpine }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.52 } }
+			capital_scope = { carrier_event = { id = newfrontiers.232 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.highland"
+		name = "newfrontiers.105.highland"
 		trigger = {
 			capital_scope = { is_planet_class = pc_alpine }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.53 } }
+			capital_scope = { carrier_event = { id = newfrontiers.233 } }
 		}
 	}
 	#Tidal family
 	option = {
-		name = "newfrontiers.8.flaming"
+		name = "newfrontiers.105.flaming"
 		trigger = {
 			capital_scope = { is_planet_class = pc_desert }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.54 } }
+			capital_scope = { carrier_event = { id = newfrontiers.234 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.meridiem"
+		name = "newfrontiers.105.meridiem"
 		trigger = {
 			capital_scope = { is_planet_class = pc_tropical }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.55 } }
+			capital_scope = { carrier_event = { id = newfrontiers.235 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.eyeball"
+		name = "newfrontiers.105.eyeball"
 		trigger = {
 			capital_scope = { is_planet_class = pc_arctic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.56 } }
+			capital_scope = { carrier_event = { id = newfrontiers.236 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.twilight"
+		name = "newfrontiers.105.twilight"
 		trigger = {
 			capital_scope = { is_planet_class = pc_continental }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.72 } }
+			capital_scope = { carrier_event = { id = newfrontiers.249 } }
 		}
 	}
 	#Sterille
 	option = {
-		name = "newfrontiers.8.caustic"
+		name = "newfrontiers.105.caustic"
 		trigger = {
 			capital_scope = { is_planet_class = pc_sterile }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.70 } }
+			capital_scope = { carrier_event = { id = newfrontiers.247 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.ash"
+		name = "newfrontiers.105.ash"
 		trigger = {
 			capital_scope = { is_planet_class = pc_sterile }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.58 } }
+			capital_scope = { carrier_event = { id = newfrontiers.237 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.archean"
+		name = "newfrontiers.105.archean"
 		trigger = {
 			capital_scope = { is_planet_class = pc_sterile }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.63 } }
+			capital_scope = { carrier_event = { id = newfrontiers.240 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.young"
+		name = "newfrontiers.105.young"
 		trigger = {
 			capital_scope = { is_planet_class = pc_volcanic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.64 } }
+			capital_scope = { carrier_event = { id = newfrontiers.241 } }
 		}
 	}
 	#Hollow
 	option = {
-		name = "newfrontiers.8.magma"
+		name = "newfrontiers.105.magma"
 		trigger = {
 			capital_scope = { is_planet_class = pc_volcanic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.59 } }
+			capital_scope = { carrier_event = { id = newfrontiers.238 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.subglacial"
+		name = "newfrontiers.105.subglacial"
 		trigger = {
 			capital_scope = { is_planet_class = pc_alpine }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.60 } }
+			capital_scope = { carrier_event = { id = newfrontiers.239 } }
 		}
 	}
 	#Gaia
 	#option = {
-	#	name = "newfrontiers.8.garden"
+	#	name = "newfrontiers.105.garden"
 	#	trigger = {
 	#		capital_scope = { is_planet_class = pc_gaia }
 	#	}
-	#	custom_tooltip = newfrontiers.8.more_details.tooltip
+	#	custom_tooltip = newfrontiers.105.more_details.tooltip
 	#	hidden_effect = {
-	#		capital_scope = { carrier_event = { id newfrontiers.65 }
+	#		capital_scope = { carrier_event = { id newfrontiers.242 }
 	#	}
 	#}
 	#Nuked
 	option = {
-		name = "newfrontiers.8.wasteland"
+		name = "newfrontiers.105.wasteland"
 		trigger = {
 			capital_scope = { is_planet_class = pc_nuked }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.66 } }
+			capital_scope = { carrier_event = { id = newfrontiers.243 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.fallout"
+		name = "newfrontiers.105.fallout"
 		trigger = {
 			capital_scope = { is_planet_class = pc_nuked }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.67 } }
+			capital_scope = { carrier_event = { id = newfrontiers.244 } }
 		}
 	}
 	option = {
-		name = "newfrontiers.8.rust"
+		name = "newfrontiers.105.rust"
 		trigger = {
 			capital_scope = { is_planet_class = pc_relic }
 		}
-		custom_tooltip = newfrontiers.8.more_details.tooltip
+		custom_tooltip = newfrontiers.105.more_details.tooltip
 		hidden_effect = {
-			capital_scope = { carrier_event = { id = newfrontiers.68 } }
+			capital_scope = { carrier_event = { id = newfrontiers.245 } }
 		}
 	}
 }
@@ -1299,7 +1325,7 @@ country_event = {
 
 ### Event planet changes 
 event = {
-	id = newfrontiers.10
+	id = newfrontiers.106
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -1314,7 +1340,7 @@ event = {
 
 #Adding modifiers Rings
 event = {
-	id = newfrontiers.11
+	id = newfrontiers.107
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -1364,7 +1390,7 @@ event = {
 	}
 }
 event = {
-	id = newfrontiers.13
+	id = newfrontiers.108
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -1390,7 +1416,7 @@ event = {
 }
 
 carrier_event = {
-	id = newfrontiers.15
+	id = newfrontiers.109
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -1401,8 +1427,8 @@ carrier_event = {
 }
 # Details page for keeping the plain class, so the default previews like every other option.
 carrier_event = {
-	id = newfrontiers.69
-	title = "newfrontiers.69.name"
+	id = newfrontiers.246
+	title = "newfrontiers.246.name"
 	picture = {
 		trigger = { is_planet_class = pc_desert }
 		picture = GFX_evt_desert
@@ -1465,58 +1491,58 @@ carrier_event = {
 
 	desc = {
 		trigger = { is_planet_class = pc_desert }
-		text = newfrontiers.69.desc.desert
+		text = newfrontiers.246.desc.desert
 	}
 	desc = {
 		trigger = { is_planet_class = pc_arid }
-		text = newfrontiers.69.desc.arid
+		text = newfrontiers.246.desc.arid
 	}
 	desc = {
 		trigger = { is_planet_class = pc_savannah }
-		text = newfrontiers.69.desc.savannah
+		text = newfrontiers.246.desc.savannah
 	}
 	desc = {
 		trigger = { is_planet_class = pc_tropical }
-		text = newfrontiers.69.desc.tropical
+		text = newfrontiers.246.desc.tropical
 	}
 	desc = {
 		trigger = { is_planet_class = pc_continental }
-		text = newfrontiers.69.desc.continental
+		text = newfrontiers.246.desc.continental
 	}
 	desc = {
 		trigger = { is_planet_class = pc_ocean }
-		text = newfrontiers.69.desc.ocean
+		text = newfrontiers.246.desc.ocean
 	}
 	desc = {
 		trigger = { is_planet_class = pc_tundra }
-		text = newfrontiers.69.desc.tundra
+		text = newfrontiers.246.desc.tundra
 	}
 	desc = {
 		trigger = { is_planet_class = pc_arctic }
-		text = newfrontiers.69.desc.arctic
+		text = newfrontiers.246.desc.arctic
 	}
 	desc = {
 		trigger = { is_planet_class = pc_alpine }
-		text = newfrontiers.69.desc.alpine
+		text = newfrontiers.246.desc.alpine
 	}
 	desc = {
 		trigger = { is_planet_class = pc_gaia }
-		text = newfrontiers.69.desc.gaia
+		text = newfrontiers.246.desc.gaia
 	}
 	desc = {
 		trigger = { is_planet_class = pc_nuked }
-		text = newfrontiers.69.desc.nuked
+		text = newfrontiers.246.desc.nuked
 	}
 	desc = {
 		trigger = { is_planet_class = pc_relic }
-		text = newfrontiers.69.desc.relic
+		text = newfrontiers.246.desc.relic
 	}
 	desc = {
 		trigger = { is_planet_class = pc_sterile }
-		text = newfrontiers.69.desc.sterile
+		text = newfrontiers.246.desc.sterile
 	}
 	desc = {
-		text = newfrontiers.69.desc.generic
+		text = newfrontiers.246.desc.generic
 	}
 
 	option = {
@@ -1528,16 +1554,16 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 
 }
 
 carrier_event = {
-	id = newfrontiers.18
-	title = "newfrontiers.18.name"
-	desc = "newfrontiers.18.desc"
+	id = newfrontiers.110
+	title = "newfrontiers.110.name"
+	desc = "newfrontiers.110.desc"
 	picture = GFX_evt_dune_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1556,7 +1582,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1564,9 +1590,9 @@ carrier_event = {
 
 #Start on Oasis World 
 carrier_event = {
-	id = newfrontiers.19
-	title = "newfrontiers.19.name"
-	desc = "newfrontiers.19.desc"
+	id = newfrontiers.200
+	title = "newfrontiers.200.name"
+	desc = "newfrontiers.200.desc"
 	picture = GFX_evt_oasis_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1585,7 +1611,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1593,9 +1619,9 @@ carrier_event = {
 
 #Start on Salt World 
 carrier_event = {
-	id = newfrontiers.20
-	title = "newfrontiers.20.name"
-	desc = "newfrontiers.20.desc"
+	id = newfrontiers.201
+	title = "newfrontiers.201.name"
+	desc = "newfrontiers.201.desc"
 	picture = GFX_evt_salt_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1614,7 +1640,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1622,9 +1648,9 @@ carrier_event = {
 
 #Start on Adiabatic World 
 carrier_event = {
-	id = newfrontiers.21
-	title = "newfrontiers.21.name"
-	desc = "newfrontiers.21.desc"
+	id = newfrontiers.202
+	title = "newfrontiers.202.name"
+	desc = "newfrontiers.202.desc"
 	picture = GFX_evt_adiabatic_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1643,7 +1669,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1651,9 +1677,9 @@ carrier_event = {
 
 #Start on Karst World 
 carrier_event = {
-	id = newfrontiers.22
-	title = "newfrontiers.22.name"
-	desc = "newfrontiers.22.desc"
+	id = newfrontiers.203
+	title = "newfrontiers.203.name"
+	desc = "newfrontiers.203.desc"
 	picture = GFX_evt_karst_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1672,7 +1698,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1682,9 +1708,9 @@ carrier_event = {
 
 #Start on Aeolian World 
 carrier_event = {
-	id = newfrontiers.24
-	title = "newfrontiers.24.name"
-	desc = "newfrontiers.24.desc"
+	id = newfrontiers.204
+	title = "newfrontiers.204.name"
+	desc = "newfrontiers.204.desc"
 	picture = GFX_evt_aeolian_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1703,7 +1729,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1711,9 +1737,9 @@ carrier_event = {
 
 #Start on Mesa World 
 carrier_event = {
-	id = newfrontiers.25
-	title = "newfrontiers.25.name"
-	desc = "newfrontiers.25.desc"
+	id = newfrontiers.205
+	title = "newfrontiers.205.name"
+	desc = "newfrontiers.205.desc"
 	picture = GFX_evt_mesa_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1732,7 +1758,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1740,9 +1766,9 @@ carrier_event = {
 
 #Start on Steppe World 
 carrier_event = {
-	id = newfrontiers.26
-	title = "newfrontiers.26.name"
-	desc = "newfrontiers.26.desc"
+	id = newfrontiers.206
+	title = "newfrontiers.206.name"
+	desc = "newfrontiers.206.desc"
 	picture = GFX_evt_steppe_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1761,7 +1787,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1769,9 +1795,9 @@ carrier_event = {
 
 #Start on Mesocyclonic World 
 carrier_event = {
-	id = newfrontiers.27
-	title = "newfrontiers.27.name"
-	desc = "newfrontiers.27.desc"
+	id = newfrontiers.207
+	title = "newfrontiers.207.name"
+	desc = "newfrontiers.207.desc"
 	picture = GFX_evt_mesocyclonic_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1790,7 +1816,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1798,9 +1824,9 @@ carrier_event = {
 
 #Start on Effusive World 
 carrier_event = {
-	id = newfrontiers.28
-	title = "newfrontiers.28.name"
-	desc = "newfrontiers.28.desc"
+	id = newfrontiers.208
+	title = "newfrontiers.208.name"
+	desc = "newfrontiers.208.desc"
 	picture = GFX_evt_effusive_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1819,7 +1845,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1827,9 +1853,9 @@ carrier_event = {
 
 #Start on Veld World 
 carrier_event = {
-	id = newfrontiers.29
-	title = "newfrontiers.29.name"
-	desc = "newfrontiers.29.desc"
+	id = newfrontiers.209
+	title = "newfrontiers.209.name"
+	desc = "newfrontiers.209.desc"
 	picture = GFX_evt_veld_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1848,7 +1874,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1856,9 +1882,9 @@ carrier_event = {
 
 #Start on Swamp World 
 carrier_event = {
-	id = newfrontiers.30
-	title = "newfrontiers.30.name"
-	desc = "newfrontiers.30.desc"
+	id = newfrontiers.210
+	title = "newfrontiers.210.name"
+	desc = "newfrontiers.210.desc"
 	picture = GFX_evt_swamp_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1877,7 +1903,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1885,9 +1911,9 @@ carrier_event = {
 
 #Start on Forest World 
 carrier_event = {
-	id = newfrontiers.31
-	title = "newfrontiers.31.name"
-	desc = "newfrontiers.31.desc"
+	id = newfrontiers.211
+	title = "newfrontiers.211.name"
+	desc = "newfrontiers.211.desc"
 	picture = GFX_evt_forest_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1906,7 +1932,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1914,9 +1940,9 @@ carrier_event = {
 
 #Start on Monsoon World 
 carrier_event = {
-	id = newfrontiers.32
-	title = "newfrontiers.32.name"
-	desc = "newfrontiers.32.desc"
+	id = newfrontiers.212
+	title = "newfrontiers.212.name"
+	desc = "newfrontiers.212.desc"
 	picture = GFX_evt_monsoon_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1935,7 +1961,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1943,9 +1969,9 @@ carrier_event = {
 
 #Start on Megaflora World 
 carrier_event = {
-	id = newfrontiers.33
-	title = "newfrontiers.33.name"
-	desc = "newfrontiers.33.desc"
+	id = newfrontiers.213
+	title = "newfrontiers.213.name"
+	desc = "newfrontiers.213.desc"
 	picture = GFX_evt_megaflora_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1964,7 +1990,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -1972,9 +1998,9 @@ carrier_event = {
 
 #Start on Hollow World 
 carrier_event = {
-	id = newfrontiers.71
-	title = "newfrontiers.71.name"
-	desc = "newfrontiers.71.desc"
+	id = newfrontiers.248
+	title = "newfrontiers.248.name"
+	desc = "newfrontiers.248.desc"
 	picture = GFX_evt_hollow_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -1993,7 +2019,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2001,9 +2027,9 @@ carrier_event = {
 
 #Start on Twilight World 
 carrier_event = {
-	id = newfrontiers.72
-	title = "newfrontiers.72.name"
-	desc = "newfrontiers.72.desc"
+	id = newfrontiers.249
+	title = "newfrontiers.249.name"
+	desc = "newfrontiers.249.desc"
 	picture = GFX_evt_twilight_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2022,7 +2048,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2030,9 +2056,9 @@ carrier_event = {
 
 #Start on Boreal World 
 carrier_event = {
-	id = newfrontiers.34
-	title = "newfrontiers.34.name"
-	desc = "newfrontiers.34.desc"
+	id = newfrontiers.214
+	title = "newfrontiers.214.name"
+	desc = "newfrontiers.214.desc"
 	picture = GFX_evt_boreal_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2051,7 +2077,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2059,9 +2085,9 @@ carrier_event = {
 
 #Start on Supercontinental World 
 carrier_event = {
-	id = newfrontiers.35
-	title = "newfrontiers.35.name"
-	desc = "newfrontiers.35.desc"
+	id = newfrontiers.215
+	title = "newfrontiers.215.name"
+	desc = "newfrontiers.215.desc"
 	picture = GFX_evt_supercontinental_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2080,7 +2106,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2088,9 +2114,9 @@ carrier_event = {
 
 #Start on Mediterranean World 
 carrier_event = {
-	id = newfrontiers.36
-	title = "newfrontiers.36.name"
-	desc = "newfrontiers.36.desc"
+	id = newfrontiers.216
+	title = "newfrontiers.216.name"
+	desc = "newfrontiers.216.desc"
 	picture = GFX_evt_mediterranean_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2109,7 +2135,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2117,9 +2143,9 @@ carrier_event = {
 
 #Start on Primal World 
 carrier_event = {
-	id = newfrontiers.37
-	title = "newfrontiers.37.name"
-	desc = "newfrontiers.37.desc"
+	id = newfrontiers.217
+	title = "newfrontiers.217.name"
+	desc = "newfrontiers.217.desc"
 	picture = GFX_evt_primal_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2138,7 +2164,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2146,9 +2172,9 @@ carrier_event = {
 
 #Start on Panthalassic World 
 carrier_event = {
-	id = newfrontiers.38
-	title = "newfrontiers.38.name"
-	desc = "newfrontiers.38.desc"
+	id = newfrontiers.218
+	title = "newfrontiers.218.name"
+	desc = "newfrontiers.218.desc"
 	picture = GFX_evt_panthalassic_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2167,7 +2193,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2175,9 +2201,9 @@ carrier_event = {
 
 #Start on Atoll World 
 carrier_event = {
-	id = newfrontiers.39
-	title = "newfrontiers.39.name"
-	desc = "newfrontiers.39.desc"
+	id = newfrontiers.219
+	title = "newfrontiers.219.name"
+	desc = "newfrontiers.219.desc"
 	picture = GFX_evt_atoll_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2196,7 +2222,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2204,9 +2230,9 @@ carrier_event = {
 
 #Start on Storm World 
 carrier_event = {
-	id = newfrontiers.40
-	title = "newfrontiers.40.name"
-	desc = "newfrontiers.40.desc"
+	id = newfrontiers.220
+	title = "newfrontiers.220.name"
+	desc = "newfrontiers.220.desc"
 	picture = GFX_evt_storm_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2225,7 +2251,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2233,9 +2259,9 @@ carrier_event = {
 
 #Start on Reef World 
 carrier_event = {
-	id = newfrontiers.41
-	title = "newfrontiers.41.name"
-	desc = "newfrontiers.41.desc"
+	id = newfrontiers.221
+	title = "newfrontiers.221.name"
+	desc = "newfrontiers.221.desc"
 	picture = GFX_evt_reef_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2254,7 +2280,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2262,9 +2288,9 @@ carrier_event = {
 
 #Start on Taiga World 
 carrier_event = {
-	id = newfrontiers.42
-	title = "newfrontiers.42.name"
-	desc = "newfrontiers.42.desc"
+	id = newfrontiers.222
+	title = "newfrontiers.222.name"
+	desc = "newfrontiers.222.desc"
 	picture = GFX_evt_taiga_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2283,7 +2309,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2291,9 +2317,9 @@ carrier_event = {
 
 #Start on Moraine World 
 carrier_event = {
-	id = newfrontiers.43
-	title = "newfrontiers.43.name"
-	desc = "newfrontiers.43.desc"
+	id = newfrontiers.223
+	title = "newfrontiers.223.name"
+	desc = "newfrontiers.223.desc"
 	picture = GFX_evt_moraine_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2312,7 +2338,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2320,9 +2346,9 @@ carrier_event = {
 
 #Start on Bog World 
 carrier_event = {
-	id = newfrontiers.44
-	title = "newfrontiers.44.name"
-	desc = "newfrontiers.44.desc"
+	id = newfrontiers.224
+	title = "newfrontiers.224.name"
+	desc = "newfrontiers.224.desc"
 	picture = GFX_evt_bog_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2341,7 +2367,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2349,9 +2375,9 @@ carrier_event = {
 
 #Start on Mushroom World 
 carrier_event = {
-	id = newfrontiers.45
-	title = "newfrontiers.45.name"
-	desc = "newfrontiers.45.desc"
+	id = newfrontiers.225
+	title = "newfrontiers.225.name"
+	desc = "newfrontiers.225.desc"
 	picture = GFX_evt_mushroom_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2370,7 +2396,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2378,9 +2404,9 @@ carrier_event = {
 
 #Start on Glacial World 
 carrier_event = {
-	id = newfrontiers.46
-	title = "newfrontiers.46.name"
-	desc = "newfrontiers.46.desc"
+	id = newfrontiers.226
+	title = "newfrontiers.226.name"
+	desc = "newfrontiers.226.desc"
 	picture = GFX_evt_glacial_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2399,7 +2425,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2407,9 +2433,9 @@ carrier_event = {
 
 #Start on Iceberg World 
 carrier_event = {
-	id = newfrontiers.47
-	title = "newfrontiers.47.name"
-	desc = "newfrontiers.47.desc"
+	id = newfrontiers.227
+	title = "newfrontiers.227.name"
+	desc = "newfrontiers.227.desc"
 	picture = GFX_evt_iceberg_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2428,7 +2454,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2436,9 +2462,9 @@ carrier_event = {
 
 #Start on Geothermal World 
 carrier_event = {
-	id = newfrontiers.48
-	title = "newfrontiers.48.name"
-	desc = "newfrontiers.48.desc"
+	id = newfrontiers.228
+	title = "newfrontiers.228.name"
+	desc = "newfrontiers.228.desc"
 	picture = GFX_evt_geothermal_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2457,7 +2483,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2465,9 +2491,9 @@ carrier_event = {
 
 #Start on Frigid World 
 carrier_event = {
-	id = newfrontiers.49
-	title = "newfrontiers.49.name"
-	desc = "newfrontiers.49.desc"
+	id = newfrontiers.229
+	title = "newfrontiers.229.name"
+	desc = "newfrontiers.229.desc"
 	picture = GFX_evt_frigid_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2486,7 +2512,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2494,9 +2520,9 @@ carrier_event = {
 
 #Start on Mineral World 
 carrier_event = {
-	id = newfrontiers.50
-	title = "newfrontiers.50.name"
-	desc = "newfrontiers.50.desc"
+	id = newfrontiers.230
+	title = "newfrontiers.230.name"
+	desc = "newfrontiers.230.desc"
 	picture = GFX_evt_mineral_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2515,7 +2541,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2523,9 +2549,9 @@ carrier_event = {
 
 #Start on Snow World 
 carrier_event = {
-	id = newfrontiers.51
-	title = "newfrontiers.51.name"
-	desc = "newfrontiers.51.desc"
+	id = newfrontiers.231
+	title = "newfrontiers.231.name"
+	desc = "newfrontiers.231.desc"
 	picture = GFX_evt_snow_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2544,7 +2570,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2552,9 +2578,9 @@ carrier_event = {
 
 #Start on Plateau World 
 carrier_event = {
-	id = newfrontiers.52
-	title = "newfrontiers.52.name"
-	desc = "newfrontiers.52.desc"
+	id = newfrontiers.232
+	title = "newfrontiers.232.name"
+	desc = "newfrontiers.232.desc"
 	picture = GFX_evt_plateau_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2573,7 +2599,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2581,9 +2607,9 @@ carrier_event = {
 
 #Start on Highland World 
 carrier_event = {
-	id = newfrontiers.53
-	title = "newfrontiers.53.name"
-	desc = "newfrontiers.53.desc"
+	id = newfrontiers.233
+	title = "newfrontiers.233.name"
+	desc = "newfrontiers.233.desc"
 	picture = GFX_evt_highland_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2602,7 +2628,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2610,9 +2636,9 @@ carrier_event = {
 
 #Start on Flaming World 
 carrier_event = {
-	id = newfrontiers.54
-	title = "newfrontiers.54.name"
-	desc = "newfrontiers.54.desc"
+	id = newfrontiers.234
+	title = "newfrontiers.234.name"
+	desc = "newfrontiers.234.desc"
 	picture = GFX_evt_flaming_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2631,7 +2657,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2639,9 +2665,9 @@ carrier_event = {
 
 #Start on Meridiem World 
 carrier_event = {
-	id = newfrontiers.55
-	title = "newfrontiers.55.name"
-	desc = "newfrontiers.55.desc"
+	id = newfrontiers.235
+	title = "newfrontiers.235.name"
+	desc = "newfrontiers.235.desc"
 	picture = GFX_evt_meridiem_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2660,7 +2686,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2668,9 +2694,9 @@ carrier_event = {
 
 #Start on Eyeball World 
 carrier_event = {
-	id = newfrontiers.56
-	title = "newfrontiers.56.name"
-	desc = "newfrontiers.56.desc"
+	id = newfrontiers.236
+	title = "newfrontiers.236.name"
+	desc = "newfrontiers.236.desc"
 	picture = GFX_evt_eyeball_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2689,7 +2715,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2697,9 +2723,9 @@ carrier_event = {
 
 #Start on Caustic World 
 carrier_event = {
-	id = newfrontiers.70
-	title = "newfrontiers.70.name"
-	desc = "newfrontiers.70.desc"
+	id = newfrontiers.247
+	title = "newfrontiers.247.name"
+	desc = "newfrontiers.247.desc"
 	picture = GFX_evt_caustic_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2718,7 +2744,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2727,9 +2753,9 @@ carrier_event = {
 
 #Start on Ash World 
 carrier_event = {
-	id = newfrontiers.58
-	title = "newfrontiers.58.name"
-	desc = "newfrontiers.58.desc"
+	id = newfrontiers.237
+	title = "newfrontiers.237.name"
+	desc = "newfrontiers.237.desc"
 	picture = GFX_evt_ash_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2748,7 +2774,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2756,9 +2782,9 @@ carrier_event = {
 
 #Start on Infernal World 
 carrier_event = {
-	id = newfrontiers.59
-	title = "newfrontiers.59.name"
-	desc = "newfrontiers.59.desc"
+	id = newfrontiers.238
+	title = "newfrontiers.238.name"
+	desc = "newfrontiers.238.desc"
 	picture = GFX_evt_infernal_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2777,7 +2803,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2785,9 +2811,9 @@ carrier_event = {
 
 #Start on Subglacial World 
 carrier_event = {
-	id = newfrontiers.60
-	title = "newfrontiers.60.name"
-	desc = "newfrontiers.60.desc"
+	id = newfrontiers.239
+	title = "newfrontiers.239.name"
+	desc = "newfrontiers.239.desc"
 	picture = GFX_evt_subglacial_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2806,7 +2832,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2814,22 +2840,22 @@ carrier_event = {
 
 #Planetary Exploration Alert!
 event = {
-	id = newfrontiers.61
+	id = newfrontiers.300
 	hide_window = yes
 	is_triggered_only = yes
 	
 	immediate = {
 		every_country = {	
 			limit = { is_ai = no }
-			country_event = { id = newfrontiers.62 days = 1 }
+			country_event = { id = newfrontiers.301 days = 1 }
 		}
 	}
 }
 
 country_event = {
-	id = newfrontiers.62
-	title = "newfrontiers.62.name"
-	desc = "newfrontiers.62.desc"
+	id = newfrontiers.301
+	title = "newfrontiers.301.name"
+	desc = "newfrontiers.301.desc"
 	picture = GFX_evt_colony_settlement
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2847,9 +2873,9 @@ country_event = {
 
 #Start on Archean World 
 carrier_event = {
-	id = newfrontiers.63
-	title = "newfrontiers.63.name"
-	desc = "newfrontiers.63.desc"
+	id = newfrontiers.240
+	title = "newfrontiers.240.name"
+	desc = "newfrontiers.240.desc"
 	picture = GFX_evt_archean_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2868,7 +2894,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2876,9 +2902,9 @@ carrier_event = {
 
 #Start on Young World 
 carrier_event = {
-	id = newfrontiers.64
-	title = "newfrontiers.64.name"
-	desc = "newfrontiers.64.desc"
+	id = newfrontiers.241
+	title = "newfrontiers.241.name"
+	desc = "newfrontiers.241.desc"
 	picture = GFX_evt_young_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2897,7 +2923,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2905,9 +2931,9 @@ carrier_event = {
 
 #Start on Garden World 
 carrier_event = {
-	id = newfrontiers.65
-	title = "newfrontiers.65.name"
-	desc = "newfrontiers.65.desc"
+	id = newfrontiers.242
+	title = "newfrontiers.242.name"
+	desc = "newfrontiers.242.desc"
 	picture = GFX_evt_garden_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2926,7 +2952,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2934,9 +2960,9 @@ carrier_event = {
 
 #Start on Wasteland World 
 carrier_event = {
-	id = newfrontiers.66
-	title = "newfrontiers.66.name"
-	desc = "newfrontiers.66.desc"
+	id = newfrontiers.243
+	title = "newfrontiers.243.name"
+	desc = "newfrontiers.243.desc"
 	picture = GFX_evt_wasteland_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2955,7 +2981,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2963,9 +2989,9 @@ carrier_event = {
 
 #Start on Fallout World 
 carrier_event = {
-	id = newfrontiers.67
-	title = "newfrontiers.67.name"
-	desc = "newfrontiers.67.desc"
+	id = newfrontiers.244
+	title = "newfrontiers.244.name"
+	desc = "newfrontiers.244.desc"
 	picture = GFX_evt_fallout_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -2984,7 +3010,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	
@@ -2992,9 +3018,9 @@ carrier_event = {
 
 #Start on Rust World 
 carrier_event = {
-	id = newfrontiers.68
-	title = "newfrontiers.68.name"
-	desc = "newfrontiers.68.desc"
+	id = newfrontiers.245
+	title = "newfrontiers.245.name"
+	desc = "newfrontiers.245.desc"
 	picture = GFX_evt_rust_world
 	show_sound = event_radio_chatter
 	location = ROOT
@@ -3013,7 +3039,7 @@ carrier_event = {
 		name = "newfrontiers.back"
 		default_hide_option = yes
 		hidden_effect = {
-			owner = { country_event = { id = newfrontiers.8 } }
+			owner = { country_event = { id = newfrontiers.105 } }
 		}
 	}
 	

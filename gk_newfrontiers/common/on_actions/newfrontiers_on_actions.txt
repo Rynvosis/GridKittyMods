@@ -1,17 +1,17 @@
 on_game_start = {
 	events = {
-		#newfrontiers.2
-		newfrontiers.3
-		newfrontiers.7
-		newfrontiers.11
-		#newfrontiers.16
-		newfrontiers.61
+		#newfrontiers.101
+		newfrontiers.102
+		newfrontiers.104
+		newfrontiers.107
+		newfrontiers.300
+		newfrontiers.111	# flag sterile-dweller empires
 
 		# moved off on_applying_rs_settings (Real Space menu hook)
-		newfrontiers.1
-		newfrontiers.4
-		newfrontiers.10
-		newfrontiers.13
+		newfrontiers.100
+		newfrontiers.103
+		newfrontiers.106
+		newfrontiers.108
 	}
 }
 
@@ -19,7 +19,7 @@ on_game_start = {
 # Does not run when loading MP saves due to OOS concerns
 on_single_player_save_game_load = {
 	events = {
-		newfrontiers.61
+		newfrontiers.300
 	}
 }
 
@@ -29,41 +29,36 @@ on_colony_1_year_old = {
 	}
 }
 
-# Terraforming has started. This = Planet. Deposits still present here, so we
-# snapshot district capacity before the completion wipe removes them.
+# Terraform started; snapshot district capacity before completion wipes deposits.
 on_terraforming_begun = {
 	events = {
-		newfrontiers_action.20
+		newfrontiers_action.200
 	}
 }
 
-# Planet has been terraformed
-# This = Planet
-# From = Terraformer
 on_terraforming_complete = {
 	events = {
-		newfrontiers_action.2
-		newfrontiers_action.21
+		newfrontiers_action.100
+		newfrontiers_action.201
 	}
 }
 
-# Planet has changed planet class in whatever way. Note that this is also called during galaxy creation in some places.
-# This = Planet
+# Also fires during galaxy creation.
 on_planet_class_changed = {
 	events = {
-		newfrontiers_action.14
+		newfrontiers_action.102
 	}
 }
 
 # THIS = Fen Habbanis planet
 on_fen_habbanis = {
 	events = {
-		newfrontiers_action.15
+		newfrontiers_action.103
 	}
 }
 
 on_remove_subclass_modifiers_effect = {
 	events = {
-		newfrontiers_action.2
+		newfrontiers_action.100
 	}
 }

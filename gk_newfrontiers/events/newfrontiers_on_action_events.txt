@@ -9,7 +9,7 @@
 
 namespace = newfrontiers_action
 carrier_event = {
-	id = newfrontiers_action.2
+	id = newfrontiers_action.100
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -22,7 +22,7 @@ carrier_event = {
 
 }
 carrier_event = {
-	id = newfrontiers_action.13
+	id = newfrontiers_action.101
 	hide_window = yes
 
 	is_triggered_only = yes
@@ -38,7 +38,7 @@ carrier_event = {
 
 ### Nuclear war happened
 carrier_event = {
-	id = newfrontiers_action.14
+	id = newfrontiers_action.102
 	hide_window = yes
 
 	is_triggered_only = yes
@@ -63,7 +63,7 @@ carrier_event = {
 
 ### Rust World for Fen Habbanis
 carrier_event = {
-	id = newfrontiers_action.15
+	id = newfrontiers_action.103
 	hide_window = yes
 
 	is_triggered_only = yes
@@ -76,7 +76,7 @@ carrier_event = {
 ### Terraform-into-Sterile: snapshot district capacity before the wipe.
 # Fired from on_terraforming_begun, This = the terraforming planet.
 carrier_event = {
-	id = newfrontiers_action.20
+	id = newfrontiers_action.200
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -89,7 +89,7 @@ carrier_event = {
 # Fired from on_terraforming_complete, This = planet. Only Sterile worlds rebuild;
 # every other terraform target keeps vanilla's own deposit swaps.
 carrier_event = {
-	id = newfrontiers_action.21
+	id = newfrontiers_action.201
 	hide_window = yes
 	is_triggered_only = yes
 

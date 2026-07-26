@@ -2,17 +2,16 @@
 @secondary = 0.60
 @tertiary = 0.20
 
-# Machine/robot habitability values, matching vanilla trait_cold_planet_preference.
+# Machine/robot habitability, matching vanilla trait_cold_planet_preference.
 @machine_primary = 0.75
-@machine_secondary = 0.50
 @machine_tertiary = 0.25
 
 trait_pc_sterile_preference = {
 	icon = "gfx/interface/icons/traits/trait_pc_sterile_preference.dds"
 	species_potential_add = {
-		# Vanilla preference traits gate on this. Upstream had always = no because these
-		# classes were never selectable homeworlds; the origins granted the trait by script.
 		can_change_habitability_preference = yes
+		# Only sterile-dweller empires can gene-mod sterile habitability; start assignment is unaffected.
+		from = { has_country_flag = gk_sterile_dweller }
 	}
 	species_possible_merge_add = {
 		always = yes
@@ -39,16 +38,16 @@ trait_pc_sterile_preference = {
 	}
 }
 
-# Machine/robot equivalent of trait_pc_sterile_preference. Robots and machine pops take
-# habitability from climate-grouped preference traits (trait_dry/cold/wet_planet_preference),
-# none of which list pc_sterile, so robots have 0% on Sterile. This mirrors vanilla
-# trait_cold_planet_preference, bound to pc_sterile, so a machine/robot species can prefer
-# Sterile the same way a biological one takes trait_pc_sterile_preference.
+# Machine/robot sterile preference, mirroring vanilla trait_cold_planet_preference.
+# Machine pops get habitability from climate-grouped traits that omit pc_sterile, so
+# without this a robot has 0% on Sterile.
 trait_sterile_planet_preference = {
 	icon = "gfx/interface/icons/traits/trait_pc_sterile_preference.dds"
 	short_name = "trait_sterile_planet_preference_short"
 	species_potential_add = {
 		can_change_habitability_preference = yes
+		# Sterile-dweller gate, as on the biological trait above.
+		from = { has_country_flag = gk_sterile_dweller }
 	}
 	species_possible_merge_add = {
 		always = yes
@@ -60,16 +59,17 @@ trait_sterile_planet_preference = {
 	randomized = no
 	modifier = {
 		pc_sterile_habitability = @machine_primary
-		pc_desert_habitability = @machine_secondary
-		pc_arid_habitability = @machine_secondary
-		pc_savannah_habitability = @machine_secondary
-		pc_ocean_habitability = @machine_secondary
-		pc_continental_habitability = @machine_secondary
-		pc_tropical_habitability = @machine_secondary
-		pc_arctic_habitability = @machine_secondary
-		pc_alpine_habitability = @machine_secondary
-		pc_tundra_habitability = @machine_secondary
+		pc_desert_habitability = @machine_tertiary
+		pc_arid_habitability = @machine_tertiary
+		pc_savannah_habitability = @machine_tertiary
+		pc_tropical_habitability = @machine_tertiary
+		pc_continental_habitability = @machine_tertiary
+		pc_ocean_habitability = @machine_tertiary
+		pc_arctic_habitability = @machine_tertiary
+		pc_tundra_habitability = @machine_tertiary
+		pc_alpine_habitability = @machine_tertiary
 		pc_volcanic_habitability = @machine_tertiary
+		pc_nuked_habitability = @machine_tertiary
 	}
 	ai_weight = {
 		weight = 0
