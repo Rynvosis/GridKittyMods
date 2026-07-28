@@ -211,6 +211,23 @@ Available to: Standard empires (Dictatorial authority required). Cannot be remov
 **Councilor** (System Administrator):
 - -1.5% Automated Jobs Upkeep per level
 
+### Stratocracy
+
+Available to: Standard empires (Militarist or Fanatic Militarist required). Non-gestalt only.
+
+**Effects**:
+- +2 Commander capacity, -1 Official capacity
+- Commanders count as preferred governors (no Specialist output penalty when governing)
+- Politician jobs become **Stratocrats**, with combo swaps for Noble (Warlord), High Priest (Templar), Science Director (War Scientist), Merchant (Quartermaster), and Fire Oracle (Flame Marshal)
+- Stratocrats upkeep 1.5 Alloys instead of 3 Consumer Goods, and produce 4 Unity instead of 5
+- Stratocrats count as Soldiers: they inherit the full soldier modifier set (stability, defense armies, naval capacity from Ground Defense Planning, Bellicose councilor scaling, and the soldier specialization bonuses) and receive soldier produces/upkeep modifiers
+- +2 Naval Capacity per Stratocrat on top of the inherited soldier naval capacity
+
+The **Military Academy** also converts Politicians to Stratocrats, so any non-gestalt empire can access the job without the civic. The building is empire-limited to one, mirroring how the Research Institute grants Head Researchers outside Technocracy.
+
+**Councilor** (Supreme Commandant, Commander only):
+- -2% Soldier upkeep per level, which also covers Stratocrats through their soldier inheritance
+
 ### Raiding Civics
 
 See `gk_raiding/docs/EFFECTS.md` — implemented in the GK Raiding mod.

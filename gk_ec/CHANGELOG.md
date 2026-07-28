@@ -5,7 +5,9 @@ Fixed the ethics editor failing to load, so the 5-axis ethic wheel now renders
 Fixed the lunar colony Mining Colony option granting farming districts instead of mining
 Resynced prescripted empires to 4.4.5: dropped the retired Utopia, Synthetic Dawn, and Humanoids gates, restored the nomad human empire, and replaced an invalid civic on the Custodianship designs with Maintenance Protocols
 Gestalt Consciousness, Hive Ascetic, and Synthetic Evolution no longer require Utopia or Synthetic Dawn, matching vanilla 4.4
-Stratocracy councilor no longer produces amenities, keeping only its soldier unity bonus
+Stratocrats now pay for their inherited soldier modifiers with 1 Unity, on top of the flat +2 Naval Capacity each one provides
+The Military Academy now converts Politicians to Stratocrats, so any non-gestalt empire can field them without taking the civic, the same way the Research Institute grants Head Researchers outside Technocracy
+Stratocracy councilor is now the quartermaster corps, cutting Soldier upkeep by 2% per level, which covers Stratocrats too
 Collectivist faction now counts Employee Ownership (Worker Cooperatives) as welfare instead of treating it like Decent Conditions
 Paternalism no longer angers the Totalitarian faction: it fulfills the faction's stratification demand despite the forced Social Welfare
 Updated for Stellaris 4.4.5

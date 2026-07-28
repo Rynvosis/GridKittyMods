@@ -2,8 +2,7 @@
 # GK EC private copy of vanilla output/soldier_triggered_modifiers, NOT an overwrite.
 # Does not touch the shared vanilla soldier inline script, so if this drifts only Stratocracy breaks,
 # never every empire's soldier jobs. Resync the vanilla blocks against vanilla each patch.
-# Adds an optional CONDITION parameter so the Stratocracy politician can reuse soldier modifiers,
-# plus a Stratocracy councilor amenities block.
+# Adds a CONDITION parameter so the Stratocracy politician can reuse soldier modifiers.
 # Usage: inline_script = { script = output/gk_ec_soldier_triggered_modifiers CONDITION = "politician_is_stratocrat = yes" }
 
 triggered_country_modifier = {

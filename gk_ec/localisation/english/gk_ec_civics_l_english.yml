@@ -223,11 +223,13 @@
 
   civic_gk_ec_stratocracy: "Stratocracy"
   civic_gk_ec_stratocracy_desc: "Military officers govern directly, replacing civilian administrators with commanders whose authority derives from rank and service."
-  civic_gk_ec_stratocracy_effects: "- §YCommander§! governors no longer penalize §YSpecialist§! output\n- §YPolitician§! jobs are replaced by §YStratocrats§! that upkeep §YAlloys§! instead of §YConsumer Goods§! and inherit §YSoldier§! production modifiers"
+  civic_gk_ec_stratocracy_effects: "- £job_politician£ §Y$job_politician$§! Jobs are converted to £job_soldier£ §Y$job_stratocrat_plural$§! Jobs\n- The £building£ §Y$building_military_academy$§! converts £job_politician£ §Y$job_politician$§! Jobs to £job_soldier£ §Y$job_stratocrat_plural$§! Jobs\n- §YCommander§! governors no longer penalize §YSpecialist§! output\n- §Y$job_stratocrat_plural$§! upkeep §YAlloys§! instead of §YConsumer Goods§! and gain §Y$job_soldier$§! production modifiers\n- Each §Y$job_stratocrat$§! provides §G+2§! ['naval_capacity']"
+
+  building_military_academy_stratocrat_tt: "£job_politician£ §Y$job_politician$§! Jobs are converted to £job_soldier£ §Y$job_stratocrat_plural$§! Jobs"
 
   councilor_gk_ec_stratocracy: "Supreme Commandant"
   councilor_gk_ec_stratocracy_female: "$councilor_gk_ec_stratocracy$"
-  councilor_gk_ec_stratocracy_desc: "The $TITLE$ oversees military governance across the empire, ensuring that soldiers serve as the backbone of civic order."
+  councilor_gk_ec_stratocracy_desc: "The $TITLE$ oversees the quartermaster corps, drilling the supply chains that keep the garrisons fed and armed at a fraction of the usual cost."
 
   ## Stratocracy Jobs
   job_stratocrat: "Stratocrat"

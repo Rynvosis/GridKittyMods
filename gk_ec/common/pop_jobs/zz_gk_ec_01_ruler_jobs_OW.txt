@@ -1,6 +1,6 @@
 # Version last updated: 4.4.5
 # Overwrites: politician
-# Reason: Add Stratocracy swap types (stratocrat + combo variants)
+# Reason: Add Stratocracy swap types (stratocrat + combo variants), soldier tag, and stratocrat modifiers
 # Body synced to vanilla 4.4.5: colony? job scope, sacred_path_elite content, dropped promotion{} and job_weights_modifier
 
 politician = {
@@ -305,7 +305,13 @@ politician = {
 		upkeep = {
 			consumer_goods = 3
 		}
-		## Stratocrat: alloys instead of CG
+		## Stratocrat: alloys instead of CG, unity traded for the soldier modifier set
+		produces = {
+			trigger = {
+				politician_is_stratocrat = yes
+			}
+			unity = -1
+		}
 		upkeep = {
 			trigger = {
 				politician_is_stratocrat = yes
@@ -486,6 +492,14 @@ politician = {
 			owner? = { has_modifier = first_light_guidance }
 		}
 		planet_stability_add = 0.25
+	}
+
+	## GK EC Stratocrat: flat naval capacity on top of the inherited soldier modifiers
+	triggered_country_modifier = {
+		potential = {
+			politician_is_stratocrat = yes
+		}
+		country_naval_cap_add = 2
 	}
 
 	## GK EC Stratocrat: soldier triggered modifiers (gk_ec private copy, not a vanilla overwrite)

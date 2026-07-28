@@ -2,7 +2,10 @@
 
 politician_is_stratocrat = {
 	exists = owner
-	owner = { has_valid_civic = civic_gk_ec_stratocracy }
+	OR = {
+		owner = { has_valid_civic = civic_gk_ec_stratocracy }
+		has_active_building = building_military_academy
+	}
 }
 
 # Combo: Stratocrat + Noble = Warlord
