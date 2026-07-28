@@ -21,9 +21,7 @@ trait_gk_burnout_susceptibility = {
 	}
 }
 
-# Sign-flipped mirror of trait_seasonal_dormancy
-# (15_biogenesis_species_traits.txt:132-144). Realised cost is 0.15 employed /
-# 0.75 idle; the triggered block carries 0.60 because the flat block stacks.
+# Softened inverse of trait_seasonal_dormancy via 1/(1-x)-1; realises 0.20 / 2.00 idle.
 trait_gk_sleepless = {
 	cost = -2
 	category = normal
@@ -37,7 +35,7 @@ trait_gk_sleepless = {
 	tags = { organic negative upkeep aquatic arthropoid cybernetic species }
 	custom_tooltip = trait_gk_sleepless_effect
 	modifier = {
-		planet_pops_upkeep_mult = 0.15
+		planet_pops_upkeep_mult = 0.20
 	}
 	triggered_pop_group_modifier = {
 		potential = {
@@ -47,7 +45,7 @@ trait_gk_sleepless = {
 				is_pop_category = maintenance_drone
 			}
 		}
-		planet_pops_upkeep_mult = 0.60
+		planet_pops_upkeep_mult = 1.80
 	}
 	slave_cost = {
 		trade = -200

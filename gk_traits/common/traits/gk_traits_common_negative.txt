@@ -10,7 +10,7 @@ trait_gk_high_metabolism = {
 	inline_script = "traits/gk_portraits_common"
 	tags = { organic negative upkeep food }
 	modifier = {
-		gk_diet_upkeep_mult = 0.40
+		gk_diet_upkeep_mult = 0.50
 	}
 	slave_cost = {
 		trade = -200
