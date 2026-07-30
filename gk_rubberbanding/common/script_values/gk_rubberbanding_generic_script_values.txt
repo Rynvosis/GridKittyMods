@@ -21,7 +21,12 @@ gkrb_offset_relative = {
 	subtract = value:gkrb_relative_score|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
 }
 
-# (1 - relative)^2 clamped to [0, 1]. Scales rubberband effect strength symmetrically.
+# Curve library. A system names the curve it wants per direction when it calls the pipeline.
+#   gkrb_mult          — (1 - relative)^2 capped at 1. Gentle; saturates at relative 0 / 2. Used by trad.
+#   gkrb_mult_behind   — 4x steeper, uncapped. Used by tech when behind.
+#   gkrb_mult_ahead    — 4x steeper, capped at 1 so it saturates at relative 1.5. Used by tech when ahead.
+
+# (1 - relative)^2 clamped to [0, 1].
 # Parameters: SCORE_VAR, GLOBAL_AVG_VAR
 gkrb_mult = {
 	base = 0
@@ -29,6 +34,27 @@ gkrb_mult = {
 	mult = value:gkrb_offset_relative|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
 	max = 1.0
 	min = 0
+}
+
+# (2 - 2*relative)^2. Behind: uncapped, but relative >= 0 bounds it at 4 (5x net income at
+# zero score), and 50% behind lands on 1 (2x).
+# Parameters: SCORE_VAR, GLOBAL_AVG_VAR
+gkrb_mult_behind = {
+	base = 0
+	add = value:gkrb_offset_relative|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
+	mult = value:gkrb_offset_relative|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
+	mult = 4
+}
+
+# Same curve, capped at 1 so the penalty never exceeds an empire's whole net income.
+# The cap binds at relative = 1.5, so being further ahead than 50% adds nothing.
+# Parameters: SCORE_VAR, GLOBAL_AVG_VAR
+gkrb_mult_ahead = {
+	base = 0
+	add = value:gkrb_offset_relative|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
+	mult = value:gkrb_offset_relative|SCORE_VAR|$SCORE_VAR$|GLOBAL_AVG_VAR|$GLOBAL_AVG_VAR$|
+	mult = 4
+	max = 1.0
 }
 
 # Display helper: read any country variable, × 100, round. Used for %-of-avg tooltips.

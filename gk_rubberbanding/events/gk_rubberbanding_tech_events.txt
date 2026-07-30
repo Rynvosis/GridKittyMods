@@ -16,6 +16,6 @@ event = {
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		inline_script = { script = gk_rubberbanding/pipeline TYPE = tech }
+		inline_script = { script = gk_rubberbanding/pipeline TYPE = tech MULT_BEHIND = gkrb_mult_behind MULT_AHEAD = gkrb_mult_ahead }
 	}
 }

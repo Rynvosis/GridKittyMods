@@ -51,3 +51,12 @@ gkrb_tech_score_repeatable = {
 # tech mult calculations #
 ##########################
 
+# Research alternatives when behind: linear, +1 per 20% below the galactic average.
+# Reads the country variable the pipeline has already written this tick.
+gkrb_tech_alt_bonus = {
+	base = 1
+	subtract = gkrb_tech_relative
+	mult = 5
+	min = 0
+}
+

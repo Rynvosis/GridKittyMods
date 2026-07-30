@@ -1,6 +1,9 @@
 # Monthly rubberbanding pipeline — shared stages 1-3.
 # Parameters:
-#   $TYPE$ — identifies the rubberbanding system (tech, trad, etc.)
+#   $TYPE$         — identifies the rubberbanding system (tech, trad, etc.)
+#   $MULT_BEHIND$  — script_value naming the curve to use when behind
+#   $MULT_AHEAD$   — script_value naming the curve to use when ahead
+#                    (see the curve library in gk_rubberbanding_generic_script_values.txt)
 #
 # A system "registers" by providing:
 #   - script_value:  gkrb_$TYPE$_score         (per-country composite score)
@@ -84,23 +87,23 @@ every_playable_country = {
 		which = gkrb_$TYPE$_relative
 		value = value:gkrb_relative_score|SCORE_VAR|gkrb_$TYPE$_score|GLOBAL_AVG_VAR|gkrb_$TYPE$_global_avg|
 	}
-	set_variable = {
-		which = gkrb_$TYPE$_mult
-		value = value:gkrb_mult|SCORE_VAR|gkrb_$TYPE$_score|GLOBAL_AVG_VAR|gkrb_$TYPE$_global_avg|
-	}
-	round_variable_to_closest = {
-		which = gkrb_$TYPE$_mult
-		value = 0.0001
-	}
-
 	gkrb_clear_$TYPE$_rubberbanding_modifiers = yes
 
+	# mult curve is chosen per direction by the calling system.
 	if = {
 		limit = {
 			check_variable = {
 				which = gkrb_$TYPE$_relative
 				value < 0.95
 			}
+		}
+		set_variable = {
+			which = gkrb_$TYPE$_mult
+			value = value:$MULT_BEHIND$|SCORE_VAR|gkrb_$TYPE$_score|GLOBAL_AVG_VAR|gkrb_$TYPE$_global_avg|
+		}
+		round_variable_to_closest = {
+			which = gkrb_$TYPE$_mult
+			value = 0.0001
 		}
 		gkrb_apply_behind_$TYPE$_rubberbanding_modifiers = yes
 	}
@@ -111,9 +114,21 @@ every_playable_country = {
 				value > 1.05
 			}
 		}
+		set_variable = {
+			which = gkrb_$TYPE$_mult
+			value = value:$MULT_AHEAD$|SCORE_VAR|gkrb_$TYPE$_score|GLOBAL_AVG_VAR|gkrb_$TYPE$_global_avg|
+		}
+		round_variable_to_closest = {
+			which = gkrb_$TYPE$_mult
+			value = 0.0001
+		}
 		gkrb_apply_ahead_$TYPE$_rubberbanding_modifiers = yes
 	}
 	else = {
+		set_variable = {
+			which = gkrb_$TYPE$_mult
+			value = 0
+		}
 		add_modifier = {
 			modifier = gkrb_$TYPE$_neutral_mod
 			days = -1

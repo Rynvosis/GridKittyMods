@@ -40,7 +40,7 @@ gkrb_tech_mod = {
 # Behind: catch-up bonus (alternatives) + tooltip
 gkrb_tech_behind_mod = {
 	icon = "gfx/interface/icons/modifiers/mod_country_num_tech_alternatives_add_positive.dds"
-	num_tech_alternatives_add = 3.33 #roughly +1 alterntiave for each 30$ you are behind
+	num_tech_alternatives_add = 1 #scaled by gkrb_tech_alt: +1 for each 20% you are behind
 	custom_tooltip = gkrb_tech_behind_mod.tooltip
 	show_only_custom_tooltip = no
 }

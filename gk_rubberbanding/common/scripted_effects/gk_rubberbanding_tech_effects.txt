@@ -47,10 +47,14 @@ gkrb_apply_behind_tech_rubberbanding_modifiers = {
 	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = society_research TYPE = tech DIRECTION = produces }
 	inline_script = { script = gk_rubberbanding/apply_rubberbanding_modifier_apply RESOURCE = engineering_research TYPE = tech DIRECTION = produces }
 
-	# Alternatives catch-up bonus scaled by mult
+	# Alternatives catch-up bonus, linear in the gap rather than following the mult curve
+	set_variable = {
+		which = gkrb_tech_alt
+		value = value:gkrb_tech_alt_bonus
+	}
 	add_modifier = {
 		modifier = gkrb_tech_behind_mod
 		days = -1
-		multiplier = gkrb_tech_mult
+		multiplier = gkrb_tech_alt
 	}
 }
