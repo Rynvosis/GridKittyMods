@@ -1,4 +1,4 @@
-# Positive traits on the CYBER and BIOGENESIS overlay legs.
+﻿# Positive traits on the CYBER and BIOGENESIS overlay legs.
 # CYBER and BIOGENESIS are not real species_class tokens; those legs come in via
 # portrait_override. Real-class legs go in species_class.
 
@@ -166,7 +166,10 @@ trait_gk_tinkerers = {
 	cost = 2
 	category = normal
 	inline_script = "traits/gk_access_positive_machine"
-	opposites = { "trait_invasive" }
+	opposites = { "trait_invasive" "trait_gk_herbalists" "trait_gk_panoptics" "trait_gk_technophobes"
+	"trait_natural_engineers" "trait_cyborg_bionic_engineers" "trait_robot_artificial_engineers"
+	"trait_robot_recycled" "trait_robot_biomimetic_assembly"
+	"trait_photoadaptive" "trait_solar_cells" "trait_recursive_learners" "trait_structural_awareness" }
 	allowed_archetypes = { BIOLOGICAL LITHOID MACHINE ROBOT }
 	species_class = { HUM }
 	inline_script = "traits/gk_portraits_cyber"

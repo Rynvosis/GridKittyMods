@@ -1,4 +1,4 @@
-# Positive traits for the COMMON category (portraits with no overlay).
+﻿# Positive traits for the COMMON category (portraits with no overlay).
 # Gate is the dummy no-match class plus the COMMON portrait list; no
 # species_class_override, so Mutation cannot grant these off-portrait.
 
@@ -80,7 +80,8 @@ trait_gk_herbalists = {
 	cost = 2
 	category = normal
 	inline_script = "traits/gk_access_positive"
-	opposites = { "trait_invasive" }
+	opposites = { "trait_invasive" "trait_gk_tinkerers" "trait_gk_panoptics"
+	"trait_natural_sociologists" "trait_cyborg_bionic_sociologists" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { WILDERNESS }
 	inline_script = "traits/gk_portraits_common"
