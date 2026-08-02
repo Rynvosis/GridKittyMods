@@ -273,7 +273,7 @@ country_event = {
 	trigger = {
 		OR = {
 			has_valid_civic = civic_gk_ec_algocracy
-			ruler = { has_leader_flag = gk_ec_ai_ruler@root }
+			ruler? = { has_leader_flag = gk_ec_ai_ruler@root }
 		}
 	}
 
@@ -281,7 +281,7 @@ country_event = {
 		if = { # Added civic
 			limit = {
 				has_valid_civic = civic_gk_ec_algocracy
-				NOT = { ruler = { has_leader_flag = gk_ec_ai_ruler@root } }
+				NOT = { ruler? = { has_leader_flag = gk_ec_ai_ruler@root } }
 			}
 			country_event = { id = gk_ec_civic.400 }
 			create_message = {
@@ -293,7 +293,7 @@ country_event = {
 		else_if = { # Removed civic
 			limit = {
 				NOT = { has_valid_civic = civic_gk_ec_algocracy }
-				ruler = { has_leader_flag = gk_ec_ai_ruler@root }
+				ruler? = { has_leader_flag = gk_ec_ai_ruler@root }
 			}
 			ruler = { kill_leader = { show_notification = no fire = yes } }
 			create_message = {
