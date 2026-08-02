@@ -225,8 +225,25 @@ Available to: Standard empires (Militarist or Fanatic Militarist required). Non-
 
 The **Military Academy** also converts Politicians to Stratocrats, so any non-gestalt empire can access the job without the civic. The building is empire-limited to one, mirroring how the Research Institute grants Head Researchers outside Technocracy.
 
+Everything the job does hangs off the **Stratocrat** concept, so the civic tooltip and the Military Academy tooltip both link the same text and neither has to restate it.
+
 **Councilor** (Supreme Commandant, Commander only):
 - -2% Soldier upkeep per level, which also covers Stratocrats through their soldier inheritance
+
+### Augmentation Bazaars (`03_corporate_civics.txt` — vanilla overwrite)
+
+Available to: Megacorps unconditionally, plus standard empires with Individualist or Fanatic Individualist. Non-gestalt, non-machine only. Cannot be combined with Merchant Guilds.
+
+Vanilla restricts this civic to Corporate authority. It is now open to Individualist regular empires, who get the identical civic rather than a copy of it, so every effect that checks for Augmentation Bazaars keeps working: the eight Cyborg traits, the Augmentation Bazaar building, the free Cybernetic ascension, the cyberization situation bonuses, and the block on all other ascension paths.
+
+**Effects** (unchanged from vanilla):
+- +4 Trade from Augmentors
+- Unlocks the Cyborg traits at empire creation
+- Grants the Augmentation Bazaar building, one per planet
+- Grants Cybernetic ascension for free, and blocks the Genetic, Psionic, and Synthetic paths
+- Politician jobs become **Augmentation Merchants**, producing 6 Trade and 1.5 less Unity
+
+A non-corporate empire has no branch offices, so the Offworld Implant Hub holding is the one part of the civic it cannot use. Its tooltip is swapped to say so.
 
 ### Raiding Civics
 

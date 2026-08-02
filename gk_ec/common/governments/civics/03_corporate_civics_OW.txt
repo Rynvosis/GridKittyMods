@@ -1,0 +1,65 @@
+# Version last updated: 4.4.6
+# Overwrites: civic_augmentation_bazaars
+# Reason: Open the civic to Individualist regular empires, exclude Merchant Guilds, and swap
+#         the effects tooltip for non-corporates (no branch office holding, no Executives)
+
+civic_augmentation_bazaars = {
+	playable = { has_machine_age_dlc = yes }
+	ai_playable = { has_machine_age_dlc = yes }
+	random_weight = {
+		base = 4
+	}
+	modification = no
+	description = "civic_tooltip_augmentation_bazaars_effects"
+	potential = {
+		OR = {
+			authority = { value = auth_corporate }
+			civics = { value = civic_galactic_sovereign_megacorp }
+			ethics = {
+				OR = {
+					value = ethic_individualist
+					value = ethic_fanatic_individualist
+				}
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		origin = {
+			NOR = {
+				value = origin_shroudwalker_apprentice
+				value = origin_synthetic_fertility
+				value = origin_evolutionary_predators
+				value = origin_endbringers
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_chosen
+				value = civic_chosen
+				value = civic_hive_chosen
+				value = civic_machine_chosen
+				value = civic_corporate_chosen
+				value = civic_entropy_drinkers_corporate
+			}
+			NOT = { value = civic_merchant_guilds }
+		}
+		species_archetype = { NOT = { value = MACHINE } }
+	}
+
+	modifier = {
+		planet_augmentors_trade_produces_add = 4
+	}
+
+	# No modifier block: the swap inherits the base one unchanged.
+	# Icon stays vanilla: civic swaps resolve their tile from the base civic key, so a
+	# swap-specific .dds is never looked up. Tested, does not work.
+	swap_type = {
+		trigger = { NOT = { has_authority = auth_corporate } }
+		description = "civic_tooltip_gk_ec_augmentation_bazaars_noncorp_effects"
+	}
+}

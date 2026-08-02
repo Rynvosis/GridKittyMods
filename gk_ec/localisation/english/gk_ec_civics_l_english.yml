@@ -288,3 +288,9 @@
 
   gk_ec_civic.401.name: "System Reboot"
   gk_ec_civic.401.desc: "The central AI has been destroyed, but its backup systems have engaged. A new instance is being initialized."
+
+  ###
+  # Augmentation Bazaars (vanilla overwrite)
+  ###
+
+  civic_tooltip_gk_ec_augmentation_bazaars_noncorp_effects: "- $SPECIES_TRAITS$ Allows selection of ['concept_universal_augmentations_traits'] $NEW_LINE$- $AVAILABLE_BUILDINGS$ ['concept_augmentation_bazaars']$NEW_LINE$- £job_politician£ §Y$job_politician_plural$§! are replaced with £job_augmentation_merchant£ §Y$job_augmentation_merchant_plural$§!"
