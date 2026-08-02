@@ -1,0 +1,8 @@
+# GK EC Stratocracy Game Concepts
+
+# No databank entry: the concept exists to carry the Stratocrat job's behaviour
+# into any tooltip that grants it, without tying that text to the civic.
+concept_gk_stratocrat = {
+	alias = { concept_gk_stratocrats }
+	icon = "gfx/interface/icons/jobs/job_soldier.dds"
+}

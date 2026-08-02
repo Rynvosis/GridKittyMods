@@ -223,9 +223,12 @@
 
   civic_gk_ec_stratocracy: "Stratocracy"
   civic_gk_ec_stratocracy_desc: "Military officers govern directly, replacing civilian administrators with commanders whose authority derives from rank and service."
-  civic_gk_ec_stratocracy_effects: "- £job_politician£ §Y$job_politician$§! Jobs are converted to £job_soldier£ §Y$job_stratocrat_plural$§! Jobs\n- The £building£ §Y$building_military_academy$§! converts £job_politician£ §Y$job_politician$§! Jobs to £job_soldier£ §Y$job_stratocrat_plural$§! Jobs\n- §YCommander§! governors no longer penalize §YSpecialist§! output\n- §Y$job_stratocrat_plural$§! upkeep §YAlloys§! instead of §YConsumer Goods§! and gain §Y$job_soldier$§! production modifiers\n- Each §Y$job_stratocrat$§! provides §G+2§! ['naval_capacity']"
+  civic_gk_ec_stratocracy_effects: "- £job_politician£ §Y$job_politician$§! Jobs are converted to £job_soldier£ ['concept_gk_stratocrat'] Jobs\n- £commander£ ['concept_commander'] governors no longer penalize §YSpecialist§! output"
 
-  building_military_academy_stratocrat_tt: "£job_politician£ §Y$job_politician$§! Jobs are converted to £job_soldier£ §Y$job_stratocrat_plural$§! Jobs"
+  building_military_academy_stratocrat_tt: "£job_politician£ §Y$job_politician$§! Jobs are converted to £job_soldier£ ['concept_gk_stratocrat'] Jobs"
+
+  concept_gk_stratocrat: "$job_stratocrat_plural$"
+  concept_gk_stratocrat_desc: "§H$job_stratocrat_plural$§! are £job_politician£ §Y$job_politician$§! Jobs staffed by military officers.\n\n- Upkeep £alloys£ §Y1.5 Alloys§! instead of £consumer_goods£ §Y3 Consumer Goods§!\n- Produce £unity£ §Y1§! less ['concept_unity']\n- Count as £job_soldier£ §Y$job_soldier_plural$§! and gain all §Y$job_soldier$§! modifiers\n- Provide §G+2§! ['naval_capacity'] each"
 
   councilor_gk_ec_stratocracy: "Supreme Commandant"
   councilor_gk_ec_stratocracy_female: "$councilor_gk_ec_stratocracy$"

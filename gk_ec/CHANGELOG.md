@@ -8,6 +8,7 @@ Gestalt Consciousness, Hive Ascetic, and Synthetic Evolution no longer require U
 Stratocrats now pay for their inherited soldier modifiers with 1 Unity, on top of the flat +2 Naval Capacity each one provides
 The Military Academy now converts Politicians to Stratocrats, so any non-gestalt empire can field them without taking the civic, the same way the Research Institute grants Head Researchers outside Technocracy
 Stratocracy councilor is now the quartermaster corps, cutting Soldier upkeep by 2% per level, which covers Stratocrats too
+Stratocrat is now a hoverable concept, so the civic and the Military Academy both explain the job the same way instead of the building granting behaviour it never described
 Collectivist faction now counts Employee Ownership (Worker Cooperatives) as welfare instead of treating it like Decent Conditions
 Paternalism no longer angers the Totalitarian faction: it fulfills the faction's stratification demand despite the forced Social Welfare
 Updated for Stellaris 4.4.5
