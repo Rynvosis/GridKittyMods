@@ -1,0 +1,17 @@
+councilor_gk_ec_shadow_council_megacorp = {
+	leader_class = { commander scientist official }
+	is_leader_possible = {
+		OR = {
+			leader_class = commander
+			leader_class = scientist
+			leader_class = official
+		}
+	}
+	civic = civic_gk_ec_shadow_council_megacorp
+	modifier = {
+		pop_category_rulers_upkeep_mult = -0.04
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}

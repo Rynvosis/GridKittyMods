@@ -294,3 +294,15 @@
   ###
 
   civic_tooltip_gk_ec_augmentation_bazaars_noncorp_effects: "- $SPECIES_TRAITS$ Allows selection of ['concept_universal_augmentations_traits'] $NEW_LINE$- $AVAILABLE_BUILDINGS$ ['concept_augmentation_bazaars']$NEW_LINE$- £job_politician£ §Y$job_politician_plural$§! are replaced with £job_augmentation_merchant£ §Y$job_augmentation_merchant_plural$§!"
+
+  ###
+  # Shadow Council
+  ###
+
+  civic_gk_ec_shadow_council_megacorp: "Shadow Board"
+  civic_gk_ec_shadow_council_megacorp_desc: "Unbeknownst to its own shareholders, this corporation is actually steered from behind the scenes by an unlisted board. Quarterly votes must be held and minutes must be filed, but the whims of the proxy vote should also be guarded against. After all, what if the fools elect the wrong chairman?"
+
+  councilor_gk_ec_shadow_council_megacorp: "Silent Partner"
+  councilor_gk_ec_shadow_council_megacorp_female: "$councilor_gk_ec_shadow_council_megacorp$"
+  councilor_gk_ec_shadow_council_megacorp_desc: "Officially, the $TITLE$ holds no voting stock, but may have a hidden agenda."
+

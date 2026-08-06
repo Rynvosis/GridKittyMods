@@ -173,6 +173,18 @@ Available to: All authority types. Hive variant overwrites vanilla Hive Ascetic.
 **Councilor** (Minister of Austerity / Efficiency Auditor):
 - -2% Building Upkeep per level
 
+### Shadow Board
+
+Available to: Megacorp empires (Corporate authority). Megacorp counterpart to vanilla Shadow Council, which stays Standard-only.
+
+**Effects**:
+- -75% Election Cost, +5 Election Term Variance
+- +1 Councilor Skill, +1 Intel Decryption, +10% Spy Network Growth
+- +60 Instrument of Desire Attunement
+
+**Councilor** (Silent Partner):
+- -4% Ruler Upkeep
+
 ### Constitutional Monarchy
 
 Available to: Standard empires (Democratic authority required). Cannot be removed.

@@ -1,0 +1,56 @@
+# Shadow Council — Megacorp variant of the vanilla civic, mechanically identical.
+# Vanilla civic_shadow_council is left untouched; this is a new civic gated to corporate.
+#
+# Icon is a hue/gamma recolor of the vanilla civic_shadow_council.dds into the megacorp
+# palette, not a generated glyph, so it is deliberately absent from used_icons.csv:
+#   magick <vanilla>/civic_shadow_council.dds -modulate 100,43,42 -gamma 0.8 \
+#     -define dds:compression=none civic_gk_ec_shadow_council_megacorp.dds
+
+civic_gk_ec_shadow_council_megacorp = {
+	playable = { always = yes }
+	ai_playable = { always = yes }
+
+	potential = {
+		authority = { value = auth_corporate }
+	}
+
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = democratic_crusaders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = peaceful_traders
+			}
+		}
+	}
+
+	modifier = {
+		election_term_variance_add = 5	# Only use positive values for this modifier
+		country_election_cost_mult = -0.75
+		councilor_skill_add = 1
+		intel_decryption_add = 1
+		spy_network_daily_value_mult = 0.1
+		add_attunement_the_instrument_of_desire = @civic_attunement1
+	}
+
+	alternate_civic_version = civic_shadow_council
+
+	modification = yes
+}

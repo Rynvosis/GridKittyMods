@@ -1,3 +1,4 @@
+Added Shadow Board civic (megacorp): corporate counterpart to vanilla Shadow Council, with the same election, councilor skill, and intel bonuses
 Fixed the Algocracy government check throwing a script error for every rulerless country in the galaxy, such as enclaves, curators, and fallen empires
 Augmentation Bazaars is no longer megacorp-only: any Individualist empire can take it, keeping every effect that checks for the civic, though it cannot be paired with Merchant Guilds and non-corporates still have no branch offices to host Offworld Implant Hubs
 Rulers of the Collectivist and Individualist ethics no longer read as diverging from the empire, which was quietly costing every faction approval
