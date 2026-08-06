@@ -1,3 +1,4 @@
+Added Shadow Board civic (megacorp): corporate counterpart to vanilla Shadow Council, with the same election, councilor skill, and intel bonuses
 Rulers of the Collectivist and Individualist ethics no longer read as diverging from the empire, which was quietly costing every faction approval
 The Represented on Council penalty is now -15 instead of -20, since a fourth ethic means a fourth faction competing for the same three councilor seats
 Each of your empire's ethics is now guaranteed a seat on the starting council, so no faction begins the game demanding representation it could never have had

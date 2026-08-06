@@ -283,3 +283,14 @@
 
   gk_ec_civic.401.name: "System Reboot"
   gk_ec_civic.401.desc: "The central AI has been destroyed, but its backup systems have engaged. A new instance is being initialized."
+
+  ###
+  # Shadow Council
+  ###
+
+  civic_gk_ec_shadow_council_megacorp: "Shadow Board"
+  civic_gk_ec_shadow_council_megacorp_desc: "Unbeknownst to its own shareholders, this corporation is actually steered from behind the scenes by an unlisted board. Quarterly votes must be held and minutes must be filed, but the whims of the proxy vote should also be guarded against. After all, what if the fools elect the wrong chairman?"
+
+  councilor_gk_ec_shadow_council_megacorp: "Silent Partner"
+  councilor_gk_ec_shadow_council_megacorp_female: "$councilor_gk_ec_shadow_council_megacorp$"
+  councilor_gk_ec_shadow_council_megacorp_desc: "Officially, the $TITLE$ holds no voting stock, but may have a hidden agenda."
