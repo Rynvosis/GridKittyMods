@@ -1,0 +1,177 @@
+# Version last updated: 4.4.6
+# Overwrite vanilla Scorched Earth so any empire with a Volcanic homeworld can take it,
+# not just the INF species class. The regular variant already adds pc_volcanic to the
+# homeworld picker; the hive variant did not, so those lines are copied across.
+
+civic_scorched_earth = {
+	playable = { has_infernals = yes }
+	ai_playable = { has_infernals = yes }
+	description = "civic_scorched_earth_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+	possible = {
+		OR = {
+			species_class = { value = INF }
+			preferred_planet_class = { value = pc_volcanic }
+		}
+		ethics = {
+			OR = {
+				text = civic_tooltip_xenophobe
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+			NOR = {
+				text = civic_tooltip_not_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_barbaric_despoilers
+				value = civic_pompous_purists
+				value = civic_crusader_spirit
+				value = civic_selective_kinship
+				value = civic_fanatic_purifiers
+				value = civic_death_cult
+				value = civic_secret_societies
+				value = civic_diplomatic_corps
+				value = civic_memorialist
+				value = civic_void_reavers
+			}
+			NOR = {
+				text = civic_tooltip_not_guardian
+				value = civic_sovereign_guardianship
+				value = civic_corporate_sovereign_guardianship
+				value = civic_hive_sovereign_guardianship
+				value = civic_machine_sovereign_guardianship
+			}
+			NOR = {
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+				value = civic_machine_guided_sapience
+			}
+		}
+		origin = {
+			NOR = {
+				value = origin_syncretic_evolution
+				value = origin_common_ground
+				value = origin_hegemon
+				value = origin_tree_of_life
+				value = origin_toxic_knights
+				value = origin_broken_shackles
+				value = origin_here_be_dragons
+				value = origin_ocean_paradise
+				value = origin_wilderness
+				value = origin_fear_of_the_dark
+				value = origin_scion
+			}
+		}
+	}
+	modification = no
+	random_weight = {
+		base = 1000
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Infernals Species Pack" }
+		}
+		modifier = {
+			factor = 0
+			blocks_disruptive_gameplay = yes
+		}
+	}
+	modifier = {
+		ship_weapon_range_mult = 0.15
+		ship_armor_mult = 0.15
+		starbase_shipyard_build_speed_mult = 0.15
+		country_naval_cap_mult = 0.5
+		army_health = 0.4
+		category_materials_research_speed_mult = 0.5
+	}
+	removed_climate_labels = { TYPE_HEADER_03 }
+	added_climate_labels = { TYPE_HEADER_04 }
+	removed_planet_types = { pc_arctic pc_alpine pc_tundra }
+	added_planet_types = { pc_volcanic }
+}
+
+civic_hive_scorched_earth = {
+	playable = { has_infernals = yes }
+	ai_playable = { has_infernals = yes }
+	description = "civic_scorched_earth_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		OR = {
+			species_class = { value = INF }
+			preferred_planet_class = { value = pc_volcanic }
+		}
+		civics = {
+			NOR = {
+				value = civic_hive_devouring_swarm
+				value = civic_death_cult
+				value = civic_hive_empath
+				value = civic_hive_memorialist
+				value = civic_hive_familiar_face
+				value = civic_secret_societies
+				value = civic_hive_bodysnatcher
+			}
+			NOR = {
+				text = civic_tooltip_not_guardian
+				value = civic_sovereign_guardianship
+				value = civic_corporate_sovereign_guardianship
+				value = civic_hive_sovereign_guardianship
+				value = civic_machine_sovereign_guardianship
+			}
+			NOR = {
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+				value = civic_machine_guided_sapience
+			}
+		}
+		origin = {
+			NOR = {
+				value = origin_syncretic_evolution
+				value = origin_common_ground
+				value = origin_hegemon
+				value = origin_tree_of_life
+				value = origin_toxic_knights
+				value = origin_broken_shackles
+				value = origin_here_be_dragons
+				value = origin_ocean_paradise
+				value = origin_fear_of_the_dark
+			}
+		}
+	}
+	modification = no
+	random_weight = {
+		base = 1000
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Infernals Species Pack" }
+		}
+		modifier = {
+			factor = 0
+			blocks_disruptive_gameplay = yes
+		}
+	}
+	modifier = {
+		councilor_gestalt_regulatory_exp_gain = @gestalt_civic_node_xp_rate
+		ship_weapon_range_mult = 0.15
+		ship_armor_mult = 0.15
+		starbase_shipyard_build_speed_mult = 0.15
+		country_naval_cap_mult = 0.5
+		army_health = 0.4
+		category_materials_research_speed_mult = 0.5
+	}
+	removed_climate_labels = { TYPE_HEADER_03 }
+	added_climate_labels = { TYPE_HEADER_04 }
+	removed_planet_types = { pc_arctic pc_alpine pc_tundra }
+	added_planet_types = { pc_volcanic }
+}

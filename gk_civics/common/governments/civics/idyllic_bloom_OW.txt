@@ -1,0 +1,81 @@
+# Version last updated: 4.4.6
+# Overwrite vanilla Idyllic Bloom to drop the FUN/PLANT species_class restriction.
+# is_idyllic_bloom_empire already admits non-plantoids through civic_life_seeded, so the
+# Gaiaseeders chain, attunement, and councilor all work unchanged.
+
+civic_idyllic_bloom = {
+	modification = no
+	playable = { host_has_dlc = "Plantoids Species Pack" }
+	ai_playable = { host_has_dlc = "Plantoids Species Pack" }
+	description = "civic_tooltip_idyllic_bloom_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { NOT = { value = auth_corporate } }
+	}
+	possible = {
+		is_nomadic = no
+		origin = {
+			NOR = {
+				value = origin_void_dwellers
+				value = origin_evolutionary_predators
+				value = origin_unplugged
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+			NOR = {
+				text = civic_tooltip_not_world_forgers
+				value = civic_world_forgers
+				value = civic_hive_world_forgers
+				value = civic_machine_world_forgers
+				value = civic_corporate_world_forgers
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+	}
+
+	modifier = {
+		add_attunement_the_composer_of_strands = @civic_attunement1
+	}
+	hide_modifiers = yes
+}
+
+civic_hive_idyllic_bloom = { # Mycorrhizal Ideal
+	modification = no
+	playable = { host_has_dlc = "Plantoids Species Pack" }
+	ai_playable = { host_has_dlc = "Plantoids Species Pack" }
+	description = "civic_tooltip_idyllic_bloom_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		is_nomadic = no
+		origin = {
+			NOR = {
+				value = origin_void_dwellers
+				value = origin_evolutionary_predators
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+	}
+	modifier = {
+		councilor_gestalt_growth_exp_gain = @gestalt_civic_node_xp_rate
+		add_attunement_the_composer_of_strands = @civic_attunement1
+	}
+	swap_type = {
+		name = civic_wilderness_idyllic_bloom
+		trigger = {
+			exists = this
+			is_wilderness_empire = yes
+		}
+		description = "civic_tooltip_idyllic_bloom_effects"
+	}
+}
