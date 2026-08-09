@@ -1,3 +1,4 @@
+Resynced the Synthetic Evolution overwrite to 4.4.6, restoring the rival ascension perk and Synthetic Age checks that had gone missing from its potential block
 Added Shadow Board civic (megacorp): corporate counterpart to vanilla Shadow Council, with the same election, councilor skill, and intel bonuses
 Fixed the Algocracy government check throwing a script error for every rulerless country in the galaxy, such as enclaves, curators, and fallen empires
 Augmentation Bazaars is no longer megacorp-only: any Individualist empire can take it, keeping every effect that checks for the civic, though it cannot be paired with Merchant Guilds and non-corporates still have no branch offices to host Offworld Implant Hubs
