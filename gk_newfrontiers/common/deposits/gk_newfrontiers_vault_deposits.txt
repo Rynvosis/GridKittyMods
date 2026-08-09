@@ -10,6 +10,12 @@
 ## Energy and mineral deposits average ~2.67 capacity, on the scale of vanilla
 ## standard worlds; vault stays leaner (+2 = @high) since district_vault has a
 ## min_for_deposits_on_planet floor guaranteeing its presence instead.
+##
+## Every deposit carries terraforming_swap_types back to same-capacity vanilla
+## deposits (the 15_infernals pattern), so terraforming a Sterile world into a
+## normal class converts its capacity instead of wiping it. Vault swaps to
+## farming: that capacity was farming before gk_rebuild_sterile_deposits
+## converted it on the way in, so round trips are stable.
 
 @high = 16
 @med = 8
@@ -26,6 +32,13 @@ d_sterile_thermal_vents = {
 	category = deposit_cat_energy
 	planet_modifier = { district_generator_max_add = 3 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_geothermal_vent
+		d_underwater_vent
+		d_tempestous_mountain
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -36,6 +49,13 @@ d_sterile_magma_pockets = {
 	category = deposit_cat_energy
 	planet_modifier = { district_generator_max_add = 3 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_geothermal_vent
+		d_underwater_vent
+		d_tempestous_mountain
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -46,6 +66,13 @@ d_sterile_fumarole_fields = {
 	category = deposit_cat_energy
 	planet_modifier = { district_generator_max_add = 3 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_geothermal_vent
+		d_underwater_vent
+		d_tempestous_mountain
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -56,6 +83,13 @@ d_sterile_warm_flats = {
 	category = deposit_cat_energy
 	planet_modifier = { district_generator_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_searing_desert
+		d_frozen_gas_lake
+		d_rushing_waterfalls
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -66,6 +100,13 @@ d_sterile_heat_seams = {
 	category = deposit_cat_energy
 	planet_modifier = { district_generator_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_searing_desert
+		d_frozen_gas_lake
+		d_rushing_waterfalls
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -76,6 +117,13 @@ d_sterile_geothermal_fields = {
 	category = deposit_cat_energy
 	planet_modifier = { district_generator_max_add = 4 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_geothermal_vent
+		d_underwater_vent
+		d_tempestous_mountain
+	}
 	drop_weight = { weight = @low }
 }
 
@@ -90,6 +138,12 @@ d_sterile_rich_seams = {
 	category = deposit_cat_minerals
 	planet_modifier = { district_mining_max_add = 3 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_rich_mountain
+		d_submerged_ore_veins
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -100,6 +154,12 @@ d_sterile_ore_layers = {
 	category = deposit_cat_minerals
 	planet_modifier = { district_mining_max_add = 3 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_rich_mountain
+		d_submerged_ore_veins
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -110,6 +170,12 @@ d_sterile_metal_fields = {
 	category = deposit_cat_minerals
 	planet_modifier = { district_mining_max_add = 3 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_rich_mountain
+		d_submerged_ore_veins
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -120,6 +186,13 @@ d_sterile_mineral_hills = {
 	category = deposit_cat_minerals
 	planet_modifier = { district_mining_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+		d_fungal_caves
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -130,6 +203,13 @@ d_sterile_ore_veins = {
 	category = deposit_cat_minerals
 	planet_modifier = { district_mining_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+		d_fungal_caves
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -140,6 +220,12 @@ d_sterile_deep_ore = {
 	category = deposit_cat_minerals
 	planet_modifier = { district_mining_max_add = 4 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_rich_mountain
+		d_submerged_ore_veins
+	}
 	drop_weight = { weight = @low }
 }
 
@@ -154,6 +240,14 @@ d_sterile_salt_domes = {
 	category = deposit_cat_misc
 	planet_modifier = { district_vault_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fungal_caves
+		d_fertile_lands
+		d_great_river
+		d_lush_jungle
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -164,6 +258,14 @@ d_sterile_basalt_galleries = {
 	category = deposit_cat_misc
 	planet_modifier = { district_vault_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fungal_caves
+		d_fertile_lands
+		d_great_river
+		d_lush_jungle
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -174,6 +276,14 @@ d_sterile_stable_strata = {
 	category = deposit_cat_misc
 	planet_modifier = { district_vault_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fungal_caves
+		d_fertile_lands
+		d_great_river
+		d_lush_jungle
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -184,6 +294,14 @@ d_sterile_collapsed_aquifer = {
 	category = deposit_cat_misc
 	planet_modifier = { district_vault_max_add = 2 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fungal_caves
+		d_fertile_lands
+		d_great_river
+		d_lush_jungle
+	}
 	drop_weight = { weight = @med }
 }
 
@@ -194,6 +312,13 @@ d_sterile_fractured_shelf = {
 	category = deposit_cat_misc
 	planet_modifier = { district_vault_max_add = 1 }
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_green_hills
+		d_rugged_woods
+		d_boggy_fens
+	}
 	drop_weight = { weight = @high }
 }
 
@@ -207,6 +332,14 @@ d_sterile_sealed_caverns = {
 		pop_environment_tolerance = 0.15
 	}
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fungal_caves
+		d_fertile_lands
+		d_great_river
+		d_lush_jungle
+	}
 	drop_weight = { weight = @med }
 }
 
@@ -220,6 +353,14 @@ d_sterile_deep_cavity = {
 		planet_max_districts_add = 1
 	}
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fungal_caves
+		d_fertile_lands
+		d_great_river
+		d_lush_jungle
+	}
 	drop_weight = { weight = @low }
 }
 
@@ -240,5 +381,11 @@ d_sterile_gas_pockets = {
 		planet_miners_exotic_gases_produces_add = @SR_SMALL
 	}
 	potential = { is_planet_class = pc_sterile }
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fuming_bog
+		d_volcanic_fumarole
+	}
 	drop_weight = { weight = @med }
 }
