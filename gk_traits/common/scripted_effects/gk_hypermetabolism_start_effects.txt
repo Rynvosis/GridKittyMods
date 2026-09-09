@@ -1,0 +1,46 @@
+# trait_gk_hypermetabolism game-start bonus building blocks. Called from the
+# capital planet scope — orchestration (which bucket to call, foundry grant)
+# lives in the country_event, not here.
+
+# Mineral-equivalent district — used by both the lithoid and infernal buckets.
+gk_hypermetabolism_add_mining_bonus_effect = {
+	if = {
+		limit = { uses_district_set = standard }
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 1
+			district = district_mining
+		}
+	}
+	else_if = {
+		limit = { uses_district_set = volcanic_world }
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 1
+			district = district_melting
+		}
+	}
+	else_if = {
+		limit = { is_planet_class = pc_habitat }
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 1
+			district = district_hab_mining
+		}
+	}
+}
+
+# Food-equivalent district — organic bucket only.
+gk_hypermetabolism_add_farming_bonus_effect = {
+	if = {
+		limit = { uses_district_set = standard }
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 1
+			district = district_farming
+		}
+	}
+	else_if = {
+		limit = { is_planet_class = pc_habitat }
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 1
+			district = district_hab_energy
+		}
+	}
+}

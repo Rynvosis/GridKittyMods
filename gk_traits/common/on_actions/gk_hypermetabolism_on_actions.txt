@@ -1,0 +1,5 @@
+on_game_start_country = {
+	events = {
+		gk_hypermetabolism.1 # trait_gk_hypermetabolism: bonus starting districts/foundry
+	}
+}

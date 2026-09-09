@@ -1,0 +1,38 @@
+namespace = gk_hypermetabolism
+
+# trait_gk_hypermetabolism starting-district/foundry bonus. Fires once per
+# empire at game start only — never re-triggers on later trait acquisition.
+country_event = {
+	id = gk_hypermetabolism.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = capital_scope
+		any_owned_species = { has_trait = trait_gk_hypermetabolism }
+	}
+
+	immediate = {
+		capital_scope = {
+			if = {
+				limit = { owner = { any_owned_species = { has_trait = trait_lithoid } } }
+				gk_hypermetabolism_add_mining_bonus_effect = yes
+			}
+			else_if = {
+				limit = { owner = { any_owned_species = { has_trait = trait_infernal } } }
+				gk_hypermetabolism_add_mining_bonus_effect = yes
+				if = {
+					limit = { has_zone = { zone = zone_industrial } }
+					add_building = { building = building_foundry_1 zone = zone_industrial }
+				}
+				else = {
+					add_building = building_foundry_1
+				}
+			}
+			else_if = {
+				limit = { owner = { any_owned_species = { has_trait = trait_organic } } }
+				gk_hypermetabolism_add_farming_bonus_effect = yes
+			}
+		}
+	}
+}

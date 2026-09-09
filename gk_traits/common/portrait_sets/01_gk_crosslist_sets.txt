@@ -18,6 +18,21 @@ gk_inf_as_art = {
 	}
 }
 
+gk_inf_as_avi = {
+	species_class = AVI
+	conditional_portraits = {
+		randomizable = {
+			has_infernals = yes
+		}
+		playable = {
+			has_infernals = yes
+		}
+		portraits = {
+			"inf3"
+		}
+	}
+}
+
 gk_fun_hum_rep_as_inf = {
 	species_class = INF
 	conditional_portraits = {
@@ -98,7 +113,6 @@ gk_inf_as_rep = {
 		}
 		portraits = {
 			"inf2"
-			"inf3"
 			"inf7"
 		}
 	}

@@ -1,0 +1,19 @@
+# Version last updated: 4.4.6
+# Overwrites: can_think
+# Reason: Add trait_gk_cyborg_nerve_stapled, the cybernetic port of nerve stapling
+
+# can_think is the single choke point behind the whole nerve-staple lockout.
+# Adding an id here is what actually buys, via ~93 vanilla call sites:
+#   - no leaders generated       00_scripted_triggers.txt:722   can_be_leader
+#   - no ruler jobs              game_rules/00_rules.txt:2836   can_fill_ruler_job
+#   - no specialist jobs         game_rules/00_rules.txt:2829   can_fill_specialist_job
+#   - no happiness at all        game_rules/00_rules.txt:1077   species_has_happiness
+# The trait's own modifier block cannot express any of that.
+can_think = {
+	NOR = {
+		has_trait = trait_nerve_stapled
+		has_trait = trait_zombie
+		has_trait = trait_robot_suppressed
+		has_trait = trait_gk_cyborg_nerve_stapled
+	}
+}

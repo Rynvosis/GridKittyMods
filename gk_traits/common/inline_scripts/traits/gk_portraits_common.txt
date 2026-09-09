@@ -6,12 +6,12 @@ portrait_override = {
 	avi9 cyclopsia eruditer fishow fulgar fun1 fun10 fun11
 	fun12 fun14 fun15 fun17 fun2 fun3 fun7 fun8
 	fun9 human human_legacy humano humanoid_02 humanoid_03 humanoid_05 humanoid_elf
-	humanoid_hp_02 humanoid_hp_08 humanoid_hp_11 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 inf9 krogg
-	lith12 mam10 mam11 mam12 mam13 mam14 mam15 mam3
-	mam4 mam5 mam6 mam7 mam9 mammalian_ar_01 mammalian_ar_02 mammalian_ar_03
-	mammalian_ar_04 mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 mol1 mol11
-	mol13 mol14 mol15 mol2 mol3 mol5 mol6 mol7
-	nec7 pla10 pla13 pla14 pla15 pla4 pla5 pla7
-	pla8 pla9 presentor raptoris rep15 rep16 rep3 rep4
-	rep5 rep6 rep7 rep9 scalyboi tentacliz tox8 zephyran
+	humanoid_hp_02 humanoid_hp_08 humanoid_hp_11 humanoid_hp_13 humanoid_hp_14 humanoid_hp_16 krogg lith12
+	mam10 mam11 mam12 mam13 mam14 mam15 mam3 mam4
+	mam5 mam6 mam7 mam9 mammalian_ar_01 mammalian_ar_02 mammalian_ar_03 mammalian_ar_04
+	mammalian_ar_06 mammalian_ar_07 mammalian_ar_08 mammalian_ar_09 mammalian_ar_10 mol1 mol11 mol13
+	mol14 mol15 mol2 mol3 mol5 mol6 mol7 nec7
+	pla10 pla13 pla14 pla15 pla4 pla5 pla7 pla8
+	pla9 presentor raptoris rep15 rep16 rep3 rep4 rep5
+	rep6 rep7 rep9 scalyboi tentacliz tox8 zephyran
 }

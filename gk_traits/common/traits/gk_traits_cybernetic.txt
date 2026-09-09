@@ -1,0 +1,60 @@
+# Traits belonging to the cybernetic ascension path (category = cyborg).
+# Home for every gk cybernetic trait; not split by polarity the way the
+# portrait-gated suites are.
+#
+# The gate here is the ascension itself, via can_add_cybernetic_traits, which
+# already requires trait_cybernetic plus the Integrated Anatomy tradition.
+# Do NOT add the gk overlay inline scripts (gk_portraits_cyber /
+# gk_class_override_cyber) to anything in this file - those widen portrait
+# access for the Mechanist suite and would hand these traits to species that
+# never cyberised.
+
+# 1:1 port of vanilla trait_nerve_stapled (09_ascension_traits.txt) onto the
+# cybernetic path. The leader/job/happiness lockout is not in this block: it
+# comes from can_think, overwritten in
+# common/scripted_triggers/zz_gk_traits_00_scripted_triggers_OW.txt.
+trait_gk_cyborg_nerve_stapled = {
+	cost = 4	# was a cost block with advanced_traits_have_reduced_cost; that trigger is tr_purity_exemplary_genetics, genetics-only
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	opposites = { "trait_nerve_stapled" "trait_intelligent" "trait_erudite" "trait_natural_engineers" "trait_natural_physicists" "trait_natural_sociologists" "trait_talented" "trait_zombie" "trait_chromalogs" "trait_camouflage" "trait_cyborg_learning_algorithms" "trait_cyborg_bionic_engineers" "trait_cyborg_bionic_physicists" "trait_cyborg_bionic_sociologists" }
+	initial = no
+	randomized = no
+	category = cyborg
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	localized_tags = {
+		SPECIES_TRAIT_CYBORG
+	}
+	tags = { organic positive pop_output leader blocks_leaders empire_size cybernetic drawbacks }
+	modifier = {
+		pop_bonus_workforce_mult = 0.15
+		species_leader_exp_gain = -1
+		species_empire_size_mult = -0.15
+		civilian_and_maintenance_drone_cat_bonus_workforce_mult = -0.90
+	}
+	custom_tooltip_with_modifiers = TRAIT_GK_CYBORG_NERVE_STAPLED_EFFECT
+	slave_cost = {
+		trade = 1500
+	}
+
+	assembly_score = {
+		modifier = {
+			add = 1
+			from = {
+				OR = {
+					has_farming_designation = yes
+					has_generator_designation = yes
+					has_mining_designation = yes
+					has_rural_designation = yes
+				}
+			}
+		}
+	}
+}

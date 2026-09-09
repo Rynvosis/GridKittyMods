@@ -34,6 +34,7 @@ avians = {
 	name = AVI
 
 	sets = {
+		gk_inf_as_avi
 		gk_gauntlet_avians
 	}
 }

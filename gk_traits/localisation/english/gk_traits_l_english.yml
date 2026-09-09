@@ -206,3 +206,8 @@
  # --- SPECIAL ---
  trait_gk_last_children:0 "Last Children"
  trait_gk_last_children_desc:0 "This clever species genetically modified themselves decades ago, but this advance had catastrophic side effects resulting in low birth rates. They might be the last children of their species."
+
+ # --- CYBERNETIC (category = cyborg) ---
+ trait_gk_cyborg_nerve_stapled:0 "Neural Staples"
+ trait_gk_cyborg_nerve_stapled_desc:0 "§LImplanted staples sever the neural pathways governing self-preservation and free will, leaving a docile and obedient client species.§!\n"
+ TRAIT_GK_CYBORG_NERVE_STAPLED_EFFECT:0 "Cannot generate §YLeaders§!\nCannot be employed in §Y$pop_cat_ruler$§! or §Y$pop_cat_specialist$§! Jobs\nHas no §YHappiness§!"
