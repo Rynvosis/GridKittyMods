@@ -15,6 +15,8 @@
 
 # Token Raiding: flat cap, outside the tier ladder above.
 @gk_bucket_cap_token = 0.05
+# Unity paid on completing a token raid, in months of the raider's net unity income.
+@gk_token_raid_unity_months = 12
 
 @gk_max_escalation_tier = 3
 # "FINAL" state threshold: escalation UI switches to final messaging at/above this tier.

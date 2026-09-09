@@ -969,6 +969,12 @@ country_event = {
 	title = GK_RAIDING_ESCALATION_TITLE
 	desc = {
 		trigger = {
+			has_policy_flag = gk_focus_token_raiding
+		}
+		text = GK_RAIDING_ESCALATION_DESC_TOKEN
+	}
+	desc = {
+		trigger = {
 			event_target:gk_raid_tracker = {
 				check_variable = {
 					which = gk_escalation_tier
@@ -1058,6 +1064,11 @@ country_event = {
 		save_event_target_as = gk_cap_raider
 		from = {
 			save_event_target_as = gk_raidee
+		}
+		# Token raid completed — pay the unity reward.
+		if = {
+			limit = { has_policy_flag = gk_focus_token_raiding }
+			add_resource = { unity = value:gk_token_raid_unity }
 		}
 		gk_get_or_create_raid_tracker = yes
 		# Find our own contributor tracker for display

@@ -509,3 +509,18 @@ gk_escalation_influence_cost = {
 		mult = @gk_opportunistic_cost_multiplier
 	}
 }
+
+# Unity paid on completing a token raid: N months of the raider's unity income.
+# This = raider country
+# resource_income_compare is net (profit minus loss), so min = 0 guards a deficit.
+gk_token_raid_unity = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = resource_income_compare
+		parameters = { resource = unity }
+		mode = add
+	}
+	mult = @gk_token_raid_unity_months
+	round = yes
+	min = 0
+}

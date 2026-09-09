@@ -40,8 +40,9 @@ gk_raiding_focus = {
 			gk_focus_token_raiding
 		}
 
+		# Stays below gk_raiding_focus_raiding's 2 even at its best.
 		AI_weight = {
-			factor = 1
+			factor = 0.5
 			modifier = {
 				factor = 3
 				OR = {
