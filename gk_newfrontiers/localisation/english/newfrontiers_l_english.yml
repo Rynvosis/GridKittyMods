@@ -31,6 +31,9 @@
   trait_sterile_planet_preference: "Sterile Planet Preference"
   trait_sterile_planet_preference_short: "Sterile Planet"
   trait_sterile_planet_preference_desc: "$trait_dry_planet_preference_desc$"
+  trait_auto_pc_sterile_preference: "$pc_sterile$ Mutations"
+  trait_auto_pc_sterile_preference_tt: "Dry Climate Habitability: $auto_base_penalty_sum_tt$\n$t$- Wet Climate Habitability: $auto_base_penalty_sum_tt$\n$t$- Cold Climate Habitability: $auto_base_penalty_sum_tt$\n$t$- $pc_nuked$ Habitability: $auto_base_penalty_sum_tt$\n$t$- $pc_volcanic$ Habitability: $auto_base_penalty_sum_tt$\n$t$- $pc_sterile$ Habitability: $auto_base_bonus_sum_tt$"
+  trait_auto_pc_sterile_preference_desc: "$trait_auto_hab_preference_desc$"
   
   
   ####################################

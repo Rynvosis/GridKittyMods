@@ -13,7 +13,7 @@ pc_sterile = {
 	climate = "dry"
 	initial = yes
 	auto_trait_prio = {
-		trait_auto_dry_preference
+		trait_auto_pc_sterile_preference
 	}
 
 	atmosphere_color 		= hsv { 0.48 0.15 0.8 }
