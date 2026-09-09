@@ -93,6 +93,7 @@ Reaping is available to Xenophobe and gestalt empires with Barbaric Despoiler ci
 Cannot be changed while at war. Governs pop-raiding war goals only; does not disable plundering.
 
 - **Abduction**: Standard pop-raiding. Bucket-based escalation with Influence costs.
+- **Token Raiding**: Takes a flat 5% of a target's population and no more. No escalation ladder — when the quota is met the only option offered is the pivot to resource plundering.
 - **Emancipation**: Targets enslaved pops only. Can demand abolition of slavery. Requires Slavery to be banned (or Rogue Servitor).
 - **Reaping**: Removes all pop capture limits and prevents surrender. Available to Barbaric Despoiler civics, Harvesting Protocol, Ravager Swarm, and Xenophobe or gestalt empires with Nihilistic Acquisition.
 

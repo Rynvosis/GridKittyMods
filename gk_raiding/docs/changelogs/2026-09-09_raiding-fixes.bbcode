@@ -1,0 +1,13 @@
+[h3]Raiding Focus[/h3]
+[list]
+[*][b]Token Raiding[/b] (new focus): takes a flat 5% of a target's population and no more. No escalation ladder — once the quota is met the only option offered is the pivot to resource plundering.
+[*][b]Reaping[/b] is no longer the AI's preferred focus. It stays available to everyone who qualifies, but is now a deliberate choice rather than the default.
+[*]Pop raiding is now called [b]Abduction[/b] throughout, making it distinct from [b]Plunder[/b] on the resource side. Robot Raiding's first option reads [b]Organics and Robots[/b] instead of "Capture Robots".
+[/list]
+
+[h3]Fixes[/h3]
+[list]
+[*]The raiding quota report no longer appears when a war ends. Winning by surrender, status quo and white peace all transferred pops and then asked how you wanted to proceed with a war that was already over.
+[*]The opportunistic raiding prompt can no longer fire twice for the same target in the same tick. Bombarding several planets at once queued one prompt per planet before any of them had registered. Asking again after five years in a long war is unchanged and intended.
+[*]Stale raid caps are cleared when a war ends rather than at the next yearly tick, so a rematch declared soon after is not silently blocked from raiding.
+[/list]
