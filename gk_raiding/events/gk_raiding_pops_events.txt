@@ -1065,11 +1065,6 @@ country_event = {
 		from = {
 			save_event_target_as = gk_raidee
 		}
-		# Token Abduction completed — pay the unity reward.
-		if = {
-			limit = { has_policy_flag = gk_focus_token_abduction }
-			add_resource = { unity = value:gk_token_raid_unity }
-		}
 		gk_get_or_create_raid_tracker = yes
 		# Find our own contributor tracker for display
 		if = {

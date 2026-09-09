@@ -21,11 +21,6 @@ defined_text = {
 }
 
 defined_text = {
-	name = GkTokenRaidUnity
-	value = value:gk_token_raid_unity
-}
-
-defined_text = {
 	name = GkDisplayBucketRemaining
 	value = value:gk_display_bucket_remaining_value
 }

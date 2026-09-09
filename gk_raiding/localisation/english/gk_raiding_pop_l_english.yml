@@ -52,7 +52,7 @@ wg_gk_emancipation_status_quo_tooltip:0 "No pops are transferred on status quo."
  # Escalation Events
 GK_RAIDING_ESCALATION_TITLE:0 "Abduction Report"
 GK_RAIDING_ESCALATION_DESC:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nOur commanders await orders on how to proceed."
-GK_RAIDING_ESCALATION_DESC_TOKEN:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nGained §G[Root.GkTokenRaidUnity]§! £unity£ §Yunity§!."
+GK_RAIDING_ESCALATION_DESC_TOKEN:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]"
 GK_RAIDING_ESCALATION_DESC_FINAL:0 "Our forces have nearly exhausted the population of [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nOur commanders request authorization to take everything that remains."
 GK_RAIDING_ESCALATION_DESC_INTEL:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nIntelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain.\nOur commanders await orders on how to proceed."
 GK_RAIDING_ESCALATION_DESC_TRIVIAL:0 "[From.GetName] poses little challenge.\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nOur commanders see no reason to stop."
@@ -173,6 +173,7 @@ concept_gk_pop_raiding_desc:0 "During §Y$war_goal_wg_plunder$§!, §Y$war_goal_
  MESSAGE_GK_POP_RAIDED_ALLY_INVASION:0 "$ALLY|Y$ seized §Y$POPS$§! pops from $PLANET|Y$ in our name.\n"
 
  MESSAGE_GK_POP_RAIDED_SURRENDER:0 "§Y$TARGET$§! surrendered, forfeiting §Y$POPS$§! pops.\n"
+ MESSAGE_GK_BUCKET_REWARD_UNITY:0 "Our raiders gained §G$UNITY$§! £unity£ §Yunity§!.\n"
  MESSAGE_GK_OUR_POPS_RAIDED_SURRENDER:0 "§Y$POPS$§! pops have been surrendered to $FROM|Y$.\n"
 
  # Opinion Modifiers
