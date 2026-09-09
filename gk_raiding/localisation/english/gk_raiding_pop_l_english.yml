@@ -3,10 +3,10 @@
  policy_gk_raiding_focus:0 "Raiding Focus"
  policy_gk_raiding_focus_desc:0 "Selects which pops our raiders capture and which pop-raiding war goals are available."
 
- gk_focus_raiding_name:0 "Raiding"
+ gk_focus_raiding_name:0 "Abduction"
  gk_focus_emancipation_name:0 "Emancipation"
 
- gk_raiding_focus_raiding:0 "Raiding"
+ gk_raiding_focus_raiding:0 "Abduction"
  gk_raiding_focus_raiding_desc:0 "Raiders capture any eligible pops."
 
  gk_raiding_focus_emancipation:0 "Emancipation"
@@ -24,7 +24,7 @@
  gk_allow_robot_raiding_name:0 "Allow"
  gk_forbid_robot_raiding_name:0 "Forbid"
 
- gk_robot_raiding_allowed:0 "Capture Robots"
+ gk_robot_raiding_allowed:0 "Organics and Robots"
  gk_robot_raiding_allowed_desc:0 "Raiders capture both organic and robotic pops."
 
  gk_robot_raiding_forbidden:0 "Organics Only"
@@ -46,7 +46,7 @@ wg_gk_emancipation_status_quo_tooltip:0 "No pops are transferred on status quo."
 
 
  # Escalation Events
-GK_RAIDING_ESCALATION_TITLE:0 "Raiding Report"
+GK_RAIDING_ESCALATION_TITLE:0 "Abduction Report"
 GK_RAIDING_ESCALATION_DESC:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nOur commanders await orders on how to proceed."
 GK_RAIDING_ESCALATION_DESC_FINAL:0 "Our forces have nearly exhausted the population of [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized so far.[Root.GkOwnContributionLine]\nOur commanders request authorization to take everything that remains."
 GK_RAIDING_ESCALATION_DESC_INTEL:0 "Our forces have reached their capture limit against [From.GetName].\n§G[Root.GkDisplayPopsTaken]§! pops have been seized in this campaign.[Root.GkOwnContributionLine]\nIntelligence estimates approximately §G[Root.GkDisplayEligibleRemaining]§! eligible pops remain.\nOur commanders await orders on how to proceed."

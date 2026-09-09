@@ -92,7 +92,7 @@ Reaping is available to Xenophobe and gestalt empires with Barbaric Despoiler ci
 
 Cannot be changed while at war. Governs pop-raiding war goals only; does not disable plundering.
 
-- **Raiding**: Standard pop-raiding. Bucket-based escalation with Influence costs.
+- **Abduction**: Standard pop-raiding. Bucket-based escalation with Influence costs.
 - **Emancipation**: Targets enslaved pops only. Can demand abolition of slavery. Requires Slavery to be banned (or Rogue Servitor).
 - **Reaping**: Removes all pop capture limits and prevents surrender. Available to Barbaric Despoiler civics, Harvesting Protocol, Ravager Swarm, and Xenophobe or gestalt empires with Nihilistic Acquisition.
 
@@ -100,7 +100,7 @@ Cannot be changed while at war. Governs pop-raiding war goals only; does not dis
 
 Cannot be changed while at war. Only available to empires with pop-raiding access.
 
-- **Capture Robots**: Organics and robots
+- **Organics and Robots**: Organics and robots
 - **Organics Only**: Skip robotic pops
 - **Robots Only**: Only robotic pops (requires Materialist, Synthetic empire, Cybernetic ascension, or Machine Intelligence). Incompatible with Emancipation focus.
 
@@ -147,7 +147,7 @@ Invasion bursts against an unauthorized target do not capture pops on the winnin
 
 | War Goal | CB | Pop Type | Cap | Surrender | Plunder |
 |---|---|---|---|---|---|
-| **Raiding** (vanilla OW) | Despoliation | All | Bucket escalation | Bucket remainder | Separate system |
+| **Abduction** (vanilla OW) | Abduction | All | Bucket escalation | Bucket remainder | Separate system |
 | **Plunder** (vanilla OW) | Plundering | None | — | Surrender tribute | +2 loot-months |
 | **Emancipation** | Emancipation | Enslaved | Bucket escalation | Bucket remainder | No |
 | **Reaping** | Despoliation | All | Unlimited | All | No |
