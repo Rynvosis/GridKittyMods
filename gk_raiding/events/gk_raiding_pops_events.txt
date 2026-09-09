@@ -319,7 +319,10 @@ country_event = {
 						}
 					}
 					root = {
-						gk_prompt_opportunistic_if_eligible = yes
+						country_event = {
+							id = gk_raiding_pops.610
+							scopes = { from = event_target:gk_raidee }
+						}
 					}
 				}
 			}
@@ -652,7 +655,10 @@ country_event = {
 			}
 		}
 		else = {
-			gk_prompt_opportunistic_if_eligible = yes
+			country_event = {
+				id = gk_raiding_pops.610
+				scopes = { from = event_target:gk_raidee }
+			}
 		}
 	}
 }
@@ -1589,27 +1595,54 @@ planet_event = {
 		owner = {
 			save_event_target_as = gk_raidee
 		}
+		# Synchronous, and the target is handed over explicitly. The old days = 0
+		# hop queued one event per bombarded planet before any of them had set the
+		# guard flag, so siblings in the same tick could not block each other, and
+		# a second planet with a different owner clobbered gk_raidee first.
 		from = {
 			country_event = {
-				id = gk_raiding_pops.616
-				days = 0
+				id = gk_raiding_pops.610
+				scopes = { from = event_target:gk_raidee }
 			}
 		}
 	}
 }
 
-# Raider-scoped gate. Run as a country_event so root = raider and the
-# shared effect's inner triggers/flags resolve correctly.
-# This = Root = raider, event_target:gk_raidee = target
+# Opportunistic dispatch guard. The single choke point every caller goes through,
+# so "prompted twice in one tick" is not expressible regardless of which caller
+# misbehaves. Also rebases root to the raider, which is what .616 used to exist
+# for. The 2-day dispatch latch is deliberately separate from the 5-year
+# gk_opportunistic_prompted_ flag: that one is the intended "ask again in a long
+# war if you have changed your mind" and must keep working.
+# This = Root = raider, From = raidee
 country_event = {
-	id = gk_raiding_pops.616
+	id = gk_raiding_pops.610
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		exists = event_target:gk_raidee
+		NOT = { has_country_flag = gk_dispatch_opportunistic_@from }
+		gk_can_pop_raid_personally = yes
+		is_at_war_with = from
+		NOT = { has_country_flag = gk_opportunistic_prompted_@from }
+		from = {
+			# No country-type filter: fallen empires can be authorized like anyone else
+			NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
+			NOT = { gk_target_is_raidable_by_root = yes }
+		}
 	}
 	immediate = {
-		gk_prompt_opportunistic_if_eligible = yes
+		set_timed_country_flag = {
+			flag = gk_dispatch_opportunistic_@from
+			days = 2
+		}
+		set_timed_country_flag = {
+			flag = gk_opportunistic_prompted_@from
+			years = @gk_opportunistic_prompt_cooldown_years
+		}
+		country_event = {
+			id = gk_raiding_pops.600
+			scopes = { from = from }
+		}
 	}
 }
 
@@ -1622,7 +1655,7 @@ country_event = {
 	picture = GFX_evt_ground_combat
 	show_sound = event_alien_nature
 	is_triggered_only = yes
-	# Caller (gk_prompt_opportunistic_if_eligible) already gated eligibility and
+	# Caller (the .610 dispatch guard) already gated eligibility and
 	# set gk_opportunistic_prompted_@from. Only re-check that the war is still live.
 	trigger = {
 		is_at_war_with = from

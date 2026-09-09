@@ -261,33 +261,6 @@ gk_save_pop_raid_side_leader_against_target = {
 	}
 }
 
-# Shared raid-or-prompt gate. Fires the opportunistic authorization prompt
-# only if the target isn't already raidable and hasn't already been prompted.
-# This = raider country
-# event_target:gk_raidee = candidate target country
-gk_prompt_opportunistic_if_eligible = {
-	if = {
-		limit = {
-			gk_can_pop_raid_personally = yes
-			is_at_war_with = event_target:gk_raidee
-			NOT = { has_country_flag = gk_opportunistic_prompted_@event_target:gk_raidee }
-			event_target:gk_raidee = {
-				# No country-type filter: fallen empires can be authorized like anyone else
-				NOT = { has_country_flag = gk_opportunistic_raid_authorized_by_@root }
-				NOT = { gk_target_is_raidable_by_root = yes }
-			}
-		}
-		set_timed_country_flag = {
-			flag = gk_opportunistic_prompted_@event_target:gk_raidee
-			years = @gk_opportunistic_prompt_cooldown_years
-		}
-		country_event = {
-			id = gk_raiding_pops.600
-			scopes = { from = event_target:gk_raidee }
-		}
-	}
-}
-
 ######################
 # Shared Raid Core   #
 ######################
