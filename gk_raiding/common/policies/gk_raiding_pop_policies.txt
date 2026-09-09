@@ -72,8 +72,10 @@ gk_raiding_focus = {
 			gk_focus_reaping
 		}
 
+		# Opt-in, not the default: below gk_raiding_focus_raiding's 2 in the
+		# general case, tying only for the empires reaping is actually for.
 		AI_weight = {
-			factor = 5
+			factor = 1
 			modifier = {
 				factor = 2
 				has_ethic = ethic_fanatic_xenophobe
