@@ -31,6 +31,33 @@ gk_raiding_focus = {
 	}
 
 	option = {
+		name = "gk_raiding_focus_token"
+
+		# gk_focus_raiding is carried deliberately alongside the token flag:
+		# wg_plunder.potential, cb_despoliation.potential, gk_raid_generates_opinion_malus
+		# and gk_can_abduct_pop_group_war_goal_check all key on it. Token raiding is
+		# raiding with a smaller bucket, so it keeps the same access. A single-flag
+		# option would silently remove the pop-raiding war goal for this policy.
+		policy_flags = {
+			gk_focus_raiding
+			gk_focus_token_raiding
+		}
+
+		AI_weight = {
+			factor = 1
+			modifier = {
+				factor = 3
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+		}
+	}
+
+	option = {
 		name = "gk_raiding_focus_emancipation"
 
 		valid = {

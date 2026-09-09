@@ -250,6 +250,21 @@ gk_is_emancipation_war_with_from = {
 	}
 }
 
+# Single source of truth for .500 Option C (Pivot to Plundering) availability.
+# Read by the Pivot option itself and by Consolidate's token-raiding fallback, so
+# the two can never disagree and leave the event with no selectable option.
+# This = raider country (event root), From = raidee country
+gk_escalation_pivot_available = {
+	NOT = { has_country_flag = gk_is_opportunistic_escalation }
+	gk_is_plunder_war_with_from = yes
+	event_target:gk_raid_tracker = {
+		check_variable = {
+			which = gk_escalation_tier
+			value < @gk_final_tier_threshold
+		}
+	}
+}
+
 ##############################
 # Opportunistic Raiding      #
 ##############################

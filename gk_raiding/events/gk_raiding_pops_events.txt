@@ -1178,6 +1178,15 @@ country_event = {
 	# Option A: Consolidate
 	option = {
 		name = GK_RAIDING_ESCALATION_CONSOLIDATE
+		trigger = {
+			# Token raiding offers only the pivot — except where the pivot itself is
+			# unavailable, in which case this is the only option left and an
+			# option-less event window is worse than a redundant one.
+			OR = {
+				NOT = { has_policy_flag = gk_focus_token_raiding }
+				NOT = { gk_escalation_pivot_available = yes }
+			}
+		}
 		custom_tooltip = GK_RAIDING_ESCALATION_CONSOLIDATE_TOOLTIP
 		hidden_effect = {
 			# Re-fire after 360 days
@@ -1227,6 +1236,9 @@ country_event = {
 			text = GK_RAIDING_ESCALATION_PRESS_FINAL
 		}
 		name = GK_RAIDING_ESCALATION_PRESS
+		trigger = {
+			NOT = { has_policy_flag = gk_focus_token_raiding }
+		}
 		custom_tooltip = GK_RAIDING_ESCALATION_PRESS_TOOLTIP
 		allow = {
 			resource_stockpile_compare = {
@@ -1363,16 +1375,7 @@ country_event = {
 		name = GK_RAIDING_ESCALATION_PIVOT
 		custom_tooltip = GK_RAIDING_ESCALATION_PIVOT_TOOLTIP
 		trigger = {
-			NOT = {
-				has_country_flag = gk_is_opportunistic_escalation
-			}
-			gk_is_plunder_war_with_from = yes
-			event_target:gk_raid_tracker = {
-				check_variable = {
-					which = gk_escalation_tier
-					value < @gk_final_tier_threshold
-				}
-			}
+			gk_escalation_pivot_available = yes
 		}
 		hidden_effect = {
 			from = {
@@ -1453,6 +1456,7 @@ country_event = {
 			NOT = {
 				has_country_flag = gk_is_opportunistic_escalation
 			}
+			NOT = { has_policy_flag = gk_focus_token_raiding }
 			gk_is_plunder_war_with_from = yes
 		}
 		allow = {

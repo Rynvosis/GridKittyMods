@@ -21,3 +21,13 @@ else = {
 	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_3 }
 	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_3 }
 }
+
+# Token Raiding: flat 5% cap, tier-independent. Overrides the tier mapping above.
+# event_target:gk_cap_raider is set before this runs at both call sites.
+if = {
+	limit = {
+		event_target:gk_cap_raider = { has_policy_flag = gk_focus_token_raiding }
+	}
+	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_token }
+	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_token }
+}

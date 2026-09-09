@@ -13,6 +13,9 @@
 @gk_bucket_cap_2 = 0.50
 @gk_bucket_cap_3 = 1.00
 
+# Token Raiding focus: flat, tier-independent cap. Not part of the ladder above.
+@gk_bucket_cap_token = 0.05
+
 @gk_max_escalation_tier = 3
 # "FINAL" state threshold: escalation UI switches to final messaging at/above this tier.
 @gk_final_tier_threshold = 2
