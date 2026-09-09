@@ -11,7 +11,7 @@
 
  gk_focus_token_abduction_name:0 "Token Abduction"
  gk_raiding_focus_token:0 "Token Abduction"
- gk_raiding_focus_token_desc:0 "Raiders capture up to §Y5%§! of a target's population.\nNo escalation. Only §Yswitch to plundering§! is offered once the cap is reached.\nGrants §G12 months§! of £unity£ §Yunity§! income on completion."
+ gk_raiding_focus_token_desc:0 "Raiders capture up to §Y5%§! of a target's population.\n\nGrants §G12 months§! of £unity£ §Yunity§! income on completion."
 
  gk_raiding_focus_emancipation:0 "Emancipation"
  gk_raiding_focus_emancipation_desc:0 "Raiders target enslaved populations. Unlocks the §YEmancipation§! war goal. Only enslaved pops may be taken.\n\n§ERequires §YSlavery§! to be banned.§!"
