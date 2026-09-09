@@ -840,8 +840,10 @@ gk_track_raided_pops = {
 		}
 		remove_country_flag = gk_escalation_pending_for_@event_target:gk_cap_raider
 		event_target:gk_cap_raider = {
+			# Via the .590 guard: it dedups same-tick dispatches and carries the
+			# one-day delay that keeps the popup off war-end paths.
 			country_event = {
-				id = gk_raiding_pops.500
+				id = gk_raiding_pops.590
 				scopes = { from = event_target:gk_track_raidee_temp }
 			}
 		}

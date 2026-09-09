@@ -54,6 +54,15 @@ on_monthly_pulse_country = {
 	}
 }
 
+# A war has ended — clear stale per-target raid flags on both war leaders now
+# instead of waiting for the yearly pass.
+# Root = Loser, From = Main Winner
+on_war_ended = {
+	events = {
+		gk_raiding_pops.121  # Immediate raid-flag cleanup
+	}
+}
+
 # Yearly pulse for all countries
 # This = Country
 on_yearly_pulse_country = {
