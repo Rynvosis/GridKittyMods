@@ -458,15 +458,32 @@ country_event = {
 
 # Run the .120 flag cleanup at war end; a stale gk_raid_cap_reached_by_@X blocks
 # raiding in a rematch declared before the yearly pass.
-# days = 1: the war still reads live in any_war during the peace tick.
-# Root = Loser, From = Main Winner.
+# Root = Winner Warleader, From = Loser Warleader, FromFrom = War
 country_event = {
 	id = gk_raiding_pops.121
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		country_event = { id = gk_raiding_pops.120 days = 1 }
-		from = { country_event = { id = gk_raiding_pops.120 days = 1 } }
+		fromfrom = {
+			every_war_participant = {
+				country_event = { id = gk_raiding_pops.120 }
+			}
+		}
+	}
+}
+
+# As .121, for status quo endings.
+# Root = Actor, From = Recipient, FromFromFromFrom = War
+country_event = {
+	id = gk_raiding_pops.122
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		fromfromfromfrom = {
+			every_war_participant = {
+				country_event = { id = gk_raiding_pops.120 }
+			}
+		}
 	}
 }
 

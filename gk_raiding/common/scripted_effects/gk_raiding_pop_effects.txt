@@ -840,8 +840,9 @@ gk_track_raided_pops = {
 		}
 		remove_country_flag = gk_escalation_pending_for_@event_target:gk_cap_raider
 		event_target:gk_cap_raider = {
-			# days = 1: the war still reads live during the peace tick, so the
-			# event's is_at_war_with guard only tells the truth a day later.
+			# days = 1: a war goal's on_accept runs mid-peace-tick, so .500's
+			# is_at_war_with guard only tells the truth a day later. Same reason
+			# as vanilla wg_scion_subjugation -> origin.6.
 			country_event = {
 				id = gk_raiding_pops.500
 				days = 1

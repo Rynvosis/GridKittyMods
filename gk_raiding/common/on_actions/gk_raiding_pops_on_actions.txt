@@ -54,11 +54,25 @@ on_monthly_pulse_country = {
 	}
 }
 
-# Clear stale per-target raid flags on both war leaders.
-# Root = Loser, From = Main Winner
-on_war_ended = {
+# Clear stale per-target raid flags on every war participant. These hooks carry the
+# War scope, which on_war_ended does not.
+# Root = Winner Warleader, From = Loser Warleader, FromFrom = War
+on_war_won = {
 	events = {
-		gk_raiding_pops.121  # Immediate raid-flag cleanup
+		gk_raiding_pops.121  # Raid-flag cleanup
+	}
+}
+
+# Root = Actor, From = Recipient, FromFromFromFrom = War
+on_status_quo = {
+	events = {
+		gk_raiding_pops.122  # Raid-flag cleanup
+	}
+}
+
+on_status_quo_forced = {
+	events = {
+		gk_raiding_pops.122  # Raid-flag cleanup
 	}
 }
 
