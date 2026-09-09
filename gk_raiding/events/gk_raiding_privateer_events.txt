@@ -61,12 +61,29 @@ country_event = {
 	immediate = {
 		save_event_target_as = gk_privateer_enclave_country
 
-		# Find patron before conversion (while station is still merc type)
+		# Find patron(s) before conversion (while station is still merc type). Dual and positional,
+		# as vanilla resolves mercenary_patron + mercenary_nomad_patron in enclave.205: nomads own no
+		# systems, so a nomad holds patronage via a waystation starbase in the same system instead.
 		random_owned_fleet = {
 			limit = { is_ship_size = enclave_mercenary_station }
 			solar_system = {
 				space_owner? = {
 					save_event_target_as = gk_privateer_patron
+				}
+				if = {
+					limit = {
+						any_starbase_in_system = {
+							is_waystation_starbase = yes
+							owner = { is_nomadic = yes }
+						}
+					}
+					random_starbase_in_system = {
+						limit = {
+							is_waystation_starbase = yes
+							owner = { is_nomadic = yes }
+						}
+						owner = { save_event_target_as = gk_privateer_nomad_patron }
+					}
 				}
 				save_event_target_as = gk_privateer_enclave_system
 			}
@@ -84,8 +101,24 @@ country_event = {
 		set_country_flag = gk_privateer_enclave_country
 		remove_country_flag = mercenary_enclave_country
 
-		# Assign personality
+		# Primary patron: system owner where there is one, otherwise the nomad. Derived here rather
+		# than by gk_get_privateer_station_context, which keys off the privateer station that does
+		# not exist yet at this point in the conversion.
 		event_target:gk_privateer_patron? = {
+			save_event_target_as = gk_privateer_primary_patron
+		}
+		if = {
+			limit = {
+				NOT = { exists = event_target:gk_privateer_patron }
+				exists = event_target:gk_privateer_nomad_patron
+			}
+			event_target:gk_privateer_nomad_patron = {
+				save_event_target_as = gk_privateer_primary_patron
+			}
+		}
+
+		# Assign personality — the primary patron is the cultural source
+		event_target:gk_privateer_primary_patron? = {
 			save_event_target_as = gk_privateer_enclave_creator
 		}
 		gk_assign_privateer_personality = yes
@@ -119,16 +152,15 @@ country_event = {
 			limit = { is_situation_type = mercenary_dividends }
 			destroy_situation = this
 		}
-		if = {
-			limit = { exists = event_target:gk_privateer_patron }
-			start_situation = {
-				type = gk_privateer_dividends
-				target = event_target:gk_privateer_patron
-			}
-		}
+		# The situation carries a single target, so it tracks the primary patron: the system owner
+		# where one exists, otherwise the nomad patron. Payouts in .500 still reach both.
+		gk_apply_privateer_patronage = yes
 
-		# Notify patron
-		event_target:gk_privateer_patron? = {
+		# Notify patron(s)
+		event_target:gk_privateer_primary_patron? = {
+			country_event = { id = gk_raiding_privateers.114 }
+		}
+		event_target:gk_privateer_nomad_patron? = {
 			country_event = { id = gk_raiding_privateers.114 }
 		}
 	}
@@ -151,8 +183,8 @@ country_event = {
 		force_remove_civic = civic_gk_privateer_enclave
 		force_add_civic = civic_mercenary_enclave
 		if = {
-			limit = { exists = event_target:gk_privateer_patron }
-			set_graphical_culture = event_target:gk_privateer_patron
+			limit = { exists = event_target:gk_privateer_primary_patron }
+			set_graphical_culture = event_target:gk_privateer_primary_patron
 		}
 		remove_country_flag = gk_privateer_enclave_country
 		set_country_flag = mercenary_enclave_country
@@ -194,15 +226,15 @@ country_event = {
 			destroy_situation = this
 		}
 		if = {
-			limit = { exists = event_target:gk_privateer_patron }
+			limit = { exists = event_target:gk_privateer_primary_patron }
 			start_situation = {
 				type = mercenary_dividends
-				target = event_target:gk_privateer_patron
+				target = event_target:gk_privateer_primary_patron
 			}
 		}
 
 		# Notify patron
-		event_target:gk_privateer_patron? = {
+		event_target:gk_privateer_primary_patron? = {
 			country_event = { id = gk_raiding_privateers.115 }
 		}
 	}
@@ -453,7 +485,12 @@ country_event = {
 		name = gk_raiding_privateers.205.c
 		custom_tooltip = gk_privateer_tt_garrison
 		trigger = {
-			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
+			NOR = {
+				is_hostile = event_target:gk_privateer_enclave_country
+				# Nomads have no normal starbase to host it. Vanilla excludes them from the
+				# Mercenary Garrison the same way (enclave.205 option enclave.205.c).
+				is_nomadic = yes
+			}
 			NOT = { has_country_flag = gk_privateer_bought_garrison }
 		}
 		allow = {
@@ -496,11 +533,7 @@ country_event = {
 		custom_tooltip = gk_privateer_tt_patron
 		trigger = {
 			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
-			event_target:gk_privateer_enclave_system = {
-				space_owner = {
-					is_same_value = root
-				}
-			}
+			gk_is_privateer_patron_of = yes
 		}
 		hidden_effect = {
 			country_event = { id = gk_raiding_privateers.335 }
@@ -521,9 +554,7 @@ country_event = {
 			OR = {
 				# Autonomous raid: patron can cancel
 				AND = {
-					event_target:gk_privateer_enclave_system = {
-						space_owner? = { is_same_value = root }
-					}
+					gk_is_privateer_patron_of = yes
 					event_target:gk_privateer_enclave_country = {
 						NOT = { has_country_flag = gk_raid_commissioned }
 					}
@@ -547,9 +578,7 @@ country_event = {
 		custom_tooltip = gk_privateer_tt_convert_to_merc
 		trigger = {
 			NOT = { is_hostile = event_target:gk_privateer_enclave_country }
-			event_target:gk_privateer_enclave_system = {
-				space_owner? = { is_same_value = root }
-			}
+			gk_is_privateer_patron_of = yes
 			has_tradition = tr_gk_raiding_despoliation_finish
 		}
 		allow = {
@@ -1337,13 +1366,8 @@ country_event = {
 		name = gk_raiding_privateers.340.a
 		trigger = {
 			exists = event_target:gk_commission_target_1
-			OR = {
-				NOT = { exists = event_target:gk_privateer_patron }
-				NOT = {
-					event_target:gk_commission_target_1 = {
-						is_same_value = event_target:gk_privateer_patron
-					}
-				}
+			NOT = {
+				event_target:gk_commission_target_1 = { gk_is_privateer_patron_of = yes }
 			}
 		}
 		hidden_effect = {
@@ -1360,13 +1384,8 @@ country_event = {
 		name = gk_raiding_privateers.340.b
 		trigger = {
 			exists = event_target:gk_commission_target_2
-			OR = {
-				NOT = { exists = event_target:gk_privateer_patron }
-				NOT = {
-					event_target:gk_commission_target_2 = {
-						is_same_value = event_target:gk_privateer_patron
-					}
-				}
+			NOT = {
+				event_target:gk_commission_target_2 = { gk_is_privateer_patron_of = yes }
 			}
 		}
 		hidden_effect = {
@@ -1383,13 +1402,8 @@ country_event = {
 		name = gk_raiding_privateers.340.c
 		trigger = {
 			exists = event_target:gk_commission_target_3
-			OR = {
-				NOT = { exists = event_target:gk_privateer_patron }
-				NOT = {
-					event_target:gk_commission_target_3 = {
-						is_same_value = event_target:gk_privateer_patron
-					}
-				}
+			NOT = {
+				event_target:gk_commission_target_3 = { gk_is_privateer_patron_of = yes }
 			}
 		}
 		hidden_effect = {
@@ -1405,19 +1419,19 @@ country_event = {
 	option = {
 		name = gk_raiding_privateers.340.patron
 		trigger = {
-			exists = event_target:gk_privateer_patron
+			gk_has_privateer_patron = yes
 			OR = {
 				AND = {
 					exists = event_target:gk_commission_target_1
-					event_target:gk_commission_target_1 = { is_same_value = event_target:gk_privateer_patron }
+					event_target:gk_commission_target_1 = { gk_is_privateer_patron_of = yes }
 				}
 				AND = {
 					exists = event_target:gk_commission_target_2
-					event_target:gk_commission_target_2 = { is_same_value = event_target:gk_privateer_patron }
+					event_target:gk_commission_target_2 = { gk_is_privateer_patron_of = yes }
 				}
 				AND = {
 					exists = event_target:gk_commission_target_3
-					event_target:gk_commission_target_3 = { is_same_value = event_target:gk_privateer_patron }
+					event_target:gk_commission_target_3 = { gk_is_privateer_patron_of = yes }
 				}
 			}
 		}
@@ -1562,8 +1576,11 @@ country_event = {
 			gk_cleanup_privateer_raid = yes
 		}
 
-		# Remove patron flag
+		# Remove patron flag from every patron the station had
 		event_target:gk_privateer_patron? = {
+			remove_country_flag = gk_is_privateer_patron
+		}
+		event_target:gk_privateer_nomad_patron? = {
 			remove_country_flag = gk_is_privateer_patron
 		}
 
@@ -1573,7 +1590,7 @@ country_event = {
 			destroy_situation = this
 		}
 
-		# Notify patron
+		# Notify each patron that is not itself the destroyer
 		if = {
 			limit = {
 				exists = event_target:gk_privateer_patron
@@ -1584,6 +1601,19 @@ country_event = {
 				}
 			}
 			event_target:gk_privateer_patron = {
+				country_event = { id = gk_raiding_privateers.601 }
+			}
+		}
+		if = {
+			limit = {
+				exists = event_target:gk_privateer_nomad_patron
+				NOT = {
+					event_target:gk_privateer_nomad_patron = {
+						is_same_value = event_target:gk_privateer_destroyer
+					}
+				}
+			}
+			event_target:gk_privateer_nomad_patron = {
 				country_event = { id = gk_raiding_privateers.601 }
 			}
 		}
@@ -1601,13 +1631,13 @@ country_event = {
 			}
 		}
 
-		# Notify all communicating empires (except patron and destroyer)
+		# Notify all communicating empires (except any patron, and the destroyer)
 		every_country = {
 			limit = {
 				has_communications = root
 				is_country_type = default
 				NOT = { is_same_value = event_target:gk_privateer_destroyer }
-				NOT = { is_same_value = event_target:gk_privateer_patron }
+				NOT = { gk_is_privateer_patron_of = yes }
 			}
 			country_event = { id = gk_raiding_privateers.603 }
 		}
@@ -1691,8 +1721,15 @@ country_event = {
 # Patron Change / System Ownership Validation (610–619)
 # ──────────────────────────────────────────────────────────────────
 
-# 610 — Monthly: check if the station's system ownership has changed
+# 610 — Monthly: revalidate positional patronage against the station's current surroundings
 # This = enclave country (from on_monthly_pulse_country)
+#
+# Vanilla has no equivalent event: it never stores a patron, it just re-resolves position every time
+# it needs one. We cache the patron in the dividends situation target, so this event keeps that cache
+# honest. Patronage is DUAL (see gk_get_privateer_station_context): the system's space_owner and a
+# nomad holding a waystation in the same system both qualify, and both are paid by .500. The
+# situation can only carry one target, so it tracks the PRIMARY patron: the system owner where one
+# exists, otherwise the nomad. The enclave is only orphaned when NEITHER kind of patron remains.
 country_event = {
 	id = gk_raiding_privateers.610
 	hide_window = yes
@@ -1711,14 +1748,11 @@ country_event = {
 	immediate = {
 		save_event_target_as = gk_privateer_enclave_country
 
-		# Find station system, star, and current space_owner
+		# Resolves gk_privateer_patron (space_owner), gk_privateer_nomad_patron (waystation holder)
+		# and gk_privateer_primary_patron (the former if it exists, else the latter)
 		gk_get_privateer_station_context = yes
-		# Alias: gk_privateer_patron here is the current system owner, not necessarily the patron
-		event_target:gk_privateer_patron? = {
-			save_event_target_as = gk_current_system_owner
-		}
 
-		# Get old patron from the dividend situation target (authoritative source)
+		# Cached primary from the dividend situation target (authoritative source)
 		random_situation = {
 			limit = { is_situation_type = gk_privateer_dividends }
 			target = {
@@ -1726,91 +1760,87 @@ country_event = {
 			}
 		}
 
-		# Case 1: System has a new owner different from old patron
+		# Case 1: the primary patron changed hands
 		if = {
 			limit = {
-				exists = event_target:gk_current_system_owner
+				exists = event_target:gk_privateer_primary_patron
 				exists = event_target:gk_old_patron
 				NOT = {
-					event_target:gk_current_system_owner = {
+					event_target:gk_privateer_primary_patron = {
 						is_same_value = event_target:gk_old_patron
 					}
 				}
 			}
-			# Remove old patron flag
 			event_target:gk_old_patron = {
 				remove_country_flag = gk_is_privateer_patron
 			}
-
-			# Destroy old dividend situation
 			every_situation = {
 				limit = { is_situation_type = gk_privateer_dividends }
 				destroy_situation = this
 			}
+			# Flags both current patrons and restarts the situation on the primary
+			gk_apply_privateer_patronage = yes
 
-			# Set new patron
-			event_target:gk_current_system_owner = {
-				set_country_flag = gk_is_privateer_patron
+			# Only tell the displaced primary it lost the enclave if it is no longer a patron of any
+			# kind. A nomad that keeps a waystation in the system stays a co-patron: it still holds
+			# the flag and .500 still pays it, so a "patron lost" letter would simply be wrong.
+			if = {
+				limit = {
+					event_target:gk_old_patron = {
+						NOT = { gk_is_privateer_patron_of = yes }
+					}
+				}
+				event_target:gk_old_patron = {
+					country_event = { id = gk_raiding_privateers.611 }
+				}
 			}
-
-			# Start new dividend situation
-			start_situation = {
-				type = gk_privateer_dividends
-				target = event_target:gk_current_system_owner
-			}
-
-			# Notify old patron
-			event_target:gk_old_patron = {
-				country_event = { id = gk_raiding_privateers.611 }
-			}
-
-			# Notify new patron
-			event_target:gk_current_system_owner = {
+			event_target:gk_privateer_primary_patron = {
 				country_event = { id = gk_raiding_privateers.612 }
 			}
 		}
-		# Case 2: System has no owner and we had an old patron
+		# Case 2: no patron of EITHER kind remains — the enclave is orphaned.
+		# Before the dual-patron fix a nomad founder tripped this every month, because a nomad's
+		# system has no space_owner.
 		else_if = {
 			limit = {
-				NOT = { exists = event_target:gk_current_system_owner }
+				NOT = { exists = event_target:gk_privateer_primary_patron }
 				exists = event_target:gk_old_patron
 			}
-			# Remove old patron flag
 			event_target:gk_old_patron = {
 				remove_country_flag = gk_is_privateer_patron
 			}
-
-			# Destroy dividend situation (no patron to pay)
 			every_situation = {
 				limit = { is_situation_type = gk_privateer_dividends }
 				destroy_situation = this
 			}
-
-			# Notify old patron
 			event_target:gk_old_patron = {
 				country_event = { id = gk_raiding_privateers.611 }
 			}
 		}
-		# Case 3: System has an owner but no dividend situation (patron was destroyed)
+		# Case 3: a patron exists but the situation is gone (previous patron was destroyed)
 		else_if = {
 			limit = {
-				exists = event_target:gk_current_system_owner
-				NOT = { exists = event_target:gk_old_patron }
+				exists = event_target:gk_privateer_primary_patron
 				NOT = {
 					any_situation = {
 						is_situation_type = gk_privateer_dividends
 					}
 				}
 			}
-			event_target:gk_current_system_owner = {
+			gk_apply_privateer_patronage = yes
+			event_target:gk_privateer_primary_patron = {
+				country_event = { id = gk_raiding_privateers.612 }
+			}
+		}
+		# Steady state: primary unchanged. Still reassert the flag on BOTH current patrons, so a
+		# co-patron who arrived without displacing the primary (a nomad parking a waystation in
+		# someone else's system, or vice versa) gains panel access on the next tick.
+		else = {
+			event_target:gk_privateer_patron? = {
 				set_country_flag = gk_is_privateer_patron
 			}
-			start_situation = {
-				type = gk_privateer_dividends
-				target = event_target:gk_current_system_owner
-			}
-			event_target:gk_current_system_owner = {
-				country_event = { id = gk_raiding_privateers.612 }
+			event_target:gk_privateer_nomad_patron? = {
+				set_country_flag = gk_is_privateer_patron
 			}
 		}
 	}

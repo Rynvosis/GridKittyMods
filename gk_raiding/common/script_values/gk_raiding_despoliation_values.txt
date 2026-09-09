@@ -11,9 +11,9 @@ gk_despoliation_shipkill_trait_mult = {
 	}
 }
 
-# Forward Raiding Base (tr_gk_raiding_despoliation_2) per-tick skim percentage.
+# Forward Raiding Base (tr_gk_raiding_despoliation_2) share of output taken when a raid lands.
 # Evaluated in PLANET scope: `owner` is the victim country, event_target:gk_forward_base_raider is the
-# raiding country. Base skim is doubled when the victim's owner is a declared rival of the raider.
+# raiding country. Flat rate; the rarity is carried by the per-colony chance roll, not by this value.
 gk_forward_base_raid_percentage = {
 	base = @gk_forward_base_raid_pct
 }

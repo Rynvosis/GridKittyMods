@@ -27,15 +27,10 @@ gk_privateer_dividends = {
 		modifier = {
 			add = @dividend_patron_at_war_rate
 			desc = GK_RAIDING_DIVIDEND_PATRON_AT_WAR
-			owner = {
-				any_owned_fleet = {
-					is_ship_size = gk_privateer_station
-					solar_system = {
-						space_owner? = {
-							is_at_war = yes
-						}
-					}
-				}
+			# The situation's target IS the primary patron, so ask it directly rather than walking
+			# station -> system -> space_owner: nomad patrons own no system and that walk misses them.
+			target? = {
+				is_at_war = yes
 			}
 		}
 
@@ -97,15 +92,8 @@ gk_privateer_dividends = {
 		modifier = {
 			add = @dividend_lord_of_war_rate
 			desc = lord_of_war
-			owner = {
-				any_owned_fleet = {
-					is_ship_size = gk_privateer_station
-					solar_system = {
-						space_owner? = {
-							has_ascension_perk = ap_lord_of_war
-						}
-					}
-				}
+			target? = {
+				has_ascension_perk = ap_lord_of_war
 			}
 		}
 	}

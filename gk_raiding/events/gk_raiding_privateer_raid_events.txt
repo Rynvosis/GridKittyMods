@@ -72,7 +72,7 @@ country_event = {
 		# Only proceed if patron exists and valid targets exist
 		if = {
 			limit = {
-				exists = event_target:gk_privateer_patron
+				gk_has_privateer_patron = yes
 				any_country = {
 					gk_is_valid_raid_target = yes
 				}
@@ -707,7 +707,7 @@ country_event = {
 		}
 
 		# Transfer tribute to patron
-		event_target:gk_privateer_patron? = {
+		event_target:gk_privateer_primary_patron? = {
 			# Reimburse the energy that was paid as tribute
 			if = {
 				limit = {
@@ -796,7 +796,7 @@ country_event = {
 
 		# Notify patron that the raid failed
 		gk_get_privateer_station_context = yes
-		event_target:gk_privateer_patron? = {
+		event_target:gk_privateer_primary_patron? = {
 			country_event = { id = gk_raiding_privateers.217 }
 		}
 	}

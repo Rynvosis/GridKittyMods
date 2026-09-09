@@ -1,6 +1,6 @@
 # GK Raiding — Arkship Boarding Cables (A-slot / Auxiliary constructable).
 #
-# Nomadic counterpart to building_gk_forward_raiding_base (which is is_nomadic = no).
+# Nomadic counterpart to gk_forward_raiding_base (which is is_nomadic = no).
 # Built from the arkship build UI in the Utility (A-slot) category, exactly like the
 # vanilla arkship_afterburner / arkship hardener buildings. Limit 1 per arkship; equips
 # 3 aux Boarding Cables.

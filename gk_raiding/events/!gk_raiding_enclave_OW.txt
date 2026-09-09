@@ -659,8 +659,19 @@ country_event = {
 		custom_tooltip = gk_privateer_tt_convert_to_privateer
 		trigger = {
 			NOT = { is_hostile = event_target:mercenary_enclave_country }
-			exists = event_target:mercenary_patron
-			event_target:mercenary_patron = { is_same_empire = root }
+			# Either kind of patron may convert. Mirrors the vanilla Patron Panel gate
+			# (enclave.205.h): a nomad holds patronage through a waystation in the enclave's
+			# system, never through space_owner.
+			OR = {
+				AND = {
+					exists = event_target:mercenary_patron
+					event_target:mercenary_patron = { is_same_empire = root }
+				}
+				AND = {
+					exists = event_target:mercenary_nomad_patron
+					event_target:mercenary_nomad_patron = { is_same_empire = root }
+				}
+			}
 			has_tradition = tr_gk_raiding_despoliation_finish
 			NOT = { has_origin = origin_mindwardens }
 		}

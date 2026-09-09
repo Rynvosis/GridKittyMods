@@ -12,12 +12,31 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		# Find patron, system, and star via station fleet
+		# Find patrons, system, and star via station fleet
 		gk_get_privateer_station_context = yes
 		root = {
 			save_event_target_as = gk_privateer_enclave_country
 		}
+		# Both patrons are paid independently, as vanilla enclave.275 pays mercenary_patron and
+		# mercenary_nomad_patron. Either may be absent; a nomad-only enclave has no space_owner.
 		event_target:gk_privateer_patron? = {
+			random_list = {
+				30 = { country_event = { id = gk_raiding_privateers.510 } }
+				30 = { country_event = { id = gk_raiding_privateers.515 } }
+				25 = { country_event = { id = gk_raiding_privateers.520 } }
+				5 = {
+					modifier = {
+						factor = 0
+						event_target:gk_privateer_enclave_country = {
+							NOT = { has_modifier = mercenary_fleet_size_upgrade_1 }
+						}
+					}
+					country_event = { id = gk_raiding_privateers.530 }
+				}
+				10 = { country_event = { id = gk_raiding_privateers.525 } }
+			}
+		}
+		event_target:gk_privateer_nomad_patron? = {
 			random_list = {
 				30 = { country_event = { id = gk_raiding_privateers.510 } }
 				30 = { country_event = { id = gk_raiding_privateers.515 } }
@@ -37,10 +56,9 @@ country_event = {
 	}
 
 	after = {
-		start_situation = {
-			type = gk_privateer_dividends
-			target = event_target:gk_privateer_patron
-		}
+		# Restarts on the primary patron; skipped entirely when neither patron exists, so an orphaned
+		# enclave stops cycling instead of starting a situation with no target.
+		gk_apply_privateer_patronage = yes
 		destroy_situation = from
 	}
 }

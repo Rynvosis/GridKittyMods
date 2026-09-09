@@ -75,10 +75,13 @@
 # tr_1 Raider's Fervor — kill-unity (delivered by on_ship_destroyed / on_army_killed_in_combat events)
 @gk_despoliation_kill_unity = 50         # unity per kill base (calibrate vs trait_kill_naval_cap_scaling to ~50 unity / 5 destroyed naval capacity)
 
-# tr_2 Forward Raiding Bases — starbase output skim
-@gk_forward_base_raid_pct = 0.03         # starbase skim per tick (visible/flat rate; doubled behind the scenes via a duplicate steal)
+# tr_2 Forward Raiding Bases — starbase output raid
+# Rare, large hits rather than a constant trickle: each in-range colony is rolled independently per
+# cycle. 8.34% x 0.60 = ~5% expected output per colony per cycle. Both numbers are advertised.
+@gk_forward_base_raid_pct = 0.60         # output taken from a colony when the raid lands
+@gk_forward_base_raid_chance = 8.34      # per-colony chance the raid lands (1 in 12)
 @gk_forward_base_radius = 3              # raid radius in hyperlane jumps (compile-time @-constant; range can't scale at runtime)
-@gk_forward_base_skim_days = 29          # skim cadence in days (matches the vanilla waystation cycle)
+@gk_forward_base_skim_days = 29          # raid cadence in days (matches the vanilla waystation cycle)
 
 # tr_2 Void Reavers swap — the +50% pirate-waystation buff lives on the waystation_pirate_hideout
 # overwrite (common/starbase_modules/zz_gk_raiding_pirate_hideout_OW.txt), not a script value.

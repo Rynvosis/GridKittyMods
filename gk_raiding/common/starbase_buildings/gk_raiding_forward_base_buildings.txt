@@ -14,7 +14,7 @@
 # Cost/upkeep modelled on a mid-tier vanilla starbase building (e.g. recruitment_office / command_center):
 # moderate alloy cost + small energy upkeep.
 
-building_gk_forward_raiding_base = {
+gk_forward_raiding_base = {
 	icon = "GFX_starbase_command_center"
 	construction_days = 720
 	category = sm_naval_support_cat

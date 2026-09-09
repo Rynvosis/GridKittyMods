@@ -11,6 +11,47 @@ gk_is_privateer_patron = {
 	has_country_flag = gk_is_privateer_patron
 }
 
+# Country scope — is the scoped empire a current patron of the enclave whose station context was
+# just resolved by gk_get_privateer_station_context?
+#
+# Patronage is positional and dual: the system's space_owner AND any nomadic empire holding a
+# waystation starbase in the same system both qualify, and both may qualify at once. Mirrors the
+# vanilla Patron Panel gate (events/overlord_enclaves_events.txt, enclave.205 option enclave.205.h).
+# Callers must have run gk_get_privateer_station_context first.
+gk_is_privateer_patron_of = {
+	OR = {
+		AND = {
+			exists = event_target:gk_privateer_patron
+			is_same_empire = event_target:gk_privateer_patron
+		}
+		AND = {
+			exists = event_target:gk_privateer_nomad_patron
+			is_same_empire = event_target:gk_privateer_nomad_patron
+		}
+	}
+}
+
+# Does the enclave whose context was just resolved have a patron of either kind?
+# Requires gk_get_privateer_station_context to have run.
+gk_has_privateer_patron = {
+	OR = {
+		exists = event_target:gk_privateer_patron
+		exists = event_target:gk_privateer_nomad_patron
+	}
+}
+
+# Country scope — is the scoped country shielded from privateer raids by its relationship to the
+# patron held in event_target:$PATRON$? Callers must have checked that target exists.
+gk_is_shielded_by_patron = {
+	OR = {
+		is_same_value = event_target:$PATRON$
+		is_in_federation_with = event_target:$PATRON$
+		has_defensive_pact = event_target:$PATRON$
+		is_overlord_to = event_target:$PATRON$
+		has_overlord = event_target:$PATRON$
+	}
+}
+
 # Country scope — can this empire found a privateer enclave?
 gk_can_found_privateer_enclave = {
 	has_tradition = tr_gk_raiding_despoliation_finish
@@ -58,11 +99,18 @@ gk_has_available_raid_fleet = {
 gk_is_valid_raid_target = {
 	is_country_type = default
 	has_communications = prev
-	NOT = { is_same_value = event_target:gk_privateer_patron }
-	NOT = { is_in_federation_with = event_target:gk_privateer_patron }
-	NOT = { has_defensive_pact = event_target:gk_privateer_patron }
-	NOT = { is_overlord_to = event_target:gk_privateer_patron }
-	NOT = { has_overlord = event_target:gk_privateer_patron }
+	# Shielded from either patron: a nomad patron owns no system, so checking only the space_owner
+	# target would let the enclave raid the very empire paying it.
+	NOR = {
+		AND = {
+			exists = event_target:gk_privateer_patron
+			gk_is_shielded_by_patron = { PATRON = gk_privateer_patron }
+		}
+		AND = {
+			exists = event_target:gk_privateer_nomad_patron
+			gk_is_shielded_by_patron = { PATRON = gk_privateer_nomad_patron }
+		}
+	}
 	any_owned_planet = {
 		is_colony = yes
 		count_owned_pop_amount = { count >= 1 }
