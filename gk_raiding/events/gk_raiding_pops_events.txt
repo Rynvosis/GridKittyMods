@@ -456,38 +456,9 @@ country_event = {
 	}
 }
 
-# Escalation dispatch guard. Every caller that wants the Raiding Report routes
-# through here instead of firing .500 directly, so a duplicate dispatch in the
-# same tick is suppressed structurally rather than by each caller remembering to
-# check. The days = 1 is load-bearing: on a surrender the peace lands in the same
-# tick as the war goal's on_accept, so a synchronous .500 would still see
-# is_at_war_with = from as true and show the popup on a war that is already over.
-# This = raider, From = raidee.
-country_event = {
-	id = gk_raiding_pops.590
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = { has_country_flag = gk_dispatch_escalation_@from }
-	}
-	immediate = {
-		set_timed_country_flag = {
-			flag = gk_dispatch_escalation_@from
-			days = 2
-		}
-		country_event = {
-			id = gk_raiding_pops.500
-			days = 1
-			scopes = { from = from }
-		}
-	}
-}
-
-# War ended — run the existing .120 flag cleanup now rather than waiting up to a
-# year for the yearly pass. A stale gk_raid_cap_reached_by_@X silently blocks
-# raiding in a rematch declared inside that window.
-# days = 1 because the war can still read as live in any_war during the tick the
-# peace is applied.
+# Run the .120 flag cleanup at war end; a stale gk_raid_cap_reached_by_@X blocks
+# raiding in a rematch declared before the yearly pass.
+# days = 1: the war still reads live in any_war during the peace tick.
 # Root = Loser, From = Main Winner.
 country_event = {
 	id = gk_raiding_pops.121
@@ -1179,11 +1150,9 @@ country_event = {
 	option = {
 		name = GK_RAIDING_ESCALATION_CONSOLIDATE
 		trigger = {
-			# Token raiding offers only the pivot — except where the pivot itself is
-			# unavailable, in which case this is the only option left and an
-			# option-less event window is worse than a redundant one.
+			# Fallback: keeps one option selectable when the pivot is unavailable.
 			OR = {
-				NOT = { has_policy_flag = gk_focus_token_raiding }
+				gk_focus_allows_escalation = yes
 				NOT = { gk_escalation_pivot_available = yes }
 			}
 		}
@@ -1237,7 +1206,7 @@ country_event = {
 		}
 		name = GK_RAIDING_ESCALATION_PRESS
 		trigger = {
-			NOT = { has_policy_flag = gk_focus_token_raiding }
+			gk_focus_allows_escalation = yes
 		}
 		custom_tooltip = GK_RAIDING_ESCALATION_PRESS_TOOLTIP
 		allow = {
@@ -1456,7 +1425,7 @@ country_event = {
 			NOT = {
 				has_country_flag = gk_is_opportunistic_escalation
 			}
-			NOT = { has_policy_flag = gk_focus_token_raiding }
+			gk_focus_allows_escalation = yes
 			gk_is_plunder_war_with_from = yes
 		}
 		allow = {
@@ -1599,10 +1568,6 @@ planet_event = {
 		owner = {
 			save_event_target_as = gk_raidee
 		}
-		# Synchronous, and the target is handed over explicitly. The old days = 0
-		# hop queued one event per bombarded planet before any of them had set the
-		# guard flag, so siblings in the same tick could not block each other, and
-		# a second planet with a different owner clobbered gk_raidee first.
 		from = {
 			country_event = {
 				id = gk_raiding_pops.610
@@ -1612,19 +1577,13 @@ planet_event = {
 	}
 }
 
-# Opportunistic dispatch guard. The single choke point every caller goes through,
-# so "prompted twice in one tick" is not expressible regardless of which caller
-# misbehaves. Also rebases root to the raider, which is what .616 used to exist
-# for. The 2-day dispatch latch is deliberately separate from the 5-year
-# gk_opportunistic_prompted_ flag: that one is the intended "ask again in a long
-# war if you have changed your mind" and must keep working.
+# Single dispatch point for the opportunistic prompt; rebases root to the raider.
 # This = Root = raider, From = raidee
 country_event = {
 	id = gk_raiding_pops.610
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		NOT = { has_country_flag = gk_dispatch_opportunistic_@from }
 		gk_can_pop_raid_personally = yes
 		is_at_war_with = from
 		NOT = { has_country_flag = gk_opportunistic_prompted_@from }
@@ -1635,10 +1594,6 @@ country_event = {
 		}
 	}
 	immediate = {
-		set_timed_country_flag = {
-			flag = gk_dispatch_opportunistic_@from
-			days = 2
-		}
 		set_timed_country_flag = {
 			flag = gk_opportunistic_prompted_@from
 			years = @gk_opportunistic_prompt_cooldown_years

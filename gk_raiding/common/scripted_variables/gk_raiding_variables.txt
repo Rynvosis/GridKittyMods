@@ -13,7 +13,7 @@
 @gk_bucket_cap_2 = 0.50
 @gk_bucket_cap_3 = 1.00
 
-# Token Raiding focus: flat, tier-independent cap. Not part of the ladder above.
+# Token Raiding: flat cap, outside the tier ladder above.
 @gk_bucket_cap_token = 0.05
 
 @gk_max_escalation_tier = 3

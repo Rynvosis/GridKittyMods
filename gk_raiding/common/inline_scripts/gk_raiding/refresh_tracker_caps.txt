@@ -2,6 +2,14 @@
 # Expanded at parse time into callers (no scripted-effect depth cost).
 # Call from the raid tracker (leader) scope after any change to gk_escalation_tier.
 if = {
+	# Token raiding is a flat cap, not a tier — it never advances.
+	limit = {
+		event_target:gk_cap_raider = { has_policy_flag = gk_focus_token_raiding }
+	}
+	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_token }
+	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_token }
+}
+else_if = {
 	limit = { check_variable = { which = gk_escalation_tier value = 0 } }
 	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_0 }
 	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_1 }
@@ -20,14 +28,4 @@ else = {
 	# At or past max tier — take-all cap, no next.
 	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_3 }
 	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_3 }
-}
-
-# Token Raiding: flat 5% cap, tier-independent. Overrides the tier mapping above.
-# event_target:gk_cap_raider is set before this runs at both call sites.
-if = {
-	limit = {
-		event_target:gk_cap_raider = { has_policy_flag = gk_focus_token_raiding }
-	}
-	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_token }
-	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_token }
 }

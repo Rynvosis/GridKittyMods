@@ -250,9 +250,14 @@ gk_is_emancipation_war_with_from = {
 	}
 }
 
-# Single source of truth for .500 Option C (Pivot to Plundering) availability.
-# Read by the Pivot option itself and by Consolidate's token-raiding fallback, so
-# the two can never disagree and leave the event with no selectable option.
+# Focus permits the .500 escalation ladder (Consolidate / Press / Tribute).
+# Token raiding is capped and does not escalate.
+gk_focus_allows_escalation = {
+	NOT = { has_policy_flag = gk_focus_token_raiding }
+}
+
+# .500 Option C (Pivot to Plundering) availability. Shared so the Pivot option
+# and Consolidate's fallback cannot disagree and leave the event unselectable.
 # This = raider country (event root), From = raidee country
 gk_escalation_pivot_available = {
 	NOT = { has_country_flag = gk_is_opportunistic_escalation }

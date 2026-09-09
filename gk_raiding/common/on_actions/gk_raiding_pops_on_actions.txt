@@ -54,8 +54,7 @@ on_monthly_pulse_country = {
 	}
 }
 
-# A war has ended — clear stale per-target raid flags on both war leaders now
-# instead of waiting for the yearly pass.
+# Clear stale per-target raid flags on both war leaders.
 # Root = Loser, From = Main Winner
 on_war_ended = {
 	events = {
