@@ -251,9 +251,9 @@ gk_is_emancipation_war_with_from = {
 }
 
 # Focus permits the .500 escalation ladder (Consolidate / Press / Tribute).
-# Token raiding is capped and does not escalate.
+# Token Abduction is capped and does not escalate.
 gk_focus_allows_escalation = {
-	NOT = { has_policy_flag = gk_focus_token_raiding }
+	NOT = { has_policy_flag = gk_focus_token_abduction }
 }
 
 # .500 Option C (Pivot to Plundering) availability. Shared so the Pivot option

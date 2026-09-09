@@ -37,14 +37,15 @@ gk_raiding_focus = {
 		# keep applying; the token flag only narrows the cap and the escalation options.
 		policy_flags = {
 			gk_focus_raiding
-			gk_focus_token_raiding
+			gk_focus_token_abduction
 		}
 
-		# Stays below gk_raiding_focus_raiding's 2 even at its best.
+		# Default for empires with raiding access that would not otherwise raid;
+		# well below Abduction's 2 for everyone else.
 		AI_weight = {
 			factor = 0.5
 			modifier = {
-				factor = 3
+				factor = 6
 				OR = {
 					has_ethic = ethic_pacifist
 					has_ethic = ethic_fanatic_pacifist
@@ -97,10 +98,18 @@ gk_raiding_focus = {
 			gk_focus_reaping
 		}
 
-		# Opt-in, not the default: below gk_raiding_focus_raiding's 2 in the
-		# general case, tying only for the empires reaping is actually for.
+		# Default only for the civics built around processing captured pops.
+		# Merely qualifying via ethics or Nihilistic Acquisition is not enough.
 		AI_weight = {
-			factor = 1
+			factor = 0.5
+			modifier = {
+				factor = 6
+				OR = {
+					has_valid_civic = civic_gk_barbaric_despoilers_machine
+					has_valid_civic = civic_gk_barbaric_despoilers_megacorp
+					has_valid_civic = civic_gk_ravager_swarm
+				}
+			}
 			modifier = {
 				factor = 2
 				has_ethic = ethic_fanatic_xenophobe

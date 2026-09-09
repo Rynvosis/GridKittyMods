@@ -969,7 +969,7 @@ country_event = {
 	title = GK_RAIDING_ESCALATION_TITLE
 	desc = {
 		trigger = {
-			has_policy_flag = gk_focus_token_raiding
+			has_policy_flag = gk_focus_token_abduction
 		}
 		text = GK_RAIDING_ESCALATION_DESC_TOKEN
 	}
@@ -1065,9 +1065,9 @@ country_event = {
 		from = {
 			save_event_target_as = gk_raidee
 		}
-		# Token raid completed — pay the unity reward.
+		# Token Abduction completed — pay the unity reward.
 		if = {
-			limit = { has_policy_flag = gk_focus_token_raiding }
+			limit = { has_policy_flag = gk_focus_token_abduction }
 			add_resource = { unity = value:gk_token_raid_unity }
 		}
 		gk_get_or_create_raid_tracker = yes

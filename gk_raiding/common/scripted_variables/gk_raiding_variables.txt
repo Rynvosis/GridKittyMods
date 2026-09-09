@@ -13,7 +13,7 @@
 @gk_bucket_cap_2 = 0.50
 @gk_bucket_cap_3 = 1.00
 
-# Token Raiding: flat cap, outside the tier ladder above.
+# Token Abduction: flat cap, outside the tier ladder above.
 @gk_bucket_cap_token = 0.05
 # Unity paid on completing a token raid, in months of the raider's net unity income.
 @gk_token_raid_unity_months = 12

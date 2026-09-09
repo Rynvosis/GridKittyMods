@@ -2,9 +2,9 @@
 # Expanded at parse time into callers (no scripted-effect depth cost).
 # Call from the raid tracker (leader) scope after any change to gk_escalation_tier.
 if = {
-	# Token raiding is a flat cap, not a tier — it never advances.
+	# Token Abduction is a flat cap, not a tier — it never advances.
 	limit = {
-		event_target:gk_cap_raider = { has_policy_flag = gk_focus_token_raiding }
+		event_target:gk_cap_raider = { has_policy_flag = gk_focus_token_abduction }
 	}
 	set_variable = { which = gk_bucket_cap value = @gk_bucket_cap_token }
 	set_variable = { which = gk_next_bucket_cap value = @gk_bucket_cap_token }
